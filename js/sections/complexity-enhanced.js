@@ -604,75 +604,118 @@ result = [<span class="num">0</span>] * n
             <marker id="arrEulerE" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
                 <polygon points="0 0, 8 3, 0 6" fill="var(--text2)"/>
             </marker>
+            <!-- NP ellipse used as clipPath for NP-Complete fill -->
+            <clipPath id="npClipE">
+                <ellipse cx="280" cy="310" rx="220" ry="195"/>
+            </clipPath>
         </defs>
-        <text x="360" y="28" text-anchor="middle" fill="var(--text)" font-size="16" font-weight="800">Euler Diagram for Complexity Classes (P &ne; NP)</text>
-        <text x="360" y="48" text-anchor="middle" fill="var(--text2)" font-size="10" font-style="italic">Under the assumption that P &ne; NP &mdash; the prevailing conjecture</text>
 
-        <ellipse cx="430" cy="310" rx="270" ry="210" fill="rgba(248,113,113,0.03)" stroke="var(--red)" stroke-width="2.5" stroke-dasharray="8,4"/>
-        <ellipse cx="280" cy="310" rx="210" ry="195" fill="rgba(251,191,36,0.04)" stroke="var(--yellow)" stroke-width="2.5"/>
-        <ellipse cx="220" cy="370" rx="130" ry="105" fill="rgba(52,211,153,0.06)" stroke="var(--green)" stroke-width="2.5"/>
+        <!-- Title -->
+        <text x="360" y="26" text-anchor="middle" fill="var(--text)" font-size="16" font-weight="800">Euler Diagram: Complexity Classes (P &ne; NP)</text>
+        <text x="360" y="44" text-anchor="middle" fill="var(--text2)" font-size="10" font-style="italic">Prevailing conjecture &mdash; standard representation (Sipser, Arora &amp; Barak)</text>
 
-        <clipPath id="npClipE"><ellipse cx="280" cy="310" rx="210" ry="195"/></clipPath>
-        <clipPath id="nphClipE"><ellipse cx="430" cy="310" rx="270" ry="210"/></clipPath>
-        <ellipse cx="430" cy="310" rx="270" ry="210" fill="rgba(251,146,60,0.10)" clip-path="url(#npClipE)" stroke="none"/>
+        <!-- Cook-Levin info bar -->
+        <rect x="55" y="50" width="610" height="38" rx="8" fill="rgba(56,189,248,0.05)" stroke="var(--accent)" stroke-width="1"/>
+        <text x="360" y="66" text-anchor="middle" fill="var(--accent)" font-size="10" font-weight="600">NP-Complete = hardest problems in NP. If any one is in P &rarr; P = NP</text>
+        <text x="360" y="82" text-anchor="middle" fill="var(--text2)" font-size="9">Cook-Levin Theorem (1971): SAT is NP-Complete. All NP-Complete problems poly-time reducible to each other.</text>
 
-        <ellipse cx="290" cy="240" rx="55" ry="35" fill="rgba(167,139,250,0.07)" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <!-- ── BACKGROUND BOUNDARY: "All Decision Problems" ── -->
+        <rect x="55" y="98" width="660" height="445" rx="12" fill="none" stroke="var(--text2)" stroke-width="1" stroke-dasharray="4,4" opacity="0.25"/>
+        <text x="700" y="116" text-anchor="end" fill="var(--text2)" font-size="8.5" opacity="0.45">All Decision</text>
+        <text x="700" y="128" text-anchor="end" fill="var(--text2)" font-size="8.5" opacity="0.45">Problems</text>
 
-        <text x="190" y="345" fill="var(--green)" font-size="22" font-weight="900">P</text>
-        <text x="170" y="368" fill="var(--text2)" font-size="9">Decidable in</text>
-        <text x="170" y="380" fill="var(--text2)" font-size="9">polynomial time</text>
+        <!-- ── NP-Hard: large oval, partially OUTSIDE NP on the right ── -->
+        <!-- cx=535 rx=180 → spans x:[355,715], well past NP's right edge at x=500 -->
+        <ellipse cx="535" cy="310" rx="180" ry="170" fill="rgba(248,113,113,0.04)" stroke="var(--red)" stroke-width="2.5" stroke-dasharray="8,4"/>
 
-        <text x="115" y="155" fill="var(--yellow)" font-size="18" font-weight="800">NP</text>
-        <text x="100" y="175" fill="var(--text2)" font-size="9">Verifiable in</text>
-        <text x="100" y="187" fill="var(--text2)" font-size="9">polynomial time</text>
+        <!-- ── NP: large oval, centered left of NP-Hard ── -->
+        <!-- cx=280 rx=220 → spans x:[60,500] -->
+        <ellipse cx="280" cy="310" rx="220" ry="195" fill="rgba(251,191,36,0.05)" stroke="var(--yellow)" stroke-width="2.5"/>
 
-        <text x="580" y="148" fill="var(--red)" font-size="16" font-weight="800">NP-Hard</text>
-        <text x="575" y="168" fill="var(--text2)" font-size="9">At least as hard</text>
-        <text x="575" y="180" fill="var(--text2)" font-size="9">as every problem in NP</text>
+        <!-- ── NP-Complete: fill = NP-Hard ellipse clipped to NP region ── -->
+        <!-- Visually appears as the right "crescent" of NP where it overlaps NP-Hard -->
+        <ellipse cx="535" cy="310" rx="180" ry="170" fill="rgba(251,146,60,0.18)" clip-path="url(#npClipE)" stroke="none"/>
 
-        <text x="400" y="280" text-anchor="middle" fill="var(--orange)" font-size="14" font-weight="800">NP-Complete</text>
-        <text x="400" y="298" text-anchor="middle" fill="var(--text2)" font-size="9">= NP &cap; NP-Hard</text>
-        <text x="400" y="312" text-anchor="middle" fill="var(--text2)" font-size="8">(tersulit di NP)</text>
+        <!-- ── NP-Complete border inside NP (left arc of NP-Hard within NP) ── -->
+        <!-- Drawn as a dashed stroke to visually separate NP-Complete from NP-Intermediate -->
+        <ellipse cx="535" cy="310" rx="180" ry="170" fill="none" clip-path="url(#npClipE)" stroke="var(--orange)" stroke-width="1.5" stroke-dasharray="6,3"/>
 
-        <text x="290" y="237" text-anchor="middle" fill="var(--accent3)" font-size="10" font-weight="700">NP-</text>
-        <text x="290" y="250" text-anchor="middle" fill="var(--accent3)" font-size="10" font-weight="700">Intermediate</text>
+        <!-- ── P: small oval fully inside NP, on the LEFT side ── -->
+        <!-- cx=175 rx=100 → spans x:[75,275] — far left of NP-Complete region (x>355) -->
+        <ellipse cx="175" cy="360" rx="100" ry="82" fill="rgba(52,211,153,0.10)" stroke="var(--green)" stroke-width="2.5"/>
 
-        <text x="200" y="405" text-anchor="middle" fill="var(--green)" font-size="8.5">Sorting</text>
-        <text x="230" y="420" text-anchor="middle" fill="var(--green)" font-size="8.5">Shortest Path (Dijkstra)</text>
-        <text x="195" y="435" text-anchor="middle" fill="var(--green)" font-size="8.5">Primality (AKS)</text>
-        <text x="220" y="450" text-anchor="middle" fill="var(--green)" font-size="8.5">2-SAT, Matching</text>
-        <text x="250" y="465" text-anchor="middle" fill="var(--green)" font-size="8.5">Linear Programming</text>
+        <!-- ── NP-Intermediate: dashed region between P and NP-Complete ── -->
+        <!-- In the upper-center of NP, outside P and outside NP-Hard -->
+        <ellipse cx="285" cy="268" rx="58" ry="28" fill="rgba(167,139,250,0.10)" stroke="var(--accent3)" stroke-width="1.5" stroke-dasharray="5,3"/>
 
-        <text x="400" y="330" text-anchor="middle" fill="var(--orange)" font-size="8.5">SAT (Cook 1971)</text>
-        <text x="400" y="345" text-anchor="middle" fill="var(--orange)" font-size="8.5">3-SAT, 3-Coloring</text>
-        <text x="400" y="360" text-anchor="middle" fill="var(--orange)" font-size="8.5">Vertex Cover</text>
-        <text x="400" y="375" text-anchor="middle" fill="var(--orange)" font-size="8.5">Hamiltonian Cycle</text>
-        <text x="400" y="390" text-anchor="middle" fill="var(--orange)" font-size="8.5">Subset Sum, Clique</text>
-        <text x="400" y="405" text-anchor="middle" fill="var(--orange)" font-size="8.5">TSP (decision)</text>
+        <!-- ══════ LABELS ══════ -->
 
-        <text x="290" y="268" text-anchor="middle" fill="var(--accent3)" font-size="8">Factoring (Integer)?</text>
-        <text x="290" y="280" text-anchor="middle" fill="var(--accent3)" font-size="8">Graph Isomorphism?</text>
-        <text x="290" y="292" text-anchor="middle" fill="var(--accent3)" font-size="8">Discrete Log?</text>
+        <!-- P label + description -->
+        <text x="175" y="345" text-anchor="middle" fill="var(--green)" font-size="22" font-weight="900">P</text>
+        <text x="175" y="364" text-anchor="middle" fill="var(--text2)" font-size="8">Solved in poly time</text>
+        <text x="175" y="375" text-anchor="middle" fill="var(--text2)" font-size="8">(deterministic TM)</text>
 
-        <text x="590" y="290" fill="var(--red)" font-size="9" font-weight="600">NP-Hard \\ NP:</text>
-        <text x="590" y="308" fill="var(--red)" font-size="8.5">Halting Problem</text>
-        <text x="590" y="323" fill="var(--red)" font-size="8.5">TSP (optimization)</text>
-        <text x="590" y="338" fill="var(--red)" font-size="8.5">QSAT (PSPACE-complete)</text>
-        <text x="590" y="353" fill="var(--red)" font-size="8.5">General Game Playing</text>
-        <text x="590" y="370" fill="var(--text2)" font-size="7.5" font-style="italic">May be undecidable or</text>
-        <text x="590" y="382" fill="var(--text2)" font-size="7.5" font-style="italic">outside NP entirely</text>
+        <!-- NP label — upper-left corner inside NP, well above P -->
+        <text x="98" y="148" fill="var(--yellow)" font-size="18" font-weight="800">NP</text>
+        <text x="84" y="166" fill="var(--text2)" font-size="8.5">Verified in</text>
+        <text x="84" y="178" fill="var(--text2)" font-size="8.5">poly time</text>
 
-        <line x1="200" y1="260" x2="200" y2="215" stroke="var(--text2)" stroke-width="1" marker-end="url(#arrEulerE)"/>
-        <text x="148" y="235" fill="var(--text2)" font-size="8">P &sub; NP</text>
+        <!-- NP-Hard label — outside NP, top-right -->
+        <text x="710" y="155" text-anchor="end" fill="var(--red)" font-size="15" font-weight="800">NP-Hard</text>
+        <text x="710" y="172" text-anchor="end" fill="var(--text2)" font-size="8">&ge; hard as all NP problems</text>
+        <text x="710" y="184" text-anchor="end" fill="var(--text2)" font-size="8">(via poly-time reduction)</text>
 
+        <!-- NP-Complete label — inside intersection (right portion of NP) -->
+        <text x="423" y="285" text-anchor="middle" fill="var(--orange)" font-size="13" font-weight="800">NP-Complete</text>
+        <text x="423" y="300" text-anchor="middle" fill="var(--text2)" font-size="9">NP &cap; NP-Hard</text>
+
+        <!-- NP-Intermediate label — inside its dashed ellipse -->
+        <text x="285" y="263" text-anchor="middle" fill="var(--accent3)" font-size="9" font-weight="700">NP-Intermediate</text>
+        <text x="285" y="275" text-anchor="middle" fill="var(--accent3)" font-size="8">(Ladner 1975)</text>
+
+        <!-- ══════ EXAMPLES ══════ -->
+
+        <!-- P examples (inside P oval) -->
+        <text x="175" y="400" text-anchor="middle" fill="var(--green)" font-size="8">Sorting, BFS/DFS</text>
+        <text x="175" y="413" text-anchor="middle" fill="var(--green)" font-size="8">Dijkstra, Primality (AKS)</text>
+        <text x="175" y="426" text-anchor="middle" fill="var(--green)" font-size="8">2-SAT, Max Flow</text>
+        <text x="175" y="439" text-anchor="middle" fill="var(--green)" font-size="8">Linear Programming</text>
+
+        <!-- NP-Complete examples (inside orange intersection) -->
+        <text x="423" y="325" text-anchor="middle" fill="var(--orange)" font-size="8">SAT (Cook 1971)</text>
+        <text x="423" y="338" text-anchor="middle" fill="var(--orange)" font-size="8">3-SAT, 3-Coloring</text>
+        <text x="423" y="351" text-anchor="middle" fill="var(--orange)" font-size="8">Vertex Cover, Clique</text>
+        <text x="423" y="364" text-anchor="middle" fill="var(--orange)" font-size="8">Hamiltonian Cycle</text>
+        <text x="423" y="377" text-anchor="middle" fill="var(--orange)" font-size="8">Subset Sum, Knapsack</text>
+        <text x="423" y="390" text-anchor="middle" fill="var(--orange)" font-size="8">TSP (decision version)</text>
+
+        <!-- NP-Intermediate examples (below dashed ellipse, inside NP, outside P & NP-Hard) -->
+        <text x="285" y="304" text-anchor="middle" fill="var(--accent3)" font-size="7.5">Factoring (RSA basis)?</text>
+        <text x="285" y="315" text-anchor="middle" fill="var(--accent3)" font-size="7.5">Graph Isomorphism?</text>
+        <text x="285" y="326" text-anchor="middle" fill="var(--accent3)" font-size="7.5">Discrete Log (DH/ECC)?</text>
+
+        <!-- NP-Hard \ NP examples (outside NP, right side) -->
+        <text x="630" y="295" text-anchor="middle" fill="var(--red)" font-size="9" font-weight="700">NP-Hard &setmn; NP:</text>
+        <text x="630" y="313" text-anchor="middle" fill="var(--red)" font-size="8">Halting Problem</text>
+        <text x="630" y="326" text-anchor="middle" fill="var(--red)" font-size="8">TSP (optimization)</text>
+        <text x="630" y="339" text-anchor="middle" fill="var(--red)" font-size="8">QSAT (PSPACE-hard)</text>
+        <text x="630" y="352" text-anchor="middle" fill="var(--red)" font-size="8">General Game Playing</text>
+        <text x="630" y="368" text-anchor="middle" fill="var(--text2)" font-size="7.5" font-style="italic">undecidable or</text>
+        <text x="630" y="379" text-anchor="middle" fill="var(--text2)" font-size="7.5" font-style="italic">outside NP entirely</text>
+
+        <!-- ══════ SUBSET ANNOTATION ══════ -->
+        <!-- Arrow: P ⊂ NP -->
+        <line x1="175" y1="276" x2="175" y2="228" stroke="var(--text2)" stroke-width="1" marker-end="url(#arrEulerE)"/>
+        <text x="130" y="254" fill="var(--text2)" font-size="8.5">P &sub; NP</text>
+
+        <!-- Arrow: NP-Complete ⊂ NP-Hard -->
+        <line x1="500" y1="310" x2="530" y2="310" stroke="var(--orange)" stroke-width="1" stroke-dasharray="3,2" opacity="0.5"/>
+
+        <!-- ══════ LADNER THEOREM BOX ══════ -->
         <rect x="55" y="555" width="610" height="60" rx="8" fill="rgba(167,139,250,0.05)" stroke="var(--accent3)" stroke-width="1"/>
         <text x="360" y="572" text-anchor="middle" fill="var(--accent3)" font-size="11" font-weight="700">Ladner's Theorem (1975)</text>
         <text x="360" y="590" text-anchor="middle" fill="var(--text2)" font-size="10">If P &ne; NP, there exist problems in NP that are neither in P nor NP-Complete.</text>
         <text x="360" y="606" text-anchor="middle" fill="var(--text2)" font-size="9" font-style="italic">Ladner, R.E. "On the structure of polynomial time reducibility." J. ACM 22(1): 155-171, 1975</text>
-
-        <rect x="55" y="52" width="610" height="40" rx="8" fill="rgba(56,189,248,0.05)" stroke="var(--accent)" stroke-width="1"/>
-        <text x="360" y="69" text-anchor="middle" fill="var(--accent)" font-size="10" font-weight="600">NP-Complete = "hardest problems in NP" &mdash; if ANY one is solvable in P, then P = NP</text>
-        <text x="360" y="84" text-anchor="middle" fill="var(--text2)" font-size="9">Cook-Levin Theorem (1971): SAT is NP-Complete. All NP-Complete problems are poly-time reducible to each other.</text>
     </svg>
 </div>
 <div class="card" style="margin-top:-12px;border-top:none;border-radius:0 0 12px 12px;">
@@ -689,29 +732,41 @@ result = [<span class="num">0</span>] * n
 
 <div data-tab-content="diagram-peqnp" class="tab-content">
 <div class="anim-container" style="padding:24px 10px;text-align:center;">
-    <svg width="720" height="420" viewBox="0 0 720 420" style="max-width:100%">
-        <text x="360" y="28" text-anchor="middle" fill="var(--text)" font-size="16" font-weight="800">Euler Diagram if P = NP (unlikely)</text>
-        <text x="360" y="48" text-anchor="middle" fill="var(--text2)" font-size="10" font-style="italic">In this scenario, P, NP, and NP-Complete all collapse into one set</text>
+    <svg width="720" height="440" viewBox="0 0 720 440" style="max-width:100%">
+        <text x="360" y="28" text-anchor="middle" fill="var(--text)" font-size="16" font-weight="800">Euler Diagram: Jika P = NP (hipotesis, sangat tidak mungkin)</text>
+        <text x="360" y="46" text-anchor="middle" fill="var(--text2)" font-size="10" font-style="italic">P, NP, dan NP-Complete collapse menjadi satu himpunan; NP-Intermediate menghilang</text>
 
-        <ellipse cx="400" cy="230" rx="290" ry="160" fill="rgba(248,113,113,0.03)" stroke="var(--red)" stroke-width="2.5" stroke-dasharray="8,4"/>
-        <text x="665" y="100" fill="var(--red)" font-size="15" font-weight="800">NP-Hard</text>
+        <!-- Outer boundary -->
+        <rect x="55" y="60" width="610" height="320" rx="12" fill="none" stroke="var(--text2)" stroke-width="1" stroke-dasharray="4,4" opacity="0.25"/>
+        <text x="655" y="78" text-anchor="end" fill="var(--text2)" font-size="8.5" opacity="0.45">All Decision Problems</text>
 
-        <ellipse cx="290" cy="230" rx="190" ry="135" fill="rgba(52,211,153,0.06)" stroke="var(--green)" stroke-width="3"/>
-        <ellipse cx="290" cy="230" rx="190" ry="135" fill="rgba(251,146,60,0.04)" stroke="var(--orange)" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <!-- NP-Hard: partially outside the collapsed P=NP oval -->
+        <ellipse cx="430" cy="220" rx="230" ry="155" fill="rgba(248,113,113,0.04)" stroke="var(--red)" stroke-width="2.5" stroke-dasharray="8,4"/>
+        <text x="660" y="140" text-anchor="end" fill="var(--red)" font-size="14" font-weight="800">NP-Hard</text>
 
-        <text x="290" y="190" text-anchor="middle" fill="var(--green)" font-size="24" font-weight="900">P = NP</text>
-        <text x="290" y="215" text-anchor="middle" fill="var(--orange)" font-size="14" font-weight="700">= NP-Complete</text>
-        <text x="290" y="245" text-anchor="middle" fill="var(--text2)" font-size="10">Semua masalah NP bisa diselesaikan efisien!</text>
-        <text x="290" y="265" text-anchor="middle" fill="var(--text2)" font-size="9" font-style="italic">Sorting, SAT, TSP, Encryption cracking...</text>
-        <text x="290" y="280" text-anchor="middle" fill="var(--text2)" font-size="9" font-style="italic">semuanya polinomial. NP-Intermediate hilang.</text>
+        <!-- P = NP = NP-Complete: one collapsed oval -->
+        <!-- In P=NP world: P, NP, NP-Complete are all the same set -->
+        <!-- This oval is fully inside NP-Hard (since NP-Complete ⊆ NP-Hard) -->
+        <ellipse cx="310" cy="220" rx="185" ry="130" fill="rgba(52,211,153,0.08)" stroke="var(--green)" stroke-width="3"/>
+        <!-- NP-Complete border overlay (same ellipse, orange dashed) -->
+        <ellipse cx="310" cy="220" rx="185" ry="130" fill="rgba(251,146,60,0.06)" stroke="var(--orange)" stroke-width="1.8" stroke-dasharray="5,3"/>
 
-        <text x="560" y="220" fill="var(--red)" font-size="9" font-weight="600">Tetap NP-Hard \\ NP:</text>
-        <text x="560" y="238" fill="var(--red)" font-size="8.5">Halting Problem</text>
-        <text x="560" y="253" fill="var(--text2)" font-size="8">(tetap undecidable)</text>
+        <!-- Labels inside the collapsed set -->
+        <text x="310" y="185" text-anchor="middle" fill="var(--green)" font-size="22" font-weight="900">P = NP = NP-Complete</text>
+        <text x="310" y="213" text-anchor="middle" fill="var(--text2)" font-size="10">Semua masalah NP bisa diselesaikan efisien (poly time)!</text>
+        <text x="310" y="230" text-anchor="middle" fill="var(--text2)" font-size="9" font-style="italic">SAT, 3-SAT, TSP, Factoring, Graph Coloring...</text>
+        <text x="310" y="246" text-anchor="middle" fill="var(--text2)" font-size="9" font-style="italic">semua polinomial. NP-Intermediate TIDAK ada.</text>
+        <text x="310" y="268" text-anchor="middle" fill="var(--red)" font-size="8.5" font-weight="600">Enkripsi RSA, AES, semua kriptografi modern bisa dipecahkan!</text>
 
-        <rect x="80" y="370" width="560" height="36" rx="8" fill="rgba(248,113,113,0.08)" stroke="var(--red)" stroke-width="1.5"/>
-        <text x="360" y="387" text-anchor="middle" fill="var(--red)" font-size="10" font-weight="700">Jika P = NP: RSA, ECC, semua kriptografi asimetris bisa dipecahkan efisien</text>
-        <text x="360" y="401" text-anchor="middle" fill="var(--text2)" font-size="9">Mayoritas ilmuwan percaya P &ne; NP &mdash; Clay Millennium Prize: $1,000,000</text>
+        <!-- NP-Hard \ NP-Complete: still exists (Halting Problem etc.) -->
+        <text x="590" y="205" text-anchor="middle" fill="var(--red)" font-size="9" font-weight="700">NP-Hard &setmn; NP:</text>
+        <text x="590" y="222" text-anchor="middle" fill="var(--red)" font-size="8.5">Halting Problem</text>
+        <text x="590" y="236" text-anchor="middle" fill="var(--text2)" font-size="8" font-style="italic">(tetap undecidable)</text>
+
+        <!-- Warning box -->
+        <rect x="80" y="395" width="560" height="32" rx="8" fill="rgba(248,113,113,0.08)" stroke="var(--red)" stroke-width="1.5"/>
+        <text x="360" y="411" text-anchor="middle" fill="var(--red)" font-size="10" font-weight="700">Mayoritas ilmuwan percaya P &ne; NP &mdash; Clay Millennium Prize: $1,000,000</text>
+        <text x="360" y="424" text-anchor="middle" fill="var(--text2)" font-size="9">Belum ada bukti P = NP maupun P &ne; NP. Salah satu problem matematika terbuka terbesar.</text>
     </svg>
 </div>
 </div>
