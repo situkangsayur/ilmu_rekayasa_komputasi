@@ -2116,6 +2116,111 @@ ratpack {
         <p>Jenkins pipelines, Gradle build scripts, JVM scripting, testing (Spock)</p>
     </div>
 </div>
+
+<h2>Daftar Keyword Dasar per Bahasa</h2>
+<div class="tabs">
+    <button class="tab-btn active" data-tab="kw-go">Go</button>
+    <button class="tab-btn" data-tab="kw-rust">Rust</button>
+    <button class="tab-btn" data-tab="kw-python">Python</button>
+    <button class="tab-btn" data-tab="kw-java">Java</button>
+</div>
+
+<div data-tab-content="kw-go" class="tab-content active">
+<div class="card">
+    <h3>Go Keywords (25 reserved words)</h3>
+    <p>Go sengaja dirancang dengan <strong>sedikit keyword</strong> agar mudah dipelajari.</p>
+    <div class="table-wrapper">
+    <table>
+    <tr><th>Kategori</th><th>Keywords</th><th>Fungsi</th></tr>
+    <tr><td><strong>Deklarasi</strong></td><td><code>var</code> <code>const</code> <code>type</code> <code>func</code></td><td>Deklarasi variabel, konstanta, tipe, fungsi</td></tr>
+    <tr><td><strong>Tipe Komposit</strong></td><td><code>struct</code> <code>interface</code> <code>map</code></td><td>Struktur data, kontrak, key-value store</td></tr>
+    <tr><td><strong>Control Flow</strong></td><td><code>if</code> <code>else</code> <code>for</code> <code>switch</code> <code>case</code> <code>default</code> <code>break</code> <code>continue</code> <code>fallthrough</code></td><td>Percabangan dan perulangan</td></tr>
+    <tr><td><strong>Concurrency</strong></td><td><code>go</code> <code>chan</code> <code>select</code></td><td>Goroutine, channel, multiplexing</td></tr>
+    <tr><td><strong>Error/Flow</strong></td><td><code>return</code> <code>defer</code> <code>panic</code> <code>recover</code></td><td>Return, defer cleanup, error handling</td></tr>
+    <tr><td><strong>Package</strong></td><td><code>package</code> <code>import</code></td><td>Modul dan dependensi</td></tr>
+    <tr><td><strong>Lainnya</strong></td><td><code>range</code> <code>goto</code></td><td>Iterasi, jump (jarang dipakai)</td></tr>
+    </table>
+    </div>
+    <div class="info-box">Go tidak punya: <code>class</code>, <code>extends</code>, <code>implements</code>, <code>try</code>, <code>catch</code>, <code>throw</code>, <code>while</code>, <code>do</code>, <code>abstract</code></div>
+</div>
+</div>
+
+<div data-tab-content="kw-rust" class="tab-content">
+<div class="card">
+    <h3>Rust Keywords (~40 reserved + strict/reserved future)</h3>
+    <p>Rust memiliki keyword yang lebih banyak karena mendukung <strong>ownership, pattern matching, dan async</strong>.</p>
+    <div class="table-wrapper">
+    <table>
+    <tr><th>Kategori</th><th>Keywords</th><th>Fungsi</th></tr>
+    <tr><td><strong>Deklarasi</strong></td><td><code>let</code> <code>mut</code> <code>const</code> <code>static</code> <code>fn</code> <code>type</code></td><td>Variabel, mutability, konstanta, fungsi, alias</td></tr>
+    <tr><td><strong>Tipe</strong></td><td><code>struct</code> <code>enum</code> <code>trait</code> <code>impl</code> <code>dyn</code></td><td>Struktur data, algebraic types, interface</td></tr>
+    <tr><td><strong>Control Flow</strong></td><td><code>if</code> <code>else</code> <code>loop</code> <code>while</code> <code>for</code> <code>in</code> <code>match</code> <code>break</code> <code>continue</code> <code>return</code></td><td>Percabangan, perulangan, pattern matching</td></tr>
+    <tr><td><strong>Ownership</strong></td><td><code>move</code> <code>ref</code> <code>self</code> <code>Self</code></td><td>Transfer ownership, referensi, instance</td></tr>
+    <tr><td><strong>Module</strong></td><td><code>mod</code> <code>use</code> <code>pub</code> <code>crate</code> <code>super</code> <code>as</code> <code>extern</code></td><td>Modul, import, visibility, FFI</td></tr>
+    <tr><td><strong>Async</strong></td><td><code>async</code> <code>await</code></td><td>Asynchronous programming</td></tr>
+    <tr><td><strong>Safety</strong></td><td><code>unsafe</code></td><td>Bypass borrow checker (jarang!)</td></tr>
+    <tr><td><strong>Lainnya</strong></td><td><code>where</code> <code>true</code> <code>false</code></td><td>Trait bounds, boolean literals</td></tr>
+    </table>
+    </div>
+    <div class="info-box">Rust tidak punya: <code>class</code>, <code>extends</code>, <code>null</code>, <code>try/catch</code>, <code>throw</code>, <code>new</code> (keyword). Menggunakan <code>Result&lt;T,E&gt;</code> dan <code>Option&lt;T&gt;</code> sebagai gantinya.</div>
+</div>
+</div>
+
+<div data-tab-content="kw-python" class="tab-content">
+<div class="card">
+    <h3>Python Keywords (35 reserved words)</h3>
+    <p>Python keyword dirancang agar <strong>terbaca seperti bahasa Inggris</strong>.</p>
+    <div class="table-wrapper">
+    <table>
+    <tr><th>Kategori</th><th>Keywords</th><th>Fungsi</th></tr>
+    <tr><td><strong>Boolean/None</strong></td><td><code>True</code> <code>False</code> <code>None</code></td><td>Nilai boolean dan null</td></tr>
+    <tr><td><strong>Operator Logika</strong></td><td><code>and</code> <code>or</code> <code>not</code> <code>is</code> <code>in</code></td><td>Logical, identity, membership</td></tr>
+    <tr><td><strong>Control Flow</strong></td><td><code>if</code> <code>elif</code> <code>else</code> <code>for</code> <code>while</code> <code>break</code> <code>continue</code> <code>pass</code> <code>match</code> <code>case</code></td><td>Percabangan dan perulangan</td></tr>
+    <tr><td><strong>Fungsi/Class</strong></td><td><code>def</code> <code>return</code> <code>class</code> <code>lambda</code></td><td>Fungsi, kelas, anonymous function</td></tr>
+    <tr><td><strong>Error Handling</strong></td><td><code>try</code> <code>except</code> <code>finally</code> <code>raise</code> <code>assert</code></td><td>Exception handling</td></tr>
+    <tr><td><strong>Module</strong></td><td><code>import</code> <code>from</code> <code>as</code></td><td>Import modul</td></tr>
+    <tr><td><strong>Scope/Context</strong></td><td><code>global</code> <code>nonlocal</code> <code>with</code></td><td>Variable scope, context manager</td></tr>
+    <tr><td><strong>Async</strong></td><td><code>async</code> <code>await</code></td><td>Coroutines</td></tr>
+    <tr><td><strong>Lainnya</strong></td><td><code>del</code> <code>yield</code></td><td>Delete, generator</td></tr>
+    </table>
+    </div>
+    <div class="info-box">Python unik karena menggunakan <code>elif</code> (bukan else if), <code>pass</code> untuk empty block, dan <code>yield</code> untuk generators.</div>
+</div>
+</div>
+
+<div data-tab-content="kw-java" class="tab-content">
+<div class="card">
+    <h3>Java Keywords (50+ reserved words)</h3>
+    <p>Java memiliki keyword terbanyak karena mendukung <strong>full OOP dan type system yang kaya</strong>.</p>
+    <div class="table-wrapper">
+    <table>
+    <tr><th>Kategori</th><th>Keywords</th><th>Fungsi</th></tr>
+    <tr><td><strong>Tipe Primitif</strong></td><td><code>int</code> <code>long</code> <code>short</code> <code>byte</code> <code>float</code> <code>double</code> <code>char</code> <code>boolean</code> <code>void</code></td><td>Tipe data dasar</td></tr>
+    <tr><td><strong>OOP</strong></td><td><code>class</code> <code>interface</code> <code>extends</code> <code>implements</code> <code>abstract</code> <code>new</code> <code>this</code> <code>super</code> <code>instanceof</code></td><td>Class, inheritance, polymorphism</td></tr>
+    <tr><td><strong>Access</strong></td><td><code>public</code> <code>private</code> <code>protected</code></td><td>Encapsulation / visibility</td></tr>
+    <tr><td><strong>Modifier</strong></td><td><code>static</code> <code>final</code> <code>abstract</code> <code>synchronized</code> <code>volatile</code> <code>transient</code> <code>native</code> <code>strictfp</code></td><td>Static, constant, thread-safe, dll</td></tr>
+    <tr><td><strong>Control Flow</strong></td><td><code>if</code> <code>else</code> <code>for</code> <code>while</code> <code>do</code> <code>switch</code> <code>case</code> <code>default</code> <code>break</code> <code>continue</code> <code>return</code></td><td>Percabangan dan perulangan</td></tr>
+    <tr><td><strong>Error Handling</strong></td><td><code>try</code> <code>catch</code> <code>finally</code> <code>throw</code> <code>throws</code></td><td>Exception handling</td></tr>
+    <tr><td><strong>Package</strong></td><td><code>package</code> <code>import</code></td><td>Modul dan dependensi</td></tr>
+    <tr><td><strong>Lainnya</strong></td><td><code>enum</code> <code>assert</code> <code>null</code> <code>true</code> <code>false</code> <code>var</code> <code>record</code> <code>sealed</code> <code>permits</code> <code>yield</code></td><td>Modern Java features (14+)</td></tr>
+    </table>
+    </div>
+    <div class="info-box">Java modern (17+) menambah: <code>var</code> (type inference), <code>record</code> (data class), <code>sealed</code> (restricted hierarchy), <code>yield</code> (switch expression).</div>
+</div>
+</div>
+
+<div class="card">
+    <h3>Perbandingan Jumlah Keyword</h3>
+    <div class="table-wrapper">
+    <table>
+    <tr><th>Bahasa</th><th>Jumlah</th><th>Filosofi</th></tr>
+    <tr><td><span class="badge badge-green">Go</span></td><td><strong>25</strong></td><td>Minimalis — "less is more", cepat dipelajari</td></tr>
+    <tr><td><span class="badge badge-yellow">Python</span></td><td><strong>35</strong></td><td>Readability — keyword seperti bahasa Inggris</td></tr>
+    <tr><td><span class="badge badge-red">Rust</span></td><td><strong>~40</strong></td><td>Expressiveness — ownership + pattern matching membutuhkan keyword khusus</td></tr>
+    <tr><td><span class="badge badge-orange">Java</span></td><td><strong>50+</strong></td><td>Explicit — full OOP + type system yang kaya</td></tr>
+    </table>
+    </div>
+</div>
 `;
 
 // ====================== ARCHITECTURE ======================
