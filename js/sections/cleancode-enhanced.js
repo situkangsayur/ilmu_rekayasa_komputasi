@@ -3,43 +3,43 @@
 //         CQRS, Event Sourcing, CQRS+ES, DDD, Architecture Comparison
 
 sections.cleancode = () => `
-<h1 class="section-title animate-in">Clean Code & Software Architecture</h1>
-<p class="section-subtitle animate-in">Prinsip Clean Code, Arsitektur Berlapis, Hexagonal, Onion, Clean Architecture, CQRS, Event Sourcing, dan Domain-Driven Design dalam Go</p>
+<h1 class="section-title animate-in">${t('Clean Code & Arsitektur Perangkat Lunak', 'Clean Code & Software Architecture')}</h1>
+<p class="section-subtitle animate-in">${t('Prinsip Clean Code, Arsitektur Berlapis, Hexagonal, Onion, Clean Architecture, CQRS, Event Sourcing, dan Domain-Driven Design dalam Go', 'Clean Code Principles, Layered, Hexagonal, Onion, Clean Architecture, CQRS, Event Sourcing, and Domain-Driven Design in Go')}</p>
 
 <!-- =====================================================================
      BAGIAN 1: CLEAN CODE PRINCIPLES
      ===================================================================== -->
-<h2 class="animate-in">1. Clean Code Principles — Robert C. Martin</h2>
+<h2 class="animate-in">${t('1. Prinsip Clean Code — Robert C. Martin', '1. Clean Code Principles — Robert C. Martin')}</h2>
 
 <div class="info-box animate-in">
-    <strong>Apa itu Clean Code?</strong> Clean code adalah kode yang mudah dibaca, dipahami, dan dimodifikasi oleh developer lain (termasuk diri sendiri di masa depan). Robert C. Martin ("Uncle Bob") mendefinisikan clean code sebagai kode yang <em>"does one thing well"</em> — setiap unit melakukan satu hal dengan baik dan jelas.
+    <strong>${t('Apa itu Clean Code?', 'What is Clean Code?')}</strong> ${t('Clean code adalah kode yang mudah dibaca, dipahami, dan dimodifikasi oleh developer lain (termasuk diri sendiri di masa depan). Robert C. Martin ("Uncle Bob") mendefinisikan clean code sebagai kode yang', 'Clean code is code that is easy to read, understand, and modify by other developers (including your future self). Robert C. Martin ("Uncle Bob") defines clean code as code that')} <em>"does one thing well"</em> — ${t('setiap unit melakukan satu hal dengan baik dan jelas.', 'every unit does one thing well and clearly.')}
 </div>
 
 <!-- 1.1 Meaningful Names -->
 <div class="card animate-in">
-    <h3 style="color:var(--accent)"><span class="badge-blue">1.1</span> Meaningful Names (Penamaan yang Bermakna)</h3>
-    <p>Nama variabel, fungsi, dan kelas harus mengungkapkan <strong>niat</strong> bukan sekadar tipe atau posisi. Nama yang baik menghilangkan kebutuhan komentar penjelasan.</p>
+    <h3 style="color:var(--accent)"><span class="badge-blue">1.1</span> ${t('Meaningful Names (Penamaan yang Bermakna)', 'Meaningful Names')}</h3>
+    <p>${t('Nama variabel, fungsi, dan kelas harus mengungkapkan <strong>niat</strong> bukan sekadar tipe atau posisi. Nama yang baik menghilangkan kebutuhan komentar penjelasan.', 'Variable, function, and class names should reveal <strong>intent</strong>, not just type or position. Good names eliminate the need for explanatory comments.')}</p>
 
     <div class="warn-box">
-        <strong>Prinsip Utama:</strong>
+        <strong>${t('Prinsip Utama:', 'Key Principles:')}</strong>
         <ul style="margin:0.5rem 0 0 1.2rem">
-            <li>Gunakan nama yang mengungkapkan tujuan (intention-revealing names)</li>
-            <li>Hindari disinformasi (jangan sebut sesuatu yang bukan daftar sebagai <code>list</code>)</li>
-            <li>Buat perbedaan yang bermakna (bukan <code>a1</code>, <code>a2</code>)</li>
-            <li>Gunakan nama yang bisa diucapkan (<code>genDatestamp</code> bukan <code>genymdhms</code>)</li>
-            <li>Gunakan nama yang bisa dicari</li>
-            <li>Hindari encoding/prefix (<code>m_</code>, <code>I</code> untuk interface)</li>
-            <li>Nama class = noun, nama method = verb</li>
+            <li>${t('Gunakan nama yang mengungkapkan tujuan (intention-revealing names)', 'Use intention-revealing names')}</li>
+            <li>${t('Hindari disinformasi (jangan sebut sesuatu yang bukan daftar sebagai', 'Avoid disinformation (don\'t call something that isn\'t a list')} <code>list</code>)</li>
+            <li>${t('Buat perbedaan yang bermakna (bukan', 'Make meaningful distinctions (not')} <code>a1</code>, <code>a2</code>)</li>
+            <li>${t('Gunakan nama yang bisa diucapkan', 'Use pronounceable names')} (<code>genDatestamp</code> ${t('bukan', 'not')} <code>genymdhms</code>)</li>
+            <li>${t('Gunakan nama yang bisa dicari', 'Use searchable names')}</li>
+            <li>${t('Hindari encoding/prefix', 'Avoid encoding/prefixes')} (<code>m_</code>, <code>I</code> ${t('untuk interface', 'for interfaces')})</li>
+            <li>${t('Nama class = noun, nama method = verb', 'Class names = nouns, method names = verbs')}</li>
         </ul>
     </div>
 
     <div class="tabs">
-        <button class="tab-btn active" data-tab="names-bad">Contoh Buruk</button>
-        <button class="tab-btn" data-tab="names-good">Contoh Baik (Go)</button>
+        <button class="tab-btn active" data-tab="names-bad">${t('Contoh Buruk', 'Bad Example')}</button>
+        <button class="tab-btn" data-tab="names-good">${t('Contoh Baik (Go)', 'Good Example (Go)')}</button>
     </div>
 
     <div data-tab-content="names-bad" class="tab-content active">
-        <p style="color:#ef4444;font-weight:600">Kode buruk — nama tidak bermakna:</p>
+        <p style="color:#ef4444;font-weight:600">${t('Kode buruk — nama tidak bermakna:', 'Bad code — meaningless names:')}</p>
         <div class="code-block"><span class="kw">func</span> <span class="fn">getThem</span>() [][]<span class="type">int</span> {
     list1 := [][]<span class="type">int</span>{}
     <span class="kw">for</span> _, x := <span class="kw">range</span> theList {
@@ -67,7 +67,7 @@ sections.cleancode = () => `
     </div>
 
     <div data-tab-content="names-good" class="tab-content">
-        <p style="color:#22c55e;font-weight:600">Kode baik — nama mengungkapkan niat:</p>
+        <p style="color:#22c55e;font-weight:600">${t('Kode baik — nama mengungkapkan niat:', 'Good code — names reveal intent:')}</p>
         <div class="code-block"><span class="kw">func</span> <span class="fn">getFlaggedCells</span>() []<span class="type">Cell</span> {
     flaggedCells := []<span class="type">Cell</span>{}
     <span class="kw">for</span> _, cell := <span class="kw">range</span> gameBoard {
@@ -96,16 +96,16 @@ sections.cleancode = () => `
 
 <!-- 1.2 Small Functions -->
 <div class="card animate-in">
-    <h3 style="color:var(--accent)"><span class="badge-green">1.2</span> Small Functions — Do One Thing</h3>
-    <p>Fungsi harus <strong>kecil</strong>. Seberapa kecil? Uncle Bob menyarankan tidak lebih dari 20 baris, idealnya 5-10 baris. Fungsi harus melakukan <em>satu hal</em>, melakukannya dengan <em>baik</em>, dan hanya melakukan itu saja.</p>
+    <h3 style="color:var(--accent)"><span class="badge-green">1.2</span> ${t('Fungsi Kecil — Lakukan Satu Hal', 'Small Functions — Do One Thing')}</h3>
+    <p>${t('Fungsi harus <strong>kecil</strong>. Seberapa kecil? Uncle Bob menyarankan tidak lebih dari 20 baris, idealnya 5-10 baris. Fungsi harus melakukan <em>satu hal</em>, melakukannya dengan <em>baik</em>, dan hanya melakukan itu saja.', 'Functions should be <strong>small</strong>. How small? Uncle Bob suggests no more than 20 lines, ideally 5-10 lines. A function should do <em>one thing</em>, do it <em>well</em>, and do it only.')}</p>
 
     <div class="info-box">
-        <strong>Aturan Satu Level Abstraksi:</strong> Semua pernyataan dalam fungsi harus berada pada level abstraksi yang sama. Mencampur level abstraksi tinggi (memanggil use case) dengan level rendah (manipulasi string) dalam satu fungsi adalah tanda fungsi melakukan terlalu banyak hal.
+        <strong>${t('Aturan Satu Level Abstraksi:', 'One Level of Abstraction Rule:')}</strong> ${t('Semua pernyataan dalam fungsi harus berada pada level abstraksi yang sama. Mencampur level abstraksi tinggi (memanggil use case) dengan level rendah (manipulasi string) dalam satu fungsi adalah tanda fungsi melakukan terlalu banyak hal.', 'All statements within a function should be at the same level of abstraction. Mixing high-level abstraction (calling use cases) with low-level (string manipulation) in one function is a sign the function does too many things.')}
     </div>
 
     <div class="tabs">
-        <button class="tab-btn active" data-tab="func-bad">Fungsi Besar (Buruk)</button>
-        <button class="tab-btn" data-tab="func-good">Fungsi Kecil (Baik)</button>
+        <button class="tab-btn active" data-tab="func-bad">${t('Fungsi Besar (Buruk)', 'Large Function (Bad)')}</button>
+        <button class="tab-btn" data-tab="func-good">${t('Fungsi Kecil (Baik)', 'Small Functions (Good)')}</button>
     </div>
 
     <div data-tab-content="func-bad" class="tab-content active">
@@ -180,23 +180,23 @@ sections.cleancode = () => `
 
 <!-- 1.3 DRY, KISS, YAGNI -->
 <div class="card animate-in">
-    <h3 style="color:var(--accent)"><span class="badge-purple">1.3</span> DRY, KISS, dan YAGNI</h3>
+    <h3 style="color:var(--accent)"><span class="badge-purple">1.3</span> ${t('DRY, KISS, dan YAGNI', 'DRY, KISS, and YAGNI')}</h3>
 
     <div class="card-grid">
         <div class="card" style="border-left:4px solid #3b82f6">
             <h4 style="color:#3b82f6">DRY — Don't Repeat Yourself</h4>
-            <p>Setiap pengetahuan harus memiliki <strong>satu, tidak ambigu, representasi otoritatif</strong> dalam sistem. Duplikasi adalah akar dari banyak masalah software. Ketika logika yang sama berulang di banyak tempat, perubahan harus dilakukan di banyak tempat — ini sumber bug.</p>
-            <div class="warn-box" style="margin-top:0.5rem">Duplikasi bukan hanya duplikasi kode (copy-paste), tapi juga duplikasi pengetahuan/logika bisnis.</div>
+            <p>${t('Setiap pengetahuan harus memiliki <strong>satu, tidak ambigu, representasi otoritatif</strong> dalam sistem. Duplikasi adalah akar dari banyak masalah software. Ketika logika yang sama berulang di banyak tempat, perubahan harus dilakukan di banyak tempat — ini sumber bug.', 'Every piece of knowledge should have a <strong>single, unambiguous, authoritative representation</strong> in the system. Duplication is the root of many software problems. When the same logic repeats in many places, changes must be made in many places — this is a source of bugs.')}</p>
+            <div class="warn-box" style="margin-top:0.5rem">${t('Duplikasi bukan hanya duplikasi kode (copy-paste), tapi juga duplikasi pengetahuan/logika bisnis.', 'Duplication is not just code duplication (copy-paste), but also duplication of knowledge/business logic.')}</div>
         </div>
         <div class="card" style="border-left:4px solid #22c55e">
             <h4 style="color:#22c55e">KISS — Keep It Simple, Stupid</h4>
-            <p>Kebanyakan sistem bekerja paling baik jika dibuat <strong>sederhana</strong> daripada kompleks. Kompleksitas yang tidak perlu harus dihindari. Jika ada dua solusi, pilih yang lebih sederhana jika efeknya sama.</p>
-            <div class="info-box" style="margin-top:0.5rem">"Simplicity is the ultimate sophistication" — Leonardo da Vinci. Kode yang sederhana lebih mudah di-debug, di-test, dan di-maintain.</div>
+            <p>${t('Kebanyakan sistem bekerja paling baik jika dibuat <strong>sederhana</strong> daripada kompleks. Kompleksitas yang tidak perlu harus dihindari. Jika ada dua solusi, pilih yang lebih sederhana jika efeknya sama.', 'Most systems work best when kept <strong>simple</strong> rather than complex. Unnecessary complexity should be avoided. If there are two solutions, choose the simpler one if the effect is the same.')}</p>
+            <div class="info-box" style="margin-top:0.5rem">"Simplicity is the ultimate sophistication" — Leonardo da Vinci. ${t('Kode yang sederhana lebih mudah di-debug, di-test, dan di-maintain.', 'Simple code is easier to debug, test, and maintain.')}</div>
         </div>
         <div class="card" style="border-left:4px solid #f59e0b">
             <h4 style="color:#f59e0b">YAGNI — You Aren't Gonna Need It</h4>
-            <p>Jangan menambahkan fungsionalitas sampai benar-benar dibutuhkan. Programmer sering menambahkan fitur "karena nanti pasti dibutuhkan" — ini membuang-buang waktu dan menciptakan kode yang tidak terpakai.</p>
-            <div class="warn-box" style="margin-top:0.5rem">Implementasi yang tidak digunakan memperbesar codebase, menambah kompleksitas, dan perlu di-maintain meski tidak dipakai.</div>
+            <p>${t('Jangan menambahkan fungsionalitas sampai benar-benar dibutuhkan. Programmer sering menambahkan fitur "karena nanti pasti dibutuhkan" — ini membuang-buang waktu dan menciptakan kode yang tidak terpakai.', 'Don\'t add functionality until it is actually needed. Programmers often add features "because it will be needed later" — this wastes time and creates unused code.')}</p>
+            <div class="warn-box" style="margin-top:0.5rem">${t('Implementasi yang tidak digunakan memperbesar codebase, menambah kompleksitas, dan perlu di-maintain meski tidak dipakai.', 'Unused implementations enlarge the codebase, add complexity, and need maintenance even when not used.')}</div>
         </div>
     </div>
 
@@ -207,7 +207,7 @@ sections.cleancode = () => `
     </div>
 
     <div data-tab-content="dry-bad" class="tab-content active">
-        <p style="color:#ef4444;font-weight:600">Melanggar DRY — logika validasi email diulang:</p>
+        <p style="color:#ef4444;font-weight:600">${t('Melanggar DRY — logika validasi email diulang:', 'DRY Violation — email validation logic repeated:')}</p>
         <div class="code-block"><span class="kw">func</span> <span class="fn">registerUser</span>(email, password <span class="type">string</span>) <span class="type">error</span> {
     <span class="cm">// Validasi email</span>
     <span class="kw">if</span> !strings.<span class="fn">Contains</span>(email, <span class="str">"@"</span>) || !strings.<span class="fn">Contains</span>(email, <span class="str">"."</span>) {
@@ -234,7 +234,7 @@ sections.cleancode = () => `
     </div>
 
     <div data-tab-content="dry-good" class="tab-content">
-        <p style="color:#22c55e;font-weight:600">Menerapkan DRY — satu sumber kebenaran:</p>
+        <p style="color:#22c55e;font-weight:600">${t('Menerapkan DRY — satu sumber kebenaran:', 'DRY Applied — single source of truth:')}</p>
         <div class="code-block"><span class="kw">func</span> <span class="fn">isValidEmail</span>(email <span class="type">string</span>) <span class="type">bool</span> {
     <span class="cm">// Satu tempat untuk logika validasi email</span>
     _, err := mail.<span class="fn">ParseAddress</span>(email)
@@ -259,7 +259,7 @@ sections.cleancode = () => `
     </div>
 
     <div data-tab-content="yagni-ex" class="tab-content">
-        <p style="color:#ef4444;font-weight:600">Melanggar YAGNI — fitur tidak diperlukan sekarang:</p>
+        <p style="color:#ef4444;font-weight:600">${t('Melanggar YAGNI — fitur tidak diperlukan sekarang:', 'YAGNI Violation — features not needed now:')}</p>
         <div class="code-block"><span class="kw">type</span> <span class="type">UserService</span> <span class="kw">struct</span> { <span class="cm">/* ... */</span> }
 
 <span class="cm">// Fitur yang diminta: simpan dan ambil user</span>
@@ -280,65 +280,65 @@ sections.cleancode = () => `
 <!-- =====================================================================
      BAGIAN 2: LAYERED ARCHITECTURE
      ===================================================================== -->
-<h2 class="animate-in">2. Layered Architecture (Arsitektur Berlapis)</h2>
+<h2 class="animate-in">${t('2. Arsitektur Berlapis (Layered Architecture)', '2. Layered Architecture')}</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Konsep Dasar</h3>
-    <p>Arsitektur berlapis mengorganisasi sistem menjadi lapisan-lapisan horizontal yang masing-masing memiliki tanggung jawab spesifik. Setiap lapisan hanya boleh berkomunikasi dengan lapisan di bawah (atau di atasnya secara terbatas).</p>
+    <h3 style="color:var(--accent)">${t('Konsep Dasar', 'Basic Concept')}</h3>
+    <p>${t('Arsitektur berlapis mengorganisasi sistem menjadi lapisan-lapisan horizontal yang masing-masing memiliki tanggung jawab spesifik. Setiap lapisan hanya boleh berkomunikasi dengan lapisan di bawah (atau di atasnya secara terbatas).', 'Layered architecture organizes the system into horizontal layers, each with specific responsibilities. Each layer may only communicate with the layer below it (or above it in limited cases).')}</p>
 
     <div class="layer-diagram" style="margin:1.5rem 0">
         <div class="layer-item" style="background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;border-radius:8px;padding:1rem;margin-bottom:0.5rem;display:flex;align-items:center;gap:1rem">
             <div class="layer-num" style="background:rgba(255,255,255,0.2);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0">1</div>
             <div class="layer-info">
                 <strong>Presentation Layer</strong>
-                <span style="display:block;font-size:0.85rem;opacity:0.9">HTTP Handler, REST Controller, GraphQL Resolver, CLI — menangani input/output user</span>
+                <span style="display:block;font-size:0.85rem;opacity:0.9">${t('HTTP Handler, REST Controller, GraphQL Resolver, CLI — menangani input/output user', 'HTTP Handler, REST Controller, GraphQL Resolver, CLI — handles user input/output')}</span>
             </div>
         </div>
-        <div style="text-align:center;font-size:1.2rem;color:#6b7280;margin:0.2rem 0">&#8595; memanggil</div>
+        <div style="text-align:center;font-size:1.2rem;color:#6b7280;margin:0.2rem 0">&#8595; ${t('memanggil', 'calls')}</div>
         <div class="layer-item" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed);color:#fff;border-radius:8px;padding:1rem;margin-bottom:0.5rem;display:flex;align-items:center;gap:1rem">
             <div class="layer-num" style="background:rgba(255,255,255,0.2);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0">2</div>
             <div class="layer-info">
                 <strong>Business Logic Layer (Service Layer)</strong>
-                <span style="display:block;font-size:0.85rem;opacity:0.9">Use Case, Service, Domain Logic — inti logika bisnis aplikasi</span>
+                <span style="display:block;font-size:0.85rem;opacity:0.9">${t('Use Case, Service, Domain Logic — inti logika bisnis aplikasi', 'Use Case, Service, Domain Logic — core application business logic')}</span>
             </div>
         </div>
-        <div style="text-align:center;font-size:1.2rem;color:#6b7280;margin:0.2rem 0">&#8595; memanggil</div>
+        <div style="text-align:center;font-size:1.2rem;color:#6b7280;margin:0.2rem 0">&#8595; ${t('memanggil', 'calls')}</div>
         <div class="layer-item" style="background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:8px;padding:1rem;margin-bottom:0.5rem;display:flex;align-items:center;gap:1rem">
             <div class="layer-num" style="background:rgba(255,255,255,0.2);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0">3</div>
             <div class="layer-info">
                 <strong>Data Access Layer (Repository)</strong>
-                <span style="display:block;font-size:0.85rem;opacity:0.9">Repository Pattern, DAO — abstraksi akses data, query, CRUD</span>
+                <span style="display:block;font-size:0.85rem;opacity:0.9">${t('Repository Pattern, DAO — abstraksi akses data, query, CRUD', 'Repository Pattern, DAO — data access abstraction, queries, CRUD')}</span>
             </div>
         </div>
-        <div style="text-align:center;font-size:1.2rem;color:#6b7280;margin:0.2rem 0">&#8595; mengakses</div>
+        <div style="text-align:center;font-size:1.2rem;color:#6b7280;margin:0.2rem 0">&#8595; ${t('mengakses', 'accesses')}</div>
         <div class="layer-item" style="background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;border-radius:8px;padding:1rem;display:flex;align-items:center;gap:1rem">
             <div class="layer-num" style="background:rgba(255,255,255,0.2);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0">4</div>
             <div class="layer-info">
                 <strong>Infrastructure / Database Layer</strong>
-                <span style="display:block;font-size:0.85rem;opacity:0.9">PostgreSQL, MySQL, Redis, MongoDB, External API — penyimpanan data aktual</span>
+                <span style="display:block;font-size:0.85rem;opacity:0.9">${t('PostgreSQL, MySQL, Redis, MongoDB, External API — penyimpanan data aktual', 'PostgreSQL, MySQL, Redis, MongoDB, External API — actual data storage')}</span>
             </div>
         </div>
     </div>
 
     <div class="card-grid">
         <div class="card" style="border-left:4px solid #22c55e">
-            <h4 style="color:#22c55e">Kelebihan</h4>
+            <h4 style="color:#22c55e">${t('Kelebihan', 'Advantages')}</h4>
             <ul style="margin-left:1.2rem">
-                <li>Mudah dipahami dan familiar bagi sebagian besar developer</li>
-                <li>Separation of concerns yang jelas</li>
-                <li>Mudah di-develop secara paralel per lapisan</li>
-                <li>Testing per lapisan lebih mudah dengan mock</li>
-                <li>Cocok untuk aplikasi CRUD sederhana hingga menengah</li>
+                <li>${t('Mudah dipahami dan familiar bagi sebagian besar developer', 'Easy to understand and familiar to most developers')}</li>
+                <li>${t('Separation of concerns yang jelas', 'Clear separation of concerns')}</li>
+                <li>${t('Mudah di-develop secara paralel per lapisan', 'Easy to develop in parallel per layer')}</li>
+                <li>${t('Testing per lapisan lebih mudah dengan mock', 'Testing per layer is easier with mocks')}</li>
+                <li>${t('Cocok untuk aplikasi CRUD sederhana hingga menengah', 'Suitable for simple to medium CRUD applications')}</li>
             </ul>
         </div>
         <div class="card" style="border-left:4px solid #ef4444">
-            <h4 style="color:#ef4444">Kekurangan</h4>
+            <h4 style="color:#ef4444">${t('Kekurangan', 'Disadvantages')}</h4>
             <ul style="margin-left:1.2rem">
-                <li><strong>Tight coupling</strong>: Business layer bergantung langsung pada implementasi Data layer</li>
-                <li>Sulit swap database (PostgreSQL → MongoDB) tanpa ubah service</li>
-                <li>Sulit di-test tanpa database aktual</li>
-                <li><strong>Sinkhole anti-pattern</strong>: request hanya lewat lapisan tanpa logika</li>
-                <li>Tidak ideal untuk domain yang kompleks</li>
+                <li><strong>Tight coupling</strong>: ${t('Business layer bergantung langsung pada implementasi Data layer', 'Business layer depends directly on Data layer implementation')}</li>
+                <li>${t('Sulit swap database (PostgreSQL → MongoDB) tanpa ubah service', 'Hard to swap databases (PostgreSQL → MongoDB) without changing service')}</li>
+                <li>${t('Sulit di-test tanpa database aktual', 'Hard to test without an actual database')}</li>
+                <li><strong>Sinkhole anti-pattern</strong>: ${t('request hanya lewat lapisan tanpa logika', 'requests pass through layers without logic')}</li>
+                <li>${t('Tidak ideal untuk domain yang kompleks', 'Not ideal for complex domains')}</li>
             </ul>
         </div>
     </div>
@@ -361,30 +361,30 @@ my-app/
 <!-- =====================================================================
      BAGIAN 3: HEXAGONAL ARCHITECTURE
      ===================================================================== -->
-<h2 class="animate-in">3. Hexagonal Architecture (Ports &amp; Adapters)</h2>
+<h2 class="animate-in">${t('3. Arsitektur Hexagonal (Ports & Adapters)', '3. Hexagonal Architecture (Ports & Adapters)')}</h2>
 
 <div class="info-box animate-in">
-    <strong>Diciptakan oleh Alistair Cockburn (2005).</strong> Ide utama: <em>isolasi domain bisnis dari semua hal eksternal</em> (database, UI, API eksternal, message queue). Domain berada di tengah, berkomunikasi dengan dunia luar hanya melalui <strong>Ports</strong> (interface) dan <strong>Adapters</strong> (implementasi konkret).
+    <strong>${t('Diciptakan oleh Alistair Cockburn (2005).', 'Created by Alistair Cockburn (2005).')}</strong> ${t('Ide utama: <em>isolasi domain bisnis dari semua hal eksternal</em> (database, UI, API eksternal, message queue). Domain berada di tengah, berkomunikasi dengan dunia luar hanya melalui <strong>Ports</strong> (interface) dan <strong>Adapters</strong> (implementasi konkret).', 'Main idea: <em>isolate business domain from all external concerns</em> (database, UI, external API, message queue). The domain sits at the center, communicating with the outside world only through <strong>Ports</strong> (interfaces) and <strong>Adapters</strong> (concrete implementations).')}
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Konsep Inti</h3>
+    <h3 style="color:var(--accent)">${t('Konsep Inti', 'Core Concepts')}</h3>
 
     <div class="card-grid-3">
         <div class="card" style="border-left:4px solid #8b5cf6;text-align:center">
             <div style="font-size:2rem;margin-bottom:0.5rem">&#9711;</div>
             <h4 style="color:#8b5cf6">Domain (Core)</h4>
-            <p style="font-size:0.9rem">Logika bisnis murni. Tidak tahu apa-apa tentang database, HTTP, atau framework. Berisi Entity, Value Object, Domain Service.</p>
+            <p style="font-size:0.9rem">${t('Logika bisnis murni. Tidak tahu apa-apa tentang database, HTTP, atau framework. Berisi Entity, Value Object, Domain Service.', 'Pure business logic. Knows nothing about database, HTTP, or frameworks. Contains Entity, Value Object, Domain Service.')}</p>
         </div>
         <div class="card" style="border-left:4px solid #3b82f6;text-align:center">
             <div style="font-size:2rem;margin-bottom:0.5rem">&#9671;</div>
             <h4 style="color:#3b82f6">Port (Interface)</h4>
-            <p style="font-size:0.9rem">Interface Go yang didefinisikan oleh domain. Ada dua jenis: <strong>Driving Port</strong> (digunakan driver untuk masuk ke domain) dan <strong>Driven Port</strong> (domain menggunakannya ke luar).</p>
+            <p style="font-size:0.9rem">${t('Interface Go yang didefinisikan oleh domain. Ada dua jenis: <strong>Driving Port</strong> (digunakan driver untuk masuk ke domain) dan <strong>Driven Port</strong> (domain menggunakannya ke luar).', 'Go interfaces defined by the domain. Two types: <strong>Driving Port</strong> (used by drivers to enter the domain) and <strong>Driven Port</strong> (used by the domain to reach outward).')}</p>
         </div>
         <div class="card" style="border-left:4px solid #22c55e;text-align:center">
             <div style="font-size:2rem;margin-bottom:0.5rem">&#9633;</div>
             <h4 style="color:#22c55e">Adapter (Implementasi)</h4>
-            <p style="font-size:0.9rem">Implementasi konkret dari port. Contoh: <code>PostgresUserRepository</code> mengimplementasikan <code>UserRepository</code> port. Bisa diswap tanpa mengubah domain.</p>
+            <p style="font-size:0.9rem">${t('Implementasi konkret dari port. Contoh:', 'Concrete implementation of a port. Example:')} <code>PostgresUserRepository</code> ${t('mengimplementasikan', 'implements')} <code>UserRepository</code> port. ${t('Bisa diswap tanpa mengubah domain.', 'Can be swapped without changing the domain.')}</p>
         </div>
     </div>
 
@@ -430,12 +430,12 @@ my-app/
                 </marker>
             </defs>
         </svg>
-        <p style="color:#6b7280;font-size:0.85rem;margin-top:0.5rem">Diagram Hexagonal Architecture — Domain di tengah, terisolasi dari adapter luar</p>
+        <p style="color:#6b7280;font-size:0.85rem;margin-top:0.5rem">${t('Diagram Hexagonal Architecture — Domain di tengah, terisolasi dari adapter luar', 'Hexagonal Architecture Diagram — Domain at the center, isolated from outer adapters')}</p>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Implementasi Go — UserRepository Port &amp; Adapters</h3>
+    <h3 style="color:var(--accent)">${t('Implementasi Go — UserRepository Port & Adapters', 'Go Implementation — UserRepository Port & Adapters')}</h3>
 
     <div class="tabs">
         <button class="tab-btn active" data-tab="hex-port">Port (Interface)</button>
@@ -446,7 +446,7 @@ my-app/
     </div>
 
     <div data-tab-content="hex-port" class="tab-content active">
-        <p>Port didefinisikan <strong>di dalam</strong> package domain, bukan di package infrastruktur:</p>
+        <p>${t('Port didefinisikan <strong>di dalam</strong> package domain, bukan di package infrastruktur:', 'Ports are defined <strong>inside</strong> the domain package, not in the infrastructure package:')}</p>
         <div class="code-block"><span class="cm">// internal/domain/user.go</span>
 <span class="kw">package</span> domain
 
@@ -485,7 +485,7 @@ my-app/
     </div>
 
     <div data-tab-content="hex-postgres" class="tab-content">
-        <p>Postgres Adapter mengimplementasikan port <code>UserRepository</code>:</p>
+        <p>${t('Postgres Adapter mengimplementasikan port', 'Postgres Adapter implements the')} <code>UserRepository</code> ${t(':', 'port:')}</p>
         <div class="code-block"><span class="cm">// internal/adapters/postgres/user_repository.go</span>
 <span class="kw">package</span> postgres
 
@@ -548,7 +548,7 @@ my-app/
     </div>
 
     <div data-tab-content="hex-memory" class="tab-content">
-        <p>InMemory Adapter — untuk testing tanpa database:</p>
+        <p>${t('InMemory Adapter — untuk testing tanpa database:', 'InMemory Adapter — for testing without a database:')}</p>
         <div class="code-block"><span class="cm">// internal/adapters/memory/user_repository.go</span>
 <span class="kw">package</span> memory
 
@@ -608,7 +608,7 @@ my-app/
     </div>
 
     <div data-tab-content="hex-domain" class="tab-content">
-        <p>Domain Service menggunakan port, tidak tahu tentang implementasi konkret:</p>
+        <p>${t('Domain Service menggunakan port, tidak tahu tentang implementasi konkret:', 'Domain Service uses ports, knows nothing about concrete implementations:')}</p>
         <div class="code-block"><span class="cm">// internal/domain/user_service.go</span>
 <span class="kw">package</span> domain
 
@@ -685,12 +685,12 @@ myapp/
 │       └── config.go
 └── go.mod</div>
         <div class="success-box" style="margin-top:1rem">
-            <strong>Kenapa Hexagonal Superior?</strong>
+            <strong>${t('Kenapa Hexagonal Superior?', 'Why is Hexagonal Superior?')}</strong>
             <ul style="margin:0.5rem 0 0 1.2rem">
-                <li><strong>Testability</strong>: Test domain tanpa database aktual menggunakan InMemory adapter</li>
-                <li><strong>Flexibility</strong>: Ganti PostgreSQL ke MySQL hanya ubah satu file adapter</li>
-                <li><strong>Isolation</strong>: Domain tidak bergantung pada framework, library, atau infrastruktur apapun</li>
-                <li><strong>Multiple Entry Points</strong>: Sama-sama expose via REST, gRPC, atau CLI tanpa ubah domain</li>
+                <li><strong>Testability</strong>: ${t('Test domain tanpa database aktual menggunakan InMemory adapter', 'Test domain without actual database using InMemory adapter')}</li>
+                <li><strong>Flexibility</strong>: ${t('Ganti PostgreSQL ke MySQL hanya ubah satu file adapter', 'Swap PostgreSQL to MySQL by changing just one adapter file')}</li>
+                <li><strong>Isolation</strong>: ${t('Domain tidak bergantung pada framework, library, atau infrastruktur apapun', 'Domain has no dependency on any framework, library, or infrastructure')}</li>
+                <li><strong>Multiple Entry Points</strong>: ${t('Sama-sama expose via REST, gRPC, atau CLI tanpa ubah domain', 'Expose via REST, gRPC, or CLI without changing the domain')}</li>
             </ul>
         </div>
     </div>
@@ -699,14 +699,14 @@ myapp/
 <!-- =====================================================================
      BAGIAN 4: ONION ARCHITECTURE
      ===================================================================== -->
-<h2 class="animate-in">4. Onion Architecture</h2>
+<h2 class="animate-in">${t('4. Arsitektur Onion', '4. Onion Architecture')}</h2>
 
 <div class="info-box animate-in">
-    <strong>Diciptakan oleh Jeffrey Palermo (2008).</strong> Mirip dengan Hexagonal tetapi lebih eksplisit tentang lapisan dalam domain. Aturan utama: <strong>dependency hanya boleh mengarah ke dalam</strong> — lapisan luar boleh bergantung pada lapisan dalam, tapi lapisan dalam tidak boleh bergantung pada lapisan luar.
+    <strong>${t('Diciptakan oleh Jeffrey Palermo (2008).', 'Created by Jeffrey Palermo (2008).')}</strong> ${t('Mirip dengan Hexagonal tetapi lebih eksplisit tentang lapisan dalam domain. Aturan utama: <strong>dependency hanya boleh mengarah ke dalam</strong> — lapisan luar boleh bergantung pada lapisan dalam, tapi lapisan dalam tidak boleh bergantung pada lapisan luar.', 'Similar to Hexagonal but more explicit about inner domain layers. Main rule: <strong>dependencies may only point inward</strong> — outer layers may depend on inner layers, but inner layers must not depend on outer layers.')}
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Lapisan Konsentris</h3>
+    <h3 style="color:var(--accent)">${t('Lapisan Konsentris', 'Concentric Layers')}</h3>
 
     <!-- SVG Concentric Circles Diagram -->
     <div style="text-align:center;margin:2rem 0">
@@ -742,25 +742,25 @@ myapp/
                 </marker>
             </defs>
         </svg>
-        <p style="color:#6b7280;font-size:0.85rem">Onion Architecture — Lingkaran terluar bergantung ke dalam, bukan sebaliknya</p>
+        <p style="color:#6b7280;font-size:0.85rem">${t('Onion Architecture — Lingkaran terluar bergantung ke dalam, bukan sebaliknya', 'Onion Architecture — Outer circles depend inward, not the other way around')}</p>
     </div>
 
     <div class="card-grid">
         <div class="card" style="border-left:4px solid #22c55e">
-            <h4 style="color:#22c55e">Domain Model (Inti)</h4>
-            <p>Entity dan Value Object murni. Tidak ada dependency ke framework apapun. Berisi state dan behavior domain bisnis. Contoh: <code>User</code>, <code>Order</code>, <code>Money</code>.</p>
+            <h4 style="color:#22c55e">${t('Domain Model (Inti)', 'Domain Model (Core)')}</h4>
+            <p>${t('Entity dan Value Object murni. Tidak ada dependency ke framework apapun. Berisi state dan behavior domain bisnis.', 'Pure Entity and Value Object. No dependency on any framework. Contains business domain state and behavior.')} ${t('Contoh:', 'Example:')} <code>User</code>, <code>Order</code>, <code>Money</code>.</p>
         </div>
         <div class="card" style="border-left:4px solid #8b5cf6">
             <h4 style="color:#8b5cf6">Domain Services</h4>
-            <p>Business rules yang tidak alami milik satu entity. Interface Repository didefinisikan di sini. Contoh: <code>TransferService</code>, <code>PricingService</code>.</p>
+            <p>${t('Business rules yang tidak alami milik satu entity. Interface Repository didefinisikan di sini.', 'Business rules that don\'t naturally belong to a single entity. Repository interfaces are defined here.')} ${t('Contoh:', 'Example:')} <code>TransferService</code>, <code>PricingService</code>.</p>
         </div>
         <div class="card" style="border-left:4px solid #f59e0b">
             <h4 style="color:#f59e0b">Application Services</h4>
-            <p>Mengorkestrasikan domain services untuk menyelesaikan use case. Tidak berisi business logic. Mengelola transaksi. Contoh: <code>PlaceOrderUseCase</code>.</p>
+            <p>${t('Mengorkestrasikan domain services untuk menyelesaikan use case. Tidak berisi business logic. Mengelola transaksi.', 'Orchestrates domain services to complete use cases. Contains no business logic. Manages transactions.')} ${t('Contoh:', 'Example:')} <code>PlaceOrderUseCase</code>.</p>
         </div>
         <div class="card" style="border-left:4px solid #6b7280">
             <h4 style="color:#9ca3af">Infrastructure</h4>
-            <p>Semua hal teknis: database, UI, API eksternal, framework. Mengimplementasikan interface yang didefinisikan di lapisan dalam. Boleh bergantung ke semua lapisan dalam.</p>
+            <p>${t('Semua hal teknis: database, UI, API eksternal, framework. Mengimplementasikan interface yang didefinisikan di lapisan dalam. Boleh bergantung ke semua lapisan dalam.', 'All technical concerns: database, UI, external APIs, frameworks. Implements interfaces defined in inner layers. May depend on all inner layers.')}</p>
         </div>
     </div>
 
@@ -795,11 +795,11 @@ myapp/
 <h2 class="animate-in">5. Clean Architecture — Uncle Bob</h2>
 
 <div class="info-box animate-in">
-    <strong>Dipopulerkan Robert C. Martin dalam bukunya "Clean Architecture" (2017).</strong> Clean Architecture adalah generalisasi dari Hexagonal dan Onion Architecture. Memiliki <strong>Dependency Rule</strong>: source code dependencies hanya boleh mengarah ke dalam — lapisan dalam tidak boleh tahu apapun tentang lapisan luar.
+    <strong>${t('Dipopulerkan Robert C. Martin dalam bukunya "Clean Architecture" (2017).', 'Popularized by Robert C. Martin in his book "Clean Architecture" (2017).')}</strong> ${t('Clean Architecture adalah generalisasi dari Hexagonal dan Onion Architecture. Memiliki <strong>Dependency Rule</strong>: source code dependencies hanya boleh mengarah ke dalam — lapisan dalam tidak boleh tahu apapun tentang lapisan luar.', 'Clean Architecture is a generalization of Hexagonal and Onion Architecture. It has the <strong>Dependency Rule</strong>: source code dependencies may only point inward — inner layers must know nothing about outer layers.')}
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Empat Lapisan Clean Architecture</h3>
+    <h3 style="color:var(--accent)">${t('Empat Lapisan Clean Architecture', 'Four Layers of Clean Architecture')}</h3>
 
     <!-- SVG Clean Architecture Diagram -->
     <div style="text-align:center;margin:2rem 0">
@@ -836,7 +836,7 @@ myapp/
     </div>
 
     <div data-tab-content="ca-entities" class="tab-content active">
-        <p><strong>Entities</strong> — Enterprise Business Rules. Objek bisnis paling fundamental. Tidak bergantung apapun.</p>
+        <p><strong>Entities</strong> — Enterprise Business Rules. ${t('Objek bisnis paling fundamental. Tidak bergantung apapun.', 'The most fundamental business objects. No dependencies whatsoever.')}</p>
         <div class="code-block"><span class="cm">// entities/user.go</span>
 <span class="kw">package</span> entities
 

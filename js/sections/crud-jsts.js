@@ -6,15 +6,15 @@
 sections['crud-jsts'] = () => `
 <section class="animate-in">
 
-<h1 class="section-title">CRUD: RESTful API &amp; gRPC dengan TypeScript</h1>
+<h1 class="section-title">CRUD: RESTful API &amp; gRPC ${t('dengan', 'with')} TypeScript</h1>
 <p class="section-subtitle">Production-Ready Backend &mdash; Express, Hono, gRPC, Prisma, Zod, JWT, Docker</p>
 
 <!-- ==================== SECTION 1: PROJECT STRUCTURE ==================== -->
 <h2 class="section-title" style="font-size:1.5rem;">1. Production-Ready Project Structure</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Struktur Folder TypeScript Backend</h3>
-    <p>Berikut adalah struktur folder yang digunakan di <strong>production-grade</strong> TypeScript API. Pola ini mengikuti prinsip <strong>Separation of Concerns</strong> dan <strong>Clean Architecture</strong>.</p>
+    <h3 style="color:var(--accent)">${t('Struktur Folder TypeScript Backend', 'TypeScript Backend Folder Structure')}</h3>
+    <p>${t('Berikut adalah struktur folder yang digunakan di', 'Below is the folder structure used in')} <strong>production-grade</strong> TypeScript API. ${t('Pola ini mengikuti prinsip', 'This pattern follows the principles of')} <strong>Separation of Concerns</strong> ${t('dan', 'and')} <strong>Clean Architecture</strong>.</p>
 
     <div class="code-block">
 <span class="cm">// Struktur folder production-ready TypeScript API</span>
@@ -54,18 +54,18 @@ myapp/
     </div>
 
     <div class="info-box">
-        <strong>Mengapa layered architecture?</strong> Pola <strong>Controller &rarr; Service &rarr; Repository</strong> memisahkan tanggung jawab: Controller menangani HTTP, Service mengandung bisnis logic, Repository mengakses database. Ini membuat kode mudah di-test, di-maintain, dan di-scale.
+        <strong>${t('Mengapa layered architecture?', 'Why layered architecture?')}</strong> ${t('Pola', 'The')} <strong>Controller &rarr; Service &rarr; Repository</strong> ${t('memisahkan tanggung jawab: Controller menangani HTTP, Service mengandung bisnis logic, Repository mengakses database. Ini membuat kode mudah di-test, di-maintain, dan di-scale.', 'pattern separates concerns: Controller handles HTTP, Service contains business logic, Repository accesses the database. This makes the code easy to test, maintain, and scale.')}
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--green)">Alur Request dalam Layered Architecture</h3>
+    <h3 style="color:var(--green)">${t('Alur Request dalam Layered Architecture', 'Request Flow in Layered Architecture')}</h3>
     <canvas id="canvas-crud-jsts-arch" width="800" height="380" style="width:100%;border-radius:12px;background:#0a0a1a;"></canvas>
-    <p style="margin-top:0.5rem;font-size:0.85rem;color:var(--text-secondary);">Visualisasi alur request: Client &rarr; Middleware (Zod Validation) &rarr; Controller &rarr; Service &rarr; Repository &rarr; Prisma &rarr; Database</p>
+    <p style="margin-top:0.5rem;font-size:0.85rem;color:var(--text-secondary);">${t('Visualisasi alur request:', 'Request flow visualization:')} Client &rarr; Middleware (Zod Validation) &rarr; Controller &rarr; Service &rarr; Repository &rarr; Prisma &rarr; Database</p>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--yellow)">Setup Awal: package.json &amp; tsconfig.json</h3>
+    <h3 style="color:var(--yellow)">${t('Setup Awal', 'Initial Setup')}: package.json &amp; tsconfig.json</h3>
     <div class="code-block">
 <span class="cm">// package.json</span>
 {
@@ -135,8 +135,8 @@ myapp/
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Config: Environment Validation dengan Zod</h3>
-    <p>Jangan pernah langsung menggunakan <code>process.env</code> tanpa validasi. Gunakan Zod untuk memvalidasi dan memberikan type-safety pada environment variables.</p>
+    <h3 style="color:var(--accent)">Config: Environment Validation ${t('dengan', 'with')} Zod</h3>
+    <p>${t('Jangan pernah langsung menggunakan', 'Never directly use')} <code>process.env</code> ${t('tanpa validasi. Gunakan Zod untuk memvalidasi dan memberikan type-safety pada environment variables.', 'without validation. Use Zod to validate and provide type-safety for environment variables.')}</p>
     <div class="code-block">
 <span class="cm">// src/config/index.ts</span>
 <span class="kw">import</span> { z } <span class="kw">from</span> <span class="str">"zod"</span>;
@@ -164,16 +164,16 @@ myapp/
 <span class="kw">export type</span> Config = z.infer&lt;<span class="kw">typeof</span> envSchema&gt;;
     </div>
     <div class="warn-box">
-        <strong>Penting!</strong> Jika ada env variable yang salah atau missing, aplikasi akan <strong>gagal start</strong> dengan pesan error yang jelas &mdash; jauh lebih baik daripada crash di tengah runtime.
+        <strong>${t('Penting!', 'Important!')}</strong> ${t('Jika ada env variable yang salah atau missing, aplikasi akan', 'If any env variable is incorrect or missing, the application will')} <strong>${t('gagal start', 'fail to start')}</strong> ${t('dengan pesan error yang jelas &mdash; jauh lebih baik daripada crash di tengah runtime.', 'with a clear error message &mdash; much better than crashing in the middle of runtime.')}
     </div>
 </div>
 
 <!-- ==================== SECTION 2: REST CRUD EXPRESS ==================== -->
-<h2 class="section-title" style="font-size:1.5rem;">2. RESTful CRUD dengan Express.js + TypeScript</h2>
+<h2 class="section-title" style="font-size:1.5rem;">2. RESTful CRUD ${t('dengan', 'with')} Express.js + TypeScript</h2>
 
 <div class="card animate-in">
     <h3 style="color:var(--accent)">Zod Schemas &mdash; Runtime Validation</h3>
-    <p>TypeScript hanya melakukan type-checking saat <strong>compile time</strong>. Untuk validasi data dari client saat <strong>runtime</strong>, gunakan <strong>Zod</strong>. Ini adalah pertahanan utama terhadap data invalid.</p>
+    <p>${t('TypeScript hanya melakukan type-checking saat', 'TypeScript only performs type-checking at')} <strong>compile time</strong>. ${t('Untuk validasi data dari client saat', 'For validating client data at')} <strong>runtime</strong>, ${t('gunakan', 'use')} <strong>Zod</strong>. ${t('Ini adalah pertahanan utama terhadap data invalid.', 'This is the primary defense against invalid data.')}</p>
     <div class="code-block">
 <span class="cm">// src/schemas/user.schema.ts</span>
 <span class="kw">import</span> { z } <span class="kw">from</span> <span class="str">"zod"</span>;
@@ -234,7 +234,7 @@ myapp/
 <span class="kw">export type</span> UpdateUserInput = z.infer&lt;<span class="kw">typeof</span> updateUserSchema&gt;[<span class="str">"body"</span>];
     </div>
     <div class="success-box">
-        <strong>Zod = Single Source of Truth.</strong> Dari satu Zod schema, kamu mendapatkan: runtime validation, TypeScript types, dan error messages. Tidak perlu menulis type dan validasi terpisah!
+        <strong>Zod = Single Source of Truth.</strong> ${t('Dari satu Zod schema, kamu mendapatkan: runtime validation, TypeScript types, dan error messages. Tidak perlu menulis type dan validasi terpisah!', 'From a single Zod schema, you get: runtime validation, TypeScript types, and error messages. No need to write types and validation separately!')}
     </div>
 </div>
 
@@ -282,7 +282,7 @@ myapp/
 
 <div class="card animate-in">
     <h3 style="color:var(--yellow)">Repository Layer &mdash; Database Access</h3>
-    <p>Repository bertanggung jawab HANYA untuk interaksi database. Tidak ada bisnis logic di sini.</p>
+    <p>${t('Repository bertanggung jawab HANYA untuk interaksi database. Tidak ada bisnis logic di sini.', 'Repository is responsible ONLY for database interaction. No business logic belongs here.')}</p>
     <div class="code-block">
 <span class="cm">// src/repositories/user.repository.ts</span>
 <span class="kw">import</span> { PrismaClient, User, Prisma } <span class="kw">from</span> <span class="str">"@prisma/client"</span>;
@@ -348,7 +348,7 @@ myapp/
 
 <div class="card animate-in">
     <h3 style="color:var(--accent)">Service Layer &mdash; Business Logic</h3>
-    <p>Service mengandung semua bisnis logic: validasi aturan bisnis, hashing password, transformasi data.</p>
+    <p>${t('Service mengandung semua bisnis logic: validasi aturan bisnis, hashing password, transformasi data.', 'Service contains all business logic: business rule validation, password hashing, data transformation.')}</p>
     <div class="code-block">
 <span class="cm">// src/services/user.service.ts</span>
 <span class="kw">import</span> bcrypt <span class="kw">from</span> <span class="str">"bcryptjs"</span>;
@@ -805,29 +805,29 @@ process.<span class="fn">on</span>(<span class="str">"SIGINT"</span>, () =&gt; <
 </div>
 
 <!-- ==================== SECTION 3: HONO ==================== -->
-<h2 class="section-title" style="font-size:1.5rem;">3. Alternatif Modern: Hono.js</h2>
+<h2 class="section-title" style="font-size:1.5rem;">3. ${t('Alternatif Modern', 'Modern Alternative')}: Hono.js</h2>
 
 <div class="card animate-in">
     <h3 style="color:var(--accent)">Hono &mdash; Ultra-Fast, Edge-First Framework</h3>
-    <p><strong>Hono</strong> (&ldquo;flame&rdquo; dalam bahasa Jepang) adalah web framework modern yang dirancang untuk <strong>edge computing</strong> (Cloudflare Workers, Deno Deploy, Bun). TypeScript-first, sangat cepat, dan ringan.</p>
+    <p><strong>Hono</strong> (&ldquo;flame&rdquo; ${t('dalam bahasa Jepang', 'in Japanese')}) ${t('adalah web framework modern yang dirancang untuk', 'is a modern web framework designed for')} <strong>edge computing</strong> (Cloudflare Workers, Deno Deploy, Bun). ${t('TypeScript-first, sangat cepat, dan ringan.', 'TypeScript-first, extremely fast, and lightweight.')}</p>
 
     <div class="table-wrapper">
     <table>
-    <tr><th>Aspek</th><th>Express.js</th><th>Hono</th></tr>
-    <tr><td>TypeScript</td><td>Butuh @types/express</td><td><span class="badge badge-green">Built-in, first-class</span></td></tr>
-    <tr><td>Performa</td><td>~15K req/s</td><td><span class="badge badge-green">~130K req/s (Bun)</span></td></tr>
+    <tr><th>${t('Aspek', 'Aspect')}</th><th>Express.js</th><th>Hono</th></tr>
+    <tr><td>TypeScript</td><td>${t('Butuh', 'Needs')} @types/express</td><td><span class="badge badge-green">Built-in, first-class</span></td></tr>
+    <tr><td>${t('Performa', 'Performance')}</td><td>~15K req/s</td><td><span class="badge badge-green">~130K req/s (Bun)</span></td></tr>
     <tr><td>Bundle Size</td><td>~550KB</td><td><span class="badge badge-green">~14KB (core)</span></td></tr>
     <tr><td>Runtime</td><td>Node.js</td><td>Node, Bun, Deno, CF Workers, Lambda</td></tr>
-    <tr><td>Middleware</td><td>Ecosystem besar, third-party</td><td>Built-in (cors, jwt, logger, validator)</td></tr>
-    <tr><td>Validation</td><td>Perlu middleware custom</td><td>@hono/zod-validator terintegrasi</td></tr>
-    <tr><td>Maturity</td><td><span class="badge badge-green">10+ tahun, battle-tested</span></td><td>Baru (2022), tapi growing fast</td></tr>
-    <tr><td>Ecosystem</td><td><span class="badge badge-green">Sangat besar</span></td><td>Lebih kecil, tapi cukup</td></tr>
+    <tr><td>Middleware</td><td>${t('Ecosystem besar, third-party', 'Large ecosystem, third-party')}</td><td>Built-in (cors, jwt, logger, validator)</td></tr>
+    <tr><td>Validation</td><td>${t('Perlu middleware custom', 'Needs custom middleware')}</td><td>${t('@hono/zod-validator terintegrasi', '@hono/zod-validator integrated')}</td></tr>
+    <tr><td>Maturity</td><td><span class="badge badge-green">${t('10+ tahun, battle-tested', '10+ years, battle-tested')}</span></td><td>${t('Baru (2022), tapi growing fast', 'New (2022), but growing fast')}</td></tr>
+    <tr><td>Ecosystem</td><td><span class="badge badge-green">${t('Sangat besar', 'Very large')}</span></td><td>${t('Lebih kecil, tapi cukup', 'Smaller, but sufficient')}</td></tr>
     </table>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--green)">CRUD dengan Hono + Zod Validator</h3>
+    <h3 style="color:var(--green)">CRUD ${t('dengan', 'with')} Hono + Zod Validator</h3>
     <div class="code-block">
 <span class="cm">// src/app.ts (Hono version)</span>
 <span class="kw">import</span> { Hono } <span class="kw">from</span> <span class="str">"hono"</span>;
@@ -925,27 +925,27 @@ app.<span class="fn">onError</span>((err, c) =&gt; {
 <span class="kw">export default</span> app;
     </div>
     <div class="success-box">
-        <strong>Hono + Zod = Type-safe dari request sampai response.</strong> Perhatikan bahwa <code>c.req.valid("json")</code> sudah ter-type secara otomatis dari Zod schema &mdash; autocomplete di IDE tanpa perlu casting manual!
+        <strong>Hono + Zod = Type-safe ${t('dari request sampai response.', 'from request to response.')}</strong> ${t('Perhatikan bahwa', 'Notice that')} <code>c.req.valid("json")</code> ${t('sudah ter-type secara otomatis dari Zod schema &mdash; autocomplete di IDE tanpa perlu casting manual!', 'is automatically typed from the Zod schema &mdash; IDE autocomplete without manual casting!')}
     </div>
 </div>
 
 <!-- ==================== SECTION 4: gRPC ==================== -->
-<h2 class="section-title" style="font-size:1.5rem;">4. gRPC dengan @grpc/grpc-js</h2>
+<h2 class="section-title" style="font-size:1.5rem;">4. gRPC ${t('dengan', 'with')} @grpc/grpc-js</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Apa Itu gRPC?</h3>
-    <p><strong>gRPC</strong> (Google Remote Procedure Call) adalah framework komunikasi antar service yang menggunakan <strong>Protocol Buffers</strong> (protobuf) sebagai format data dan <strong>HTTP/2</strong> sebagai transport. gRPC sangat populer untuk <strong>microservices</strong> internal karena performanya yang jauh lebih tinggi dibanding REST+JSON.</p>
+    <h3 style="color:var(--accent)">${t('Apa Itu gRPC?', 'What Is gRPC?')}</h3>
+    <p><strong>gRPC</strong> (Google Remote Procedure Call) ${t('adalah framework komunikasi antar service yang menggunakan', 'is an inter-service communication framework that uses')} <strong>Protocol Buffers</strong> (protobuf) ${t('sebagai format data dan', 'as the data format and')} <strong>HTTP/2</strong> ${t('sebagai transport. gRPC sangat populer untuk', 'as the transport. gRPC is very popular for')} <strong>microservices</strong> ${t('internal karena performanya yang jauh lebih tinggi dibanding REST+JSON.', 'internally due to its much higher performance compared to REST+JSON.')}</p>
 
     <div class="table-wrapper">
     <table>
-    <tr><th>Aspek</th><th>REST + JSON</th><th>gRPC + Protobuf</th></tr>
-    <tr><td>Format Data</td><td>JSON (text-based)</td><td><span class="badge badge-green">Protobuf (binary, ~10x lebih kecil)</span></td></tr>
+    <tr><th>${t('Aspek', 'Aspect')}</th><th>REST + JSON</th><th>gRPC + Protobuf</th></tr>
+    <tr><td>Format Data</td><td>JSON (text-based)</td><td><span class="badge badge-green">Protobuf (binary, ${t('~10x lebih kecil', '~10x smaller')})</span></td></tr>
     <tr><td>Transport</td><td>HTTP/1.1</td><td><span class="badge badge-green">HTTP/2 (multiplexing, bidirectional)</span></td></tr>
-    <tr><td>Contract</td><td>OpenAPI/Swagger (opsional)</td><td><span class="badge badge-green">Proto file (wajib, strongly typed)</span></td></tr>
-    <tr><td>Streaming</td><td>Tidak (workaround: SSE/WS)</td><td><span class="badge badge-green">Unary, Server, Client, Bidirectional</span></td></tr>
-    <tr><td>Code Generation</td><td>Manual / codegen opsional</td><td><span class="badge badge-green">Auto-generate types dan client</span></td></tr>
-    <tr><td>Browser Support</td><td><span class="badge badge-green">Native</span></td><td>Perlu grpc-web proxy</td></tr>
-    <tr><td>Debugging</td><td><span class="badge badge-green">Mudah (curl, browser)</span></td><td>Butuh tools khusus (grpcurl, BloomRPC)</td></tr>
+    <tr><td>Contract</td><td>OpenAPI/Swagger (${t('opsional', 'optional')})</td><td><span class="badge badge-green">Proto file (${t('wajib', 'required')}, strongly typed)</span></td></tr>
+    <tr><td>Streaming</td><td>${t('Tidak', 'No')} (workaround: SSE/WS)</td><td><span class="badge badge-green">Unary, Server, Client, Bidirectional</span></td></tr>
+    <tr><td>Code Generation</td><td>Manual / codegen ${t('opsional', 'optional')}</td><td><span class="badge badge-green">Auto-generate types ${t('dan', 'and')} client</span></td></tr>
+    <tr><td>Browser Support</td><td><span class="badge badge-green">Native</span></td><td>${t('Perlu', 'Needs')} grpc-web proxy</td></tr>
+    <tr><td>Debugging</td><td><span class="badge badge-green">${t('Mudah', 'Easy')} (curl, browser)</span></td><td>${t('Butuh tools khusus', 'Needs special tools')} (grpcurl, BloomRPC)</td></tr>
     <tr><td>Use Case</td><td>Public API, Web/Mobile</td><td>Internal microservices, IoT, real-time</td></tr>
     </table>
     </div>
@@ -1249,14 +1249,14 @@ stream.<span class="fn">on</span>(<span class="str">"end"</span>, () =&gt; conso
 </div>
 
 <!-- ==================== SECTION 5: SECURITY ==================== -->
-<h2 class="section-title" style="font-size:1.5rem;">5. Security Best Practices (Node.js)</h2>
+<h2 class="section-title" style="font-size:1.5rem;">5. ${t('Keamanan', 'Security')} Best Practices (Node.js)</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--red, #e74c3c)">Checklist Keamanan Node.js Backend</h3>
+    <h3 style="color:var(--red, #e74c3c)">${t('Checklist Keamanan Node.js Backend', 'Node.js Backend Security Checklist')}</h3>
     <div class="card-grid">
         <div class="card" style="border-left:3px solid var(--green)">
             <h4>1. Helmet (Security Headers)</h4>
-            <p>Mengatur HTTP headers untuk mencegah serangan umum: XSS, clickjacking, MIME sniffing.</p>
+            <p>${t('Mengatur HTTP headers untuk mencegah serangan umum: XSS, clickjacking, MIME sniffing.', 'Sets HTTP headers to prevent common attacks: XSS, clickjacking, MIME sniffing.')}</p>
             <div class="code-block">
 <span class="kw">import</span> helmet <span class="kw">from</span> <span class="str">"helmet"</span>;
 app.<span class="fn">use</span>(<span class="fn">helmet</span>()); <span class="cm">// Sets 11 security headers</span>
@@ -1268,7 +1268,7 @@ app.<span class="fn">use</span>(<span class="fn">helmet</span>()); <span class="
         </div>
         <div class="card" style="border-left:3px solid var(--yellow)">
             <h4>2. Rate Limiting</h4>
-            <p>Mencegah brute force dan DDoS attack.</p>
+            <p>${t('Mencegah brute force dan DDoS attack.', 'Prevents brute force and DDoS attacks.')}</p>
             <div class="code-block">
 <span class="kw">import</span> rateLimit <span class="kw">from</span> <span class="str">"express-rate-limit"</span>;
 
@@ -1288,9 +1288,9 @@ app.<span class="fn">use</span>(<span class="str">"/api/auth"</span>, authLimite
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--yellow)">3. Input Validation &mdash; Runtime, Bukan Hanya Types!</h3>
+    <h3 style="color:var(--yellow)">3. Input Validation &mdash; Runtime, ${t('Bukan Hanya Types!', 'Not Just Types!')}</h3>
     <div class="info-box">
-        <strong>TypeScript types DIHAPUS saat compile!</strong> Mereka TIDAK melindungi runtime. Tanpa Zod (atau library validasi lain), user bisa mengirim data apapun ke API kamu. Zod memberikan validasi <strong>runtime</strong> yang terintegrasi dengan TypeScript types.
+        <strong>${t('TypeScript types DIHAPUS saat compile!', 'TypeScript types are REMOVED at compile time!')}</strong> ${t('Mereka TIDAK melindungi runtime. Tanpa Zod (atau library validasi lain), user bisa mengirim data apapun ke API kamu. Zod memberikan validasi', 'They do NOT protect at runtime. Without Zod (or another validation library), users can send any data to your API. Zod provides')} <strong>runtime</strong> ${t('yang terintegrasi dengan TypeScript types.', 'validation integrated with TypeScript types.')}
     </div>
     <div class="code-block">
 <span class="cm">// SALAH: hanya mengandalkan TypeScript types</span>
@@ -1445,10 +1445,10 @@ res.<span class="fn">cookie</span>(<span class="str">"refreshToken"</span>, toke
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--green)">Ringkasan Security Checklist</h3>
+    <h3 style="color:var(--green)">${t('Ringkasan Security Checklist', 'Security Checklist Summary')}</h3>
     <div class="table-wrapper">
     <table>
-    <tr><th>Layer</th><th>Tindakan</th><th>Tool</th></tr>
+    <tr><th>Layer</th><th>${t('Tindakan', 'Action')}</th><th>Tool</th></tr>
     <tr><td>Transport</td><td>HTTPS everywhere</td><td>TLS cert (Let's Encrypt)</td></tr>
     <tr><td>Headers</td><td>Security headers</td><td>helmet</td></tr>
     <tr><td>Rate Limit</td><td>Throttle requests</td><td>express-rate-limit</td></tr>
@@ -1459,18 +1459,18 @@ res.<span class="fn">cookie</span>(<span class="str">"refreshToken"</span>, toke
     <tr><td>CORS</td><td>Whitelist origins</td><td>cors</td></tr>
     <tr><td>XSS</td><td>CSP + httpOnly cookies</td><td>helmet + cookie options</td></tr>
     <tr><td>Dependencies</td><td>Regular audit</td><td>npm audit, Dependabot</td></tr>
-    <tr><td>Env</td><td>Validate env vars</td><td>Zod env schema</td></tr>
+    <tr><td>Env</td><td>${t('Validasi env vars', 'Validate env vars')}</td><td>Zod env schema</td></tr>
     <tr><td>Logging</td><td>Structured logging</td><td>pino / winston</td></tr>
     </table>
     </div>
 </div>
 
 <!-- ==================== SECTION 6: PRISMA ==================== -->
-<h2 class="section-title" style="font-size:1.5rem;">6. Database dengan Prisma ORM</h2>
+<h2 class="section-title" style="font-size:1.5rem;">6. Database ${t('dengan', 'with')} Prisma ORM</h2>
 
 <div class="card animate-in">
     <h3 style="color:var(--accent)">Prisma Schema</h3>
-    <p><strong>Prisma</strong> adalah ORM TypeScript-first yang memberikan <strong>type-safe database queries</strong>. Schema mendefinisikan models, relasi, dan constraint database.</p>
+    <p><strong>Prisma</strong> ${t('adalah ORM TypeScript-first yang memberikan', 'is a TypeScript-first ORM that provides')} <strong>type-safe database queries</strong>. ${t('Schema mendefinisikan models, relasi, dan constraint database.', 'The schema defines models, relations, and database constraints.')}</p>
     <div class="code-block">
 <span class="cm">// prisma/schema.prisma</span>
 
@@ -1628,7 +1628,7 @@ datasource db {
 <h2 class="section-title" style="font-size:1.5rem;">7. Testing</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Vitest + Supertest: Integration Testing</h3>
+    <h3 style="color:var(--accent)">${t('Vitest + Supertest: Pengujian Integrasi', 'Vitest + Supertest: Integration Testing')}</h3>
     <div class="code-block">
 <span class="cm">// tests/user.test.ts</span>
 <span class="kw">import</span> { describe, it, expect, beforeAll, afterAll, beforeEach } <span class="kw">from</span> <span class="str">"vitest"</span>;
@@ -1782,7 +1782,7 @@ datasource db {
 </div>
 
 <!-- ==================== SWAGGER/OPENAPI ==================== -->
-<h2 class="section-title" style="font-size:1.5rem;">8. Swagger / OpenAPI Documentation</h2>
+<h2 class="section-title" style="font-size:1.5rem;">8. ${t('Dokumentasi', 'Documentation')}: Swagger / OpenAPI</h2>
 
 <div class="card animate-in">
 <h3 style="color:var(--accent)">Express: swagger-jsdoc + swagger-ui-express</h3>
@@ -1891,7 +1891,7 @@ app.<span class="fn">get</span>(<span class="str">"/swagger"</span>, swaggerUI({
 </div>
 
 <div class="info-box">
-    <strong>Prisma + PostgreSQL:</strong> Prisma auto-generates TypeScript types dari schema.<br>
+    <strong>Prisma + PostgreSQL:</strong> Prisma auto-generates TypeScript types ${t('dari schema.', 'from the schema.')}<br>
     <code>DATABASE_URL="postgresql://user:pass@localhost:5432/mydb?schema=public"</code><br>
     <code>npx prisma migrate dev --name init</code> &rarr; creates tables<br>
     <code>npx prisma generate</code> &rarr; generates Prisma Client<br>
@@ -1900,11 +1900,11 @@ app.<span class="fn">get</span>(<span class="str">"/swagger"</span>, swaggerUI({
 </div>
 
 <!-- ==================== SECTION 9: DOCKER ==================== -->
-<h2 class="section-title" style="font-size:1.5rem;">9. Docker Deployment</h2>
+<h2 class="section-title" style="font-size:1.5rem;">9. ${t('Deployment dengan Docker', 'Docker Deployment')}</h2>
 
 <div class="card animate-in">
     <h3 style="color:var(--accent)">Multi-Stage Dockerfile</h3>
-    <p>Multi-stage build menghasilkan image yang <strong>lebih kecil</strong> karena hanya menyertakan file production yang dibutuhkan, tanpa devDependencies dan source code.</p>
+    <p>${t('Multi-stage build menghasilkan image yang', 'Multi-stage build produces')} <strong>${t('lebih kecil', 'smaller images')}</strong> ${t('karena hanya menyertakan file production yang dibutuhkan, tanpa devDependencies dan source code.', 'because it only includes the required production files, without devDependencies and source code.')}</p>
     <div class="code-block">
 <span class="cm"># Dockerfile</span>
 
@@ -2068,19 +2068,19 @@ RATE_LIMIT_MAX=100
 </div>
 
 <!-- ==================== SECTION 9: QUICK REFERENCE ==================== -->
-<h2 class="section-title" style="font-size:1.5rem;">9. Quick Reference: REST API Endpoints</h2>
+<h2 class="section-title" style="font-size:1.5rem;">10. ${t('Referensi Cepat', 'Quick Reference')}: REST API Endpoints</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">CRUD Endpoints Summary</h3>
+    <h3 style="color:var(--accent)">${t('Ringkasan CRUD Endpoints', 'CRUD Endpoints Summary')}</h3>
     <div class="table-wrapper">
     <table>
-    <tr><th>Method</th><th>Endpoint</th><th>Auth</th><th>Body</th><th>Description</th></tr>
-    <tr><td><span class="badge badge-green">POST</span></td><td>/api/users</td><td>No</td><td>email, password, name</td><td>Register user baru</td></tr>
-    <tr><td><span class="badge badge-green">POST</span></td><td>/api/auth/login</td><td>No</td><td>email, password</td><td>Login, dapat JWT tokens</td></tr>
+    <tr><th>Method</th><th>Endpoint</th><th>Auth</th><th>Body</th><th>${t('Deskripsi', 'Description')}</th></tr>
+    <tr><td><span class="badge badge-green">POST</span></td><td>/api/users</td><td>No</td><td>email, password, name</td><td>${t('Register user baru', 'Register new user')}</td></tr>
+    <tr><td><span class="badge badge-green">POST</span></td><td>/api/auth/login</td><td>No</td><td>email, password</td><td>${t('Login, dapat JWT tokens', 'Login, get JWT tokens')}</td></tr>
     <tr><td><span class="badge badge-blue">GET</span></td><td>/api/users</td><td>JWT</td><td>-</td><td>List users (pagination)</td></tr>
     <tr><td><span class="badge badge-blue">GET</span></td><td>/api/users/:id</td><td>JWT</td><td>-</td><td>Get user by ID</td></tr>
     <tr><td><span class="badge badge-yellow">PUT</span></td><td>/api/users/:id</td><td>JWT</td><td>name?, email?, role?</td><td>Update user</td></tr>
-    <tr><td><span class="badge badge-red">DELETE</span></td><td>/api/users/:id</td><td>JWT + Admin</td><td>-</td><td>Delete user</td></tr>
+    <tr><td><span class="badge badge-red">DELETE</span></td><td>/api/users/:id</td><td>JWT + Admin</td><td>-</td><td>${t('Hapus user', 'Delete user')}</td></tr>
     <tr><td><span class="badge badge-green">POST</span></td><td>/api/auth/refresh</td><td>No</td><td>refreshToken</td><td>Refresh access token</td></tr>
     </table>
     </div>

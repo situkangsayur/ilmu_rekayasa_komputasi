@@ -5,20 +5,20 @@
 sections['pnp'] = () => `
 
 <!-- ==================== SECTION 1: P=NP DEEP DIVE ==================== -->
-<h1 class="section-title animate-in">P = NP Problem & Hubungannya</h1>
-<p class="section-subtitle animate-in">Memahami masalah terbesar dalam ilmu komputer dan koneksinya dengan algoritma, struktur data, serta implementasi di C, Go, dan Rust</p>
+<h1 class="section-title animate-in">${t('P = NP Problem & Hubungannya', 'P = NP Problem & Its Connections')}</h1>
+<p class="section-subtitle animate-in">${t('Memahami masalah terbesar dalam ilmu komputer dan koneksinya dengan algoritma, struktur data, serta implementasi di C, Go, dan Rust', 'Understanding the biggest problem in computer science and its connections to algorithms, data structures, and implementations in C, Go, and Rust')}</p>
 
 <div class="card animate-in">
-<h2>Apa Itu Masalah P vs NP?</h2>
-<p>Masalah <strong>P vs NP</strong> adalah salah satu dari tujuh <strong>Millennium Prize Problems</strong> yang ditetapkan oleh Clay Mathematics Institute pada tahun 2000. Siapapun yang berhasil membuktikan atau membantahnya akan mendapatkan hadiah <strong>$1.000.000 USD</strong>.</p>
-<p>Pertanyaan intinya sederhana namun sangat dalam: <em>"Apakah setiap masalah yang solusinya dapat diverifikasi dengan cepat, juga dapat diselesaikan dengan cepat?"</em></p>
+<h2>${t('Apa Itu Masalah P vs NP?', 'What Is the P vs NP Problem?')}</h2>
+<p>${t('Masalah <strong>P vs NP</strong> adalah salah satu dari tujuh <strong>Millennium Prize Problems</strong> yang ditetapkan oleh Clay Mathematics Institute pada tahun 2000. Siapapun yang berhasil membuktikan atau membantahnya akan mendapatkan hadiah <strong>$1.000.000 USD</strong>.', 'The <strong>P vs NP</strong> problem is one of the seven <strong>Millennium Prize Problems</strong> established by the Clay Mathematics Institute in 2000. Anyone who successfully proves or disproves it will receive a prize of <strong>$1,000,000 USD</strong>.')}</p>
+<p>${t('Pertanyaan intinya sederhana namun sangat dalam: <em>"Apakah setiap masalah yang solusinya dapat diverifikasi dengan cepat, juga dapat diselesaikan dengan cepat?"</em>', 'The core question is simple yet profound: <em>"Can every problem whose solution can be quickly verified also be quickly solved?"</em>')}</p>
 </div>
 
 <div class="card-grid animate-in">
 <div class="card">
 <h3><span class="badge badge-green">Class P</span></h3>
-<p><strong>P (Polynomial Time)</strong> adalah kelas masalah yang dapat <em>diselesaikan</em> oleh Deterministic Turing Machine dalam waktu polynomial O(n^k) untuk suatu konstanta k.</p>
-<h4>Contoh masalah dalam P:</h4>
+<p>${t('<strong>P (Polynomial Time)</strong> adalah kelas masalah yang dapat <em>diselesaikan</em> oleh Deterministic Turing Machine dalam waktu polynomial O(n^k) untuk suatu konstanta k.', '<strong>P (Polynomial Time)</strong> is the class of problems that can be <em>solved</em> by a Deterministic Turing Machine in polynomial time O(n^k) for some constant k.')}</p>
+<h4>${t('Contoh masalah dalam P:', 'Examples of problems in P:')}</h4>
 <ul>
     <li><strong>Sorting</strong> — O(n log n)</li>
     <li><strong>Shortest Path</strong> (Dijkstra) — O(V² atau E log V)</li>
@@ -27,13 +27,13 @@ sections['pnp'] = () => `
     <li><strong>Linear Programming</strong> — polynomial</li>
     <li><strong>Primality Testing</strong> (AKS) — O(log^6 n)</li>
 </ul>
-<div class="info-box">Semua masalah di class P memiliki algoritma efisien yang diketahui. Kita bisa menyelesaikannya dalam waktu "wajar" bahkan untuk input besar.</div>
+<div class="info-box">${t('Semua masalah di class P memiliki algoritma efisien yang diketahui. Kita bisa menyelesaikannya dalam waktu "wajar" bahkan untuk input besar.', 'All problems in class P have known efficient algorithms. We can solve them in "reasonable" time even for large inputs.')}</div>
 </div>
 
 <div class="card">
 <h3><span class="badge badge-blue">Class NP</span></h3>
-<p><strong>NP (Nondeterministic Polynomial Time)</strong> adalah kelas masalah yang solusinya dapat <em>diverifikasi</em> oleh Deterministic Turing Machine dalam waktu polynomial.</p>
-<h4>Contoh masalah dalam NP:</h4>
+<p>${t('<strong>NP (Nondeterministic Polynomial Time)</strong> adalah kelas masalah yang solusinya dapat <em>diverifikasi</em> oleh Deterministic Turing Machine dalam waktu polynomial.', '<strong>NP (Nondeterministic Polynomial Time)</strong> is the class of problems whose solutions can be <em>verified</em> by a Deterministic Turing Machine in polynomial time.')}</p>
+<h4>${t('Contoh masalah dalam NP:', 'Examples of problems in NP:')}</h4>
 <ul>
     <li><strong>Boolean Satisfiability (SAT)</strong></li>
     <li><strong>Travelling Salesman Problem (TSP)</strong></li>
@@ -42,41 +42,41 @@ sections['pnp'] = () => `
     <li><strong>Subset Sum</strong></li>
     <li><strong>Clique Problem</strong></li>
 </ul>
-<div class="warn-box">NP BUKAN berarti "Non-Polynomial"! NP berarti "Nondeterministic Polynomial" — solusinya bisa diverifikasi dalam polynomial time, tapi belum tentu bisa ditemukan dalam polynomial time.</div>
+<div class="warn-box">${t('NP BUKAN berarti "Non-Polynomial"! NP berarti "Nondeterministic Polynomial" — solusinya bisa diverifikasi dalam polynomial time, tapi belum tentu bisa ditemukan dalam polynomial time.', 'NP does NOT mean "Non-Polynomial"! NP means "Nondeterministic Polynomial" — solutions can be verified in polynomial time, but not necessarily found in polynomial time.')}</div>
 </div>
 </div>
 
 <div class="card-grid animate-in">
 <div class="card">
 <h3><span class="badge badge-red">NP-Hard</span></h3>
-<p><strong>NP-Hard</strong> adalah kelas masalah yang <em>setidaknya sesulit</em> masalah tersulit di NP. Setiap masalah di NP dapat direduksi ke masalah NP-Hard dalam polynomial time.</p>
+<p>${t('<strong>NP-Hard</strong> adalah kelas masalah yang <em>setidaknya sesulit</em> masalah tersulit di NP. Setiap masalah di NP dapat direduksi ke masalah NP-Hard dalam polynomial time.', '<strong>NP-Hard</strong> is the class of problems that are <em>at least as hard as</em> the hardest problems in NP. Every problem in NP can be reduced to an NP-Hard problem in polynomial time.')}</p>
 <ul>
-    <li>Tidak harus decision problem (bisa optimization)</li>
-    <li><strong>Halting Problem</strong> — NP-Hard tapi bahkan tidak bisa diverifikasi</li>
+    <li>${t('Tidak harus decision problem (bisa optimization)', 'Does not have to be a decision problem (can be optimization)')}</li>
+    <li><strong>Halting Problem</strong> — ${t('NP-Hard tapi bahkan tidak bisa diverifikasi', 'NP-Hard but cannot even be verified')}</li>
     <li><strong>Generalized Chess</strong> — EXPTIME-complete</li>
-    <li>Bisa lebih sulit dari NP</li>
+    <li>${t('Bisa lebih sulit dari NP', 'Can be harder than NP')}</li>
 </ul>
 </div>
 
 <div class="card">
 <h3><span class="badge badge-purple">NP-Complete</span></h3>
-<p><strong>NP-Complete</strong> adalah irisan antara NP dan NP-Hard. Masalah yang berada di NP <em>dan</em> sesulit masalah tersulit di NP.</p>
+<p>${t('<strong>NP-Complete</strong> adalah irisan antara NP dan NP-Hard. Masalah yang berada di NP <em>dan</em> sesulit masalah tersulit di NP.', '<strong>NP-Complete</strong> is the intersection of NP and NP-Hard. Problems that are in NP <em>and</em> as hard as the hardest problems in NP.')}</p>
 <ul>
-    <li><strong>SAT</strong> — masalah NP-Complete pertama (Cook-Levin theorem, 1971)</li>
+    <li><strong>SAT</strong> — ${t('masalah NP-Complete pertama (Cook-Levin theorem, 1971)', 'the first NP-Complete problem (Cook-Levin theorem, 1971)')}</li>
     <li><strong>3-SAT, Vertex Cover, Clique, Subset Sum</strong></li>
-    <li>Jika SATU masalah NP-Complete bisa diselesaikan dalam P, maka <strong>P = NP</strong></li>
-    <li>Ini adalah "gerbang" antara P dan NP</li>
+    <li>${t('Jika SATU masalah NP-Complete bisa diselesaikan dalam P, maka <strong>P = NP</strong>', 'If ONE NP-Complete problem can be solved in P, then <strong>P = NP</strong>')}</li>
+    <li>${t('Ini adalah "gerbang" antara P dan NP', 'This is the "gateway" between P and NP')}</li>
 </ul>
-<div class="success-box">Stephen Cook (1971) membuktikan bahwa SAT adalah NP-Complete. Richard Karp (1972) kemudian menunjukkan 21 masalah NP-Complete lainnya melalui polynomial-time reduction.</div>
+<div class="success-box">${t('Stephen Cook (1971) membuktikan bahwa SAT adalah NP-Complete. Richard Karp (1972) kemudian menunjukkan 21 masalah NP-Complete lainnya melalui polynomial-time reduction.', 'Stephen Cook (1971) proved that SAT is NP-Complete. Richard Karp (1972) then showed 21 other NP-Complete problems through polynomial-time reduction.')}</div>
 </div>
 </div>
 
 <!-- Venn Diagram Visual -->
 <div class="card animate-in">
-<h3>Visual: Hubungan P, NP, NP-Hard, NP-Complete</h3>
+<h3>${t('Visual: Hubungan P, NP, NP-Hard, NP-Complete', 'Visual: Relationship of P, NP, NP-Hard, NP-Complete')}</h3>
 <div class="tabs">
-    <button class="tab-btn active" data-tab="venn-pneqnp">Asumsi P &#8800; NP (dipercaya)</button>
-    <button class="tab-btn" data-tab="venn-peqnp">Hipotesis P = NP</button>
+    <button class="tab-btn active" data-tab="venn-pneqnp">${t('Asumsi P &#8800; NP (dipercaya)', 'Assumption P &#8800; NP (believed)')}</button>
+    <button class="tab-btn" data-tab="venn-peqnp">${t('Hipotesis P = NP', 'Hypothesis P = NP')}</button>
 </div>
 
 <div data-tab-content="venn-pneqnp" class="tab-content active">
@@ -84,12 +84,12 @@ sections['pnp'] = () => `
     <canvas id="venn-diagram-canvas" width="700" height="420"></canvas>
 </div>
 <div class="info-box">
-<strong>Jika P &#8800; NP (konsensus mayoritas):</strong>
+<strong>${t('Jika P &#8800; NP (konsensus mayoritas):', 'If P &#8800; NP (majority consensus):')}</strong>
 <ul>
-    <li><strong>P</strong> berada sepenuhnya di dalam <strong>NP</strong></li>
-    <li><strong>NP-Complete</strong> adalah irisan <strong>NP</strong> dan <strong>NP-Hard</strong> (dan TIDAK di dalam P)</li>
-    <li>Ada masalah di <strong>NP</strong> yang bukan P dan bukan NP-Complete (contoh: Graph Isomorphism — NP-Intermediate)</li>
-    <li><strong>NP-Hard</strong> melampaui NP (mencakup masalah undecidable)</li>
+    <li>${t('<strong>P</strong> berada sepenuhnya di dalam <strong>NP</strong>', '<strong>P</strong> is entirely contained within <strong>NP</strong>')}</li>
+    <li>${t('<strong>NP-Complete</strong> adalah irisan <strong>NP</strong> dan <strong>NP-Hard</strong> (dan TIDAK di dalam P)', '<strong>NP-Complete</strong> is the intersection of <strong>NP</strong> and <strong>NP-Hard</strong> (and NOT within P)')}</li>
+    <li>${t('Ada masalah di <strong>NP</strong> yang bukan P dan bukan NP-Complete (contoh: Graph Isomorphism — NP-Intermediate)', 'There are problems in <strong>NP</strong> that are neither P nor NP-Complete (example: Graph Isomorphism — NP-Intermediate)')}</li>
+    <li>${t('<strong>NP-Hard</strong> melampaui NP (mencakup masalah undecidable)', '<strong>NP-Hard</strong> extends beyond NP (includes undecidable problems)')}</li>
 </ul>
 </div>
 </div>
@@ -100,76 +100,76 @@ sections['pnp'] = () => `
     <div class="flow-arrow">=</div>
     <div class="flow-node" style="background:var(--primary);">NP-Complete &#8838; P</div>
     <div class="flow-arrow">&#8594;</div>
-    <div class="flow-node" style="background:var(--danger);">Kriptografi Runtuh!</div>
+    <div class="flow-node" style="background:var(--danger);">${t('Kriptografi Runtuh!', 'Cryptography Collapses!')}</div>
 </div>
 <div class="warn-box">
-<strong>Jika P = NP:</strong> Semua masalah NP (termasuk NP-Complete) bisa diselesaikan dalam polynomial time. RSA, AES, dan semua kriptografi modern menjadi tidak aman. Namun, optimasi dan AI akan mengalami revolusi besar.
+<strong>${t('Jika P = NP:', 'If P = NP:')}</strong> ${t('Semua masalah NP (termasuk NP-Complete) bisa diselesaikan dalam polynomial time. RSA, AES, dan semua kriptografi modern menjadi tidak aman. Namun, optimasi dan AI akan mengalami revolusi besar.', 'All NP problems (including NP-Complete) can be solved in polynomial time. RSA, AES, and all modern cryptography become insecure. However, optimization and AI would undergo a major revolution.')}
 </div>
 </div>
 </div>
 
 <!-- Millennium Prize -->
 <div class="card animate-in">
-<h3>Millennium Prize & Mengapa P vs NP Penting</h3>
+<h3>${t('Millennium Prize & Mengapa P vs NP Penting', 'Millennium Prize & Why P vs NP Matters')}</h3>
 <div class="pipeline">
     <div class="pipeline-stage">
-        <div class="stage-title">$1 Juta</div>
-        <div class="stage-desc">Hadiah Clay Mathematics Institute</div>
+        <div class="stage-title">${t('$1 Juta', '$1 Million')}</div>
+        <div class="stage-desc">${t('Hadiah Clay Mathematics Institute', 'Clay Mathematics Institute Prize')}</div>
     </div>
     <div class="pipeline-stage">
-        <div class="stage-title">Sejak 2000</div>
-        <div class="stage-desc">Belum terpecahkan &gt;25 tahun</div>
+        <div class="stage-title">${t('Sejak 2000', 'Since 2000')}</div>
+        <div class="stage-desc">${t('Belum terpecahkan &gt;25 tahun', 'Unsolved for &gt;25 years')}</div>
     </div>
     <div class="pipeline-stage">
-        <div class="stage-title">7 Masalah</div>
-        <div class="stage-desc">Hanya 1 (Poincare) terpecahkan</div>
+        <div class="stage-title">${t('7 Masalah', '7 Problems')}</div>
+        <div class="stage-desc">${t('Hanya 1 (Poincare) terpecahkan', 'Only 1 (Poincare) solved')}</div>
     </div>
     <div class="pipeline-stage">
-        <div class="stage-title">Dampak</div>
-        <div class="stage-desc">Mengubah seluruh ilmu komputer</div>
+        <div class="stage-title">${t('Dampak', 'Impact')}</div>
+        <div class="stage-desc">${t('Mengubah seluruh ilmu komputer', 'Would transform all of computer science')}</div>
     </div>
 </div>
-<p>Mayoritas ilmuwan komputer percaya <strong>P &#8800; NP</strong>, namun belum ada bukti formal. Hal ini berarti ada masalah-masalah yang secara inheren sulit — tidak ada algoritma "pintar" yang bisa menyelesaikannya secara efisien.</p>
+<p>${t('Mayoritas ilmuwan komputer percaya <strong>P &#8800; NP</strong>, namun belum ada bukti formal. Hal ini berarti ada masalah-masalah yang secara inheren sulit — tidak ada algoritma "pintar" yang bisa menyelesaikannya secara efisien.', 'The majority of computer scientists believe <strong>P &#8800; NP</strong>, but there is no formal proof yet. This means there are problems that are inherently hard — no "clever" algorithm can solve them efficiently.')}</p>
 </div>
 
 <!-- ==================== SECTION 2: COMPLEXITY → ALGORITHMS ==================== -->
-<h2 class="section-title animate-in">Koneksi: Complexity &#8594; Algoritma</h2>
-<p class="section-subtitle animate-in">Bagaimana kelas kompleksitas memandu desain algoritma</p>
+<h2 class="section-title animate-in">${t('Koneksi: Complexity &#8594; Algoritma', 'Connection: Complexity &#8594; Algorithms')}</h2>
+<p class="section-subtitle animate-in">${t('Bagaimana kelas kompleksitas memandu desain algoritma', 'How complexity classes guide algorithm design')}</p>
 
 <div class="card animate-in">
-<h3>Strategi Berdasarkan Kelas Kompleksitas</h3>
+<h3>${t('Strategi Berdasarkan Kelas Kompleksitas', 'Strategy Based on Complexity Class')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Kelas</th><th>Strategi Algoritma</th><th>Contoh</th><th>Time Complexity</th></tr>
-<tr><td><span class="badge badge-green">P</span></td><td>Exact algorithm — gunakan langsung</td><td>Sorting, Search, Shortest Path</td><td>O(n log n), O(log n), O(V+E)</td></tr>
+<tr><th>${t('Kelas', 'Class')}</th><th>${t('Strategi Algoritma', 'Algorithm Strategy')}</th><th>${t('Contoh', 'Example')}</th><th>Time Complexity</th></tr>
+<tr><td><span class="badge badge-green">P</span></td><td>${t('Exact algorithm — gunakan langsung', 'Exact algorithm — use directly')}</td><td>Sorting, Search, Shortest Path</td><td>O(n log n), O(log n), O(V+E)</td></tr>
 <tr><td><span class="badge badge-blue">NP (easy cases)</span></td><td>Dynamic Programming, heuristic</td><td>Knapsack (pseudo-poly), subset sum</td><td>O(nW), O(n*sum)</td></tr>
 <tr><td><span class="badge badge-purple">NP-Complete</span></td><td>Approximation, backtracking, metaheuristic</td><td>TSP (2-approx), SAT solver</td><td>Approx: polynomial, Exact: exponential</td></tr>
-<tr><td><span class="badge badge-red">NP-Hard</span></td><td>Heuristic, genetic algorithm, simulated annealing</td><td>Optimization, scheduling</td><td>Varies, usually exponential for exact</td></tr>
+<tr><td><span class="badge badge-red">NP-Hard</span></td><td>Heuristic, genetic algorithm, simulated annealing</td><td>${t('Optimization, scheduling', 'Optimization, scheduling')}</td><td>${t('Varies, usually exponential for exact', 'Varies, usually exponential for exact')}</td></tr>
 </table>
 </div>
 </div>
 
 <div class="card animate-in">
-<h3>Kapan Menggunakan Exact vs Approximate Algorithm?</h3>
+<h3>${t('Kapan Menggunakan Exact vs Approximate Algorithm?', 'When to Use Exact vs Approximate Algorithm?')}</h3>
 <div class="card-grid">
 <div class="card">
 <h4><span class="badge badge-green">Exact Algorithm</span></h4>
-<p>Gunakan ketika:</p>
+<p>${t('Gunakan ketika:', 'Use when:')}</p>
 <ul>
-    <li>Masalah ada di class <strong>P</strong></li>
-    <li>Input size kecil (n &lt; 20 untuk exponential)</li>
-    <li>Solusi optimal mutlak diperlukan</li>
-    <li>Contoh: bank transaction verification</li>
+    <li>${t('Masalah ada di class <strong>P</strong>', 'Problem is in class <strong>P</strong>')}</li>
+    <li>${t('Input size kecil (n &lt; 20 untuk exponential)', 'Input size is small (n &lt; 20 for exponential)')}</li>
+    <li>${t('Solusi optimal mutlak diperlukan', 'An absolutely optimal solution is required')}</li>
+    <li>${t('Contoh: bank transaction verification', 'Example: bank transaction verification')}</li>
 </ul>
 </div>
 <div class="card">
 <h4><span class="badge badge-orange">Approximation Algorithm</span></h4>
-<p>Gunakan ketika:</p>
+<p>${t('Gunakan ketika:', 'Use when:')}</p>
 <ul>
-    <li>Masalah <strong>NP-Hard</strong> dengan input besar</li>
-    <li>Solusi "cukup baik" dapat diterima</li>
-    <li>Ada <em>approximation ratio</em> yang terjamin</li>
-    <li>Contoh: logistics routing (TSP 1.5-approx)</li>
+    <li>${t('Masalah <strong>NP-Hard</strong> dengan input besar', 'Problem is <strong>NP-Hard</strong> with large input')}</li>
+    <li>${t('Solusi "cukup baik" dapat diterima', 'A "good enough" solution is acceptable')}</li>
+    <li>${t('Ada <em>approximation ratio</em> yang terjamin', 'There is a guaranteed <em>approximation ratio</em>')}</li>
+    <li>${t('Contoh: logistics routing (TSP 1.5-approx)', 'Example: logistics routing (TSP 1.5-approx)')}</li>
 </ul>
 </div>
 </div>
@@ -189,14 +189,14 @@ sections['pnp'] = () => `
 </div>
 
 <!-- ==================== SECTION 3: ALGORITHMS → DATA STRUCTURES ==================== -->
-<h2 class="section-title animate-in">Koneksi: Algoritma &#8594; Struktur Data</h2>
-<p class="section-subtitle animate-in">Struktur data yang tepat memungkinkan algoritma yang efisien</p>
+<h2 class="section-title animate-in">${t('Koneksi: Algoritma &#8594; Struktur Data', 'Connection: Algorithms &#8594; Data Structures')}</h2>
+<p class="section-subtitle animate-in">${t('Struktur data yang tepat memungkinkan algoritma yang efisien', 'The right data structures enable efficient algorithms')}</p>
 
 <div class="card animate-in">
-<h3>Peta Hubungan: Data Structure &#8594; Algoritma &#8594; Complexity</h3>
+<h3>${t('Peta Hubungan: Data Structure &#8594; Algoritma &#8594; Complexity', 'Relationship Map: Data Structure &#8594; Algorithm &#8594; Complexity')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Data Structure</th><th>Operasi Kunci</th><th>Complexity</th><th>Algoritma yang Dimungkinkan</th></tr>
+<tr><th>Data Structure</th><th>${t('Operasi Kunci', 'Key Operations')}</th><th>Complexity</th><th>${t('Algoritma yang Dimungkinkan', 'Enabled Algorithms')}</th></tr>
 <tr><td><strong>Hash Table</strong></td><td>Insert, Lookup, Delete</td><td>O(1) average</td><td>Two Sum, Counting, Deduplication, Caching</td></tr>
 <tr><td><strong>Binary Search Tree</strong></td><td>Search, Insert, Delete</td><td>O(log n)</td><td>Range queries, Ordered traversal, Floor/Ceil</td></tr>
 <tr><td><strong>Heap / Priority Queue</strong></td><td>Insert, Extract-Min/Max</td><td>O(log n)</td><td>Dijkstra, Huffman, Greedy scheduling, K-th element</td></tr>
@@ -211,61 +211,61 @@ sections['pnp'] = () => `
 </div>
 
 <div class="card animate-in">
-<h3>Trade-offs dalam Pemilihan Data Structure</h3>
+<h3>${t('Trade-offs dalam Pemilihan Data Structure', 'Trade-offs in Data Structure Selection')}</h3>
 <div class="card-grid-3">
 <div class="card">
 <h4><span class="badge badge-green">Array vs Linked List</span></h4>
-<p><strong>Array:</strong> O(1) random access, cache-friendly, tapi O(n) insert di tengah.</p>
-<p><strong>Linked List:</strong> O(1) insert/delete di head, tapi O(n) access dan cache-unfriendly.</p>
-<div class="info-box">Gunakan array untuk data statis dengan banyak akses random. Gunakan linked list untuk frequent insertion/deletion.</div>
+<p><strong>Array:</strong> ${t('O(1) random access, cache-friendly, tapi O(n) insert di tengah.', 'O(1) random access, cache-friendly, but O(n) insert in the middle.')}</p>
+<p><strong>Linked List:</strong> ${t('O(1) insert/delete di head, tapi O(n) access dan cache-unfriendly.', 'O(1) insert/delete at head, but O(n) access and cache-unfriendly.')}</p>
+<div class="info-box">${t('Gunakan array untuk data statis dengan banyak akses random. Gunakan linked list untuk frequent insertion/deletion.', 'Use arrays for static data with many random accesses. Use linked lists for frequent insertion/deletion.')}</div>
 </div>
 <div class="card">
 <h4><span class="badge badge-blue">Hash Table vs BST</span></h4>
-<p><strong>Hash Table:</strong> O(1) average lookup, tapi no ordering dan worst case O(n).</p>
-<p><strong>BST:</strong> O(log n) lookup, tapi supports ordered operations (range query, successor).</p>
-<div class="info-box">Gunakan hash table untuk pure lookup. Gunakan BST ketika butuh data terurut atau range query.</div>
+<p><strong>Hash Table:</strong> ${t('O(1) average lookup, tapi no ordering dan worst case O(n).', 'O(1) average lookup, but no ordering and worst case O(n).')}</p>
+<p><strong>BST:</strong> ${t('O(log n) lookup, tapi supports ordered operations (range query, successor).', 'O(log n) lookup, but supports ordered operations (range query, successor).')}</p>
+<div class="info-box">${t('Gunakan hash table untuk pure lookup. Gunakan BST ketika butuh data terurut atau range query.', 'Use hash tables for pure lookup. Use BST when you need sorted data or range queries.')}</div>
 </div>
 <div class="card">
 <h4><span class="badge badge-purple">Heap vs Sorted Array</span></h4>
 <p><strong>Heap:</strong> O(log n) insert dan extract-min, O(n) build.</p>
 <p><strong>Sorted Array:</strong> O(log n) search (binary), tapi O(n) insert.</p>
-<div class="info-box">Gunakan heap untuk priority queue (dynamic). Gunakan sorted array untuk static data dengan banyak search.</div>
+<div class="info-box">${t('Gunakan heap untuk priority queue (dynamic). Gunakan sorted array untuk static data dengan banyak search.', 'Use heap for priority queue (dynamic). Use sorted array for static data with many searches.')}</div>
 </div>
 </div>
 </div>
 
 <div class="card animate-in">
-<h3>Contoh Nyata: Dampak Pemilihan Data Structure</h3>
+<h3>${t('Contoh Nyata: Dampak Pemilihan Data Structure', 'Real Examples: Impact of Data Structure Selection')}</h3>
 <div class="step-list">
     <div class="step-item">
         <div class="step-num">1</div>
-        <div class="step-text"><strong>Dijkstra tanpa Heap:</strong> O(V²) — menggunakan array untuk cari minimum. Dengan <strong>Min-Heap</strong>: O((V+E) log V) — jauh lebih cepat untuk sparse graph.</div>
+        <div class="step-text"><strong>${t('Dijkstra tanpa Heap:', 'Dijkstra without Heap:')}</strong> ${t('O(V²) — menggunakan array untuk cari minimum. Dengan <strong>Min-Heap</strong>: O((V+E) log V) — jauh lebih cepat untuk sparse graph.', 'O(V²) — using array to find minimum. With <strong>Min-Heap</strong>: O((V+E) log V) — much faster for sparse graphs.')}</div>
     </div>
     <div class="step-item">
         <div class="step-num">2</div>
-        <div class="step-text"><strong>Two Sum tanpa Hash:</strong> O(n²) — nested loop. Dengan <strong>Hash Table</strong>: O(n) — single pass lookup.</div>
+        <div class="step-text"><strong>${t('Two Sum tanpa Hash:', 'Two Sum without Hash:')}</strong> ${t('O(n²) — nested loop. Dengan <strong>Hash Table</strong>: O(n) — single pass lookup.', 'O(n²) — nested loop. With <strong>Hash Table</strong>: O(n) — single pass lookup.')}</div>
     </div>
     <div class="step-item">
         <div class="step-num">3</div>
-        <div class="step-text"><strong>Kruskal tanpa Union-Find:</strong> O(E² log E). Dengan <strong>Disjoint Set</strong>: O(E log E) — dominated oleh sorting edges saja.</div>
+        <div class="step-text"><strong>${t('Kruskal tanpa Union-Find:', 'Kruskal without Union-Find:')}</strong> ${t('O(E² log E). Dengan <strong>Disjoint Set</strong>: O(E log E) — dominated oleh sorting edges saja.', 'O(E² log E). With <strong>Disjoint Set</strong>: O(E log E) — dominated by sorting edges only.')}</div>
     </div>
     <div class="step-item">
         <div class="step-num">4</div>
-        <div class="step-text"><strong>Autocomplete tanpa Trie:</strong> O(n*m) scan semua kata. Dengan <strong>Trie</strong>: O(m) — hanya panjang prefix yang dicari.</div>
+        <div class="step-text"><strong>${t('Autocomplete tanpa Trie:', 'Autocomplete without Trie:')}</strong> ${t('O(n*m) scan semua kata. Dengan <strong>Trie</strong>: O(m) — hanya panjang prefix yang dicari.', 'O(n*m) scan all words. With <strong>Trie</strong>: O(m) — only the length of the prefix searched.')}</div>
     </div>
 </div>
 </div>
 
 <!-- ==================== SECTION 4: ALGORITHM STRATEGIES ==================== -->
-<h2 class="section-title animate-in">Strategi Algoritma dengan Implementasi C, Go, Rust</h2>
-<p class="section-subtitle animate-in">Lima pendekatan utama dengan contoh kode lengkap</p>
+<h2 class="section-title animate-in">${t('Strategi Algoritma dengan Implementasi C, Go, Rust', 'Algorithm Strategies with C, Go, Rust Implementations')}</h2>
+<p class="section-subtitle animate-in">${t('Lima pendekatan utama dengan contoh kode lengkap', 'Five main approaches with complete code examples')}</p>
 
 <!-- 4.1 BRUTE FORCE -->
 <div class="card animate-in">
 <h3><span class="badge badge-red">1. Brute Force</span></h3>
-<p>Brute Force mencoba <strong>semua kemungkinan</strong> solusi dan memilih yang terbaik. Sederhana namun lambat. Cocok untuk baseline comparison dan input kecil.</p>
-<p><strong>Problem: Subset Sum</strong> — Diberikan array dan target, cari apakah ada subset yang jumlahnya sama dengan target.</p>
-<p><strong>Time Complexity: O(2^n)</strong> — memeriksa semua 2^n subset yang mungkin.</p>
+<p>${t('Brute Force mencoba <strong>semua kemungkinan</strong> solusi dan memilih yang terbaik. Sederhana namun lambat. Cocok untuk baseline comparison dan input kecil.', 'Brute Force tries <strong>all possible</strong> solutions and picks the best one. Simple but slow. Suitable for baseline comparison and small inputs.')}</p>
+<p><strong>Problem: Subset Sum</strong> — ${t('Diberikan array dan target, cari apakah ada subset yang jumlahnya sama dengan target.', 'Given an array and a target, find whether there is a subset whose sum equals the target.')}</p>
+<p><strong>Time Complexity: O(2^n)</strong> — ${t('memeriksa semua 2^n subset yang mungkin.', 'checks all 2^n possible subsets.')}</p>
 
 <div class="tabs">
     <button class="tab-btn active" data-tab="bf-c">C</button>
@@ -372,15 +372,15 @@ sections['pnp'] = () => `
 <!-- 4.2 DIVIDE AND CONQUER -->
 <div class="card animate-in">
 <h3><span class="badge badge-blue">2. Divide and Conquer</span> — Merge Sort</h3>
-<p>Divide and Conquer membagi masalah menjadi <strong>sub-masalah yang lebih kecil</strong>, menyelesaikannya secara rekursif, lalu menggabungkan hasilnya.</p>
-<p><strong>Problem: Merge Sort</strong> — Urutkan array dengan membagi menjadi dua, sort masing-masing, lalu merge.</p>
+<p>${t('Divide and Conquer membagi masalah menjadi <strong>sub-masalah yang lebih kecil</strong>, menyelesaikannya secara rekursif, lalu menggabungkan hasilnya.', 'Divide and Conquer splits problems into <strong>smaller sub-problems</strong>, solves them recursively, then combines the results.')}</p>
+<p><strong>Problem: Merge Sort</strong> — ${t('Urutkan array dengan membagi menjadi dua, sort masing-masing, lalu merge.', 'Sort an array by dividing it in two, sorting each half, then merging.')}</p>
 <p><strong>Time Complexity: O(n log n)</strong> — T(n) = 2T(n/2) + O(n) via Master Theorem.</p>
-<p><strong>Space Complexity: O(n)</strong> — buffer tambahan untuk merge.</p>
+<p><strong>Space Complexity: O(n)</strong> — ${t('buffer tambahan untuk merge.', 'additional buffer for merge.')}</p>
 
 <div class="step-list">
-    <div class="step-item"><div class="step-num">1</div><div class="step-text"><strong>Divide:</strong> Bagi array menjadi dua bagian sama besar</div></div>
-    <div class="step-item"><div class="step-num">2</div><div class="step-text"><strong>Conquer:</strong> Sort masing-masing bagian secara rekursif</div></div>
-    <div class="step-item"><div class="step-num">3</div><div class="step-text"><strong>Combine:</strong> Merge dua bagian yang sudah terurut</div></div>
+    <div class="step-item"><div class="step-num">1</div><div class="step-text"><strong>Divide:</strong> ${t('Bagi array menjadi dua bagian sama besar', 'Split the array into two equal halves')}</div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-text"><strong>Conquer:</strong> ${t('Sort masing-masing bagian secara rekursif', 'Sort each half recursively')}</div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-text"><strong>Combine:</strong> ${t('Merge dua bagian yang sudah terurut', 'Merge the two sorted halves')}</div></div>
 </div>
 
 <div class="tabs">
@@ -512,10 +512,10 @@ sections['pnp'] = () => `
 <!-- 4.3 DYNAMIC PROGRAMMING -->
 <div class="card animate-in">
 <h3><span class="badge badge-green">3. Dynamic Programming</span> — 0/1 Knapsack</h3>
-<p>Dynamic Programming memecahkan masalah dengan memecahnya menjadi <strong>overlapping subproblems</strong> dan menyimpan hasilnya (memoization/tabulation) untuk menghindari komputasi ulang.</p>
-<p><strong>Problem: 0/1 Knapsack</strong> — Diberikan n item dengan weight dan value, maksimalkan total value tanpa melebihi kapasitas W.</p>
-<p><strong>Time Complexity: O(n*W)</strong> — pseudo-polynomial (polynomial terhadap input numerik, bukan input size).</p>
-<p><strong>Space Complexity: O(n*W)</strong> — tabel DP 2D, bisa dioptimasi ke O(W) dengan 1D array.</p>
+<p>${t('Dynamic Programming memecahkan masalah dengan memecahnya menjadi <strong>overlapping subproblems</strong> dan menyimpan hasilnya (memoization/tabulation) untuk menghindari komputasi ulang.', 'Dynamic Programming solves problems by breaking them into <strong>overlapping subproblems</strong> and storing results (memoization/tabulation) to avoid recomputation.')}</p>
+<p><strong>Problem: 0/1 Knapsack</strong> — ${t('Diberikan n item dengan weight dan value, maksimalkan total value tanpa melebihi kapasitas W.', 'Given n items with weight and value, maximize total value without exceeding capacity W.')}</p>
+<p><strong>Time Complexity: O(n*W)</strong> — ${t('pseudo-polynomial (polynomial terhadap input numerik, bukan input size).', 'pseudo-polynomial (polynomial with respect to numeric input, not input size).')}</p>
+<p><strong>Space Complexity: O(n*W)</strong> — ${t('tabel DP 2D, bisa dioptimasi ke O(W) dengan 1D array.', '2D DP table, can be optimized to O(W) with a 1D array.')}</p>
 
 <div class="tabs">
     <button class="tab-btn active" data-tab="dp-c">C</button>
@@ -633,9 +633,9 @@ sections['pnp'] = () => `
 <!-- 4.4 GREEDY -->
 <div class="card animate-in">
 <h3><span class="badge badge-orange">4. Greedy</span> — Activity Selection</h3>
-<p>Greedy algorithm membuat <strong>pilihan terbaik secara lokal</strong> di setiap langkah, berharap pilihan lokal tersebut menghasilkan solusi optimal global. Tidak selalu optimal, tapi untuk beberapa masalah (activity selection, Huffman, Kruskal) terbukti optimal.</p>
-<p><strong>Problem: Activity Selection</strong> — Diberikan n aktivitas dengan waktu mulai dan selesai, pilih jumlah aktivitas maksimum yang tidak overlap.</p>
-<p><strong>Time Complexity: O(n log n)</strong> — dominated oleh sorting. Greedy selection sendiri O(n).</p>
+<p>${t('Greedy algorithm membuat <strong>pilihan terbaik secara lokal</strong> di setiap langkah, berharap pilihan lokal tersebut menghasilkan solusi optimal global. Tidak selalu optimal, tapi untuk beberapa masalah (activity selection, Huffman, Kruskal) terbukti optimal.', 'Greedy algorithm makes the <strong>locally best choice</strong> at each step, hoping local choices lead to a globally optimal solution. Not always optimal, but for some problems (activity selection, Huffman, Kruskal) it is provably optimal.')}</p>
+<p><strong>Problem: Activity Selection</strong> — ${t('Diberikan n aktivitas dengan waktu mulai dan selesai, pilih jumlah aktivitas maksimum yang tidak overlap.', 'Given n activities with start and finish times, select the maximum number of non-overlapping activities.')}</p>
+<p><strong>Time Complexity: O(n log n)</strong> — ${t('dominated oleh sorting. Greedy selection sendiri O(n).', 'dominated by sorting. Greedy selection itself is O(n).')}</p>
 
 <div class="tabs">
     <button class="tab-btn active" data-tab="gr-c">C</button>
@@ -771,9 +771,9 @@ sections['pnp'] = () => `
 <!-- 4.5 BACKTRACKING -->
 <div class="card animate-in">
 <h3><span class="badge badge-purple">5. Backtracking</span> — N-Queens</h3>
-<p>Backtracking membangun solusi secara <strong>inkremental</strong> dan <em>membatalkan (backtrack)</em> segera ketika mendeteksi bahwa solusi parsial tidak mungkin menjadi solusi lengkap. Ini "memotong" search space secara drastis dibanding brute force.</p>
-<p><strong>Problem: N-Queens</strong> — Tempatkan N ratu di papan N&#215;N sehingga tidak ada dua ratu yang saling menyerang (baris, kolom, atau diagonal yang sama).</p>
-<p><strong>Time Complexity: O(N!)</strong> — worst case, tapi pruning menguranginya secara signifikan di praktik.</p>
+<p>${t('Backtracking membangun solusi secara <strong>inkremental</strong> dan <em>membatalkan (backtrack)</em> segera ketika mendeteksi bahwa solusi parsial tidak mungkin menjadi solusi lengkap. Ini "memotong" search space secara drastis dibanding brute force.', 'Backtracking builds solutions <strong>incrementally</strong> and <em>backtracks</em> immediately when it detects that a partial solution cannot become a complete solution. This "prunes" the search space drastically compared to brute force.')}</p>
+<p><strong>Problem: N-Queens</strong> — ${t('Tempatkan N ratu di papan N&#215;N sehingga tidak ada dua ratu yang saling menyerang (baris, kolom, atau diagonal yang sama).', 'Place N queens on an N&#215;N board such that no two queens attack each other (same row, column, or diagonal).')}</p>
+<p><strong>Time Complexity: O(N!)</strong> — ${t('worst case, tapi pruning menguranginya secara signifikan di praktik.', 'worst case, but pruning reduces it significantly in practice.')}</p>
 
 <div class="tabs">
     <button class="tab-btn active" data-tab="bt-c">C</button>
@@ -940,30 +940,30 @@ sections['pnp'] = () => `
 
 <!-- Algorithm Strategy Comparison -->
 <div class="card animate-in">
-<h3>Perbandingan Strategi Algoritma</h3>
+<h3>${t('Perbandingan Strategi Algoritma', 'Algorithm Strategy Comparison')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Strategi</th><th>Kapan Digunakan</th><th>Kelebihan</th><th>Kekurangan</th><th>Contoh Masalah</th></tr>
-<tr><td><span class="badge badge-red">Brute Force</span></td><td>Input kecil, baseline</td><td>Sederhana, selalu benar</td><td>Lambat: O(2^n), O(n!)</td><td>Subset Sum, Password cracking</td></tr>
-<tr><td><span class="badge badge-blue">Divide & Conquer</span></td><td>Masalah bisa dipecah menjadi sub-masalah independen</td><td>Efisien, parallelizable</td><td>Overhead rekursi, space</td><td>Merge Sort, Quicksort, FFT</td></tr>
-<tr><td><span class="badge badge-green">Dynamic Programming</span></td><td>Overlapping subproblems + optimal substructure</td><td>Polynomial untuk banyak masalah</td><td>Memory intensive, sulit design</td><td>Knapsack, LCS, Edit Distance</td></tr>
-<tr><td><span class="badge badge-orange">Greedy</span></td><td>Greedy choice property berlaku</td><td>Sangat cepat, simple</td><td>Tidak selalu optimal</td><td>Activity Selection, Huffman, Kruskal</td></tr>
-<tr><td><span class="badge badge-purple">Backtracking</span></td><td>Constraint satisfaction, semua solusi</td><td>Pruning mengurangi search space</td><td>Worst case masih exponential</td><td>N-Queens, Sudoku, Graph Coloring</td></tr>
+<tr><th>${t('Strategi', 'Strategy')}</th><th>${t('Kapan Digunakan', 'When to Use')}</th><th>${t('Kelebihan', 'Advantages')}</th><th>${t('Kekurangan', 'Disadvantages')}</th><th>${t('Contoh Masalah', 'Example Problems')}</th></tr>
+<tr><td><span class="badge badge-red">Brute Force</span></td><td>${t('Input kecil, baseline', 'Small input, baseline')}</td><td>${t('Sederhana, selalu benar', 'Simple, always correct')}</td><td>${t('Lambat: O(2^n), O(n!)', 'Slow: O(2^n), O(n!)')}</td><td>Subset Sum, Password cracking</td></tr>
+<tr><td><span class="badge badge-blue">Divide & Conquer</span></td><td>${t('Masalah bisa dipecah menjadi sub-masalah independen', 'Problem can be split into independent sub-problems')}</td><td>${t('Efisien, parallelizable', 'Efficient, parallelizable')}</td><td>${t('Overhead rekursi, space', 'Recursion overhead, space')}</td><td>Merge Sort, Quicksort, FFT</td></tr>
+<tr><td><span class="badge badge-green">Dynamic Programming</span></td><td>Overlapping subproblems + optimal substructure</td><td>${t('Polynomial untuk banyak masalah', 'Polynomial for many problems')}</td><td>${t('Memory intensive, sulit design', 'Memory intensive, hard to design')}</td><td>Knapsack, LCS, Edit Distance</td></tr>
+<tr><td><span class="badge badge-orange">Greedy</span></td><td>${t('Greedy choice property berlaku', 'Greedy choice property holds')}</td><td>${t('Sangat cepat, simple', 'Very fast, simple')}</td><td>${t('Tidak selalu optimal', 'Not always optimal')}</td><td>Activity Selection, Huffman, Kruskal</td></tr>
+<tr><td><span class="badge badge-purple">Backtracking</span></td><td>${t('Constraint satisfaction, semua solusi', 'Constraint satisfaction, all solutions')}</td><td>${t('Pruning mengurangi search space', 'Pruning reduces search space')}</td><td>${t('Worst case masih exponential', 'Worst case still exponential')}</td><td>N-Queens, Sudoku, Graph Coloring</td></tr>
 </table>
 </div>
 </div>
 
 <!-- ==================== SECTION 5: VISUAL ANIMATIONS ==================== -->
-<h2 class="section-title animate-in">Visualisasi Interaktif</h2>
-<p class="section-subtitle animate-in">Animasi canvas untuk memahami perbandingan sorting dan NP-Complete reduction</p>
+<h2 class="section-title animate-in">${t('Visualisasi Interaktif', 'Interactive Visualizations')}</h2>
+<p class="section-subtitle animate-in">${t('Animasi canvas untuk memahami perbandingan sorting dan NP-Complete reduction', 'Canvas animations to understand sorting comparisons and NP-Complete reductions')}</p>
 
 <div class="card animate-in">
-<h3>Perbandingan Sorting Algorithm: Bubble vs Merge vs Quick</h3>
-<p>Animasi di bawah menunjukkan perbandingan real-time antara tiga algoritma sorting. Perhatikan bagaimana <strong>Bubble Sort O(n&#178;)</strong> jauh lebih lambat dibanding <strong>Merge Sort</strong> dan <strong>Quick Sort O(n log n)</strong>.</p>
+<h3>${t('Perbandingan Sorting Algorithm: Bubble vs Merge vs Quick', 'Sorting Algorithm Comparison: Bubble vs Merge vs Quick')}</h3>
+<p>${t('Animasi di bawah menunjukkan perbandingan real-time antara tiga algoritma sorting. Perhatikan bagaimana <strong>Bubble Sort O(n&#178;)</strong> jauh lebih lambat dibanding <strong>Merge Sort</strong> dan <strong>Quick Sort O(n log n)</strong>.', 'The animation below shows a real-time comparison between three sorting algorithms. Notice how <strong>Bubble Sort O(n&#178;)</strong> is much slower than <strong>Merge Sort</strong> and <strong>Quick Sort O(n log n)</strong>.')}</p>
 <div class="anim-container">
     <canvas id="sort-compare-canvas" width="700" height="400"></canvas>
     <div class="anim-controls">
-        <label class="anim-label">Jumlah Elemen:</label>
+        <label class="anim-label">${t('Jumlah Elemen:', 'Number of Elements:')}</label>
         <input type="range" class="anim-input" id="sort-size" min="10" max="80" value="30">
         <span id="sort-size-val">30</span>
         <button class="anim-btn" id="sort-run">Run Comparison</button>
@@ -973,8 +973,8 @@ sections['pnp'] = () => `
 </div>
 
 <div class="card animate-in">
-<h3>NP-Complete Reduction Flow</h3>
-<p>Animasi berikut menunjukkan bagaimana masalah-masalah NP-Complete saling terhubung melalui <strong>polynomial-time reduction</strong>. Jika kita bisa menyelesaikan SATU masalah NP-Complete dalam polynomial time, maka SEMUA masalah di NP bisa diselesaikan dalam polynomial time (karena P = NP).</p>
+<h3>${t('NP-Complete Reduction Flow', 'NP-Complete Reduction Flow')}</h3>
+<p>${t('Animasi berikut menunjukkan bagaimana masalah-masalah NP-Complete saling terhubung melalui <strong>polynomial-time reduction</strong>. Jika kita bisa menyelesaikan SATU masalah NP-Complete dalam polynomial time, maka SEMUA masalah di NP bisa diselesaikan dalam polynomial time (karena P = NP).', 'The following animation shows how NP-Complete problems are interconnected through <strong>polynomial-time reduction</strong>. If we can solve ONE NP-Complete problem in polynomial time, then ALL problems in NP can be solved in polynomial time (because P = NP).')}</p>
 <div class="anim-container">
     <canvas id="np-reduction-canvas" width="700" height="450"></canvas>
     <div class="anim-controls">
@@ -985,7 +985,7 @@ sections['pnp'] = () => `
 </div>
 
 <div class="card animate-in">
-<h3>Alur Reduction: SAT sebagai Akar</h3>
+<h3>${t('Alur Reduction: SAT sebagai Akar', 'Reduction Flow: SAT as the Root')}</h3>
 <div class="flow-diagram">
     <div class="flow-node" style="background:var(--danger);">SAT</div>
     <div class="flow-arrow">&#8594;</div>

@@ -6,42 +6,42 @@
 sections['lang-golang'] = () => `
 <section class="animate-in">
 <h1 class="section-title animate-in">Go (Golang) Deep Dive</h1>
-<p class="section-subtitle animate-in">Panduan komprehensif bahasa Go dari dasar hingga concurrency, generics, dan tooling — berdasarkan Dasar Pemrograman Golang (Novalagung) &amp; Effective Go</p>
+<p class="section-subtitle animate-in">${t('Panduan komprehensif bahasa Go dari dasar hingga concurrency, generics, dan tooling — berdasarkan Dasar Pemrograman Golang (Novalagung) &amp; Effective Go', 'A comprehensive guide to Go from basics to concurrency, generics, and tooling — based on Dasar Pemrograman Golang (Novalagung) &amp; Effective Go')}</p>
 
 <!-- ===================== 1. MENGAPA GO? ===================== -->
-<h2 class="animate-in">1. Mengapa Go?</h2>
+<h2 class="animate-in">${t('1. Mengapa Go?', '1. Why Go?')}</h2>
 
 <div class="card animate-in">
-<h3>Sejarah &amp; Filosofi</h3>
-<p>Go diciptakan di <strong>Google pada tahun 2007</strong> oleh <strong>Robert Griesemer, Rob Pike, dan Ken Thompson</strong> — tiga legenda dunia sistem. Dirilis sebagai open-source pada November 2009. Go lahir dari frustrasi para penciptanya terhadap kompleksitas C++, lambatnya kompilasi, dan sulitnya menulis program konkuren yang aman.</p>
+<h3>${t('Sejarah &amp; Filosofi', 'History &amp; Philosophy')}</h3>
+<p>${t('Go diciptakan di <strong>Google pada tahun 2007</strong> oleh <strong>Robert Griesemer, Rob Pike, dan Ken Thompson</strong> — tiga legenda dunia sistem. Dirilis sebagai open-source pada November 2009. Go lahir dari frustrasi para penciptanya terhadap kompleksitas C++, lambatnya kompilasi, dan sulitnya menulis program konkuren yang aman.', 'Go was created at <strong>Google in 2007</strong> by <strong>Robert Griesemer, Rob Pike, and Ken Thompson</strong> — three legends of systems programming. Released as open-source in November 2009. Go was born from its creators&#39; frustration with C++ complexity, slow compilation, and the difficulty of writing safe concurrent programs.')}</p>
 <div class="info-box">
-<strong>Filosofi Go:</strong> "Simplicity is complicated." — Rob Pike. Go sengaja <em>menghilangkan</em> fitur yang dianggap menambah kompleksitas: tidak ada inheritance, tidak ada exceptions tradisional, tidak ada operator overloading, dan baru menambahkan generics di versi 1.18 (2022).
+<strong>${t('Filosofi Go:', 'Go Philosophy:')}</strong> "Simplicity is complicated." — Rob Pike. ${t('Go sengaja <em>menghilangkan</em> fitur yang dianggap menambah kompleksitas: tidak ada inheritance, tidak ada exceptions tradisional, tidak ada operator overloading, dan baru menambahkan generics di versi 1.18 (2022).', 'Go intentionally <em>removes</em> features considered to add complexity: no inheritance, no traditional exceptions, no operator overloading, and only added generics in version 1.18 (2022).')}
 </div>
 </div>
 
 <div class="card animate-in">
-<h3>Tujuan Desain</h3>
+<h3>${t('Tujuan Desain', 'Design Goals')}</h3>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
 <div>
-<h4>Keunggulan Go</h4>
+<h4>${t('Keunggulan Go', 'Go Advantages')}</h4>
 <ul>
-<li><strong>Kompilasi sangat cepat</strong> — seluruh project selesai dalam detik</li>
-<li><strong>Concurrency built-in</strong> — goroutine &amp; channel sebagai first-class citizen</li>
-<li><strong>Single binary</strong> — tidak butuh VM/runtime, deploy hanya copy file</li>
-<li><strong>Garbage collected</strong> — tanpa manual memory management</li>
-<li><strong>Static typing + type inference</strong> — aman sekaligus ringkas</li>
-<li><strong>Standard library kaya</strong> — HTTP, JSON, crypto, testing, sudah built-in</li>
-<li><strong>Cross compilation</strong> — build untuk OS/arch berbeda dengan satu perintah</li>
+<li><strong>${t('Kompilasi sangat cepat', 'Very fast compilation')}</strong> — ${t('seluruh project selesai dalam detik', 'entire project compiles in seconds')}</li>
+<li><strong>Concurrency built-in</strong> — ${t('goroutine &amp; channel sebagai first-class citizen', 'goroutine &amp; channel as first-class citizens')}</li>
+<li><strong>Single binary</strong> — ${t('tidak butuh VM/runtime, deploy hanya copy file', 'no VM/runtime needed, deploy by copying a single file')}</li>
+<li><strong>Garbage collected</strong> — ${t('tanpa manual memory management', 'no manual memory management')}</li>
+<li><strong>Static typing + type inference</strong> — ${t('aman sekaligus ringkas', 'safe yet concise')}</li>
+<li><strong>${t('Standard library kaya', 'Rich standard library')}</strong> — ${t('HTTP, JSON, crypto, testing, sudah built-in', 'HTTP, JSON, crypto, testing, all built-in')}</li>
+<li><strong>Cross compilation</strong> — ${t('build untuk OS/arch berbeda dengan satu perintah', 'build for different OS/arch with a single command')}</li>
 </ul>
 </div>
 <div>
-<h4>Use Cases Utama</h4>
+<h4>${t('Use Cases Utama', 'Primary Use Cases')}</h4>
 <ul>
 <li><strong>Cloud &amp; Infrastructure</strong> — Docker, Kubernetes, Terraform, Prometheus</li>
-<li><strong>Microservices &amp; API</strong> — performan tinggi, startup cepat</li>
+<li><strong>Microservices &amp; API</strong> — ${t('performan tinggi, startup cepat', 'high performance, fast startup')}</li>
 <li><strong>CLI Tools</strong> — gh (GitHub CLI), cobra, hugo, fzf</li>
 <li><strong>Web Services</strong> — net/http, Gin, Echo, Fiber</li>
-<li><strong>DevOps &amp; SRE</strong> — scripting pengganti shell untuk program kompleks</li>
+<li><strong>DevOps &amp; SRE</strong> — ${t('scripting pengganti shell untuk program kompleks', 'scripting replacement for shell in complex programs')}</li>
 <li><strong>Networking</strong> — proxy, load balancer, gRPC services</li>
 </ul>
 </div>
@@ -49,23 +49,23 @@ sections['lang-golang'] = () => `
 </div>
 
 <div class="card animate-in">
-<h3>Perbandingan Bahasa</h3>
+<h3>${t('Perbandingan Bahasa', 'Language Comparison')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Aspek</th><th>Go</th><th>Java</th><th>Python</th><th>Rust</th></tr>
-<tr><td>Kecepatan eksekusi</td><td>Sangat cepat (native)</td><td>Cepat (JIT JVM)</td><td>Lambat (interpreter)</td><td>Sangat cepat (native)</td></tr>
-<tr><td>Model memori</td><td>GC (low pause)</td><td>GC (JVM)</td><td>GC (CPython)</td><td>Ownership (no GC)</td></tr>
+<tr><th>${t('Aspek', 'Aspect')}</th><th>Go</th><th>Java</th><th>Python</th><th>Rust</th></tr>
+<tr><td>${t('Kecepatan eksekusi', 'Execution speed')}</td><td>${t('Sangat cepat (native)', 'Very fast (native)')}</td><td>${t('Cepat (JIT JVM)', 'Fast (JIT JVM)')}</td><td>${t('Lambat (interpreter)', 'Slow (interpreter)')}</td><td>${t('Sangat cepat (native)', 'Very fast (native)')}</td></tr>
+<tr><td>${t('Model memori', 'Memory model')}</td><td>GC (low pause)</td><td>GC (JVM)</td><td>GC (CPython)</td><td>Ownership (no GC)</td></tr>
 <tr><td>Concurrency</td><td>Goroutine + channel (CSP)</td><td>Thread + synchronized</td><td>asyncio / GIL</td><td>async/await + Send/Sync</td></tr>
-<tr><td>Waktu kompilasi</td><td>Sangat cepat</td><td>Lambat</td><td>N/A</td><td>Sangat lambat</td></tr>
-<tr><td>Learning curve</td><td>Rendah–Menengah</td><td>Menengah–Tinggi</td><td>Rendah</td><td>Tinggi</td></tr>
-<tr><td>Binary output</td><td>Ya, single binary</td><td>Butuh JRE</td><td>Butuh Python</td><td>Ya, single binary</td></tr>
-<tr><td>Error handling</td><td>Explicit (nilai error)</td><td>Exception</td><td>Exception</td><td>Result&lt;T,E&gt;</td></tr>
+<tr><td>${t('Waktu kompilasi', 'Compile time')}</td><td>${t('Sangat cepat', 'Very fast')}</td><td>${t('Lambat', 'Slow')}</td><td>N/A</td><td>${t('Sangat lambat', 'Very slow')}</td></tr>
+<tr><td>Learning curve</td><td>${t('Rendah–Menengah', 'Low–Medium')}</td><td>${t('Menengah–Tinggi', 'Medium–High')}</td><td>${t('Rendah', 'Low')}</td><td>${t('Tinggi', 'High')}</td></tr>
+<tr><td>Binary output</td><td>${t('Ya, single binary', 'Yes, single binary')}</td><td>${t('Butuh JRE', 'Requires JRE')}</td><td>${t('Butuh Python', 'Requires Python')}</td><td>${t('Ya, single binary', 'Yes, single binary')}</td></tr>
+<tr><td>Error handling</td><td>${t('Explicit (nilai error)', 'Explicit (error values)')}</td><td>Exception</td><td>Exception</td><td>Result&lt;T,E&gt;</td></tr>
 </table>
 </div>
 </div>
 
 <div class="card animate-in">
-<h3>Instalasi &amp; Hello World</h3>
+<h3>${t('Instalasi &amp; Hello World', 'Installation &amp; Hello World')}</h3>
 <div class="code-block"><span class="cm">// 1. Download dari https://go.dev/dl/ lalu install</span>
 <span class="cm">// Linux: sudo tar -C /usr/local -xzf go1.22.linux-amd64.tar.gz</span>
 <span class="cm">// Tambah ke PATH: export PATH=$PATH:/usr/local/go/bin</span>
@@ -88,10 +88,10 @@ go mod init github.com/user/hello
 </div>
 
 <!-- ===================== 2. BASIC SYNTAX ===================== -->
-<h2 class="animate-in">2. Sintaks Dasar</h2>
+<h2 class="animate-in">${t('2. Sintaks Dasar', '2. Basic Syntax')}</h2>
 
 <div class="card animate-in">
-<h3>Variabel</h3>
+<h3>${t('Variabel', 'Variables')}</h3>
 <div class="tabs">
 <button class="tab-btn active" data-tab="go-var-var">var</button>
 <button class="tab-btn" data-tab="go-var-short">:= (short)</button>
@@ -136,7 +136,7 @@ go mod init github.com/user/hello
     _ = aktif  <span class="cm">// blank identifier untuk "buang" nilai</span>
     fmt.<span class="fn">Println</span>(kota, skor, x, y, err)
 }</div>
-<div class="info-box"><strong>var vs :=</strong><br><code>var</code> bisa digunakan di level package maupun fungsi. <code>:=</code> hanya di dalam fungsi. Gunakan <code>:=</code> untuk sebagian besar deklarasi lokal karena lebih ringkas.</div>
+<div class="info-box"><strong>var vs :=</strong><br>${t('<code>var</code> bisa digunakan di level package maupun fungsi. <code>:=</code> hanya di dalam fungsi. Gunakan <code>:=</code> untuk sebagian besar deklarasi lokal karena lebih ringkas.', '<code>var</code> can be used at both package and function level. <code>:=</code> is only available inside functions. Use <code>:=</code> for most local declarations as it is more concise.')}</div>
 </div>
 <div data-tab-content="go-var-zero">
 <div class="code-block"><span class="kw">func</span> <span class="fn">main</span>() {
@@ -154,13 +154,13 @@ go mod init github.com/user/hello
     fmt.<span class="fn">Printf</span>(<span class="str">"slice=%v map=%v chan=%v\\n"</span>, sl, m, ch)
 }</div>
 <div class="table-wrapper"><table>
-<tr><th>Tipe</th><th>Zero Value</th></tr>
+<tr><th>${t('Tipe', 'Type')}</th><th>Zero Value</th></tr>
 <tr><td>int, int8..int64, uint...</td><td><code>0</code></td></tr>
 <tr><td>float32, float64</td><td><code>0.0</code></td></tr>
 <tr><td>bool</td><td><code>false</code></td></tr>
 <tr><td>string</td><td><code>""</code></td></tr>
 <tr><td>pointer, slice, map, chan, func, interface</td><td><code>nil</code></td></tr>
-<tr><td>struct</td><td>semua field zero value masing-masing</td></tr>
+<tr><td>struct</td><td>${t('semua field zero value masing-masing', 'each field gets its own zero value')}</td></tr>
 </table></div>
 </div>
 <div data-tab-content="go-var-multi">
@@ -191,19 +191,19 @@ go mod init github.com/user/hello
 </div>
 
 <div class="card animate-in">
-<h3>Tipe Data</h3>
+<h3>${t('Tipe Data', 'Data Types')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Kategori</th><th>Tipe</th><th>Ukuran</th><th>Keterangan</th></tr>
-<tr><td>Integer signed</td><td>int8, int16, int32, int64</td><td>1–8 byte</td><td>Bilangan bulat bertanda</td></tr>
-<tr><td>Integer unsigned</td><td>uint8, uint16, uint32, uint64</td><td>1–8 byte</td><td>Bilangan bulat tak bertanda</td></tr>
-<tr><td>Platform int</td><td>int, uint, uintptr</td><td>4/8 byte</td><td>Menyesuaikan arsitektur CPU</td></tr>
+<tr><th>${t('Kategori', 'Category')}</th><th>${t('Tipe', 'Type')}</th><th>${t('Ukuran', 'Size')}</th><th>${t('Keterangan', 'Description')}</th></tr>
+<tr><td>Integer signed</td><td>int8, int16, int32, int64</td><td>1–8 byte</td><td>${t('Bilangan bulat bertanda', 'Signed integers')}</td></tr>
+<tr><td>Integer unsigned</td><td>uint8, uint16, uint32, uint64</td><td>1–8 byte</td><td>${t('Bilangan bulat tak bertanda', 'Unsigned integers')}</td></tr>
+<tr><td>Platform int</td><td>int, uint, uintptr</td><td>4/8 byte</td><td>${t('Menyesuaikan arsitektur CPU', 'Matches CPU architecture')}</td></tr>
 <tr><td>Float</td><td>float32, float64</td><td>4/8 byte</td><td>IEEE 754 single/double precision</td></tr>
-<tr><td>Complex</td><td>complex64, complex128</td><td>8/16 byte</td><td>Bilangan kompleks (real+imag)</td></tr>
-<tr><td>Boolean</td><td>bool</td><td>1 byte</td><td>true atau false</td></tr>
+<tr><td>Complex</td><td>complex64, complex128</td><td>8/16 byte</td><td>${t('Bilangan kompleks (real+imag)', 'Complex numbers (real+imag)')}</td></tr>
+<tr><td>Boolean</td><td>bool</td><td>1 byte</td><td>${t('true atau false', 'true or false')}</td></tr>
 <tr><td>String</td><td>string</td><td>varies</td><td>Immutable, UTF-8 encoded bytes</td></tr>
-<tr><td>Byte</td><td>byte (= uint8)</td><td>1 byte</td><td>Alias uint8, untuk raw data</td></tr>
-<tr><td>Rune</td><td>rune (= int32)</td><td>4 byte</td><td>Alias int32, Unicode code point</td></tr>
+<tr><td>Byte</td><td>byte (= uint8)</td><td>1 byte</td><td>${t('Alias uint8, untuk raw data', 'Alias for uint8, used for raw data')}</td></tr>
+<tr><td>Rune</td><td>rune (= int32)</td><td>4 byte</td><td>${t('Alias int32, Unicode code point', 'Alias for int32, Unicode code point')}</td></tr>
 </table>
 </div>
 <div class="code-block"><span class="kw">func</span> <span class="fn">main</span>() {
@@ -226,7 +226,7 @@ go mod init github.com/user/hello
 </div>
 
 <div class="card animate-in">
-<h3>Konstanta &amp; Iota</h3>
+<h3>${t('Konstanta &amp; Iota', 'Constants &amp; Iota')}</h3>
 <div class="code-block"><span class="kw">package</span> main
 
 <span class="kw">import</span> <span class="str">"fmt"</span>
@@ -307,7 +307,7 @@ go mod init github.com/user/hello
 </div>
 
 <div class="card animate-in">
-<h3>for Loop — Satu-satunya Loop di Go</h3>
+<h3>${t('for Loop — Satu-satunya Loop di Go', 'for Loop — The Only Loop in Go')}</h3>
 <div class="code-block"><span class="kw">func</span> <span class="fn">main</span>() {
     <span class="cm">// 1. for klasik (while-style)</span>
     n := <span class="num">1</span>
@@ -439,7 +439,7 @@ outer:
     <span class="kw">defer</span> c.mu.<span class="fn">Unlock</span>()  <span class="cm">// dijamin unlock</span>
     c.val++
 }</div>
-<div class="info-box"><strong>Kapan pakai defer?</strong> Setiap kali ada resource yang perlu dibersihkan: Close file, Unlock mutex, menutup koneksi DB, menutup HTTP response body. Defer memastikan cleanup terjadi bahkan saat ada error/return awal.</div>
+<div class="info-box"><strong>${t('Kapan pakai defer?', 'When to use defer?')}</strong> ${t('Setiap kali ada resource yang perlu dibersihkan: Close file, Unlock mutex, menutup koneksi DB, menutup HTTP response body. Defer memastikan cleanup terjadi bahkan saat ada error/return awal.', 'Whenever a resource needs cleanup: Close file, Unlock mutex, close DB connections, close HTTP response body. Defer ensures cleanup happens even with early error/return.')}</div>
 </div>
 <div data-tab-content="go-panic">
 <div class="code-block"><span class="kw">func</span> <span class="fn">divide</span>(a, b <span class="num">int</span>) <span class="num">int</span> {
@@ -464,12 +464,12 @@ outer:
     r, err := <span class="fn">safeDivide</span>(<span class="num">10</span>, <span class="num">0</span>)
     fmt.<span class="fn">Println</span>(r, err)  <span class="cm">// 0 recovered: division by zero!</span>
 }</div>
-<div class="warn-box"><strong>panic vs error:</strong> Gunakan <code>error</code> untuk kondisi yang bisa dipulihkan (file tidak ditemukan, input invalid). Gunakan <code>panic</code> hanya untuk kondisi yang benar-benar tidak bisa pulih (programming bug, invariant yang dilanggar). Jangan gunakan panic sebagai exception handler!</div>
+<div class="warn-box"><strong>panic vs error:</strong> ${t('Gunakan <code>error</code> untuk kondisi yang bisa dipulihkan (file tidak ditemukan, input invalid). Gunakan <code>panic</code> hanya untuk kondisi yang benar-benar tidak bisa pulih (programming bug, invariant yang dilanggar). Jangan gunakan panic sebagai exception handler!', 'Use <code>error</code> for recoverable conditions (file not found, invalid input). Use <code>panic</code> only for truly unrecoverable conditions (programming bugs, violated invariants). Do not use panic as an exception handler!')}</div>
 </div>
 </div>
 
 <!-- ===================== 4. FUNCTIONS ===================== -->
-<h2 class="animate-in">4. Fungsi</h2>
+<h2 class="animate-in">${t('4. Fungsi', '4. Functions')}</h2>
 
 <div class="card animate-in">
 <h3>Multiple Return &amp; Named Return</h3>
@@ -686,7 +686,7 @@ outer:
     safeMap[<span class="str">"key"</span>] = <span class="num">1</span>  <span class="cm">// OK</span>
     fmt.<span class="fn">Println</span>(safeMap)
 }</div>
-<div class="warn-box"><strong>Map tidak aman untuk akses concurrent!</strong> Untuk akses dari beberapa goroutine, gunakan <code>sync.RWMutex</code> untuk melindungi map, atau gunakan <code>sync.Map</code> yang sudah thread-safe bawaan.</div>
+<div class="warn-box"><strong>${t('Map tidak aman untuk akses concurrent!', 'Maps are not safe for concurrent access!')}</strong> ${t('Untuk akses dari beberapa goroutine, gunakan <code>sync.RWMutex</code> untuk melindungi map, atau gunakan <code>sync.Map</code> yang sudah thread-safe bawaan.', 'For access from multiple goroutines, use <code>sync.RWMutex</code> to protect the map, or use the built-in thread-safe <code>sync.Map</code>.')}</div>
 </div>
 
 <div class="card animate-in">
@@ -743,10 +743,10 @@ outer:
 </div>
 
 <!-- ===================== 6. POINTERS ===================== -->
-<h2 class="animate-in">6. Pointer</h2>
+<h2 class="animate-in">${t('6. Pointer', '6. Pointers')}</h2>
 
 <div class="card animate-in">
-<h3>Address, Dereference, &amp; Penggunaan</h3>
+<h3>${t('Address, Dereference, &amp; Penggunaan', 'Address, Dereference, &amp; Usage')}</h3>
 <div class="code-block"><span class="kw">package</span> main
 <span class="kw">import</span> <span class="str">"fmt"</span>
 
@@ -786,7 +786,7 @@ outer:
     <span class="cm">// p++ atau p+1 tidak diizinkan</span>
     fmt.<span class="fn">Println</span>(pt, pn)
 }</div>
-<div class="info-box"><strong>Kapan pakai pointer?</strong> (1) Saat fungsi perlu memodifikasi argumen. (2) Saat struct besar — hindari copy mahal. (3) Untuk nil-able value (pointer bisa nil, value tidak). Go tidak punya pointer arithmetic, jadi aman dari buffer overflow.</div>
+<div class="info-box"><strong>${t('Kapan pakai pointer?', 'When to use pointers?')}</strong> ${t('(1) Saat fungsi perlu memodifikasi argumen. (2) Saat struct besar — hindari copy mahal. (3) Untuk nil-able value (pointer bisa nil, value tidak). Go tidak punya pointer arithmetic, jadi aman dari buffer overflow.', '(1) When a function needs to modify its argument. (2) For large structs — avoid expensive copies. (3) For nil-able values (pointers can be nil, values cannot). Go has no pointer arithmetic, so it is safe from buffer overflow.')}</div>
 </div>
 
 <!-- ===================== 7. METHODS & INTERFACES ===================== -->
@@ -825,7 +825,7 @@ outer:
     c.<span class="fn">Scale</span>(<span class="num">2</span>)
     fmt.<span class="fn">Printf</span>(<span class="str">"After scale: %.2f\\n"</span>, c.Radius)  <span class="cm">// 10</span>
 }</div>
-<div class="info-box"><strong>Aturan receiver:</strong> Jika <em>salah satu</em> method butuh pointer receiver, sebaiknya <em>semua</em> method pakai pointer receiver untuk konsistensi. Pointer receiver lebih umum digunakan.</div>
+<div class="info-box"><strong>${t('Aturan receiver:', 'Receiver rules:')}</strong> ${t('Jika <em>salah satu</em> method butuh pointer receiver, sebaiknya <em>semua</em> method pakai pointer receiver untuk konsistensi. Pointer receiver lebih umum digunakan.', 'If <em>any</em> method needs a pointer receiver, it is best to use pointer receivers for <em>all</em> methods for consistency. Pointer receivers are more commonly used.')}</div>
 </div>
 
 <div class="card animate-in">
@@ -882,7 +882,7 @@ outer:
     anything = []<span class="num">int</span>{<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>}
     fmt.<span class="fn">Println</span>(anything)
 }</div>
-<div class="info-box"><strong>Interface composition:</strong> Interface bisa di-embed di interface lain. <code>io.ReadWriter</code> = <code>io.Reader</code> + <code>io.Writer</code>. Ini adalah cara Go mencapai polimorfisme tanpa inheritance.</div>
+<div class="info-box"><strong>Interface composition:</strong> ${t('Interface bisa di-embed di interface lain. <code>io.ReadWriter</code> = <code>io.Reader</code> + <code>io.Writer</code>. Ini adalah cara Go mencapai polimorfisme tanpa inheritance.', 'Interfaces can be embedded in other interfaces. <code>io.ReadWriter</code> = <code>io.Reader</code> + <code>io.Writer</code>. This is how Go achieves polymorphism without inheritance.')}</div>
 </div>
 
 <!-- ===================== 8. ERROR HANDLING ===================== -->
@@ -951,9 +951,9 @@ outer:
 <h2 class="animate-in">9. Goroutines &amp; Channels (Concurrency)</h2>
 
 <div class="info-box animate-in">
-<strong>Model Concurrency Go: CSP (Communicating Sequential Processes)</strong><br>
+<strong>${t('Model Concurrency Go: CSP (Communicating Sequential Processes)', 'Go Concurrency Model: CSP (Communicating Sequential Processes)')}</strong><br>
 "Do not communicate by sharing memory; instead, share memory by communicating." — Rob Pike<br>
-Go mengimplementasikan model CSP: goroutine saling berkomunikasi via channel, bukan berbagi memori langsung.
+${t('Go mengimplementasikan model CSP: goroutine saling berkomunikasi via channel, bukan berbagi memori langsung.', 'Go implements the CSP model: goroutines communicate via channels instead of sharing memory directly.')}
 </div>
 
 <div class="card animate-in">
@@ -992,7 +992,7 @@ Go mengimplementasikan model CSP: goroutine saling berkomunikasi via channel, bu
     wg.<span class="fn">Wait</span>()  <span class="cm">// tunggu semua goroutine selesai</span>
     fmt.<span class="fn">Println</span>(<span class="str">"Semua worker selesai"</span>)
 }</div>
-<div class="info-box"><strong>Goroutine vs Thread OS:</strong> Goroutine sangat ringan (~2KB stack awal, tumbuh dinamis). Satu program Go bisa menjalankan jutaan goroutine. Go runtime mengelola M:N threading — banyak goroutine dipetakan ke beberapa OS thread melalui scheduler (G-M-P model).</div>
+<div class="info-box"><strong>Goroutine vs OS Thread:</strong> ${t('Goroutine sangat ringan (~2KB stack awal, tumbuh dinamis). Satu program Go bisa menjalankan jutaan goroutine. Go runtime mengelola M:N threading — banyak goroutine dipetakan ke beberapa OS thread melalui scheduler (G-M-P model).', 'Goroutines are very lightweight (~2KB initial stack, grows dynamically). A single Go program can run millions of goroutines. The Go runtime manages M:N threading — many goroutines are mapped to a few OS threads through the scheduler (G-M-P model).')}</div>
 </div>
 
 <div class="card animate-in">
@@ -1006,7 +1006,7 @@ Go mengimplementasikan model CSP: goroutine saling berkomunikasi via channel, bu
 </div>
 </div>
 <div class="tabs">
-<button class="tab-btn active" data-tab="go-ch-basic">Dasar</button>
+<button class="tab-btn active" data-tab="go-ch-basic">${t('Dasar', 'Basics')}</button>
 <button class="tab-btn" data-tab="go-ch-select">select</button>
 <button class="tab-btn" data-tab="go-ch-patterns">Patterns</button>
 </div>
@@ -1201,7 +1201,7 @@ Go mengimplementasikan model CSP: goroutine saling berkomunikasi via channel, bu
 
     <span class="cm">// Deteksi race condition: go run -race main.go</span>
 }</div>
-<div class="warn-box"><strong>Race Condition:</strong> Gunakan <code>go run -race main.go</code> atau <code>go test -race ./...</code> untuk mendeteksi race condition secara otomatis. Go race detector adalah alat yang sangat powerful dan sebaiknya selalu dijalankan saat testing.</div>
+<div class="warn-box"><strong>Race Condition:</strong> ${t('Gunakan <code>go run -race main.go</code> atau <code>go test -race ./...</code> untuk mendeteksi race condition secara otomatis. Go race detector adalah alat yang sangat powerful dan sebaiknya selalu dijalankan saat testing.', 'Use <code>go run -race main.go</code> or <code>go test -race ./...</code> to automatically detect race conditions. The Go race detector is a very powerful tool and should always be run during testing.')}</div>
 </div>
 
 <div class="card animate-in">
@@ -1282,18 +1282,18 @@ go mod vendor
 go build -mod=vendor ./...</div>
 <div class="table-wrapper">
 <table>
-<tr><th>Perintah</th><th>Fungsi</th></tr>
-<tr><td><code>go get pkg@version</code></td><td>Tambah/update dependency</td></tr>
-<tr><td><code>go mod tidy</code></td><td>Bersihkan go.mod &amp; go.sum</td></tr>
-<tr><td><code>go mod vendor</code></td><td>Copy deps ke vendor/</td></tr>
-<tr><td><code>go list -m all</code></td><td>List semua module dependencies</td></tr>
-<tr><td><code>go mod graph</code></td><td>Tampilkan dependency graph</td></tr>
+<tr><th>${t('Perintah', 'Command')}</th><th>${t('Fungsi', 'Function')}</th></tr>
+<tr><td><code>go get pkg@version</code></td><td>${t('Tambah/update dependency', 'Add/update dependency')}</td></tr>
+<tr><td><code>go mod tidy</code></td><td>${t('Bersihkan go.mod &amp; go.sum', 'Clean up go.mod &amp; go.sum')}</td></tr>
+<tr><td><code>go mod vendor</code></td><td>${t('Copy deps ke vendor/', 'Copy deps to vendor/')}</td></tr>
+<tr><td><code>go list -m all</code></td><td>${t('List semua module dependencies', 'List all module dependencies')}</td></tr>
+<tr><td><code>go mod graph</code></td><td>${t('Tampilkan dependency graph', 'Show dependency graph')}</td></tr>
 </table>
 </div>
 </div>
 
 <div class="card animate-in">
-<h3>Package Conventions</h3>
+<h3>${t('Konvensi Package', 'Package Conventions')}</h3>
 <div class="code-block"><span class="cm">// Struktur project yang umum:</span>
 myapp/
 ├── go.mod
@@ -1324,11 +1324,11 @@ myapp/
 </div>
 
 <div class="card animate-in">
-<h3>Standard Library Highlights</h3>
+<h3>${t('Sorotan Standard Library', 'Standard Library Highlights')}</h3>
 <div class="tabs">
 <button class="tab-btn active" data-tab="go-pkg-http">net/http</button>
 <button class="tab-btn" data-tab="go-pkg-json">encoding/json</button>
-<button class="tab-btn" data-tab="go-pkg-others">Lainnya</button>
+<button class="tab-btn" data-tab="go-pkg-others">${t('Lainnya', 'Others')}</button>
 </div>
 <div data-tab-content="go-pkg-http" class="active">
 <div class="code-block"><span class="kw">package</span> main
@@ -1519,7 +1519,7 @@ myapp/
     v, _ := s.<span class="fn">Pop</span>()
     fmt.<span class="fn">Println</span>(v)  <span class="cm">// 3</span>
 }</div>
-<div class="info-box"><strong>Kapan pakai generics?</strong> Gunakan generics saat menulis fungsi/tipe yang bekerja pada banyak tipe berbeda dengan logika yang <em>sama persis</em> (seperti Map, Filter, Reduce, Stack). Jangan terlalu cepat reach for generics — sering kali interface atau code generation lebih tepat.</div>
+<div class="info-box"><strong>${t('Kapan pakai generics?', 'When to use generics?')}</strong> ${t('Gunakan generics saat menulis fungsi/tipe yang bekerja pada banyak tipe berbeda dengan logika yang <em>sama persis</em> (seperti Map, Filter, Reduce, Stack). Jangan terlalu cepat reach for generics — sering kali interface atau code generation lebih tepat.', 'Use generics when writing functions/types that work on many different types with <em>exactly the same</em> logic (like Map, Filter, Reduce, Stack). Do not reach for generics too quickly — often interfaces or code generation are more appropriate.')}</div>
 </div>
 
 <!-- ===================== 12. TESTING ===================== -->
@@ -1591,14 +1591,14 @@ myapp/
 }</div>
 <div class="table-wrapper">
 <table>
-<tr><th>Perintah</th><th>Fungsi</th></tr>
-<tr><td><code>go test ./...</code></td><td>Jalankan semua test</td></tr>
+<tr><th>${t('Perintah', 'Command')}</th><th>${t('Fungsi', 'Function')}</th></tr>
+<tr><td><code>go test ./...</code></td><td>${t('Jalankan semua test', 'Run all tests')}</td></tr>
 <tr><td><code>go test -v ./...</code></td><td>Verbose output</td></tr>
 <tr><td><code>go test -cover ./...</code></td><td>Code coverage</td></tr>
-<tr><td><code>go test -race ./...</code></td><td>Deteksi race condition</td></tr>
-<tr><td><code>go test -bench=. ./...</code></td><td>Jalankan benchmark</td></tr>
-<tr><td><code>go test -run TestName</code></td><td>Jalankan test tertentu</td></tr>
-<tr><td><code>go test -fuzz FuzzName</code></td><td>Jalankan fuzz testing</td></tr>
+<tr><td><code>go test -race ./...</code></td><td>${t('Deteksi race condition', 'Detect race conditions')}</td></tr>
+<tr><td><code>go test -bench=. ./...</code></td><td>${t('Jalankan benchmark', 'Run benchmarks')}</td></tr>
+<tr><td><code>go test -run TestName</code></td><td>${t('Jalankan test tertentu', 'Run specific test')}</td></tr>
+<tr><td><code>go test -fuzz FuzzName</code></td><td>${t('Jalankan fuzz testing', 'Run fuzz testing')}</td></tr>
 </table>
 </div>
 </div>
@@ -1607,7 +1607,7 @@ myapp/
 <h2 class="animate-in">13. Go Build System &amp; Tools</h2>
 
 <div class="card animate-in">
-<h3>Toolchain Penting</h3>
+<h3>${t('Toolchain Penting', 'Essential Toolchain')}</h3>
 <div class="code-block"><span class="cm">// Build &amp; Run</span>
 go run main.go              <span class="cm">// compile &amp; run langsung</span>
 go build -o app ./cmd/...  <span class="cm">// build binary</span>
@@ -1643,10 +1643,10 @@ go tool pprof http://localhost:6060/debug/pprof/profile</div>
 </div>
 
 <!-- ===================== 14. PERFORMANCE & BEST PRACTICES ===================== -->
-<h2 class="animate-in">14. Performa &amp; Best Practices</h2>
+<h2 class="animate-in">${t('14. Performa &amp; Best Practices', '14. Performance &amp; Best Practices')}</h2>
 
 <div class="card animate-in">
-<h3>Memory Model &amp; Visualisasi</h3>
+<h3>${t('Memory Model &amp; Visualisasi', 'Memory Model &amp; Visualization')}</h3>
 <div class="anim-container">
 <canvas id="canvas-go-memory" width="800" height="320" style="width:100%;height:auto;border-radius:8px;"></canvas>
 <div class="anim-controls">
@@ -1658,7 +1658,7 @@ go tool pprof http://localhost:6060/debug/pprof/profile</div>
 </div>
 
 <div class="card animate-in">
-<h3>Effective Go — Pola &amp; Anti-Pattern</h3>
+<h3>${t('Effective Go — Pola &amp; Anti-Pattern', 'Effective Go — Patterns &amp; Anti-Patterns')}</h3>
 <div class="tabs">
 <button class="tab-btn active" data-tab="go-bp-alloc">Allocation</button>
 <button class="tab-btn" data-tab="go-bp-slice">Slice/String</button>
@@ -1768,35 +1768,35 @@ _ = d</div>
 </div>
 
 <!-- ===================== 15. RESOURCES & REFERENSI ===================== -->
-<h2 class="animate-in">15. Referensi &amp; Sumber Belajar</h2>
+<h2 class="animate-in">${t('15. Referensi &amp; Sumber Belajar', '15. References &amp; Learning Resources')}</h2>
 
 <div class="card animate-in">
-<h3>Sumber Terpercaya</h3>
+<h3>${t('Sumber Terpercaya', 'Trusted Resources')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Sumber</th><th>Keterangan</th><th>URL</th></tr>
-<tr><td><strong>Dasar Pemrograman Golang</strong> — Novalagung</td><td>Tutorial bahasa Indonesia paling lengkap, cocok untuk pemula hingga menengah</td><td>dasarpemrogramangolang.novalagung.com</td></tr>
-<tr><td><strong>The Go Programming Language</strong> — Donovan &amp; Kernighan (2015)</td><td>Buku referensi definitif, penjelasan mendalam konsep Go</td><td>Tersedia di toko buku / ebook</td></tr>
-<tr><td><strong>Go Official Docs</strong></td><td>Dokumentasi resmi, tutorial, FAQ</td><td>go.dev/doc</td></tr>
-<tr><td><strong>Effective Go</strong></td><td>Panduan idiom dan best practices dari tim Go</td><td>go.dev/doc/effective_go</td></tr>
-<tr><td><strong>Go Spec</strong></td><td>Spesifikasi bahasa Go secara formal</td><td>go.dev/ref/spec</td></tr>
-<tr><td><strong>Go by Example</strong></td><td>Contoh-contoh kode per topik, sangat praktis</td><td>gobyexample.com</td></tr>
-<tr><td><strong>Go Playground</strong></td><td>Coba Go langsung di browser</td><td>go.dev/play</td></tr>
-<tr><td><strong>pkg.go.dev</strong></td><td>Dokumentasi seluruh package Go dan ekosistem</td><td>pkg.go.dev</td></tr>
+<tr><th>${t('Sumber', 'Source')}</th><th>${t('Keterangan', 'Description')}</th><th>URL</th></tr>
+<tr><td><strong>Dasar Pemrograman Golang</strong> — Novalagung</td><td>${t('Tutorial bahasa Indonesia paling lengkap, cocok untuk pemula hingga menengah', 'The most comprehensive Indonesian-language tutorial, suitable for beginners to intermediate')}</td><td>dasarpemrogramangolang.novalagung.com</td></tr>
+<tr><td><strong>The Go Programming Language</strong> — Donovan &amp; Kernighan (2015)</td><td>${t('Buku referensi definitif, penjelasan mendalam konsep Go', 'The definitive reference book, in-depth explanation of Go concepts')}</td><td>${t('Tersedia di toko buku / ebook', 'Available at bookstores / ebook')}</td></tr>
+<tr><td><strong>Go Official Docs</strong></td><td>${t('Dokumentasi resmi, tutorial, FAQ', 'Official documentation, tutorials, FAQ')}</td><td>go.dev/doc</td></tr>
+<tr><td><strong>Effective Go</strong></td><td>${t('Panduan idiom dan best practices dari tim Go', 'Idiom and best practices guide from the Go team')}</td><td>go.dev/doc/effective_go</td></tr>
+<tr><td><strong>Go Spec</strong></td><td>${t('Spesifikasi bahasa Go secara formal', 'Formal Go language specification')}</td><td>go.dev/ref/spec</td></tr>
+<tr><td><strong>Go by Example</strong></td><td>${t('Contoh-contoh kode per topik, sangat praktis', 'Code examples by topic, very practical')}</td><td>gobyexample.com</td></tr>
+<tr><td><strong>Go Playground</strong></td><td>${t('Coba Go langsung di browser', 'Try Go directly in your browser')}</td><td>go.dev/play</td></tr>
+<tr><td><strong>pkg.go.dev</strong></td><td>${t('Dokumentasi seluruh package Go dan ekosistem', 'Documentation for all Go packages and ecosystem')}</td><td>pkg.go.dev</td></tr>
 </table>
 </div>
 </div>
 
 <div class="info-box animate-in">
-<strong>Langkah Belajar Go yang Disarankan:</strong>
+<strong>${t('Langkah Belajar Go yang Disarankan:', 'Recommended Go Learning Path:')}</strong>
 <ol>
-<li>Install Go, buat project dengan <code>go mod init</code>, jalankan Hello World</li>
-<li>Pelajari tipe data dasar, variabel, fungsi, control flow</li>
-<li>Pahami slice, map, struct dengan baik — fondasi penting</li>
-<li>Pelajari interface dan error handling — kunci idiom Go</li>
-<li>Kuasai goroutine dan channel — pembeda utama Go</li>
-<li>Tulis test dari awal — budaya testing sangat kuat di ekosistem Go</li>
-<li>Baca kode open source Go (Docker, Kubernetes source code) untuk belajar idiom nyata</li>
+<li>${t('Install Go, buat project dengan <code>go mod init</code>, jalankan Hello World', 'Install Go, create a project with <code>go mod init</code>, run Hello World')}</li>
+<li>${t('Pelajari tipe data dasar, variabel, fungsi, control flow', 'Learn basic data types, variables, functions, control flow')}</li>
+<li>${t('Pahami slice, map, struct dengan baik — fondasi penting', 'Understand slice, map, struct well — an essential foundation')}</li>
+<li>${t('Pelajari interface dan error handling — kunci idiom Go', 'Learn interface and error handling — key Go idioms')}</li>
+<li>${t('Kuasai goroutine dan channel — pembeda utama Go', 'Master goroutine and channel — Go&#39;s main differentiator')}</li>
+<li>${t('Tulis test dari awal — budaya testing sangat kuat di ekosistem Go', 'Write tests from the start — testing culture is very strong in the Go ecosystem')}</li>
+<li>${t('Baca kode open source Go (Docker, Kubernetes source code) untuk belajar idiom nyata', 'Read Go open source code (Docker, Kubernetes source code) to learn real-world idioms')}</li>
 </ol>
 </div>
 

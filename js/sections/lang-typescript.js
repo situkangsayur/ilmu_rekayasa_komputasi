@@ -6,29 +6,29 @@ sections['lang-typescript'] = () => `
 <section class="animate-in">
 
 <h1 class="section-title">TypeScript Deep Dive</h1>
-<p class="section-subtitle">Dari Type System hingga Advanced Patterns &mdash; JavaScript yang Aman &amp; Scalable</p>
+<p class="section-subtitle">${t('Dari Type System hingga Advanced Patterns &mdash; JavaScript yang Aman &amp; Scalable', 'From Type System to Advanced Patterns &mdash; Safe &amp; Scalable JavaScript')}</p>
 
 <!-- ==================== SECTION 1: WHY TYPESCRIPT ==================== -->
-<h2 class="section-title" style="font-size:1.5rem;">1. Mengapa TypeScript?</h2>
+<h2 class="section-title" style="font-size:1.5rem;">${t('1. Mengapa TypeScript?', '1. Why TypeScript?')}</h2>
 
 <div class="card animate-in">
     <h3>TypeScript = JavaScript + Static Types</h3>
-    <p><strong>TypeScript</strong> diciptakan oleh <strong>Anders Hejlsberg</strong> (pencipta C#, Turbo Pascal, Delphi) di <strong>Microsoft</strong>, rilis pertama tahun <strong>2012</strong>. TypeScript adalah <em>superset</em> dari JavaScript &mdash; setiap kode JavaScript valid adalah TypeScript valid.</p>
+    <p>${t('<strong>TypeScript</strong> diciptakan oleh <strong>Anders Hejlsberg</strong> (pencipta C#, Turbo Pascal, Delphi) di <strong>Microsoft</strong>, rilis pertama tahun <strong>2012</strong>. TypeScript adalah <em>superset</em> dari JavaScript &mdash; setiap kode JavaScript valid adalah TypeScript valid.', '<strong>TypeScript</strong> was created by <strong>Anders Hejlsberg</strong> (creator of C#, Turbo Pascal, Delphi) at <strong>Microsoft</strong>, first released in <strong>2012</strong>. TypeScript is a <em>superset</em> of JavaScript &mdash; every valid JavaScript code is valid TypeScript.')}</p>
 
     <div class="info-box">
-        <strong>TypeScript di-compile ke JavaScript.</strong> Browser dan Node.js tidak menjalankan TypeScript secara langsung. TypeScript compiler (<code>tsc</code>) menghapus semua type annotations dan menghasilkan JavaScript biasa. Ini berarti <strong>zero runtime overhead</strong>.
+        ${t('<strong>TypeScript di-compile ke JavaScript.</strong> Browser dan Node.js tidak menjalankan TypeScript secara langsung. TypeScript compiler (<code>tsc</code>) menghapus semua type annotations dan menghasilkan JavaScript biasa. Ini berarti <strong>zero runtime overhead</strong>.', '<strong>TypeScript compiles to JavaScript.</strong> Browsers and Node.js do not run TypeScript directly. The TypeScript compiler (<code>tsc</code>) removes all type annotations and produces plain JavaScript. This means <strong>zero runtime overhead</strong>.')}
     </div>
 
     <div class="table-wrapper">
     <table>
-    <tr><th>Aspek</th><th>JavaScript</th><th>TypeScript</th></tr>
+    <tr><th>${t('Aspek', 'Aspect')}</th><th>JavaScript</th><th>TypeScript</th></tr>
     <tr><td>Typing</td><td>Dynamic (runtime errors)</td><td>Static (compile-time errors)</td></tr>
-    <tr><td>Error Detection</td><td>Saat runtime di browser/server</td><td>Saat menulis kode (di IDE)</td></tr>
-    <tr><td>Refactoring</td><td>Berisiko (silent bugs)</td><td>Aman (compiler akan komplain)</td></tr>
+    <tr><td>Error Detection</td><td>${t('Saat runtime di browser/server', 'At runtime in browser/server')}</td><td>${t('Saat menulis kode (di IDE)', 'While writing code (in IDE)')}</td></tr>
+    <tr><td>Refactoring</td><td>${t('Berisiko (silent bugs)', 'Risky (silent bugs)')}</td><td>${t('Aman (compiler akan komplain)', 'Safe (compiler will complain)')}</td></tr>
     <tr><td>IDE Support</td><td>Basic autocomplete</td><td>Full IntelliSense, go-to-definition, rename</td></tr>
-    <tr><td>Learning Curve</td><td>Lebih mudah awal</td><td>Sedikit lebih sulit, tapi jangka panjang lebih produktif</td></tr>
-    <tr><td>Ecosystem</td><td>Semua npm packages</td><td>Semua npm + @types/* untuk type definitions</td></tr>
-    <tr><td>Adopsi</td><td>Universal</td><td>Default di Next.js, Angular, Deno. 78% developer (SO Survey 2024)</td></tr>
+    <tr><td>Learning Curve</td><td>${t('Lebih mudah awal', 'Easier at first')}</td><td>${t('Sedikit lebih sulit, tapi jangka panjang lebih produktif', 'Slightly harder, but more productive long-term')}</td></tr>
+    <tr><td>Ecosystem</td><td>${t('Semua npm packages', 'All npm packages')}</td><td>${t('Semua npm + @types/* untuk type definitions', 'All npm + @types/* for type definitions')}</td></tr>
+    <tr><td>${t('Adopsi', 'Adoption')}</td><td>Universal</td><td>${t('Default di Next.js, Angular, Deno. 78% developer (SO Survey 2024)', 'Default in Next.js, Angular, Deno. 78% developers (SO Survey 2024)')}</td></tr>
     </table>
     </div>
 
@@ -75,7 +75,7 @@ sections['lang-typescript'] = () => `
     </div>
 
     <div class="warn-box">
-        <strong>any vs unknown:</strong> <code>any</code> mematikan semua type checking (escape hatch). <code>unknown</code> jauh lebih aman &mdash; kamu HARUS melakukan type check sebelum menggunakannya. <strong>Gunakan <code>unknown</code> bukan <code>any</code></strong> kapanpun memungkinkan.
+        ${t('<strong>any vs unknown:</strong> <code>any</code> mematikan semua type checking (escape hatch). <code>unknown</code> jauh lebih aman &mdash; kamu HARUS melakukan type check sebelum menggunakannya. <strong>Gunakan <code>unknown</code> bukan <code>any</code></strong> kapanpun memungkinkan.', '<strong>any vs unknown:</strong> <code>any</code> disables all type checking (escape hatch). <code>unknown</code> is much safer &mdash; you MUST perform a type check before using it. <strong>Use <code>unknown</code> instead of <code>any</code></strong> whenever possible.')}
     </div>
 </div>
 
@@ -113,7 +113,7 @@ id = <span class="kw">true</span>;                         <span class="cm">// E
     <div class="tabs">
         <button class="tab-btn active" data-tab="ts-interface">Interface</button>
         <button class="tab-btn" data-tab="ts-type">Type Alias</button>
-        <button class="tab-btn" data-tab="ts-compare">Perbandingan</button>
+        <button class="tab-btn" data-tab="ts-compare">${t('Perbandingan', 'Comparison')}</button>
     </div>
 
     <div data-tab-content="ts-interface" class="tab-content active">
@@ -178,19 +178,19 @@ id = <span class="kw">true</span>;                         <span class="cm">// E
     <div data-tab-content="ts-compare" class="tab-content">
     <div class="table-wrapper">
     <table>
-    <tr><th>Fitur</th><th>interface</th><th>type</th></tr>
-    <tr><td>Object shape</td><td style="color:var(--green)">Ya</td><td style="color:var(--green)">Ya</td></tr>
+    <tr><th>${t('Fitur', 'Feature')}</th><th>interface</th><th>type</th></tr>
+    <tr><td>Object shape</td><td style="color:var(--green)">${t('Ya', 'Yes')}</td><td style="color:var(--green)">${t('Ya', 'Yes')}</td></tr>
     <tr><td>Extends / inheritance</td><td style="color:var(--green)">extends keyword</td><td style="color:var(--green)">&amp; intersection</td></tr>
-    <tr><td>Union types</td><td style="color:var(--red)">Tidak</td><td style="color:var(--green)">Ya</td></tr>
-    <tr><td>Mapped types</td><td style="color:var(--red)">Tidak</td><td style="color:var(--green)">Ya</td></tr>
-    <tr><td>Conditional types</td><td style="color:var(--red)">Tidak</td><td style="color:var(--green)">Ya</td></tr>
-    <tr><td>Declaration merging</td><td style="color:var(--green)">Ya</td><td style="color:var(--red)">Tidak</td></tr>
-    <tr><td>Primitive aliases</td><td style="color:var(--red)">Tidak</td><td style="color:var(--green)">Ya (type ID = string)</td></tr>
-    <tr><td>Implements (class)</td><td style="color:var(--green)">Ya</td><td style="color:var(--green)">Ya</td></tr>
+    <tr><td>Union types</td><td style="color:var(--red)">${t('Tidak', 'No')}</td><td style="color:var(--green)">${t('Ya', 'Yes')}</td></tr>
+    <tr><td>Mapped types</td><td style="color:var(--red)">${t('Tidak', 'No')}</td><td style="color:var(--green)">${t('Ya', 'Yes')}</td></tr>
+    <tr><td>Conditional types</td><td style="color:var(--red)">${t('Tidak', 'No')}</td><td style="color:var(--green)">${t('Ya', 'Yes')}</td></tr>
+    <tr><td>Declaration merging</td><td style="color:var(--green)">${t('Ya', 'Yes')}</td><td style="color:var(--red)">${t('Tidak', 'No')}</td></tr>
+    <tr><td>Primitive aliases</td><td style="color:var(--red)">${t('Tidak', 'No')}</td><td style="color:var(--green)">${t('Ya', 'Yes')} (type ID = string)</td></tr>
+    <tr><td>Implements (class)</td><td style="color:var(--green)">${t('Ya', 'Yes')}</td><td style="color:var(--green)">${t('Ya', 'Yes')}</td></tr>
     </table>
     </div>
     <div class="info-box">
-        <strong>Best Practice:</strong> Gunakan <code>interface</code> untuk object shapes dan API contracts. Gunakan <code>type</code> untuk unions, intersections, mapped types, conditional types, dan alias primitif.
+        ${t('<strong>Best Practice:</strong> Gunakan <code>interface</code> untuk object shapes dan API contracts. Gunakan <code>type</code> untuk unions, intersections, mapped types, conditional types, dan alias primitif.', '<strong>Best Practice:</strong> Use <code>interface</code> for object shapes and API contracts. Use <code>type</code> for unions, intersections, mapped types, conditional types, and primitive aliases.')}
     </div>
     </div>
 </div>
@@ -254,7 +254,7 @@ numStack.<span class="fn">push</span>(<span class="str">"hello"</span>); <span c
 <h2 class="section-title" style="font-size:1.5rem;">5. Built-in Utility Types</h2>
 
 <div class="card animate-in">
-    <h3>Utility Types yang Paling Sering Digunakan</h3>
+    <h3>${t('Utility Types yang Paling Sering Digunakan', 'Most Commonly Used Utility Types')}</h3>
     <div class="code-block">
 <span class="kw">interface</span> <span class="fn">User</span> {
     id: <span class="num">number</span>;
@@ -314,7 +314,7 @@ numStack.<span class="fn">push</span>(<span class="str">"hello"</span>); <span c
 <h2 class="section-title" style="font-size:1.5rem;">6. Type Narrowing &amp; Type Guards</h2>
 
 <div class="card animate-in">
-    <h3>Narrowing: Mempersempit Type</h3>
+    <h3>${t('Narrowing: Mempersempit Type', 'Narrowing: Refining Types')}</h3>
     <div class="code-block">
 <span class="cm">// typeof narrowing</span>
 <span class="kw">function</span> <span class="fn">process</span>(value: <span class="num">string</span> | <span class="num">number</span>) {
@@ -446,7 +446,7 @@ input.value; <span class="cm">// OK: TypeScript treats as HTMLInputElement</span
     </div>
 
     <div class="warn-box">
-        <strong>Type Assertions vs Type Guards:</strong> Assertions (<code>as</code>) memberi tahu compiler "percaya saya". Type Guards (typeof, instanceof, custom guards) <strong>aman karena dicek saat runtime</strong>. Selalu prefer type guards!
+        ${t('<strong>Type Assertions vs Type Guards:</strong> Assertions (<code>as</code>) memberi tahu compiler "percaya saya". Type Guards (typeof, instanceof, custom guards) <strong>aman karena dicek saat runtime</strong>. Selalu prefer type guards!', '<strong>Type Assertions vs Type Guards:</strong> Assertions (<code>as</code>) tell the compiler "trust me". Type Guards (typeof, instanceof, custom guards) are <strong>safe because they are checked at runtime</strong>. Always prefer type guards!')}
     </div>
 </div>
 
@@ -454,7 +454,7 @@ input.value; <span class="cm">// OK: TypeScript treats as HTMLInputElement</span
 <h2 class="section-title" style="font-size:1.5rem;">9. TypeScript + React/Next.js</h2>
 
 <div class="card animate-in">
-    <h3>TypeScript Patterns untuk React</h3>
+    <h3>${t('TypeScript Patterns untuk React', 'TypeScript Patterns for React')}</h3>
     <div class="code-block">
 <span class="cm">// Component Props typing</span>
 <span class="kw">interface</span> <span class="fn">ButtonProps</span> {
@@ -559,7 +559,7 @@ input.value; <span class="cm">// OK: TypeScript treats as HTMLInputElement</span
     <div class="anim-container">
         <canvas id="canvas-ts-types" width="750" height="400" style="width:100%;max-width:750px;border-radius:10px;"></canvas>
     </div>
-    <p style="text-align:center;color:var(--text2);font-size:0.85rem;margin-top:8px;">Hierarchy of TypeScript types &mdash; <code>unknown</code> is the top type, <code>never</code> is the bottom type</p>
+    <p style="text-align:center;color:var(--text2);font-size:0.85rem;margin-top:8px;">${t('Hierarki type TypeScript &mdash; <code>unknown</code> adalah top type, <code>never</code> adalah bottom type', 'Hierarchy of TypeScript types &mdash; <code>unknown</code> is the top type, <code>never</code> is the bottom type')}</p>
 </div>
 
 <!-- ==================== SECTION 11: TSCONFIG ==================== -->
@@ -607,7 +607,7 @@ input.value; <span class="cm">// OK: TypeScript treats as HTMLInputElement</span
 
 <!-- ==================== REFERENCES ==================== -->
 <div class="card animate-in" style="border-left: 3px solid var(--accent);">
-    <h3>Referensi &amp; Sumber</h3>
+    <h3>${t('Referensi &amp; Sumber', 'References &amp; Resources')}</h3>
     <ul>
         <li><strong>TypeScript Handbook</strong> &mdash; <a href="https://www.typescriptlang.org/docs/handbook/" target="_blank" style="color:var(--accent)">typescriptlang.org/docs/handbook</a></li>
         <li><strong>TypeScript Playground</strong> &mdash; <a href="https://www.typescriptlang.org/play" target="_blank" style="color:var(--accent)">typescriptlang.org/play</a></li>

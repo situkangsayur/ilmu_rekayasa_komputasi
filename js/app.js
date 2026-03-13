@@ -24,6 +24,41 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
     document.getElementById('theme-label').textContent = next === 'dark' ? 'Dark Mode' : 'Light Mode';
 });
 
+// ---- Language Toggle ----
+function getLang() {
+    return document.documentElement.getAttribute('data-lang') || 'id';
+}
+
+function t(idText, enText) {
+    return '<span class="lang-id">' + idText + '</span><span class="lang-en">' + enText + '</span>';
+}
+
+(function initLang() {
+    const saved = localStorage.getItem('cs-theory-lang') || 'id';
+    document.documentElement.setAttribute('data-lang', saved);
+    document.documentElement.setAttribute('lang', saved);
+    const icon = document.getElementById('lang-icon');
+    const label = document.getElementById('lang-label');
+    if (icon && label) {
+        icon.textContent = saved === 'id' ? '🇮🇩' : '🇬🇧';
+        label.textContent = saved === 'id' ? 'Bahasa Indonesia' : 'English';
+    }
+})();
+
+document.getElementById('lang-toggle').addEventListener('click', () => {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-lang');
+    const next = current === 'id' ? 'en' : 'id';
+    html.setAttribute('data-lang', next);
+    html.setAttribute('lang', next);
+    localStorage.setItem('cs-theory-lang', next);
+    document.getElementById('lang-icon').textContent = next === 'id' ? '🇮🇩' : '🇬🇧';
+    document.getElementById('lang-label').textContent = next === 'id' ? 'Bahasa Indonesia' : 'English';
+    // Reload current section to update content
+    const activeLink = document.querySelector('#nav-menu a.active');
+    if (activeLink) loadSection(activeLink.dataset.section);
+});
+
 // ---- Navigation ----
 const content = document.getElementById('content');
 const navLinks = document.querySelectorAll('#nav-menu a[data-section]');
@@ -110,13 +145,16 @@ const sections = {};
 // ====================== HOME ======================
 sections.home = () => `
 <div class="hero animate-in">
-    <h1>Ilmu dan Rekayasa Komputasi</h1>
-    <p>Panduan interaktif dan komprehensif dari dasar teori dan ilmu komputasi hingga modern software engineering dengan animasi & visualisasi.</p>
+    <h1>${t('Ilmu dan Rekayasa Komputasi', 'Computer Science & Engineering')}</h1>
+    <p>${t(
+        'Panduan interaktif dan komprehensif dari dasar teori dan ilmu komputasi hingga modern software engineering dengan animasi & visualisasi.',
+        'A comprehensive interactive guide from computational theory foundations to modern software engineering with animations & visualizations.'
+    )}</p>
 </div>
 <div class="hero-cards">
     <div class="hero-card animate-in" data-nav="automata">
         <div class="icon">⚙️</div>
-        <h3>Automata & Bahasa Formal</h3>
+        <h3>${t('Automata & Bahasa Formal', 'Automata & Formal Languages')}</h3>
         <p>DFA, NFA, PDA, Turing Machine</p>
     </div>
     <div class="hero-card animate-in" data-nav="complexity">
@@ -126,12 +164,12 @@ sections.home = () => `
     </div>
     <div class="hero-card animate-in" data-nav="algorithms">
         <div class="icon">🧮</div>
-        <h3>Algoritma & HackerRank</h3>
-        <p>10 Top Cases dengan 5 Pendekatan</p>
+        <h3>${t('Algoritma & HackerRank', 'Algorithms & HackerRank')}</h3>
+        <p>${t('10 Top Cases dengan 5 Pendekatan', '10 Top Cases with 5 Approaches')}</p>
     </div>
     <div class="hero-card animate-in" data-nav="datastructures">
         <div class="icon">🔗</div>
-        <h3>Struktur Data</h3>
+        <h3>${t('Struktur Data', 'Data Structures')}</h3>
         <p>LinkedList, Queue, Graph, Tree</p>
     </div>
     <div class="hero-card animate-in" data-nav="oop">
@@ -141,7 +179,7 @@ sections.home = () => `
     </div>
     <div class="hero-card animate-in" data-nav="languages">
         <div class="icon">💻</div>
-        <h3>Bahasa Pemrograman</h3>
+        <h3>${t('Bahasa Pemrograman', 'Programming Languages')}</h3>
         <p>C, Java, Go, Rust, Python, Groovy</p>
     </div>
     <div class="hero-card animate-in" data-nav="architecture">
@@ -166,8 +204,8 @@ sections.home = () => `
     </div>
     <div class="hero-card animate-in" data-nav="iso">
         <div class="icon">📋</div>
-        <h3>ISO & Regulasi</h3>
-        <p>ISO 27001, ISO 27701, UU PDP</p>
+        <h3>${t('ISO & Regulasi', 'ISO & Regulations')}</h3>
+        <p>${t('ISO 27001, ISO 27701, UU PDP', 'ISO 27001, ISO 27701, Data Protection Law')}</p>
     </div>
     <div class="hero-card animate-in" data-nav="frameworks">
         <div class="icon">🚀</div>
@@ -181,8 +219,8 @@ sections.home = () => `
     </div>
     <div class="hero-card animate-in" data-nav="pnp">
         <div class="icon">🧩</div>
-        <h3>P=NP & Hubungannya</h3>
-        <p>Complexity, Algoritma, Data Structures, C/Go/Rust</p>
+        <h3>${t('P=NP & Hubungannya', 'P=NP & Relations')}</h3>
+        <p>${t('Complexity, Algoritma, Data Structures, C/Go/Rust', 'Complexity, Algorithms, Data Structures, C/Go/Rust')}</p>
     </div>
     <div class="hero-card animate-in" data-nav="parallel">
         <div class="icon">⚡</div>
@@ -191,13 +229,13 @@ sections.home = () => `
     </div>
     <div class="hero-card animate-in" data-nav="optimization-ml">
         <div class="icon">🧠</div>
-        <h3>Optimasi, ML & LLM</h3>
+        <h3>${t('Optimasi, ML & LLM', 'Optimization, ML & LLM')}</h3>
         <p>Machine Learning, Deep Learning, LLM</p>
     </div>
     <div class="hero-card animate-in" data-nav="lang-golang">
         <div class="icon">🐹</div>
         <h3>Golang Deep Dive</h3>
-        <p>Dari dasar hingga REST API & FFI</p>
+        <p>${t('Dari dasar hingga REST API & FFI', 'From basics to REST API & FFI')}</p>
     </div>
     <div class="hero-card animate-in" data-nav="lang-rust">
         <div class="icon">🦀</div>
@@ -206,8 +244,18 @@ sections.home = () => `
     </div>
     <div class="hero-card animate-in" data-nav="lang-python">
         <div class="icon">🐍</div>
-        <h3>Python untuk ML & FFI</h3>
+        <h3>${t('Python untuk ML & FFI', 'Python for ML & FFI')}</h3>
         <p>PyTorch, ML Implementation, Go/Rust FFI</p>
+    </div>
+    <div class="hero-card animate-in" data-nav="lang-javascript">
+        <div class="icon">🌐</div>
+        <h3>JavaScript & Next.js</h3>
+        <p>${t('ES6+, React, Next.js App Router', 'ES6+, React, Next.js App Router')}</p>
+    </div>
+    <div class="hero-card animate-in" data-nav="lang-typescript">
+        <div class="icon">🔷</div>
+        <h3>TypeScript Deep Dive</h3>
+        <p>${t('Type System, Generics, Utility Types', 'Type System, Generics, Utility Types')}</p>
     </div>
 </div>
 `;

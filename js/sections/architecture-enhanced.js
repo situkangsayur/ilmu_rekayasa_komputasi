@@ -4,10 +4,10 @@
 
 sections['architecture'] = () => `
 <h1 class="section-title animate-in">Software Architecture & DevSecOps</h1>
-<p class="section-subtitle animate-in">Monolith, Microservices, Message Queues, DevSecOps Pipeline, dan HashiCorp Stack &mdash; panduan lengkap arsitektur modern</p>
+<p class="section-subtitle animate-in">${t('Monolith, Microservices, Message Queues, DevSecOps Pipeline, dan HashiCorp Stack &mdash; panduan lengkap arsitektur modern', 'Monolith, Microservices, Message Queues, DevSecOps Pipeline, and HashiCorp Stack &mdash; a complete guide to modern architecture')}</p>
 
 <!-- ==================== EVOLUSI ARSITEKTUR ==================== -->
-<h2 class="animate-in">Evolusi Arsitektur Software</h2>
+<h2 class="animate-in">${t('Evolusi Arsitektur Software', 'Software Architecture Evolution')}</h2>
 
 <div class="flow-diagram animate-in">
     <div class="flow-node">Monolith</div>
@@ -22,91 +22,91 @@ sections['architecture'] = () => `
 </div>
 
 <div class="info-box animate-in">
-    <strong>Mengapa arsitektur penting?</strong> Arsitektur software menentukan bagaimana sistem di-deploy, di-scale, dan di-maintain. Pilihan arsitektur yang tepat di awal proyek akan menghemat biaya dan waktu pengembangan secara signifikan. Tidak ada arsitektur yang "terbaik" &mdash; semuanya bergantung pada konteks: ukuran tim, kompleksitas domain, dan kebutuhan skalabilitas.
+    <strong>${t('Mengapa arsitektur penting?', 'Why does architecture matter?')}</strong> ${t('Arsitektur software menentukan bagaimana sistem di-deploy, di-scale, dan di-maintain. Pilihan arsitektur yang tepat di awal proyek akan menghemat biaya dan waktu pengembangan secara signifikan. Tidak ada arsitektur yang &quot;terbaik&quot; &mdash; semuanya bergantung pada konteks: ukuran tim, kompleksitas domain, dan kebutuhan skalabilitas.', 'Software architecture determines how a system is deployed, scaled, and maintained. Choosing the right architecture early in a project saves significant development cost and time. There is no &quot;best&quot; architecture &mdash; it all depends on context: team size, domain complexity, and scalability requirements.')}
 </div>
 
 <!-- ==================== 1. MONOLITH ARCHITECTURE ==================== -->
-<h2 class="animate-in">1. Arsitektur Monolith</h2>
+<h2 class="animate-in">${t('1. Arsitektur Monolith', '1. Monolith Architecture')}</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Apa itu Monolith?</h3>
-    <p>Arsitektur monolith adalah pendekatan di mana <strong>seluruh komponen aplikasi</strong> &mdash; UI, business logic, data access layer, dan background jobs &mdash; dikemas dalam <strong>satu deployment unit tunggal</strong>. Semua modul berbagi proses yang sama, memory yang sama, dan database yang sama.</p>
+    <h3 style="color:var(--accent)">${t('Apa itu Monolith?', 'What is a Monolith?')}</h3>
+    <p>${t('Arsitektur monolith adalah pendekatan di mana <strong>seluruh komponen aplikasi</strong> &mdash; UI, business logic, data access layer, dan background jobs &mdash; dikemas dalam <strong>satu deployment unit tunggal</strong>. Semua modul berbagi proses yang sama, memory yang sama, dan database yang sama.', 'Monolith architecture is an approach where <strong>all application components</strong> &mdash; UI, business logic, data access layer, and background jobs &mdash; are packaged in <strong>a single deployment unit</strong>. All modules share the same process, memory, and database.')}</p>
 
     <div class="layer-diagram">
         <div class="layer-item" style="background:rgba(56,189,248,0.12)">
             <div class="layer-num" style="background:var(--accent);color:#fff">1</div>
             <div class="layer-info">
                 <strong style="color:var(--accent)">Presentation Layer</strong>
-                <span>HTML/CSS/JS, Template engine, REST controllers &mdash; semua dalam satu codebase</span>
+                <span>${t('HTML/CSS/JS, Template engine, REST controllers &mdash; semua dalam satu codebase', 'HTML/CSS/JS, Template engine, REST controllers &mdash; all in one codebase')}</span>
             </div>
         </div>
         <div class="layer-item" style="background:rgba(251,191,36,0.12)">
             <div class="layer-num" style="background:var(--yellow);color:#000">2</div>
             <div class="layer-info">
                 <strong style="color:var(--yellow)">Business Logic Layer</strong>
-                <span>Service classes, domain models, validation &mdash; coupled langsung dengan layer lain</span>
+                <span>${t('Service classes, domain models, validation &mdash; coupled langsung dengan layer lain', 'Service classes, domain models, validation &mdash; directly coupled with other layers')}</span>
             </div>
         </div>
         <div class="layer-item" style="background:rgba(52,211,153,0.12)">
             <div class="layer-num" style="background:var(--green);color:#fff">3</div>
             <div class="layer-info">
                 <strong style="color:var(--green)">Data Access Layer</strong>
-                <span>ORM, repositories, database queries &mdash; satu shared database</span>
+                <span>${t('ORM, repositories, database queries &mdash; satu shared database', 'ORM, repositories, database queries &mdash; one shared database')}</span>
             </div>
         </div>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--yellow)">Kapan Menggunakan Monolith?</h3>
+    <h3 style="color:var(--yellow)">${t('Kapan Menggunakan Monolith?', 'When to Use a Monolith?')}</h3>
     <div class="step-list">
         <div class="step-item">
             <div class="step-num">1</div>
-            <div class="step-text"><strong>Startup tahap awal</strong> &mdash; Tim kecil (2-5 developer), perlu iterasi cepat, belum jelas domain boundaries</div>
+            <div class="step-text"><strong>${t('Startup tahap awal', 'Early-stage startup')}</strong> &mdash; ${t('Tim kecil (2-5 developer), perlu iterasi cepat, belum jelas domain boundaries', 'Small team (2-5 developers), need fast iteration, domain boundaries not yet clear')}</div>
         </div>
         <div class="step-item">
             <div class="step-num">2</div>
-            <div class="step-text"><strong>MVP / Proof of Concept</strong> &mdash; Validasi ide bisnis sebelum investasi infrastruktur kompleks</div>
+            <div class="step-text"><strong>MVP / Proof of Concept</strong> &mdash; ${t('Validasi ide bisnis sebelum investasi infrastruktur kompleks', 'Validate business ideas before investing in complex infrastructure')}</div>
         </div>
         <div class="step-item">
             <div class="step-num">3</div>
-            <div class="step-text"><strong>Domain yang sudah well-defined</strong> &mdash; Aplikasi internal perusahaan dengan scope terbatas</div>
+            <div class="step-text"><strong>${t('Domain yang sudah well-defined', 'Well-defined domain')}</strong> &mdash; ${t('Aplikasi internal perusahaan dengan scope terbatas', 'Internal company applications with limited scope')}</div>
         </div>
         <div class="step-item">
             <div class="step-num">4</div>
-            <div class="step-text"><strong>Tim tanpa expertise DevOps</strong> &mdash; Tidak perlu manage infrastruktur distributed system</div>
+            <div class="step-text"><strong>${t('Tim tanpa expertise DevOps', 'Team without DevOps expertise')}</strong> &mdash; ${t('Tidak perlu manage infrastruktur distributed system', 'No need to manage distributed system infrastructure')}</div>
         </div>
     </div>
 </div>
 
 <div class="card-grid animate-in">
     <div class="card" style="border-color:var(--green)">
-        <h4 style="color:var(--green)">Keuntungan Monolith</h4>
+        <h4 style="color:var(--green)">${t('Keuntungan Monolith', 'Monolith Advantages')}</h4>
         <ul>
-            <li><strong>Simple deployment</strong> &mdash; Satu artifact (JAR/WAR/binary), satu proses deploy</li>
-            <li><strong>Mudah di-debug</strong> &mdash; Seluruh stack trace dalam satu proses, step-through debugging</li>
-            <li><strong>Performa in-process</strong> &mdash; Tidak ada network latency antar komponen, function call langsung</li>
-            <li><strong>Konsistensi data</strong> &mdash; ACID transaction di satu database, tidak perlu distributed transaction</li>
-            <li><strong>Simple testing</strong> &mdash; End-to-end test tanpa mock service eksternal</li>
-            <li><strong>Biaya operasional rendah</strong> &mdash; Satu server, satu database, monitoring sederhana</li>
+            <li><strong>Simple deployment</strong> &mdash; ${t('Satu artifact (JAR/WAR/binary), satu proses deploy', 'One artifact (JAR/WAR/binary), one deploy process')}</li>
+            <li><strong>${t('Mudah di-debug', 'Easy to debug')}</strong> &mdash; ${t('Seluruh stack trace dalam satu proses, step-through debugging', 'Entire stack trace in one process, step-through debugging')}</li>
+            <li><strong>${t('Performa in-process', 'In-process performance')}</strong> &mdash; ${t('Tidak ada network latency antar komponen, function call langsung', 'No network latency between components, direct function calls')}</li>
+            <li><strong>${t('Konsistensi data', 'Data consistency')}</strong> &mdash; ${t('ACID transaction di satu database, tidak perlu distributed transaction', 'ACID transactions in one database, no need for distributed transactions')}</li>
+            <li><strong>Simple testing</strong> &mdash; ${t('End-to-end test tanpa mock service eksternal', 'End-to-end testing without external service mocks')}</li>
+            <li><strong>${t('Biaya operasional rendah', 'Low operational cost')}</strong> &mdash; ${t('Satu server, satu database, monitoring sederhana', 'One server, one database, simple monitoring')}</li>
         </ul>
     </div>
     <div class="card" style="border-color:var(--red)">
-        <h4 style="color:var(--red)">Kekurangan Monolith</h4>
+        <h4 style="color:var(--red)">${t('Kekurangan Monolith', 'Monolith Disadvantages')}</h4>
         <ul>
-            <li><strong>Scaling tidak efisien</strong> &mdash; Harus scale seluruh aplikasi meskipun hanya 1 modul yang butuh</li>
-            <li><strong>Deployment berisiko</strong> &mdash; Satu perubahan kecil = deploy ulang seluruh aplikasi</li>
-            <li><strong>Tech stack lock-in</strong> &mdash; Sulit mengganti bahasa/framework untuk modul tertentu</li>
-            <li><strong>Team coupling</strong> &mdash; Tim harus koordinasi ketat, merge conflict sering terjadi</li>
-            <li><strong>Build time lama</strong> &mdash; Seiring codebase membesar, CI/CD semakin lambat</li>
-            <li><strong>Single point of failure</strong> &mdash; Satu bug bisa crash seluruh aplikasi</li>
+            <li><strong>${t('Scaling tidak efisien', 'Inefficient scaling')}</strong> &mdash; ${t('Harus scale seluruh aplikasi meskipun hanya 1 modul yang butuh', 'Must scale the entire application even if only 1 module needs it')}</li>
+            <li><strong>${t('Deployment berisiko', 'Risky deployment')}</strong> &mdash; ${t('Satu perubahan kecil = deploy ulang seluruh aplikasi', 'One small change = redeploy entire application')}</li>
+            <li><strong>Tech stack lock-in</strong> &mdash; ${t('Sulit mengganti bahasa/framework untuk modul tertentu', 'Hard to change language/framework for specific modules')}</li>
+            <li><strong>Team coupling</strong> &mdash; ${t('Tim harus koordinasi ketat, merge conflict sering terjadi', 'Teams must coordinate tightly, merge conflicts occur frequently')}</li>
+            <li><strong>${t('Build time lama', 'Long build time')}</strong> &mdash; ${t('Seiring codebase membesar, CI/CD semakin lambat', 'As the codebase grows, CI/CD gets slower')}</li>
+            <li><strong>Single point of failure</strong> &mdash; ${t('Satu bug bisa crash seluruh aplikasi', 'One bug can crash the entire application')}</li>
         </ul>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent3)">Modular Monolith &mdash; Kompromi Terbaik?</h3>
-    <p>Pendekatan modern di mana monolith tetap di-deploy sebagai satu unit, namun secara internal terorganisir dalam <strong>modul-modul terpisah</strong> dengan batas yang jelas. Setiap modul punya API internal sendiri dan bisa di-refactor menjadi microservice nantinya.</p>
+    <h3 style="color:var(--accent3)">${t('Modular Monolith &mdash; Kompromi Terbaik?', 'Modular Monolith &mdash; The Best Compromise?')}</h3>
+    <p>${t('Pendekatan modern di mana monolith tetap di-deploy sebagai satu unit, namun secara internal terorganisir dalam <strong>modul-modul terpisah</strong> dengan batas yang jelas. Setiap modul punya API internal sendiri dan bisa di-refactor menjadi microservice nantinya.', 'A modern approach where the monolith is still deployed as a single unit, but internally organized into <strong>separate modules</strong> with clear boundaries. Each module has its own internal API and can be refactored into a microservice later.')}</p>
     <div class="flow-diagram">
         <div class="flow-node" style="border-color:var(--accent3)">Module: User</div>
         <div class="flow-arrow">&harr;</div>
@@ -116,57 +116,57 @@ sections['architecture'] = () => `
         <div class="flow-arrow">&harr;</div>
         <div class="flow-node" style="border-color:var(--accent3)">Module: Inventory</div>
     </div>
-    <p style="margin-top:0.5rem"><span class="badge-purple">Tip</span> Gunakan modular monolith sebagai langkah pertama sebelum migrasi ke microservices. Ini memudahkan decomposition nantinya.</p>
+    <p style="margin-top:0.5rem"><span class="badge-purple">Tip</span> ${t('Gunakan modular monolith sebagai langkah pertama sebelum migrasi ke microservices. Ini memudahkan decomposition nantinya.', 'Use modular monolith as a first step before migrating to microservices. This makes decomposition easier later.')}</p>
 </div>
 
 <!-- ==================== 2. MICROSERVICES ==================== -->
-<h2 class="animate-in">2. Arsitektur Microservices</h2>
+<h2 class="animate-in">${t('2. Arsitektur Microservices', '2. Microservices Architecture')}</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Apa itu Microservices?</h3>
-    <p>Microservices adalah gaya arsitektur di mana aplikasi dibangun sebagai <strong>kumpulan layanan kecil yang independen</strong>, masing-masing berjalan dalam proses sendiri dan berkomunikasi melalui mekanisme ringan (biasanya HTTP/REST atau messaging). Setiap service:</p>
+    <h3 style="color:var(--accent)">${t('Apa itu Microservices?', 'What are Microservices?')}</h3>
+    <p>${t('Microservices adalah gaya arsitektur di mana aplikasi dibangun sebagai <strong>kumpulan layanan kecil yang independen</strong>, masing-masing berjalan dalam proses sendiri dan berkomunikasi melalui mekanisme ringan (biasanya HTTP/REST atau messaging). Setiap service:', 'Microservices is an architectural style where applications are built as a <strong>collection of small, independent services</strong>, each running in its own process and communicating through lightweight mechanisms (usually HTTP/REST or messaging). Each service:')}</p>
     <ul>
-        <li>Memiliki <strong>database sendiri</strong> (database per service pattern)</li>
-        <li>Bisa di-<strong>deploy secara independen</strong></li>
-        <li>Dikembangkan oleh <strong>tim kecil</strong> (two-pizza team)</li>
-        <li>Bisa menggunakan <strong>tech stack berbeda</strong> (polyglot)</li>
-        <li>Fokus pada <strong>satu bounded context</strong> (DDD)</li>
+        <li>${t('Memiliki <strong>database sendiri</strong> (database per service pattern)', 'Has its <strong>own database</strong> (database per service pattern)')}</li>
+        <li>${t('Bisa di-<strong>deploy secara independen</strong>', 'Can be <strong>deployed independently</strong>')}</li>
+        <li>${t('Dikembangkan oleh <strong>tim kecil</strong> (two-pizza team)', 'Developed by a <strong>small team</strong> (two-pizza team)')}</li>
+        <li>${t('Bisa menggunakan <strong>tech stack berbeda</strong> (polyglot)', 'Can use <strong>different tech stacks</strong> (polyglot)')}</li>
+        <li>${t('Fokus pada <strong>satu bounded context</strong> (DDD)', 'Focuses on <strong>one bounded context</strong> (DDD)')}</li>
     </ul>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--yellow)">Service Decomposition &mdash; Cara Memecah Monolith</h3>
-    <p>Berdasarkan konsep NGINX "Building and Deploying Microservices", ada beberapa strategi dekomposisi:</p>
+    <h3 style="color:var(--yellow)">${t('Service Decomposition &mdash; Cara Memecah Monolith', 'Service Decomposition &mdash; How to Break Up a Monolith')}</h3>
+    <p>${t('Berdasarkan konsep NGINX "Building and Deploying Microservices", ada beberapa strategi dekomposisi:', 'Based on NGINX\'s "Building and Deploying Microservices" concepts, there are several decomposition strategies:')}</p>
 
     <div class="card-grid-3">
         <div class="card">
             <h4><span class="badge-blue">1</span> By Business Capability</h4>
-            <p>Pecah berdasarkan fungsi bisnis: <em>User Management</em>, <em>Order Processing</em>, <em>Payment</em>, <em>Notification</em>. Setiap service merepresentasikan capability bisnis yang kohesif.</p>
+            <p>${t('Pecah berdasarkan fungsi bisnis: <em>User Management</em>, <em>Order Processing</em>, <em>Payment</em>, <em>Notification</em>. Setiap service merepresentasikan capability bisnis yang kohesif.', 'Split by business function: <em>User Management</em>, <em>Order Processing</em>, <em>Payment</em>, <em>Notification</em>. Each service represents a cohesive business capability.')}</p>
         </div>
         <div class="card">
             <h4><span class="badge-green">2</span> By Subdomain (DDD)</h4>
-            <p>Gunakan Domain-Driven Design: identifikasi <em>bounded context</em>, pisahkan core domain, supporting domain, dan generic subdomain menjadi service terpisah.</p>
+            <p>${t('Gunakan Domain-Driven Design: identifikasi <em>bounded context</em>, pisahkan core domain, supporting domain, dan generic subdomain menjadi service terpisah.', 'Use Domain-Driven Design: identify <em>bounded contexts</em>, separate core domain, supporting domain, and generic subdomain into separate services.')}</p>
         </div>
         <div class="card">
             <h4><span class="badge-orange">3</span> Strangler Fig Pattern</h4>
-            <p>Migrasi bertahap dari monolith: buat service baru untuk fitur baru, perlahan pindahkan fitur lama satu per satu, matikan monolith ketika kosong.</p>
+            <p>${t('Migrasi bertahap dari monolith: buat service baru untuk fitur baru, perlahan pindahkan fitur lama satu per satu, matikan monolith ketika kosong.', 'Gradual migration from monolith: create new services for new features, slowly move old features one by one, shut down the monolith when empty.')}</p>
         </div>
     </div>
 </div>
 
 <!-- Communication Patterns -->
 <div class="card animate-in">
-    <h3 style="color:var(--green)">Pola Komunikasi: Synchronous vs Asynchronous</h3>
+    <h3 style="color:var(--green)">${t('Pola Komunikasi: Synchronous vs Asynchronous', 'Communication Patterns: Synchronous vs Asynchronous')}</h3>
 
     <div class="tabs">
         <button class="tab-btn active" data-tab="comm-sync">Synchronous</button>
         <button class="tab-btn" data-tab="comm-async">Asynchronous</button>
-        <button class="tab-btn" data-tab="comm-compare">Perbandingan</button>
+        <button class="tab-btn" data-tab="comm-compare">${t('Perbandingan', 'Comparison')}</button>
     </div>
 
     <div class="tab-content active" data-tab-content="comm-sync">
-        <h4>Komunikasi Synchronous (Request-Response)</h4>
-        <p>Client mengirim request dan <strong>menunggu response</strong> sebelum melanjutkan. Cocok untuk operasi yang membutuhkan jawaban langsung.</p>
+        <h4>${t('Komunikasi Synchronous (Request-Response)', 'Synchronous Communication (Request-Response)')}</h4>
+        <p>${t('Client mengirim request dan <strong>menunggu response</strong> sebelum melanjutkan. Cocok untuk operasi yang membutuhkan jawaban langsung.', 'Client sends a request and <strong>waits for a response</strong> before continuing. Suitable for operations that need an immediate answer.')}</p>
 
         <div class="card-grid">
             <div class="card">
@@ -176,7 +176,7 @@ sections['architecture'] = () => `
                     <li>Human-readable (JSON)</li>
                     <li>Stateless, cacheable</li>
                     <li>Overhead: HTTP headers, serialization JSON</li>
-                    <li>Latency lebih tinggi dibanding binary protocol</li>
+                    <li>${t('Latency lebih tinggi dibanding binary protocol', 'Higher latency compared to binary protocol')}</li>
                 </ul>
                 <div class="code-block"><span class="cm">// REST call antar service</span>
 <span class="fn">GET</span> /api/users/123 <span class="str">HTTP/1.1</span>
@@ -186,11 +186,11 @@ sections['architecture'] = () => `
             <div class="card">
                 <h4 style="color:var(--accent)">gRPC (HTTP/2 + Protobuf)</h4>
                 <ul>
-                    <li>Binary protocol &mdash; lebih cepat & compact</li>
+                    <li>${t('Binary protocol &mdash; lebih cepat & compact', 'Binary protocol &mdash; faster & more compact')}</li>
                     <li>Contract-first (proto files)</li>
                     <li>Bi-directional streaming</li>
-                    <li>Code generation otomatis</li>
-                    <li>Ideal untuk komunikasi internal antar service</li>
+                    <li>${t('Code generation otomatis', 'Automatic code generation')}</li>
+                    <li>${t('Ideal untuk komunikasi internal antar service', 'Ideal for internal inter-service communication')}</li>
                 </ul>
                 <div class="code-block"><span class="cm">// Proto definition</span>
 <span class="kw">service</span> <span class="type">UserService</span> {
@@ -202,8 +202,8 @@ sections['architecture'] = () => `
     </div>
 
     <div class="tab-content" data-tab-content="comm-async">
-        <h4>Komunikasi Asynchronous (Message-Based)</h4>
-        <p>Producer mengirim pesan ke broker dan <strong>tidak menunggu response</strong>. Consumer memproses pesan secara independen. Meningkatkan resilience dan decoupling.</p>
+        <h4>${t('Komunikasi Asynchronous (Message-Based)', 'Asynchronous Communication (Message-Based)')}</h4>
+        <p>${t('Producer mengirim pesan ke broker dan <strong>tidak menunggu response</strong>. Consumer memproses pesan secara independen. Meningkatkan resilience dan decoupling.', 'Producer sends a message to a broker and <strong>does not wait for a response</strong>. Consumer processes messages independently. Improves resilience and decoupling.')}</p>
 
         <div class="flow-diagram">
             <div class="flow-node" style="border-color:var(--green)">Producer<br><small>Order Service</small></div>
@@ -216,11 +216,11 @@ sections['architecture'] = () => `
         <div class="card-grid">
             <div class="card">
                 <h4>Point-to-Point (Queue)</h4>
-                <p>Satu pesan diproses oleh <strong>tepat satu consumer</strong>. Cocok untuk task distribution. Contoh: RabbitMQ queue.</p>
+                <p>${t('Satu pesan diproses oleh <strong>tepat satu consumer</strong>. Cocok untuk task distribution. Contoh: RabbitMQ queue.', 'One message is processed by <strong>exactly one consumer</strong>. Suitable for task distribution. Example: RabbitMQ queue.')}</p>
             </div>
             <div class="card">
                 <h4>Publish-Subscribe (Topic)</h4>
-                <p>Satu pesan diterima oleh <strong>semua subscriber</strong>. Cocok untuk event broadcasting. Contoh: Kafka topic.</p>
+                <p>${t('Satu pesan diterima oleh <strong>semua subscriber</strong>. Cocok untuk event broadcasting. Contoh: Kafka topic.', 'One message is received by <strong>all subscribers</strong>. Suitable for event broadcasting. Example: Kafka topic.')}</p>
             </div>
         </div>
     </div>
@@ -229,39 +229,39 @@ sections['architecture'] = () => `
         <div class="table-wrapper">
             <table>
                 <tr>
-                    <th>Aspek</th>
+                    <th>${t('Aspek', 'Aspect')}</th>
                     <th>Synchronous (REST/gRPC)</th>
                     <th>Asynchronous (MQ)</th>
                 </tr>
                 <tr>
                     <td>Coupling</td>
-                    <td>Temporal coupling (harus online)</td>
+                    <td>${t('Temporal coupling (harus online)', 'Temporal coupling (must be online)')}</td>
                     <td>Loose coupling (fire-and-forget)</td>
                 </tr>
                 <tr>
                     <td>Latency</td>
-                    <td>Response langsung</td>
-                    <td>Eventual (bisa delayed)</td>
+                    <td>${t('Response langsung', 'Immediate response')}</td>
+                    <td>${t('Eventual (bisa delayed)', 'Eventual (can be delayed)')}</td>
                 </tr>
                 <tr>
                     <td>Error Handling</td>
-                    <td>Retry + timeout langsung</td>
+                    <td>${t('Retry + timeout langsung', 'Direct retry + timeout')}</td>
                     <td>Dead letter queue, retry policies</td>
                 </tr>
                 <tr>
                     <td>Scalability</td>
-                    <td>Terbatas oleh downstream</td>
+                    <td>${t('Terbatas oleh downstream', 'Limited by downstream')}</td>
                     <td>Buffer burst traffic via queue</td>
                 </tr>
                 <tr>
                     <td>Debugging</td>
-                    <td>Lebih mudah (request-response)</td>
-                    <td>Lebih sulit (distributed tracing)</td>
+                    <td>${t('Lebih mudah (request-response)', 'Easier (request-response)')}</td>
+                    <td>${t('Lebih sulit (distributed tracing)', 'Harder (distributed tracing)')}</td>
                 </tr>
                 <tr>
                     <td>Use Case</td>
-                    <td>Query data, validasi real-time</td>
-                    <td>Notifikasi, event processing, ETL</td>
+                    <td>${t('Query data, validasi real-time', 'Data queries, real-time validation')}</td>
+                    <td>${t('Notifikasi, event processing, ETL', 'Notifications, event processing, ETL')}</td>
                 </tr>
             </table>
         </div>
@@ -271,7 +271,7 @@ sections['architecture'] = () => `
 <!-- API Gateway Pattern -->
 <div class="card animate-in">
     <h3 style="color:var(--accent)">API Gateway Pattern</h3>
-    <p>API Gateway adalah <strong>single entry point</strong> untuk semua client request. Ia bertindak sebagai reverse proxy yang merutekan request ke service yang tepat, sekaligus menangani cross-cutting concerns.</p>
+    <p>${t('API Gateway adalah <strong>single entry point</strong> untuk semua client request. Ia bertindak sebagai reverse proxy yang merutekan request ke service yang tepat, sekaligus menangani cross-cutting concerns.', 'API Gateway is the <strong>single entry point</strong> for all client requests. It acts as a reverse proxy that routes requests to the appropriate service, while handling cross-cutting concerns.')}</p>
 
     <div class="flow-diagram">
         <div class="flow-node">Mobile App</div>
@@ -291,27 +291,27 @@ sections['architecture'] = () => `
     <div class="card-grid-3">
         <div class="card">
             <h4><span class="badge-blue">Routing</span></h4>
-            <p>Route request ke service yang sesuai berdasarkan path, header, atau method</p>
+            <p>${t('Route request ke service yang sesuai berdasarkan path, header, atau method', 'Route requests to the appropriate service based on path, header, or method')}</p>
         </div>
         <div class="card">
             <h4><span class="badge-green">Auth</span></h4>
-            <p>Sentralisasi autentikasi & otorisasi (JWT validation, OAuth2)</p>
+            <p>${t('Sentralisasi autentikasi & otorisasi (JWT validation, OAuth2)', 'Centralized authentication & authorization (JWT validation, OAuth2)')}</p>
         </div>
         <div class="card">
             <h4><span class="badge-orange">Rate Limiting</span></h4>
-            <p>Proteksi backend dari traffic berlebihan, throttling per client</p>
+            <p>${t('Proteksi backend dari traffic berlebihan, throttling per client', 'Protect backend from excessive traffic, per-client throttling')}</p>
         </div>
         <div class="card">
             <h4><span class="badge-purple">Load Balancing</span></h4>
-            <p>Distribusi traffic ke multiple instance service</p>
+            <p>${t('Distribusi traffic ke multiple instance service', 'Distribute traffic to multiple service instances')}</p>
         </div>
         <div class="card">
             <h4><span class="badge-yellow">Caching</span></h4>
-            <p>Cache response untuk mengurangi beban backend</p>
+            <p>${t('Cache response untuk mengurangi beban backend', 'Cache responses to reduce backend load')}</p>
         </div>
         <div class="card">
             <h4><span class="badge-red">Monitoring</span></h4>
-            <p>Centralized logging, metrics, dan request tracing</p>
+            <p>${t('Centralized logging, metrics, dan request tracing', 'Centralized logging, metrics, and request tracing')}</p>
         </div>
     </div>
 </div>
@@ -319,12 +319,12 @@ sections['architecture'] = () => `
 <!-- Service Discovery -->
 <div class="card animate-in">
     <h3 style="color:var(--green)">Service Discovery</h3>
-    <p>Dalam microservices, service instances bersifat dinamis (auto-scaling, restart, dll). <strong>Service discovery</strong> memungkinkan service menemukan lokasi (IP:port) service lain secara otomatis tanpa hardcode.</p>
+    <p>${t('Dalam microservices, service instances bersifat dinamis (auto-scaling, restart, dll). <strong>Service discovery</strong> memungkinkan service menemukan lokasi (IP:port) service lain secara otomatis tanpa hardcode.', 'In microservices, service instances are dynamic (auto-scaling, restarts, etc.). <strong>Service discovery</strong> allows services to find the location (IP:port) of other services automatically without hardcoding.')}</p>
 
     <div class="card-grid">
         <div class="card">
             <h4 style="color:var(--accent)">Client-Side Discovery</h4>
-            <p>Client query registry langsung, lalu memilih instance sendiri (load balancing di client).</p>
+            <p>${t('Client query registry langsung, lalu memilih instance sendiri (load balancing di client).', 'Client queries the registry directly, then selects an instance itself (load balancing on the client).')}</p>
             <div class="flow-diagram">
                 <div class="flow-node">Client</div>
                 <div class="flow-arrow">&rarr; query</div>
@@ -332,11 +332,11 @@ sections['architecture'] = () => `
                 <div class="flow-arrow">IP:port &rarr;</div>
                 <div class="flow-node">Service</div>
             </div>
-            <p><span class="badge-green">Pro:</span> Fleksibel, custom LB. <span class="badge-red">Con:</span> Client harus implement discovery logic.</p>
+            <p><span class="badge-green">Pro:</span> ${t('Fleksibel, custom LB.', 'Flexible, custom LB.')} <span class="badge-red">Con:</span> ${t('Client harus implement discovery logic.', 'Client must implement discovery logic.')}</p>
         </div>
         <div class="card">
             <h4 style="color:var(--accent)">Server-Side Discovery</h4>
-            <p>Request melalui load balancer/router yang query registry secara otomatis.</p>
+            <p>${t('Request melalui load balancer/router yang query registry secara otomatis.', 'Requests go through a load balancer/router that queries the registry automatically.')}</p>
             <div class="flow-diagram">
                 <div class="flow-node">Client</div>
                 <div class="flow-arrow">&rarr;</div>
@@ -344,7 +344,7 @@ sections['architecture'] = () => `
                 <div class="flow-arrow">&rarr; query &rarr;</div>
                 <div class="flow-node">Registry</div>
             </div>
-            <p><span class="badge-green">Pro:</span> Client sederhana. <span class="badge-red">Con:</span> LB jadi bottleneck potensial.</p>
+            <p><span class="badge-green">Pro:</span> ${t('Client sederhana.', 'Simple client.')} <span class="badge-red">Con:</span> ${t('LB jadi bottleneck potensial.', 'LB becomes a potential bottleneck.')}</p>
         </div>
     </div>
 </div>
@@ -352,7 +352,7 @@ sections['architecture'] = () => `
 <!-- Circuit Breaker -->
 <div class="card animate-in">
     <h3 style="color:var(--red)">Circuit Breaker Pattern</h3>
-    <p>Pattern untuk mencegah <strong>cascading failure</strong> di distributed system. Seperti circuit breaker listrik &mdash; memutus koneksi ketika downstream service bermasalah agar tidak membebani sistem keseluruhan.</p>
+    <p>${t('Pattern untuk mencegah <strong>cascading failure</strong> di distributed system. Seperti circuit breaker listrik &mdash; memutus koneksi ketika downstream service bermasalah agar tidak membebani sistem keseluruhan.', 'A pattern to prevent <strong>cascading failures</strong> in distributed systems. Like an electrical circuit breaker &mdash; it cuts the connection when a downstream service has problems to avoid overloading the entire system.')}</p>
 
     <div class="flow-diagram">
         <div class="flow-node" style="border-color:var(--green)">CLOSED<br><small>Normal flow</small></div>
@@ -365,32 +365,32 @@ sections['architecture'] = () => `
     <div class="step-list">
         <div class="step-item">
             <div class="step-num" style="background:var(--green)">1</div>
-            <div class="step-text"><strong>CLOSED (Normal)</strong> &mdash; Request diteruskan ke downstream service. Counter melacak failure rate.</div>
+            <div class="step-text"><strong>CLOSED (Normal)</strong> &mdash; ${t('Request diteruskan ke downstream service. Counter melacak failure rate.', 'Requests are forwarded to the downstream service. Counter tracks failure rate.')}</div>
         </div>
         <div class="step-item">
             <div class="step-num" style="background:var(--red)">2</div>
-            <div class="step-text"><strong>OPEN (Tripped)</strong> &mdash; Failure threshold terlampaui. Semua request langsung di-reject (fail fast) tanpa memanggil downstream. Menghemat resource dan mencegah cascading.</div>
+            <div class="step-text"><strong>OPEN (Tripped)</strong> &mdash; ${t('Failure threshold terlampaui. Semua request langsung di-reject (fail fast) tanpa memanggil downstream. Menghemat resource dan mencegah cascading.', 'Failure threshold exceeded. All requests are immediately rejected (fail fast) without calling downstream. Saves resources and prevents cascading.')}</div>
         </div>
         <div class="step-item">
             <div class="step-num" style="background:var(--yellow)">3</div>
-            <div class="step-text"><strong>HALF-OPEN (Testing)</strong> &mdash; Setelah timeout, kirim satu request percobaan. Jika sukses &rarr; kembali ke CLOSED. Jika gagal &rarr; kembali ke OPEN.</div>
+            <div class="step-text"><strong>HALF-OPEN (Testing)</strong> &mdash; ${t('Setelah timeout, kirim satu request percobaan. Jika sukses &rarr; kembali ke CLOSED. Jika gagal &rarr; kembali ke OPEN.', 'After timeout, send one test request. If successful &rarr; return to CLOSED. If failed &rarr; return to OPEN.')}</div>
         </div>
     </div>
 
     <div class="info-box">
-        <strong>Tools populer:</strong> Resilience4j (Java), Hystrix (legacy), Polly (.NET), gobreaker (Go). Di Kubernetes, Istio service mesh bisa handle circuit breaking di level infrastruktur.
+        <strong>${t('Tools populer:', 'Popular tools:')}</strong> Resilience4j (Java), Hystrix (legacy), Polly (.NET), gobreaker (Go). ${t('Di Kubernetes, Istio service mesh bisa handle circuit breaking di level infrastruktur.', 'In Kubernetes, Istio service mesh can handle circuit breaking at the infrastructure level.')}
     </div>
 </div>
 
 <!-- Saga Pattern -->
 <div class="card animate-in">
     <h3 style="color:var(--accent3)">Saga Pattern &mdash; Distributed Transactions</h3>
-    <p>Dalam microservices, kita tidak bisa menggunakan ACID transaction tradisional karena setiap service punya database sendiri. <strong>Saga pattern</strong> mengelola transaksi terdistribusi sebagai serangkaian transaksi lokal, di mana setiap langkah memiliki <em>compensating transaction</em> untuk rollback.</p>
+    <p>${t('Dalam microservices, kita tidak bisa menggunakan ACID transaction tradisional karena setiap service punya database sendiri. <strong>Saga pattern</strong> mengelola transaksi terdistribusi sebagai serangkaian transaksi lokal, di mana setiap langkah memiliki <em>compensating transaction</em> untuk rollback.', 'In microservices, we cannot use traditional ACID transactions because each service has its own database. <strong>Saga pattern</strong> manages distributed transactions as a series of local transactions, where each step has a <em>compensating transaction</em> for rollback.')}</p>
 
     <div class="card-grid">
         <div class="card">
             <h4 style="color:var(--accent)">Choreography-Based Saga</h4>
-            <p>Setiap service publish event setelah menyelesaikan transaksi lokal. Service berikutnya listen event tersebut.</p>
+            <p>${t('Setiap service publish event setelah menyelesaikan transaksi lokal. Service berikutnya listen event tersebut.', 'Each service publishes an event after completing its local transaction. The next service listens for that event.')}</p>
             <div class="pipeline">
                 <div class="pipeline-stage" style="border-color:var(--green)">
                     <div class="stage-title">1. Create Order</div>
@@ -409,11 +409,11 @@ sections['architecture'] = () => `
                     <div class="stage-desc">Order Svc &rarr; status = CONFIRMED</div>
                 </div>
             </div>
-            <p><span class="badge-red">Kompensasi:</span> Jika Payment gagal &rarr; Inventory Svc emit StockReleased &rarr; Order Svc emit OrderCancelled</p>
+            <p><span class="badge-red">${t('Kompensasi:', 'Compensation:')}</span> ${t('Jika Payment gagal &rarr; Inventory Svc emit StockReleased &rarr; Order Svc emit OrderCancelled', 'If Payment fails &rarr; Inventory Svc emits StockReleased &rarr; Order Svc emits OrderCancelled')}</p>
         </div>
         <div class="card">
             <h4 style="color:var(--accent)">Orchestration-Based Saga</h4>
-            <p>Satu <strong>Saga Orchestrator</strong> mengontrol urutan langkah dan menangani kompensasi jika terjadi kegagalan.</p>
+            <p>${t('Satu <strong>Saga Orchestrator</strong> mengontrol urutan langkah dan menangani kompensasi jika terjadi kegagalan.', 'A single <strong>Saga Orchestrator</strong> controls the sequence of steps and handles compensation if a failure occurs.')}</p>
             <div class="flow-diagram">
                 <div class="flow-node highlight">Saga Orchestrator</div>
             </div>
@@ -422,7 +422,7 @@ sections['architecture'] = () => `
                 <div class="flow-node">Inventory Svc</div>
                 <div class="flow-node">Payment Svc</div>
             </div>
-            <p><span class="badge-green">Pro:</span> Mudah di-debug, flow jelas. <span class="badge-red">Con:</span> Orchestrator bisa jadi single point of failure.</p>
+            <p><span class="badge-green">Pro:</span> ${t('Mudah di-debug, flow jelas.', 'Easy to debug, clear flow.')} <span class="badge-red">Con:</span> ${t('Orchestrator bisa jadi single point of failure.', 'Orchestrator can become a single point of failure.')}</p>
         </div>
     </div>
 </div>
@@ -430,7 +430,7 @@ sections['architecture'] = () => `
 <!-- Event-Driven Architecture -->
 <div class="card animate-in">
     <h3 style="color:var(--yellow)">Event-Driven Architecture (EDA)</h3>
-    <p>Arsitektur di mana komponen berkomunikasi melalui <strong>events</strong> (fakta yang telah terjadi). Service memproduksi dan mengkonsumsi events secara asynchronous melalui message broker.</p>
+    <p>${t('Arsitektur di mana komponen berkomunikasi melalui <strong>events</strong> (fakta yang telah terjadi). Service memproduksi dan mengkonsumsi events secara asynchronous melalui message broker.', 'An architecture where components communicate through <strong>events</strong> (facts that have occurred). Services produce and consume events asynchronously through a message broker.')}</p>
 
     <div class="card-grid-3">
         <div class="card">

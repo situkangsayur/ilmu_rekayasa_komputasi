@@ -7,7 +7,7 @@ sections['crud-frontend'] = () => `
 <section class="animate-in">
 
 <h1 class="section-title">Frontend CRUD: Next.js &amp; Nuxt.js</h1>
-<p class="section-subtitle">Panduan lengkap membangun aplikasi CRUD modern dengan Next.js (React) dan Nuxt.js (Vue) &mdash; Server Components, Server Actions, SSR, TypeScript, dan Best Practices</p>
+<p class="section-subtitle">${t('Panduan lengkap membangun aplikasi CRUD modern dengan Next.js (React) dan Nuxt.js (Vue) &mdash; Server Components, Server Actions, SSR, TypeScript, dan Best Practices', 'A comprehensive guide to building modern CRUD applications with Next.js (React) and Nuxt.js (Vue) &mdash; Server Components, Server Actions, SSR, TypeScript, and Best Practices')}</p>
 
 <!-- ============================================================
      BAGIAN 1: OVERVIEW & COMPARISON
@@ -15,17 +15,17 @@ sections['crud-frontend'] = () => `
 <h2 class="section-title animate-in" style="font-size:1.5rem;">1. Next.js vs Nuxt.js &mdash; Overview</h2>
 
 <div class="card animate-in">
-    <h3>Mengapa Next.js dan Nuxt.js?</h3>
-    <p>Kedua framework ini adalah <strong>meta-framework</strong> yang dibangun di atas library UI populer (React dan Vue). Mereka menyediakan fitur-fitur yang tidak tersedia di React/Vue vanilla: <em>file-based routing</em>, <em>server-side rendering</em>, <em>API routes</em>, dan banyak lagi.</p>
+    <h3>${t('Mengapa Next.js dan Nuxt.js?', 'Why Next.js and Nuxt.js?')}</h3>
+    <p>${t('Kedua framework ini adalah <strong>meta-framework</strong> yang dibangun di atas library UI populer (React dan Vue). Mereka menyediakan fitur-fitur yang tidak tersedia di React/Vue vanilla: <em>file-based routing</em>, <em>server-side rendering</em>, <em>API routes</em>, dan banyak lagi.', 'Both of these frameworks are <strong>meta-frameworks</strong> built on top of popular UI libraries (React and Vue). They provide features not available in vanilla React/Vue: <em>file-based routing</em>, <em>server-side rendering</em>, <em>API routes</em>, and much more.')}</p>
 
     <div class="info-box">
-        <strong>Meta-Framework</strong> = Framework yang dibangun di atas framework lain. Next.js dibangun di atas React, Nuxt.js dibangun di atas Vue. Mereka menambahkan fitur seperti routing, SSR, data fetching, dan build tooling yang tidak disediakan oleh React/Vue secara default.
+        <strong>Meta-Framework</strong> = ${t('Framework yang dibangun di atas framework lain. Next.js dibangun di atas React, Nuxt.js dibangun di atas Vue. Mereka menambahkan fitur seperti routing, SSR, data fetching, dan build tooling yang tidak disediakan oleh React/Vue secara default.', 'A framework built on top of another framework. Next.js is built on React, Nuxt.js is built on Vue. They add features like routing, SSR, data fetching, and build tooling that are not provided by React/Vue by default.')}
     </div>
 
     <div class="table-wrapper">
     <table>
     <tr>
-        <th>Aspek</th>
+        <th>${t('Aspek', 'Aspect')}</th>
         <th>Next.js 14+</th>
         <th>Nuxt.js 3</th>
     </tr>
@@ -76,8 +76,8 @@ sections['crud-frontend'] = () => `
     </tr>
     <tr>
         <td><strong>Auto-imports</strong></td>
-        <td>Tidak (manual import)</td>
-        <td>Ya (components, composables, utils)</td>
+        <td>${t('Tidak (manual import)', 'No (manual import)')}</td>
+        <td>${t('Ya (components, composables, utils)', 'Yes (components, composables, utils)')}</td>
     </tr>
     <tr>
         <td><strong>API Layer</strong></td>
@@ -99,8 +99,8 @@ sections['crud-frontend'] = () => `
 <h2 class="section-title animate-in" style="font-size:1.5rem;">2. Next.js CRUD &mdash; Project Structure</h2>
 
 <div class="card animate-in">
-    <h3>Struktur Proyek Next.js (App Router + TypeScript)</h3>
-    <p>Next.js 14+ menggunakan <strong>App Router</strong> yang berbasis React Server Components. Setiap file dalam folder <code>app/</code> secara default adalah Server Component &mdash; dirender di server tanpa JavaScript di client.</p>
+    <h3>${t('Struktur Proyek Next.js (App Router + TypeScript)', 'Next.js Project Structure (App Router + TypeScript)')}</h3>
+    <p>${t('Next.js 14+ menggunakan <strong>App Router</strong> yang berbasis React Server Components. Setiap file dalam folder <code>app/</code> secara default adalah Server Component &mdash; dirender di server tanpa JavaScript di client.', 'Next.js 14+ uses the <strong>App Router</strong> based on React Server Components. Every file in the <code>app/</code> folder is a Server Component by default &mdash; rendered on the server without JavaScript on the client.')}</p>
 
     <div class="code-block">
 <span class="cm">// Struktur folder Next.js CRUD App</span>
@@ -144,12 +144,12 @@ nextjs-crud/
 └── package.json</div>
 
     <div class="warn-box">
-        <strong>Konvensi Penting:</strong>
+        <strong>${t('Konvensi Penting:', 'Important Conventions:')}</strong>
         <ul style="margin:0.5rem 0 0 1.2rem">
-            <li><code>page.tsx</code> &mdash; Membuat route yang bisa diakses</li>
-            <li><code>layout.tsx</code> &mdash; Shared layout (tidak re-render saat navigasi)</li>
-            <li><code>loading.tsx</code> &mdash; Loading UI otomatis (Suspense boundary)</li>
-            <li><code>error.tsx</code> &mdash; Error boundary otomatis</li>
+            <li><code>page.tsx</code> &mdash; ${t('Membuat route yang bisa diakses', 'Creates an accessible route')}</li>
+            <li><code>layout.tsx</code> &mdash; ${t('Shared layout (tidak re-render saat navigasi)', 'Shared layout (does not re-render on navigation)')}</li>
+            <li><code>loading.tsx</code> &mdash; ${t('Loading UI otomatis (Suspense boundary)', 'Automatic loading UI (Suspense boundary)')}</li>
+            <li><code>error.tsx</code> &mdash; ${t('Error boundary otomatis', 'Automatic error boundary')}</li>
             <li><code>not-found.tsx</code> &mdash; 404 page</li>
             <li><code>[param]</code> &mdash; Dynamic route segment</li>
         </ul>
@@ -162,8 +162,8 @@ nextjs-crud/
 <h2 class="section-title animate-in" style="font-size:1.5rem;">3. Database Setup &mdash; Prisma Schema</h2>
 
 <div class="card animate-in">
-    <h3>Prisma Schema (Shared antara Next.js dan Nuxt.js)</h3>
-    <p>Prisma adalah ORM type-safe untuk TypeScript. Schema berikut mendefinisikan model User yang akan kita gunakan untuk CRUD.</p>
+    <h3>${t('Prisma Schema (Shared antara Next.js dan Nuxt.js)', 'Prisma Schema (Shared between Next.js and Nuxt.js)')}</h3>
+    <p>${t('Prisma adalah ORM type-safe untuk TypeScript. Schema berikut mendefinisikan model User yang akan kita gunakan untuk CRUD.', 'Prisma is a type-safe ORM for TypeScript. The following schema defines the User model that we will use for CRUD.')}</p>
 
     <div class="code-block">
 <span class="cm">// prisma/schema.prisma</span>
@@ -213,7 +213,7 @@ datasource db {
 
 <div class="card animate-in">
     <h3>Prisma Client Singleton</h3>
-    <p>Di development, hot-reload bisa membuat banyak instance Prisma. Pattern singleton mencegah hal ini.</p>
+    <p>${t('Di development, hot-reload bisa membuat banyak instance Prisma. Pattern singleton mencegah hal ini.', 'In development, hot-reload can create many Prisma instances. The singleton pattern prevents this.')}</p>
 
     <div class="code-block">
 <span class="cm">// lib/db.ts</span>
@@ -237,7 +237,7 @@ datasource db {
 
 <div class="card animate-in">
     <h3>Zod Validation Schemas</h3>
-    <p>Zod digunakan untuk validasi data di <strong>client dan server</strong> &mdash; satu schema untuk keduanya. Ini memastikan data selalu valid sebelum masuk ke database.</p>
+    <p>${t('Zod digunakan untuk validasi data di <strong>client dan server</strong> &mdash; satu schema untuk keduanya. Ini memastikan data selalu valid sebelum masuk ke database.', 'Zod is used for data validation on both <strong>client and server</strong> &mdash; one schema for both. This ensures data is always valid before entering the database.')}</p>
 
     <div class="code-block">
 <span class="cm">// lib/validations.ts</span>
@@ -277,11 +277,11 @@ datasource db {
 <h2 class="section-title animate-in" style="font-size:1.5rem;">4. Next.js Server Actions &mdash; CRUD Mutations</h2>
 
 <div class="card animate-in">
-    <h3>Server Actions: Create, Update, Delete</h3>
-    <p>Server Actions adalah fungsi async yang berjalan di <strong>server</strong>. Mereka bisa dipanggil langsung dari Client Components melalui form action atau event handler. Tidak perlu membuat API route terpisah!</p>
+    <h3>${t('Server Actions: Create, Update, Delete', 'Server Actions: Create, Update, Delete')}</h3>
+    <p>${t('Server Actions adalah fungsi async yang berjalan di <strong>server</strong>. Mereka bisa dipanggil langsung dari Client Components melalui form action atau event handler. Tidak perlu membuat API route terpisah!', 'Server Actions are async functions that run on the <strong>server</strong>. They can be called directly from Client Components via form action or event handler. No need to create separate API routes!')}</p>
 
     <div class="info-box">
-        <strong>Server Actions vs API Routes:</strong> Server Actions lebih sederhana &mdash; tidak perlu fetch(), tidak perlu endpoint URL, langsung panggil fungsi. Next.js otomatis membuat POST endpoint di balik layar dan menangani serialisasi data.
+        <strong>Server Actions vs API Routes:</strong> ${t('Server Actions lebih sederhana &mdash; tidak perlu fetch(), tidak perlu endpoint URL, langsung panggil fungsi. Next.js otomatis membuat POST endpoint di balik layar dan menangani serialisasi data.', 'Server Actions are simpler &mdash; no need for fetch(), no endpoint URL needed, just call the function directly. Next.js automatically creates a POST endpoint behind the scenes and handles data serialization.')}
     </div>
 
     <div class="code-block">
@@ -401,13 +401,13 @@ datasource db {
 }</div>
 
     <div class="warn-box">
-        <strong>Penting tentang Server Actions:</strong>
+        <strong>${t('Penting tentang Server Actions:', 'Important about Server Actions:')}</strong>
         <ul style="margin:0.5rem 0 0 1.2rem">
-            <li><code>"use server"</code> di baris pertama file menandai SEMUA export sebagai Server Action</li>
-            <li>Server Actions bisa menerima <code>FormData</code> (dari form) atau argumen biasa (dari event handler)</li>
-            <li><code>revalidatePath()</code> membersihkan cache Next.js sehingga data terbaru ditampilkan</li>
-            <li><code>redirect()</code> harus dipanggil di LUAR try/catch (karena redirect melempar error khusus)</li>
-            <li>Server Actions otomatis menangani CSRF protection</li>
+            <li>${t('<code>"use server"</code> di baris pertama file menandai SEMUA export sebagai Server Action', '<code>"use server"</code> at the first line of the file marks ALL exports as Server Actions')}</li>
+            <li>${t('Server Actions bisa menerima <code>FormData</code> (dari form) atau argumen biasa (dari event handler)', 'Server Actions can receive <code>FormData</code> (from forms) or regular arguments (from event handlers)')}</li>
+            <li>${t('<code>revalidatePath()</code> membersihkan cache Next.js sehingga data terbaru ditampilkan', '<code>revalidatePath()</code> clears the Next.js cache so the latest data is displayed')}</li>
+            <li>${t('<code>redirect()</code> harus dipanggil di LUAR try/catch (karena redirect melempar error khusus)', '<code>redirect()</code> must be called OUTSIDE try/catch (because redirect throws a special error)')}</li>
+            <li>${t('Server Actions otomatis menangani CSRF protection', 'Server Actions automatically handle CSRF protection')}</li>
         </ul>
     </div>
 </div>
@@ -418,8 +418,8 @@ datasource db {
 <h2 class="section-title animate-in" style="font-size:1.5rem;">5. Next.js &mdash; Read (List Users)</h2>
 
 <div class="card animate-in">
-    <h3>Server Component: List Users Page</h3>
-    <p>Halaman list menggunakan <strong>Server Component</strong> &mdash; data di-fetch langsung dari database tanpa API call. Ini lebih cepat dan lebih aman karena query database tidak pernah sampai ke client.</p>
+    <h3>${t('Server Component: Halaman List Users', 'Server Component: List Users Page')}</h3>
+    <p>${t('Halaman list menggunakan <strong>Server Component</strong> &mdash; data di-fetch langsung dari database tanpa API call. Ini lebih cepat dan lebih aman karena query database tidak pernah sampai ke client.', 'The list page uses a <strong>Server Component</strong> &mdash; data is fetched directly from the database without an API call. This is faster and more secure because the database query never reaches the client.')}</p>
 
     <div class="code-block">
 <span class="cm">// app/users/page.tsx (Server Component - default)</span>
@@ -508,7 +508,7 @@ datasource db {
 
 <div class="card animate-in">
     <h3>Loading State: loading.tsx</h3>
-    <p>Next.js secara otomatis membungkus page dengan <code>Suspense</code>. Buat file <code>loading.tsx</code> untuk menampilkan skeleton saat data loading.</p>
+    <p>${t('Next.js secara otomatis membungkus page dengan <code>Suspense</code>. Buat file <code>loading.tsx</code> untuk menampilkan skeleton saat data loading.', 'Next.js automatically wraps the page with <code>Suspense</code>. Create a <code>loading.tsx</code> file to display a skeleton while data is loading.')}</p>
 
     <div class="code-block">
 <span class="cm">// app/users/loading.tsx</span>
@@ -567,8 +567,8 @@ datasource db {
 <h2 class="section-title animate-in" style="font-size:1.5rem;">6. Next.js &mdash; Create &amp; Edit Forms</h2>
 
 <div class="card animate-in">
-    <h3>Reusable UserForm Component (Client Component)</h3>
-    <p>Form ini digunakan untuk Create dan Edit. Menggunakan <code>useFormState</code> untuk menangani Server Action response dan <code>useFormStatus</code> untuk loading state tombol submit.</p>
+    <h3>${t('Komponen UserForm yang Dapat Digunakan Ulang (Client Component)', 'Reusable UserForm Component (Client Component)')}</h3>
+    <p>${t('Form ini digunakan untuk Create dan Edit. Menggunakan <code>useFormState</code> untuk menangani Server Action response dan <code>useFormStatus</code> untuk loading state tombol submit.', 'This form is used for both Create and Edit. It uses <code>useFormState</code> to handle Server Action responses and <code>useFormStatus</code> for the submit button loading state.')}</p>
 
     <div class="code-block">
 <span class="cm">// components/UserForm.tsx</span>
@@ -755,7 +755,7 @@ datasource db {
 }</div>
 
     <div class="info-box">
-        <strong>Pattern: .bind() untuk Server Actions</strong> &mdash; Ketika Server Action membutuhkan parameter tambahan (seperti ID), gunakan <code>.bind(null, id)</code> untuk membuat versi baru dari action yang sudah ter-bind dengan ID. Ini aman karena ID dikirim sebagai argumen terenkripsi, bukan sebagai hidden input yang bisa dimanipulasi.
+        <strong>${t('Pattern: .bind() untuk Server Actions', 'Pattern: .bind() for Server Actions')}</strong> &mdash; ${t('Ketika Server Action membutuhkan parameter tambahan (seperti ID), gunakan <code>.bind(null, id)</code> untuk membuat versi baru dari action yang sudah ter-bind dengan ID. Ini aman karena ID dikirim sebagai argumen terenkripsi, bukan sebagai hidden input yang bisa dimanipulasi.', 'When a Server Action needs additional parameters (like an ID), use <code>.bind(null, id)</code> to create a new version of the action that is already bound with the ID. This is secure because the ID is sent as an encrypted argument, not as a hidden input that can be manipulated.')}
     </div>
 </div>
 
@@ -765,7 +765,7 @@ datasource db {
 <h2 class="section-title animate-in" style="font-size:1.5rem;">7. Next.js &mdash; Delete &amp; Optimistic Updates</h2>
 
 <div class="card animate-in">
-    <h3>Delete Button dengan Konfirmasi</h3>
+    <h3>${t('Delete Button dengan Konfirmasi', 'Delete Button with Confirmation')}</h3>
 
     <div class="code-block">
 <span class="cm">// components/DeleteButton.tsx</span>
@@ -806,8 +806,8 @@ datasource db {
 </div>
 
 <div class="card animate-in">
-    <h3>Optimistic Updates dengan useOptimistic</h3>
-    <p><code>useOptimistic</code> memungkinkan UI diperbarui <strong>sebelum</strong> Server Action selesai, memberikan pengalaman yang lebih responsif. Jika action gagal, React otomatis revert ke state sebelumnya.</p>
+    <h3>${t('Optimistic Updates dengan useOptimistic', 'Optimistic Updates with useOptimistic')}</h3>
+    <p>${t('<code>useOptimistic</code> memungkinkan UI diperbarui <strong>sebelum</strong> Server Action selesai, memberikan pengalaman yang lebih responsif. Jika action gagal, React otomatis revert ke state sebelumnya.', '<code>useOptimistic</code> allows the UI to be updated <strong>before</strong> the Server Action completes, providing a more responsive experience. If the action fails, React automatically reverts to the previous state.')}</p>
 
     <div class="code-block">
 <span class="cm">// components/UserTable.tsx (dengan Optimistic Delete)</span>
@@ -901,7 +901,7 @@ datasource db {
 
 <div class="card animate-in">
     <h3>Debounced Search with URL Params</h3>
-    <p>Search menggunakan URL search params (bukan local state) sehingga bisa di-bookmark dan shareable. Menggunakan <strong>debounce</strong> agar tidak mengirim request setiap keystroke.</p>
+    <p>${t('Search menggunakan URL search params (bukan local state) sehingga bisa di-bookmark dan shareable. Menggunakan <strong>debounce</strong> agar tidak mengirim request setiap keystroke.', 'Search uses URL search params (not local state) so it can be bookmarked and shared. Uses <strong>debounce</strong> to avoid sending a request on every keystroke.')}</p>
 
     <div class="code-block">
 <span class="cm">// components/SearchFilter.tsx</span>
@@ -969,7 +969,7 @@ datasource db {
 
 <div class="card animate-in">
     <h3>Setup NextAuth.js v5 (Auth.js)</h3>
-    <p>NextAuth.js v5 (juga disebut Auth.js) menyediakan autentikasi yang terintegrasi dengan Next.js App Router, termasuk support untuk Server Components dan middleware.</p>
+    <p>${t('NextAuth.js v5 (juga disebut Auth.js) menyediakan autentikasi yang terintegrasi dengan Next.js App Router, termasuk support untuk Server Components dan middleware.', 'NextAuth.js v5 (also known as Auth.js) provides authentication integrated with the Next.js App Router, including support for Server Components and middleware.')}</p>
 
     <div class="code-block">
 <span class="cm">// lib/auth.ts</span>
@@ -1083,7 +1083,7 @@ datasource db {
 </div>
 
 <div class="card animate-in">
-    <h3>Session di Server Component</h3>
+    <h3>${t('Session di Server Component', 'Session in Server Component')}</h3>
 
     <div class="code-block">
 <span class="cm">// app/users/page.tsx - Menggunakan session di Server Component</span>
@@ -1118,8 +1118,8 @@ datasource db {
 <h2 class="section-title animate-in" style="font-size:1.5rem;">10. Next.js &mdash; API Routes (Route Handlers)</h2>
 
 <div class="card animate-in">
-    <h3>Route Handlers (untuk External API / Mobile)</h3>
-    <p>Jika aplikasi Anda juga dikonsumsi oleh mobile app atau pihak ketiga, gunakan Route Handlers. Untuk internal CRUD, Server Actions lebih disarankan.</p>
+    <h3>${t('Route Handlers (untuk External API / Mobile)', 'Route Handlers (for External API / Mobile)')}</h3>
+    <p>${t('Jika aplikasi Anda juga dikonsumsi oleh mobile app atau pihak ketiga, gunakan Route Handlers. Untuk internal CRUD, Server Actions lebih disarankan.', 'If your application is also consumed by mobile apps or third parties, use Route Handlers. For internal CRUD, Server Actions are recommended.')}</p>
 
     <div class="code-block">
 <span class="cm">// app/api/users/route.ts</span>
@@ -1189,33 +1189,33 @@ datasource db {
 <h2 class="section-title animate-in" style="font-size:1.5rem;">11. Next.js &mdash; Best Practices Checklist</h2>
 
 <div class="card animate-in">
-    <h3>Ringkasan Best Practices</h3>
+    <h3>${t('Ringkasan Best Practices', 'Best Practices Summary')}</h3>
 
     <div class="table-wrapper">
     <table>
     <tr>
         <th>Practice</th>
-        <th>Penjelasan</th>
+        <th>${t('Penjelasan', 'Description')}</th>
     </tr>
     <tr>
         <td><strong>Server Components by default</strong></td>
-        <td>Hanya tambahkan "use client" jika butuh interaktivitas (event handlers, hooks, browser APIs)</td>
+        <td>${t('Hanya tambahkan "use client" jika butuh interaktivitas (event handlers, hooks, browser APIs)', 'Only add "use client" if you need interactivity (event handlers, hooks, browser APIs)')}</td>
     </tr>
     <tr>
         <td><strong>Server Actions untuk mutations</strong></td>
-        <td>Lebih sederhana dan aman daripada API routes. Otomatis handle CSRF.</td>
+        <td>${t('Lebih sederhana dan aman daripada API routes. Otomatis handle CSRF.', 'Simpler and safer than API routes. Automatically handles CSRF.')}</td>
     </tr>
     <tr>
         <td><strong>Zod validasi dual</strong></td>
-        <td>Validasi di client (UX cepat) DAN server (keamanan). Satu schema untuk keduanya.</td>
+        <td>${t('Validasi di client (UX cepat) DAN server (keamanan). Satu schema untuk keduanya.', 'Validation on client (fast UX) AND server (security). One schema for both.')}</td>
     </tr>
     <tr>
         <td><strong>Prisma type-safe DB</strong></td>
-        <td>Auto-generated types dari schema. Typo = compile error, bukan runtime bug.</td>
+        <td>${t('Auto-generated types dari schema. Typo = compile error, bukan runtime bug.', 'Auto-generated types from schema. Typo = compile error, not runtime bug.')}</td>
     </tr>
     <tr>
         <td><strong>loading.tsx + error.tsx</strong></td>
-        <td>Setiap route segment punya loading dan error state built-in.</td>
+        <td>${t('Setiap route segment punya loading dan error state built-in.', 'Every route segment has built-in loading and error states.')}</td>
     </tr>
     <tr>
         <td><strong>URL-based state</strong></td>
@@ -1223,19 +1223,19 @@ datasource db {
     </tr>
     <tr>
         <td><strong>Optimistic updates</strong></td>
-        <td>useOptimistic untuk UX responsif. Auto-revert jika gagal.</td>
+        <td>${t('useOptimistic untuk UX responsif. Auto-revert jika gagal.', 'useOptimistic for responsive UX. Auto-revert on failure.')}</td>
     </tr>
     <tr>
         <td><strong>Revalidation</strong></td>
-        <td>revalidatePath() setelah mutation. Jangan lupa revalidate semua affected routes.</td>
+        <td>${t('revalidatePath() setelah mutation. Jangan lupa revalidate semua affected routes.', 'revalidatePath() after mutation. Don\'t forget to revalidate all affected routes.')}</td>
     </tr>
     <tr>
         <td><strong>Middleware auth</strong></td>
-        <td>Protect routes di edge level, sebelum page render. Efisien.</td>
+        <td>${t('Protect routes di edge level, sebelum page render. Efisien.', 'Protect routes at edge level, before page render. Efficient.')}</td>
     </tr>
     <tr>
         <td><strong>Tailwind + shadcn/ui</strong></td>
-        <td>UI konsisten, accessible, customizable. Copy-paste components, bukan dependency.</td>
+        <td>${t('UI konsisten, accessible, customizable. Copy-paste components, bukan dependency.', 'Consistent, accessible, customizable UI. Copy-paste components, not a dependency.')}</td>
     </tr>
     </table>
     </div>
@@ -1247,8 +1247,8 @@ datasource db {
 <h2 class="section-title animate-in" style="font-size:1.5rem;">12. Nuxt.js 3 CRUD &mdash; Project Structure</h2>
 
 <div class="card animate-in">
-    <h3>Struktur Proyek Nuxt.js 3 (TypeScript)</h3>
-    <p>Nuxt.js 3 menggunakan <strong>auto-imports</strong> secara agresif &mdash; components, composables, dan utils tidak perlu di-import manual. Nuxt juga memisahkan server code secara jelas dalam folder <code>server/</code>.</p>
+    <h3>${t('Struktur Proyek Nuxt.js 3 (TypeScript)', 'Nuxt.js 3 Project Structure (TypeScript)')}</h3>
+    <p>${t('Nuxt.js 3 menggunakan <strong>auto-imports</strong> secara agresif &mdash; components, composables, dan utils tidak perlu di-import manual. Nuxt juga memisahkan server code secara jelas dalam folder <code>server/</code>.', 'Nuxt.js 3 uses <strong>auto-imports</strong> aggressively &mdash; components, composables, and utils do not need to be imported manually. Nuxt also clearly separates server code in the <code>server/</code> folder.')}</p>
 
     <div class="code-block">
 <span class="cm">// Struktur folder Nuxt.js 3 CRUD App</span>
@@ -1293,11 +1293,11 @@ nuxt-crud/
     <div class="info-box">
         <strong>Nuxt.js Auto-Imports:</strong>
         <ul style="margin:0.5rem 0 0 1.2rem">
-            <li><code>components/</code> &mdash; Semua .vue files otomatis tersedia sebagai komponen global</li>
-            <li><code>composables/</code> &mdash; Semua exported functions otomatis tersedia</li>
-            <li><code>utils/</code> &mdash; Semua exported functions otomatis tersedia</li>
-            <li>Vue APIs (<code>ref</code>, <code>computed</code>, <code>watch</code>) otomatis tersedia</li>
-            <li>Nuxt composables (<code>useFetch</code>, <code>useRoute</code>, <code>useState</code>) otomatis tersedia</li>
+            <li><code>components/</code> &mdash; ${t('Semua .vue files otomatis tersedia sebagai komponen global', 'All .vue files are automatically available as global components')}</li>
+            <li><code>composables/</code> &mdash; ${t('Semua exported functions otomatis tersedia', 'All exported functions are automatically available')}</li>
+            <li><code>utils/</code> &mdash; ${t('Semua exported functions otomatis tersedia', 'All exported functions are automatically available')}</li>
+            <li>${t('Vue APIs (<code>ref</code>, <code>computed</code>, <code>watch</code>) otomatis tersedia', 'Vue APIs (<code>ref</code>, <code>computed</code>, <code>watch</code>) are automatically available')}</li>
+            <li>${t('Nuxt composables (<code>useFetch</code>, <code>useRoute</code>, <code>useState</code>) otomatis tersedia', 'Nuxt composables (<code>useFetch</code>, <code>useRoute</code>, <code>useState</code>) are automatically available')}</li>
         </ul>
     </div>
 </div>
@@ -1308,8 +1308,8 @@ nuxt-crud/
 <h2 class="section-title animate-in" style="font-size:1.5rem;">13. Nuxt.js &mdash; Server API Routes (H3)</h2>
 
 <div class="card animate-in">
-    <h3>Nuxt Server Routes menggunakan H3</h3>
-    <p>Nuxt menggunakan <strong>Nitro</strong> sebagai server engine dan <strong>H3</strong> sebagai HTTP framework. Nama file menentukan HTTP method: <code>index.get.ts</code> = GET, <code>index.post.ts</code> = POST.</p>
+    <h3>${t('Nuxt Server Routes menggunakan H3', 'Nuxt Server Routes using H3')}</h3>
+    <p>${t('Nuxt menggunakan <strong>Nitro</strong> sebagai server engine dan <strong>H3</strong> sebagai HTTP framework. Nama file menentukan HTTP method: <code>index.get.ts</code> = GET, <code>index.post.ts</code> = POST.', 'Nuxt uses <strong>Nitro</strong> as the server engine and <strong>H3</strong> as the HTTP framework. The filename determines the HTTP method: <code>index.get.ts</code> = GET, <code>index.post.ts</code> = POST.')}</p>
 
     <div class="code-block">
 <span class="cm">// server/utils/db.ts - Prisma client untuk Nuxt server</span>
@@ -1486,7 +1486,7 @@ nuxt-crud/
 
 <div class="card animate-in">
     <h3>useUsers Composable</h3>
-    <p>Composables di Nuxt adalah fungsi reusable yang menggunakan Vue Composition API. Mereka otomatis di-import dari folder <code>composables/</code>.</p>
+    <p>${t('Composables di Nuxt adalah fungsi reusable yang menggunakan Vue Composition API. Mereka otomatis di-import dari folder <code>composables/</code>.', 'Composables in Nuxt are reusable functions that use the Vue Composition API. They are automatically imported from the <code>composables/</code> folder.')}</p>
 
     <div class="code-block">
 <span class="cm">// composables/useUsers.ts</span>
@@ -1580,9 +1580,9 @@ nuxt-crud/
     <div class="warn-box">
         <strong>useFetch vs $fetch:</strong>
         <ul style="margin:0.5rem 0 0 1.2rem">
-            <li><code>useFetch</code> &mdash; Untuk data fetching di components. SSR-friendly, auto-dedup, caching, reactive.</li>
-            <li><code>$fetch</code> &mdash; Untuk mutations (POST, PUT, DELETE). Seperti fetch() tapi dengan interceptors dan error handling bawaan Nuxt.</li>
-            <li><code>useAsyncData</code> &mdash; Versi lebih fleksibel dari useFetch. Bisa pakai data source apa saja.</li>
+            <li><code>useFetch</code> &mdash; ${t('Untuk data fetching di components. SSR-friendly, auto-dedup, caching, reactive.', 'For data fetching in components. SSR-friendly, auto-dedup, caching, reactive.')}</li>
+            <li><code>$fetch</code> &mdash; ${t('Untuk mutations (POST, PUT, DELETE). Seperti fetch() tapi dengan interceptors dan error handling bawaan Nuxt.', 'For mutations (POST, PUT, DELETE). Like fetch() but with interceptors and built-in Nuxt error handling.')}</li>
+            <li><code>useAsyncData</code> &mdash; ${t('Versi lebih fleksibel dari useFetch. Bisa pakai data source apa saja.', 'A more flexible version of useFetch. Can use any data source.')}</li>
         </ul>
     </div>
 </div>
@@ -1594,7 +1594,7 @@ nuxt-crud/
 
 <div class="card animate-in">
     <h3>List Users Page</h3>
-    <p>Halaman Vue menggunakan <code>&lt;script setup&gt;</code> syntax yang ringkas. Composables dari folder <code>composables/</code> otomatis tersedia tanpa import.</p>
+    <p>${t('Halaman Vue menggunakan <code>&lt;script setup&gt;</code> syntax yang ringkas. Composables dari folder <code>composables/</code> otomatis tersedia tanpa import.', 'Vue pages use the concise <code>&lt;script setup&gt;</code> syntax. Composables from the <code>composables/</code> folder are automatically available without import.')}</p>
 
     <div class="code-block">
 <span class="cm">&lt;!-- pages/users/index.vue --&gt;</span>
@@ -2145,7 +2145,7 @@ nuxt-crud/
 
 <div class="card animate-in">
     <h3>useFetch vs useAsyncData vs $fetch</h3>
-    <p>Tiga cara fetching data di Nuxt, masing-masing untuk use case berbeda:</p>
+    <p>${t('Tiga cara fetching data di Nuxt, masing-masing untuk use case berbeda:', 'Three ways to fetch data in Nuxt, each for different use cases:')}</p>
 
     <div class="table-wrapper">
     <table>
@@ -2157,21 +2157,21 @@ nuxt-crud/
     </tr>
     <tr>
         <td><code>useFetch</code></td>
-        <td>Ya</td>
-        <td>Ya (watch)</td>
-        <td>Data fetching di components/pages</td>
+        <td>${t('Ya', 'Yes')}</td>
+        <td>${t('Ya (watch)', 'Yes (watch)')}</td>
+        <td>${t('Data fetching di components/pages', 'Data fetching in components/pages')}</td>
     </tr>
     <tr>
         <td><code>useAsyncData</code></td>
-        <td>Ya</td>
-        <td>Ya</td>
-        <td>Custom async logic, multiple sources</td>
+        <td>${t('Ya', 'Yes')}</td>
+        <td>${t('Ya', 'Yes')}</td>
+        <td>${t('Custom async logic, multiple sources', 'Custom async logic, multiple sources')}</td>
     </tr>
     <tr>
         <td><code>$fetch</code></td>
-        <td>Tidak</td>
-        <td>Tidak</td>
-        <td>Mutations (POST, PUT, DELETE), event handlers</td>
+        <td>${t('Tidak', 'No')}</td>
+        <td>${t('Tidak', 'No')}</td>
+        <td>${t('Mutations (POST, PUT, DELETE), event handlers', 'Mutations (POST, PUT, DELETE), event handlers')}</td>
     </tr>
     </table>
     </div>
@@ -2243,34 +2243,34 @@ nuxt-crud/
 <h2 class="section-title animate-in" style="font-size:1.5rem;">18. Next.js vs Nuxt.js &mdash; Deep Comparison</h2>
 
 <div class="card animate-in">
-    <h3>Perbandingan Detail Pattern CRUD</h3>
+    <h3>${t('Perbandingan Detail Pattern CRUD', 'Detailed CRUD Pattern Comparison')}</h3>
 
     <div class="table-wrapper">
     <table>
     <tr>
-        <th style="width:20%">Operasi</th>
+        <th style="width:20%">${t('Operasi', 'Operation')}</th>
         <th style="width:40%">Next.js (App Router)</th>
         <th style="width:40%">Nuxt.js 3</th>
     </tr>
     <tr>
         <td><strong>READ (List)</strong></td>
-        <td>Server Component + async/await langsung query DB. Tidak perlu API endpoint.</td>
-        <td>useFetch() ke server API route. Server route query DB.</td>
+        <td>${t('Server Component + async/await langsung query DB. Tidak perlu API endpoint.', 'Server Component + async/await directly queries DB. No API endpoint needed.')}</td>
+        <td>${t('useFetch() ke server API route. Server route query DB.', 'useFetch() to server API route. Server route queries DB.')}</td>
     </tr>
     <tr>
         <td><strong>READ (Detail)</strong></td>
-        <td>Server Component dengan params. DB query langsung.</td>
-        <td>useFetch("/api/users/" + id) di page.</td>
+        <td>${t('Server Component dengan params. DB query langsung.', 'Server Component with params. Direct DB query.')}</td>
+        <td>${t('useFetch("/api/users/" + id) di page.', 'useFetch("/api/users/" + id) in page.')}</td>
     </tr>
     <tr>
         <td><strong>CREATE</strong></td>
-        <td>Server Action dipanggil dari form action. useFormState untuk error handling.</td>
-        <td>$fetch POST ke server API route. Manual error handling.</td>
+        <td>${t('Server Action dipanggil dari form action. useFormState untuk error handling.', 'Server Action called from form action. useFormState for error handling.')}</td>
+        <td>${t('$fetch POST ke server API route. Manual error handling.', '$fetch POST to server API route. Manual error handling.')}</td>
     </tr>
     <tr>
         <td><strong>UPDATE</strong></td>
-        <td>Server Action + .bind(null, id). Pre-fill dari Server Component.</td>
-        <td>$fetch PUT ke server API route. Pre-fill via useFetch.</td>
+        <td>${t('Server Action + .bind(null, id). Pre-fill dari Server Component.', 'Server Action + .bind(null, id). Pre-fill from Server Component.')}</td>
+        <td>${t('$fetch PUT ke server API route. Pre-fill via useFetch.', '$fetch PUT to server API route. Pre-fill via useFetch.')}</td>
     </tr>
     <tr>
         <td><strong>DELETE</strong></td>

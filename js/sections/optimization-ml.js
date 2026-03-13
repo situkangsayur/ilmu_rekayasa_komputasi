@@ -6,20 +6,20 @@ sections['optimization-ml'] = () => `
 <section class="animate-in">
 
 <!-- ==================== SECTION 1: OPTIMIZATION FUNDAMENTALS ==================== -->
-<h1 class="section-title">Optimasi, Machine Learning & LLM</h1>
-<p class="section-subtitle">Dari Gradient Descent hingga Large Language Models - Panduan Komprehensif</p>
+<h1 class="section-title">${t('Optimasi, Machine Learning & LLM', 'Optimization, Machine Learning & LLM')}</h1>
+<p class="section-subtitle">${t('Dari Gradient Descent hingga Large Language Models - Panduan Komprehensif', 'From Gradient Descent to Large Language Models - A Comprehensive Guide')}</p>
 
-<h2 class="section-title" style="font-size:1.6rem;">1. Dasar-Dasar Optimasi</h2>
+<h2 class="section-title" style="font-size:1.6rem;">${t('1. Dasar-Dasar Optimasi', '1. Optimization Fundamentals')}</h2>
 
 <div class="card">
-    <h3>Apa itu Optimasi?</h3>
-    <p>Optimasi adalah proses mencari nilai <strong>terbaik</strong> dari suatu fungsi objektif, baik itu <strong>minimum</strong> maupun <strong>maksimum</strong>. Dalam Machine Learning, hampir semua proses training adalah masalah optimasi: kita ingin <strong>meminimalkan loss function</strong> agar model memberikan prediksi yang akurat.</p>
+    <h3>${t('Apa itu Optimasi?', 'What is Optimization?')}</h3>
+    <p>${t('Optimasi adalah proses mencari nilai <strong>terbaik</strong> dari suatu fungsi objektif, baik itu <strong>minimum</strong> maupun <strong>maksimum</strong>. Dalam Machine Learning, hampir semua proses training adalah masalah optimasi: kita ingin <strong>meminimalkan loss function</strong> agar model memberikan prediksi yang akurat.', 'Optimization is the process of finding the <strong>best</strong> value of an objective function, whether it is a <strong>minimum</strong> or <strong>maximum</strong>. In Machine Learning, almost all training processes are optimization problems: we want to <strong>minimize the loss function</strong> so that the model provides accurate predictions.')}</p>
 
     <div class="info-box">
-        <strong>Minimasi vs Maksimasi:</strong> Secara matematis, maksimasi f(x) sama dengan minimasi -f(x). Jadi kita hanya perlu fokus pada satu bentuk. Dalam ML, kita hampir selalu melakukan <strong>minimasi</strong> terhadap fungsi loss/error.
+        <strong>${t('Minimasi vs Maksimasi:', 'Minimization vs Maximization:')}</strong> ${t('Secara matematis, maksimasi f(x) sama dengan minimasi -f(x). Jadi kita hanya perlu fokus pada satu bentuk. Dalam ML, kita hampir selalu melakukan <strong>minimasi</strong> terhadap fungsi loss/error.', 'Mathematically, maximizing f(x) is the same as minimizing -f(x). So we only need to focus on one form. In ML, we almost always perform <strong>minimization</strong> of the loss/error function.')}
     </div>
 
-    <p>Secara formal, masalah optimasi ditulis sebagai:</p>
+    <p>${t('Secara formal, masalah optimasi ditulis sebagai:', 'Formally, an optimization problem is written as:')}</p>
     <div class="code-block">
         <span class="cm">// Minimasi</span>
         min f(x) subject to g_i(x) &lt;= 0, h_j(x) = 0
@@ -32,8 +32,8 @@ sections['optimization-ml'] = () => `
 </div>
 
 <div class="card">
-    <h3>Gradient Descent - Visualisasi Interaktif</h3>
-    <p>Gradient Descent adalah algoritma optimasi paling fundamental dalam ML. Bayangkan sebuah bola yang menggelinding di permukaan kurva menuju titik terendah. Algoritma ini mengikuti arah <strong>gradien negatif</strong> (turunan) untuk mencari minimum.</p>
+    <h3>${t('Gradient Descent - Visualisasi Interaktif', 'Gradient Descent - Interactive Visualization')}</h3>
+    <p>${t('Gradient Descent adalah algoritma optimasi paling fundamental dalam ML. Bayangkan sebuah bola yang menggelinding di permukaan kurva menuju titik terendah. Algoritma ini mengikuti arah <strong>gradien negatif</strong> (turunan) untuk mencari minimum.', 'Gradient Descent is the most fundamental optimization algorithm in ML. Imagine a ball rolling down a curve surface toward the lowest point. This algorithm follows the direction of the <strong>negative gradient</strong> (derivative) to find the minimum.')}</p>
 
     <div class="code-block">
         <span class="cm">// Algoritma Gradient Descent</span>
@@ -47,33 +47,33 @@ sections['optimization-ml'] = () => `
     <div class="anim-container">
         <canvas id="canvas-gradient-descent" width="700" height="350" style="width:100%;max-width:700px;border-radius:10px;background:#0a0a1a;"></canvas>
         <div class="anim-controls">
-            <button class="anim-btn" id="btn-gd-start">Mulai Gradient Descent</button>
+            <button class="anim-btn" id="btn-gd-start">${t('Mulai Gradient Descent', 'Start Gradient Descent')}</button>
             <button class="anim-btn" id="btn-gd-reset">Reset</button>
             <label style="color:var(--text-secondary);margin-left:12px;">Learning Rate:
                 <select id="select-lr" style="background:var(--bg-card);color:var(--text-primary);border:1px solid var(--border);padding:4px 8px;border-radius:6px;">
-                    <option value="0.005">0.005 (Sangat Kecil)</option>
-                    <option value="0.02" selected>0.02 (Optimal)</option>
-                    <option value="0.06">0.06 (Besar)</option>
-                    <option value="0.12">0.12 (Terlalu Besar)</option>
+                    <option value="0.005">${t('0.005 (Sangat Kecil)', '0.005 (Very Small)')}</option>
+                    <option value="0.02" selected>${t('0.02 (Optimal)', '0.02 (Optimal)')}</option>
+                    <option value="0.06">${t('0.06 (Besar)', '0.06 (Large)')}</option>
+                    <option value="0.12">${t('0.12 (Terlalu Besar)', '0.12 (Too Large)')}</option>
                 </select>
             </label>
         </div>
     </div>
 
     <div class="warn-box">
-        <strong>Efek Learning Rate:</strong><br>
-        - <strong>Terlalu kecil:</strong> Konvergensi sangat lambat, bisa terjebak di local minimum.<br>
-        - <strong>Optimal:</strong> Konvergensi cepat dan stabil menuju global minimum.<br>
-        - <strong>Terlalu besar:</strong> Melompat-lompat (oscillation) dan mungkin tidak konvergen (diverge)!
+        <strong>${t('Efek Learning Rate:', 'Learning Rate Effects:')}</strong><br>
+        - <strong>${t('Terlalu kecil:', 'Too small:')}</strong> ${t('Konvergensi sangat lambat, bisa terjebak di local minimum.', 'Very slow convergence, can get stuck in a local minimum.')}<br>
+        - <strong>${t('Optimal:', 'Optimal:')}</strong> ${t('Konvergensi cepat dan stabil menuju global minimum.', 'Fast and stable convergence toward the global minimum.')}<br>
+        - <strong>${t('Terlalu besar:', 'Too large:')}</strong> ${t('Melompat-lompat (oscillation) dan mungkin tidak konvergen (diverge)!', 'Oscillates and may not converge (diverge)!')}
     </div>
 </div>
 
 <div class="card">
-    <h3>Convex vs Non-Convex Optimization</h3>
+    <h3>${t('Convex vs Non-Convex Optimization', 'Convex vs Non-Convex Optimization')}</h3>
     <div class="card-grid">
         <div class="card" style="background:var(--bg-tertiary);">
             <h4><span class="badge-green">Convex</span></h4>
-            <p>Fungsi convex hanya memiliki <strong>satu minimum global</strong>. Gradient descent dijamin menemukan solusi optimal. Contoh: Linear Regression, SVM (primal).</p>
+            <p>${t('Fungsi convex hanya memiliki <strong>satu minimum global</strong>. Gradient descent dijamin menemukan solusi optimal. Contoh: Linear Regression, SVM (primal).', 'A convex function has only <strong>one global minimum</strong>. Gradient descent is guaranteed to find the optimal solution. Examples: Linear Regression, SVM (primal).')}</p>
             <div class="code-block">
                 <span class="cm">// f(x) = x^2 (convex)</span>
                 <span class="cm">// Setiap local minimum = global minimum</span>
@@ -82,7 +82,7 @@ sections['optimization-ml'] = () => `
         </div>
         <div class="card" style="background:var(--bg-tertiary);">
             <h4><span class="badge-red">Non-Convex</span></h4>
-            <p>Fungsi non-convex memiliki banyak <strong>local minima</strong>, <strong>saddle points</strong>, dan <strong>plateaus</strong>. Neural Networks memiliki landscape loss yang sangat non-convex.</p>
+            <p>${t('Fungsi non-convex memiliki banyak <strong>local minima</strong>, <strong>saddle points</strong>, dan <strong>plateaus</strong>. Neural Networks memiliki landscape loss yang sangat non-convex.', 'Non-convex functions have many <strong>local minima</strong>, <strong>saddle points</strong>, and <strong>plateaus</strong>. Neural Networks have a highly non-convex loss landscape.')}</p>
             <div class="code-block">
                 <span class="cm">// f(x) = x^4 - 3x^2 + x (non-convex)</span>
                 <span class="cm">// Multiple local minima</span>
@@ -93,39 +93,39 @@ sections['optimization-ml'] = () => `
 </div>
 
 <div class="card">
-    <h3>Local Minima, Global Minima & Saddle Points</h3>
+    <h3>${t('Local Minima, Global Minima & Saddle Points', 'Local Minima, Global Minima & Saddle Points')}</h3>
     <div class="step-list">
         <div class="step-item">
             <div class="step-num">1</div>
-            <div class="step-text"><strong>Global Minimum:</strong> Titik dengan nilai fungsi paling rendah di seluruh domain. Ini adalah solusi <em>terbaik</em> yang ingin kita capai.</div>
+            <div class="step-text"><strong>Global Minimum:</strong> ${t('Titik dengan nilai fungsi paling rendah di seluruh domain. Ini adalah solusi <em>terbaik</em> yang ingin kita capai.', 'The point with the lowest function value across the entire domain. This is the <em>best</em> solution we want to achieve.')}</div>
         </div>
         <div class="step-item">
             <div class="step-num">2</div>
-            <div class="step-text"><strong>Local Minimum:</strong> Titik terendah di suatu neighborhood, tapi belum tentu yang terbaik secara global. Gradient descent bisa terjebak di sini.</div>
+            <div class="step-text"><strong>Local Minimum:</strong> ${t('Titik terendah di suatu neighborhood, tapi belum tentu yang terbaik secara global. Gradient descent bisa terjebak di sini.', 'The lowest point in a neighborhood, but not necessarily the best globally. Gradient descent can get stuck here.')}</div>
         </div>
         <div class="step-item">
             <div class="step-num">3</div>
-            <div class="step-text"><strong>Saddle Point:</strong> Titik di mana gradien = 0, tapi bukan minimum maupun maksimum. Di dimensi tinggi, saddle points jauh lebih umum daripada local minima.</div>
+            <div class="step-text"><strong>Saddle Point:</strong> ${t('Titik di mana gradien = 0, tapi bukan minimum maupun maksimum. Di dimensi tinggi, saddle points jauh lebih umum daripada local minima.', 'A point where the gradient = 0, but is neither a minimum nor a maximum. In high dimensions, saddle points are far more common than local minima.')}</div>
         </div>
         <div class="step-item">
             <div class="step-num">4</div>
-            <div class="step-text"><strong>Plateau:</strong> Daerah datar di mana gradien mendekati nol. Training bisa "stuck" di sini untuk waktu yang lama.</div>
+            <div class="step-text"><strong>Plateau:</strong> ${t('Daerah datar di mana gradien mendekati nol. Training bisa "stuck" di sini untuk waktu yang lama.', 'A flat region where the gradient approaches zero. Training can get "stuck" here for a long time.')}</div>
         </div>
     </div>
 
     <div class="info-box">
-        <strong>Fakta Menarik:</strong> Dalam jaringan neural berdimensi tinggi, kebanyakan titik kritis bukanlah local minima, melainkan saddle points. Teknik seperti <strong>momentum</strong> dan <strong>Adam optimizer</strong> membantu melewati saddle points.
+        <strong>${t('Fakta Menarik:', 'Interesting Fact:')}</strong> ${t('Dalam jaringan neural berdimensi tinggi, kebanyakan titik kritis bukanlah local minima, melainkan saddle points. Teknik seperti <strong>momentum</strong> dan <strong>Adam optimizer</strong> membantu melewati saddle points.', 'In high-dimensional neural networks, most critical points are not local minima, but rather saddle points. Techniques like <strong>momentum</strong> and <strong>Adam optimizer</strong> help overcome saddle points.')}
     </div>
 </div>
 
 <div class="card">
-    <h3>Varian Gradient Descent</h3>
+    <h3>${t('Varian Gradient Descent', 'Gradient Descent Variants')}</h3>
     <div class="table-wrapper">
         <table>
-            <tr><th>Varian</th><th>Batch Size</th><th>Kelebihan</th><th>Kekurangan</th></tr>
-            <tr><td><strong>Batch GD</strong></td><td>Semua data</td><td>Stabil, konvergensi smooth</td><td>Lambat untuk dataset besar, butuh memori besar</td></tr>
-            <tr><td><strong>Stochastic GD</strong></td><td>1 sample</td><td>Cepat update, bisa escape local minima</td><td>Noisy, tidak stabil</td></tr>
-            <tr><td><strong>Mini-batch GD</strong></td><td>32-512</td><td>Kompromi terbaik, efisien di GPU</td><td>Perlu tuning batch size</td></tr>
+            <tr><th>${t('Varian', 'Variant')}</th><th>Batch Size</th><th>${t('Kelebihan', 'Advantages')}</th><th>${t('Kekurangan', 'Disadvantages')}</th></tr>
+            <tr><td><strong>Batch GD</strong></td><td>${t('Semua data', 'All data')}</td><td>${t('Stabil, konvergensi smooth', 'Stable, smooth convergence')}</td><td>${t('Lambat untuk dataset besar, butuh memori besar', 'Slow for large datasets, requires large memory')}</td></tr>
+            <tr><td><strong>Stochastic GD</strong></td><td>1 sample</td><td>${t('Cepat update, bisa escape local minima', 'Fast updates, can escape local minima')}</td><td>${t('Noisy, tidak stabil', 'Noisy, unstable')}</td></tr>
+            <tr><td><strong>Mini-batch GD</strong></td><td>32-512</td><td>${t('Kompromi terbaik, efisien di GPU', 'Best compromise, GPU efficient')}</td><td>${t('Perlu tuning batch size', 'Requires batch size tuning')}</td></tr>
         </table>
     </div>
 
@@ -148,16 +148,16 @@ sections['optimization-ml'] = () => `
 </div>
 
 <!-- ==================== SECTION 2: P=NP & COMPLEXITY CONNECTION ==================== -->
-<h2 class="section-title" style="font-size:1.6rem;">2. Hubungan Optimasi dengan P=NP & Kompleksitas</h2>
+<h2 class="section-title" style="font-size:1.6rem;">${t('2. Hubungan Optimasi dengan P=NP & Kompleksitas', '2. Optimization and P=NP & Complexity Connection')}</h2>
 
 <div class="card">
-    <h3>Masalah Optimasi sebagai NP-Hard</h3>
-    <p>Banyak masalah optimasi praktis adalah <strong>NP-Hard</strong>, artinya tidak ada algoritma polynomial-time yang diketahui untuk menyelesaikannya secara eksak. Ini menghubungkan dunia optimasi langsung dengan teori kompleksitas P vs NP.</p>
+    <h3>${t('Masalah Optimasi sebagai NP-Hard', 'Optimization Problems as NP-Hard')}</h3>
+    <p>${t('Banyak masalah optimasi praktis adalah <strong>NP-Hard</strong>, artinya tidak ada algoritma polynomial-time yang diketahui untuk menyelesaikannya secara eksak. Ini menghubungkan dunia optimasi langsung dengan teori kompleksitas P vs NP.', 'Many practical optimization problems are <strong>NP-Hard</strong>, meaning no polynomial-time algorithm is known to solve them exactly. This directly connects the world of optimization with P vs NP complexity theory.')}</p>
 
     <div class="card-grid">
         <div class="card" style="background:var(--bg-tertiary);">
             <h4><span class="badge-red">NP-Hard</span> Travelling Salesman (TSP)</h4>
-            <p>Cari rute terpendek yang mengunjungi semua kota tepat sekali. Solusi brute force: O(n!). Untuk 20 kota saja = 2.4 triliun kemungkinan!</p>
+            <p>${t('Cari rute terpendek yang mengunjungi semua kota tepat sekali. Solusi brute force: O(n!). Untuk 20 kota saja = 2.4 triliun kemungkinan!', 'Find the shortest route visiting all cities exactly once. Brute force solution: O(n!). For just 20 cities = 2.4 trillion possibilities!')}</p>
             <div class="code-block">
                 <span class="cm"># TSP brute force - TIDAK PRAKTIS</span>
                 <span class="kw">from</span> itertools <span class="kw">import</span> permutations
@@ -173,7 +173,7 @@ sections['optimization-ml'] = () => `
         </div>
         <div class="card" style="background:var(--bg-tertiary);">
             <h4><span class="badge-red">NP-Hard</span> Knapsack Problem</h4>
-            <p>Pilih item dengan total value maksimal tanpa melebihi kapasitas. Versi 0/1 Knapsack adalah NP-Hard, tapi ada pseudo-polynomial DP solution.</p>
+            <p>${t('Pilih item dengan total value maksimal tanpa melebihi kapasitas. Versi 0/1 Knapsack adalah NP-Hard, tapi ada pseudo-polynomial DP solution.', 'Select items with maximum total value without exceeding capacity. The 0/1 Knapsack version is NP-Hard, but there is a pseudo-polynomial DP solution.')}</p>
             <div class="code-block">
                 <span class="cm"># 0/1 Knapsack - Dynamic Programming</span>
                 <span class="kw">def</span> <span class="fn">knapsack</span>(W, wt, val, n):
@@ -192,8 +192,8 @@ sections['optimization-ml'] = () => `
 </div>
 
 <div class="card">
-    <h3>Approximation Algorithms & Heuristik</h3>
-    <p>Karena masalah NP-Hard tidak bisa diselesaikan secara eksak dalam waktu polynomial, kita menggunakan <strong>approximation algorithms</strong> yang memberikan solusi "cukup baik" dengan jaminan kualitas, atau <strong>heuristik</strong> yang bekerja baik dalam praktek tanpa jaminan teoritis.</p>
+    <h3>${t('Approximation Algorithms & Heuristik', 'Approximation Algorithms & Heuristics')}</h3>
+    <p>${t('Karena masalah NP-Hard tidak bisa diselesaikan secara eksak dalam waktu polynomial, kita menggunakan <strong>approximation algorithms</strong> yang memberikan solusi "cukup baik" dengan jaminan kualitas, atau <strong>heuristik</strong> yang bekerja baik dalam praktek tanpa jaminan teoritis.', 'Since NP-Hard problems cannot be solved exactly in polynomial time, we use <strong>approximation algorithms</strong> that provide "good enough" solutions with quality guarantees, or <strong>heuristics</strong> that work well in practice without theoretical guarantees.')}</p>
 
     <div class="tabs">
         <button class="tab-btn active" data-tab="sa-tab">Simulated Annealing</button>
@@ -202,7 +202,7 @@ sections['optimization-ml'] = () => `
     </div>
 
     <div class="tab-content active" data-tab-content="sa-tab">
-        <p><strong>Simulated Annealing</strong> terinspirasi dari proses pendinginan logam. Pada suhu tinggi, algoritma menerima solusi buruk (untuk escape local minima). Seiring suhu turun, hanya solusi yang lebih baik yang diterima.</p>
+        <p>${t('<strong>Simulated Annealing</strong> terinspirasi dari proses pendinginan logam. Pada suhu tinggi, algoritma menerima solusi buruk (untuk escape local minima). Seiring suhu turun, hanya solusi yang lebih baik yang diterima.', '<strong>Simulated Annealing</strong> is inspired by the metal cooling process. At high temperatures, the algorithm accepts bad solutions (to escape local minima). As the temperature decreases, only better solutions are accepted.')}</p>
         <div class="code-block">
             <span class="kw">import</span> random, math
 
@@ -226,14 +226,14 @@ sections['optimization-ml'] = () => `
     </div>
 
     <div class="tab-content" data-tab-content="ga-tab">
-        <p><strong>Genetic Algorithm</strong> terinspirasi dari evolusi biologis. Populasi solusi "berevolusi" melalui seleksi, crossover, dan mutasi untuk menemukan solusi optimal.</p>
+        <p>${t('<strong>Genetic Algorithm</strong> terinspirasi dari evolusi biologis. Populasi solusi "berevolusi" melalui seleksi, crossover, dan mutasi untuk menemukan solusi optimal.', '<strong>Genetic Algorithm</strong> is inspired by biological evolution. A population of solutions "evolves" through selection, crossover, and mutation to find the optimal solution.')}</p>
         <div class="pipeline">
-            <div class="pipeline-stage"><div class="stage-title">Inisialisasi</div><div class="stage-desc">Populasi random</div></div>
-            <div class="pipeline-stage"><div class="stage-title">Fitness</div><div class="stage-desc">Evaluasi setiap individu</div></div>
-            <div class="pipeline-stage"><div class="stage-title">Seleksi</div><div class="stage-desc">Pilih parent terbaik</div></div>
-            <div class="pipeline-stage"><div class="stage-title">Crossover</div><div class="stage-desc">Gabungkan gen</div></div>
-            <div class="pipeline-stage"><div class="stage-title">Mutasi</div><div class="stage-desc">Perubahan acak</div></div>
-            <div class="pipeline-stage"><div class="stage-title">Generasi Baru</div><div class="stage-desc">Ulangi</div></div>
+            <div class="pipeline-stage"><div class="stage-title">${t('Inisialisasi', 'Initialization')}</div><div class="stage-desc">${t('Populasi random', 'Random population')}</div></div>
+            <div class="pipeline-stage"><div class="stage-title">Fitness</div><div class="stage-desc">${t('Evaluasi setiap individu', 'Evaluate each individual')}</div></div>
+            <div class="pipeline-stage"><div class="stage-title">${t('Seleksi', 'Selection')}</div><div class="stage-desc">${t('Pilih parent terbaik', 'Select best parents')}</div></div>
+            <div class="pipeline-stage"><div class="stage-title">Crossover</div><div class="stage-desc">${t('Gabungkan gen', 'Combine genes')}</div></div>
+            <div class="pipeline-stage"><div class="stage-title">${t('Mutasi', 'Mutation')}</div><div class="stage-desc">${t('Perubahan acak', 'Random changes')}</div></div>
+            <div class="pipeline-stage"><div class="stage-title">${t('Generasi Baru', 'New Generation')}</div><div class="stage-desc">${t('Ulangi', 'Repeat')}</div></div>
         </div>
         <div class="code-block">
             <span class="kw">import</span> random
@@ -267,10 +267,10 @@ sections['optimization-ml'] = () => `
     </div>
 
     <div class="tab-content" data-tab-content="approx-tab">
-        <p><strong>Approximation Algorithms</strong> memberikan jaminan bahwa solusi yang ditemukan tidak lebih buruk dari faktor tertentu dibanding solusi optimal.</p>
+        <p>${t('<strong>Approximation Algorithms</strong> memberikan jaminan bahwa solusi yang ditemukan tidak lebih buruk dari faktor tertentu dibanding solusi optimal.', '<strong>Approximation Algorithms</strong> guarantee that the solution found is no worse than a certain factor compared to the optimal solution.')}</p>
         <div class="table-wrapper">
             <table>
-                <tr><th>Masalah</th><th>Approx Ratio</th><th>Algoritma</th></tr>
+                <tr><th>${t('Masalah', 'Problem')}</th><th>Approx Ratio</th><th>${t('Algoritma', 'Algorithm')}</th></tr>
                 <tr><td>Vertex Cover</td><td>2-approximation</td><td>Greedy matching</td></tr>
                 <tr><td>TSP (metrik)</td><td>1.5-approximation</td><td>Christofides</td></tr>
                 <tr><td>Set Cover</td><td>O(ln n)</td><td>Greedy</td></tr>
@@ -281,23 +281,23 @@ sections['optimization-ml'] = () => `
 </div>
 
 <!-- ==================== SECTION 3: MACHINE LEARNING FUNDAMENTALS ==================== -->
-<h2 class="section-title" style="font-size:1.6rem;">3. Dasar-Dasar Machine Learning</h2>
+<h2 class="section-title" style="font-size:1.6rem;">${t('3. Dasar-Dasar Machine Learning', '3. Machine Learning Fundamentals')}</h2>
 
 <div class="card">
-    <h3>Jenis-Jenis Machine Learning</h3>
+    <h3>${t('Jenis-Jenis Machine Learning', 'Types of Machine Learning')}</h3>
     <div class="card-grid-3">
         <div class="card" style="background:var(--bg-tertiary);">
             <h4><span class="badge-blue">Supervised Learning</span></h4>
-            <p>Model belajar dari data berlabel (input-output pairs). Tujuan: mempelajari mapping f(x) = y.</p>
+            <p>${t('Model belajar dari data berlabel (input-output pairs). Tujuan: mempelajari mapping f(x) = y.', 'The model learns from labeled data (input-output pairs). Goal: learn the mapping f(x) = y.')}</p>
             <ul>
                 <li>Classification: spam/not spam</li>
-                <li>Regression: prediksi harga rumah</li>
-                <li>Contoh: Linear Regression, SVM, Random Forest, Neural Networks</li>
+                <li>${t('Regression: prediksi harga rumah', 'Regression: house price prediction')}</li>
+                <li>${t('Contoh: Linear Regression, SVM, Random Forest, Neural Networks', 'Examples: Linear Regression, SVM, Random Forest, Neural Networks')}</li>
             </ul>
         </div>
         <div class="card" style="background:var(--bg-tertiary);">
             <h4><span class="badge-green">Unsupervised Learning</span></h4>
-            <p>Model mencari pola dalam data <em>tanpa</em> label. Tujuan: menemukan struktur tersembunyi.</p>
+            <p>${t('Model mencari pola dalam data <em>tanpa</em> label. Tujuan: menemukan struktur tersembunyi.', 'The model finds patterns in data <em>without</em> labels. Goal: discover hidden structures.')}</p>
             <ul>
                 <li>Clustering: K-Means, DBSCAN</li>
                 <li>Dimensionality Reduction: PCA, t-SNE</li>
@@ -306,11 +306,11 @@ sections['optimization-ml'] = () => `
         </div>
         <div class="card" style="background:var(--bg-tertiary);">
             <h4><span class="badge-purple">Reinforcement Learning</span></h4>
-            <p>Agent belajar melalui interaksi dengan environment. Mendapat <em>reward</em> atau <em>punishment</em>.</p>
+            <p>${t('Agent belajar melalui interaksi dengan environment. Mendapat <em>reward</em> atau <em>punishment</em>.', 'The agent learns through interaction with the environment. Receives <em>reward</em> or <em>punishment</em>.')}</p>
             <ul>
                 <li>Q-Learning, SARSA</li>
                 <li>Policy Gradient</li>
-                <li>Contoh: Game AI, Robotics, RLHF untuk LLM</li>
+                <li>${t('Contoh: Game AI, Robotics, RLHF untuk LLM', 'Examples: Game AI, Robotics, RLHF for LLMs')}</li>
             </ul>
         </div>
     </div>
@@ -318,7 +318,7 @@ sections['optimization-ml'] = () => `
 
 <div class="card">
     <h3>Linear Regression</h3>
-    <p>Model paling sederhana: mencari garis lurus y = wx + b yang paling "fit" dengan data. Menggunakan <strong>Mean Squared Error (MSE)</strong> sebagai loss function.</p>
+    <p>${t('Model paling sederhana: mencari garis lurus y = wx + b yang paling "fit" dengan data. Menggunakan <strong>Mean Squared Error (MSE)</strong> sebagai loss function.', 'The simplest model: finding a straight line y = wx + b that best "fits" the data. Uses <strong>Mean Squared Error (MSE)</strong> as the loss function.')}</p>
 
     <div class="code-block">
         <span class="cm"># Linear Regression dari nol</span>
@@ -364,7 +364,7 @@ sections['optimization-ml'] = () => `
 
 <div class="card">
     <h3>Logistic Regression & Classification</h3>
-    <p>Meskipun namanya "regression", Logistic Regression digunakan untuk <strong>klasifikasi</strong>. Menggunakan fungsi sigmoid untuk memetakan output ke probabilitas [0, 1].</p>
+    <p>${t('Meskipun namanya "regression", Logistic Regression digunakan untuk <strong>klasifikasi</strong>. Menggunakan fungsi sigmoid untuk memetakan output ke probabilitas [0, 1].', 'Despite its name "regression", Logistic Regression is used for <strong>classification</strong>. It uses the sigmoid function to map output to probabilities [0, 1].')}</p>
     <div class="code-block">
         <span class="cm"># Sigmoid: sigma(z) = 1 / (1 + e^(-z))</span>
         <span class="cm"># Loss: Binary Cross-Entropy</span>
@@ -385,19 +385,19 @@ sections['optimization-ml'] = () => `
     <div class="card-grid">
         <div class="card" style="background:var(--bg-tertiary);">
             <h4>Decision Tree</h4>
-            <p>Membagi data berdasarkan fitur yang paling informatif (menggunakan <strong>Gini impurity</strong> atau <strong>Information Gain</strong>). Mudah diinterpretasi tapi rentan overfitting.</p>
+            <p>${t('Membagi data berdasarkan fitur yang paling informatif (menggunakan <strong>Gini impurity</strong> atau <strong>Information Gain</strong>). Mudah diinterpretasi tapi rentan overfitting.', 'Splits data based on the most informative features (using <strong>Gini impurity</strong> or <strong>Information Gain</strong>). Easy to interpret but prone to overfitting.')}</p>
             <div class="flow-diagram">
-                <div class="flow-node">Umur > 30?</div>
-                <div class="flow-arrow">Ya / Tidak</div>
+                <div class="flow-node">${t('Umur > 30?', 'Age > 30?')}</div>
+                <div class="flow-arrow">${t('Ya / Tidak', 'Yes / No')}</div>
                 <div style="display:flex;gap:12px;">
-                    <div class="flow-node" style="flex:1;">Gaji > 50K?</div>
-                    <div class="flow-node" style="flex:1;background:var(--accent-red);">Tolak</div>
+                    <div class="flow-node" style="flex:1;">${t('Gaji > 50K?', 'Salary > 50K?')}</div>
+                    <div class="flow-node" style="flex:1;background:var(--accent-red);">${t('Tolak', 'Reject')}</div>
                 </div>
             </div>
         </div>
         <div class="card" style="background:var(--bg-tertiary);">
             <h4>Random Forest</h4>
-            <p><strong>Ensemble</strong> dari banyak decision tree. Setiap tree dilatih pada subset data (bagging) dan subset fitur. Voting mayoritas untuk prediksi akhir.</p>
+            <p>${t('<strong>Ensemble</strong> dari banyak decision tree. Setiap tree dilatih pada subset data (bagging) dan subset fitur. Voting mayoritas untuk prediksi akhir.', '<strong>Ensemble</strong> of many decision trees. Each tree is trained on a data subset (bagging) and feature subset. Majority voting for final prediction.')}</p>
             <div class="code-block">
                 <span class="kw">from</span> sklearn.ensemble <span class="kw">import</span> RandomForestClassifier
 
@@ -415,7 +415,7 @@ sections['optimization-ml'] = () => `
 
 <div class="card">
     <h3>Support Vector Machine (SVM)</h3>
-    <p>SVM mencari <strong>hyperplane</strong> yang memaksimalkan margin antara dua kelas. Menggunakan <strong>kernel trick</strong> untuk menangani data yang tidak linearly separable.</p>
+    <p>${t('SVM mencari <strong>hyperplane</strong> yang memaksimalkan margin antara dua kelas. Menggunakan <strong>kernel trick</strong> untuk menangani data yang tidak linearly separable.', 'SVM finds the <strong>hyperplane</strong> that maximizes the margin between two classes. Uses the <strong>kernel trick</strong> to handle data that is not linearly separable.')}</p>
     <div class="code-block">
         <span class="kw">from</span> sklearn.svm <span class="kw">import</span> SVC
 
@@ -435,12 +435,12 @@ sections['optimization-ml'] = () => `
 
 <div class="card">
     <h3>K-Means Clustering</h3>
-    <p>Algoritma unsupervised yang mengelompokkan data ke dalam K cluster. Iteratif: assign titik ke centroid terdekat, lalu update centroid.</p>
+    <p>${t('Algoritma unsupervised yang mengelompokkan data ke dalam K cluster. Iteratif: assign titik ke centroid terdekat, lalu update centroid.', 'An unsupervised algorithm that groups data into K clusters. Iterative: assign points to the nearest centroid, then update centroids.')}</p>
     <div class="pipeline">
-        <div class="pipeline-stage"><div class="stage-title">Init</div><div class="stage-desc">Pilih K centroid random</div></div>
-        <div class="pipeline-stage"><div class="stage-title">Assign</div><div class="stage-desc">Titik ke centroid terdekat</div></div>
-        <div class="pipeline-stage"><div class="stage-title">Update</div><div class="stage-desc">Hitung centroid baru</div></div>
-        <div class="pipeline-stage"><div class="stage-title">Repeat</div><div class="stage-desc">Sampai konvergen</div></div>
+        <div class="pipeline-stage"><div class="stage-title">Init</div><div class="stage-desc">${t('Pilih K centroid random', 'Choose K random centroids')}</div></div>
+        <div class="pipeline-stage"><div class="stage-title">Assign</div><div class="stage-desc">${t('Titik ke centroid terdekat', 'Points to nearest centroid')}</div></div>
+        <div class="pipeline-stage"><div class="stage-title">Update</div><div class="stage-desc">${t('Hitung centroid baru', 'Calculate new centroids')}</div></div>
+        <div class="pipeline-stage"><div class="stage-title">Repeat</div><div class="stage-desc">${t('Sampai konvergen', 'Until convergence')}</div></div>
     </div>
     <div class="code-block">
         <span class="kw">from</span> sklearn.cluster <span class="kw">import</span> KMeans
@@ -459,28 +459,28 @@ sections['optimization-ml'] = () => `
 </div>
 
 <!-- ==================== SECTION 4: NEURAL NETWORKS & DEEP LEARNING ==================== -->
-<h2 class="section-title" style="font-size:1.6rem;">4. Neural Networks & Deep Learning</h2>
+<h2 class="section-title" style="font-size:1.6rem;">${t('4. Neural Networks & Deep Learning', '4. Neural Networks & Deep Learning')}</h2>
 
 <div class="card">
-    <h3>Dari Perceptron ke Deep Networks</h3>
-    <p>Neural Network terinspirasi dari cara kerja otak manusia. Dimulai dari <strong>Perceptron</strong> sederhana (1958) hingga <strong>Deep Networks</strong> modern dengan miliaran parameter.</p>
+    <h3>${t('Dari Perceptron ke Deep Networks', 'From Perceptron to Deep Networks')}</h3>
+    <p>${t('Neural Network terinspirasi dari cara kerja otak manusia. Dimulai dari <strong>Perceptron</strong> sederhana (1958) hingga <strong>Deep Networks</strong> modern dengan miliaran parameter.', 'Neural Networks are inspired by how the human brain works. Starting from the simple <strong>Perceptron</strong> (1958) to modern <strong>Deep Networks</strong> with billions of parameters.')}</p>
 
     <div class="step-list">
         <div class="step-item">
             <div class="step-num">1</div>
-            <div class="step-text"><strong>Perceptron (1958):</strong> Satu neuron, linear classifier. Hanya bisa menyelesaikan masalah linearly separable. Gagal menyelesaikan XOR.</div>
+            <div class="step-text"><strong>Perceptron (1958):</strong> ${t('Satu neuron, linear classifier. Hanya bisa menyelesaikan masalah linearly separable. Gagal menyelesaikan XOR.', 'Single neuron, linear classifier. Can only solve linearly separable problems. Failed to solve XOR.')}</div>
         </div>
         <div class="step-item">
             <div class="step-num">2</div>
-            <div class="step-text"><strong>MLP - Multi-Layer Perceptron:</strong> Menambahkan hidden layers. Dengan backpropagation (1986), bisa belajar representasi non-linear. Universal function approximator.</div>
+            <div class="step-text"><strong>MLP - Multi-Layer Perceptron:</strong> ${t('Menambahkan hidden layers. Dengan backpropagation (1986), bisa belajar representasi non-linear. Universal function approximator.', 'Added hidden layers. With backpropagation (1986), can learn non-linear representations. Universal function approximator.')}</div>
         </div>
         <div class="step-item">
             <div class="step-num">3</div>
-            <div class="step-text"><strong>Deep Networks (2012+):</strong> Ratusan layers. AlexNet memulai revolusi deep learning. ResNet, Transformer, dan GPT mendorong batas kemampuan AI.</div>
+            <div class="step-text"><strong>Deep Networks (2012+):</strong> ${t('Ratusan layers. AlexNet memulai revolusi deep learning. ResNet, Transformer, dan GPT mendorong batas kemampuan AI.', 'Hundreds of layers. AlexNet started the deep learning revolution. ResNet, Transformer, and GPT push the boundaries of AI capabilities.')}</div>
         </div>
     </div>
 
-    <h4>Visualisasi Neural Network - Forward Pass</h4>
+    <h4>${t('Visualisasi Neural Network - Forward Pass', 'Neural Network Visualization - Forward Pass')}</h4>
     <div class="anim-container">
         <canvas id="canvas-nn-forward" width="700" height="400" style="width:100%;max-width:700px;border-radius:10px;background:#0a0a1a;"></canvas>
         <div class="anim-controls">
@@ -491,39 +491,39 @@ sections['optimization-ml'] = () => `
 </div>
 
 <div class="card">
-    <h3>Activation Functions</h3>
-    <p>Fungsi aktivasi menambahkan <strong>non-linearitas</strong> ke neural network. Tanpa fungsi aktivasi, neural network hanyalah transformasi linear biasa.</p>
+    <h3>${t('Activation Functions', 'Activation Functions')}</h3>
+    <p>${t('Fungsi aktivasi menambahkan <strong>non-linearitas</strong> ke neural network. Tanpa fungsi aktivasi, neural network hanyalah transformasi linear biasa.', 'Activation functions add <strong>non-linearity</strong> to neural networks. Without activation functions, a neural network is just a plain linear transformation.')}</p>
     <div class="card-grid-3">
         <div class="card" style="background:var(--bg-tertiary);">
             <h4><span class="badge-blue">ReLU</span></h4>
             <p>f(x) = max(0, x)</p>
-            <p>Paling populer. Sederhana, cepat, mengatasi vanishing gradient. Tapi bisa "mati" (dead ReLU).</p>
+            <p>${t('Paling populer. Sederhana, cepat, mengatasi vanishing gradient. Tapi bisa "mati" (dead ReLU).', 'Most popular. Simple, fast, overcomes vanishing gradient. But can "die" (dead ReLU).')}</p>
         </div>
         <div class="card" style="background:var(--bg-tertiary);">
             <h4><span class="badge-green">Sigmoid</span></h4>
             <p>f(x) = 1/(1+e^-x)</p>
-            <p>Output [0,1]. Digunakan untuk output layer binary classification. Rentan vanishing gradient.</p>
+            <p>${t('Output [0,1]. Digunakan untuk output layer binary classification. Rentan vanishing gradient.', 'Output [0,1]. Used for binary classification output layer. Prone to vanishing gradient.')}</p>
         </div>
         <div class="card" style="background:var(--bg-tertiary);">
             <h4><span class="badge-purple">Tanh</span></h4>
             <p>f(x) = (e^x - e^-x)/(e^x + e^-x)</p>
-            <p>Output [-1,1]. Zero-centered. Lebih baik dari sigmoid untuk hidden layers, tapi tetap vanishing gradient.</p>
+            <p>${t('Output [-1,1]. Zero-centered. Lebih baik dari sigmoid untuk hidden layers, tapi tetap vanishing gradient.', 'Output [-1,1]. Zero-centered. Better than sigmoid for hidden layers, but still suffers from vanishing gradient.')}</p>
         </div>
     </div>
     <div class="info-box">
-        <strong>Modern Variants:</strong> LeakyReLU (f(x) = max(0.01x, x)), GELU (digunakan di Transformer/BERT/GPT), SiLU/Swish (x * sigmoid(x), digunakan di LLaMA).
+        <strong>Modern Variants:</strong> LeakyReLU (f(x) = max(0.01x, x)), GELU (${t('digunakan di', 'used in')} Transformer/BERT/GPT), SiLU/Swish (x * sigmoid(x), ${t('digunakan di', 'used in')} LLaMA).
     </div>
 </div>
 
 <div class="card">
-    <h3>Backpropagation - Dijelaskan Secara Visual</h3>
-    <p>Backpropagation adalah algoritma untuk menghitung gradien loss terhadap setiap parameter menggunakan <strong>chain rule</strong>. Gradien ini kemudian digunakan oleh optimizer untuk update parameter.</p>
+    <h3>${t('Backpropagation - Dijelaskan Secara Visual', 'Backpropagation - Visually Explained')}</h3>
+    <p>${t('Backpropagation adalah algoritma untuk menghitung gradien loss terhadap setiap parameter menggunakan <strong>chain rule</strong>. Gradien ini kemudian digunakan oleh optimizer untuk update parameter.', 'Backpropagation is an algorithm to compute the gradient of the loss with respect to each parameter using the <strong>chain rule</strong>. These gradients are then used by the optimizer to update parameters.')}</p>
 
     <div class="flow-diagram">
         <div class="flow-node" style="background:var(--accent-blue);">Forward Pass: Input -> Hidden -> Output -> Loss</div>
-        <div class="flow-arrow">Hitung prediksi dan loss</div>
+        <div class="flow-arrow">${t('Hitung prediksi dan loss', 'Compute predictions and loss')}</div>
         <div class="flow-node" style="background:var(--accent-red);">Backward Pass: dL/dOutput -> dL/dHidden -> dL/dInput</div>
-        <div class="flow-arrow">Propagasi gradien ke belakang (chain rule)</div>
+        <div class="flow-arrow">${t('Propagasi gradien ke belakang (chain rule)', 'Propagate gradients backward (chain rule)')}</div>
         <div class="flow-node" style="background:var(--accent-green);">Update: w = w - lr * dL/dw</div>
     </div>
 
@@ -557,14 +557,14 @@ sections['optimization-ml'] = () => `
 
 <div class="card">
     <h3>CNN - Convolutional Neural Network</h3>
-    <p>CNN dirancang khusus untuk data spasial (gambar). Menggunakan <strong>convolution</strong> untuk mendeteksi fitur lokal dan <strong>pooling</strong> untuk mengurangi dimensi.</p>
+    <p>${t('CNN dirancang khusus untuk data spasial (gambar). Menggunakan <strong>convolution</strong> untuk mendeteksi fitur lokal dan <strong>pooling</strong> untuk mengurangi dimensi.', 'CNN is designed specifically for spatial data (images). Uses <strong>convolution</strong> to detect local features and <strong>pooling</strong> to reduce dimensions.')}</p>
 
     <div class="pipeline">
         <div class="pipeline-stage"><div class="stage-title">Input Image</div><div class="stage-desc">224x224x3</div></div>
-        <div class="pipeline-stage"><div class="stage-title">Conv + ReLU</div><div class="stage-desc">Filter 3x3, deteksi edge</div></div>
+        <div class="pipeline-stage"><div class="stage-title">Conv + ReLU</div><div class="stage-desc">${t('Filter 3x3, deteksi edge', 'Filter 3x3, edge detection')}</div></div>
         <div class="pipeline-stage"><div class="stage-title">Max Pooling</div><div class="stage-desc">Reduce 2x, downsample</div></div>
-        <div class="pipeline-stage"><div class="stage-title">Conv + ReLU</div><div class="stage-desc">Fitur lebih abstrak</div></div>
-        <div class="pipeline-stage"><div class="stage-title">Flatten</div><div class="stage-desc">Vektor 1D</div></div>
+        <div class="pipeline-stage"><div class="stage-title">Conv + ReLU</div><div class="stage-desc">${t('Fitur lebih abstrak', 'More abstract features')}</div></div>
+        <div class="pipeline-stage"><div class="stage-title">Flatten</div><div class="stage-desc">${t('Vektor 1D', '1D Vector')}</div></div>
         <div class="pipeline-stage"><div class="stage-title">Fully Connected</div><div class="stage-desc">Classification</div></div>
     </div>
 
@@ -597,16 +597,16 @@ sections['optimization-ml'] = () => `
 
 <div class="card">
     <h3>RNN, LSTM & Sequence Models</h3>
-    <p>RNN (Recurrent Neural Network) dirancang untuk data sekuensial (teks, time series). LSTM mengatasi masalah vanishing gradient pada RNN biasa.</p>
+    <p>${t('RNN (Recurrent Neural Network) dirancang untuk data sekuensial (teks, time series). LSTM mengatasi masalah vanishing gradient pada RNN biasa.', 'RNN (Recurrent Neural Network) is designed for sequential data (text, time series). LSTM solves the vanishing gradient problem in standard RNNs.')}</p>
     <div class="card-grid">
         <div class="card" style="background:var(--bg-tertiary);">
             <h4>RNN</h4>
             <p>h_t = tanh(W_hh * h_{t-1} + W_xh * x_t + b)</p>
-            <p>Masalah: vanishing/exploding gradient untuk sequence panjang.</p>
+            <p>${t('Masalah: vanishing/exploding gradient untuk sequence panjang.', 'Problem: vanishing/exploding gradient for long sequences.')}</p>
         </div>
         <div class="card" style="background:var(--bg-tertiary);">
             <h4>LSTM</h4>
-            <p>Menambahkan <strong>gates</strong>: forget, input, output. Cell state sebagai "conveyor belt" informasi jangka panjang.</p>
+            <p>${t('Menambahkan <strong>gates</strong>: forget, input, output. Cell state sebagai "conveyor belt" informasi jangka panjang.', 'Adds <strong>gates</strong>: forget, input, output. Cell state serves as a "conveyor belt" for long-term information.')}</p>
             <div class="code-block">
                 lstm = nn.<span class="fn">LSTM</span>(
                     input_size=<span class="num">256</span>,
@@ -619,21 +619,21 @@ sections['optimization-ml'] = () => `
         </div>
     </div>
     <div class="info-box">
-        <strong>Era Transformer:</strong> Setelah paper "Attention Is All You Need" (2017), Transformer menggantikan RNN/LSTM di hampir semua task NLP. Transformer tidak memiliki recurrence, melainkan menggunakan <strong>self-attention</strong> yang bisa diparalelisasi secara efisien.
+        <strong>${t('Era Transformer:', 'The Transformer Era:')}</strong> ${t('Setelah paper "Attention Is All You Need" (2017), Transformer menggantikan RNN/LSTM di hampir semua task NLP. Transformer tidak memiliki recurrence, melainkan menggunakan <strong>self-attention</strong> yang bisa diparalelisasi secara efisien.', 'After the paper "Attention Is All You Need" (2017), Transformers replaced RNN/LSTM in almost all NLP tasks. Transformers have no recurrence, instead using <strong>self-attention</strong> that can be efficiently parallelized.')}
     </div>
 </div>
 
 <div class="card">
     <h3>Transformer Architecture</h3>
-    <p>Transformer adalah arsitektur yang merevolusi NLP dan kini juga digunakan dalam vision (ViT), audio, dan multimodal AI. Komponen utamanya adalah <strong>Self-Attention</strong>.</p>
+    <p>${t('Transformer adalah arsitektur yang merevolusi NLP dan kini juga digunakan dalam vision (ViT), audio, dan multimodal AI. Komponen utamanya adalah <strong>Self-Attention</strong>.', 'Transformer is the architecture that revolutionized NLP and is now also used in vision (ViT), audio, and multimodal AI. Its main component is <strong>Self-Attention</strong>.')}</p>
 
     <div class="pipeline">
         <div class="pipeline-stage"><div class="stage-title">Input Embedding</div><div class="stage-desc">Token -> Vector</div></div>
-        <div class="pipeline-stage"><div class="stage-title">Positional Encoding</div><div class="stage-desc">Informasi posisi</div></div>
+        <div class="pipeline-stage"><div class="stage-title">Positional Encoding</div><div class="stage-desc">${t('Informasi posisi', 'Position information')}</div></div>
         <div class="pipeline-stage"><div class="stage-title">Multi-Head Attention</div><div class="stage-desc">Self-attention x N heads</div></div>
-        <div class="pipeline-stage"><div class="stage-title">Feed Forward</div><div class="stage-desc">MLP per posisi</div></div>
+        <div class="pipeline-stage"><div class="stage-title">Feed Forward</div><div class="stage-desc">${t('MLP per posisi', 'MLP per position')}</div></div>
         <div class="pipeline-stage"><div class="stage-title">Layer Norm</div><div class="stage-desc">+ Residual connection</div></div>
-        <div class="pipeline-stage"><div class="stage-title">Output</div><div class="stage-desc">N layers di-stack</div></div>
+        <div class="pipeline-stage"><div class="stage-title">Output</div><div class="stage-desc">${t('N layers di-stack', 'N layers stacked')}</div></div>
     </div>
 
     <div class="code-block">
@@ -672,7 +672,7 @@ sections['optimization-ml'] = () => `
 </div>
 
 <!-- ==================== SECTION 5: LARGE LANGUAGE MODELS ==================== -->
-<h2 class="section-title" style="font-size:1.6rem;">5. Large Language Models (LLM)</h2>
+<h2 class="section-title" style="font-size:1.6rem;">${t('5. Large Language Models (LLM)', '5. Large Language Models (LLM)')}</h2>
 
 <div class="card">
     <h3>Bagaimana LLM Bekerja</h3>

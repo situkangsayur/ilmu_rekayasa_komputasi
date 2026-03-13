@@ -6,21 +6,21 @@
 sections['crud-rust'] = () => `
 <section class="animate-in">
 <h1 class="section-title animate-in">Rust CRUD — RESTful API &amp; gRPC</h1>
-<p class="section-subtitle animate-in">Tutorial komprehensif membangun production-ready CRUD application di Rust menggunakan <strong>Axum</strong> (REST) dan <strong>Tonic</strong> (gRPC), lengkap dengan security best practices, async runtime, dan Docker deployment.</p>
+<p class="section-subtitle animate-in">${t('Tutorial komprehensif membangun production-ready CRUD application di Rust menggunakan <strong>Axum</strong> (REST) dan <strong>Tonic</strong> (gRPC), lengkap dengan security best practices, async runtime, dan Docker deployment.','A comprehensive tutorial on building a production-ready CRUD application in Rust using <strong>Axum</strong> (REST) and <strong>Tonic</strong> (gRPC), complete with security best practices, async runtime, and Docker deployment.')}</p>
 
 <!-- ===================== 1. PROJECT STRUCTURE ===================== -->
 <h2 class="animate-in">1. Production-Ready Project Structure</h2>
 
 <div class="card animate-in">
-<h3>Arsitektur Proyek</h3>
-<p>Struktur proyek Rust yang baik mengikuti prinsip <strong>separation of concerns</strong> dengan layer yang jelas: handler (controller), service (business logic), dan repository (data access). Setiap layer berkomunikasi melalui trait, memungkinkan dependency injection dan testability yang tinggi.</p>
+<h3>${t('Arsitektur Proyek','Project Architecture')}</h3>
+<p>${t('Struktur proyek Rust yang baik mengikuti prinsip <strong>separation of concerns</strong> dengan layer yang jelas: handler (controller), service (business logic), dan repository (data access). Setiap layer berkomunikasi melalui trait, memungkinkan dependency injection dan testability yang tinggi.','A well-structured Rust project follows the <strong>separation of concerns</strong> principle with clear layers: handler (controller), service (business logic), and repository (data access). Each layer communicates through traits, enabling dependency injection and high testability.')}</p>
 <div class="info-box">
-<strong>Prinsip:</strong> Rust tidak memiliki framework "batteries-included" seperti Django atau Rails. Sebagai gantinya, ekosistem Rust mengandalkan komposisi crate-crate kecil yang masing-masing melakukan satu hal dengan baik — sesuai dengan filosofi Unix.
+<strong>${t('Prinsip:','Principle:')}</strong> ${t('Rust tidak memiliki framework &quot;batteries-included&quot; seperti Django atau Rails. Sebagai gantinya, ekosistem Rust mengandalkan komposisi crate-crate kecil yang masing-masing melakukan satu hal dengan baik — sesuai dengan filosofi Unix.','Rust does not have a &quot;batteries-included&quot; framework like Django or Rails. Instead, the Rust ecosystem relies on composing small crates that each do one thing well — in line with the Unix philosophy.')}
 </div>
 </div>
 
 <div class="card animate-in">
-<h3>Struktur Direktori</h3>
+<h3>${t('Struktur Direktori','Directory Structure')}</h3>
 <div class="code-block"><span class="cm">// Production-ready Rust project structure</span>
 myapp/
 ├── src/
@@ -57,7 +57,7 @@ myapp/
 
 <div class="card animate-in">
 <h3>Cargo.toml — Dependencies</h3>
-<p>Berikut dependency lengkap untuk proyek REST + gRPC dengan semua fitur keamanan:</p>
+<p>${t('Berikut dependency lengkap untuk proyek REST + gRPC dengan semua fitur keamanan:','Here are the complete dependencies for a REST + gRPC project with all security features:')}</p>
 <div class="code-block"><span class="cm"># Cargo.toml</span>
 [package]
 name = <span class="str">"myapp"</span>
@@ -105,8 +105,8 @@ tonic-build = <span class="str">"0.11"</span></div>
 </div>
 
 <div class="card animate-in">
-<h3>config.rs — Konfigurasi Aman</h3>
-<p>Konfigurasi diambil dari environment variables, bukan hardcoded. Ini memungkinkan deployment yang fleksibel dan aman.</p>
+<h3>${t('config.rs — Konfigurasi Aman','config.rs — Secure Configuration')}</h3>
+<p>${t('Konfigurasi diambil dari environment variables, bukan hardcoded. Ini memungkinkan deployment yang fleksibel dan aman.','Configuration is loaded from environment variables, not hardcoded. This enables flexible and secure deployment.')}</p>
 <div class="code-block"><span class="kw">use</span> std::env;
 
 <span class="cm">/// Application configuration loaded from environment</span>
@@ -145,17 +145,17 @@ tonic-build = <span class="str">"0.11"</span></div>
 </div>
 
 <div class="card animate-in">
-<h3>Alur Arsitektur (Canvas)</h3>
+<h3>${t('Alur Arsitektur (Canvas)','Architecture Flow (Canvas)')}</h3>
 <canvas id="canvas-crud-rust-arch" width="900" height="420" style="width:100%;max-width:900px;border-radius:12px;background:#1e1e2e;display:block;margin:1rem auto;"></canvas>
-<p style="text-align:center;opacity:0.7;font-size:0.9rem;">Alur request dari client melalui Axum handler, service layer, repository, hingga database. Setiap layer memiliki type safety.</p>
+<p style="text-align:center;opacity:0.7;font-size:0.9rem;">${t('Alur request dari client melalui Axum handler, service layer, repository, hingga database. Setiap layer memiliki type safety.','Request flow from client through Axum handler, service layer, repository, to database. Each layer has type safety.')}</p>
 </div>
 
 <!-- ===================== 2. ERROR HANDLING ===================== -->
 <h2 class="animate-in">2. Custom Error Handling</h2>
 
 <div class="card animate-in">
-<h3>error.rs — AppError dengan thiserror</h3>
-<p>Rust tidak menggunakan exception. Semua error ditangani melalui <code>Result&lt;T, E&gt;</code>. Kita membuat custom error type yang mengimplementasikan <code>IntoResponse</code> dari Axum agar error otomatis dikonversi menjadi HTTP response yang tepat.</p>
+<h3>${t('error.rs — AppError dengan thiserror','error.rs — AppError with thiserror')}</h3>
+<p>${t('Rust tidak menggunakan exception. Semua error ditangani melalui <code>Result&lt;T, E&gt;</code>. Kita membuat custom error type yang mengimplementasikan <code>IntoResponse</code> dari Axum agar error otomatis dikonversi menjadi HTTP response yang tepat.','Rust does not use exceptions. All errors are handled through <code>Result&lt;T, E&gt;</code>. We create a custom error type that implements <code>IntoResponse</code> from Axum so errors are automatically converted into appropriate HTTP responses.')}</p>
 <div class="code-block"><span class="kw">use</span> axum::{
     http::StatusCode,
     response::{IntoResponse, Response},
@@ -228,24 +228,24 @@ tonic-build = <span class="str">"0.11"</span></div>
 </div>
 
 <div class="card animate-in">
-<h3>Kenapa Ini Lebih Baik dari Exception?</h3>
+<h3>${t('Kenapa Ini Lebih Baik dari Exception?','Why Is This Better Than Exceptions?')}</h3>
 <div class="card-grid">
 <div class="card">
 <h4 style="color:var(--green)">Rust (Result&lt;T, AppError&gt;)</h4>
 <ul>
-<li><strong>Compile-time checked</strong> — compiler memaksa kita menangani error</li>
-<li><strong>Explicit</strong> — dari signature fungsi, jelas error apa yang mungkin terjadi</li>
-<li><strong>No hidden control flow</strong> — tidak ada exception yang bisa "terbang" melewati call stack tanpa ketahuan</li>
-<li><strong>Pattern matching</strong> — enum error di-match secara exhaustive</li>
+<li><strong>Compile-time checked</strong> — ${t('compiler memaksa kita menangani error','the compiler forces you to handle errors')}</li>
+<li><strong>Explicit</strong> — ${t('dari signature fungsi, jelas error apa yang mungkin terjadi','from the function signature, it is clear what errors may occur')}</li>
+<li><strong>No hidden control flow</strong> — ${t('tidak ada exception yang bisa &quot;terbang&quot; melewati call stack tanpa ketahuan','no exception can &quot;fly&quot; through the call stack unnoticed')}</li>
+<li><strong>Pattern matching</strong> — ${t('enum error di-match secara exhaustive','error enums are matched exhaustively')}</li>
 </ul>
 </div>
 <div class="card">
 <h4 style="color:var(--red)">Exception (Java/Python)</h4>
 <ul>
-<li><strong>Runtime error</strong> — crash bisa terjadi di production</li>
-<li><strong>Implicit</strong> — siapapun bisa throw tanpa deklarasi</li>
-<li><strong>Hidden control flow</strong> — exception bisa skip banyak frame</li>
-<li><strong>Easy to forget</strong> — catch yang terlewat menyebabkan crash</li>
+<li><strong>Runtime error</strong> — ${t('crash bisa terjadi di production','crashes can happen in production')}</li>
+<li><strong>Implicit</strong> — ${t('siapapun bisa throw tanpa deklarasi','anyone can throw without declaration')}</li>
+<li><strong>Hidden control flow</strong> — ${t('exception bisa skip banyak frame','exceptions can skip many frames')}</li>
+<li><strong>Easy to forget</strong> — ${t('catch yang terlewat menyebabkan crash','a missed catch causes a crash')}</li>
 </ul>
 </div>
 </div>
@@ -256,7 +256,7 @@ tonic-build = <span class="str">"0.11"</span></div>
 
 <div class="card animate-in">
 <h3>models/user.rs — User Model</h3>
-<p>Model dipisah menjadi beberapa struct: model database, request DTO, dan response DTO. Ini mencegah data sensitif (seperti password hash) bocor ke response.</p>
+<p>${t('Model dipisah menjadi beberapa struct: model database, request DTO, dan response DTO. Ini mencegah data sensitif (seperti password hash) bocor ke response.','Models are separated into multiple structs: database model, request DTO, and response DTO. This prevents sensitive data (like password hash) from leaking into the response.')}</p>
 <div class="code-block"><span class="kw">use</span> chrono::{DateTime, Utc};
 <span class="kw">use</span> serde::{Deserialize, Serialize};
 <span class="kw">use</span> sqlx::FromRow;
@@ -355,16 +355,16 @@ tonic-build = <span class="str">"0.11"</span></div>
 </div>
 
 <div class="card animate-in">
-<h3>Kenapa Pisahkan Model, Request DTO, Response DTO?</h3>
+<h3>${t('Kenapa Pisahkan Model, Request DTO, Response DTO?','Why Separate Model, Request DTO, Response DTO?')}</h3>
 <div class="info-box">
-<strong>Security by Design:</strong> Struct <code>User</code> (database model) mengandung <code>password_hash</code>. Jika kita langsung serialize <code>User</code> ke JSON response, hash password akan bocor! Dengan memisahkan <code>UserResponse</code>, Rust <em>compiler</em> memastikan bahwa field sensitif tidak pernah terkirim ke client. Ini bukan konvensi — ini <strong>dijamin oleh type system</strong>.
+<strong>Security by Design:</strong> ${t('Struct <code>User</code> (database model) mengandung <code>password_hash</code>. Jika kita langsung serialize <code>User</code> ke JSON response, hash password akan bocor! Dengan memisahkan <code>UserResponse</code>, Rust <em>compiler</em> memastikan bahwa field sensitif tidak pernah terkirim ke client. Ini bukan konvensi — ini <strong>dijamin oleh type system</strong>.','The <code>User</code> struct (database model) contains <code>password_hash</code>. If we directly serialize <code>User</code> to a JSON response, the password hash would leak! By separating <code>UserResponse</code>, the Rust <em>compiler</em> ensures that sensitive fields are never sent to the client. This is not a convention — it is <strong>guaranteed by the type system</strong>.')}
 </div>
 <div class="table-wrapper">
 <table>
-<tr><th>Struct</th><th>Derive</th><th>Tujuan</th><th>Field password</th></tr>
-<tr><td>User</td><td>FromRow</td><td>Baca dari DB</td><td>Ada (password_hash)</td></tr>
-<tr><td>CreateUserRequest</td><td>Deserialize, Validate</td><td>Input dari client</td><td>Ada (plaintext, di-hash)</td></tr>
-<tr><td>UserResponse</td><td>Serialize</td><td>Output ke client</td><td><strong>Tidak ada!</strong></td></tr>
+<tr><th>Struct</th><th>Derive</th><th>${t('Tujuan','Purpose')}</th><th>${t('Field password','Password Field')}</th></tr>
+<tr><td>User</td><td>FromRow</td><td>${t('Baca dari DB','Read from DB')}</td><td>${t('Ada (password_hash)','Present (password_hash)')}</td></tr>
+<tr><td>CreateUserRequest</td><td>Deserialize, Validate</td><td>${t('Input dari client','Input from client')}</td><td>${t('Ada (plaintext, di-hash)','Present (plaintext, hashed)')}</td></tr>
+<tr><td>UserResponse</td><td>Serialize</td><td>${t('Output ke client','Output to client')}</td><td><strong>${t('Tidak ada!','None!')}</strong></td></tr>
 </table>
 </div>
 </div>
@@ -374,7 +374,7 @@ tonic-build = <span class="str">"0.11"</span></div>
 
 <div class="card animate-in">
 <h3>repositories/user.rs — sqlx with Compile-Time Checked Queries</h3>
-<p>Repository layer bertugas mengelola akses database. Dengan <code>sqlx</code>, query SQL diperiksa saat <strong>compile time</strong> — typo di nama kolom atau tipe data yang salah akan ditangkap sebelum program berjalan.</p>
+<p>${t('Repository layer bertugas mengelola akses database. Dengan <code>sqlx</code>, query SQL diperiksa saat <strong>compile time</strong> — typo di nama kolom atau tipe data yang salah akan ditangkap sebelum program berjalan.','The repository layer manages database access. With <code>sqlx</code>, SQL queries are checked at <strong>compile time</strong> — typos in column names or incorrect data types are caught before the program runs.')}</p>
 <div class="code-block"><span class="kw">use</span> sqlx::PgPool;
 <span class="kw">use</span> uuid::Uuid;
 <span class="kw">use</span> crate::error::AppError;
@@ -548,11 +548,11 @@ tonic-build = <span class="str">"0.11"</span></div>
 <div class="card animate-in">
 <h3>Compile-Time Query Checking (sqlx)</h3>
 <div class="info-box">
-<strong>Bagaimana sqlx mencegah SQL injection?</strong>
+<strong>${t('Bagaimana sqlx mencegah SQL injection?','How does sqlx prevent SQL injection?')}</strong>
 <ol>
-<li><strong>Parameterized queries</strong> — Semua input user diikat melalui <code>.bind()</code>, bukan string concatenation. Database driver meng-escape secara otomatis.</li>
-<li><strong>Compile-time verification</strong> — Dengan <code>sqlx::query!</code> macro, sqlx terkoneksi ke database saat compile dan memverifikasi: (a) SQL syntax valid, (b) nama kolom ada, (c) tipe data cocok dengan struct Rust.</li>
-<li><strong>Type system</strong> — Nilai <code>Uuid</code> tidak bisa mengandung SQL injection. Rust type system memastikan input di-cast ke tipe yang benar sebelum dikirim ke database.</li>
+<li><strong>Parameterized queries</strong> — ${t('Semua input user diikat melalui <code>.bind()</code>, bukan string concatenation. Database driver meng-escape secara otomatis.','All user input is bound via <code>.bind()</code>, not string concatenation. The database driver escapes automatically.')}</li>
+<li><strong>Compile-time verification</strong> — ${t('Dengan <code>sqlx::query!</code> macro, sqlx terkoneksi ke database saat compile dan memverifikasi: (a) SQL syntax valid, (b) nama kolom ada, (c) tipe data cocok dengan struct Rust.','With the <code>sqlx::query!</code> macro, sqlx connects to the database at compile time and verifies: (a) SQL syntax is valid, (b) column names exist, (c) data types match Rust structs.')}</li>
+<li><strong>Type system</strong> — ${t('Nilai <code>Uuid</code> tidak bisa mengandung SQL injection. Rust type system memastikan input di-cast ke tipe yang benar sebelum dikirim ke database.','A <code>Uuid</code> value cannot contain SQL injection. The Rust type system ensures input is cast to the correct type before being sent to the database.')}</li>
 </ol>
 </div>
 </div>
@@ -562,7 +562,7 @@ tonic-build = <span class="str">"0.11"</span></div>
 
 <div class="card animate-in">
 <h3>services/user.rs — Password Hashing &amp; JWT</h3>
-<p>Service layer berisi business logic yang tidak boleh berada di handler maupun repository. Di sini kita melakukan password hashing, JWT token generation, dan validasi bisnis.</p>
+<p>${t('Service layer berisi business logic yang tidak boleh berada di handler maupun repository. Di sini kita melakukan password hashing, JWT token generation, dan validasi bisnis.','The service layer contains business logic that should not reside in handlers or repositories. Here we perform password hashing, JWT token generation, and business validation.')}</p>
 <div class="code-block"><span class="kw">use</span> argon2::{
     password_hash::{PasswordHash, PasswordHasher, PasswordVerifier, SaltString},
     Argon2,
@@ -729,18 +729,18 @@ tonic-build = <span class="str">"0.11"</span></div>
 </div>
 
 <div class="card animate-in">
-<h3>Argon2 — Kenapa Bukan bcrypt?</h3>
+<h3>${t('Argon2 — Kenapa Bukan bcrypt?','Argon2 — Why Not bcrypt?')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Algoritma</th><th>Tahun</th><th>Memory-Hard</th><th>GPU-Resistant</th><th>Rekomendasi</th></tr>
-<tr><td>MD5/SHA</td><td>1990an</td><td>Tidak</td><td>Tidak</td><td style="color:var(--red)">JANGAN PERNAH untuk password</td></tr>
-<tr><td>bcrypt</td><td>1999</td><td>Tidak</td><td>Parsial</td><td>Masih aman, tapi ada yang lebih baik</td></tr>
-<tr><td>scrypt</td><td>2009</td><td>Ya</td><td>Ya</td><td>Bagus, tapi parameter tuning sulit</td></tr>
-<tr><td style="color:var(--green)"><strong>Argon2id</strong></td><td>2015</td><td><strong>Ya</strong></td><td><strong>Ya</strong></td><td style="color:var(--green)"><strong>Rekomendasi OWASP &amp; PHC winner</strong></td></tr>
+<tr><th>${t('Algoritma','Algorithm')}</th><th>${t('Tahun','Year')}</th><th>Memory-Hard</th><th>GPU-Resistant</th><th>${t('Rekomendasi','Recommendation')}</th></tr>
+<tr><td>MD5/SHA</td><td>${t('1990an','1990s')}</td><td>${t('Tidak','No')}</td><td>${t('Tidak','No')}</td><td style="color:var(--red)">${t('JANGAN PERNAH untuk password','NEVER for passwords')}</td></tr>
+<tr><td>bcrypt</td><td>1999</td><td>${t('Tidak','No')}</td><td>${t('Parsial','Partial')}</td><td>${t('Masih aman, tapi ada yang lebih baik','Still safe, but there are better options')}</td></tr>
+<tr><td>scrypt</td><td>2009</td><td>${t('Ya','Yes')}</td><td>${t('Ya','Yes')}</td><td>${t('Bagus, tapi parameter tuning sulit','Good, but parameter tuning is difficult')}</td></tr>
+<tr><td style="color:var(--green)"><strong>Argon2id</strong></td><td>2015</td><td><strong>${t('Ya','Yes')}</strong></td><td><strong>${t('Ya','Yes')}</strong></td><td style="color:var(--green)"><strong>${t('Rekomendasi OWASP &amp; PHC winner','OWASP recommended &amp; PHC winner')}</strong></td></tr>
 </table>
 </div>
 <div class="info-box">
-<strong>Argon2id</strong> adalah pemenang Password Hashing Competition (2015). Ia menggabungkan kelebihan Argon2d (resistance terhadap GPU) dan Argon2i (resistance terhadap side-channel attack). Memory-hardness membuatnya sangat mahal untuk di-brute-force bahkan dengan hardware khusus.
+<strong>Argon2id</strong> ${t('adalah pemenang Password Hashing Competition (2015). Ia menggabungkan kelebihan Argon2d (resistance terhadap GPU) dan Argon2i (resistance terhadap side-channel attack). Memory-hardness membuatnya sangat mahal untuk di-brute-force bahkan dengan hardware khusus.','is the winner of the Password Hashing Competition (2015). It combines the strengths of Argon2d (GPU resistance) and Argon2i (side-channel attack resistance). Memory-hardness makes it extremely expensive to brute-force even with specialized hardware.')}
 </div>
 </div>
 
@@ -749,7 +749,7 @@ tonic-build = <span class="str">"0.11"</span></div>
 
 <div class="card animate-in">
 <h3>handlers/user.rs — RESTful CRUD Endpoints</h3>
-<p>Handlers menerima HTTP request, melakukan validasi input, memanggil service layer, dan mengembalikan response. Axum menggunakan <strong>extractors</strong> untuk parsing otomatis.</p>
+<p>${t('Handlers menerima HTTP request, melakukan validasi input, memanggil service layer, dan mengembalikan response. Axum menggunakan <strong>extractors</strong> untuk parsing otomatis.','Handlers receive HTTP requests, perform input validation, call the service layer, and return responses. Axum uses <strong>extractors</strong> for automatic parsing.')}</p>
 <div class="code-block"><span class="kw">use</span> axum::{
     extract::{Json, Path, Query, State},
     http::StatusCode,
@@ -850,11 +850,11 @@ tonic-build = <span class="str">"0.11"</span></div>
 </div>
 
 <div class="card animate-in">
-<h3>Axum Extractors — Parsing Otomatis</h3>
-<p>Axum menggunakan <strong>extractors</strong> yang memanfaatkan Rust type system untuk parsing request secara otomatis dan type-safe:</p>
+<h3>${t('Axum Extractors — Parsing Otomatis','Axum Extractors — Automatic Parsing')}</h3>
+<p>${t('Axum menggunakan <strong>extractors</strong> yang memanfaatkan Rust type system untuk parsing request secara otomatis dan type-safe:','Axum uses <strong>extractors</strong> that leverage the Rust type system for automatic and type-safe request parsing:')}</p>
 <div class="table-wrapper">
 <table>
-<tr><th>Extractor</th><th>Sumber</th><th>Contoh</th></tr>
+<tr><th>Extractor</th><th>${t('Sumber','Source')}</th><th>${t('Contoh','Example')}</th></tr>
 <tr><td><code>Json&lt;T&gt;</code></td><td>Request body (JSON)</td><td><code>Json(req): Json&lt;CreateUserRequest&gt;</code></td></tr>
 <tr><td><code>Path&lt;T&gt;</code></td><td>URL path parameter</td><td><code>Path(id): Path&lt;Uuid&gt;</code></td></tr>
 <tr><td><code>Query&lt;T&gt;</code></td><td>Query string (?key=val)</td><td><code>Query(p): Query&lt;Pagination&gt;</code></td></tr>
@@ -864,7 +864,7 @@ tonic-build = <span class="str">"0.11"</span></div>
 </table>
 </div>
 <div class="info-box">
-<strong>Type Safety:</strong> Jika client mengirim body JSON yang tidak sesuai dengan struct <code>CreateUserRequest</code>, Axum otomatis mengembalikan <code>422 Unprocessable Entity</code> — sebelum handler dipanggil. Tidak perlu validasi tipe manual!
+<strong>Type Safety:</strong> ${t('Jika client mengirim body JSON yang tidak sesuai dengan struct <code>CreateUserRequest</code>, Axum otomatis mengembalikan <code>422 Unprocessable Entity</code> — sebelum handler dipanggil. Tidak perlu validasi tipe manual!','If the client sends a JSON body that does not match the <code>CreateUserRequest</code> struct, Axum automatically returns <code>422 Unprocessable Entity</code> — before the handler is called. No manual type validation needed!')}
 </div>
 </div>
 
@@ -873,7 +873,7 @@ tonic-build = <span class="str">"0.11"</span></div>
 
 <div class="card animate-in">
 <h3>middleware/auth.rs — JWT Authentication Middleware</h3>
-<p>Middleware ini mengekstrak dan memvalidasi JWT token dari header <code>Authorization: Bearer &lt;token&gt;</code>, lalu menyisipkan <code>Claims</code> ke request extensions agar handler bisa mengaksesnya.</p>
+<p>${t('Middleware ini mengekstrak dan memvalidasi JWT token dari header <code>Authorization: Bearer &lt;token&gt;</code>, lalu menyisipkan <code>Claims</code> ke request extensions agar handler bisa mengaksesnya.','This middleware extracts and validates the JWT token from the <code>Authorization: Bearer &lt;token&gt;</code> header, then inserts <code>Claims</code> into request extensions so handlers can access them.')}</p>
 <div class="code-block"><span class="kw">use</span> axum::{
     extract::Request,
     http::header::AUTHORIZATION,
@@ -1113,15 +1113,15 @@ tonic-build = <span class="str">"0.11"</span></div>
 </div>
 
 <div class="card animate-in">
-<h3>Router Architecture</h3>
+<h3>${t('Router Architecture','Router Architecture')}</h3>
 <div class="info-box">
-<strong>Middleware Order Matters!</strong> Middleware dalam Axum diterapkan dari bawah ke atas (LIFO). Pada contoh di atas:
+<strong>${t('Middleware Order Matters!','Middleware Order Matters!')}</strong> ${t('Middleware dalam Axum diterapkan dari bawah ke atas (LIFO). Pada contoh di atas:','Middleware in Axum is applied from bottom to top (LIFO). In the example above:')}
 <ol>
-<li><strong>Logging</strong> (paling luar) — mencatat semua request</li>
-<li><strong>Body Limit</strong> — menolak payload &gt; 1MB</li>
-<li><strong>CORS</strong> — menangani preflight dan origin check</li>
-<li><strong>Tracing</strong> — structured logging dari tower-http</li>
-<li><strong>Auth</strong> (paling dalam, hanya di protected routes) — validasi JWT</li>
+<li><strong>Logging</strong> (${t('paling luar','outermost')}) — ${t('mencatat semua request','logs all requests')}</li>
+<li><strong>Body Limit</strong> — ${t('menolak payload &gt; 1MB','rejects payload &gt; 1MB')}</li>
+<li><strong>CORS</strong> — ${t('menangani preflight dan origin check','handles preflight and origin check')}</li>
+<li><strong>Tracing</strong> — ${t('structured logging dari tower-http','structured logging from tower-http')}</li>
+<li><strong>Auth</strong> (${t('paling dalam, hanya di protected routes','innermost, only on protected routes')}) — ${t('validasi JWT','JWT validation')}</li>
 </ol>
 </div>
 </div>
@@ -1130,25 +1130,25 @@ tonic-build = <span class="str">"0.11"</span></div>
 <h2 class="animate-in">9. gRPC CRUD dengan Tonic</h2>
 
 <div class="card animate-in">
-<h3>Apa Itu gRPC?</h3>
-<p><strong>gRPC</strong> (Google Remote Procedure Call) adalah framework RPC modern yang menggunakan <strong>Protocol Buffers</strong> (protobuf) untuk serialisasi dan <strong>HTTP/2</strong> sebagai transport. Dibanding REST + JSON, gRPC menawarkan:</p>
+<h3>${t('Apa Itu gRPC?','What Is gRPC?')}</h3>
+<p><strong>gRPC</strong> (Google Remote Procedure Call) ${t('adalah framework RPC modern yang menggunakan <strong>Protocol Buffers</strong> (protobuf) untuk serialisasi dan <strong>HTTP/2</strong> sebagai transport. Dibanding REST + JSON, gRPC menawarkan:','is a modern RPC framework that uses <strong>Protocol Buffers</strong> (protobuf) for serialization and <strong>HTTP/2</strong> as transport. Compared to REST + JSON, gRPC offers:')}</p>
 <div class="card-grid">
 <div class="card">
-<h4 style="color:var(--green)">Keunggulan gRPC</h4>
+<h4 style="color:var(--green)">${t('Keunggulan gRPC','gRPC Advantages')}</h4>
 <ul>
-<li><strong>Performa tinggi</strong> — protobuf binary jauh lebih kecil dan cepat dari JSON</li>
-<li><strong>Strong typing</strong> — schema didefinisikan di .proto file, code generation otomatis</li>
+<li><strong>${t('Performa tinggi','High performance')}</strong> — ${t('protobuf binary jauh lebih kecil dan cepat dari JSON','protobuf binary is much smaller and faster than JSON')}</li>
+<li><strong>Strong typing</strong> — ${t('schema didefinisikan di .proto file, code generation otomatis','schema defined in .proto files, automatic code generation')}</li>
 <li><strong>HTTP/2</strong> — multiplexing, server push, header compression</li>
 <li><strong>Streaming</strong> — unary, server-stream, client-stream, bidirectional</li>
-<li><strong>Cross-language</strong> — satu .proto file generate code untuk Go, Rust, Java, Python, dll</li>
+<li><strong>Cross-language</strong> — ${t('satu .proto file generate code untuk Go, Rust, Java, Python, dll','one .proto file generates code for Go, Rust, Java, Python, etc.')}</li>
 </ul>
 </div>
 <div class="card">
-<h4 style="color:var(--yellow)">Kapan Gunakan gRPC?</h4>
+<h4 style="color:var(--yellow)">${t('Kapan Gunakan gRPC?','When to Use gRPC?')}</h4>
 <ul>
 <li><strong>Microservices</strong> — internal service-to-service communication</li>
 <li><strong>Latency-sensitive</strong> — gaming, real-time data</li>
-<li><strong>Polyglot</strong> — services dalam bahasa berbeda</li>
+<li><strong>Polyglot</strong> — ${t('services dalam bahasa berbeda','services in different languages')}</li>
 <li><strong>Streaming</strong> — chat, live feed, IoT telemetry</li>
 <li><strong>Mobile backend</strong> — bandwidth-efficient</li>
 </ul>
@@ -1158,7 +1158,7 @@ tonic-build = <span class="str">"0.11"</span></div>
 
 <div class="card animate-in">
 <h3>Proto File — proto/user.proto</h3>
-<p>Definisi service dan message di Protocol Buffers:</p>
+<p>${t('Definisi service dan message di Protocol Buffers:','Service and message definitions in Protocol Buffers:')}</p>
 <div class="code-block"><span class="cm">// proto/user.proto</span>
 <span class="kw">syntax</span> = <span class="str">"proto3"</span>;
 <span class="kw">package</span> user;
@@ -1216,7 +1216,7 @@ tonic-build = <span class="str">"0.11"</span></div>
 
 <div class="card animate-in">
 <h3>build.rs — Code Generation dengan tonic-build</h3>
-<p>tonic-build membaca file .proto dan menghasilkan Rust code secara otomatis saat <code>cargo build</code>:</p>
+<p>${t('tonic-build membaca file .proto dan menghasilkan Rust code secara otomatis saat <code>cargo build</code>:','tonic-build reads .proto files and generates Rust code automatically during <code>cargo build</code>:')}</p>
 <div class="code-block"><span class="cm">// build.rs — dieksekusi SEBELUM kompilasi</span>
 <span class="kw">fn</span> <span class="fn">main</span>() -&gt; <span class="type">Result</span>&lt;(), Box&lt;<span class="kw">dyn</span> std::error::Error&gt;&gt; {
     <span class="cm">// Compile .proto file menjadi Rust types &amp; service traits</span>
@@ -1234,7 +1234,7 @@ tonic-build = <span class="str">"0.11"</span></div>
 
 <div class="card animate-in">
 <h3>gRPC Server Implementation</h3>
-<p>Implementasi gRPC service menggunakan trait yang di-generate oleh tonic-build:</p>
+<p>${t('Implementasi gRPC service menggunakan trait yang di-generate oleh tonic-build:','gRPC service implementation using traits generated by tonic-build:')}</p>
 <div class="code-block"><span class="kw">use</span> tonic::{Request, Response, Status};
 <span class="kw">use</span> tokio_stream::wrappers::ReceiverStream;
 <span class="kw">use</span> std::sync::Arc;
@@ -1449,8 +1449,8 @@ tonic-build = <span class="str">"0.11"</span></div>
 </div>
 
 <div class="card animate-in">
-<h3>gRPC Interceptor untuk Auth</h3>
-<p>Interceptor di Tonic mirip dengan middleware di Axum — ia meng-intercept request sebelum sampai ke handler:</p>
+<h3>${t('gRPC Interceptor untuk Auth','gRPC Interceptor for Auth')}</h3>
+<p>${t('Interceptor di Tonic mirip dengan middleware di Axum — ia meng-intercept request sebelum sampai ke handler:','Interceptors in Tonic are similar to middleware in Axum — they intercept requests before they reach the handler:')}</p>
 <div class="code-block"><span class="kw">use</span> tonic::{Request, Status};
 
 <span class="cm">/// Auth interceptor — validates JWT dari metadata</span>
@@ -1482,16 +1482,16 @@ tonic-build = <span class="str">"0.11"</span></div>
 </div>
 
 <div class="card animate-in">
-<h3>REST vs gRPC — Perbandingan</h3>
+<h3>${t('REST vs gRPC — Perbandingan','REST vs gRPC — Comparison')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Aspek</th><th>REST (Axum + JSON)</th><th>gRPC (Tonic + Protobuf)</th></tr>
-<tr><td>Format data</td><td>JSON (text)</td><td>Protobuf (binary, ~10x lebih kecil)</td></tr>
-<tr><td>Transport</td><td>HTTP/1.1 atau HTTP/2</td><td>HTTP/2 (wajib)</td></tr>
-<tr><td>Schema</td><td>Opsional (OpenAPI)</td><td>Wajib (.proto file)</td></tr>
-<tr><td>Code generation</td><td>Opsional</td><td>Otomatis (tonic-build)</td></tr>
-<tr><td>Streaming</td><td>WebSocket (terpisah)</td><td>Built-in (4 mode)</td></tr>
-<tr><td>Browser support</td><td>Native</td><td>Butuh grpc-web proxy</td></tr>
+<tr><th>${t('Aspek','Aspect')}</th><th>REST (Axum + JSON)</th><th>gRPC (Tonic + Protobuf)</th></tr>
+<tr><td>${t('Format data','Data format')}</td><td>JSON (text)</td><td>Protobuf (binary, ${t('~10x lebih kecil','~10x smaller')})</td></tr>
+<tr><td>Transport</td><td>HTTP/1.1 ${t('atau','or')} HTTP/2</td><td>HTTP/2 (${t('wajib','required')})</td></tr>
+<tr><td>Schema</td><td>${t('Opsional','Optional')} (OpenAPI)</td><td>${t('Wajib','Required')} (.proto file)</td></tr>
+<tr><td>Code generation</td><td>${t('Opsional','Optional')}</td><td>${t('Otomatis','Automatic')} (tonic-build)</td></tr>
+<tr><td>Streaming</td><td>WebSocket (${t('terpisah','separate')})</td><td>Built-in (4 ${t('mode','modes')})</td></tr>
+<tr><td>Browser support</td><td>Native</td><td>${t('Butuh grpc-web proxy','Requires grpc-web proxy')}</td></tr>
 <tr><td>Tooling debug</td><td>curl, Postman</td><td>grpcurl, Bloom RPC</td></tr>
 <tr><td>Use case</td><td>Public API, web apps</td><td>Internal services, microservices</td></tr>
 </table>
@@ -1502,38 +1502,38 @@ tonic-build = <span class="str">"0.11"</span></div>
 <h2 class="animate-in">10. Security Best Practices (Rust-Specific)</h2>
 
 <div class="card animate-in">
-<h3>Keunggulan Keamanan Rust</h3>
-<p>Rust memberikan keamanan yang tidak dimiliki bahasa lain pada level <strong>compiler</strong>. Banyak kategori bug yang lazim di C/C++/Java/Python secara <em>struktural mustahil</em> di safe Rust.</p>
+<h3>${t('Keunggulan Keamanan Rust','Rust Security Advantages')}</h3>
+<p>${t('Rust memberikan keamanan yang tidak dimiliki bahasa lain pada level <strong>compiler</strong>. Banyak kategori bug yang lazim di C/C++/Java/Python secara <em>struktural mustahil</em> di safe Rust.','Rust provides security that other languages lack at the <strong>compiler</strong> level. Many categories of bugs common in C/C++/Java/Python are <em>structurally impossible</em> in safe Rust.')}</p>
 <div class="card-grid">
 <div class="card">
-<h4 style="color:var(--green)">Dijamin oleh Compiler</h4>
+<h4 style="color:var(--green)">${t('Dijamin oleh Compiler','Guaranteed by the Compiler')}</h4>
 <ul>
-<li><strong>No null pointer dereference</strong> — Option&lt;T&gt; menggantikan null</li>
-<li><strong>No buffer overflow</strong> — bounds checking otomatis</li>
-<li><strong>No use-after-free</strong> — ownership system mencegahnya</li>
-<li><strong>No data races</strong> — Send + Sync traits memastikan thread safety</li>
+<li><strong>No null pointer dereference</strong> — ${t('Option&lt;T&gt; menggantikan null','Option&lt;T&gt; replaces null')}</li>
+<li><strong>No buffer overflow</strong> — ${t('bounds checking otomatis','automatic bounds checking')}</li>
+<li><strong>No use-after-free</strong> — ${t('ownership system mencegahnya','ownership system prevents it')}</li>
+<li><strong>No data races</strong> — ${t('Send + Sync traits memastikan thread safety','Send + Sync traits ensure thread safety')}</li>
 <li><strong>No SQL injection</strong> (via sqlx) — parameterized queries + compile-time check</li>
 </ul>
 </div>
 <div class="card">
-<h4 style="color:var(--yellow)">Perlu Implementasi Manual</h4>
+<h4 style="color:var(--yellow)">${t('Perlu Implementasi Manual','Requires Manual Implementation')}</h4>
 <ul>
-<li><strong>Password hashing</strong> — gunakan argon2 (jangan bcrypt/MD5)</li>
-<li><strong>JWT validation</strong> — periksa expiry, issuer, audience</li>
-<li><strong>Input validation</strong> — validator crate dengan derive macro</li>
-<li><strong>CORS policy</strong> — jangan gunakan allow_any_origin di production</li>
-<li><strong>Rate limiting</strong> — tower-http atau custom middleware</li>
-<li><strong>TLS</strong> — gunakan rustls (pure Rust, no OpenSSL dependency)</li>
+<li><strong>Password hashing</strong> — ${t('gunakan argon2 (jangan bcrypt/MD5)','use argon2 (not bcrypt/MD5)')}</li>
+<li><strong>JWT validation</strong> — ${t('periksa expiry, issuer, audience','check expiry, issuer, audience')}</li>
+<li><strong>Input validation</strong> — ${t('validator crate dengan derive macro','validator crate with derive macro')}</li>
+<li><strong>CORS policy</strong> — ${t('jangan gunakan allow_any_origin di production','do not use allow_any_origin in production')}</li>
+<li><strong>Rate limiting</strong> — ${t('tower-http atau custom middleware','tower-http or custom middleware')}</li>
+<li><strong>TLS</strong> — ${t('gunakan rustls (pure Rust, no OpenSSL dependency)','use rustls (pure Rust, no OpenSSL dependency)')}</li>
 </ul>
 </div>
 </div>
 </div>
 
 <div class="card animate-in">
-<h3>SQL Injection — Mustahil dengan sqlx</h3>
+<h3>${t('SQL Injection — Mustahil dengan sqlx','SQL Injection — Impossible with sqlx')}</h3>
 <div class="tabs">
-<button class="tab-btn active" data-tab="sql-safe">Rust (Aman)</button>
-<button class="tab-btn" data-tab="sql-unsafe">Python (Rawan)</button>
+<button class="tab-btn active" data-tab="sql-safe">${t('Rust (Aman)','Rust (Safe)')}</button>
+<button class="tab-btn" data-tab="sql-unsafe">${t('Python (Rawan)','Python (Vulnerable)')}</button>
 </div>
 <div class="tab-content active" id="sql-safe">
 <div class="code-block"><span class="cm">// Rust + sqlx: AMAN — parameterized query</span>
@@ -1683,9 +1683,9 @@ cursor.execute(
 </div>
 
 <div class="card animate-in">
-<h3>Security Checklist — No Unsafe!</h3>
+<h3>${t('Security Checklist — No Unsafe!','Security Checklist — No Unsafe!')}</h3>
 <div class="info-box">
-<strong>Aturan #1:</strong> Jangan gunakan <code>unsafe</code> di application code. Semua crate yang kita gunakan (axum, sqlx, tonic, argon2, jsonwebtoken) adalah <strong>100% safe Rust</strong>. <code>unsafe</code> hanya diperlukan di level library/runtime untuk FFI atau optimasi low-level — dan bahkan di sana, ia di-audit dan di-encapsulate di balik API yang safe.
+<strong>${t('Aturan #1:','Rule #1:')}</strong> ${t('Jangan gunakan <code>unsafe</code> di application code. Semua crate yang kita gunakan (axum, sqlx, tonic, argon2, jsonwebtoken) adalah <strong>100% safe Rust</strong>. <code>unsafe</code> hanya diperlukan di level library/runtime untuk FFI atau optimasi low-level — dan bahkan di sana, ia di-audit dan di-encapsulate di balik API yang safe.','Do not use <code>unsafe</code> in application code. All crates we use (axum, sqlx, tonic, argon2, jsonwebtoken) are <strong>100% safe Rust</strong>. <code>unsafe</code> is only needed at the library/runtime level for FFI or low-level optimizations — and even there, it is audited and encapsulated behind safe APIs.')}
 </div>
 <div class="table-wrapper">
 <table>

@@ -7,37 +7,37 @@
 sections['lang-rust'] = () => `
 <section class="animate-in">
 <h1 class="section-title animate-in">Rust Deep Dive</h1>
-<p class="section-subtitle animate-in">Bahasa sistem modern — memory safety tanpa garbage collector, zero-cost abstractions, fearless concurrency. Referensi utama: <strong>Dasar Pemrograman Rust</strong> by Novalagung.</p>
+<p class="section-subtitle animate-in">${t('Bahasa sistem modern — memory safety tanpa garbage collector, zero-cost abstractions, fearless concurrency. Referensi utama: <strong>Dasar Pemrograman Rust</strong> by Novalagung.', 'A modern systems language — memory safety without a garbage collector, zero-cost abstractions, fearless concurrency. Main reference: <strong>Dasar Pemrograman Rust</strong> by Novalagung.')}</p>
 
 <!-- ===================== 1. MENGAPA RUST ===================== -->
-<h2 class="animate-in">1. Mengapa Rust?</h2>
+<h2 class="animate-in">${t('1. Mengapa Rust?', '1. Why Rust?')}</h2>
 
 <div class="card animate-in">
-<h3>Sejarah &amp; Latar Belakang</h3>
-<p>Rust dimulai sebagai proyek pribadi <strong>Graydon Hoare</strong> di Mozilla Research pada tahun <strong>2006</strong>. Mozilla mulai mendanai proyek ini pada 2009, dan versi stabil <strong>1.0 dirilis 15 Mei 2015</strong>. Pada 2021, <strong>Rust Foundation</strong> didirikan oleh AWS, Google, Huawei, Microsoft, dan Mozilla untuk mengelola bahasa ini secara independen.</p>
-<p>Rust dirancang untuk memecahkan masalah yang sudah puluhan tahun menghantui C/C++: <em>segmentation fault</em>, <em>buffer overflow</em>, <em>use-after-free</em>, dan <em>data race</em> — semuanya tanpa mengorbankan performa.</p>
+<h3>${t('Sejarah &amp; Latar Belakang', 'History &amp; Background')}</h3>
+<p>${t('Rust dimulai sebagai proyek pribadi <strong>Graydon Hoare</strong> di Mozilla Research pada tahun <strong>2006</strong>. Mozilla mulai mendanai proyek ini pada 2009, dan versi stabil <strong>1.0 dirilis 15 Mei 2015</strong>. Pada 2021, <strong>Rust Foundation</strong> didirikan oleh AWS, Google, Huawei, Microsoft, dan Mozilla untuk mengelola bahasa ini secara independen.', 'Rust began as a personal project by <strong>Graydon Hoare</strong> at Mozilla Research in <strong>2006</strong>. Mozilla started funding the project in 2009, and stable version <strong>1.0 was released on May 15, 2015</strong>. In 2021, the <strong>Rust Foundation</strong> was established by AWS, Google, Huawei, Microsoft, and Mozilla to manage the language independently.')}</p>
+<p>${t('Rust dirancang untuk memecahkan masalah yang sudah puluhan tahun menghantui C/C++: <em>segmentation fault</em>, <em>buffer overflow</em>, <em>use-after-free</em>, dan <em>data race</em> — semuanya tanpa mengorbankan performa.', 'Rust was designed to solve problems that have plagued C/C++ for decades: <em>segmentation fault</em>, <em>buffer overflow</em>, <em>use-after-free</em>, and <em>data race</em> — all without sacrificing performance.')}</p>
 <div class="info-box">
-<strong>Filosofi Inti:</strong> "Jika program berhasil dikompilasi, maka ia bebas dari memory bug." Rust mencapai ini melalui <strong>ownership system</strong> yang diverifikasi saat compile time — bukan runtime. Hasilnya: performa setara C/C++ dengan keamanan sekelas bahasa managed.
+<strong>${t('Filosofi Inti:', 'Core Philosophy:')}</strong> ${t('"Jika program berhasil dikompilasi, maka ia bebas dari memory bug." Rust mencapai ini melalui <strong>ownership system</strong> yang diverifikasi saat compile time — bukan runtime. Hasilnya: performa setara C/C++ dengan keamanan sekelas bahasa managed.', '"If the program compiles successfully, it is free from memory bugs." Rust achieves this through the <strong>ownership system</strong> verified at compile time — not runtime. The result: performance on par with C/C++ with safety comparable to managed languages.')}
 </div>
 </div>
 
 <div class="card-grid animate-in">
 <div class="card">
-<h4>Desain Goals</h4>
+<h4>${t('Desain Goals', 'Design Goals')}</h4>
 <ul>
-<li><strong>Memory Safety tanpa GC</strong> — No null pointer, no dangling ref, no double-free</li>
-<li><strong>Zero-Cost Abstractions</strong> — Abstraksi tinggi tanpa overhead runtime</li>
-<li><strong>Fearless Concurrency</strong> — Data race mustahil di safe Rust</li>
-<li><strong>Performa C/C++</strong> — Deterministic memory, no GC pause</li>
-<li><strong>Ekosistem Modern</strong> — Cargo, crates.io, rustfmt, clippy</li>
+<li><strong>Memory Safety ${t('tanpa', 'without')} GC</strong> — No null pointer, no dangling ref, no double-free</li>
+<li><strong>Zero-Cost Abstractions</strong> — ${t('Abstraksi tinggi tanpa overhead runtime', 'High-level abstractions without runtime overhead')}</li>
+<li><strong>Fearless Concurrency</strong> — ${t('Data race mustahil di safe Rust', 'Data races are impossible in safe Rust')}</li>
+<li><strong>${t('Performa', 'Performance')} C/C++</strong> — Deterministic memory, no GC pause</li>
+<li><strong>${t('Ekosistem Modern', 'Modern Ecosystem')}</strong> — Cargo, crates.io, rustfmt, clippy</li>
 </ul>
 </div>
 <div class="card">
-<h4>Use Cases Nyata</h4>
+<h4>${t('Use Cases Nyata', 'Real-World Use Cases')}</h4>
 <ul>
 <li><strong>OS &amp; Kernel</strong> — Linux kernel (2022+), Redox OS</li>
-<li><strong>WebAssembly</strong> — Performa native di browser</li>
-<li><strong>Web Backend</strong> — Discord (dari Go ke Rust, 10x lebih efisien)</li>
+<li><strong>WebAssembly</strong> — ${t('Performa native di browser', 'Native performance in browser')}</li>
+<li><strong>Web Backend</strong> — Discord (${t('dari Go ke Rust, 10x lebih efisien', 'from Go to Rust, 10x more efficient')})</li>
 <li><strong>Networking</strong> — Cloudflare, Deno, Fastly</li>
 <li><strong>Embedded</strong> — Firmware, microcontroller</li>
 <li><strong>Game Engine</strong> — Bevy Engine</li>
@@ -47,31 +47,31 @@ sections['lang-rust'] = () => `
 </div>
 
 <div class="card animate-in">
-<h3>Rust vs C++ — Perbandingan</h3>
+<h3>${t('Rust vs C++ — Perbandingan', 'Rust vs C++ — Comparison')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Aspek</th><th>C++</th><th>Rust</th></tr>
-<tr><td>Performa</td><td>Sangat cepat (bare metal)</td><td>Setara C++ (zero-cost abstraction)</td></tr>
-<tr><td>Memory Safety</td><td>Manual, rawan bug</td><td>Dijamin compiler (ownership)</td></tr>
-<tr><td>Data Race</td><td>Mungkin terjadi</td><td>Tidak mungkin di safe Rust</td></tr>
-<tr><td>Null Pointer</td><td>Ada (UB)</td><td>Tidak ada — gunakan Option&lt;T&gt;</td></tr>
-<tr><td>Error Handling</td><td>Exception / errno</td><td>Result&lt;T,E&gt; — tipe, bukan exception</td></tr>
-<tr><td>Package Manager</td><td>Tidak ada standar</td><td>Cargo (official, excellent)</td></tr>
-<tr><td>Build System</td><td>CMake, Make, dll</td><td>Cargo (terintegrasi)</td></tr>
-<tr><td>Learning Curve</td><td>Tinggi (UB overhang)</td><td>Tinggi (borrow checker, tetapi benar)</td></tr>
+<tr><th>${t('Aspek', 'Aspect')}</th><th>C++</th><th>Rust</th></tr>
+<tr><td>${t('Performa', 'Performance')}</td><td>${t('Sangat cepat (bare metal)', 'Very fast (bare metal)')}</td><td>${t('Setara C++ (zero-cost abstraction)', 'On par with C++ (zero-cost abstraction)')}</td></tr>
+<tr><td>Memory Safety</td><td>${t('Manual, rawan bug', 'Manual, bug-prone')}</td><td>${t('Dijamin compiler (ownership)', 'Guaranteed by compiler (ownership)')}</td></tr>
+<tr><td>Data Race</td><td>${t('Mungkin terjadi', 'Can happen')}</td><td>${t('Tidak mungkin di safe Rust', 'Impossible in safe Rust')}</td></tr>
+<tr><td>Null Pointer</td><td>${t('Ada (UB)', 'Exists (UB)')}</td><td>${t('Tidak ada — gunakan Option&lt;T&gt;', 'None — use Option&lt;T&gt;')}</td></tr>
+<tr><td>Error Handling</td><td>Exception / errno</td><td>${t('Result&lt;T,E&gt; — tipe, bukan exception', 'Result&lt;T,E&gt; — type, not exception')}</td></tr>
+<tr><td>Package Manager</td><td>${t('Tidak ada standar', 'No standard')}</td><td>Cargo (official, excellent)</td></tr>
+<tr><td>Build System</td><td>${t('CMake, Make, dll', 'CMake, Make, etc.')}</td><td>${t('Cargo (terintegrasi)', 'Cargo (integrated)')}</td></tr>
+<tr><td>Learning Curve</td><td>${t('Tinggi (UB overhang)', 'High (UB overhang)')}</td><td>${t('Tinggi (borrow checker, tetapi benar)', 'High (borrow checker, but correct)')}</td></tr>
 </table>
 </div>
 </div>
 
 <div class="card animate-in">
 <h3>Rust Editions</h3>
-<p>Rust menggunakan sistem <strong>edition</strong> untuk memperkenalkan perubahan bahasa tanpa merusak backward compatibility. Setiap crate menentukan edition-nya sendiri di <code>Cargo.toml</code>.</p>
+<p>${t('Rust menggunakan sistem <strong>edition</strong> untuk memperkenalkan perubahan bahasa tanpa merusak backward compatibility. Setiap crate menentukan edition-nya sendiri di <code>Cargo.toml</code>.', 'Rust uses an <strong>edition</strong> system to introduce language changes without breaking backward compatibility. Each crate specifies its own edition in <code>Cargo.toml</code>.')}</p>
 <div class="table-wrapper">
 <table>
-<tr><th>Edition</th><th>Tahun</th><th>Perubahan Utama</th></tr>
-<tr><td>Rust 2015</td><td>2015</td><td>Edition pertama (default lama)</td></tr>
+<tr><th>Edition</th><th>${t('Tahun', 'Year')}</th><th>${t('Perubahan Utama', 'Major Changes')}</th></tr>
+<tr><td>Rust 2015</td><td>2015</td><td>${t('Edition pertama (default lama)', 'First edition (old default)')}</td></tr>
 <tr><td>Rust 2018</td><td>2018</td><td>NLL (Non-Lexical Lifetimes), async/await prep</td></tr>
-<tr><td>Rust 2021</td><td>2021</td><td>Resolver 2.0, or-patterns, panic macro changes — <strong>Recommended</strong></td></tr>
+<tr><td>Rust 2021</td><td>2021</td><td>Resolver 2.0, or-patterns, panic macro changes — <strong>${t('Direkomendasikan', 'Recommended')}</strong></td></tr>
 </table>
 </div>
 <div class="code-block"><span class="cm"># Cargo.toml — gunakan Rust 2021</span>
@@ -82,15 +82,15 @@ edition = <span class="str">"2021"</span></div>
 </div>
 
 <!-- ===================== 2. OWNERSHIP SYSTEM ===================== -->
-<h2 class="animate-in">2. Ownership System — Inti Rust</h2>
+<h2 class="animate-in">${t('2. Ownership System — Inti Rust', '2. Ownership System — The Core of Rust')}</h2>
 
 <div class="card animate-in">
-<h3>Tiga Aturan Ownership</h3>
+<h3>${t('Tiga Aturan Ownership', 'Three Ownership Rules')}</h3>
 <div class="info-box">
 <ol>
-<li>Setiap nilai (<em>value</em>) di Rust memiliki tepat <strong>satu pemilik</strong> (<em>owner</em>)</li>
-<li>Hanya bisa ada <strong>satu owner</strong> pada satu waktu</li>
-<li>Ketika owner keluar dari <em>scope</em>, nilai <strong>otomatis di-drop</strong> (memori dibebaskan)</li>
+<li>${t('Setiap nilai (<em>value</em>) di Rust memiliki tepat <strong>satu pemilik</strong> (<em>owner</em>)', 'Every value in Rust has exactly <strong>one owner</strong>')}</li>
+<li>${t('Hanya bisa ada <strong>satu owner</strong> pada satu waktu', 'There can only be <strong>one owner</strong> at a time')}</li>
+<li>${t('Ketika owner keluar dari <em>scope</em>, nilai <strong>otomatis di-drop</strong> (memori dibebaskan)', 'When the owner goes out of <em>scope</em>, the value is <strong>automatically dropped</strong> (memory freed)')}</li>
 </ol>
 </div>
 <div class="code-block"><span class="kw">fn</span> <span class="fn">main</span>() {
@@ -116,7 +116,7 @@ edition = <span class="str">"2021"</span></div>
 <div class="card-grid">
 <div class="card">
 <h4>Move Semantics (Heap types)</h4>
-<p>Tipe yang mengalokasikan heap (String, Vec, Box, dll.) menggunakan <strong>move semantics</strong>. Ownership berpindah, yang lama tidak valid.</p>
+<p>${t('Tipe yang mengalokasikan heap (String, Vec, Box, dll.) menggunakan <strong>move semantics</strong>. Ownership berpindah, yang lama tidak valid.', 'Types that allocate on the heap (String, Vec, Box, etc.) use <strong>move semantics</strong>. Ownership transfers, and the old variable becomes invalid.')}</p>
 <div class="code-block"><span class="kw">let</span> v1 = <span class="fn">vec!</span>[<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>];
 <span class="kw">let</span> v2 = v1; <span class="cm">// moved</span>
 <span class="cm">// v1 sudah tidak valid</span>
@@ -128,7 +128,7 @@ edition = <span class="str">"2021"</span></div>
 </div>
 <div class="card">
 <h4>Copy Trait (Stack types)</h4>
-<p>Tipe stack-only yang murah untuk di-copy mengimplementasikan <strong>Copy trait</strong>. Assignment membuat copy otomatis.</p>
+<p>${t('Tipe stack-only yang murah untuk di-copy mengimplementasikan <strong>Copy trait</strong>. Assignment membuat copy otomatis.', 'Stack-only types that are cheap to copy implement the <strong>Copy trait</strong>. Assignment creates an automatic copy.')}</p>
 <div class="code-block"><span class="cm">// Semua tipe ini Copy:</span>
 <span class="cm">// i8, i16, i32, i64, i128, isize</span>
 <span class="cm">// u8, u16, u32, u64, u128, usize</span>
@@ -143,7 +143,7 @@ edition = <span class="str">"2021"</span></div>
 </div>
 
 <div class="card animate-in">
-<h3>Ownership &amp; Functions</h3>
+<h3>${t('Ownership &amp; Functions', 'Ownership &amp; Functions')}</h3>
 <div class="code-block"><span class="kw">fn</span> <span class="fn">takes_ownership</span>(s: <span class="type">String</span>) {
     <span class="fn">println!</span>(<span class="str">"Got: {}"</span>, s);
 } <span class="cm">// s di-drop di sini</span>
@@ -173,7 +173,7 @@ edition = <span class="str">"2021"</span></div>
 
 <!-- Canvas Ownership Animation -->
 <div class="card animate-in">
-<h3>Visualisasi Ownership &amp; Borrow Checker</h3>
+<h3>${t('Visualisasi Ownership &amp; Borrow Checker', 'Ownership &amp; Borrow Checker Visualization')}</h3>
 <div class="anim-container">
 <canvas id="canvas-rust-ownership" width="700" height="340" style="width:100%;max-width:700px;border-radius:8px;"></canvas>
 </div>
@@ -189,14 +189,14 @@ edition = <span class="str">"2021"</span></div>
 <h2 class="animate-in">3. Borrowing &amp; References</h2>
 
 <div class="card animate-in">
-<h3>Aturan Borrowing</h3>
+<h3>${t('Aturan Borrowing', 'Borrowing Rules')}</h3>
 <div class="info-box">
-Pada satu waktu, kamu bisa memiliki <strong>SALAH SATU</strong> dari:
+${t('Pada satu waktu, kamu bisa memiliki <strong>SALAH SATU</strong> dari:', 'At any given time, you can have <strong>EITHER ONE</strong> of:')}
 <ul>
-<li>Satu <code>&amp;mut T</code> (mutable reference) — exclusive access</li>
-<li>Banyak <code>&amp;T</code> (immutable reference) — shared read access</li>
+<li>${t('Satu <code>&amp;mut T</code> (mutable reference) — exclusive access', 'One <code>&amp;mut T</code> (mutable reference) — exclusive access')}</li>
+<li>${t('Banyak <code>&amp;T</code> (immutable reference) — shared read access', 'Many <code>&amp;T</code> (immutable references) — shared read access')}</li>
 </ul>
-Reference selalu harus valid — tidak ada dangling reference di safe Rust.
+${t('Reference selalu harus valid — tidak ada dangling reference di safe Rust.', 'References must always be valid — no dangling references in safe Rust.')}
 </div>
 <div class="code-block"><span class="kw">fn</span> <span class="fn">calculate_length</span>(s: &amp;<span class="type">String</span>) -&gt; <span class="type">usize</span> {
     s.<span class="fn">len</span>() <span class="cm">// hanya meminjam, tidak mengambil ownership</span>
@@ -223,7 +223,7 @@ Reference selalu harus valid — tidak ada dangling reference di safe Rust.
 
 <div class="card animate-in">
 <h3>Lifetime Annotations</h3>
-<p>Lifetime memastikan reference tidak hidup lebih lama dari data yang dirujuknya. Biasanya compiler bisa <em>infer</em> lifetime (elision rules), tapi kadang perlu anotasi eksplisit.</p>
+<p>${t('Lifetime memastikan reference tidak hidup lebih lama dari data yang dirujuknya. Biasanya compiler bisa <em>infer</em> lifetime (elision rules), tapi kadang perlu anotasi eksplisit.', 'Lifetimes ensure that references do not outlive the data they point to. Usually the compiler can <em>infer</em> lifetimes (elision rules), but sometimes explicit annotations are needed.')}</p>
 <div class="code-block"><span class="cm">// Tanpa anotasi lifetime — compiler bingung:</span>
 <span class="cm">// fn longest(x: &str, y: &str) -&gt; &str { ... } // ERROR</span>
 
@@ -252,7 +252,7 @@ Reference selalu harus valid — tidak ada dangling reference di safe Rust.
 </div>
 
 <div class="card animate-in">
-<h3>Borrow Checker Visualisasi</h3>
+<h3>${t('Borrow Checker Visualisasi', 'Borrow Checker Visualization')}</h3>
 <div class="anim-container">
 <canvas id="canvas-rust-borrow" width="700" height="300" style="width:100%;max-width:700px;border-radius:8px;"></canvas>
 </div>
@@ -264,10 +264,10 @@ Reference selalu harus valid — tidak ada dangling reference di safe Rust.
 </div>
 
 <!-- ===================== 4. BASIC SYNTAX ===================== -->
-<h2 class="animate-in">4. Sintaks Dasar</h2>
+<h2 class="animate-in">${t('4. Sintaks Dasar', '4. Basic Syntax')}</h2>
 
 <div class="card animate-in">
-<h3>Variabel &amp; Tipe Data</h3>
+<h3>${t('Variabel &amp; Tipe Data', 'Variables &amp; Data Types')}</h3>
 <div class="code-block"><span class="kw">fn</span> <span class="fn">main</span>() {
     <span class="cm">// let = immutable by default</span>
     <span class="kw">let</span> x = <span class="num">5</span>;               <span class="cm">// type inference: i32</span>
@@ -291,10 +291,10 @@ Reference selalu harus valid — tidak ada dangling reference di safe Rust.
 </div>
 
 <div class="card animate-in">
-<h3>Tipe Data Scalar &amp; Compound</h3>
+<h3>${t('Tipe Data Scalar &amp; Compound', 'Scalar &amp; Compound Data Types')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Kategori</th><th>Tipe</th><th>Ukuran</th><th>Keterangan</th></tr>
+<tr><th>${t('Kategori', 'Category')}</th><th>${t('Tipe', 'Type')}</th><th>${t('Ukuran', 'Size')}</th><th>${t('Keterangan', 'Notes')}</th></tr>
 <tr><td rowspan="6"><strong>Integer Signed</strong></td><td><code>i8</code></td><td>1 byte</td><td>-128..127</td></tr>
 <tr><td><code>i16</code></td><td>2 byte</td><td>-32,768..32,767</td></tr>
 <tr><td><code>i32</code></td><td>4 byte</td><td>Default integer</td></tr>
@@ -330,14 +330,14 @@ Reference selalu harus valid — tidak ada dangling reference di safe Rust.
 <div class="card-grid">
 <div class="card">
 <h4><code>&amp;str</code> — String Slice</h4>
-<p>Referensi ke data UTF-8 yang sudah ada. Immutable, tidak punya ownership. String literal selalu <code>&amp;'static str</code>.</p>
+<p>${t('Referensi ke data UTF-8 yang sudah ada. Immutable, tidak punya ownership. String literal selalu <code>&amp;&#39;static str</code>.', 'A reference to existing UTF-8 data. Immutable, does not own the data. String literals are always <code>&amp;&#39;static str</code>.')}</p>
 <div class="code-block"><span class="kw">let</span> s: &amp;<span class="type">str</span> = <span class="str">"hello world"</span>;
 <span class="kw">let</span> hello = &amp;s[<span class="num">0</span>..<span class="num">5</span>]; <span class="cm">// slice</span>
 <span class="cm">// Tidak bisa dimodifikasi</span></div>
 </div>
 <div class="card">
 <h4><code>String</code> — Owned String</h4>
-<p>String heap-allocated yang bisa di-mutasi. Digunakan saat butuh ownership atau modifikasi.</p>
+<p>${t('String heap-allocated yang bisa di-mutasi. Digunakan saat butuh ownership atau modifikasi.', 'A heap-allocated string that can be mutated. Used when ownership or modification is needed.')}</p>
 <div class="code-block"><span class="kw">let mut</span> s = <span class="type">String</span>::<span class="fn">from</span>(<span class="str">"hello"</span>);
 s.<span class="fn">push_str</span>(<span class="str">" world"</span>);
 s.<span class="fn">push</span>(<span class="str">'!'</span>);
@@ -351,8 +351,8 @@ s.<span class="fn">push</span>(<span class="str">'!'</span>);
 <h2 class="animate-in">5. Control Flow</h2>
 
 <div class="card animate-in">
-<h3>if / else — Sebagai Ekspresi</h3>
-<p>Di Rust, <code>if</code> adalah <strong>expression</strong> (bukan statement), artinya ia menghasilkan nilai dan bisa digunakan di sisi kanan assignment.</p>
+<h3>${t('if / else — Sebagai Ekspresi', 'if / else — As an Expression')}</h3>
+<p>${t('Di Rust, <code>if</code> adalah <strong>expression</strong> (bukan statement), artinya ia menghasilkan nilai dan bisa digunakan di sisi kanan assignment.', 'In Rust, <code>if</code> is an <strong>expression</strong> (not a statement), meaning it produces a value and can be used on the right side of an assignment.')}</p>
 <div class="code-block"><span class="kw">fn</span> <span class="fn">main</span>() {
     <span class="kw">let</span> number = <span class="num">7</span>;
 
@@ -409,8 +409,8 @@ s.<span class="fn">push</span>(<span class="str">'!'</span>);
 </div>
 
 <div class="card animate-in">
-<h3>match — Pattern Matching Unggulan Rust</h3>
-<p><code>match</code> di Rust adalah <strong>exhaustive</strong> — compiler memaksa kamu menangani semua kemungkinan. Ini jauh lebih kuat dari switch di bahasa lain.</p>
+<h3>${t('match — Pattern Matching Unggulan Rust', 'match — Rust&#39;s Premier Pattern Matching')}</h3>
+<p>${t('<code>match</code> di Rust adalah <strong>exhaustive</strong> — compiler memaksa kamu menangani semua kemungkinan. Ini jauh lebih kuat dari switch di bahasa lain.', '<code>match</code> in Rust is <strong>exhaustive</strong> — the compiler forces you to handle all possibilities. This is far more powerful than switch in other languages.')}</p>
 <div class="code-block"><span class="kw">fn</span> <span class="fn">describe</span>(n: <span class="type">i32</span>) -&gt; &amp;<span class="num">'static</span> <span class="type">str</span> {
     <span class="kw">match</span> n {
         <span class="num">1</span>         =&gt; <span class="str">"satu"</span>,
@@ -483,8 +483,8 @@ s.<span class="fn">push</span>(<span class="str">'!'</span>);
 </div>
 
 <div class="card animate-in">
-<h3>Enum — Lebih dari Sekadar C Enum</h3>
-<p>Enum Rust bisa menyimpan data di setiap variant. Ini menjadi fondasi <code>Option</code> dan <code>Result</code>.</p>
+<h3>${t('Enum — Lebih dari Sekadar C Enum', 'Enum — More Than Just a C Enum')}</h3>
+<p>${t('Enum Rust bisa menyimpan data di setiap variant. Ini menjadi fondasi <code>Option</code> dan <code>Result</code>.', 'Rust enums can store data in each variant. This is the foundation for <code>Option</code> and <code>Result</code>.')}</p>
 <div class="code-block"><span class="cm">// Enum dengan data di setiap variant</span>
 <span class="kw">enum</span> <span class="type">Message</span> {
     <span class="type">Quit</span>,                          <span class="cm">// unit</span>
@@ -519,7 +519,7 @@ s.<span class="fn">push</span>(<span class="str">'!'</span>);
 </div>
 
 <!-- ===================== 7. PATTERN MATCHING ===================== -->
-<h2 class="animate-in">7. Pattern Matching Lanjutan</h2>
+<h2 class="animate-in">${t('7. Pattern Matching Lanjutan', '7. Advanced Pattern Matching')}</h2>
 
 <div class="card animate-in">
 <h3>Destructuring &amp; Guards</h3>
@@ -563,8 +563,8 @@ s.<span class="fn">push</span>(<span class="str">'!'</span>);
 <h2 class="animate-in">8. Error Handling</h2>
 
 <div class="card animate-in">
-<h3>Result&lt;T, E&gt; &amp; Operator ?</h3>
-<p>Rust tidak menggunakan exception. Error adalah nilai biasa bertipe <code>Result&lt;T, E&gt;</code>. Operator <code>?</code> adalah shorthand untuk meneruskan (propagate) error ke caller.</p>
+<h3>Result&lt;T, E&gt; &amp; ${t('Operator', 'Operator')} ?</h3>
+<p>${t('Rust tidak menggunakan exception. Error adalah nilai biasa bertipe <code>Result&lt;T, E&gt;</code>. Operator <code>?</code> adalah shorthand untuk meneruskan (propagate) error ke caller.', 'Rust does not use exceptions. Errors are ordinary values of type <code>Result&lt;T, E&gt;</code>. The <code>?</code> operator is a shorthand for propagating errors to the caller.')}</p>
 <div class="code-block"><span class="kw">use</span> std::fs;
 <span class="kw">use</span> std::io::<span class="type">Error</span>;
 
@@ -657,8 +657,8 @@ s.<span class="fn">push</span>(<span class="str">'!'</span>);
 <h2 class="animate-in">9. Traits</h2>
 
 <div class="card animate-in">
-<h3>Mendefinisikan &amp; Mengimplementasikan Trait</h3>
-<p>Trait di Rust mirip dengan interface — mereka mendefinisikan perilaku yang bisa di-share antar tipe. Berbeda dari interface biasa, trait Rust mendukung <strong>default implementation</strong>.</p>
+<h3>${t('Mendefinisikan &amp; Mengimplementasikan Trait', 'Defining &amp; Implementing Traits')}</h3>
+<p>${t('Trait di Rust mirip dengan interface — mereka mendefinisikan perilaku yang bisa di-share antar tipe. Berbeda dari interface biasa, trait Rust mendukung <strong>default implementation</strong>.', 'Traits in Rust are similar to interfaces — they define behavior that can be shared across types. Unlike typical interfaces, Rust traits support <strong>default implementation</strong>.')}</p>
 <div class="code-block"><span class="cm">// Definisi trait</span>
 <span class="kw">trait</span> <span class="type">Summary</span> {
     <span class="kw">fn</span> <span class="fn">summarize_author</span>(&amp;<span class="kw">self</span>) -&gt; <span class="type">String</span>;
@@ -711,7 +711,7 @@ s.<span class="fn">push</span>(<span class="str">'!'</span>);
 <div class="card-grid">
 <div class="card">
 <h4>impl Trait — Static Dispatch</h4>
-<p>Compiler menggenerasi kode terpisah untuk setiap tipe konkret (<em>monomorphization</em>). Zero-cost tapi ukuran binary lebih besar.</p>
+<p>${t('Compiler menggenerasi kode terpisah untuk setiap tipe konkret (<em>monomorphization</em>). Zero-cost tapi ukuran binary lebih besar.', 'The compiler generates separate code for each concrete type (<em>monomorphization</em>). Zero-cost but larger binary size.')}</p>
 <div class="code-block"><span class="cm">// Return type bisa berbeda tapi TIDAK</span>
 <span class="cm">// bisa conditional berdasarkan runtime:</span>
 <span class="kw">fn</span> <span class="fn">make_summary</span>() -&gt; <span class="kw">impl</span> <span class="type">Summary</span> {
@@ -723,7 +723,7 @@ s.<span class="fn">push</span>(<span class="str">'!'</span>);
 </div>
 <div class="card">
 <h4>Box&lt;dyn Trait&gt; — Dynamic Dispatch</h4>
-<p>Dispatch lewat vtable di runtime. Ada sedikit overhead tapi memungkinkan koleksi tipe heterogen.</p>
+<p>${t('Dispatch lewat vtable di runtime. Ada sedikit overhead tapi memungkinkan koleksi tipe heterogen.', 'Dispatches via vtable at runtime. Slight overhead but enables heterogeneous type collections.')}</p>
 <div class="code-block"><span class="cm">// Vec dari berbagai tipe:</span>
 <span class="kw">let</span> items: <span class="type">Vec</span>&lt;<span class="type">Box</span>&lt;<span class="kw">dyn</span> <span class="type">Summary</span>&gt;&gt; = <span class="fn">vec!</span>[
     <span class="type">Box</span>::<span class="fn">new</span>(<span class="type">Article</span> { .. }),
@@ -737,21 +737,21 @@ s.<span class="fn">push</span>(<span class="str">'!'</span>);
 </div>
 
 <div class="card animate-in">
-<h3>Standard Library Traits Penting</h3>
+<h3>${t('Standard Library Traits Penting', 'Important Standard Library Traits')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Trait</th><th>Fungsi</th><th>Auto-derive?</th></tr>
-<tr><td><code>Debug</code></td><td>Format debug <code>{:?}</code></td><td>Ya</td></tr>
-<tr><td><code>Display</code></td><td>Format user-facing <code>{}</code></td><td>Tidak</td></tr>
-<tr><td><code>Clone</code></td><td>Deep copy eksplisit (<code>.clone()</code>)</td><td>Ya</td></tr>
-<tr><td><code>Copy</code></td><td>Bit-for-bit copy otomatis (stack types)</td><td>Ya (jika semua fields Copy)</td></tr>
-<tr><td><code>PartialEq</code> / <code>Eq</code></td><td>Perbandingan <code>==</code></td><td>Ya</td></tr>
-<tr><td><code>PartialOrd</code> / <code>Ord</code></td><td>Perbandingan <code>&lt;</code>, <code>&gt;</code>, dsb</td><td>Ya</td></tr>
-<tr><td><code>Hash</code></td><td>Hashing (diperlukan HashMap key)</td><td>Ya</td></tr>
-<tr><td><code>Iterator</code></td><td>Iterasi dengan <code>next()</code></td><td>Tidak</td></tr>
-<tr><td><code>From</code> / <code>Into</code></td><td>Konversi antar tipe</td><td>Tidak</td></tr>
-<tr><td><code>Default</code></td><td>Nilai default (<code>Default::default()</code>)</td><td>Ya</td></tr>
-<tr><td><code>Drop</code></td><td>Custom cleanup saat out-of-scope</td><td>Tidak</td></tr>
+<tr><th>Trait</th><th>${t('Fungsi', 'Function')}</th><th>Auto-derive?</th></tr>
+<tr><td><code>Debug</code></td><td>Format debug <code>{:?}</code></td><td>${t('Ya', 'Yes')}</td></tr>
+<tr><td><code>Display</code></td><td>Format user-facing <code>{}</code></td><td>${t('Tidak', 'No')}</td></tr>
+<tr><td><code>Clone</code></td><td>${t('Deep copy eksplisit (<code>.clone()</code>)', 'Explicit deep copy (<code>.clone()</code>)')}</td><td>${t('Ya', 'Yes')}</td></tr>
+<tr><td><code>Copy</code></td><td>${t('Bit-for-bit copy otomatis (stack types)', 'Automatic bit-for-bit copy (stack types)')}</td><td>${t('Ya (jika semua fields Copy)', 'Yes (if all fields are Copy)')}</td></tr>
+<tr><td><code>PartialEq</code> / <code>Eq</code></td><td>${t('Perbandingan <code>==</code>', 'Comparison <code>==</code>')}</td><td>${t('Ya', 'Yes')}</td></tr>
+<tr><td><code>PartialOrd</code> / <code>Ord</code></td><td>${t('Perbandingan <code>&lt;</code>, <code>&gt;</code>, dsb', 'Comparison <code>&lt;</code>, <code>&gt;</code>, etc.')}</td><td>${t('Ya', 'Yes')}</td></tr>
+<tr><td><code>Hash</code></td><td>${t('Hashing (diperlukan HashMap key)', 'Hashing (required for HashMap key)')}</td><td>${t('Ya', 'Yes')}</td></tr>
+<tr><td><code>Iterator</code></td><td>${t('Iterasi dengan <code>next()</code>', 'Iteration with <code>next()</code>')}</td><td>${t('Tidak', 'No')}</td></tr>
+<tr><td><code>From</code> / <code>Into</code></td><td>${t('Konversi antar tipe', 'Conversion between types')}</td><td>${t('Tidak', 'No')}</td></tr>
+<tr><td><code>Default</code></td><td>${t('Nilai default (<code>Default::default()</code>)', 'Default value (<code>Default::default()</code>)')}</td><td>${t('Ya', 'Yes')}</td></tr>
+<tr><td><code>Drop</code></td><td>${t('Custom cleanup saat out-of-scope', 'Custom cleanup when out-of-scope')}</td><td>${t('Tidak', 'No')}</td></tr>
 </table>
 </div>
 </div>
@@ -761,7 +761,7 @@ s.<span class="fn">push</span>(<span class="str">'!'</span>);
 
 <div class="card animate-in">
 <h3>Generics — Zero-Cost Abstraction</h3>
-<p>Generics di Rust menggunakan <strong>monomorphization</strong>: compiler menghasilkan kode terpisah untuk setiap tipe konkret yang digunakan. Tidak ada boxing, tidak ada vtable — performa identik dengan kode spesifik.</p>
+<p>${t('Generics di Rust menggunakan <strong>monomorphization</strong>: compiler menghasilkan kode terpisah untuk setiap tipe konkret yang digunakan. Tidak ada boxing, tidak ada vtable — performa identik dengan kode spesifik.', 'Generics in Rust use <strong>monomorphization</strong>: the compiler generates separate code for each concrete type used. No boxing, no vtable — performance identical to specific code.')}</p>
 <div class="code-block"><span class="cm">// Generic function</span>
 <span class="kw">fn</span> <span class="fn">largest</span>&lt;T: PartialOrd&gt;(list: &amp;[T]) -&gt; &amp;T {
     <span class="kw">let mut</span> largest = &amp;list[<span class="num">0</span>];
@@ -867,7 +867,7 @@ s.<span class="fn">push</span>(<span class="str">'!'</span>);
 
 <div class="card animate-in">
 <h3>Iterator Adapters — Lazy &amp; Zero-Cost</h3>
-<p>Iterator Rust bersifat <strong>lazy</strong> — tidak melakukan komputasi sampai dikonsumsi. Adaptor bisa di-chain tanpa alokasi intermediate.</p>
+<p>${t('Iterator Rust bersifat <strong>lazy</strong> — tidak melakukan komputasi sampai dikonsumsi. Adaptor bisa di-chain tanpa alokasi intermediate.', 'Rust iterators are <strong>lazy</strong> — they perform no computation until consumed. Adapters can be chained without intermediate allocations.')}</p>
 <div class="code-block"><span class="kw">fn</span> <span class="fn">main</span>() {
     <span class="kw">let</span> v = <span class="fn">vec!</span>[<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>, <span class="num">6</span>];
 
@@ -903,7 +903,7 @@ s.<span class="fn">push</span>(<span class="str">'!'</span>);
 <h2 class="animate-in">12. Closures</h2>
 
 <div class="card animate-in">
-<h3>Sintaks &amp; Capturing</h3>
+<h3>${t('Sintaks &amp; Capturing', 'Syntax &amp; Capturing')}</h3>
 <div class="code-block"><span class="kw">fn</span> <span class="fn">main</span>() {
     <span class="cm">// Closure syntax: |params| body</span>
     <span class="kw">let</span> square   = |x: <span class="type">i32</span>| x * x;
@@ -986,11 +986,11 @@ std::thread::<span class="fn">spawn</span>(<span class="kw">move</span> || {
 </div>
 
 <!-- ===================== 14. CONCURRENCY ===================== -->
-<h2 class="animate-in">14. Concurrency — Fearless</h2>
+<h2 class="animate-in">14. Concurrency — ${t('Tanpa Rasa Takut', 'Fearless')}</h2>
 
 <div class="card animate-in">
 <h3>Thread &amp; Channels</h3>
-<p>Rust membuktikan keamanan concurrency secara statik: tipe <code>Send</code> dan <code>Sync</code> memastikan data tidak pernah di-share secara tidak aman antar thread. Data race adalah <strong>compile error</strong>, bukan runtime crash.</p>
+<p>${t('Rust membuktikan keamanan concurrency secara statik: tipe <code>Send</code> dan <code>Sync</code> memastikan data tidak pernah di-share secara tidak aman antar thread. Data race adalah <strong>compile error</strong>, bukan runtime crash.', 'Rust proves concurrency safety statically: the <code>Send</code> and <code>Sync</code> types ensure data is never shared unsafely between threads. Data races are <strong>compile errors</strong>, not runtime crashes.')}</p>
 <div class="code-block"><span class="kw">use</span> std::thread;
 <span class="kw">use</span> std::sync::mpsc; <span class="cm">// multi-producer, single-consumer</span>
 
@@ -1023,7 +1023,7 @@ std::thread::<span class="fn">spawn</span>(<span class="kw">move</span> || {
 
 <div class="card animate-in">
 <h3>Async/Await dengan Tokio</h3>
-<p>Untuk I/O-bound concurrency (network, file), Rust menggunakan <strong>async/await</strong> dengan runtime seperti Tokio. Berbeda dari thread OS, async task sangat ringan.</p>
+<p>${t('Untuk I/O-bound concurrency (network, file), Rust menggunakan <strong>async/await</strong> dengan runtime seperti Tokio. Berbeda dari thread OS, async task sangat ringan.', 'For I/O-bound concurrency (network, file), Rust uses <strong>async/await</strong> with runtimes like Tokio. Unlike OS threads, async tasks are very lightweight.')}</p>
 <div class="code-block"><span class="cm">// Cargo.toml:</span>
 <span class="cm">// [dependencies]</span>
 <span class="cm">// tokio = { version = "1", features = ["full"] }</span>
@@ -1058,10 +1058,10 @@ std::thread::<span class="fn">spawn</span>(<span class="kw">move</span> || {
 <h3>Send &amp; Sync — Marker Traits</h3>
 <div class="info-box">
 <ul>
-<li><strong>Send</strong>: Tipe aman untuk di-<em>transfer</em> ke thread lain. Hampir semua tipe Send, kecuali <code>Rc&lt;T&gt;</code>, raw pointer.</li>
-<li><strong>Sync</strong>: Tipe aman untuk di-<em>share</em> antar thread via referensi (<code>&amp;T</code> harus Send). <code>Mutex&lt;T&gt;</code> adalah Sync, <code>RefCell&lt;T&gt;</code> tidak.</li>
+<li><strong>Send</strong>: ${t('Tipe aman untuk di-<em>transfer</em> ke thread lain. Hampir semua tipe Send, kecuali <code>Rc&lt;T&gt;</code>, raw pointer.', 'Type safe to <em>transfer</em> to another thread. Almost all types are Send, except <code>Rc&lt;T&gt;</code>, raw pointers.')}</li>
+<li><strong>Sync</strong>: ${t('Tipe aman untuk di-<em>share</em> antar thread via referensi (<code>&amp;T</code> harus Send). <code>Mutex&lt;T&gt;</code> adalah Sync, <code>RefCell&lt;T&gt;</code> tidak.', 'Type safe to <em>share</em> between threads via reference (<code>&amp;T</code> must be Send). <code>Mutex&lt;T&gt;</code> is Sync, <code>RefCell&lt;T&gt;</code> is not.')}</li>
 </ul>
-Compiler secara otomatis derive Send dan Sync — kamu tidak perlu (dan tidak bisa) memalsukan ini. Data race adalah <strong>compile-time error</strong>.
+${t('Compiler secara otomatis derive Send dan Sync — kamu tidak perlu (dan tidak bisa) memalsukan ini. Data race adalah <strong>compile-time error</strong>.', 'The compiler automatically derives Send and Sync — you cannot (and do not need to) fake this. Data races are <strong>compile-time errors</strong>.')}
 </div>
 </div>
 
@@ -1103,7 +1103,7 @@ Compiler secara otomatis derive Send dan Sync — kamu tidak perlu (dan tidak bi
 </div>
 
 <div class="card animate-in">
-<h3>Cargo — Package Manager &amp; Build Tool</h3>
+<h3>Cargo — ${t('Package Manager &amp; Build Tool', 'Package Manager &amp; Build Tool')}</h3>
 <div class="code-block"><span class="cm"># Membuat project baru</span>
 cargo new my_project          <span class="cm"># binary</span>
 cargo new my_lib --lib         <span class="cm"># library</span>
@@ -1150,12 +1150,12 @@ codegen-units = <span class="num">1</span></div>
 <h2 class="animate-in">16. Memory Model &amp; RAII</h2>
 
 <div class="card animate-in">
-<h3>Stack vs Heap &amp; RAII</h3>
+<h3>${t('Stack vs Heap &amp; RAII', 'Stack vs Heap &amp; RAII')}</h3>
 <div class="anim-container">
 <canvas id="canvas-rust-memory" width="700" height="340" style="width:100%;max-width:700px;border-radius:8px;"></canvas>
 </div>
 <div class="anim-controls">
-<button class="anim-btn" id="rust-mem-alloc">Alokasi Memory</button>
+<button class="anim-btn" id="rust-mem-alloc">${t('Alokasi Memory', 'Allocate Memory')}</button>
 <button class="anim-btn" id="rust-mem-drop">RAII Drop</button>
 <button class="anim-btn" id="rust-mem-reset">Reset</button>
 </div>
@@ -1163,7 +1163,7 @@ codegen-units = <span class="num">1</span></div>
 
 <div class="card animate-in">
 <h3>RAII &amp; Drop Trait</h3>
-<p><strong>RAII</strong> (Resource Acquisition Is Initialization): resource diperoleh saat inisialisasi dan dibebaskan saat objek keluar scope. Rust menjamin ini lewat <code>Drop</code> trait — tidak ada resource leak di safe Rust.</p>
+<p>${t('<strong>RAII</strong> (Resource Acquisition Is Initialization): resource diperoleh saat inisialisasi dan dibebaskan saat objek keluar scope. Rust menjamin ini lewat <code>Drop</code> trait — tidak ada resource leak di safe Rust.', '<strong>RAII</strong> (Resource Acquisition Is Initialization): resources are acquired during initialization and released when the object goes out of scope. Rust guarantees this via the <code>Drop</code> trait — no resource leaks in safe Rust.')}</p>
 <div class="code-block"><span class="kw">struct</span> <span class="type">DbConnection</span> {
     name: <span class="type">String</span>,
 }
@@ -1203,7 +1203,7 @@ codegen-units = <span class="num">1</span></div>
 <div class="card animate-in">
 <h3>Unsafe Rust</h3>
 <div class="warn-box">
-<strong>Perhatian:</strong> <code>unsafe</code> tidak berarti "tidak aman" — ia berarti "programmer bertanggung jawab menjamin invariant yang tidak bisa diverifikasi compiler." Gunakan sesedikit mungkin dan isolasi di fungsi/modul tersendiri.
+<strong>${t('Perhatian:', 'Warning:')}</strong> ${t('<code>unsafe</code> tidak berarti "tidak aman" — ia berarti "programmer bertanggung jawab menjamin invariant yang tidak bisa diverifikasi compiler." Gunakan sesedikit mungkin dan isolasi di fungsi/modul tersendiri.', '<code>unsafe</code> does not mean "not safe" — it means "the programmer is responsible for guaranteeing invariants that the compiler cannot verify." Use as little as possible and isolate in separate functions/modules.')}
 </div>
 <div class="code-block"><span class="cm">// unsafe memungkinkan 5 hal tambahan:</span>
 <span class="cm">// 1. Dereference raw pointer</span>
@@ -1255,7 +1255,7 @@ codegen-units = <span class="num">1</span></div>
 
 <div class="card animate-in">
 <h3>Declarative Macros — macro_rules!</h3>
-<p>Macros di Rust beroperasi pada token (AST-level), bukan string substitution. Ini menghindari bug macro yang umum di C.</p>
+<p>${t('Macros di Rust beroperasi pada token (AST-level), bukan string substitution. Ini menghindari bug macro yang umum di C.', 'Macros in Rust operate on tokens (AST-level), not string substitution. This avoids common C macro bugs.')}</p>
 <div class="code-block"><span class="cm">// Definisi macro</span>
 <span class="fn">macro_rules!</span> <span class="fn">say_hello</span> {
     () =&gt; { <span class="fn">println!</span>(<span class="str">"Hello!"</span>) };
@@ -1291,7 +1291,7 @@ codegen-units = <span class="num">1</span></div>
 </div>
 
 <div class="card animate-in">
-<h3>Derive Macros — serde sebagai Contoh</h3>
+<h3>${t('Derive Macros — serde sebagai Contoh', 'Derive Macros — serde as an Example')}</h3>
 <div class="code-block"><span class="cm">// Cargo.toml: serde = { version="1", features=["derive"] }</span>
 <span class="cm">//             serde_json = "1"</span>
 <span class="kw">use</span> serde::{<span class="type">Serialize</span>, <span class="type">Deserialize</span>};
@@ -1383,7 +1383,7 @@ codegen-units = <span class="num">1</span></div>
 </div>
 
 <!-- ===================== 20. POPULAR CRATES ===================== -->
-<h2 class="animate-in">20. Ekosistem Crates Populer</h2>
+<h2 class="animate-in">${t('20. Ekosistem Crates Populer', '20. Popular Crates Ecosystem')}</h2>
 
 <div class="card animate-in">
 <h3>Web Framework — Axum</h3>

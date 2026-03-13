@@ -5,68 +5,68 @@
 
 sections['parallel'] = () => `
 <h1 class="section-title animate-in">Parallel Programming & HPC</h1>
-<p class="section-subtitle animate-in">Dari multi-threading hingga GPU computing — menguasai komputasi paralel modern</p>
+<p class="section-subtitle animate-in">${t('Dari multi-threading hingga GPU computing — menguasai komputasi paralel modern', 'From multi-threading to GPU computing — mastering modern parallel computation')}</p>
 <p class="animate-in"><em>Ref: JHU 605.618 "Introduction to High Performance Computing"; UIUC ECE 408 "Heterogeneous Parallel Programming"; Pacheco, "An Introduction to Parallel Programming" (2011); Kirk & Hwu, "Programming Massively Parallel Processors" (2016)</em></p>
 
 <!-- ===================== 1. FUNDAMENTALS ===================== -->
 <h2 class="animate-in">1. Fundamentals of Parallel Computing</h2>
 
 <div class="card animate-in">
-    <h3>Mengapa Parallel Computing?</h3>
-    <p>Selama beberapa dekade, kecepatan prosesor meningkat secara eksponensial sesuai <strong>Moore's Law</strong> — jumlah transistor per chip berlipat ganda setiap ~18 bulan. Namun tiga "dinding" menghentikan peningkatan kecepatan single-core:</p>
+    <h3>${t('Mengapa Parallel Computing?', 'Why Parallel Computing?')}</h3>
+    <p>${t('Selama beberapa dekade, kecepatan prosesor meningkat secara eksponensial sesuai <strong>Moore\'s Law</strong> — jumlah transistor per chip berlipat ganda setiap ~18 bulan. Namun tiga "dinding" menghentikan peningkatan kecepatan single-core:', 'For several decades, processor speed increased exponentially following <strong>Moore\'s Law</strong> — the number of transistors per chip doubled roughly every ~18 months. However, three "walls" halted single-core speed improvements:')}</p>
     <div class="card-grid-3" style="margin-top:15px;">
         <div class="card" style="border-left:4px solid var(--red);">
             <h4>Power Wall</h4>
-            <p>Daya (power) meningkat secara kubik terhadap frekuensi: P ~ C &times; V&sup2; &times; f. Frekuensi >4GHz menghasilkan panas berlebihan yang tidak bisa di-dissipate.</p>
+            <p>${t('Daya (power) meningkat secara kubik terhadap frekuensi: P ~ C &times; V&sup2; &times; f. Frekuensi >4GHz menghasilkan panas berlebihan yang tidak bisa di-dissipate.', 'Power increases cubically with frequency: P ~ C &times; V&sup2; &times; f. Frequencies >4GHz produce excessive heat that cannot be dissipated.')}</p>
         </div>
         <div class="card" style="border-left:4px solid var(--orange);">
             <h4>Memory Wall</h4>
-            <p>Kecepatan prosesor meningkat jauh lebih cepat daripada kecepatan memori. Gap ini menyebabkan CPU menunggu data dari RAM — bottleneck yang serius.</p>
+            <p>${t('Kecepatan prosesor meningkat jauh lebih cepat daripada kecepatan memori. Gap ini menyebabkan CPU menunggu data dari RAM — bottleneck yang serius.', 'Processor speed increased far faster than memory speed. This gap causes the CPU to wait for data from RAM — a serious bottleneck.')}</p>
         </div>
         <div class="card" style="border-left:4px solid var(--purple);">
             <h4>ILP Wall</h4>
-            <p>Instruction-Level Parallelism sudah dimaksimalkan oleh hardware (pipelining, superscalar, out-of-order). Tidak banyak lagi ILP yang bisa diekstrak.</p>
+            <p>${t('Instruction-Level Parallelism sudah dimaksimalkan oleh hardware (pipelining, superscalar, out-of-order). Tidak banyak lagi ILP yang bisa diekstrak.', 'Instruction-Level Parallelism has been maximized by hardware (pipelining, superscalar, out-of-order). There is little additional ILP to extract.')}</p>
         </div>
     </div>
     <div class="info-box" style="margin-top:15px;">
-        <strong>Solusi:</strong> Alih-alih membuat satu core lebih cepat, industri beralih ke <strong>multi-core</strong> dan <strong>many-core</strong>. Dari 2005 ke depan, peningkatan kinerja datang dari paralelisme, bukan clock speed.
+        <strong>${t('Solusi', 'Solution')}:</strong> ${t('Alih-alih membuat satu core lebih cepat, industri beralih ke <strong>multi-core</strong> dan <strong>many-core</strong>. Dari 2005 ke depan, peningkatan kinerja datang dari paralelisme, bukan clock speed.', 'Instead of making a single core faster, the industry shifted to <strong>multi-core</strong> and <strong>many-core</strong>. From 2005 onward, performance gains come from parallelism, not clock speed.')}
     </div>
 </div>
 
 <div class="card animate-in">
     <h3>Amdahl's Law vs Gustafson's Law</h3>
-    <p>Dua hukum fundamental yang menentukan batas speedup dari paralelisme:</p>
+    <p>${t('Dua hukum fundamental yang menentukan batas speedup dari paralelisme:', 'Two fundamental laws that determine the speedup limits of parallelism:')}</p>
 
     <div class="card-grid" style="margin-top:15px;">
         <div class="card" style="border-left:4px solid var(--accent);">
             <h4>Amdahl's Law (1967)</h4>
-            <p>Speedup dibatasi oleh bagian <strong>serial</strong> dari program:</p>
+            <p>${t('Speedup dibatasi oleh bagian <strong>serial</strong> dari program:', 'Speedup is limited by the <strong>serial</strong> portion of the program:')}</p>
             <div class="code-block" style="text-align:center;font-size:1.1em;padding:15px;">
                 S(n) = 1 / ( (1 - P) + P/n )
             </div>
-            <p>Dimana <strong>P</strong> = fraksi yang bisa diparalelkan, <strong>n</strong> = jumlah prosesor.</p>
-            <p>Jika P = 0.95 (95% paralel), speedup maksimum = 1/0.05 = <strong>20x</strong>, tak peduli berapa banyak prosesor!</p>
-            <div class="warn-box">Pandangan pesimistis: fokus pada bagian serial sebagai bottleneck.</div>
+            <p>${t('Dimana <strong>P</strong> = fraksi yang bisa diparalelkan, <strong>n</strong> = jumlah prosesor.', 'Where <strong>P</strong> = parallelizable fraction, <strong>n</strong> = number of processors.')}</p>
+            <p>${t('Jika P = 0.95 (95% paralel), speedup maksimum = 1/0.05 = <strong>20x</strong>, tak peduli berapa banyak prosesor!', 'If P = 0.95 (95% parallel), maximum speedup = 1/0.05 = <strong>20x</strong>, no matter how many processors!')}</p>
+            <div class="warn-box">${t('Pandangan pesimistis: fokus pada bagian serial sebagai bottleneck.', 'Pessimistic view: focuses on the serial portion as the bottleneck.')}</div>
         </div>
         <div class="card" style="border-left:4px solid var(--green);">
             <h4>Gustafson's Law (1988)</h4>
-            <p>Dengan lebih banyak prosesor, kita bisa menyelesaikan masalah <strong>lebih besar</strong>:</p>
+            <p>${t('Dengan lebih banyak prosesor, kita bisa menyelesaikan masalah <strong>lebih besar</strong>:', 'With more processors, we can solve <strong>larger</strong> problems:')}</p>
             <div class="code-block" style="text-align:center;font-size:1.1em;padding:15px;">
                 S(n) = n - (1 - P) &times; (n - 1)
             </div>
-            <p>Ukuran masalah tumbuh bersama jumlah prosesor. Speedup mendekati <strong>linear</strong>!</p>
-            <div class="success-box">Pandangan optimistis: masalah nyata sering scalable — lebih banyak data, lebih banyak komputasi.</div>
+            <p>${t('Ukuran masalah tumbuh bersama jumlah prosesor. Speedup mendekati <strong>linear</strong>!', 'Problem size grows with the number of processors. Speedup approaches <strong>linear</strong>!')}</p>
+            <div class="success-box">${t('Pandangan optimistis: masalah nyata sering scalable — lebih banyak data, lebih banyak komputasi.', 'Optimistic view: real-world problems are often scalable — more data, more computation.')}</div>
         </div>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3>Amdahl's Law - Kalkulator Interaktif</h3>
-    <p>Geser slider untuk melihat bagaimana fraksi paralel mempengaruhi speedup:</p>
+    <h3>${t('Amdahl\'s Law - Kalkulator Interaktif', 'Amdahl\'s Law - Interactive Calculator')}</h3>
+    <p>${t('Geser slider untuk melihat bagaimana fraksi paralel mempengaruhi speedup:', 'Drag the slider to see how the parallel fraction affects speedup:')}</p>
     <div class="anim-container">
         <canvas id="amdahlCanvas" width="700" height="380" style="max-width:100%;"></canvas>
         <div class="anim-controls">
-            <label>Fraksi Paralel (P): <strong id="amdahlPVal">0.90</strong></label>
+            <label>${t('Fraksi Paralel', 'Parallel Fraction')} (P): <strong id="amdahlPVal">0.90</strong></label>
             <input type="range" id="amdahlSlider" class="anim-input" min="0" max="99" value="90" style="width:300px;">
             <span class="badge-blue" id="amdahlMaxSpeedup">Max Speedup: 10.0x</span>
         </div>
@@ -78,36 +78,36 @@ sections['parallel'] = () => `
     <div class="card-grid" style="margin-top:10px;">
         <div class="card" style="border-left:4px solid var(--accent);">
             <h4>Data Parallelism</h4>
-            <p>Operasi <strong>yang sama</strong> diterapkan ke <strong>elemen data berbeda</strong> secara bersamaan. Contoh: menambahkan dua vektor elemen per elemen.</p>
+            <p>${t('Operasi <strong>yang sama</strong> diterapkan ke <strong>elemen data berbeda</strong> secara bersamaan. Contoh: menambahkan dua vektor elemen per elemen.', 'The <strong>same</strong> operation is applied to <strong>different data elements</strong> simultaneously. Example: adding two vectors element by element.')}</p>
             <div class="code-block"><span class="cm">// Setiap thread memproses subset data</span>
 <span class="kw">for</span> (i = start; i < end; i++)
     C[i] = A[i] + B[i];</div>
-            <p><strong>Cocok untuk:</strong> Image processing, matrix operations, scientific simulation, GPU computing.</p>
+            <p><strong>${t('Cocok untuk:', 'Suited for:')}</strong> Image processing, matrix operations, scientific simulation, GPU computing.</p>
         </div>
         <div class="card" style="border-left:4px solid var(--purple);">
             <h4>Task Parallelism</h4>
-            <p>Tugas <strong>berbeda</strong> dijalankan secara bersamaan pada data yang mungkin sama atau berbeda.</p>
+            <p>${t('Tugas <strong>berbeda</strong> dijalankan secara bersamaan pada data yang mungkin sama atau berbeda.', 'Different <strong>tasks</strong> run simultaneously on data that may be the same or different.')}</p>
             <div class="code-block"><span class="cm">// Thread 1: compress</span>
 <span class="cm">// Thread 2: encrypt</span>
 <span class="cm">// Thread 3: upload</span></div>
-            <p><strong>Cocok untuk:</strong> Pipeline processing, web server handling, microservices.</p>
+            <p><strong>${t('Cocok untuk:', 'Suited for:')}</strong> Pipeline processing, web server handling, microservices.</p>
         </div>
     </div>
 </div>
 
 <div class="card animate-in">
     <h3>Flynn's Taxonomy</h3>
-    <p>Michael Flynn (1966) mengklasifikasikan arsitektur komputer berdasarkan jumlah instruction stream dan data stream:</p>
+    <p>${t('Michael Flynn (1966) mengklasifikasikan arsitektur komputer berdasarkan jumlah instruction stream dan data stream:', 'Michael Flynn (1966) classified computer architectures based on the number of instruction streams and data streams:')}</p>
     <div class="table-wrapper">
         <table>
             <thead>
-                <tr><th>Kategori</th><th>Instruksi</th><th>Data</th><th>Contoh</th><th>Deskripsi</th></tr>
+                <tr><th>${t('Kategori', 'Category')}</th><th>${t('Instruksi', 'Instruction')}</th><th>Data</th><th>${t('Contoh', 'Example')}</th><th>${t('Deskripsi', 'Description')}</th></tr>
             </thead>
             <tbody>
-                <tr><td><span class="badge-blue">SISD</span></td><td>Single</td><td>Single</td><td>CPU klasik (single-core)</td><td>Satu instruksi memproses satu data per waktu. Von Neumann tradisional.</td></tr>
-                <tr><td><span class="badge-green">SIMD</span></td><td>Single</td><td>Multiple</td><td>GPU, SSE/AVX, NEON</td><td>Satu instruksi diaplikasikan ke banyak data sekaligus. Ideal untuk vector operations.</td></tr>
-                <tr><td><span class="badge-orange">MISD</span></td><td>Multiple</td><td>Single</td><td>Fault-tolerant systems</td><td>Beberapa instruksi berbeda memproses data yang sama. Sangat jarang digunakan.</td></tr>
-                <tr><td><span class="badge-purple">MIMD</span></td><td>Multiple</td><td>Multiple</td><td>Multi-core CPU, cluster</td><td>Beberapa instruksi independen memproses data berbeda. Arsitektur paralel paling umum.</td></tr>
+                <tr><td><span class="badge-blue">SISD</span></td><td>Single</td><td>Single</td><td>${t('CPU klasik (single-core)', 'Classic CPU (single-core)')}</td><td>${t('Satu instruksi memproses satu data per waktu. Von Neumann tradisional.', 'One instruction processes one data item at a time. Traditional Von Neumann.')}</td></tr>
+                <tr><td><span class="badge-green">SIMD</span></td><td>Single</td><td>Multiple</td><td>GPU, SSE/AVX, NEON</td><td>${t('Satu instruksi diaplikasikan ke banyak data sekaligus. Ideal untuk vector operations.', 'One instruction applied to many data items at once. Ideal for vector operations.')}</td></tr>
+                <tr><td><span class="badge-orange">MISD</span></td><td>Multiple</td><td>Single</td><td>Fault-tolerant systems</td><td>${t('Beberapa instruksi berbeda memproses data yang sama. Sangat jarang digunakan.', 'Multiple different instructions process the same data. Very rarely used.')}</td></tr>
+                <tr><td><span class="badge-purple">MIMD</span></td><td>Multiple</td><td>Multiple</td><td>Multi-core CPU, cluster</td><td>${t('Beberapa instruksi independen memproses data berbeda. Arsitektur paralel paling umum.', 'Multiple independent instructions process different data. The most common parallel architecture.')}</td></tr>
             </tbody>
         </table>
     </div>
@@ -136,28 +136,28 @@ sections['parallel'] = () => `
 <h2 class="animate-in">2. Processes & Threads</h2>
 
 <div class="card animate-in">
-    <h3>Process vs Thread — Perbandingan Mendalam</h3>
+    <h3>${t('Process vs Thread — Perbandingan Mendalam', 'Process vs Thread — In-Depth Comparison')}</h3>
     <div class="card-grid" style="margin-top:10px;">
         <div class="card" style="border-left:4px solid var(--red);">
             <h4>Process</h4>
             <ul>
-                <li>Unit eksekusi independen dengan <strong>address space sendiri</strong></li>
-                <li>Setiap process punya code, data, heap, stack terpisah</li>
-                <li>Komunikasi via IPC: pipes, sockets, shared memory</li>
-                <li>Context switch <strong>mahal</strong> (TLB flush, cache invalidation)</li>
-                <li>Crash satu process tidak mempengaruhi yang lain</li>
-                <li>Isolasi kuat — cocok untuk keamanan</li>
+                <li>${t('Unit eksekusi independen dengan <strong>address space sendiri</strong>', 'Independent execution unit with its <strong>own address space</strong>')}</li>
+                <li>${t('Setiap process punya code, data, heap, stack terpisah', 'Each process has separate code, data, heap, and stack')}</li>
+                <li>${t('Komunikasi via IPC: pipes, sockets, shared memory', 'Communication via IPC: pipes, sockets, shared memory')}</li>
+                <li>${t('Context switch <strong>mahal</strong> (TLB flush, cache invalidation)', 'Context switch is <strong>expensive</strong> (TLB flush, cache invalidation)')}</li>
+                <li>${t('Crash satu process tidak mempengaruhi yang lain', 'A crash in one process does not affect others')}</li>
+                <li>${t('Isolasi kuat — cocok untuk keamanan', 'Strong isolation — suitable for security')}</li>
             </ul>
         </div>
         <div class="card" style="border-left:4px solid var(--green);">
             <h4>Thread</h4>
             <ul>
-                <li>Unit eksekusi ringan dalam satu process</li>
-                <li>Berbagi code, data, heap; punya <strong>stack sendiri</strong></li>
-                <li>Komunikasi langsung via shared memory</li>
-                <li>Context switch <strong>lebih murah</strong></li>
-                <li>Crash satu thread bisa crash seluruh process</li>
-                <li>Perlu sinkronisasi hati-hati (mutex, semaphore)</li>
+                <li>${t('Unit eksekusi ringan dalam satu process', 'Lightweight execution unit within a single process')}</li>
+                <li>${t('Berbagi code, data, heap; punya <strong>stack sendiri</strong>', 'Shares code, data, heap; has its <strong>own stack</strong>')}</li>
+                <li>${t('Komunikasi langsung via shared memory', 'Direct communication via shared memory')}</li>
+                <li>${t('Context switch <strong>lebih murah</strong>', 'Context switch is <strong>cheaper</strong>')}</li>
+                <li>${t('Crash satu thread bisa crash seluruh process', 'A crash in one thread can crash the entire process')}</li>
+                <li>${t('Perlu sinkronisasi hati-hati (mutex, semaphore)', 'Requires careful synchronization (mutex, semaphore)')}</li>
             </ul>
         </div>
     </div>
@@ -167,7 +167,7 @@ sections['parallel'] = () => `
     <h3>Memory Layout: Process vs Thread</h3>
     <div class="layer-diagram">
         <div class="layer-item" style="background:rgba(56,189,248,0.1);border-left:4px solid var(--accent);">
-            <strong>Process A</strong> — Address Space Sendiri
+            <strong>Process A</strong> — ${t('Address Space Sendiri', 'Own Address Space')}
             <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;">
                 <span class="badge-blue">Code (Text)</span>
                 <span class="badge-green">Data (Global)</span>
@@ -177,7 +177,7 @@ sections['parallel'] = () => `
             </div>
         </div>
         <div class="layer-item" style="background:rgba(52,211,153,0.1);border-left:4px solid var(--green);">
-            <strong>Thread dalam Process A</strong> — Shared Memory
+            <strong>${t('Thread dalam Process A', 'Threads in Process A')}</strong> — Shared Memory
             <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;">
                 <span class="badge-blue">Code (Shared)</span>
                 <span class="badge-green">Data (Shared)</span>
@@ -191,8 +191,8 @@ sections['parallel'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3>Thread Scheduling — Animasi Interaktif</h3>
-    <p>Visualisasi bagaimana OS scheduler menjadwalkan threads ke CPU cores:</p>
+    <h3>${t('Thread Scheduling — Animasi Interaktif', 'Thread Scheduling — Interactive Animation')}</h3>
+    <p>${t('Visualisasi bagaimana OS scheduler menjadwalkan threads ke CPU cores:', 'Visualization of how the OS scheduler assigns threads to CPU cores:')}</p>
     <div class="anim-container">
         <canvas id="threadSchedCanvas" width="700" height="340" style="max-width:100%;"></canvas>
         <div class="anim-controls">
@@ -205,8 +205,8 @@ sections['parallel'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3>Thread Creation — C, Go, Rust</h3>
-    <p>Perbandingan membuat thread di tiga bahasa:</p>
+    <h3>${t('Thread Creation — C, Go, Rust', 'Thread Creation — C, Go, Rust')}</h3>
+    <p>${t('Perbandingan membuat thread di tiga bahasa:', 'Comparison of creating threads in three languages:')}</p>
     <div class="tabs">
         <button class="tab-btn active" data-tab="pthread-tab">C (pthreads)</button>
         <button class="tab-btn" data-tab="goroutine-tab">Go (goroutines)</button>
@@ -293,11 +293,11 @@ sections['parallel'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3>Perbandingan Threading Models</h3>
+    <h3>${t('Perbandingan Threading Models', 'Threading Models Comparison')}</h3>
     <div class="table-wrapper">
         <table>
             <thead>
-                <tr><th>Aspek</th><th>C (pthreads)</th><th>Go (goroutines)</th><th>Rust (std::thread)</th></tr>
+                <tr><th>${t('Aspek', 'Aspect')}</th><th>C (pthreads)</th><th>Go (goroutines)</th><th>Rust (std::thread)</th></tr>
             </thead>
             <tbody>
                 <tr><td>Mapping</td><td>1:1 (OS thread)</td><td>M:N (green thread)</td><td>1:1 (OS thread)</td></tr>
@@ -316,26 +316,26 @@ sections['parallel'] = () => `
 
 <div class="card animate-in">
     <h3>OpenMP Overview</h3>
-    <p>OpenMP (Open Multi-Processing) adalah API untuk shared-memory parallel programming di C/C++/Fortran. Menggunakan <strong>compiler directives</strong> (#pragma) sehingga mudah ditambahkan ke kode serial yang sudah ada.</p>
+    <p>${t('OpenMP (Open Multi-Processing) adalah API untuk shared-memory parallel programming di C/C++/Fortran. Menggunakan <strong>compiler directives</strong> (#pragma) sehingga mudah ditambahkan ke kode serial yang sudah ada.', 'OpenMP (Open Multi-Processing) is an API for shared-memory parallel programming in C/C++/Fortran. It uses <strong>compiler directives</strong> (#pragma), making it easy to add to existing serial code.')}</p>
 
     <div class="pipeline" style="margin-top:15px;">
         <div class="pipeline-stage">
             <div class="stage-title">Fork</div>
-            <div class="stage-desc">Master thread membuat team of threads</div>
+            <div class="stage-desc">${t('Master thread membuat team of threads', 'Master thread creates a team of threads')}</div>
         </div>
         <div class="pipeline-stage">
             <div class="stage-title">Parallel Region</div>
-            <div class="stage-desc">Semua threads bekerja bersamaan</div>
+            <div class="stage-desc">${t('Semua threads bekerja bersamaan', 'All threads work simultaneously')}</div>
         </div>
         <div class="pipeline-stage">
             <div class="stage-title">Join</div>
-            <div class="stage-desc">Threads bergabung kembali ke master</div>
+            <div class="stage-desc">${t('Threads bergabung kembali ke master', 'Threads rejoin the master')}</div>
         </div>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3>Pragma Directives Utama</h3>
+    <h3>${t('Pragma Directives Utama', 'Key Pragma Directives')}</h3>
     <div class="code-block"><span class="cm">// 1. Parallel Region — membuat team of threads</span>
 <span class="kw">#pragma omp parallel</span>
 {
@@ -366,7 +366,7 @@ sections['parallel'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3>Synchronization di OpenMP</h3>
+    <h3>${t('Synchronization di OpenMP', 'Synchronization in OpenMP')}</h3>
     <div class="code-block"><span class="cm">// === Critical Section ===</span>
 <span class="type">int</span> sum = <span class="num">0</span>;
 <span class="kw">#pragma omp parallel for</span>
@@ -404,9 +404,9 @@ sections['parallel'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3>Race Condition & Cara Menghindarinya</h3>
+    <h3>${t('Race Condition & Cara Menghindarinya', 'Race Condition & How to Avoid It')}</h3>
     <div class="warn-box">
-        <strong>Race Condition</strong> terjadi ketika dua atau lebih threads mengakses shared data secara bersamaan, dan setidaknya satu melakukan write. Hasilnya <strong>non-deterministic</strong> — program bisa benar 99% waktu tapi gagal 1%.
+        <strong>Race Condition</strong> ${t('terjadi ketika dua atau lebih threads mengakses shared data secara bersamaan, dan setidaknya satu melakukan write. Hasilnya <strong>non-deterministic</strong> — program bisa benar 99% waktu tapi gagal 1%.', 'occurs when two or more threads access shared data concurrently, and at least one performs a write. The result is <strong>non-deterministic</strong> — the program may work 99% of the time but fail 1%.')}
     </div>
     <div class="card-grid" style="margin-top:15px;">
         <div class="card" style="border-left:4px solid var(--red);">
@@ -430,15 +430,15 @@ sections['parallel'] = () => `
     </div>
 
     <div class="step-list" style="margin-top:15px;">
-        <div class="step-item"><div class="step-num">1</div><div class="step-text"><strong>Identifikasi shared variables</strong> — variabel apa yang diakses oleh multiple threads?</div></div>
-        <div class="step-item"><div class="step-num">2</div><div class="step-text"><strong>Tentukan scope</strong> — private (setiap thread punya salinan) atau shared? Gunakan <code>private(x)</code>, <code>firstprivate(x)</code>, <code>shared(x)</code>.</div></div>
-        <div class="step-item"><div class="step-num">3</div><div class="step-text"><strong>Gunakan reduction</strong> untuk aggregation, <strong>atomic</strong> untuk operasi tunggal, <strong>critical</strong> untuk blok kode kompleks.</div></div>
-        <div class="step-item"><div class="step-num">4</div><div class="step-text"><strong>Test dengan ThreadSanitizer</strong>: <code>gcc -fsanitize=thread</code> mendeteksi race conditions saat runtime.</div></div>
+        <div class="step-item"><div class="step-num">1</div><div class="step-text"><strong>${t('Identifikasi shared variables', 'Identify shared variables')}</strong> — ${t('variabel apa yang diakses oleh multiple threads?', 'which variables are accessed by multiple threads?')}</div></div>
+        <div class="step-item"><div class="step-num">2</div><div class="step-text"><strong>${t('Tentukan scope', 'Determine scope')}</strong> — ${t('private (setiap thread punya salinan) atau shared? Gunakan', 'private (each thread has a copy) or shared? Use')} <code>private(x)</code>, <code>firstprivate(x)</code>, <code>shared(x)</code>.</div></div>
+        <div class="step-item"><div class="step-num">3</div><div class="step-text"><strong>${t('Gunakan reduction', 'Use reduction')}</strong> ${t('untuk aggregation, <strong>atomic</strong> untuk operasi tunggal, <strong>critical</strong> untuk blok kode kompleks.', 'for aggregation, <strong>atomic</strong> for single operations, <strong>critical</strong> for complex code blocks.')}</div></div>
+        <div class="step-item"><div class="step-num">4</div><div class="step-text"><strong>${t('Test dengan ThreadSanitizer', 'Test with ThreadSanitizer')}</strong>: <code>gcc -fsanitize=thread</code> ${t('mendeteksi race conditions saat runtime.', 'detects race conditions at runtime.')}</div></div>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3>Contoh Lengkap: Matrix Multiplication dengan OpenMP</h3>
+    <h3>${t('Contoh Lengkap: Matrix Multiplication dengan OpenMP', 'Complete Example: Matrix Multiplication with OpenMP')}</h3>
     <div class="code-block"><span class="kw">#include</span> <span class="str">&lt;stdio.h&gt;</span>
 <span class="kw">#include</span> <span class="str">&lt;omp.h&gt;</span>
 
@@ -474,12 +474,12 @@ sections['parallel'] = () => `
 
 <div class="card animate-in">
     <h3>Message Passing Interface (MPI)</h3>
-    <p>MPI adalah standar untuk komunikasi antar proses dalam <strong>distributed memory systems</strong>. Setiap proses memiliki memori sendiri dan berkomunikasi melalui <strong>message passing</strong>.</p>
-    <div class="info-box">MPI digunakan di hampir semua supercomputer di dunia. Implementasi populer: OpenMPI, MPICH, Intel MPI.</div>
+    <p>${t('MPI adalah standar untuk komunikasi antar proses dalam <strong>distributed memory systems</strong>. Setiap proses memiliki memori sendiri dan berkomunikasi melalui <strong>message passing</strong>.', 'MPI is the standard for inter-process communication in <strong>distributed memory systems</strong>. Each process has its own memory and communicates through <strong>message passing</strong>.')}</p>
+    <div class="info-box">${t('MPI digunakan di hampir semua supercomputer di dunia. Implementasi populer: OpenMPI, MPICH, Intel MPI.', 'MPI is used on nearly every supercomputer in the world. Popular implementations: OpenMPI, MPICH, Intel MPI.')}</div>
 </div>
 
 <div class="card animate-in">
-    <h3>Komunikasi MPI — Visual</h3>
+    <h3>${t('Komunikasi MPI — Visual', 'MPI Communication — Visual')}</h3>
     <div class="card-grid" style="margin-top:10px;">
         <div class="card" style="border-left:4px solid var(--accent);">
             <h4>Point-to-Point</h4>
@@ -506,7 +506,7 @@ sections['parallel'] = () => `
     <div class="card-grid" style="margin-top:10px;">
         <div class="card" style="border-left:4px solid var(--orange);">
             <h4>Scatter / Gather</h4>
-            <p><strong>Scatter:</strong> Root membagi data ke semua proses.<br><strong>Gather:</strong> Semua proses mengirim data ke root.</p>
+            <p><strong>Scatter:</strong> ${t('Root membagi data ke semua proses.', 'Root distributes data to all processes.')}<br><strong>Gather:</strong> ${t('Semua proses mengirim data ke root.', 'All processes send data to root.')}</p>
             <div class="flow-diagram">
                 <div class="flow-node" style="background:rgba(251,146,60,0.1);">P0: [A,B,C,D]<br><small>MPI_Scatter</small></div>
                 <div class="flow-arrow">&harr;</div>
@@ -520,7 +520,7 @@ sections['parallel'] = () => `
         </div>
         <div class="card" style="border-left:4px solid var(--purple);">
             <h4>Reduce / AllReduce</h4>
-            <p><strong>Reduce:</strong> Kombinasi data ke root.<br><strong>AllReduce:</strong> Hasil ke semua proses.</p>
+            <p><strong>Reduce:</strong> ${t('Kombinasi data ke root.', 'Combines data to root.')}<br><strong>AllReduce:</strong> ${t('Hasil ke semua proses.', 'Result to all processes.')}</p>
             <div class="flow-diagram">
                 <div style="display:flex;flex-direction:column;gap:3px;">
                     <span class="badge-blue">P0: 10</span>
@@ -536,7 +536,7 @@ sections['parallel'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3>Contoh MPI: Vector Addition</h3>
+    <h3>${t('Contoh MPI: Vector Addition', 'MPI Example: Vector Addition')}</h3>
     <div class="code-block"><span class="kw">#include</span> <span class="str">&lt;mpi.h&gt;</span>
 <span class="kw">#include</span> <span class="str">&lt;stdio.h&gt;</span>
 <span class="kw">#include</span> <span class="str">&lt;stdlib.h&gt;</span>
@@ -587,17 +587,17 @@ sections['parallel'] = () => `
     <div class="table-wrapper">
         <table>
             <thead>
-                <tr><th>Function</th><th>Tipe</th><th>Deskripsi</th><th>Blocking?</th></tr>
+                <tr><th>Function</th><th>${t('Tipe', 'Type')}</th><th>${t('Deskripsi', 'Description')}</th><th>Blocking?</th></tr>
             </thead>
             <tbody>
-                <tr><td><code>MPI_Send / MPI_Recv</code></td><td>Point-to-Point</td><td>Kirim/terima pesan antara dua proses</td><td>Ya</td></tr>
-                <tr><td><code>MPI_Isend / MPI_Irecv</code></td><td>Point-to-Point</td><td>Non-blocking send/receive</td><td>Tidak</td></tr>
-                <tr><td><code>MPI_Bcast</code></td><td>Collective</td><td>Broadcast data dari root ke semua</td><td>Ya</td></tr>
-                <tr><td><code>MPI_Scatter</code></td><td>Collective</td><td>Distribusi data dari root ke semua</td><td>Ya</td></tr>
-                <tr><td><code>MPI_Gather</code></td><td>Collective</td><td>Kumpulkan data dari semua ke root</td><td>Ya</td></tr>
-                <tr><td><code>MPI_Reduce</code></td><td>Collective</td><td>Reduksi (sum, max, min) ke root</td><td>Ya</td></tr>
-                <tr><td><code>MPI_AllReduce</code></td><td>Collective</td><td>Reduce + broadcast hasil ke semua</td><td>Ya</td></tr>
-                <tr><td><code>MPI_Barrier</code></td><td>Collective</td><td>Synchronization point</td><td>Ya</td></tr>
+                <tr><td><code>MPI_Send / MPI_Recv</code></td><td>Point-to-Point</td><td>${t('Kirim/terima pesan antara dua proses', 'Send/receive messages between two processes')}</td><td>${t('Ya', 'Yes')}</td></tr>
+                <tr><td><code>MPI_Isend / MPI_Irecv</code></td><td>Point-to-Point</td><td>Non-blocking send/receive</td><td>${t('Tidak', 'No')}</td></tr>
+                <tr><td><code>MPI_Bcast</code></td><td>Collective</td><td>${t('Broadcast data dari root ke semua', 'Broadcast data from root to all')}</td><td>${t('Ya', 'Yes')}</td></tr>
+                <tr><td><code>MPI_Scatter</code></td><td>Collective</td><td>${t('Distribusi data dari root ke semua', 'Distribute data from root to all')}</td><td>${t('Ya', 'Yes')}</td></tr>
+                <tr><td><code>MPI_Gather</code></td><td>Collective</td><td>${t('Kumpulkan data dari semua ke root', 'Gather data from all to root')}</td><td>${t('Ya', 'Yes')}</td></tr>
+                <tr><td><code>MPI_Reduce</code></td><td>Collective</td><td>${t('Reduksi (sum, max, min) ke root', 'Reduction (sum, max, min) to root')}</td><td>${t('Ya', 'Yes')}</td></tr>
+                <tr><td><code>MPI_AllReduce</code></td><td>Collective</td><td>${t('Reduce + broadcast hasil ke semua', 'Reduce + broadcast result to all')}</td><td>${t('Ya', 'Yes')}</td></tr>
+                <tr><td><code>MPI_Barrier</code></td><td>Collective</td><td>Synchronization point</td><td>${t('Ya', 'Yes')}</td></tr>
             </tbody>
         </table>
     </div>
@@ -607,16 +607,16 @@ sections['parallel'] = () => `
 <h2 class="animate-in">5. GPU Programming</h2>
 
 <div class="card animate-in">
-    <h3>CPU vs GPU — Arsitektur</h3>
+    <h3>${t('CPU vs GPU — Arsitektur', 'CPU vs GPU — Architecture')}</h3>
     <div class="card-grid" style="margin-top:10px;">
         <div class="card" style="border-left:4px solid var(--accent);">
             <h4>CPU (Latency-Oriented)</h4>
             <ul>
-                <li>Sedikit core (4-64), tapi <strong>sangat powerful</strong></li>
-                <li>Cache besar (L1, L2, L3)</li>
+                <li>${t('Sedikit core (4-64), tapi <strong>sangat powerful</strong>', 'Few cores (4-64), but <strong>very powerful</strong>')}</li>
+                <li>${t('Cache besar (L1, L2, L3)', 'Large cache (L1, L2, L3)')}</li>
                 <li>Sophisticated branch prediction</li>
                 <li>Out-of-order execution</li>
-                <li>Optimal untuk: serial, complex logic, branching</li>
+                <li>${t('Optimal untuk: serial, complex logic, branching', 'Optimal for: serial, complex logic, branching')}</li>
             </ul>
             <div class="gpu-grid" style="grid-template-columns:repeat(4,1fr);gap:6px;max-width:200px;">
                 <div class="gpu-core active" style="padding:15px;font-size:0.7em;">Core 1</div>
@@ -629,11 +629,11 @@ sections['parallel'] = () => `
         <div class="card" style="border-left:4px solid var(--green);">
             <h4>GPU (Throughput-Oriented)</h4>
             <ul>
-                <li>Ribuan core kecil (<strong>1000-16000+</strong>)</li>
-                <li>Cache kecil per core</li>
+                <li>${t('Ribuan core kecil (<strong>1000-16000+</strong>)', 'Thousands of small cores (<strong>1000-16000+</strong>)')}</li>
+                <li>${t('Cache kecil per core', 'Small cache per core')}</li>
                 <li>SIMT (Single Instruction, Multiple Threads)</li>
                 <li>Massive parallelism, high bandwidth</li>
-                <li>Optimal untuk: data-parallel, matrix ops, graphics</li>
+                <li>${t('Optimal untuk: data-parallel, matrix ops, graphics', 'Optimal for: data-parallel, matrix ops, graphics')}</li>
             </ul>
             <div class="gpu-grid" style="grid-template-columns:repeat(16,1fr);gap:2px;max-width:350px;">
                 <div class="gpu-core active" style="padding:3px;font-size:0.5em;"></div>
@@ -685,23 +685,23 @@ sections['parallel'] = () => `
                 <div class="gpu-core active" style="padding:3px;font-size:0.5em;"></div>
                 <div class="gpu-core active" style="padding:3px;font-size:0.5em;"></div>
             </div>
-            <small>Ribuan core kecil, high memory bandwidth</small>
+            <small>${t('Ribuan core kecil, high memory bandwidth', 'Thousands of small cores, high memory bandwidth')}</small>
         </div>
     </div>
 </div>
 
 <div class="card animate-in">
     <h3>CUDA Programming Model — Grid, Block, Thread</h3>
-    <p>CUDA mengorganisir threads dalam hierarki 3 level:</p>
+    <p>${t('CUDA mengorganisir threads dalam hierarki 3 level:', 'CUDA organizes threads in a 3-level hierarchy:')}</p>
     <div class="layer-diagram" style="margin-top:10px;">
         <div class="layer-item" style="background:rgba(248,113,113,0.08);border-left:4px solid var(--red);">
-            <strong>Grid</strong> — Kumpulan semua blocks yang menjalankan satu kernel
+            <strong>Grid</strong> — ${t('Kumpulan semua blocks yang menjalankan satu kernel', 'Collection of all blocks executing a single kernel')}
             <p>Dimensi: gridDim.x, gridDim.y, gridDim.z</p>
         </div>
         <div class="layer-item" style="background:rgba(251,146,60,0.08);border-left:4px solid var(--orange);">
-            <strong>Block</strong> — Kumpulan threads yang bisa saling sinkronisasi
+            <strong>Block</strong> — ${t('Kumpulan threads yang bisa saling sinkronisasi', 'Collection of threads that can synchronize with each other')}
             <p>Dimensi: blockDim.x, blockDim.y, blockDim.z | Max 1024 threads per block</p>
-            <p>Threads dalam satu block bisa berbagi <strong>shared memory</strong> dan menggunakan <code>__syncthreads()</code></p>
+            <p>${t('Threads dalam satu block bisa berbagi <strong>shared memory</strong> dan menggunakan', 'Threads within a block can share <strong>shared memory</strong> and use')} <code>__syncthreads()</code></p>
         </div>
         <div class="layer-item" style="background:rgba(56,189,248,0.08);border-left:4px solid var(--accent);">
             <strong>Thread</strong> — Unit eksekusi terkecil

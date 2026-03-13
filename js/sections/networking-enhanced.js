@@ -2,50 +2,50 @@
 // Replaces the basic networking section with comprehensive coverage
 
 sections['networking'] = () => `
-<h1 class="section-title animate-in">Networking & Protocols</h1>
-<p class="section-subtitle animate-in">OSI Model, TCP/UDP, HTTP Evolution, TLS, REST, gRPC, WebSocket, GraphQL, DNS & Security</p>
+<h1 class="section-title animate-in">${t('Jaringan & Protokol', 'Networking & Protocols')}</h1>
+<p class="section-subtitle animate-in">${t('Model OSI, TCP/UDP, Evolusi HTTP, TLS, REST, gRPC, WebSocket, GraphQL, DNS & Keamanan', 'OSI Model, TCP/UDP, HTTP Evolution, TLS, REST, gRPC, WebSocket, GraphQL, DNS & Security')}</p>
 
 <!-- ==================== 1. OSI MODEL & TCP/IP ==================== -->
-<h2 class="animate-in">1. OSI Model & TCP/IP Stack</h2>
+<h2 class="animate-in">${t('1. Model OSI & Stack TCP/IP', '1. OSI Model & TCP/IP Stack')}</h2>
 
 <div class="card animate-in">
     <h3 style="color:var(--accent)">OSI (Open Systems Interconnection) Model</h3>
-    <p>Model OSI adalah kerangka konseptual 7 layer yang menstandarisasi fungsi komunikasi jaringan. Setiap layer memiliki tanggung jawab spesifik dan berkomunikasi dengan layer di atas dan di bawahnya.</p>
+    <p>${t('Model OSI adalah kerangka konseptual 7 layer yang menstandarisasi fungsi komunikasi jaringan. Setiap layer memiliki tanggung jawab spesifik dan berkomunikasi dengan layer di atas dan di bawahnya.', 'The OSI model is a 7-layer conceptual framework that standardizes network communication functions. Each layer has specific responsibilities and communicates with the layers above and below it.')}</p>
 
     <div class="layer-diagram">
         <div class="layer-item" style="background:rgba(248,113,113,0.12)">
             <div class="layer-num" style="background:var(--red);color:#fff">7</div>
             <div class="layer-info">
                 <strong style="color:var(--red)">Application Layer</strong>
-                <span>Interaksi langsung dengan pengguna. Protokol: HTTP, FTP, SMTP, DNS, SSH, SNMP</span>
+                <span>${t('Interaksi langsung dengan pengguna. Protokol: HTTP, FTP, SMTP, DNS, SSH, SNMP', 'Direct interaction with users. Protocols: HTTP, FTP, SMTP, DNS, SSH, SNMP')}</span>
             </div>
         </div>
         <div class="layer-item" style="background:rgba(251,146,60,0.12)">
             <div class="layer-num" style="background:var(--orange);color:#fff">6</div>
             <div class="layer-info">
                 <strong style="color:var(--orange)">Presentation Layer</strong>
-                <span>Enkripsi, kompresi, konversi format. SSL/TLS, JPEG, ASCII, MIME</span>
+                <span>${t('Enkripsi, kompresi, konversi format. SSL/TLS, JPEG, ASCII, MIME', 'Encryption, compression, format conversion. SSL/TLS, JPEG, ASCII, MIME')}</span>
             </div>
         </div>
         <div class="layer-item" style="background:rgba(251,191,36,0.12)">
             <div class="layer-num" style="background:var(--yellow);color:#000">5</div>
             <div class="layer-info">
                 <strong style="color:var(--yellow)">Session Layer</strong>
-                <span>Membuat, mengelola, mengakhiri sesi. NetBIOS, RPC, PPTP</span>
+                <span>${t('Membuat, mengelola, mengakhiri sesi. NetBIOS, RPC, PPTP', 'Creates, manages, terminates sessions. NetBIOS, RPC, PPTP')}</span>
             </div>
         </div>
         <div class="layer-item" style="background:rgba(52,211,153,0.12)">
             <div class="layer-num" style="background:var(--green);color:#fff">4</div>
             <div class="layer-info">
                 <strong style="color:var(--green)">Transport Layer</strong>
-                <span>Segmentasi, flow control, error recovery. TCP, UDP, SCTP, QUIC</span>
+                <span>${t('Segmentasi, flow control, error recovery. TCP, UDP, SCTP, QUIC', 'Segmentation, flow control, error recovery. TCP, UDP, SCTP, QUIC')}</span>
             </div>
         </div>
         <div class="layer-item" style="background:rgba(56,189,248,0.12)">
             <div class="layer-num" style="background:var(--accent);color:#fff">3</div>
             <div class="layer-info">
                 <strong style="color:var(--accent)">Network Layer</strong>
-                <span>Routing dan addressing logis. IP, ICMP, ARP, OSPF, BGP</span>
+                <span>${t('Routing dan addressing logis. IP, ICMP, ARP, OSPF, BGP', 'Logical routing and addressing. IP, ICMP, ARP, OSPF, BGP')}</span>
             </div>
         </div>
         <div class="layer-item" style="background:rgba(167,139,250,0.12)">
@@ -59,7 +59,7 @@ sections['networking'] = () => `
             <div class="layer-num" style="background:#ec4899;color:#fff">1</div>
             <div class="layer-info">
                 <strong style="color:#ec4899">Physical Layer</strong>
-                <span>Sinyal elektrik/optik, kabel, frekuensi. Ethernet cable, fiber optic, radio waves</span>
+                <span>${t('Sinyal elektrik/optik, kabel, frekuensi. Ethernet cable, fiber optic, radio waves', 'Electrical/optical signals, cables, frequencies. Ethernet cable, fiber optic, radio waves')}</span>
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@ sections['networking'] = () => `
 <div class="card-grid animate-in">
     <div class="card">
         <h3 style="color:var(--green)">TCP/IP Model (4 Layer)</h3>
-        <p>Model praktis yang digunakan di internet sesungguhnya:</p>
+        <p>${t('Model praktis yang digunakan di internet sesungguhnya:', 'The practical model used in the actual internet:')}</p>
         <div class="layer-diagram">
             <div class="layer-item" style="background:rgba(248,113,113,0.12)">
                 <div class="layer-num" style="background:var(--red);color:#fff">4</div>
@@ -102,7 +102,7 @@ sections['networking'] = () => `
     </div>
     <div class="card">
         <h3 style="color:var(--accent)">Data Encapsulation</h3>
-        <p>Saat data turun melalui layer, setiap layer menambahkan header-nya sendiri:</p>
+        <p>${t('Saat data turun melalui layer, setiap layer menambahkan header-nya sendiri:', 'As data descends through layers, each layer adds its own header:')}</p>
         <div class="pipeline">
             <div class="pipeline-stage">
                 <div class="stage-title">Data</div>
@@ -122,11 +122,11 @@ sections['networking'] = () => `
             </div>
             <div class="pipeline-stage">
                 <div class="stage-title">Bits</div>
-                <div class="stage-desc">Signal fisik</div>
+                <div class="stage-desc">${t('Signal fisik', 'Physical signal')}</div>
             </div>
         </div>
         <div class="info-box">
-            <strong>Ingat!</strong> Encapsulation = data dibungkus saat turun. De-encapsulation = header dibuka saat naik di sisi penerima.
+            <strong>${t('Ingat!', 'Remember!')}</strong> ${t('Encapsulation = data dibungkus saat turun. De-encapsulation = header dibuka saat naik di sisi penerima.', 'Encapsulation = data is wrapped going down. De-encapsulation = headers are unwrapped going up on the receiver side.')}
         </div>
     </div>
 </div>
@@ -136,7 +136,7 @@ sections['networking'] = () => `
 
 <div class="card animate-in">
     <h3 style="color:var(--accent)">TCP 3-Way Handshake</h3>
-    <p>Sebelum data bisa dikirim melalui TCP, client dan server harus membangun koneksi melalui <strong>3-way handshake</strong>:</p>
+    <p>${t('Sebelum data bisa dikirim melalui TCP, client dan server harus membangun koneksi melalui', 'Before data can be sent via TCP, the client and server must establish a connection through a')} <strong>3-way handshake</strong>:</p>
 
     <div class="handshake-vis">
         <div class="handshake-col">
@@ -162,22 +162,22 @@ sections['networking'] = () => `
     <div class="step-list">
         <div class="step-item">
             <div class="step-num">1</div>
-            <div class="step-text"><strong>SYN:</strong> Client mengirim paket SYN dengan sequence number acak (misal x=1000). Client masuk state SYN_SENT.</div>
+            <div class="step-text"><strong>SYN:</strong> ${t('Client mengirim paket SYN dengan sequence number acak (misal x=1000). Client masuk state SYN_SENT.', 'Client sends a SYN packet with a random sequence number (e.g. x=1000). Client enters SYN_SENT state.')}</div>
         </div>
         <div class="step-item">
             <div class="step-num">2</div>
-            <div class="step-text"><strong>SYN-ACK:</strong> Server menerima SYN, membalas dengan SYN-ACK. Server membuat sequence number sendiri (y=5000) dan acknowledge x+1. Server masuk state SYN_RECEIVED.</div>
+            <div class="step-text"><strong>SYN-ACK:</strong> ${t('Server menerima SYN, membalas dengan SYN-ACK. Server membuat sequence number sendiri (y=5000) dan acknowledge x+1. Server masuk state SYN_RECEIVED.', 'Server receives SYN, replies with SYN-ACK. Server creates its own sequence number (y=5000) and acknowledges x+1. Server enters SYN_RECEIVED state.')}</div>
         </div>
         <div class="step-item">
             <div class="step-num">3</div>
-            <div class="step-text"><strong>ACK:</strong> Client menerima SYN-ACK, mengirim ACK dengan ack=y+1. Kedua pihak masuk state ESTABLISHED. Koneksi siap!</div>
+            <div class="step-text"><strong>ACK:</strong> ${t('Client menerima SYN-ACK, mengirim ACK dengan ack=y+1. Kedua pihak masuk state ESTABLISHED. Koneksi siap!', 'Client receives SYN-ACK, sends ACK with ack=y+1. Both parties enter ESTABLISHED state. Connection ready!')}</div>
         </div>
     </div>
 </div>
 
 <div class="card animate-in">
     <h3 style="color:var(--red)">TCP 4-Way Termination (Connection Teardown)</h3>
-    <p>Menutup koneksi TCP memerlukan 4 langkah karena koneksi TCP bersifat <strong>full-duplex</strong> (kedua arah harus ditutup terpisah):</p>
+    <p>${t('Menutup koneksi TCP memerlukan 4 langkah karena koneksi TCP bersifat', 'Closing a TCP connection requires 4 steps because TCP connections are')} <strong>full-duplex</strong> ${t('(kedua arah harus ditutup terpisah):', '(both directions must be closed separately):')}</p>
 
     <div class="handshake-vis">
         <div class="handshake-col">
@@ -203,13 +203,13 @@ sections['networking'] = () => `
             </div>
         </div>
     </div>
-    <p>Setelah ACK terakhir, initiator masuk state <strong>TIME_WAIT</strong> selama 2*MSL (Maximum Segment Lifetime, biasanya 60 detik) untuk memastikan semua paket lama sudah expired.</p>
+    <p>${t('Setelah ACK terakhir, initiator masuk state', 'After the last ACK, the initiator enters')} <strong>TIME_WAIT</strong> ${t('selama 2*MSL (Maximum Segment Lifetime, biasanya 60 detik) untuk memastikan semua paket lama sudah expired.', 'for 2*MSL (Maximum Segment Lifetime, usually 60 seconds) to ensure all old packets have expired.')}</p>
 </div>
 
 <div class="card-grid animate-in">
     <div class="card">
         <h3 style="color:var(--green)">Flow Control (Sliding Window)</h3>
-        <p>Receiver mengontrol kecepatan pengiriman data dengan memberitahu <strong>window size</strong> (jumlah byte yang bisa diterima tanpa ACK).</p>
+        <p>${t('Receiver mengontrol kecepatan pengiriman data dengan memberitahu', 'The receiver controls the data sending rate by advertising the')} <strong>window size</strong> ${t('(jumlah byte yang bisa diterima tanpa ACK).', '(number of bytes that can be received without ACK).')}</p>
         <div class="code-block"><span class="cm">// Sliding Window Concept</span>
 Sender Window: [1][2][3][4][5][6][7][8][9][10]
                |--- sent, awaiting ACK ---|-- can send --|
@@ -220,42 +220,42 @@ Sender Window: [1][2][3][4][5][6][7][8][9][10]
 Sender kirim: [1][2][3][4]  <span class="cm">// max 4 sekaligus</span>
 ACK 1 diterima: slide right
 Sender kirim: [5]           <span class="cm">// window bergeser</span></div>
-        <p>Jika receiver kewalahan, ia mengirim window size=0 (<strong>zero window</strong>), dan sender berhenti mengirim sampai window dibuka kembali.</p>
+        <p>${t('Jika receiver kewalahan, ia mengirim window size=0', 'If the receiver is overwhelmed, it sends window size=0')} (<strong>zero window</strong>)${t(', dan sender berhenti mengirim sampai window dibuka kembali.', ', and the sender stops sending until the window reopens.')}</p>
     </div>
     <div class="card">
         <h3 style="color:var(--orange)">Congestion Control</h3>
-        <p>TCP mengatur laju pengiriman untuk menghindari <strong>network congestion</strong>:</p>
+        <p>${t('TCP mengatur laju pengiriman untuk menghindari', 'TCP regulates the sending rate to avoid')} <strong>network congestion</strong>:</p>
         <ul>
-            <li><strong>Slow Start:</strong> Mulai dengan cwnd=1 MSS, gandakan setiap RTT (exponential growth) sampai threshold (ssthresh)</li>
-            <li><strong>Congestion Avoidance:</strong> Setelah ssthresh, naikkan cwnd secara linear (+1 MSS per RTT)</li>
-            <li><strong>Fast Retransmit:</strong> Jika 3 duplicate ACK diterima, langsung retransmit tanpa tunggu timeout</li>
-            <li><strong>Fast Recovery (AIMD):</strong> Setelah fast retransmit, kurangi ssthresh jadi cwnd/2, lalu congestion avoidance</li>
+            <li><strong>Slow Start:</strong> ${t('Mulai dengan cwnd=1 MSS, gandakan setiap RTT (exponential growth) sampai threshold (ssthresh)', 'Start with cwnd=1 MSS, double every RTT (exponential growth) until threshold (ssthresh)')}</li>
+            <li><strong>Congestion Avoidance:</strong> ${t('Setelah ssthresh, naikkan cwnd secara linear (+1 MSS per RTT)', 'After ssthresh, increase cwnd linearly (+1 MSS per RTT)')}</li>
+            <li><strong>Fast Retransmit:</strong> ${t('Jika 3 duplicate ACK diterima, langsung retransmit tanpa tunggu timeout', 'If 3 duplicate ACKs are received, retransmit immediately without waiting for timeout')}</li>
+            <li><strong>Fast Recovery (AIMD):</strong> ${t('Setelah fast retransmit, kurangi ssthresh jadi cwnd/2, lalu congestion avoidance', 'After fast retransmit, reduce ssthresh to cwnd/2, then congestion avoidance')}</li>
         </ul>
         <div class="info-box">
-            <strong>AIMD</strong> = Additive Increase, Multiplicative Decrease. Naikkan pelan-pelan, turunkan drastis saat congestion. Ini menciptakan pola "sawtooth" pada grafik throughput TCP.
+            <strong>AIMD</strong> = Additive Increase, Multiplicative Decrease. ${t('Naikkan pelan-pelan, turunkan drastis saat congestion. Ini menciptakan pola "sawtooth" pada grafik throughput TCP.', 'Increase slowly, decrease drastically during congestion. This creates the "sawtooth" pattern on TCP throughput graphs.')}
         </div>
     </div>
 </div>
 
 <div class="card animate-in">
     <h3 style="color:var(--accent3)">Reliable Delivery & Retransmission</h3>
-    <p>TCP menjamin setiap byte sampai dengan benar dan berurutan melalui mekanisme:</p>
+    <p>${t('TCP menjamin setiap byte sampai dengan benar dan berurutan melalui mekanisme:', 'TCP guarantees every byte arrives correctly and in order through these mechanisms:')}</p>
     <div class="card-grid">
         <div class="card">
             <h4>Sequence & Acknowledgment Numbers</h4>
-            <p>Setiap byte memiliki nomor urut. Receiver mengirim ACK dengan nomor byte berikutnya yang diharapkan.</p>
+            <p>${t('Setiap byte memiliki nomor urut. Receiver mengirim ACK dengan nomor byte berikutnya yang diharapkan.', 'Every byte has a sequence number. The receiver sends an ACK with the next expected byte number.')}</p>
         </div>
         <div class="card">
             <h4>Retransmission Timeout (RTO)</h4>
-            <p>Jika ACK tidak diterima dalam RTO, paket dikirim ulang. RTO dihitung dinamis berdasarkan RTT.</p>
+            <p>${t('Jika ACK tidak diterima dalam RTO, paket dikirim ulang. RTO dihitung dinamis berdasarkan RTT.', 'If ACK is not received within RTO, the packet is retransmitted. RTO is dynamically calculated based on RTT.')}</p>
         </div>
         <div class="card">
             <h4>Checksum</h4>
-            <p>Setiap segment memiliki checksum untuk mendeteksi korupsi data. Segment yang rusak di-drop dan akan di-retransmit.</p>
+            <p>${t('Setiap segment memiliki checksum untuk mendeteksi korupsi data. Segment yang rusak di-drop dan akan di-retransmit.', 'Every segment has a checksum to detect data corruption. Corrupted segments are dropped and retransmitted.')}</p>
         </div>
         <div class="card">
             <h4>Selective ACK (SACK)</h4>
-            <p>Receiver bisa memberitahu segmen mana yang sudah diterima, sehingga sender hanya mengirim ulang yang hilang.</p>
+            <p>${t('Receiver bisa memberitahu segmen mana yang sudah diterima, sehingga sender hanya mengirim ulang yang hilang.', 'The receiver can report which segments have been received, so the sender only retransmits the missing ones.')}</p>
         </div>
     </div>
 </div>
@@ -275,25 +275,25 @@ Sender kirim: [5]           <span class="cm">// window bergeser</span></div>
 <h2 class="animate-in">3. UDP (User Datagram Protocol)</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--green)">Karakteristik UDP</h3>
-    <p>UDP adalah protokol transport <strong>connectionless</strong> dan <strong>unreliable</strong> yang menawarkan kecepatan tinggi dengan overhead minimal.</p>
+    <h3 style="color:var(--green)">${t('Karakteristik UDP', 'UDP Characteristics')}</h3>
+    <p>${t('UDP adalah protokol transport', 'UDP is a')} <strong>connectionless</strong> ${t('dan', 'and')} <strong>unreliable</strong> ${t('yang menawarkan kecepatan tinggi dengan overhead minimal.', 'transport protocol that offers high speed with minimal overhead.')}</p>
 
     <div class="card-grid">
         <div class="card">
             <h4>Connectionless</h4>
-            <p>Tidak ada handshake. Langsung kirim datagram tanpa membangun koneksi terlebih dahulu. Setiap datagram independen.</p>
+            <p>${t('Tidak ada handshake. Langsung kirim datagram tanpa membangun koneksi terlebih dahulu. Setiap datagram independen.', 'No handshake. Sends datagrams directly without establishing a connection first. Each datagram is independent.')}</p>
         </div>
         <div class="card">
             <h4>Unreliable (Best Effort)</h4>
-            <p>Tidak ada jaminan pengiriman, urutan, atau integritas. Paket bisa hilang, duplikat, atau tiba tidak berurutan.</p>
+            <p>${t('Tidak ada jaminan pengiriman, urutan, atau integritas. Paket bisa hilang, duplikat, atau tiba tidak berurutan.', 'No guarantee of delivery, order, or integrity. Packets can be lost, duplicated, or arrive out of order.')}</p>
         </div>
         <div class="card">
             <h4>Lightweight Header</h4>
-            <p>Hanya 8 byte header (vs TCP 20-60 byte): Source Port, Dest Port, Length, Checksum.</p>
+            <p>${t('Hanya 8 byte header (vs TCP 20-60 byte): Source Port, Dest Port, Length, Checksum.', 'Only 8-byte header (vs TCP 20-60 bytes): Source Port, Dest Port, Length, Checksum.')}</p>
         </div>
         <div class="card">
             <h4>No Flow/Congestion Control</h4>
-            <p>Aplikasi bertanggung jawab sendiri atas pengaturan kecepatan pengiriman data.</p>
+            <p>${t('Aplikasi bertanggung jawab sendiri atas pengaturan kecepatan pengiriman data.', 'The application is responsible for managing data sending rate on its own.')}</p>
         </div>
     </div>
 
@@ -301,41 +301,41 @@ Sender kirim: [5]           <span class="cm">// window bergeser</span></div>
     <div class="card-grid-3">
         <div class="card">
             <span class="badge badge-green">Real-time Gaming</span>
-            <p>Latency lebih penting dari reliability. Kehilangan 1-2 paket posisi karakter tidak masalah.</p>
+            <p>${t('Latency lebih penting dari reliability. Kehilangan 1-2 paket posisi karakter tidak masalah.', 'Latency is more important than reliability. Losing 1-2 character position packets is acceptable.')}</p>
         </div>
         <div class="card">
             <span class="badge badge-blue">Video/Audio Streaming</span>
-            <p>RTP/RTSP berjalan di atas UDP. Buffering menangani packet loss. Retransmit akan menyebabkan delay.</p>
+            <p>${t('RTP/RTSP berjalan di atas UDP. Buffering menangani packet loss. Retransmit akan menyebabkan delay.', 'RTP/RTSP runs on top of UDP. Buffering handles packet loss. Retransmitting would cause delay.')}</p>
         </div>
         <div class="card">
             <span class="badge badge-orange">DNS Lookups</span>
-            <p>Query kecil (biasanya < 512 byte), satu request-response. Jika hilang, cukup kirim ulang dari aplikasi.</p>
+            <p>${t('Query kecil (biasanya < 512 byte), satu request-response. Jika hilang, cukup kirim ulang dari aplikasi.', 'Small queries (usually < 512 bytes), single request-response. If lost, just resend from the application.')}</p>
         </div>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3>TCP vs UDP Perbandingan Lengkap</h3>
+    <h3>${t('TCP vs UDP Perbandingan Lengkap', 'TCP vs UDP Complete Comparison')}</h3>
     <div class="table-wrapper">
     <table>
-    <tr><th>Aspek</th><th>TCP</th><th>UDP</th></tr>
-    <tr><td>Koneksi</td><td>Connection-oriented (3-way handshake)</td><td>Connectionless</td></tr>
+    <tr><th>${t('Aspek', 'Aspect')}</th><th>TCP</th><th>UDP</th></tr>
+    <tr><td>${t('Koneksi', 'Connection')}</td><td>Connection-oriented (3-way handshake)</td><td>Connectionless</td></tr>
     <tr><td>Reliability</td><td>Guaranteed delivery, retransmission</td><td>Best effort, no guarantee</td></tr>
-    <tr><td>Ordering</td><td>Data diterima berurutan</td><td>Tidak ada jaminan urutan</td></tr>
-    <tr><td>Flow Control</td><td>Ya (sliding window)</td><td>Tidak ada</td></tr>
-    <tr><td>Congestion Control</td><td>Ya (slow start, AIMD)</td><td>Tidak ada</td></tr>
+    <tr><td>Ordering</td><td>${t('Data diterima berurutan', 'Data received in order')}</td><td>${t('Tidak ada jaminan urutan', 'No order guarantee')}</td></tr>
+    <tr><td>Flow Control</td><td>${t('Ya', 'Yes')} (sliding window)</td><td>${t('Tidak ada', 'None')}</td></tr>
+    <tr><td>Congestion Control</td><td>${t('Ya', 'Yes')} (slow start, AIMD)</td><td>${t('Tidak ada', 'None')}</td></tr>
     <tr><td>Header Size</td><td>20-60 bytes</td><td>8 bytes</td></tr>
-    <tr><td>Speed</td><td>Lebih lambat (overhead)</td><td>Lebih cepat (minimal overhead)</td></tr>
-    <tr><td>Broadcast/Multicast</td><td>Tidak support</td><td>Support</td></tr>
+    <tr><td>Speed</td><td>${t('Lebih lambat (overhead)', 'Slower (overhead)')}</td><td>${t('Lebih cepat (minimal overhead)', 'Faster (minimal overhead)')}</td></tr>
+    <tr><td>Broadcast/Multicast</td><td>${t('Tidak support', 'Not supported')}</td><td>Support</td></tr>
     <tr><td>State</td><td>Stateful (ESTABLISHED, etc)</td><td>Stateless</td></tr>
-    <tr><td>Error Checking</td><td>Checksum + recovery</td><td>Checksum only (optional di IPv4)</td></tr>
+    <tr><td>Error Checking</td><td>Checksum + recovery</td><td>Checksum only (${t('optional di IPv4', 'optional in IPv4')})</td></tr>
     <tr><td>Use Case</td><td>Web, email, file transfer, SSH</td><td>Gaming, streaming, DNS, VoIP, IoT</td></tr>
     </table>
     </div>
 </div>
 
 <!-- ==================== 4. HTTP EVOLUTION ==================== -->
-<h2 class="animate-in">4. Evolusi HTTP: 1.0 &rarr; 1.1 &rarr; 2 &rarr; 3</h2>
+<h2 class="animate-in">${t('4. Evolusi HTTP: 1.0', '4. HTTP Evolution: 1.0')} &rarr; 1.1 &rarr; 2 &rarr; 3</h2>
 
 <div class="tabs animate-in">
     <button class="tab-btn active" data-tab="http10">HTTP/1.0</button>
@@ -347,7 +347,7 @@ Sender kirim: [5]           <span class="cm">// window bergeser</span></div>
 <div data-tab-content="http10" class="tab-content active">
 <div class="card">
     <h3 style="color:var(--red)">HTTP/1.0 (1996)</h3>
-    <p>Versi pertama yang terstandardisasi. Setiap request membutuhkan <strong>koneksi TCP baru</strong>.</p>
+    <p>${t('Versi pertama yang terstandardisasi. Setiap request membutuhkan', 'The first standardized version. Each request requires a')} <strong>${t('koneksi TCP baru', 'new TCP connection')}</strong>.</p>
 
     <div class="packet-vis">
         <div class="packet-flow">
@@ -373,14 +373,14 @@ Sender kirim: [5]           <span class="cm">// window bergeser</span></div>
     </div>
 
     <div class="warn-box">
-        <strong>Masalah utama:</strong> Setiap resource (HTML, CSS, JS, gambar) memerlukan TCP handshake baru. Sangat lambat untuk halaman modern yang memuat 50+ resource!
+        <strong>${t('Masalah utama:', 'Main problem:')}</strong> ${t('Setiap resource (HTML, CSS, JS, gambar) memerlukan TCP handshake baru. Sangat lambat untuk halaman modern yang memuat 50+ resource!', 'Each resource (HTML, CSS, JS, images) requires a new TCP handshake. Very slow for modern pages loading 50+ resources!')}
     </div>
 
     <ul>
-        <li>Satu request per koneksi TCP</li>
-        <li>Tidak ada persistent connection (default)</li>
-        <li>Header dalam format teks (plaintext)</li>
-        <li>Tidak ada host header (satu IP = satu website)</li>
+        <li>${t('Satu request per koneksi TCP', 'One request per TCP connection')}</li>
+        <li>${t('Tidak ada persistent connection (default)', 'No persistent connection (default)')}</li>
+        <li>${t('Header dalam format teks (plaintext)', 'Headers in text format (plaintext)')}</li>
+        <li>${t('Tidak ada host header (satu IP = satu website)', 'No host header (one IP = one website)')}</li>
     </ul>
 </div>
 </div>
@@ -388,25 +388,25 @@ Sender kirim: [5]           <span class="cm">// window bergeser</span></div>
 <div data-tab-content="http11" class="tab-content">
 <div class="card">
     <h3 style="color:var(--orange)">HTTP/1.1 (1997)</h3>
-    <p>Peningkatan besar dengan <strong>persistent connections</strong> dan <strong>pipelining</strong>, tapi masih punya masalah.</p>
+    <p>${t('Peningkatan besar dengan', 'Major improvement with')} <strong>persistent connections</strong> ${t('dan', 'and')} <strong>pipelining</strong>${t(', tapi masih punya masalah.', ', but still has issues.')}</p>
 
     <div class="card-grid">
         <div class="card">
-            <h4 style="color:var(--green)">Perbaikan dari 1.0</h4>
+            <h4 style="color:var(--green)">${t('Perbaikan dari 1.0', 'Improvements from 1.0')}</h4>
             <ul>
-                <li><strong>Keep-Alive (default):</strong> Satu koneksi TCP untuk banyak request</li>
-                <li><strong>Pipelining:</strong> Kirim beberapa request tanpa tunggu response (tapi jarang diimplementasi)</li>
-                <li><strong>Host header:</strong> Virtual hosting (banyak domain di satu IP)</li>
+                <li><strong>Keep-Alive (default):</strong> ${t('Satu koneksi TCP untuk banyak request', 'One TCP connection for multiple requests')}</li>
+                <li><strong>Pipelining:</strong> ${t('Kirim beberapa request tanpa tunggu response (tapi jarang diimplementasi)', 'Send multiple requests without waiting for response (but rarely implemented)')}</li>
+                <li><strong>Host header:</strong> ${t('Virtual hosting (banyak domain di satu IP)', 'Virtual hosting (multiple domains on one IP)')}</li>
                 <li><strong>Chunked transfer encoding:</strong> Streaming response</li>
                 <li><strong>Cache control:</strong> ETag, If-Modified-Since</li>
             </ul>
         </div>
         <div class="card">
-            <h4 style="color:var(--red)">Masalah yang tersisa</h4>
+            <h4 style="color:var(--red)">${t('Masalah yang tersisa', 'Remaining issues')}</h4>
             <ul>
-                <li><strong>Head-of-Line Blocking:</strong> Response harus dikirim berurutan. Jika response pertama lambat, semuanya menunggu!</li>
-                <li><strong>Header bloat:</strong> Header dikirim ulang setiap request (cookies bisa ratusan byte)</li>
-                <li><strong>Workaround:</strong> Domain sharding (buka 6 koneksi ke beda subdomain), CSS sprites, inlining</li>
+                <li><strong>Head-of-Line Blocking:</strong> ${t('Response harus dikirim berurutan. Jika response pertama lambat, semuanya menunggu!', 'Responses must be sent in order. If the first response is slow, everything waits!')}</li>
+                <li><strong>Header bloat:</strong> ${t('Header dikirim ulang setiap request (cookies bisa ratusan byte)', 'Headers resent on every request (cookies can be hundreds of bytes)')}</li>
+                <li><strong>Workaround:</strong> ${t('Domain sharding (buka 6 koneksi ke beda subdomain), CSS sprites, inlining', 'Domain sharding (open 6 connections to different subdomains), CSS sprites, inlining')}</li>
             </ul>
         </div>
     </div>
@@ -425,18 +425,18 @@ Connection 3: GET /c.png ----> Response c.png  <span class="cm">// OK</span></di
 
 <div data-tab-content="http2" class="tab-content">
 <div class="card">
-    <h3 style="color:var(--accent)">HTTP/2 (2015) - Berbasis SPDY Google</h3>
-    <p>Revolusi besar! <strong>Multiplexing</strong> menyelesaikan head-of-line blocking di level HTTP (tapi masih ada di TCP level).</p>
+    <h3 style="color:var(--accent)">${t('HTTP/2 (2015) - Berbasis SPDY Google', 'HTTP/2 (2015) - Based on Google SPDY')}</h3>
+    <p>${t('Revolusi besar!', 'Major revolution!')} <strong>Multiplexing</strong> ${t('menyelesaikan head-of-line blocking di level HTTP (tapi masih ada di TCP level).', 'solves head-of-line blocking at the HTTP level (but it still exists at the TCP level).')}</p>
 
     <div class="card-grid">
         <div class="card">
-            <h4 style="color:var(--accent)">Fitur Utama</h4>
+            <h4 style="color:var(--accent)">${t('Fitur Utama', 'Key Features')}</h4>
             <ul>
-                <li><strong>Binary Framing:</strong> Bukan text lagi! Data dipecah jadi frame binary yang efisien</li>
-                <li><strong>Multiplexing:</strong> Banyak request/response bersamaan di SATU koneksi TCP</li>
-                <li><strong>Header Compression (HPACK):</strong> Header di-compress dan di-cache (static + dynamic table)</li>
-                <li><strong>Server Push:</strong> Server bisa mengirim resource sebelum diminta client</li>
-                <li><strong>Stream Prioritization:</strong> Client bisa menentukan prioritas resource</li>
+                <li><strong>Binary Framing:</strong> ${t('Bukan text lagi! Data dipecah jadi frame binary yang efisien', 'No longer text! Data is split into efficient binary frames')}</li>
+                <li><strong>Multiplexing:</strong> ${t('Banyak request/response bersamaan di SATU koneksi TCP', 'Multiple concurrent requests/responses over ONE TCP connection')}</li>
+                <li><strong>Header Compression (HPACK):</strong> ${t('Header di-compress dan di-cache (static + dynamic table)', 'Headers are compressed and cached (static + dynamic table)')}</li>
+                <li><strong>Server Push:</strong> ${t('Server bisa mengirim resource sebelum diminta client', 'Server can send resources before the client requests them')}</li>
+                <li><strong>Stream Prioritization:</strong> ${t('Client bisa menentukan prioritas resource', 'Client can set resource priorities')}</li>
             </ul>
         </div>
         <div class="card">

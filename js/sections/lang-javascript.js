@@ -6,25 +6,25 @@ sections['lang-javascript'] = () => `
 <section class="animate-in">
 
 <h1 class="section-title">JavaScript &amp; Next.js Deep Dive</h1>
-<p class="section-subtitle">Dari ES6+ Modern JS hingga Full-Stack React/Next.js &mdash; Panduan Komprehensif</p>
+<p class="section-subtitle">${t('Dari ES6+ Modern JS hingga Full-Stack React/Next.js &mdash; Panduan Komprehensif', 'From ES6+ Modern JS to Full-Stack React/Next.js &mdash; A Comprehensive Guide')}</p>
 
 <!-- ==================== SECTION 1: INTRODUCTION ==================== -->
-<h2 class="section-title" style="font-size:1.5rem;">1. Mengapa JavaScript?</h2>
+<h2 class="section-title" style="font-size:1.5rem;">${t('1. Mengapa JavaScript?', '1. Why JavaScript?')}</h2>
 
 <div class="card animate-in">
-    <h3>Sejarah &amp; Evolusi JavaScript</h3>
-    <p><strong>JavaScript</strong> diciptakan oleh <strong>Brendan Eich</strong> di Netscape pada tahun <strong>1995</strong> hanya dalam 10 hari. Awalnya bernama <em>Mocha</em>, lalu <em>LiveScript</em>, akhirnya <em>JavaScript</em>. Meskipun namanya mirip Java, keduanya sangat berbeda.</p>
+    <h3>${t('Sejarah &amp; Evolusi JavaScript', 'History &amp; Evolution of JavaScript')}</h3>
+    <p>${t('<strong>JavaScript</strong> diciptakan oleh <strong>Brendan Eich</strong> di Netscape pada tahun <strong>1995</strong> hanya dalam 10 hari. Awalnya bernama <em>Mocha</em>, lalu <em>LiveScript</em>, akhirnya <em>JavaScript</em>. Meskipun namanya mirip Java, keduanya sangat berbeda.', '<strong>JavaScript</strong> was created by <strong>Brendan Eich</strong> at Netscape in <strong>1995</strong> in just 10 days. Originally named <em>Mocha</em>, then <em>LiveScript</em>, and finally <em>JavaScript</em>. Despite the similar name, it is very different from Java.')}</p>
 
     <div class="info-box">
-        <strong>JavaScript adalah satu-satunya bahasa yang berjalan native di browser.</strong> Dengan hadirnya Node.js (Ryan Dahl, 2009), JavaScript juga bisa berjalan di server, CLI, IoT, desktop (Electron), dan mobile (React Native).
+        ${t('<strong>JavaScript adalah satu-satunya bahasa yang berjalan native di browser.</strong> Dengan hadirnya Node.js (Ryan Dahl, 2009), JavaScript juga bisa berjalan di server, CLI, IoT, desktop (Electron), dan mobile (React Native).', '<strong>JavaScript is the only language that runs natively in the browser.</strong> With the introduction of Node.js (Ryan Dahl, 2009), JavaScript can also run on servers, CLI, IoT, desktop (Electron), and mobile (React Native).')}
     </div>
 
     <div class="table-wrapper">
     <table>
-    <tr><th>Tahun</th><th>Versi</th><th>Fitur Utama</th></tr>
-    <tr><td>1997</td><td>ES1</td><td>Standar pertama ECMAScript</td></tr>
+    <tr><th>${t('Tahun', 'Year')}</th><th>${t('Versi', 'Version')}</th><th>${t('Fitur Utama', 'Key Features')}</th></tr>
+    <tr><td>1997</td><td>ES1</td><td>${t('Standar pertama ECMAScript', 'First ECMAScript standard')}</td></tr>
     <tr><td>2009</td><td>ES5</td><td>strict mode, JSON, Array methods (forEach, map, filter)</td></tr>
-    <tr><td><strong>2015</strong></td><td><strong>ES6/ES2015</strong></td><td><strong>Revolusi: let/const, arrow fn, class, Promise, modules, template literal, destructuring</strong></td></tr>
+    <tr><td><strong>2015</strong></td><td><strong>ES6/ES2015</strong></td><td><strong>${t('Revolusi: let/const, arrow fn, class, Promise, modules, template literal, destructuring', 'Revolution: let/const, arrow fn, class, Promise, modules, template literal, destructuring')}</strong></td></tr>
     <tr><td>2016</td><td>ES2016</td><td>Array.includes, ** operator</td></tr>
     <tr><td>2017</td><td>ES2017</td><td>async/await, Object.values/entries</td></tr>
     <tr><td>2018</td><td>ES2018</td><td>Rest/spread for objects, Promise.finally</td></tr>
@@ -39,22 +39,22 @@ sections['lang-javascript'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3>JavaScript vs Bahasa Lain</h3>
+    <h3>${t('JavaScript vs Bahasa Lain', 'JavaScript vs Other Languages')}</h3>
     <div class="table-wrapper">
     <table>
-    <tr><th>Aspek</th><th>JavaScript</th><th>Go</th><th>Rust</th><th>Python</th></tr>
+    <tr><th>${t('Aspek', 'Aspect')}</th><th>JavaScript</th><th>Go</th><th>Rust</th><th>Python</th></tr>
     <tr><td>Typing</td><td>Dynamic, weak</td><td>Static, strong</td><td>Static, strong</td><td>Dynamic, strong</td></tr>
     <tr><td>Runtime</td><td>V8/SpiderMonkey/JSC</td><td>Native binary</td><td>Native binary</td><td>CPython interpreter</td></tr>
     <tr><td>Concurrency</td><td>Event loop (single-thread)</td><td>Goroutines</td><td>async/await + threads</td><td>GIL (asyncio)</td></tr>
     <tr><td>Memory</td><td>GC (V8)</td><td>GC</td><td>Ownership (no GC)</td><td>GC (ref counting)</td></tr>
-    <tr><td>Kecepatan</td><td>Medium (JIT)</td><td>Fast</td><td>Very Fast</td><td>Slow</td></tr>
-    <tr><td>Ekosistem</td><td>npm (terbesar)</td><td>Go modules</td><td>crates.io</td><td>PyPI</td></tr>
-    <tr><td>Use Case Utama</td><td>Web, Full-stack</td><td>Backend, CLI</td><td>Systems, WASM</td><td>ML, scripting</td></tr>
+    <tr><td>${t('Kecepatan', 'Speed')}</td><td>Medium (JIT)</td><td>Fast</td><td>Very Fast</td><td>Slow</td></tr>
+    <tr><td>${t('Ekosistem', 'Ecosystem')}</td><td>${t('npm (terbesar)', 'npm (largest)')}</td><td>Go modules</td><td>crates.io</td><td>PyPI</td></tr>
+    <tr><td>${t('Use Case Utama', 'Primary Use Case')}</td><td>Web, Full-stack</td><td>Backend, CLI</td><td>Systems, WASM</td><td>ML, scripting</td></tr>
     </table>
     </div>
 
     <div class="info-box">
-        <strong>TypeScript = JavaScript + Types.</strong> Dibuat oleh Anders Hejlsberg (Microsoft, 2012). TypeScript di-compile ke JavaScript. Saat ini menjadi standar de facto untuk proyek JavaScript besar, termasuk Next.js yang default menggunakan TypeScript.
+        ${t('<strong>TypeScript = JavaScript + Types.</strong> Dibuat oleh Anders Hejlsberg (Microsoft, 2012). TypeScript di-compile ke JavaScript. Saat ini menjadi standar de facto untuk proyek JavaScript besar, termasuk Next.js yang default menggunakan TypeScript.', '<strong>TypeScript = JavaScript + Types.</strong> Created by Anders Hejlsberg (Microsoft, 2012). TypeScript compiles to JavaScript. It is now the de facto standard for large JavaScript projects, including Next.js which uses TypeScript by default.')}
     </div>
 </div>
 
@@ -82,7 +82,7 @@ user.name = <span class="str">"Bob"</span>;  <span class="cm">// OK! Object dimu
     </div>
 
     <div class="warn-box">
-        <strong>Hoisting:</strong> <code>var</code> di-hoist (deklarasi dipindah ke atas scope), tapi nilainya undefined. <code>let</code>/<code>const</code> juga di-hoist tapi tidak bisa diakses sebelum deklarasi &mdash; disebut <strong>Temporal Dead Zone (TDZ)</strong>.
+        ${t('<strong>Hoisting:</strong> <code>var</code> di-hoist (deklarasi dipindah ke atas scope), tapi nilainya undefined. <code>let</code>/<code>const</code> juga di-hoist tapi tidak bisa diakses sebelum deklarasi &mdash; disebut <strong>Temporal Dead Zone (TDZ)</strong>.', '<strong>Hoisting:</strong> <code>var</code> is hoisted (declaration moved to the top of scope), but its value is undefined. <code>let</code>/<code>const</code> are also hoisted but cannot be accessed before declaration &mdash; called the <strong>Temporal Dead Zone (TDZ)</strong>.')}
     </div>
 </div>
 
@@ -112,8 +112,8 @@ user.name = <span class="str">"Bob"</span>;  <span class="cm">// OK! Object dimu
 
     <div class="table-wrapper">
     <table>
-    <tr><th>Falsy Values</th><th>Truthy (semua selain falsy)</th></tr>
-    <tr><td><code>false</code>, <code>0</code>, <code>""</code>, <code>null</code>, <code>undefined</code>, <code>NaN</code></td><td><code>"0"</code>, <code>[]</code>, <code>{}</code>, <code>"false"</code>, semua object</td></tr>
+    <tr><th>Falsy Values</th><th>${t('Truthy (semua selain falsy)', 'Truthy (everything except falsy)')}</th></tr>
+    <tr><td><code>false</code>, <code>0</code>, <code>""</code>, <code>null</code>, <code>undefined</code>, <code>NaN</code></td><td><code>"0"</code>, <code>[]</code>, <code>{}</code>, <code>"false"</code>, ${t('semua object', 'all objects')}</td></tr>
     </table>
     </div>
 </div>
@@ -259,7 +259,7 @@ dog <span class="kw">instanceof</span> Animal; <span class="cm">// true (prototy
     </div>
 
     <div class="info-box">
-        <strong>Prototype Chain:</strong> Setiap object JS memiliki internal <code>[[Prototype]]</code>. Saat property tidak ditemukan di object, JS mencari di prototype chain ke atas hingga <code>null</code>. <code>class</code> adalah syntactic sugar &mdash; di bawah tetap menggunakan prototype.
+        ${t('<strong>Prototype Chain:</strong> Setiap object JS memiliki internal <code>[[Prototype]]</code>. Saat property tidak ditemukan di object, JS mencari di prototype chain ke atas hingga <code>null</code>. <code>class</code> adalah syntactic sugar &mdash; di bawah tetap menggunakan prototype.', '<strong>Prototype Chain:</strong> Every JS object has an internal <code>[[Prototype]]</code>. When a property is not found on the object, JS searches up the prototype chain until <code>null</code>. <code>class</code> is syntactic sugar &mdash; underneath it still uses prototypes.')}
     </div>
 </div>
 
@@ -267,13 +267,13 @@ dog <span class="kw">instanceof</span> Animal; <span class="cm">// true (prototy
 <h2 class="section-title" style="font-size:1.5rem;">5. Asynchronous JavaScript</h2>
 
 <div class="card animate-in">
-    <h3>Event Loop &mdash; Jantung JavaScript</h3>
-    <p>JavaScript adalah <strong>single-threaded</strong> tapi bisa menjalankan operasi asinkron berkat <strong>Event Loop</strong>. Memahami event loop sangat penting untuk menulis kode JS yang benar.</p>
+    <h3>${t('Event Loop &mdash; Jantung JavaScript', 'Event Loop &mdash; The Heart of JavaScript')}</h3>
+    <p>${t('JavaScript adalah <strong>single-threaded</strong> tapi bisa menjalankan operasi asinkron berkat <strong>Event Loop</strong>. Memahami event loop sangat penting untuk menulis kode JS yang benar.', 'JavaScript is <strong>single-threaded</strong> but can run asynchronous operations thanks to the <strong>Event Loop</strong>. Understanding the event loop is crucial for writing correct JS code.')}</p>
 
     <div class="anim-container">
         <canvas id="canvas-event-loop" width="750" height="400" style="width:100%;max-width:750px;border-radius:10px;"></canvas>
         <div class="anim-controls">
-            <button class="anim-btn" id="btn-eventloop-start">Jalankan Event Loop</button>
+            <button class="anim-btn" id="btn-eventloop-start">${t('Jalankan Event Loop', 'Run Event Loop')}</button>
             <button class="anim-btn" id="btn-eventloop-reset">Reset</button>
         </div>
     </div>
@@ -557,10 +557,10 @@ app.<span class="fn">listen</span>(<span class="num">3000</span>, () =&gt; <span
 
     <div class="table-wrapper">
     <table>
-    <tr><th>Package Manager</th><th>Lockfile</th><th>Kelebihan</th></tr>
-    <tr><td><strong>npm</strong></td><td>package-lock.json</td><td>Default, terbesar</td></tr>
+    <tr><th>Package Manager</th><th>Lockfile</th><th>${t('Kelebihan', 'Advantages')}</th></tr>
+    <tr><td><strong>npm</strong></td><td>package-lock.json</td><td>${t('Default, terbesar', 'Default, largest')}</td></tr>
     <tr><td><strong>yarn</strong></td><td>yarn.lock</td><td>Plug'n'Play, workspace support</td></tr>
-    <tr><td><strong>pnpm</strong></td><td>pnpm-lock.yaml</td><td>Hemat disk (content-addressable), strict</td></tr>
+    <tr><td><strong>pnpm</strong></td><td>pnpm-lock.yaml</td><td>${t('Hemat disk (content-addressable), strict', 'Disk-efficient (content-addressable), strict')}</td></tr>
     <tr><td><strong>bun</strong></td><td>bun.lockb</td><td>Ultra-fast (Zig runtime), all-in-one</td></tr>
     </table>
     </div>
@@ -603,22 +603,22 @@ app.<span class="fn">listen</span>(<span class="num">3000</span>, () =&gt; <span
 
 <div class="card animate-in">
     <h3>Virtual DOM &amp; Reconciliation</h3>
-    <p>React menggunakan <strong>Virtual DOM</strong> untuk efisiensi. Saat state berubah, React membuat vDOM tree baru, membandingkan dengan tree lama (<strong>diffing</strong>), lalu hanya mengupdate DOM asli yang berubah (<strong>reconciliation</strong>).</p>
+    <p>${t('React menggunakan <strong>Virtual DOM</strong> untuk efisiensi. Saat state berubah, React membuat vDOM tree baru, membandingkan dengan tree lama (<strong>diffing</strong>), lalu hanya mengupdate DOM asli yang berubah (<strong>reconciliation</strong>).', 'React uses the <strong>Virtual DOM</strong> for efficiency. When state changes, React creates a new vDOM tree, compares it with the old tree (<strong>diffing</strong>), then only updates the real DOM nodes that changed (<strong>reconciliation</strong>).')}</p>
 
     <div class="anim-container">
         <canvas id="canvas-react-vdom" width="750" height="350" style="width:100%;max-width:750px;border-radius:10px;"></canvas>
         <div class="anim-controls">
-            <button class="anim-btn" id="btn-vdom-start">Jalankan Reconciliation</button>
+            <button class="anim-btn" id="btn-vdom-start">${t('Jalankan Reconciliation', 'Run Reconciliation')}</button>
             <button class="anim-btn" id="btn-vdom-reset">Reset</button>
         </div>
     </div>
 
     <div class="table-wrapper">
     <table>
-    <tr><th>Hook</th><th>Fungsi</th><th>Contoh</th></tr>
-    <tr><td><code>useState</code></td><td>State lokal component</td><td>const [count, setCount] = useState(0)</td></tr>
+    <tr><th>Hook</th><th>${t('Fungsi', 'Function')}</th><th>${t('Contoh', 'Example')}</th></tr>
+    <tr><td><code>useState</code></td><td>${t('State lokal component', 'Local component state')}</td><td>const [count, setCount] = useState(0)</td></tr>
     <tr><td><code>useEffect</code></td><td>Side effects (fetch, timer)</td><td>useEffect(() =&gt; {...}, [deps])</td></tr>
-    <tr><td><code>useContext</code></td><td>Akses context tanpa prop drilling</td><td>const theme = useContext(ThemeCtx)</td></tr>
+    <tr><td><code>useContext</code></td><td>${t('Akses context tanpa prop drilling', 'Access context without prop drilling')}</td><td>const theme = useContext(ThemeCtx)</td></tr>
     <tr><td><code>useReducer</code></td><td>Complex state logic</td><td>const [state, dispatch] = useReducer(fn, init)</td></tr>
     <tr><td><code>useMemo</code></td><td>Memoize expensive computation</td><td>const val = useMemo(() =&gt; compute(), [dep])</td></tr>
     <tr><td><code>useCallback</code></td><td>Memoize function reference</td><td>const fn = useCallback(() =&gt; {...}, [dep])</td></tr>
@@ -632,23 +632,23 @@ app.<span class="fn">listen</span>(<span class="num">3000</span>, () =&gt; <span
 
 <div class="card animate-in">
     <h3>Next.js App Router (13+)</h3>
-    <p>Next.js adalah framework React yang memberikan SSR, SSG, routing, dan optimisasi out-of-the-box. Sejak Next.js 13, <strong>App Router</strong> menggantikan Pages Router sebagai pendekatan utama.</p>
+    <p>${t('Next.js adalah framework React yang memberikan SSR, SSG, routing, dan optimisasi out-of-the-box. Sejak Next.js 13, <strong>App Router</strong> menggantikan Pages Router sebagai pendekatan utama.', 'Next.js is a React framework that provides SSR, SSG, routing, and optimization out-of-the-box. Since Next.js 13, the <strong>App Router</strong> replaced the Pages Router as the primary approach.')}</p>
 
     <div class="anim-container">
         <canvas id="canvas-nextjs-rendering" width="750" height="350" style="width:100%;max-width:750px;border-radius:10px;"></canvas>
         <div class="anim-controls">
-            <button class="anim-btn" id="btn-rendering-start">Bandingkan Rendering</button>
+            <button class="anim-btn" id="btn-rendering-start">${t('Bandingkan Rendering', 'Compare Rendering')}</button>
             <button class="anim-btn" id="btn-rendering-reset">Reset</button>
         </div>
     </div>
 
     <div class="info-box">
-        <strong>Routing Convention di App Router:</strong><br>
+        ${t('<strong>Routing Convention di App Router:</strong>', '<strong>App Router Routing Convention:</strong>')}<br>
         <code>app/page.tsx</code> &rarr; Route <code>/</code><br>
         <code>app/about/page.tsx</code> &rarr; Route <code>/about</code><br>
         <code>app/blog/[slug]/page.tsx</code> &rarr; Dynamic route <code>/blog/my-post</code><br>
         <code>app/blog/[...slug]/page.tsx</code> &rarr; Catch-all <code>/blog/a/b/c</code><br>
-        <code>app/(marketing)/page.tsx</code> &rarr; Route group (tidak mempengaruhi URL)<br>
+        <code>app/(marketing)/page.tsx</code> &rarr; ${t('Route group (tidak mempengaruhi URL)', 'Route group (does not affect URL)')}<br>
         <code>app/layout.tsx</code> &rarr; Shared layout (nested)<br>
         <code>app/loading.tsx</code> &rarr; Loading UI (Suspense boundary)<br>
         <code>app/error.tsx</code> &rarr; Error boundary
@@ -783,11 +783,11 @@ app.<span class="fn">listen</span>(<span class="num">3000</span>, () =&gt; <span
     <h3>Next.js Rendering Strategies Comparison</h3>
     <div class="table-wrapper">
     <table>
-    <tr><th>Strategy</th><th>Kapan Render</th><th>Cache</th><th>Use Case</th></tr>
+    <tr><th>Strategy</th><th>${t('Kapan Render', 'When Rendered')}</th><th>Cache</th><th>Use Case</th></tr>
     <tr><td><strong>SSG</strong> (Static Site Generation)</td><td>Build time</td><td>CDN-cached</td><td>Blog, docs, marketing page</td></tr>
-    <tr><td><strong>SSR</strong> (Server-Side Rendering)</td><td>Setiap request</td><td>Tidak di-cache</td><td>Dashboard, data real-time</td></tr>
+    <tr><td><strong>SSR</strong> (Server-Side Rendering)</td><td>${t('Setiap request', 'Every request')}</td><td>${t('Tidak di-cache', 'Not cached')}</td><td>Dashboard, data real-time</td></tr>
     <tr><td><strong>ISR</strong> (Incremental Static Regen)</td><td>Build + revalidate</td><td>Stale-while-revalidate</td><td>E-commerce, news, blog+comments</td></tr>
-    <tr><td><strong>CSR</strong> (Client-Side Rendering)</td><td>Browser (client)</td><td>No server render</td><td>SPA interaktif, admin panel</td></tr>
+    <tr><td><strong>CSR</strong> (Client-Side Rendering)</td><td>Browser (client)</td><td>No server render</td><td>${t('SPA interaktif, admin panel', 'Interactive SPA, admin panel')}</td></tr>
     </table>
     </div>
 </div>
@@ -884,7 +884,7 @@ app.<span class="fn">listen</span>(<span class="num">3000</span>, () =&gt; <span
 </div>
 
 <!-- ==================== SECTION 13: STYLING ==================== -->
-<h2 class="section-title" style="font-size:1.5rem;">13. Styling di Next.js</h2>
+<h2 class="section-title" style="font-size:1.5rem;">${t('13. Styling di Next.js', '13. Styling in Next.js')}</h2>
 
 <div class="card animate-in">
     <h3>Tailwind CSS + shadcn/ui</h3>
@@ -929,9 +929,9 @@ app.<span class="fn">listen</span>(<span class="num">3000</span>, () =&gt; <span
 
     <div class="table-wrapper">
     <table>
-    <tr><th>Pendekatan</th><th>Kelebihan</th><th>Kekurangan</th></tr>
-    <tr><td><strong>Tailwind CSS</strong></td><td>Cepat, konsisten, small bundle (purge unused)</td><td>Class panjang, learning curve</td></tr>
-    <tr><td><strong>CSS Modules</strong></td><td>Scoped CSS, native, no runtime</td><td>Kurang fleksibel</td></tr>
+    <tr><th>${t('Pendekatan', 'Approach')}</th><th>${t('Kelebihan', 'Advantages')}</th><th>${t('Kekurangan', 'Disadvantages')}</th></tr>
+    <tr><td><strong>Tailwind CSS</strong></td><td>${t('Cepat, konsisten, small bundle (purge unused)', 'Fast, consistent, small bundle (purge unused)')}</td><td>${t('Class panjang, learning curve', 'Long classes, learning curve')}</td></tr>
+    <tr><td><strong>CSS Modules</strong></td><td>Scoped CSS, native, no runtime</td><td>${t('Kurang fleksibel', 'Less flexible')}</td></tr>
     <tr><td><strong>styled-components</strong></td><td>CSS-in-JS, dynamic styling</td><td>Runtime cost, larger bundle</td></tr>
     <tr><td><strong>shadcn/ui</strong></td><td>Copy-paste, fully customizable, accessible</td><td>Manual updates, setup</td></tr>
     </table>
@@ -942,7 +942,7 @@ app.<span class="fn">listen</span>(<span class="num">3000</span>, () =&gt; <span
 <h2 class="section-title" style="font-size:1.5rem;">14. Testing</h2>
 
 <div class="card animate-in">
-    <h3>Testing Pyramid di JavaScript</h3>
+    <h3>${t('Testing Pyramid di JavaScript', 'Testing Pyramid in JavaScript')}</h3>
     <div class="code-block">
 <span class="cm">// Jest + React Testing Library (unit/integration)</span>
 <span class="kw">import</span> { render, screen, fireEvent } <span class="kw">from</span> <span class="str">"@testing-library/react"</span>;
@@ -979,7 +979,7 @@ app.<span class="fn">listen</span>(<span class="num">3000</span>, () =&gt; <span
     <h3>Deploy Next.js</h3>
     <div class="table-wrapper">
     <table>
-    <tr><th>Platform</th><th>Kelebihan</th><th>Command</th></tr>
+    <tr><th>Platform</th><th>${t('Kelebihan', 'Advantages')}</th><th>Command</th></tr>
     <tr><td><strong>Vercel</strong></td><td>Optimized for Next.js (by Vercel), auto preview deploy</td><td><code>vercel deploy</code></td></tr>
     <tr><td><strong>Docker</strong></td><td>Portable, self-hosted</td><td><code>docker build -t app . &amp;&amp; docker run -p 3000:3000 app</code></td></tr>
     <tr><td><strong>Cloudflare Pages</strong></td><td>Edge runtime, free tier</td><td><code>npx wrangler pages deploy</code></td></tr>
@@ -1020,7 +1020,7 @@ app.<span class="fn">listen</span>(<span class="num">3000</span>, () =&gt; <span
 
 <!-- ==================== REFERENCES ==================== -->
 <div class="card animate-in" style="border-left: 3px solid var(--accent);">
-    <h3>Referensi &amp; Sumber</h3>
+    <h3>${t('Referensi &amp; Sumber', 'References &amp; Resources')}</h3>
     <ul>
         <li><strong>MDN Web Docs</strong> &mdash; <a href="https://developer.mozilla.org/" target="_blank" style="color:var(--accent)">developer.mozilla.org</a> (the canonical JS reference)</li>
         <li><strong>Next.js Documentation</strong> &mdash; <a href="https://nextjs.org/docs" target="_blank" style="color:var(--accent)">nextjs.org/docs</a></li>

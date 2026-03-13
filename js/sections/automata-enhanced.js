@@ -4,28 +4,28 @@
 // ============================================================
 
 sections.automata = () => `
-<h1 class="section-title animate-in">Automata & Bahasa Formal</h1>
-<p class="section-subtitle animate-in">Panduan lengkap dari Finite Automata hingga Turing Machine — fondasi teori komputasi yang dijelaskan dengan bahasa sederhana dan analogi dunia nyata</p>
+<h1 class="section-title animate-in">${t('Automata & Bahasa Formal', 'Automata & Formal Languages')}</h1>
+<p class="section-subtitle animate-in">${t('Panduan lengkap dari Finite Automata hingga Turing Machine — fondasi teori komputasi yang dijelaskan dengan bahasa sederhana dan analogi dunia nyata', 'A complete guide from Finite Automata to Turing Machines — foundations of computation theory explained with simple language and real-world analogies')}</p>
 <p class="animate-in"><em>Referensi: Sipser, "Introduction to the Theory of Computation" (2012); Hopcroft, Motwani & Ullman, "Introduction to Automata Theory" (2006)</em></p>
 
 <!-- ==================== BAGIAN 1: HIERARKI CHOMSKY ==================== -->
-<h2 class="animate-in">1. Hierarki Chomsky</h2>
+<h2 class="animate-in">${t('1. Hierarki Chomsky', '1. Chomsky Hierarchy')}</h2>
 
 <div class="card animate-in">
-<h3>Apa itu Hierarki Chomsky?</h3>
-<p>Bayangkan kamu punya 4 tingkatan "mesin pengenal bahasa", dari yang paling sederhana sampai yang paling canggih. <strong>Noam Chomsky (1956)</strong>, seorang ahli linguistik dan ilmu komputer, mengklasifikasikan semua bahasa formal ke dalam 4 tipe. Setiap tipe adalah <strong>subset</strong> dari tipe di atasnya — seperti boneka Matryoshka (boneka Rusia yang bisa dibuka dan di dalamnya ada boneka lebih kecil).</p>
-<p>Analoginya begini: bayangkan 4 orang dengan kemampuan berbeda.</p>
+<h3>${t('Apa itu Hierarki Chomsky?', 'What is the Chomsky Hierarchy?')}</h3>
+<p>${t('Bayangkan kamu punya 4 tingkatan "mesin pengenal bahasa", dari yang paling sederhana sampai yang paling canggih. <strong>Noam Chomsky (1956)</strong>, seorang ahli linguistik dan ilmu komputer, mengklasifikasikan semua bahasa formal ke dalam 4 tipe. Setiap tipe adalah <strong>subset</strong> dari tipe di atasnya — seperti boneka Matryoshka (boneka Rusia yang bisa dibuka dan di dalamnya ada boneka lebih kecil).', 'Imagine you have 4 levels of "language recognizing machines", from the simplest to the most sophisticated. <strong>Noam Chomsky (1956)</strong>, a linguist and computer scientist, classified all formal languages into 4 types. Each type is a <strong>subset</strong> of the type above it — like Matryoshka dolls (Russian nesting dolls that open to reveal smaller dolls inside).')}</p>
+<p>${t('Analoginya begini: bayangkan 4 orang dengan kemampuan berbeda.', 'Here is an analogy: imagine 4 people with different abilities.')}</p>
 <ul>
-    <li><strong>Orang pertama (Type 3)</strong> hanya bisa mengingat SATU hal pada satu waktu — seperti ikan mas yang katanya hanya punya memori 3 detik.</li>
-    <li><strong>Orang kedua (Type 2)</strong> punya tumpukan kertas — dia bisa menumpuk dan mengambil kertas dari atas tumpukan.</li>
-    <li><strong>Orang ketiga (Type 1)</strong> punya kertas yang panjangnya terbatas sesuai input yang dia baca.</li>
-    <li><strong>Orang keempat (Type 0)</strong> punya kertas yang TAK TERBATAS panjangnya — dia bisa melakukan apapun yang "bisa dihitung".</li>
+    <li>${t('<strong>Orang pertama (Type 3)</strong> hanya bisa mengingat SATU hal pada satu waktu — seperti ikan mas yang katanya hanya punya memori 3 detik.', '<strong>First person (Type 3)</strong> can only remember ONE thing at a time — like a goldfish supposedly having only a 3-second memory.')}</li>
+    <li>${t('<strong>Orang kedua (Type 2)</strong> punya tumpukan kertas — dia bisa menumpuk dan mengambil kertas dari atas tumpukan.', '<strong>Second person (Type 2)</strong> has a stack of papers — they can pile up and take papers from the top of the stack.')}</li>
+    <li>${t('<strong>Orang ketiga (Type 1)</strong> punya kertas yang panjangnya terbatas sesuai input yang dia baca.', '<strong>Third person (Type 1)</strong> has paper with limited length matching the input they read.')}</li>
+    <li>${t('<strong>Orang keempat (Type 0)</strong> punya kertas yang TAK TERBATAS panjangnya — dia bisa melakukan apapun yang "bisa dihitung".', '<strong>Fourth person (Type 0)</strong> has UNLIMITED length paper — they can do anything that is "computable".')}</li>
 </ul>
 </div>
 
 <!-- Diagram SVG Hierarki Chomsky -->
 <div class="card animate-in">
-<h3>Diagram Hierarki Chomsky</h3>
+<h3>${t('Diagram Hierarki Chomsky', 'Chomsky Hierarchy Diagram')}</h3>
 <div class="anim-container" style="padding:20px;text-align:center;">
     <svg width="700" height="440" viewBox="0 0 700 440" style="max-width:100%">
         <defs>
@@ -36,33 +36,33 @@ sections.automata = () => `
         <!-- Tipe 0 — outermost -->
         <rect x="10" y="10" width="680" height="420" rx="24" fill="rgba(248,113,113,0.04)" stroke="var(--red)" stroke-width="2.5"/>
         <text x="360" y="42" text-anchor="middle" fill="var(--red)" font-size="15" font-weight="700">Type 0 — Recursively Enumerable (Unrestricted)</text>
-        <text x="360" y="62" text-anchor="middle" fill="var(--text2)" font-size="11">Mesin: Turing Machine | Grammar: unrestricted</text>
+        <text x="360" y="62" text-anchor="middle" fill="var(--text2)" font-size="11">${t('Mesin: Turing Machine | Grammar: unrestricted', 'Machine: Turing Machine | Grammar: unrestricted')}</text>
         <text x="640" y="415" fill="var(--text2)" font-size="9" font-style="italic">Halting Problem (undecidable)</text>
 
         <!-- Tipe 1 -->
         <rect x="50" y="78" width="600" height="335" rx="20" fill="rgba(251,146,60,0.04)" stroke="var(--orange)" stroke-width="2"/>
         <text x="360" y="105" text-anchor="middle" fill="var(--orange)" font-size="14" font-weight="700">Type 1 — Context-Sensitive</text>
-        <text x="360" y="123" text-anchor="middle" fill="var(--text2)" font-size="11">Mesin: Linear Bounded Automata | Grammar: |LHS| &le; |RHS|</text>
+        <text x="360" y="123" text-anchor="middle" fill="var(--text2)" font-size="11">${t('Mesin: Linear Bounded Automata | Grammar: |LHS| &le; |RHS|', 'Machine: Linear Bounded Automata | Grammar: |LHS| &le; |RHS|')}</text>
         <text x="600" y="395" fill="var(--text2)" font-size="9" font-style="italic">a&#x207F;b&#x207F;c&#x207F;</text>
 
         <!-- Tipe 2 -->
         <rect x="100" y="140" width="500" height="255" rx="18" fill="rgba(52,211,153,0.05)" stroke="var(--green)" stroke-width="2"/>
         <text x="360" y="167" text-anchor="middle" fill="var(--green)" font-size="14" font-weight="700">Type 2 — Context-Free</text>
-        <text x="360" y="185" text-anchor="middle" fill="var(--text2)" font-size="11">Mesin: Pushdown Automata (PDA) | Grammar: A &rarr; &gamma;</text>
-        <text x="545" y="378" fill="var(--text2)" font-size="9" font-style="italic">a&#x207F;b&#x207F;, HTML, JSON, kurung seimbang</text>
+        <text x="360" y="185" text-anchor="middle" fill="var(--text2)" font-size="11">${t('Mesin: Pushdown Automata (PDA) | Grammar: A &rarr; &gamma;', 'Machine: Pushdown Automata (PDA) | Grammar: A &rarr; &gamma;')}</text>
+        <text x="545" y="378" fill="var(--text2)" font-size="9" font-style="italic">${t('a&#x207F;b&#x207F;, HTML, JSON, kurung seimbang', 'a&#x207F;b&#x207F;, HTML, JSON, balanced parentheses')}</text>
 
         <!-- Tipe 3 — innermost -->
         <rect x="165" y="205" width="370" height="170" rx="16" fill="rgba(56,189,248,0.07)" stroke="var(--accent)" stroke-width="2.5"/>
         <text x="350" y="235" text-anchor="middle" fill="var(--accent)" font-size="15" font-weight="700">Type 3 — Regular</text>
-        <text x="350" y="255" text-anchor="middle" fill="var(--text2)" font-size="11">Mesin: DFA / NFA</text>
+        <text x="350" y="255" text-anchor="middle" fill="var(--text2)" font-size="11">${t('Mesin: DFA / NFA', 'Machine: DFA / NFA')}</text>
         <text x="350" y="275" text-anchor="middle" fill="var(--text2)" font-size="11">Grammar: A &rarr; aB | a (right-linear)</text>
         <text x="350" y="300" text-anchor="middle" fill="var(--accent)" font-size="12">Regex &equiv; DFA &equiv; NFA (Teorema Kleene)</text>
         <text x="350" y="325" text-anchor="middle" fill="var(--text2)" font-size="10" font-style="italic">a*b+, (0|1)*01, email, identifier</text>
-        <text x="350" y="345" text-anchor="middle" fill="var(--text2)" font-size="10" font-style="italic">log parsing, token sederhana</text>
+        <text x="350" y="345" text-anchor="middle" fill="var(--text2)" font-size="10" font-style="italic">${t('log parsing, token sederhana', 'log parsing, simple tokens')}</text>
 
         <!-- Arrow kekuatan -->
         <line x1="25" y1="420" x2="25" y2="30" stroke="var(--text2)" stroke-width="1.5" marker-end="url(#arrowChomsky)"/>
-        <text x="28" y="250" fill="var(--text2)" font-size="9" transform="rotate(-90, 28, 250)">Kekuatan komputasi meningkat &rarr;</text>
+        <text x="28" y="250" fill="var(--text2)" font-size="9" transform="rotate(-90, 28, 250)">${t('Kekuatan komputasi meningkat &rarr;', 'Computational power increases &rarr;')}</text>
     </svg>
 </div>
 </div>
@@ -70,33 +70,33 @@ sections.automata = () => `
 <!-- Type 3: Regular Languages -->
 <div class="card animate-in">
 <h3><span class="badge badge-blue">Type 3 — Regular Languages (Bahasa Reguler)</span></h3>
-<p>Bahasa reguler adalah bahasa yang <strong>paling sederhana</strong> dalam hierarki Chomsky. Mesin yang mengenalinya disebut <strong>Finite Automaton (DFA/NFA)</strong>.</p>
+<p>${t('Bahasa reguler adalah bahasa yang <strong>paling sederhana</strong> dalam hierarki Chomsky. Mesin yang mengenalinya disebut <strong>Finite Automaton (DFA/NFA)</strong>.', 'Regular languages are the <strong>simplest</strong> languages in the Chomsky hierarchy. The machine that recognizes them is called a <strong>Finite Automaton (DFA/NFA)</strong>.')}</p>
 
-<h4>Analogi: Orang yang Hanya Bisa Mengingat SATU Hal</h4>
-<p>Bayangkan kamu adalah seorang penjaga gerbang yang hanya punya SATU papan tulis kecil. Di papan tulis itu, kamu hanya bisa menulis SATU kondisi pada satu waktu. Misalnya: "Sudah lihat huruf A" atau "Belum lihat huruf A". Kamu tidak bisa mengingat BERAPA BANYAK huruf A yang sudah kamu lihat — hanya bisa mengingat STATUS saat ini.</p>
-<p>Inilah keterbatasan DFA/NFA: mereka punya jumlah state (memori) yang <strong>terbatas dan tetap</strong>, tidak peduli seberapa panjang input yang dibaca.</p>
+<h4>${t('Analogi: Orang yang Hanya Bisa Mengingat SATU Hal', 'Analogy: A Person Who Can Only Remember ONE Thing')}</h4>
+<p>${t('Bayangkan kamu adalah seorang penjaga gerbang yang hanya punya SATU papan tulis kecil. Di papan tulis itu, kamu hanya bisa menulis SATU kondisi pada satu waktu. Misalnya: "Sudah lihat huruf A" atau "Belum lihat huruf A". Kamu tidak bisa mengingat BERAPA BANYAK huruf A yang sudah kamu lihat — hanya bisa mengingat STATUS saat ini.', 'Imagine you are a gatekeeper with only ONE small whiteboard. On that whiteboard, you can only write ONE condition at a time. For example: "Already seen letter A" or "Haven not seen letter A". You cannot remember HOW MANY letter As you have seen — you can only remember your current STATUS.')}</p>
+<p>${t('Inilah keterbatasan DFA/NFA: mereka punya jumlah state (memori) yang <strong>terbatas dan tetap</strong>, tidak peduli seberapa panjang input yang dibaca.', 'This is the limitation of DFA/NFA: they have a <strong>finite and fixed</strong> number of states (memory), regardless of how long the input is.')}</p>
 
-<h4>Apa yang Bisa Dikenali Bahasa Reguler?</h4>
+<h4>${t('Apa yang Bisa Dikenali Bahasa Reguler?', 'What Can Regular Languages Recognize?')}</h4>
 <ul>
-    <li><strong>Pola email sederhana</strong>: <code>[a-z]+@[a-z]+\\.[a-z]+</code> — mesin cukup mengingat "sudah baca @" atau "belum baca @"</li>
-    <li><strong>Identifier dalam pemrograman</strong>: <code>[a-zA-Z_][a-zA-Z0-9_]*</code> — dimulai huruf/underscore, lalu huruf/angka/underscore</li>
-    <li><strong>Log parsing</strong>: mencari pola tanggal <code>\\d{4}-\\d{2}-\\d{2}</code> di log file</li>
-    <li><strong>Nomor telepon</strong>: <code>08[0-9]{8,11}</code></li>
-    <li><strong>Bilangan biner habis dibagi 3</strong>: bisa dibuat DFA dengan 3 state saja!</li>
+    <li>${t('<strong>Pola email sederhana</strong>: <code>[a-z]+@[a-z]+\\.[a-z]+</code> — mesin cukup mengingat "sudah baca @" atau "belum baca @"', '<strong>Simple email pattern</strong>: <code>[a-z]+@[a-z]+\\.[a-z]+</code> — the machine only needs to remember "already read @" or "have not read @"')}</li>
+    <li>${t('<strong>Identifier dalam pemrograman</strong>: <code>[a-zA-Z_][a-zA-Z0-9_]*</code> — dimulai huruf/underscore, lalu huruf/angka/underscore', '<strong>Programming identifiers</strong>: <code>[a-zA-Z_][a-zA-Z0-9_]*</code> — starts with letter/underscore, then letters/digits/underscores')}</li>
+    <li>${t('<strong>Log parsing</strong>: mencari pola tanggal <code>\\d{4}-\\d{2}-\\d{2}</code> di log file', '<strong>Log parsing</strong>: searching for date patterns <code>\\d{4}-\\d{2}-\\d{2}</code> in log files')}</li>
+    <li>${t('<strong>Nomor telepon</strong>: <code>08[0-9]{8,11}</code>', '<strong>Phone numbers</strong>: <code>08[0-9]{8,11}</code>')}</li>
+    <li>${t('<strong>Bilangan biner habis dibagi 3</strong>: bisa dibuat DFA dengan 3 state saja!', '<strong>Binary numbers divisible by 3</strong>: can be built as a DFA with only 3 states!')}</li>
 </ul>
 
-<h4>Apa yang TIDAK BISA Dikenali Bahasa Reguler?</h4>
+<h4>${t('Apa yang TIDAK BISA Dikenali Bahasa Reguler?', 'What Can Regular Languages NOT Recognize?')}</h4>
 <div class="warn-box">
-Bahasa reguler TIDAK BISA mengenali pola yang membutuhkan "penghitungan" tak terbatas. Contoh:
+${t('Bahasa reguler TIDAK BISA mengenali pola yang membutuhkan "penghitungan" tak terbatas. Contoh:', 'Regular languages CANNOT recognize patterns that require unbounded "counting". Examples:')}
 <ul>
-    <li><code>a&#x207F;b&#x207F;</code> (n buah 'a' diikuti n buah 'b') — karena mesin harus "mengingat" berapa banyak 'a' yang sudah dibaca, tapi state-nya terbatas!</li>
-    <li>Kurung seimbang: <code>((()))</code> — harus menghitung kedalaman kurung</li>
-    <li>Palindrome: <code>abcba</code> — harus mengingat seluruh paruh pertama</li>
+    <li>${t('<code>a&#x207F;b&#x207F;</code> (n buah \'a\' diikuti n buah \'b\') — karena mesin harus "mengingat" berapa banyak \'a\' yang sudah dibaca, tapi state-nya terbatas!', '<code>a&#x207F;b&#x207F;</code> (n copies of \'a\' followed by n copies of \'b\') — because the machine must "remember" how many \'a\'s it has read, but its states are finite!')}</li>
+    <li>${t('Kurung seimbang: <code>((()))</code> — harus menghitung kedalaman kurung', 'Balanced parentheses: <code>((()))</code> — must count nesting depth')}</li>
+    <li>${t('Palindrome: <code>abcba</code> — harus mengingat seluruh paruh pertama', 'Palindromes: <code>abcba</code> — must remember the entire first half')}</li>
 </ul>
 </div>
 
 <h4>Grammar Type 3 (Right-Linear Grammar)</h4>
-<p>Aturan produksi hanya boleh berbentuk:</p>
+<p>${t('Aturan produksi hanya boleh berbentuk:', 'Production rules can only take these forms:')}</p>
 <div class="code-block"><span class="cm">// Right-linear grammar rules:</span>
 A &rarr; aB    <span class="cm">// terminal diikuti non-terminal</span>
 A &rarr; a     <span class="cm">// hanya terminal</span>
@@ -111,31 +111,31 @@ B &rarr; b     <span class="cm">// baca 'b', selesai</span></div>
 <!-- Type 2: Context-Free Languages -->
 <div class="card animate-in">
 <h3><span class="badge badge-green">Type 2 — Context-Free Languages (Bahasa Bebas Konteks)</span></h3>
-<p>Context-Free Languages (CFL) adalah "level up" dari Regular Languages. Mesin yang mengenalinya adalah <strong>Pushdown Automaton (PDA)</strong> — yaitu NFA yang dilengkapi dengan <strong>Stack</strong>.</p>
+<p>${t('Context-Free Languages (CFL) adalah "level up" dari Regular Languages. Mesin yang mengenalinya adalah <strong>Pushdown Automaton (PDA)</strong> — yaitu NFA yang dilengkapi dengan <strong>Stack</strong>.', 'Context-Free Languages (CFL) are a "level up" from Regular Languages. The machine that recognizes them is the <strong>Pushdown Automaton (PDA)</strong> — an NFA equipped with a <strong>Stack</strong>.')}</p>
 
-<h4>Analogi: Orang dengan Tumpukan Piring</h4>
-<p>Bayangkan kamu sekarang punya tumpukan piring (stack). Setiap kali kamu melihat sesuatu yang perlu diingat, kamu TUMPUK piring baru di atas. Ketika kamu perlu mencocokkan sesuatu, kamu AMBIL piring dari atas tumpukan. Kamu hanya bisa melihat piring paling atas — tidak bisa mengintip piring di tengah atau bawah!</p>
-<p>Inilah kekuatan ekstra yang dimiliki PDA: memori berupa stack yang bisa tumbuh tak terbatas (tapi hanya bisa akses dari atas).</p>
+<h4>${t('Analogi: Orang dengan Tumpukan Piring', 'Analogy: A Person with a Stack of Plates')}</h4>
+<p>${t('Bayangkan kamu sekarang punya tumpukan piring (stack). Setiap kali kamu melihat sesuatu yang perlu diingat, kamu TUMPUK piring baru di atas. Ketika kamu perlu mencocokkan sesuatu, kamu AMBIL piring dari atas tumpukan. Kamu hanya bisa melihat piring paling atas — tidak bisa mengintip piring di tengah atau bawah!', 'Imagine you now have a stack of plates. Every time you see something to remember, you STACK a new plate on top. When you need to match something, you TAKE a plate from the top of the stack. You can only see the topmost plate — you cannot peek at plates in the middle or bottom!')}</p>
+<p>${t('Inilah kekuatan ekstra yang dimiliki PDA: memori berupa stack yang bisa tumbuh tak terbatas (tapi hanya bisa akses dari atas).', 'This is the extra power PDA has: memory in the form of a stack that can grow unboundedly (but can only be accessed from the top).')}</p>
 
-<h4>Apa yang Bisa Dilakukan CFL yang Tidak Bisa Dilakukan Regular?</h4>
+<h4>${t('Apa yang Bisa Dilakukan CFL yang Tidak Bisa Dilakukan Regular?', 'What Can CFL Do That Regular Languages Cannot?')}</h4>
 <ul>
-    <li><strong>HTML/XML Parsing</strong>: mencocokkan tag pembuka <code>&lt;div&gt;</code> dengan tag penutup <code>&lt;/div&gt;</code> — perlu menumpuk tag dan mencocokkannya</li>
-    <li><strong>JSON Parsing</strong>: <code>{"key": {"nested": [1, 2]}}</code> — kurung kurawal dan siku harus seimbang</li>
-    <li><strong>Ekspresi matematika</strong>: <code>((3 + 5) * (2 - 1))</code> — kurung harus match</li>
-    <li><strong>Syntax bahasa pemrograman</strong>: <code>if { if { } }</code> — block harus seimbang</li>
-    <li><strong>a&#x207F;b&#x207F;</strong>: push 'A' untuk setiap 'a', pop 'A' untuk setiap 'b', pastikan stack kosong di akhir</li>
+    <li>${t('<strong>HTML/XML Parsing</strong>: mencocokkan tag pembuka <code>&lt;div&gt;</code> dengan tag penutup <code>&lt;/div&gt;</code> — perlu menumpuk tag dan mencocokkannya', '<strong>HTML/XML Parsing</strong>: matching opening tag <code>&lt;div&gt;</code> with closing tag <code>&lt;/div&gt;</code> — needs to stack tags and match them')}</li>
+    <li>${t('<strong>JSON Parsing</strong>: <code>{"key": {"nested": [1, 2]}}</code> — kurung kurawal dan siku harus seimbang', '<strong>JSON Parsing</strong>: <code>{"key": {"nested": [1, 2]}}</code> — curly braces and brackets must be balanced')}</li>
+    <li>${t('<strong>Ekspresi matematika</strong>: <code>((3 + 5) * (2 - 1))</code> — kurung harus match', '<strong>Mathematical expressions</strong>: <code>((3 + 5) * (2 - 1))</code> — parentheses must match')}</li>
+    <li>${t('<strong>Syntax bahasa pemrograman</strong>: <code>if { if { } }</code> — block harus seimbang', '<strong>Programming language syntax</strong>: <code>if { if { } }</code> — blocks must be balanced')}</li>
+    <li>${t('<strong>a&#x207F;b&#x207F;</strong>: push \'A\' untuk setiap \'a\', pop \'A\' untuk setiap \'b\', pastikan stack kosong di akhir', '<strong>a&#x207F;b&#x207F;</strong>: push \'A\' for each \'a\', pop \'A\' for each \'b\', ensure the stack is empty at the end')}</li>
 </ul>
 
-<h4>Apa yang TIDAK BISA Dilakukan CFL?</h4>
+<h4>${t('Apa yang TIDAK BISA Dilakukan CFL?', 'What CFL CANNOT Do?')}</h4>
 <div class="warn-box">
 <ul>
-    <li><code>a&#x207F;b&#x207F;c&#x207F;</code> — harus menghitung tiga hal sekaligus, stack hanya bisa menangani dua</li>
-    <li><code>ww</code> (string diikuti duplikatnya) — harus mengingat seluruh string pertama</li>
+    <li>${t('<code>a&#x207F;b&#x207F;c&#x207F;</code> — harus menghitung tiga hal sekaligus, stack hanya bisa menangani dua', '<code>a&#x207F;b&#x207F;c&#x207F;</code> — must count three things simultaneously, a stack can only handle two')}</li>
+    <li>${t('<code>ww</code> (string diikuti duplikatnya) — harus mengingat seluruh string pertama', '<code>ww</code> (a string followed by its duplicate) — must remember the entire first string')}</li>
 </ul>
 </div>
 
 <h4>Grammar Type 2 (Context-Free Grammar / CFG)</h4>
-<p>Aturan produksi: sisi kiri HANYA BOLEH satu non-terminal. Sisi kanan boleh apa saja.</p>
+<p>${t('Aturan produksi: sisi kiri HANYA BOLEH satu non-terminal. Sisi kanan boleh apa saja.', 'Production rules: the left side can ONLY be a single non-terminal. The right side can be anything.')}</p>
 <div class="code-block"><span class="cm">// CFG untuk kurung seimbang</span>
 S &rarr; (S)    <span class="cm">// bungkus S dengan kurung</span>
 S &rarr; SS     <span class="cm">// dua S berurutan</span>
@@ -153,23 +153,23 @@ F &rarr; (E) | id | num</div>
 <!-- Type 1: Context-Sensitive Languages -->
 <div class="card animate-in">
 <h3><span class="badge badge-orange">Type 1 — Context-Sensitive Languages (Bahasa Peka Konteks)</span></h3>
-<p>Context-Sensitive Languages (CSL) menambahkan kemampuan yang tidak dimiliki CFL: aturan produksi bisa <strong>bergantung pada konteks</strong> (simbol-simbol di sekitarnya).</p>
+<p>${t('Context-Sensitive Languages (CSL) menambahkan kemampuan yang tidak dimiliki CFL: aturan produksi bisa <strong>bergantung pada konteks</strong> (simbol-simbol di sekitarnya).', 'Context-Sensitive Languages (CSL) add a capability CFL does not have: production rules can <strong>depend on context</strong> (the surrounding symbols).')}</p>
 
-<h4>Analogi: Arti Kata yang Bergantung pada Konteks</h4>
-<p>Dalam bahasa Indonesia, kata "bisa" bisa berarti:</p>
+<h4>${t('Analogi: Arti Kata yang Bergantung pada Konteks', 'Analogy: Word Meaning Depends on Context')}</h4>
+<p>${t('Dalam bahasa Indonesia, kata "bisa" bisa berarti:', 'In English, the word "bank" can mean:')}</p>
 <ul>
-    <li>"Saya <strong>bisa</strong> berenang" — artinya <em>mampu</em></li>
-    <li>"Ular itu mengeluarkan <strong>bisa</strong>" — artinya <em>racun</em></li>
+    <li>${t('"Saya <strong>bisa</strong> berenang" — artinya <em>mampu</em>', '"I went to the <strong>bank</strong> to deposit money" — means a <em>financial institution</em>')}</li>
+    <li>${t('"Ular itu mengeluarkan <strong>bisa</strong>" — artinya <em>racun</em>', '"We sat on the river <strong>bank</strong>" — means the <em>edge of a river</em>')}</li>
 </ul>
-<p>Artinya berubah tergantung <strong>konteks</strong> (kata-kata di sekitarnya). Inilah esensi Context-Sensitive: aturan penggantian boleh melihat simbol di kiri dan kanan.</p>
+<p>${t('Artinya berubah tergantung <strong>konteks</strong> (kata-kata di sekitarnya). Inilah esensi Context-Sensitive: aturan penggantian boleh melihat simbol di kiri dan kanan.', 'The meaning changes depending on <strong>context</strong> (the surrounding words). This is the essence of Context-Sensitive: replacement rules can look at symbols to the left and right.')}</p>
 
-<h4>Mesin: Linear Bounded Automaton (LBA)</h4>
-<p>LBA adalah Turing Machine yang tape-nya <strong>dibatasi</strong> sepanjang input. Jadi tidak bisa menulis ke area di luar input. Seperti orang yang punya kertas catatan, tapi panjang kertasnya SAMA dengan panjang masalah yang dia baca.</p>
+<h4>${t('Mesin: Linear Bounded Automaton (LBA)', 'Machine: Linear Bounded Automaton (LBA)')}</h4>
+<p>${t('LBA adalah Turing Machine yang tape-nya <strong>dibatasi</strong> sepanjang input. Jadi tidak bisa menulis ke area di luar input. Seperti orang yang punya kertas catatan, tapi panjang kertasnya SAMA dengan panjang masalah yang dia baca.', 'LBA is a Turing Machine whose tape is <strong>bounded</strong> by the input length. It cannot write beyond the input area. Like a person with a notepad whose length is the SAME as the problem they read.')}</p>
 
-<h4>Contoh Bahasa Context-Sensitive</h4>
+<h4>${t('Contoh Bahasa Context-Sensitive', 'Context-Sensitive Language Examples')}</h4>
 <ul>
-    <li><code>a&#x207F;b&#x207F;c&#x207F;</code> — misalnya "aabbcc", "aaabbbccc". Jumlah a, b, dan c harus sama. Stack saja tidak cukup karena setelah mencocokkan a dan b, informasi tentang jumlah sudah hilang saat harus mencocokkan c.</li>
-    <li><strong>Grammar bahasa alami</strong> yang lebih kompleks — subject-verb agreement, dll.</li>
+    <li>${t('<code>a&#x207F;b&#x207F;c&#x207F;</code> — misalnya "aabbcc", "aaabbbccc". Jumlah a, b, dan c harus sama. Stack saja tidak cukup karena setelah mencocokkan a dan b, informasi tentang jumlah sudah hilang saat harus mencocokkan c.', '<code>a&#x207F;b&#x207F;c&#x207F;</code> — for example "aabbcc", "aaabbbccc". The counts of a, b, and c must be equal. A stack alone is not enough because after matching a and b, information about the count is lost when matching c.')}</li>
+    <li>${t('<strong>Grammar bahasa alami</strong> yang lebih kompleks — subject-verb agreement, dll.', '<strong>More complex natural language grammars</strong> — subject-verb agreement, etc.')}</li>
 </ul>
 
 <h4>Grammar Type 1</h4>
@@ -188,59 +188,59 @@ cC &rarr; cc</div>
 
 <!-- Type 0: Recursively Enumerable Languages -->
 <div class="card animate-in">
-<h3><span class="badge badge-red">Type 0 — Recursively Enumerable (Tak Terbatas)</span></h3>
-<p>Type 0 adalah level tertinggi — dikenali oleh <strong>Turing Machine</strong>, mesin komputasi paling powerful yang kita kenal. Grammar-nya <strong>tidak ada batasan</strong>: sisi kiri dan kanan boleh apa saja.</p>
+<h3><span class="badge badge-red">${t('Type 0 — Recursively Enumerable (Tak Terbatas)', 'Type 0 — Recursively Enumerable (Unrestricted)')}</span></h3>
+<p>${t('Type 0 adalah level tertinggi — dikenali oleh <strong>Turing Machine</strong>, mesin komputasi paling powerful yang kita kenal. Grammar-nya <strong>tidak ada batasan</strong>: sisi kiri dan kanan boleh apa saja.', 'Type 0 is the highest level — recognized by <strong>Turing Machines</strong>, the most powerful computational model we know. Its grammar has <strong>no restrictions</strong>: the left and right sides can be anything.')}</p>
 
-<h4>Kekuatan dan Keterbatasan</h4>
-<p>Turing Machine bisa melakukan <strong>semua yang bisa dihitung</strong> — ini adalah inti dari <strong>Church-Turing Thesis</strong>. Tapi ada satu masalah besar: TM mungkin <strong>tidak pernah berhenti</strong> (looping forever) untuk beberapa input.</p>
+<h4>${t('Kekuatan dan Keterbatasan', 'Power and Limitations')}</h4>
+<p>${t('Turing Machine bisa melakukan <strong>semua yang bisa dihitung</strong> — ini adalah inti dari <strong>Church-Turing Thesis</strong>. Tapi ada satu masalah besar: TM mungkin <strong>tidak pernah berhenti</strong> (looping forever) untuk beberapa input.', 'Turing Machines can do <strong>everything that is computable</strong> — this is the core of the <strong>Church-Turing Thesis</strong>. But there is one big problem: a TM may <strong>never halt</strong> (loop forever) for some inputs.')}</p>
 
 <div class="card-grid">
 <div class="card" style="border-color:var(--green)">
     <h4>Decidable (Recursive)</h4>
-    <p>TM <strong>selalu berhenti</strong> — memberikan jawaban "ya" atau "tidak" untuk SETIAP input.</p>
+    <p>${t('TM <strong>selalu berhenti</strong> — memberikan jawaban "ya" atau "tidak" untuk SETIAP input.', 'The TM <strong>always halts</strong> — giving a "yes" or "no" answer for EVERY input.')}</p>
     <ul>
-        <li>"Apakah string ini diterima DFA ini?"</li>
-        <li>"Apakah bilangan ini prima?"</li>
-        <li>"Apakah dua DFA mengenali bahasa yang sama?"</li>
+        <li>${t('"Apakah string ini diterima DFA ini?"', '"Does this DFA accept this string?"')}</li>
+        <li>${t('"Apakah bilangan ini prima?"', '"Is this number prime?"')}</li>
+        <li>${t('"Apakah dua DFA mengenali bahasa yang sama?"', '"Do two DFAs recognize the same language?"')}</li>
     </ul>
 </div>
 <div class="card" style="border-color:var(--red)">
     <h4>Undecidable</h4>
-    <p><strong>Tidak ada TM</strong> yang bisa menjawab benar untuk SEMUA input dan selalu berhenti.</p>
+    <p>${t('<strong>Tidak ada TM</strong> yang bisa menjawab benar untuk SEMUA input dan selalu berhenti.', '<strong>No TM exists</strong> that can answer correctly for ALL inputs and always halt.')}</p>
     <ul>
-        <li><strong>Halting Problem</strong>: "Apakah program P berhenti untuk input I?"</li>
-        <li>"Apakah dua CFG menghasilkan bahasa yang sama?"</li>
-        <li>"Apakah TM ini menerima string apapun?"</li>
+        <li>${t('<strong>Halting Problem</strong>: "Apakah program P berhenti untuk input I?"', '<strong>Halting Problem</strong>: "Does program P halt on input I?"')}</li>
+        <li>${t('"Apakah dua CFG menghasilkan bahasa yang sama?"', '"Do two CFGs generate the same language?"')}</li>
+        <li>${t('"Apakah TM ini menerima string apapun?"', '"Does this TM accept any string?"')}</li>
     </ul>
 </div>
 </div>
 
 <div class="info-box">
-<strong>Halting Problem</strong> adalah contoh paling terkenal dari masalah undecidable. Alan Turing membuktikannya pada tahun 1936 menggunakan teknik <strong>diagonalisasi</strong>: jika kita asumsikan ada program H yang bisa menentukan apakah program lain berhenti, kita bisa membuat paradox yang menunjukkan H tidak mungkin ada. Ini seperti paradox "Tukang cukur yang mencukur semua orang yang tidak mencukur dirinya sendiri — apakah dia mencukur dirinya sendiri?"
+${t('<strong>Halting Problem</strong> adalah contoh paling terkenal dari masalah undecidable. Alan Turing membuktikannya pada tahun 1936 menggunakan teknik <strong>diagonalisasi</strong>: jika kita asumsikan ada program H yang bisa menentukan apakah program lain berhenti, kita bisa membuat paradox yang menunjukkan H tidak mungkin ada. Ini seperti paradox "Tukang cukur yang mencukur semua orang yang tidak mencukur dirinya sendiri — apakah dia mencukur dirinya sendiri?"', 'The <strong>Halting Problem</strong> is the most famous example of an undecidable problem. Alan Turing proved it in 1936 using <strong>diagonalization</strong>: if we assume there is a program H that can determine whether another program halts, we can create a paradox showing H cannot exist. It is like the paradox "The barber who shaves everyone who does not shave themselves — does the barber shave himself?"')}
 </div>
 </div>
 
 <!-- Tabel Perbandingan Hierarki Chomsky -->
 <div class="card animate-in">
-<h3>Tabel Perbandingan Hierarki Chomsky</h3>
+<h3>${t('Tabel Perbandingan Hierarki Chomsky', 'Chomsky Hierarchy Comparison Table')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Type</th><th>Nama</th><th>Mesin</th><th>Grammar</th><th>Contoh Bahasa</th><th>Memori</th></tr>
+<tr><th>Type</th><th>${t('Nama', 'Name')}</th><th>${t('Mesin', 'Machine')}</th><th>Grammar</th><th>${t('Contoh Bahasa', 'Language Examples')}</th><th>${t('Memori', 'Memory')}</th></tr>
 <tr>
     <td><span class="badge badge-blue">3</span></td>
     <td>Regular</td>
     <td>DFA / NFA</td>
     <td>A &rarr; aB | a</td>
     <td>a*b+, (0|1)*01, email regex</td>
-    <td>Tidak ada (finite state saja)</td>
+    <td>${t('Tidak ada (finite state saja)', 'None (finite states only)')}</td>
 </tr>
 <tr>
     <td><span class="badge badge-green">2</span></td>
     <td>Context-Free</td>
     <td>PDA</td>
-    <td>A &rarr; &gamma; (bebas)</td>
-    <td>a&#x207F;b&#x207F;, kurung seimbang, JSON</td>
-    <td>Stack (LIFO, tak terbatas)</td>
+    <td>A &rarr; &gamma; (${t('bebas', 'free')})</td>
+    <td>${t('a&#x207F;b&#x207F;, kurung seimbang, JSON', 'a&#x207F;b&#x207F;, balanced parens, JSON')}</td>
+    <td>${t('Stack (LIFO, tak terbatas)', 'Stack (LIFO, unbounded)')}</td>
 </tr>
 <tr>
     <td><span class="badge badge-orange">1</span></td>
@@ -248,15 +248,15 @@ cC &rarr; cc</div>
     <td>LBA</td>
     <td>&alpha;A&beta; &rarr; &alpha;&gamma;&beta;</td>
     <td>a&#x207F;b&#x207F;c&#x207F;</td>
-    <td>Tape terbatas (sebesar input)</td>
+    <td>${t('Tape terbatas (sebesar input)', 'Bounded tape (input size)')}</td>
 </tr>
 <tr>
     <td><span class="badge badge-red">0</span></td>
     <td>Recursively Enumerable</td>
     <td>Turing Machine</td>
-    <td>Tanpa batasan</td>
-    <td>Semua yang bisa dihitung</td>
-    <td>Tape tak terbatas</td>
+    <td>${t('Tanpa batasan', 'Unrestricted')}</td>
+    <td>${t('Semua yang bisa dihitung', 'All computable languages')}</td>
+    <td>${t('Tape tak terbatas', 'Unbounded tape')}</td>
 </tr>
 </table>
 </div>
@@ -266,82 +266,82 @@ cC &rarr; cc</div>
 <h2 class="animate-in">2. Pumping Lemma</h2>
 
 <div class="card animate-in">
-<h3>Apa Itu Pumping Lemma?</h3>
-<p>Pumping Lemma adalah <strong>alat untuk membuktikan bahwa suatu bahasa BUKAN regular</strong> (atau bukan context-free). Ini bukan alat untuk membuktikan bahwa suatu bahasa ADALAH regular — hanya untuk membantah!</p>
+<h3>${t('Apa Itu Pumping Lemma?', 'What Is the Pumping Lemma?')}</h3>
+<p>${t('Pumping Lemma adalah <strong>alat untuk membuktikan bahwa suatu bahasa BUKAN regular</strong> (atau bukan context-free). Ini bukan alat untuk membuktikan bahwa suatu bahasa ADALAH regular — hanya untuk membantah!', 'The Pumping Lemma is a <strong>tool to prove that a language is NOT regular</strong> (or not context-free). It is not a tool to prove that a language IS regular — only to disprove!')}</p>
 
-<h4>Analogi: Jalan Melingkar</h4>
-<p>Bayangkan kamu berkendara di sebuah kota yang hanya punya <strong>5 persimpangan</strong>. Jika kamu berkendara melewati <strong>6 persimpangan atau lebih</strong>, pasti ada persimpangan yang kamu kunjungi <strong>DUA KALI</strong> — artinya kamu melewati sebuah <strong>loop (putaran)</strong>!</p>
-<p>Ini adalah <strong>Prinsip Pigeonhole (Sarang Merpati)</strong>: jika ada 6 merpati dan 5 sarang, pasti ada sarang yang berisi lebih dari 1 merpati.</p>
-<p>DFA juga begitu: jika DFA punya <strong>p state</strong> dan membaca string yang panjangnya <strong>&ge; p</strong>, pasti ada state yang dikunjungi dua kali — berarti ada <strong>loop</strong>. Loop ini bisa "dipompa" (diulang) berapa kali pun, dan hasilnya tetap diterima oleh DFA.</p>
+<h4>${t('Analogi: Jalan Melingkar', 'Analogy: Circular Roads')}</h4>
+<p>${t('Bayangkan kamu berkendara di sebuah kota yang hanya punya <strong>5 persimpangan</strong>. Jika kamu berkendara melewati <strong>6 persimpangan atau lebih</strong>, pasti ada persimpangan yang kamu kunjungi <strong>DUA KALI</strong> — artinya kamu melewati sebuah <strong>loop (putaran)</strong>!', 'Imagine you are driving in a city with only <strong>5 intersections</strong>. If you drive through <strong>6 or more intersections</strong>, there must be an intersection you visit <strong>TWICE</strong> — meaning you went through a <strong>loop</strong>!')}</p>
+<p>${t('Ini adalah <strong>Prinsip Pigeonhole (Sarang Merpati)</strong>: jika ada 6 merpati dan 5 sarang, pasti ada sarang yang berisi lebih dari 1 merpati.', 'This is the <strong>Pigeonhole Principle</strong>: if there are 6 pigeons and 5 holes, at least one hole must contain more than 1 pigeon.')}</p>
+<p>${t('DFA juga begitu: jika DFA punya <strong>p state</strong> dan membaca string yang panjangnya <strong>&ge; p</strong>, pasti ada state yang dikunjungi dua kali — berarti ada <strong>loop</strong>. Loop ini bisa "dipompa" (diulang) berapa kali pun, dan hasilnya tetap diterima oleh DFA.', 'DFAs work the same way: if a DFA has <strong>p states</strong> and reads a string of length <strong>&ge; p</strong>, some state must be visited twice — meaning there is a <strong>loop</strong>. This loop can be "pumped" (repeated) any number of times, and the result is still accepted by the DFA.')}</p>
 </div>
 
 <div class="card animate-in">
-<h3>Pernyataan Formal Pumping Lemma (Disederhanakan)</h3>
+<h3>${t('Pernyataan Formal Pumping Lemma (Disederhanakan)', 'Formal Statement of the Pumping Lemma (Simplified)')}</h3>
 <div class="info-box">
-<strong>Pumping Lemma untuk Regular Languages:</strong><br>
-Jika L adalah bahasa regular, maka ada bilangan p (pumping length) sehingga setiap string s &isin; L dengan |s| &ge; p, bisa dipecah menjadi s = xyz di mana:
+<strong>Pumping Lemma ${t('untuk', 'for')} Regular Languages:</strong><br>
+${t('Jika L adalah bahasa regular, maka ada bilangan p (pumping length) sehingga setiap string s &isin; L dengan |s| &ge; p, bisa dipecah menjadi s = xyz di mana:', 'If L is a regular language, then there exists a number p (pumping length) such that every string s &isin; L with |s| &ge; p can be split into s = xyz where:')}
 <ol>
-    <li><strong>|xy| &le; p</strong> — bagian x dan y berada di awal string (dalam p karakter pertama)</li>
-    <li><strong>|y| &gt; 0</strong> — bagian y tidak boleh kosong (harus ada sesuatu yang di-pump)</li>
-    <li><strong>Untuk semua i &ge; 0, xy<sup>i</sup>z &isin; L</strong> — jika y diulang berapa kali pun (termasuk 0 kali), hasilnya tetap di L</li>
+    <li><strong>|xy| &le; p</strong> — ${t('bagian x dan y berada di awal string (dalam p karakter pertama)', 'x and y are at the beginning of the string (within the first p characters)')}</li>
+    <li><strong>|y| &gt; 0</strong> — ${t('bagian y tidak boleh kosong (harus ada sesuatu yang di-pump)', 'y must not be empty (there must be something to pump)')}</li>
+    <li><strong>${t('Untuk semua', 'For all')} i &ge; 0, xy<sup>i</sup>z &isin; L</strong> — ${t('jika y diulang berapa kali pun (termasuk 0 kali), hasilnya tetap di L', 'if y is repeated any number of times (including 0 times), the result remains in L')}</li>
 </ol>
 </div>
 
-<h4>Cara Membaca Pumping Lemma</h4>
-<p>Bayangkan string s dipotong jadi 3 bagian:</p>
+<h4>${t('Cara Membaca Pumping Lemma', 'How to Read the Pumping Lemma')}</h4>
+<p>${t('Bayangkan string s dipotong jadi 3 bagian:', 'Imagine string s is split into 3 parts:')}</p>
 <div class="flow-diagram">
     <div class="flow-node" style="background:rgba(56,189,248,0.1);border-color:var(--accent)">x (prefix)</div>
     <div class="flow-arrow">&rarr;</div>
-    <div class="flow-node" style="background:rgba(248,113,113,0.1);border-color:var(--red)">y (bagian yang di-"pompa")</div>
+    <div class="flow-node" style="background:rgba(248,113,113,0.1);border-color:var(--red)">y (${t('bagian yang di-"pompa"', 'the part being "pumped"')})</div>
     <div class="flow-arrow">&rarr;</div>
     <div class="flow-node" style="background:rgba(52,211,153,0.1);border-color:var(--green)">z (suffix)</div>
 </div>
-<p>Jika bahasa itu regular, maka bagian <strong>y bisa diulang berapa kali pun</strong> (0, 1, 2, 3, ...) dan hasilnya TETAP ada di dalam bahasa. Jika kita bisa menemukan satu saja kasus di mana pengulangan y menghasilkan string di LUAR bahasa, maka bahasa itu BUKAN regular.</p>
+<p>${t('Jika bahasa itu regular, maka bagian <strong>y bisa diulang berapa kali pun</strong> (0, 1, 2, 3, ...) dan hasilnya TETAP ada di dalam bahasa. Jika kita bisa menemukan satu saja kasus di mana pengulangan y menghasilkan string di LUAR bahasa, maka bahasa itu BUKAN regular.', 'If the language is regular, then <strong>y can be repeated any number of times</strong> (0, 1, 2, 3, ...) and the result REMAINS in the language. If we can find even one case where repeating y produces a string OUTSIDE the language, then the language is NOT regular.')}</p>
 </div>
 
 <div class="card animate-in">
-<h3>Contoh: Buktikan {a&#x207F;b&#x207F; | n &ge; 0} BUKAN Regular</h3>
-<p>Bahasa ini berisi string seperti: &epsilon;, ab, aabb, aaabbb, aaaabbbb, ...</p>
+<h3>${t('Contoh: Buktikan {a&#x207F;b&#x207F; | n &ge; 0} BUKAN Regular', 'Example: Prove {a&#x207F;b&#x207F; | n &ge; 0} is NOT Regular')}</h3>
+<p>${t('Bahasa ini berisi string seperti: &epsilon;, ab, aabb, aaabbb, aaaabbbb, ...', 'This language contains strings such as: &epsilon;, ab, aabb, aaabbb, aaaabbbb, ...')}</p>
 
 <div class="step-list">
     <div class="step-item">
         <div class="step-num">1</div>
-        <div class="step-text"><strong>Asumsikan L = {a&#x207F;b&#x207F;} adalah regular.</strong> Maka pumping lemma berlaku, dan ada pumping length p.</div>
+        <div class="step-text">${t('<strong>Asumsikan L = {a&#x207F;b&#x207F;} adalah regular.</strong> Maka pumping lemma berlaku, dan ada pumping length p.', '<strong>Assume L = {a&#x207F;b&#x207F;} is regular.</strong> Then the pumping lemma applies, and there exists a pumping length p.')}</div>
     </div>
     <div class="step-item">
         <div class="step-num">2</div>
-        <div class="step-text"><strong>Pilih string s = a&#x1D56;b&#x1D56;</strong> (p buah a diikuti p buah b). Jelas s &isin; L dan |s| = 2p &ge; p.</div>
+        <div class="step-text">${t('<strong>Pilih string s = a&#x1D56;b&#x1D56;</strong> (p buah a diikuti p buah b). Jelas s &isin; L dan |s| = 2p &ge; p.', '<strong>Choose string s = a&#x1D56;b&#x1D56;</strong> (p copies of a followed by p copies of b). Clearly s &isin; L and |s| = 2p &ge; p.')}</div>
     </div>
     <div class="step-item">
         <div class="step-num">3</div>
-        <div class="step-text"><strong>Pecah s = xyz.</strong> Karena |xy| &le; p, maka x dan y HANYA berisi huruf 'a' (karena p karakter pertama semuanya 'a'). Jadi y = a&#x1D4F; untuk suatu k &gt; 0.</div>
+        <div class="step-text">${t('<strong>Pecah s = xyz.</strong> Karena |xy| &le; p, maka x dan y HANYA berisi huruf \'a\' (karena p karakter pertama semuanya \'a\'). Jadi y = a&#x1D4F; untuk suatu k &gt; 0.', '<strong>Split s = xyz.</strong> Since |xy| &le; p, x and y contain ONLY \'a\'s (because the first p characters are all \'a\'). So y = a&#x1D4F; for some k &gt; 0.')}</div>
     </div>
     <div class="step-item">
         <div class="step-num">4</div>
-        <div class="step-text"><strong>Pump y: coba i = 2.</strong> Maka xy&sup2;z = a&#x1D56;&#x207A;&#x1D4F;b&#x1D56;. Jumlah a = p+k, jumlah b = p. Karena k &gt; 0, maka p+k &ne; p. String ini BUKAN di L!</div>
+        <div class="step-text">${t('<strong>Pump y: coba i = 2.</strong> Maka xy&sup2;z = a&#x1D56;&#x207A;&#x1D4F;b&#x1D56;. Jumlah a = p+k, jumlah b = p. Karena k &gt; 0, maka p+k &ne; p. String ini BUKAN di L!', '<strong>Pump y: try i = 2.</strong> Then xy&sup2;z = a&#x1D56;&#x207A;&#x1D4F;b&#x1D56;. Count of a = p+k, count of b = p. Since k &gt; 0, p+k &ne; p. This string is NOT in L!')}</div>
     </div>
     <div class="step-item">
         <div class="step-num">5</div>
-        <div class="step-text"><strong>Kontradiksi!</strong> Pumping lemma mengatakan xy&sup2;z harus di L, tapi kita tunjukkan tidak. Jadi asumsi salah: <strong>L bukan regular</strong>. QED.</div>
+        <div class="step-text">${t('<strong>Kontradiksi!</strong> Pumping lemma mengatakan xy&sup2;z harus di L, tapi kita tunjukkan tidak. Jadi asumsi salah: <strong>L bukan regular</strong>. QED.', '<strong>Contradiction!</strong> The pumping lemma says xy&sup2;z must be in L, but we showed it is not. So the assumption is wrong: <strong>L is not regular</strong>. QED.')}</div>
     </div>
 </div>
 
 <div class="success-box">
-<strong>Kesimpulan:</strong> a&#x207F;b&#x207F; bukan regular karena DFA tidak bisa "menghitung" berapa banyak 'a' yang sudah dibaca (memori terbatas). Tapi bahasa ini BISA dikenali oleh PDA (context-free) dengan menggunakan stack: push untuk setiap 'a', pop untuk setiap 'b'.
+${t('<strong>Kesimpulan:</strong> a&#x207F;b&#x207F; bukan regular karena DFA tidak bisa "menghitung" berapa banyak \'a\' yang sudah dibaca (memori terbatas). Tapi bahasa ini BISA dikenali oleh PDA (context-free) dengan menggunakan stack: push untuk setiap \'a\', pop untuk setiap \'b\'.', '<strong>Conclusion:</strong> a&#x207F;b&#x207F; is not regular because a DFA cannot "count" how many \'a\'s it has read (finite memory). But this language CAN be recognized by a PDA (context-free) using a stack: push for each \'a\', pop for each \'b\'.')}
 </div>
 </div>
 
 <div class="card animate-in">
-<h3>Pumping Lemma untuk Context-Free Languages</h3>
-<p>Ada juga versi Pumping Lemma untuk CFL! Bedanya, string dipecah jadi <strong>5 bagian</strong>: s = uvxyz, dan bagian v dan y yang bisa dipompa.</p>
+<h3>${t('Pumping Lemma untuk Context-Free Languages', 'Pumping Lemma for Context-Free Languages')}</h3>
+<p>${t('Ada juga versi Pumping Lemma untuk CFL! Bedanya, string dipecah jadi <strong>5 bagian</strong>: s = uvxyz, dan bagian v dan y yang bisa dipompa.', 'There is also a version of the Pumping Lemma for CFL! The difference is that the string is split into <strong>5 parts</strong>: s = uvxyz, and the parts v and y can be pumped.')}</p>
 <div class="info-box">
-Jika L adalah CFL, maka ada p sehingga setiap s &isin; L dengan |s| &ge; p bisa dipecah s = uvxyz di mana:
+${t('Jika L adalah CFL, maka ada p sehingga setiap s &isin; L dengan |s| &ge; p bisa dipecah s = uvxyz di mana:', 'If L is a CFL, then there exists p such that every s &isin; L with |s| &ge; p can be split into s = uvxyz where:')}
 <ol>
     <li>|vxy| &le; p</li>
     <li>|vy| &gt; 0</li>
     <li>Untuk semua i &ge; 0, uv<sup>i</sup>xy<sup>i</sup>z &isin; L</li>
 </ol>
-Ini bisa digunakan untuk membuktikan bahwa a&#x207F;b&#x207F;c&#x207F; BUKAN context-free.
+${t('Ini bisa digunakan untuk membuktikan bahwa a&#x207F;b&#x207F;c&#x207F; BUKAN context-free.', 'This can be used to prove that a&#x207F;b&#x207F;c&#x207F; is NOT context-free.')}
 </div>
 </div>
 
@@ -349,24 +349,24 @@ Ini bisa digunakan untuk membuktikan bahwa a&#x207F;b&#x207F;c&#x207F; BUKAN con
 <h2 class="animate-in">3. DFA (Deterministic Finite Automaton)</h2>
 
 <div class="card animate-in">
-<h3>Apa Itu DFA?</h3>
-<p>DFA adalah mesin abstrak yang membaca input <strong>satu karakter per langkah</strong> dari kiri ke kanan. Di setiap state, ada <strong>tepat satu transisi</strong> untuk setiap simbol — makanya disebut "deterministic" (tidak ada ambiguitas).</p>
+<h3>${t('Apa Itu DFA?', 'What Is a DFA?')}</h3>
+<p>${t('DFA adalah mesin abstrak yang membaca input <strong>satu karakter per langkah</strong> dari kiri ke kanan. Di setiap state, ada <strong>tepat satu transisi</strong> untuk setiap simbol — makanya disebut "deterministic" (tidak ada ambiguitas).', 'A DFA is an abstract machine that reads input <strong>one character per step</strong> from left to right. At each state, there is <strong>exactly one transition</strong> for every symbol — hence the name "deterministic" (no ambiguity).')}</p>
 
-<h4>Analogi: Lampu Lalu Lintas</h4>
-<p>Lampu lalu lintas adalah contoh DFA dalam kehidupan nyata!</p>
+<h4>${t('Analogi: Lampu Lalu Lintas', 'Analogy: Traffic Lights')}</h4>
+<p>${t('Lampu lalu lintas adalah contoh DFA dalam kehidupan nyata!', 'Traffic lights are a real-life example of a DFA!')}</p>
 <ul>
-    <li><strong>State</strong>: Merah, Kuning, Hijau</li>
-    <li><strong>Input (sinyal waktu)</strong>: timer habis</li>
-    <li><strong>Transisi</strong>: Hijau &rarr; Kuning &rarr; Merah &rarr; Hijau &rarr; ...</li>
-    <li>Di setiap state, ada <strong>tepat satu</strong> state berikutnya — tidak ada ambiguitas!</li>
+    <li>${t('<strong>State</strong>: Merah, Kuning, Hijau', '<strong>States</strong>: Red, Yellow, Green')}</li>
+    <li>${t('<strong>Input (sinyal waktu)</strong>: timer habis', '<strong>Input (time signal)</strong>: timer expires')}</li>
+    <li>${t('<strong>Transisi</strong>: Hijau &rarr; Kuning &rarr; Merah &rarr; Hijau &rarr; ...', '<strong>Transitions</strong>: Green &rarr; Yellow &rarr; Red &rarr; Green &rarr; ...')}</li>
+    <li>${t('Di setiap state, ada <strong>tepat satu</strong> state berikutnya — tidak ada ambiguitas!', 'At each state, there is <strong>exactly one</strong> next state — no ambiguity!')}</li>
 </ul>
 
-<h4>Analogi: Mesin Penjual Minuman (Vending Machine)</h4>
-<p>Bayangkan vending machine yang menerima koin Rp500 dan Rp1000, dan minuman harganya Rp1500:</p>
+<h4>${t('Analogi: Mesin Penjual Minuman (Vending Machine)', 'Analogy: Vending Machine')}</h4>
+<p>${t('Bayangkan vending machine yang menerima koin Rp500 dan Rp1000, dan minuman harganya Rp1500:', 'Imagine a vending machine that accepts 500 and 1000 coins, and a drink costs 1500:')}</p>
 <ul>
-    <li><strong>State</strong>: Rp0, Rp500, Rp1000, Rp1500+ (accept/keluarkan minuman)</li>
-    <li><strong>Input</strong>: koin 500, koin 1000</li>
-    <li><strong>Transisi</strong>: dari Rp0 + koin 500 &rarr; Rp500, dari Rp500 + koin 1000 &rarr; Rp1500 (accept!)</li>
+    <li>${t('<strong>State</strong>: Rp0, Rp500, Rp1000, Rp1500+ (accept/keluarkan minuman)', '<strong>States</strong>: 0, 500, 1000, 1500+ (accept/dispense drink)')}</li>
+    <li>${t('<strong>Input</strong>: koin 500, koin 1000', '<strong>Input</strong>: coin 500, coin 1000')}</li>
+    <li>${t('<strong>Transisi</strong>: dari Rp0 + koin 500 &rarr; Rp500, dari Rp500 + koin 1000 &rarr; Rp1500 (accept!)', '<strong>Transitions</strong>: from 0 + coin 500 &rarr; 500, from 500 + coin 1000 &rarr; 1500 (accept!)')}</li>
 </ul>
 </div>
 

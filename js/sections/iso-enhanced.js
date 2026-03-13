@@ -4,231 +4,231 @@
 
 sections.iso = () => `
 <h1 class="section-title animate-in">ISO 27001, ISO 27701, UU PDP, PCI DSS & GDPR</h1>
-<p class="section-subtitle animate-in">Standar Keamanan Informasi, Perlindungan Data Pribadi & Kepatuhan Industri Kartu Pembayaran</p>
+<p class="section-subtitle animate-in">${t('Standar Keamanan Informasi, Perlindungan Data Pribadi & Kepatuhan Industri Kartu Pembayaran', 'Information Security Standards, Personal Data Protection & Payment Card Industry Compliance')}</p>
 
 <!-- ==================== 1. ISO 27001:2022 ==================== -->
 <h2 class="animate-in">1. ISO 27001:2022 — Information Security Management System (ISMS)</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Apa itu ISMS?</h3>
-    <p><strong>Information Security Management System (ISMS)</strong> adalah kerangka kerja sistematis untuk mengelola keamanan informasi organisasi. ISMS mencakup kebijakan, prosedur, kontrol teknis, dan proses manajemen risiko yang dirancang untuk melindungi <strong>kerahasiaan (confidentiality)</strong>, <strong>integritas (integrity)</strong>, dan <strong>ketersediaan (availability)</strong> informasi — dikenal sebagai triad CIA.</p>
+    <h3 style="color:var(--accent)">${t('Apa itu ISMS?', 'What is ISMS?')}</h3>
+    <p><strong>Information Security Management System (ISMS)</strong> ${t('adalah kerangka kerja sistematis untuk mengelola keamanan informasi organisasi. ISMS mencakup kebijakan, prosedur, kontrol teknis, dan proses manajemen risiko yang dirancang untuk melindungi', 'is a systematic framework for managing an organization\'s information security. ISMS encompasses policies, procedures, technical controls, and risk management processes designed to protect')} <strong>${t('kerahasiaan (confidentiality)', 'confidentiality')}</strong>, <strong>${t('integritas (integrity)', 'integrity')}</strong>, ${t('dan', 'and')} <strong>${t('ketersediaan (availability)', 'availability')}</strong> ${t('informasi — dikenal sebagai triad CIA.', 'of information — known as the CIA triad.')}</p>
 
     <div class="card-grid-3" style="margin-top:1rem">
         <div class="info-box">
             <strong>Confidentiality</strong><br>
-            Informasi hanya dapat diakses oleh pihak yang berwenang. Contoh: enkripsi data, access control, klasifikasi informasi.
+            ${t('Informasi hanya dapat diakses oleh pihak yang berwenang. Contoh: enkripsi data, access control, klasifikasi informasi.', 'Information can only be accessed by authorized parties. Examples: data encryption, access control, information classification.')}
         </div>
         <div class="info-box">
             <strong>Integrity</strong><br>
-            Informasi tetap akurat dan tidak dimodifikasi tanpa otorisasi. Contoh: hashing, digital signature, version control.
+            ${t('Informasi tetap akurat dan tidak dimodifikasi tanpa otorisasi. Contoh: hashing, digital signature, version control.', 'Information remains accurate and is not modified without authorization. Examples: hashing, digital signature, version control.')}
         </div>
         <div class="info-box">
             <strong>Availability</strong><br>
-            Informasi dan sistem tersedia saat dibutuhkan. Contoh: backup, disaster recovery, redundansi infrastruktur.
+            ${t('Informasi dan sistem tersedia saat dibutuhkan. Contoh: backup, disaster recovery, redundansi infrastruktur.', 'Information and systems are available when needed. Examples: backup, disaster recovery, infrastructure redundancy.')}
         </div>
     </div>
 
-    <p style="margin-top:1rem"><strong>ISO 27001:2022</strong> adalah versi terbaru dari standar internasional yang menetapkan persyaratan untuk membangun, menerapkan, memelihara, dan terus meningkatkan ISMS. Standar ini diterbitkan oleh <em>International Organization for Standardization (ISO)</em> bersama <em>International Electrotechnical Commission (IEC)</em>.</p>
+    <p style="margin-top:1rem"><strong>ISO 27001:2022</strong> ${t('adalah versi terbaru dari standar internasional yang menetapkan persyaratan untuk membangun, menerapkan, memelihara, dan terus meningkatkan ISMS. Standar ini diterbitkan oleh', 'is the latest version of the international standard that specifies requirements for establishing, implementing, maintaining, and continually improving an ISMS. This standard is published by')} <em>International Organization for Standardization (ISO)</em> ${t('bersama', 'together with')} <em>International Electrotechnical Commission (IEC)</em>.</p>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--green)">Siklus Plan-Do-Check-Act (PDCA)</h3>
-    <p>ISO 27001 dibangun di atas siklus PDCA yang memastikan perbaikan berkelanjutan dalam manajemen keamanan informasi:</p>
+    <h3 style="color:var(--green)">${t('Siklus Plan-Do-Check-Act (PDCA)', 'Plan-Do-Check-Act (PDCA) Cycle')}</h3>
+    <p>${t('ISO 27001 dibangun di atas siklus PDCA yang memastikan perbaikan berkelanjutan dalam manajemen keamanan informasi:', 'ISO 27001 is built on the PDCA cycle that ensures continuous improvement in information security management:')}</p>
 
     <div class="flow-diagram" style="margin:1.5rem 0">
         <div class="flow-node" style="background:rgba(56,189,248,0.15);border-color:var(--accent)">
             <strong style="color:var(--accent)">PLAN</strong><br>
-            Tetapkan kebijakan, tujuan, proses, dan prosedur ISMS yang relevan dengan manajemen risiko
+            ${t('Tetapkan kebijakan, tujuan, proses, dan prosedur ISMS yang relevan dengan manajemen risiko', 'Establish ISMS policies, objectives, processes, and procedures relevant to risk management')}
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-node" style="background:rgba(52,211,153,0.15);border-color:var(--green)">
             <strong style="color:var(--green)">DO</strong><br>
-            Implementasikan dan operasikan kebijakan, kontrol, proses, dan prosedur ISMS
+            ${t('Implementasikan dan operasikan kebijakan, kontrol, proses, dan prosedur ISMS', 'Implement and operate the ISMS policies, controls, processes, and procedures')}
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-node" style="background:rgba(251,191,36,0.15);border-color:var(--yellow)">
             <strong style="color:var(--yellow)">CHECK</strong><br>
-            Monitor, audit, dan review kinerja ISMS terhadap kebijakan dan tujuan
+            ${t('Monitor, audit, dan review kinerja ISMS terhadap kebijakan dan tujuan', 'Monitor, audit, and review ISMS performance against policies and objectives')}
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-node" style="background:rgba(248,113,113,0.15);border-color:var(--red)">
             <strong style="color:var(--red)">ACT</strong><br>
-            Ambil tindakan korektif dan preventif berdasarkan hasil audit dan review manajemen
+            ${t('Ambil tindakan korektif dan preventif berdasarkan hasil audit dan review manajemen', 'Take corrective and preventive actions based on audit results and management review')}
         </div>
     </div>
 
     <div class="info-box">
-        <strong>Catatan:</strong> Siklus PDCA berjalan terus-menerus. Setelah fase ACT, proses kembali ke PLAN untuk iterasi berikutnya. Ini memastikan ISMS selalu berkembang menghadapi ancaman baru.
+        <strong>${t('Catatan:', 'Note:')}</strong> ${t('Siklus PDCA berjalan terus-menerus. Setelah fase ACT, proses kembali ke PLAN untuk iterasi berikutnya. Ini memastikan ISMS selalu berkembang menghadapi ancaman baru.', 'The PDCA cycle runs continuously. After the ACT phase, the process returns to PLAN for the next iteration. This ensures the ISMS continuously evolves to face new threats.')}
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--purple)">Annex A — Kategori Kontrol Keamanan</h3>
-    <p>ISO 27001:2022 memiliki <strong>93 kontrol</strong> yang dikelompokkan dalam <strong>4 kategori</strong> (diperbarui dari 14 kategori pada versi 2013):</p>
+    <h3 style="color:var(--purple)">${t('Annex A — Kategori Kontrol Keamanan', 'Annex A — Security Control Categories')}</h3>
+    <p>${t('ISO 27001:2022 memiliki <strong>93 kontrol</strong> yang dikelompokkan dalam <strong>4 kategori</strong> (diperbarui dari 14 kategori pada versi 2013):', 'ISO 27001:2022 has <strong>93 controls</strong> grouped into <strong>4 categories</strong> (updated from 14 categories in the 2013 version):')}</p>
 
     <div class="table-wrapper" style="margin-top:1rem">
         <table>
             <thead>
                 <tr>
-                    <th>Kategori</th>
-                    <th>Jumlah</th>
-                    <th>Cakupan</th>
-                    <th>Contoh Kontrol</th>
+                    <th>${t('Kategori', 'Category')}</th>
+                    <th>${t('Jumlah', 'Count')}</th>
+                    <th>${t('Cakupan', 'Scope')}</th>
+                    <th>${t('Contoh Kontrol', 'Control Examples')}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><span class="badge-blue">Organizational (A.5)</span></td>
                     <td>37</td>
-                    <td>Kebijakan, peran, tanggung jawab, manajemen aset</td>
-                    <td>Kebijakan keamanan informasi, inventaris aset, klasifikasi informasi, manajemen vendor</td>
+                    <td>${t('Kebijakan, peran, tanggung jawab, manajemen aset', 'Policies, roles, responsibilities, asset management')}</td>
+                    <td>${t('Kebijakan keamanan informasi, inventaris aset, klasifikasi informasi, manajemen vendor', 'Information security policies, asset inventory, information classification, vendor management')}</td>
                 </tr>
                 <tr>
                     <td><span class="badge-green">People (A.6)</span></td>
                     <td>8</td>
-                    <td>Screening, pelatihan, awareness, proses disiplin</td>
-                    <td>Background check, security awareness training, tanggung jawab saat terminasi</td>
+                    <td>${t('Screening, pelatihan, awareness, proses disiplin', 'Screening, training, awareness, disciplinary process')}</td>
+                    <td>${t('Background check, security awareness training, tanggung jawab saat terminasi', 'Background check, security awareness training, responsibilities upon termination')}</td>
                 </tr>
                 <tr>
                     <td><span class="badge-orange">Physical (A.7)</span></td>
                     <td>14</td>
-                    <td>Keamanan area, peralatan, media penyimpanan</td>
-                    <td>Perimeter fisik, pengendalian akses fisik, proteksi perangkat, secure disposal</td>
+                    <td>${t('Keamanan area, peralatan, media penyimpanan', 'Area security, equipment, storage media')}</td>
+                    <td>${t('Perimeter fisik, pengendalian akses fisik, proteksi perangkat, secure disposal', 'Physical perimeter, physical access control, device protection, secure disposal')}</td>
                 </tr>
                 <tr>
                     <td><span class="badge-purple">Technological (A.8)</span></td>
                     <td>34</td>
-                    <td>Kontrol teknis: endpoint, jaringan, aplikasi, data</td>
-                    <td>Manajemen akses, enkripsi, secure coding, logging, vulnerability management</td>
+                    <td>${t('Kontrol teknis: endpoint, jaringan, aplikasi, data', 'Technical controls: endpoint, network, application, data')}</td>
+                    <td>${t('Manajemen akses, enkripsi, secure coding, logging, vulnerability management', 'Access management, encryption, secure coding, logging, vulnerability management')}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
     <div class="warn-box" style="margin-top:1rem">
-        <strong>Kontrol Baru di 2022:</strong> Threat intelligence, cloud security, ICT readiness for business continuity, physical security monitoring, data masking, data leakage prevention, web filtering, secure coding, configuration management, information deletion, dan monitoring activities.
+        <strong>${t('Kontrol Baru di 2022:', 'New Controls in 2022:')}</strong> Threat intelligence, cloud security, ICT readiness for business continuity, physical security monitoring, data masking, data leakage prevention, web filtering, secure coding, configuration management, information deletion, ${t('dan', 'and')} monitoring activities.
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--orange)">Proses Penilaian Risiko (Risk Assessment)</h3>
-    <p>Risk assessment adalah inti dari ISO 27001. Organisasi harus mengidentifikasi, menganalisis, dan mengevaluasi risiko keamanan informasi secara sistematis.</p>
+    <h3 style="color:var(--orange)">${t('Proses Penilaian Risiko (Risk Assessment)', 'Risk Assessment Process')}</h3>
+    <p>${t('Risk assessment adalah inti dari ISO 27001. Organisasi harus mengidentifikasi, menganalisis, dan mengevaluasi risiko keamanan informasi secara sistematis.', 'Risk assessment is the core of ISO 27001. Organizations must systematically identify, analyze, and evaluate information security risks.')}</p>
 
     <div class="step-list" style="margin-top:1rem">
         <div class="step-item">
             <div class="step-num">1</div>
             <div class="step-text">
-                <strong>Identifikasi Aset</strong><br>
-                Inventarisasi semua aset informasi: data, perangkat lunak, perangkat keras, fasilitas, SDM, dan proses bisnis. Tentukan pemilik (owner) setiap aset.
+                <strong>${t('Identifikasi Aset', 'Asset Identification')}</strong><br>
+                ${t('Inventarisasi semua aset informasi: data, perangkat lunak, perangkat keras, fasilitas, SDM, dan proses bisnis. Tentukan pemilik (owner) setiap aset.', 'Inventory all information assets: data, software, hardware, facilities, human resources, and business processes. Determine the owner of each asset.')}
             </div>
         </div>
         <div class="step-item">
             <div class="step-num">2</div>
             <div class="step-text">
-                <strong>Identifikasi Ancaman & Kerentanan</strong><br>
-                Identifikasi ancaman (threat) yang dapat mengeksploitasi kerentanan (vulnerability) pada setiap aset. Contoh: serangan ransomware, insider threat, bencana alam, kegagalan hardware.
+                <strong>${t('Identifikasi Ancaman & Kerentanan', 'Threat & Vulnerability Identification')}</strong><br>
+                ${t('Identifikasi ancaman (threat) yang dapat mengeksploitasi kerentanan (vulnerability) pada setiap aset. Contoh: serangan ransomware, insider threat, bencana alam, kegagalan hardware.', 'Identify threats that can exploit vulnerabilities in each asset. Examples: ransomware attacks, insider threats, natural disasters, hardware failures.')}
             </div>
         </div>
         <div class="step-item">
             <div class="step-num">3</div>
             <div class="step-text">
-                <strong>Analisis Dampak & Likelihood</strong><br>
-                Tentukan dampak (impact) jika risiko terjadi dan kemungkinan (likelihood) terjadinya. Gunakan skala kualitatif (rendah/sedang/tinggi) atau kuantitatif (nilai numerik).
+                <strong>${t('Analisis Dampak & Likelihood', 'Impact & Likelihood Analysis')}</strong><br>
+                ${t('Tentukan dampak (impact) jika risiko terjadi dan kemungkinan (likelihood) terjadinya. Gunakan skala kualitatif (rendah/sedang/tinggi) atau kuantitatif (nilai numerik).', 'Determine the impact if the risk occurs and the likelihood of occurrence. Use qualitative scales (low/medium/high) or quantitative scales (numeric values).')}
             </div>
         </div>
         <div class="step-item">
             <div class="step-num">4</div>
             <div class="step-text">
-                <strong>Evaluasi Risiko</strong><br>
-                Hitung tingkat risiko (Risk = Impact × Likelihood). Prioritaskan risiko berdasarkan risk appetite organisasi. Kategorikan: acceptable, tolerable, atau unacceptable.
+                <strong>${t('Evaluasi Risiko', 'Risk Evaluation')}</strong><br>
+                ${t('Hitung tingkat risiko (Risk = Impact × Likelihood). Prioritaskan risiko berdasarkan risk appetite organisasi. Kategorikan: acceptable, tolerable, atau unacceptable.', 'Calculate risk level (Risk = Impact × Likelihood). Prioritize risks based on the organization\'s risk appetite. Categorize: acceptable, tolerable, or unacceptable.')}
             </div>
         </div>
         <div class="step-item">
             <div class="step-num">5</div>
             <div class="step-text">
-                <strong>Perlakuan Risiko (Risk Treatment)</strong><br>
-                Pilih strategi: <span class="badge-green">Mitigate</span> (kurangi dengan kontrol), <span class="badge-blue">Transfer</span> (asuransi/outsource), <span class="badge-orange">Accept</span> (terima dengan persetujuan manajemen), atau <span class="badge-red">Avoid</span> (hindari aktivitas).
+                <strong>${t('Perlakuan Risiko (Risk Treatment)', 'Risk Treatment')}</strong><br>
+                ${t('Pilih strategi:', 'Choose a strategy:')} <span class="badge-green">Mitigate</span> ${t('(kurangi dengan kontrol)', '(reduce with controls)')}, <span class="badge-blue">Transfer</span> ${t('(asuransi/outsource)', '(insurance/outsource)')}, <span class="badge-orange">Accept</span> ${t('(terima dengan persetujuan manajemen)', '(accept with management approval)')}, ${t('atau', 'or')} <span class="badge-red">Avoid</span> ${t('(hindari aktivitas).', '(avoid the activity).')}
             </div>
         </div>
         <div class="step-item">
             <div class="step-num">6</div>
             <div class="step-text">
                 <strong>Statement of Applicability (SoA)</strong><br>
-                Dokumen formal yang mencantumkan semua kontrol Annex A, menjelaskan apakah diterapkan atau tidak beserta justifikasinya. SoA adalah dokumen wajib untuk sertifikasi.
+                ${t('Dokumen formal yang mencantumkan semua kontrol Annex A, menjelaskan apakah diterapkan atau tidak beserta justifikasinya. SoA adalah dokumen wajib untuk sertifikasi.', 'A formal document listing all Annex A controls, explaining whether they are applied or not along with justification. SoA is a mandatory document for certification.')}
             </div>
         </div>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Proses Sertifikasi ISO 27001</h3>
-    <p>Sertifikasi dilakukan oleh badan sertifikasi terakreditasi dan terdiri dari beberapa tahap:</p>
+    <h3 style="color:var(--accent)">${t('Proses Sertifikasi ISO 27001', 'ISO 27001 Certification Process')}</h3>
+    <p>${t('Sertifikasi dilakukan oleh badan sertifikasi terakreditasi dan terdiri dari beberapa tahap:', 'Certification is performed by accredited certification bodies and consists of several stages:')}</p>
 
     <div class="pipeline" style="margin-top:1rem">
         <div class="pipeline-stage" style="background:rgba(56,189,248,0.1)">
             <div class="stage-title" style="color:var(--accent)">Gap Analysis</div>
-            <div class="stage-desc">Evaluasi kondisi saat ini vs persyaratan ISO 27001. Identifikasi kekurangan yang harus diperbaiki.</div>
+            <div class="stage-desc">${t('Evaluasi kondisi saat ini vs persyaratan ISO 27001. Identifikasi kekurangan yang harus diperbaiki.', 'Evaluate current conditions vs ISO 27001 requirements. Identify gaps that need to be addressed.')}</div>
         </div>
         <div class="pipeline-stage" style="background:rgba(168,85,247,0.1)">
-            <div class="stage-title" style="color:var(--purple)">Implementasi ISMS</div>
-            <div class="stage-desc">Bangun kebijakan, prosedur, kontrol teknis. Lakukan risk assessment dan buat SoA. Jalankan awareness training.</div>
+            <div class="stage-title" style="color:var(--purple)">${t('Implementasi ISMS', 'ISMS Implementation')}</div>
+            <div class="stage-desc">${t('Bangun kebijakan, prosedur, kontrol teknis. Lakukan risk assessment dan buat SoA. Jalankan awareness training.', 'Build policies, procedures, technical controls. Conduct risk assessment and create SoA. Run awareness training.')}</div>
         </div>
         <div class="pipeline-stage" style="background:rgba(52,211,153,0.1)">
             <div class="stage-title" style="color:var(--green)">Internal Audit</div>
-            <div class="stage-desc">Audit internal untuk memverifikasi kesesuaian ISMS. Dokumentasikan temuan dan tindakan korektif.</div>
+            <div class="stage-desc">${t('Audit internal untuk memverifikasi kesesuaian ISMS. Dokumentasikan temuan dan tindakan korektif.', 'Internal audit to verify ISMS conformity. Document findings and corrective actions.')}</div>
         </div>
         <div class="pipeline-stage" style="background:rgba(251,191,36,0.1)">
             <div class="stage-title" style="color:var(--yellow)">Management Review</div>
-            <div class="stage-desc">Review oleh top management terhadap kinerja ISMS, hasil audit, insiden, dan peluang perbaikan.</div>
+            <div class="stage-desc">${t('Review oleh top management terhadap kinerja ISMS, hasil audit, insiden, dan peluang perbaikan.', 'Review by top management on ISMS performance, audit results, incidents, and improvement opportunities.')}</div>
         </div>
         <div class="pipeline-stage" style="background:rgba(251,146,60,0.1)">
             <div class="stage-title" style="color:var(--orange)">Stage 1 Audit</div>
-            <div class="stage-desc">Auditor eksternal mereview dokumentasi ISMS, kebijakan, SoA, dan kesiapan organisasi.</div>
+            <div class="stage-desc">${t('Auditor eksternal mereview dokumentasi ISMS, kebijakan, SoA, dan kesiapan organisasi.', 'External auditor reviews ISMS documentation, policies, SoA, and organizational readiness.')}</div>
         </div>
         <div class="pipeline-stage" style="background:rgba(248,113,113,0.1)">
             <div class="stage-title" style="color:var(--red)">Stage 2 Audit</div>
-            <div class="stage-desc">Audit lapangan menyeluruh. Verifikasi implementasi kontrol, wawancara karyawan, review bukti.</div>
+            <div class="stage-desc">${t('Audit lapangan menyeluruh. Verifikasi implementasi kontrol, wawancara karyawan, review bukti.', 'Comprehensive field audit. Verify control implementation, interview employees, review evidence.')}</div>
         </div>
         <div class="pipeline-stage" style="background:rgba(52,211,153,0.1)">
-            <div class="stage-title" style="color:var(--green)">Sertifikat</div>
-            <div class="stage-desc">Jika lolos: sertifikat diterbitkan (berlaku 3 tahun). Surveillance audit tahunan, re-certification setiap 3 tahun.</div>
+            <div class="stage-title" style="color:var(--green)">${t('Sertifikat', 'Certificate')}</div>
+            <div class="stage-desc">${t('Jika lolos: sertifikat diterbitkan (berlaku 3 tahun). Surveillance audit tahunan, re-certification setiap 3 tahun.', 'If passed: certificate is issued (valid for 3 years). Annual surveillance audit, re-certification every 3 years.')}</div>
         </div>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--green)">Kontrol Kunci untuk Pengembangan Perangkat Lunak</h3>
-    <p>Berikut kontrol Annex A yang paling relevan untuk tim pengembangan perangkat lunak:</p>
+    <h3 style="color:var(--green)">${t('Kontrol Kunci untuk Pengembangan Perangkat Lunak', 'Key Controls for Software Development')}</h3>
+    <p>${t('Berikut kontrol Annex A yang paling relevan untuk tim pengembangan perangkat lunak:', 'The following Annex A controls are most relevant for software development teams:')}</p>
 
     <div class="table-wrapper">
         <table>
             <thead>
                 <tr>
-                    <th>Kontrol</th>
-                    <th>Deskripsi</th>
-                    <th>Implementasi Praktis</th>
+                    <th>${t('Kontrol', 'Control')}</th>
+                    <th>${t('Deskripsi', 'Description')}</th>
+                    <th>${t('Implementasi Praktis', 'Practical Implementation')}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><span class="badge-purple">A.8.25</span></td>
                     <td>Secure development life cycle</td>
-                    <td>Integrasikan security di setiap fase SDLC: requirements, design, coding, testing, deployment</td>
+                    <td>${t('Integrasikan security di setiap fase SDLC: requirements, design, coding, testing, deployment', 'Integrate security in every SDLC phase: requirements, design, coding, testing, deployment')}</td>
                 </tr>
                 <tr>
                     <td><span class="badge-purple">A.8.26</span></td>
                     <td>Application security requirements</td>
-                    <td>Definisikan security requirements di awal proyek, termasuk autentikasi, otorisasi, input validation</td>
+                    <td>${t('Definisikan security requirements di awal proyek, termasuk autentikasi, otorisasi, input validation', 'Define security requirements at the start of the project, including authentication, authorization, input validation')}</td>
                 </tr>
                 <tr>
                     <td><span class="badge-purple">A.8.27</span></td>
                     <td>Secure system architecture</td>
-                    <td>Terapkan defense in depth, least privilege, separation of concerns dalam arsitektur</td>
+                    <td>${t('Terapkan defense in depth, least privilege, separation of concerns dalam arsitektur', 'Apply defense in depth, least privilege, separation of concerns in architecture')}</td>
                 </tr>
                 <tr>
                     <td><span class="badge-purple">A.8.28</span></td>
                     <td>Secure coding</td>
-                    <td>Gunakan coding standards, code review, SAST/DAST tools, hindari known vulnerabilities</td>
+                    <td>${t('Gunakan coding standards, code review, SAST/DAST tools, hindari known vulnerabilities', 'Use coding standards, code review, SAST/DAST tools, avoid known vulnerabilities')}</td>
                 </tr>
                 <tr>
                     <td><span class="badge-purple">A.8.29</span></td>
@@ -238,7 +238,7 @@ sections.iso = () => `
                 <tr>
                     <td><span class="badge-purple">A.8.31</span></td>
                     <td>Separation of environments</td>
-                    <td>Pisahkan development, staging, production. Jangan gunakan data produksi untuk testing</td>
+                    <td>${t('Pisahkan development, staging, production. Jangan gunakan data produksi untuk testing', 'Separate development, staging, production. Do not use production data for testing')}</td>
                 </tr>
                 <tr>
                     <td><span class="badge-purple">A.8.9</span></td>
@@ -248,7 +248,7 @@ sections.iso = () => `
                 <tr>
                     <td><span class="badge-purple">A.8.15</span></td>
                     <td>Logging</td>
-                    <td>Log semua security events: login, akses data, perubahan konfigurasi, error</td>
+                    <td>${t('Log semua security events: login, akses data, perubahan konfigurasi, error', 'Log all security events: login, data access, configuration changes, errors')}</td>
                 </tr>
             </tbody>
         </table>
@@ -259,93 +259,93 @@ sections.iso = () => `
 <h2 class="animate-in">2. ISO 27701:2019 — Privacy Information Management System (PIMS)</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Ekstensi Privasi untuk ISO 27001</h3>
-    <p><strong>ISO 27701:2019</strong> adalah ekstensi dari ISO 27001 dan ISO 27002 yang menambahkan persyaratan dan panduan khusus untuk pengelolaan <strong>Personally Identifiable Information (PII)</strong>. Standar ini membantu organisasi membangun <strong>Privacy Information Management System (PIMS)</strong>.</p>
+    <h3 style="color:var(--accent)">${t('Ekstensi Privasi untuk ISO 27001', 'Privacy Extension for ISO 27001')}</h3>
+    <p><strong>ISO 27701:2019</strong> ${t('adalah ekstensi dari ISO 27001 dan ISO 27002 yang menambahkan persyaratan dan panduan khusus untuk pengelolaan', 'is an extension of ISO 27001 and ISO 27002 that adds specific requirements and guidance for managing')} <strong>Personally Identifiable Information (PII)</strong>. ${t('Standar ini membantu organisasi membangun', 'This standard helps organizations build a')} <strong>Privacy Information Management System (PIMS)</strong>.</p>
 
     <div class="card-grid" style="margin-top:1rem">
         <div class="info-box">
-            <strong>Prasyarat</strong><br>
-            ISO 27701 <em>tidak</em> berdiri sendiri — organisasi harus sudah memiliki atau sedang mengimplementasikan ISO 27001. PIMS adalah ekstensi di atas ISMS.
+            <strong>${t('Prasyarat', 'Prerequisite')}</strong><br>
+            ${t('ISO 27701 <em>tidak</em> berdiri sendiri — organisasi harus sudah memiliki atau sedang mengimplementasikan ISO 27001. PIMS adalah ekstensi di atas ISMS.', 'ISO 27701 does <em>not</em> stand alone — organizations must already have or be implementing ISO 27001. PIMS is an extension on top of ISMS.')}
         </div>
         <div class="info-box">
-            <strong>Mapping ke Regulasi</strong><br>
-            Annex D menyediakan mapping ke GDPR, memudahkan organisasi menunjukkan kepatuhan terhadap regulasi privasi data internasional.
+            <strong>${t('Mapping ke Regulasi', 'Regulation Mapping')}</strong><br>
+            ${t('Annex D menyediakan mapping ke GDPR, memudahkan organisasi menunjukkan kepatuhan terhadap regulasi privasi data internasional.', 'Annex D provides mapping to GDPR, making it easier for organizations to demonstrate compliance with international data privacy regulations.')}
         </div>
     </div>
 </div>
 
 <div class="card animate-in">
     <h3 style="color:var(--green)">PII Controller vs PII Processor</h3>
-    <p>ISO 27701 membedakan persyaratan berdasarkan peran organisasi dalam pengolahan data pribadi:</p>
+    <p>${t('ISO 27701 membedakan persyaratan berdasarkan peran organisasi dalam pengolahan data pribadi:', 'ISO 27701 distinguishes requirements based on the organization\'s role in personal data processing:')}</p>
 
     <div class="card-grid" style="margin-top:1rem">
         <div class="card" style="border-left:4px solid var(--accent)">
             <h4 style="color:var(--accent)">PII Controller</h4>
-            <p>Pihak yang menentukan <strong>tujuan dan cara</strong> pengolahan data pribadi.</p>
+            <p>${t('Pihak yang menentukan <strong>tujuan dan cara</strong> pengolahan data pribadi.', 'The party that determines the <strong>purpose and means</strong> of personal data processing.')}</p>
             <ul>
-                <li>Menentukan data apa yang dikumpulkan dan mengapa</li>
-                <li>Bertanggung jawab atas dasar hukum pengolahan (consent, kontrak, dll.)</li>
-                <li>Wajib memenuhi hak subjek data (akses, hapus, portabilitas)</li>
-                <li>Kontrol tambahan: Annex A (Klausul 7) — 31 kontrol khusus controller</li>
-                <li>Contoh: E-commerce yang mengumpulkan data pelanggan</li>
+                <li>${t('Menentukan data apa yang dikumpulkan dan mengapa', 'Determines what data is collected and why')}</li>
+                <li>${t('Bertanggung jawab atas dasar hukum pengolahan (consent, kontrak, dll.)', 'Responsible for the legal basis of processing (consent, contract, etc.)')}</li>
+                <li>${t('Wajib memenuhi hak subjek data (akses, hapus, portabilitas)', 'Must fulfill data subject rights (access, deletion, portability)')}</li>
+                <li>${t('Kontrol tambahan: Annex A (Klausul 7) — 31 kontrol khusus controller', 'Additional controls: Annex A (Clause 7) — 31 controller-specific controls')}</li>
+                <li>${t('Contoh: E-commerce yang mengumpulkan data pelanggan', 'Example: E-commerce collecting customer data')}</li>
             </ul>
         </div>
         <div class="card" style="border-left:4px solid var(--green)">
             <h4 style="color:var(--green)">PII Processor</h4>
-            <p>Pihak yang mengolah data pribadi <strong>atas nama</strong> PII Controller.</p>
+            <p>${t('Pihak yang mengolah data pribadi <strong>atas nama</strong> PII Controller.', 'The party that processes personal data <strong>on behalf of</strong> the PII Controller.')}</p>
             <ul>
-                <li>Mengolah data sesuai instruksi controller</li>
-                <li>Tidak menentukan tujuan pengolahan sendiri</li>
-                <li>Wajib melindungi data sesuai perjanjian dengan controller</li>
-                <li>Kontrol tambahan: Annex B (Klausul 8) — 18 kontrol khusus processor</li>
-                <li>Contoh: Cloud provider (AWS, GCP) yang menyimpan data pelanggan</li>
+                <li>${t('Mengolah data sesuai instruksi controller', 'Processes data according to controller instructions')}</li>
+                <li>${t('Tidak menentukan tujuan pengolahan sendiri', 'Does not determine the processing purpose independently')}</li>
+                <li>${t('Wajib melindungi data sesuai perjanjian dengan controller', 'Must protect data according to agreement with controller')}</li>
+                <li>${t('Kontrol tambahan: Annex B (Klausul 8) — 18 kontrol khusus processor', 'Additional controls: Annex B (Clause 8) — 18 processor-specific controls')}</li>
+                <li>${t('Contoh: Cloud provider (AWS, GCP) yang menyimpan data pelanggan', 'Example: Cloud provider (AWS, GCP) storing customer data')}</li>
             </ul>
         </div>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--purple)">Kontrol Tambahan Kunci ISO 27701</h3>
+    <h3 style="color:var(--purple)">${t('Kontrol Tambahan Kunci ISO 27701', 'Key Additional Controls in ISO 27701')}</h3>
 
     <div class="table-wrapper">
         <table>
             <thead>
                 <tr>
                     <th>Area</th>
-                    <th>Kontrol</th>
-                    <th>Deskripsi</th>
+                    <th>${t('Kontrol', 'Control')}</th>
+                    <th>${t('Deskripsi', 'Description')}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td><span class="badge-blue">Consent</span></td>
                     <td>7.2.3 / 7.2.4</td>
-                    <td>Dapatkan dan kelola persetujuan yang sah. Dokumentasikan consent, izinkan penarikan consent.</td>
+                    <td>${t('Dapatkan dan kelola persetujuan yang sah. Dokumentasikan consent, izinkan penarikan consent.', 'Obtain and manage valid consent. Document consent, allow consent withdrawal.')}</td>
                 </tr>
                 <tr>
                     <td><span class="badge-green">Purpose</span></td>
                     <td>7.2.1 / 7.2.2</td>
-                    <td>Identifikasi dan dokumentasikan tujuan pengolahan. Batasi pengolahan sesuai tujuan yang diinformasikan.</td>
+                    <td>${t('Identifikasi dan dokumentasikan tujuan pengolahan. Batasi pengolahan sesuai tujuan yang diinformasikan.', 'Identify and document processing purposes. Limit processing according to stated purposes.')}</td>
                 </tr>
                 <tr>
                     <td><span class="badge-orange">Minimization</span></td>
                     <td>7.4.1</td>
-                    <td>Batasi pengumpulan PII hanya pada data yang benar-benar diperlukan untuk tujuan yang ditentukan.</td>
+                    <td>${t('Batasi pengumpulan PII hanya pada data yang benar-benar diperlukan untuk tujuan yang ditentukan.', 'Limit PII collection to data that is strictly necessary for the specified purpose.')}</td>
                 </tr>
                 <tr>
                     <td><span class="badge-purple">Rights</span></td>
                     <td>7.3.1 — 7.3.9</td>
-                    <td>Fasilitasi hak subjek data: akses, koreksi, hapus, portabilitas, keberatan.</td>
+                    <td>${t('Fasilitasi hak subjek data: akses, koreksi, hapus, portabilitas, keberatan.', 'Facilitate data subject rights: access, rectification, erasure, portability, objection.')}</td>
                 </tr>
                 <tr>
                     <td><span class="badge-red">Breach</span></td>
                     <td>7.2.8 / 6.13</td>
-                    <td>Prosedur notifikasi insiden data breach kepada regulator dan subjek data.</td>
+                    <td>${t('Prosedur notifikasi insiden data breach kepada regulator dan subjek data.', 'Data breach incident notification procedures to regulators and data subjects.')}</td>
                 </tr>
                 <tr>
                     <td><span class="badge-yellow">Transfer</span></td>
                     <td>7.5</td>
-                    <td>Kontrol transfer PII antar yurisdiksi. Pastikan perlindungan memadai di negara tujuan.</td>
+                    <td>${t('Kontrol transfer PII antar yurisdiksi. Pastikan perlindungan memadai di negara tujuan.', 'Control PII transfers between jurisdictions. Ensure adequate protection in the destination country.')}</td>
                 </tr>
             </tbody>
         </table>
@@ -353,51 +353,51 @@ sections.iso = () => `
 </div>
 
 <!-- ==================== 3. UU PDP ==================== -->
-<h2 class="animate-in">3. UU PDP — Undang-Undang Pelindungan Data Pribadi</h2>
+<h2 class="animate-in">3. UU PDP — ${t('Undang-Undang Pelindungan Data Pribadi', 'Personal Data Protection Law')}</h2>
 
 <div class="card animate-in">
     <h3 style="color:var(--accent)">UU No. 27 Tahun 2022</h3>
-    <p><strong>Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP)</strong> adalah regulasi komprehensif Indonesia untuk melindungi data pribadi warga negara. UU ini disahkan pada <strong>17 Oktober 2022</strong> dan diberlakukan dengan masa transisi <strong>2 tahun</strong> hingga Oktober 2024.</p>
+    <p><strong>${t('Undang-Undang Nomor 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP)', 'Law Number 27 of 2022 on Personal Data Protection (UU PDP)')}</strong> ${t('adalah regulasi komprehensif Indonesia untuk melindungi data pribadi warga negara. UU ini disahkan pada <strong>17 Oktober 2022</strong> dan diberlakukan dengan masa transisi <strong>2 tahun</strong> hingga Oktober 2024.', 'is Indonesia\'s comprehensive regulation for protecting citizens\' personal data. This law was enacted on <strong>October 17, 2022</strong> and enforced with a <strong>2-year</strong> transition period until October 2024.')}</p>
 
     <div class="info-box" style="margin-top:1rem">
-        <strong>Data Pribadi menurut UU PDP:</strong> Setiap data tentang orang perseorangan yang teridentifikasi atau dapat diidentifikasi secara tersendiri atau dikombinasi dengan informasi lainnya baik secara langsung maupun tidak langsung melalui sistem elektronik atau nonelektronik.
+        <strong>${t('Data Pribadi menurut UU PDP:', 'Personal Data according to UU PDP:')}</strong> ${t('Setiap data tentang orang perseorangan yang teridentifikasi atau dapat diidentifikasi secara tersendiri atau dikombinasi dengan informasi lainnya baik secara langsung maupun tidak langsung melalui sistem elektronik atau nonelektronik.', 'Any data about an individual who is identified or can be identified independently or combined with other information either directly or indirectly through electronic or non-electronic systems.')}
     </div>
 
     <div class="card-grid" style="margin-top:1rem">
         <div class="card" style="border-left:4px solid var(--accent)">
-            <h4 style="color:var(--accent)">Data Pribadi Umum</h4>
+            <h4 style="color:var(--accent)">${t('Data Pribadi Umum', 'General Personal Data')}</h4>
             <ul>
-                <li>Nama lengkap</li>
-                <li>Jenis kelamin</li>
-                <li>Kewarganegaraan</li>
-                <li>Agama</li>
-                <li>Status perkawinan</li>
-                <li>Data pribadi yang dikombinasikan untuk mengidentifikasi seseorang</li>
+                <li>${t('Nama lengkap', 'Full name')}</li>
+                <li>${t('Jenis kelamin', 'Gender')}</li>
+                <li>${t('Kewarganegaraan', 'Nationality')}</li>
+                <li>${t('Agama', 'Religion')}</li>
+                <li>${t('Status perkawinan', 'Marital status')}</li>
+                <li>${t('Data pribadi yang dikombinasikan untuk mengidentifikasi seseorang', 'Personal data combined to identify a person')}</li>
             </ul>
         </div>
         <div class="card" style="border-left:4px solid var(--red)">
-            <h4 style="color:var(--red)">Data Pribadi Spesifik (Sensitif)</h4>
+            <h4 style="color:var(--red)">${t('Data Pribadi Spesifik (Sensitif)', 'Specific (Sensitive) Personal Data')}</h4>
             <ul>
-                <li>Data kesehatan</li>
-                <li>Data biometrik</li>
-                <li>Data genetika</li>
-                <li>Catatan kejahatan</li>
-                <li>Data anak</li>
-                <li>Data keuangan pribadi</li>
-                <li>Data orientasi seksual</li>
-                <li>Data pandangan politik</li>
+                <li>${t('Data kesehatan', 'Health data')}</li>
+                <li>${t('Data biometrik', 'Biometric data')}</li>
+                <li>${t('Data genetika', 'Genetic data')}</li>
+                <li>${t('Catatan kejahatan', 'Criminal records')}</li>
+                <li>${t('Data anak', 'Children\'s data')}</li>
+                <li>${t('Data keuangan pribadi', 'Personal financial data')}</li>
+                <li>${t('Data orientasi seksual', 'Sexual orientation data')}</li>
+                <li>${t('Data pandangan politik', 'Political opinion data')}</li>
             </ul>
         </div>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--green)">Prinsip-Prinsip Utama UU PDP</h3>
+    <h3 style="color:var(--green)">${t('Prinsip-Prinsip Utama UU PDP', 'Key Principles of UU PDP')}</h3>
 
     <div class="card-grid-3" style="margin-top:1rem">
         <div class="info-box">
-            <strong>1. Persetujuan (Consent)</strong><br>
-            Pengolahan data pribadi harus berdasarkan persetujuan yang sah dari subjek data. Consent harus diberikan secara eksplisit, tertulis atau terekam, dan dapat ditarik kembali.
+            <strong>1. ${t('Persetujuan (Consent)', 'Consent')}</strong><br>
+            ${t('Pengolahan data pribadi harus berdasarkan persetujuan yang sah dari subjek data. Consent harus diberikan secara eksplisit, tertulis atau terekam, dan dapat ditarik kembali.', 'Personal data processing must be based on valid consent from the data subject. Consent must be given explicitly, in writing or recorded, and can be withdrawn.')}
         </div>
         <div class="info-box">
             <strong>2. Pembatasan Tujuan</strong><br>

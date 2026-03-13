@@ -3,15 +3,15 @@ sections['optimization-ml'] = () => `
 <section class="animate-in">
 
 <h1 class="section-title">AI, Machine Learning &amp; Deep Learning</h1>
-<p class="section-subtitle">Dari Fondasi Induktif/Deduktif hingga Transformer, LLM, dan RAG &mdash; Panduan Komprehensif Modern AI</p>
+<p class="section-subtitle">${t('Dari Fondasi Induktif/Deduktif hingga Transformer, LLM, dan RAG &mdash; Panduan Komprehensif Modern AI', 'From Inductive/Deductive Foundations to Transformers, LLMs, and RAG &mdash; A Comprehensive Modern AI Guide')}</p>
 
 <!-- ==================== TABLE OF CONTENTS ==================== -->
 <div class="card animate-in">
-<h2>Peta Materi</h2>
+<h2>${t('Peta Materi', 'Table of Contents')}</h2>
 <div class="card-grid-3">
-    <div class="info-box"><strong>1.</strong> Induktif vs Deduktif &mdash; Fondasi Pembelajaran</div>
-    <div class="info-box"><strong>2.</strong> AI Agent &mdash; PEAS Framework &amp; 4 Area AI</div>
-    <div class="info-box"><strong>3.</strong> Machine Learning &mdash; Tom Mitchell &amp; Paradigma</div>
+    <div class="info-box"><strong>1.</strong> ${t('Induktif vs Deduktif &mdash; Fondasi Pembelajaran', 'Inductive vs Deductive &mdash; Learning Foundations')}</div>
+    <div class="info-box"><strong>2.</strong> ${t('AI Agent &mdash; PEAS Framework &amp; 4 Area AI', 'AI Agent &mdash; PEAS Framework &amp; 4 Areas of AI')}</div>
+    <div class="info-box"><strong>3.</strong> ${t('Machine Learning &mdash; Tom Mitchell &amp; Paradigma', 'Machine Learning &mdash; Tom Mitchell &amp; Paradigms')}</div>
     <div class="info-box"><strong>4.</strong> Probabilistic ML &mdash; Gaussian, Bayes, Naive Bayes</div>
     <div class="info-box"><strong>5.</strong> Supervised Learning &mdash; KNN, DT, SVM, Regression</div>
     <div class="info-box"><strong>6.</strong> Unsupervised Learning &mdash; K-Means, GMM, PCA</div>
@@ -22,51 +22,51 @@ sections['optimization-ml'] = () => `
 </div>
 
 <!-- ==================== SECTION 1: INDUCTIVE VS DEDUCTIVE ==================== -->
-<h2 class="section-title" style="font-size:1.6rem; margin-top:2rem;">1. Paradigma Pembelajaran: Induktif vs Deduktif</h2>
+<h2 class="section-title" style="font-size:1.6rem; margin-top:2rem;">${t('1. Paradigma Pembelajaran: Induktif vs Deduktif', '1. Learning Paradigms: Inductive vs Deductive')}</h2>
 
 <div class="card animate-in">
-<h3>Dua Cara Mesin "Belajar"</h3>
-<p>Sebelum membahas algoritma, penting memahami dua paradigma fundamental bagaimana sistem cerdas memperoleh pengetahuan dan membuat keputusan.</p>
+<h3>${t('Dua Cara Mesin "Belajar"', 'Two Ways Machines "Learn"')}</h3>
+<p>${t('Sebelum membahas algoritma, penting memahami dua paradigma fundamental bagaimana sistem cerdas memperoleh pengetahuan dan membuat keputusan.', 'Before discussing algorithms, it is important to understand two fundamental paradigms of how intelligent systems acquire knowledge and make decisions.')}</p>
 
 <div class="table-wrapper">
 <table>
     <thead>
         <tr>
-            <th>Aspek</th>
-            <th>Induktif (Inductive)</th>
-            <th>Deduktif (Deductive)</th>
+            <th>${t('Aspek', 'Aspect')}</th>
+            <th>${t('Induktif (Inductive)', 'Inductive')}</th>
+            <th>${t('Deduktif (Deductive)', 'Deductive')}</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td><strong>Arah</strong></td>
-            <td>Spesifik &rarr; Umum</td>
-            <td>Umum &rarr; Spesifik</td>
+            <td><strong>${t('Arah', 'Direction')}</strong></td>
+            <td>${t('Spesifik &rarr; Umum', 'Specific &rarr; General')}</td>
+            <td>${t('Umum &rarr; Spesifik', 'General &rarr; Specific')}</td>
         </tr>
         <tr>
-            <td><strong>Sumber</strong></td>
-            <td>Dataset contoh kasus nyata</td>
-            <td>Pengetahuan pakar, aturan logika</td>
+            <td><strong>${t('Sumber', 'Source')}</strong></td>
+            <td>${t('Dataset contoh kasus nyata', 'Dataset of real-world examples')}</td>
+            <td>${t('Pengetahuan pakar, aturan logika', 'Expert knowledge, logical rules')}</td>
         </tr>
         <tr>
-            <td><strong>Proses</strong></td>
-            <td>Menemukan pola dari data</td>
-            <td>Menerapkan aturan ke kasus baru</td>
+            <td><strong>${t('Proses', 'Process')}</strong></td>
+            <td>${t('Menemukan pola dari data', 'Discovering patterns from data')}</td>
+            <td>${t('Menerapkan aturan ke kasus baru', 'Applying rules to new cases')}</td>
         </tr>
         <tr>
             <td><strong>Output</strong></td>
-            <td>Model/pola yang dapat digeneralisasi</td>
-            <td>Kesimpulan logis dari premis</td>
+            <td>${t('Model/pola yang dapat digeneralisasi', 'Generalizable models/patterns')}</td>
+            <td>${t('Kesimpulan logis dari premis', 'Logical conclusions from premises')}</td>
         </tr>
         <tr>
-            <td><strong>Contoh</strong></td>
+            <td><strong>${t('Contoh', 'Example')}</strong></td>
             <td>Machine Learning, Deep Learning</td>
             <td>Expert Systems, Rule-based AI, Prolog</td>
         </tr>
         <tr>
-            <td><strong>Kelemahan</strong></td>
-            <td>Butuh banyak data, bisa overfit</td>
-            <td>Butuh pakar, sulit encode pengetahuan kompleks</td>
+            <td><strong>${t('Kelemahan', 'Weakness')}</strong></td>
+            <td>${t('Butuh banyak data, bisa overfit', 'Needs lots of data, can overfit')}</td>
+            <td>${t('Butuh pakar, sulit encode pengetahuan kompleks', 'Needs experts, hard to encode complex knowledge')}</td>
         </tr>
     </tbody>
 </table>
@@ -113,7 +113,7 @@ apply_rules(new_email) -&gt; "spam"/"ham"
 </div>
 
 <div class="info-box">
-    <strong>Mengapa ML (Induktif) mendominasi?</strong> Expert Systems memerlukan ribuan aturan yang dikodekan manual oleh pakar &mdash; sangat mahal dan tidak skalabel. Machine Learning secara otomatis <em>mengekstrak</em> aturan dari data. Namun untuk domain dengan aturan jelas (pajak, hukum), sistem deduktif masih sangat relevan.
+    <strong>${t('Mengapa ML (Induktif) mendominasi?', 'Why does ML (Inductive) dominate?')}</strong> ${t('Expert Systems memerlukan ribuan aturan yang dikodekan manual oleh pakar &mdash; sangat mahal dan tidak skalabel. Machine Learning secara otomatis <em>mengekstrak</em> aturan dari data. Namun untuk domain dengan aturan jelas (pajak, hukum), sistem deduktif masih sangat relevan.', 'Expert Systems require thousands of manually coded rules by experts &mdash; very expensive and not scalable. Machine Learning automatically <em>extracts</em> rules from data. However, for domains with clear rules (tax, law), deductive systems remain highly relevant.')}
 </div>
 </div>
 
@@ -121,8 +121,8 @@ apply_rules(new_email) -&gt; "spam"/"ham"
 <h2 class="section-title" style="font-size:1.6rem; margin-top:2rem;">2. AI Agent &mdash; Russell &amp; Norvig (Modern Approach)</h2>
 
 <div class="card animate-in">
-<h3>Apa itu AI Agent?</h3>
-<p>Buku <em>Artificial Intelligence: A Modern Approach</em> oleh Stuart Russell dan Peter Norvig mendefinisikan AI Agent sebagai entitas yang:</p>
+<h3>${t('Apa itu AI Agent?', 'What is an AI Agent?')}</h3>
+<p>${t('Buku <em>Artificial Intelligence: A Modern Approach</em> oleh Stuart Russell dan Peter Norvig mendefinisikan AI Agent sebagai entitas yang:', 'The book <em>Artificial Intelligence: A Modern Approach</em> by Stuart Russell and Peter Norvig defines an AI Agent as an entity that:')}</p>
 
 <div class="code-block">
 <span class="cm">// Definisi Agent</span>
@@ -143,36 +143,36 @@ Actuators: Pilihan langkah (move)</div>
 <table>
     <thead>
         <tr>
-            <th>Komponen</th>
-            <th>Keterangan</th>
-            <th>Contoh: Email Spam Filter</th>
-            <th>Contoh: Self-driving Car</th>
+            <th>${t('Komponen', 'Component')}</th>
+            <th>${t('Keterangan', 'Description')}</th>
+            <th>${t('Contoh: Email Spam Filter', 'Example: Email Spam Filter')}</th>
+            <th>${t('Contoh: Self-driving Car', 'Example: Self-driving Car')}</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td><strong>P</strong>erformance</td>
-            <td>Ukuran kesuksesan agent</td>
-            <td>Akurasi klasifikasi, F1-score</td>
-            <td>Keamanan, kecepatan, kenyamanan</td>
+            <td>${t('Ukuran kesuksesan agent', 'Agent success measure')}</td>
+            <td>${t('Akurasi klasifikasi, F1-score', 'Classification accuracy, F1-score')}</td>
+            <td>${t('Keamanan, kecepatan, kenyamanan', 'Safety, speed, comfort')}</td>
         </tr>
         <tr>
             <td><strong>E</strong>nvironment</td>
-            <td>Dunia tempat agent beroperasi</td>
-            <td>Inbox email pengguna</td>
-            <td>Jalan raya, lalu lintas</td>
+            <td>${t('Dunia tempat agent beroperasi', 'World where agent operates')}</td>
+            <td>${t('Inbox email pengguna', 'User email inbox')}</td>
+            <td>${t('Jalan raya, lalu lintas', 'Roads, traffic')}</td>
         </tr>
         <tr>
             <td><strong>A</strong>ctuators</td>
-            <td>Output / aksi agent</td>
-            <td>Tandai spam / ham / delete</td>
-            <td>Setir, gas, rem, lampu</td>
+            <td>${t('Output / aksi agent', 'Output / agent actions')}</td>
+            <td>${t('Tandai spam / ham / delete', 'Mark spam / ham / delete')}</td>
+            <td>${t('Setir, gas, rem, lampu', 'Steering, gas, brake, lights')}</td>
         </tr>
         <tr>
             <td><strong>S</strong>ensors</td>
-            <td>Input / persepsi agent</td>
-            <td>Isi email, pengirim, subject</td>
-            <td>Kamera, Lidar, GPS, radar</td>
+            <td>${t('Input / persepsi agent', 'Input / agent perception')}</td>
+            <td>${t('Isi email, pengirim, subject', 'Email content, sender, subject')}</td>
+            <td>${t('Kamera, Lidar, GPS, radar', 'Camera, Lidar, GPS, radar')}</td>
         </tr>
     </tbody>
 </table>
@@ -180,20 +180,20 @@ Actuators: Pilihan langkah (move)</div>
 </div>
 
 <div class="card animate-in">
-<h3>4 Tipe Agent</h3>
+<h3>${t('4 Tipe Agent', '4 Agent Types')}</h3>
 <div class="card-grid">
     <div class="card" style="background:var(--bg-tertiary);">
         <h4 style="color:var(--accent);">1. Simple Reflex Agent</h4>
-        <p>Bertindak berdasarkan <strong>kondisi saat ini</strong> saja. Tidak punya memori atau model dunia.</p>
+        <p>${t('Bertindak berdasarkan <strong>kondisi saat ini</strong> saja. Tidak punya memori atau model dunia.', 'Acts based on <strong>current condition</strong> only. Has no memory or world model.')}</p>
         <div class="code-block">
 <span class="cm">// Thermostat</span>
 IF temp &lt; 20 THEN heater = ON
 IF temp &gt; 25 THEN heater = OFF</div>
-        <div class="warn-box" style="font-size:0.85rem;">Terbatas: tidak bisa handle partial observability</div>
+        <div class="warn-box" style="font-size:0.85rem;">${t('Terbatas: tidak bisa handle partial observability', 'Limited: cannot handle partial observability')}</div>
     </div>
     <div class="card" style="background:var(--bg-tertiary);">
         <h4 style="color:var(--green);">2. Model-Based Agent</h4>
-        <p>Menyimpan <strong>state internal</strong> (model dunia). Bisa handle situasi yang tidak teramati langsung.</p>
+        <p>${t('Menyimpan <strong>state internal</strong> (model dunia). Bisa handle situasi yang tidak teramati langsung.', 'Maintains <strong>internal state</strong> (world model). Can handle situations not directly observable.')}</p>
         <div class="code-block">
 <span class="cm">// Robot vacuum dengan peta</span>
 state = {position, map, battery}
@@ -203,7 +203,7 @@ IF obstacle_ahead:
     </div>
     <div class="card" style="background:var(--bg-tertiary);">
         <h4 style="color:var(--yellow);">3. Goal-Based Agent</h4>
-        <p>Memiliki <strong>tujuan</strong> dan memilih aksi yang membawa ke tujuan. Butuh search/planning.</p>
+        <p>${t('Memiliki <strong>tujuan</strong> dan memilih aksi yang membawa ke tujuan. Butuh search/planning.', 'Has <strong>goals</strong> and selects actions that lead to the goal. Requires search/planning.')}</p>
         <div class="code-block">
 <span class="cm">// GPS Navigation</span>
 goal = {destination: "Bandara"}
@@ -212,7 +212,7 @@ execute(plan)</div>
     </div>
     <div class="card" style="background:var(--bg-tertiary);">
         <h4 style="color:var(--red);">4. Utility-Based Agent</h4>
-        <p>Memiliki <strong>fungsi utilitas</strong>, memaksimalkan kebahagiaan/kepuasan. Paling fleksibel.</p>
+        <p>${t('Memiliki <strong>fungsi utilitas</strong>, memaksimalkan kebahagiaan/kepuasan. Paling fleksibel.', 'Has a <strong>utility function</strong>, maximizes happiness/satisfaction. Most flexible.')}</p>
         <div class="code-block">
 <span class="cm">// Chess AI</span>
 utility(state) = material_score
@@ -224,39 +224,39 @@ action = argmax(utility(next_states))</div>
 </div>
 
 <div class="card animate-in">
-<h3>4 Area Utama AI (Russell &amp; Norvig)</h3>
+<h3>${t('4 Area Utama AI (Russell &amp; Norvig)', '4 Main Areas of AI (Russell &amp; Norvig)')}</h3>
 <div class="table-wrapper">
 <table>
     <thead>
         <tr>
             <th>Area</th>
-            <th>Pendekatan</th>
-            <th>Algoritma Kunci</th>
-            <th>Contoh Aplikasi</th>
+            <th>${t('Pendekatan', 'Approach')}</th>
+            <th>${t('Algoritma Kunci', 'Key Algorithms')}</th>
+            <th>${t('Contoh Aplikasi', 'Application Examples')}</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td><strong style="color:var(--accent);">Searching</strong></td>
-            <td>Eksplorasi ruang state</td>
+            <td>${t('Eksplorasi ruang state', 'State space exploration')}</td>
             <td>BFS, DFS, A*, IDA*, MCTS</td>
             <td>8-puzzle, Maze solver, Chess</td>
         </tr>
         <tr>
             <td><strong style="color:var(--green);">Planning</strong></td>
-            <td>Sekuensi aksi menuju goal</td>
+            <td>${t('Sekuensi aksi menuju goal', 'Action sequences toward goal')}</td>
             <td>STRIPS, PDDL, HTN</td>
             <td>Robot planning, Logistics</td>
         </tr>
         <tr>
             <td><strong style="color:var(--yellow);">Learning</strong></td>
-            <td>Induktif dari data</td>
+            <td>${t('Induktif dari data', 'Inductive from data')}</td>
             <td>Neural nets, Decision trees, SVM</td>
             <td>Klasifikasi, Prediksi, Recognition</td>
         </tr>
         <tr>
             <td><strong style="color:var(--red);">Reasoning</strong></td>
-            <td>Deduktif dari aturan</td>
+            <td>${t('Deduktif dari aturan', 'Deductive from rules')}</td>
             <td>Propositional logic, FOL, Inference</td>
             <td>Expert systems, Prolog, Knowledge graphs</td>
         </tr>
@@ -286,7 +286,7 @@ action = argmax(utility(next_states))</div>
 <h2 class="section-title" style="font-size:1.6rem; margin-top:2rem;">3. Machine Learning &mdash; Tom Mitchell</h2>
 
 <div class="card animate-in">
-<h3>Definisi Formal Tom Mitchell (1997)</h3>
+<h3>${t('Definisi Formal Tom Mitchell (1997)', 'Tom Mitchell Formal Definition (1997)')}</h3>
 <div class="info-box">
     <strong>"A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E."</strong>
     <br><br>
@@ -295,7 +295,7 @@ action = argmax(utility(next_states))</div>
 
 <div class="card-grid">
     <div class="card" style="background:var(--bg-tertiary);">
-        <h4>Contoh: Spam Filter</h4>
+        <h4>${t('Contoh: Spam Filter', 'Example: Spam Filter')}</h4>
         <div class="code-block">
 T (Task)        = Klasifikasi email spam/ham
 E (Experience)  = Dataset email berlabel
@@ -307,7 +307,7 @@ Setelah training pada 100.000 email:
   Akurasi: 98.7% &lt;-- meningkat!</div>
     </div>
     <div class="card" style="background:var(--bg-tertiary);">
-        <h4>Contoh: Image Recognition</h4>
+        <h4>${t('Contoh: Image Recognition', 'Example: Image Recognition')}</h4>
         <div class="code-block">
 T (Task)        = Kenali objek dalam foto
 E (Experience)  = ImageNet (14 juta foto berlabel)
@@ -321,13 +321,13 @@ ResNet (2015):   3.6% error (melampaui manusia!)</div>
 </div>
 
 <div class="card animate-in">
-<h3>Analitik vs Numerik</h3>
-<p>Analoginya seperti menghitung luas di bawah kurva (integral): ada cara analitik (formula langsung) dan cara numerik (aproksimasi).</p>
+<h3>${t('Analitik vs Numerik', 'Analytic vs Numeric')}</h3>
+<p>${t('Analoginya seperti menghitung luas di bawah kurva (integral): ada cara analitik (formula langsung) dan cara numerik (aproksimasi).', 'The analogy is like computing the area under a curve (integral): there is an analytic approach (direct formula) and a numeric approach (approximation).')}</p>
 
 <div class="card-grid">
     <div class="card" style="background:var(--bg-tertiary);">
-        <h4 style="color:var(--green);">Solusi Analitik (Closed-Form)</h4>
-        <p>Langsung hitung dengan rumus eksak. Seperti integral &int;x&sup2;dx = x&sup3;/3 + C.</p>
+        <h4 style="color:var(--green);">${t('Solusi Analitik (Closed-Form)', 'Analytic Solution (Closed-Form)')}</h4>
+        <p>${t('Langsung hitung dengan rumus eksak. Seperti integral &int;x&sup2;dx = x&sup3;/3 + C.', 'Compute directly with an exact formula. Like the integral &int;x&sup2;dx = x&sup3;/3 + C.')}</p>
         <div class="code-block">
 <span class="cm">// Linear Regression: Normal Equation</span>
 <span class="cm">// Minimize ||y - X&theta;||&sup2;</span>
@@ -337,11 +337,11 @@ ResNet (2015):   3.6% error (melampaui manusia!)</div>
 <span class="cm">// Keuntungan: satu langkah, exact</span>
 <span class="cm">// Kerugian: O(n&sup3;) untuk inverse matrix</span>
 <span class="cm">//           tidak skalabel untuk n besar</span></div>
-        <div class="info-box" style="font-size:0.85rem;">Gunakan analitik jika: fitur &lt; 10.000, data muat di memori</div>
+        <div class="info-box" style="font-size:0.85rem;">${t('Gunakan analitik jika: fitur &lt; 10.000, data muat di memori', 'Use analytic if: features &lt; 10,000, data fits in memory')}</div>
     </div>
     <div class="card" style="background:var(--bg-tertiary);">
-        <h4 style="color:var(--yellow);">Solusi Numerik (Iteratif)</h4>
-        <p>Aproksimasi bertahap. Seperti Riemann sum: bagi menjadi persegi kecil-kecil dan jumlahkan.</p>
+        <h4 style="color:var(--yellow);">${t('Solusi Numerik (Iteratif)', 'Numeric Solution (Iterative)')}</h4>
+        <p>${t('Aproksimasi bertahap. Seperti Riemann sum: bagi menjadi persegi kecil-kecil dan jumlahkan.', 'Gradual approximation. Like Riemann sum: divide into small rectangles and sum them up.')}</p>
         <div class="code-block">
 <span class="cm">// Gradient Descent</span>
 <span class="cm">// Iteratif mendekati minimum</span>
@@ -353,26 +353,26 @@ ResNet (2015):   3.6% error (melampaui manusia!)</div>
 <span class="cm">// Keuntungan: O(n) per iterasi, skalabel</span>
 <span class="cm">// Kerugian: perlu tuning learning rate</span>
 <span class="cm">//           bisa stuck di local min</span></div>
-        <div class="info-box" style="font-size:0.85rem;">Gunakan numerik jika: fitur &gt; 10.000, data besar (online learning)</div>
+        <div class="info-box" style="font-size:0.85rem;">${t('Gunakan numerik jika: fitur &gt; 10.000, data besar (online learning)', 'Use numeric if: features &gt; 10,000, large data (online learning)')}</div>
     </div>
 </div>
 
 <div class="anim-container">
-    <h4>Visualisasi: Riemann Sum (Analogi Analitik vs Numerik)</h4>
+    <h4>${t('Visualisasi: Riemann Sum (Analogi Analitik vs Numerik)', 'Visualization: Riemann Sum (Analytic vs Numeric Analogy)')}</h4>
     <canvas id="canvas-regression" width="700" height="300" style="width:100%;max-width:700px;border-radius:10px;"></canvas>
     <div class="anim-controls">
-        <button class="anim-btn" id="btn-regression-start">Mulai Animasi</button>
+        <button class="anim-btn" id="btn-regression-start">${t('Mulai Animasi', 'Start Animation')}</button>
         <button class="anim-btn" id="btn-regression-reset">Reset</button>
     </div>
 </div>
 </div>
 
 <div class="card animate-in">
-<h3>Deterministik vs Stokastik</h3>
+<h3>${t('Deterministik vs Stokastik', 'Deterministic vs Stochastic')}</h3>
 <div class="card-grid">
     <div class="card" style="background:var(--bg-tertiary);">
         <h4 style="color:var(--accent);">Deterministik</h4>
-        <p>Input sama &rarr; Output sama. Tidak ada randomness.</p>
+        <p>${t('Input sama &rarr; Output sama. Tidak ada randomness.', 'Same input &rarr; Same output. No randomness.')}</p>
         <div class="code-block">
 <span class="cm">// Decision Tree</span>
 predict(x=[2.5, 1.3]):
@@ -387,7 +387,7 @@ knn.predict([2.5, 1.3])
     </div>
     <div class="card" style="background:var(--bg-tertiary);">
         <h4 style="color:var(--red);">Stokastik</h4>
-        <p>Melibatkan randomness. Hasil bisa berbeda setiap run.</p>
+        <p>${t('Melibatkan randomness. Hasil bisa berbeda setiap run.', 'Involves randomness. Results can differ on each run.')}</p>
         <div class="code-block">
 <span class="cm">// SGD (Stochastic Gradient Descent)</span>
 <span class="cm">// Pilih mini-batch secara RANDOM</span>
@@ -403,7 +403,7 @@ dropout(x, p=0.5)
 </div>
 
 <div class="info-box">
-    <strong>ML umumnya Numerik + Stokastik:</strong> Deep learning menggunakan SGD (stokastik) untuk efisiensi komputasi pada dataset besar. Stokastisitas juga membantu <strong>escape dari local minima</strong> dan bertindak sebagai regularisasi implisit.
+    <strong>${t('ML umumnya Numerik + Stokastik:', 'ML is generally Numeric + Stochastic:')}</strong> ${t('Deep learning menggunakan SGD (stokastik) untuk efisiensi komputasi pada dataset besar. Stokastisitas juga membantu <strong>escape dari local minima</strong> dan bertindak sebagai regularisasi implisit.', 'Deep learning uses SGD (stochastic) for computational efficiency on large datasets. Stochasticity also helps <strong>escape from local minima</strong> and acts as implicit regularization.')}
 </div>
 </div>
 
@@ -411,8 +411,8 @@ dropout(x, p=0.5)
 <h2 class="section-title" style="font-size:1.6rem; margin-top:2rem;">4. Probabilistic Machine Learning</h2>
 
 <div class="card animate-in">
-<h3>Distribusi Gaussian (Normal)</h3>
-<p>Distribusi paling penting dalam statistik dan ML. Muncul di mana-mana karena <strong>Central Limit Theorem</strong>: jumlah banyak variabel random independen mendekati distribusi normal.</p>
+<h3>${t('Distribusi Gaussian (Normal)', 'Gaussian (Normal) Distribution')}</h3>
+<p>${t('Distribusi paling penting dalam statistik dan ML. Muncul di mana-mana karena <strong>Central Limit Theorem</strong>: jumlah banyak variabel random independen mendekati distribusi normal.', 'The most important distribution in statistics and ML. Appears everywhere due to the <strong>Central Limit Theorem</strong>: the sum of many independent random variables approaches the normal distribution.')}</p>
 
 <div class="code-block">
 <span class="cm">// Probability Density Function (PDF) Gaussian</span>
@@ -429,10 +429,10 @@ P(&mu; - 2&sigma; &lt; X &lt; &mu; + 2&sigma;) = 95.45%   (2 sigma)
 P(&mu; - 3&sigma; &lt; X &lt; &mu; + 3&sigma;) = 99.73%   (3 sigma)</div>
 
 <div class="anim-container">
-    <h4>Animasi Bell Curve Gaussian</h4>
+    <h4>${t('Animasi Bell Curve Gaussian', 'Gaussian Bell Curve Animation')}</h4>
     <canvas id="canvas-gaussian" width="700" height="300" style="width:100%;max-width:700px;border-radius:10px;"></canvas>
     <div class="anim-controls">
-        <button class="anim-btn" id="btn-gaussian-start">Animasi</button>
+        <button class="anim-btn" id="btn-gaussian-start">${t('Animasi', 'Animate')}</button>
         <button class="anim-btn" id="btn-gaussian-reset">Reset</button>
         <span style="color:var(--text2);margin-left:12px;font-size:0.9rem;">
             &mu;: <input type="range" id="slider-mu" min="-3" max="3" step="0.1" value="0" style="width:80px;vertical-align:middle;">
@@ -443,8 +443,8 @@ P(&mu; - 3&sigma; &lt; X &lt; &mu; + 3&sigma;) = 99.73%   (3 sigma)</div>
 </div>
 
 <div class="card animate-in">
-<h3>Probabilitas Bayesian</h3>
-<p>Thomas Bayes (1763) memberikan framework untuk memperbarui keyakinan berdasarkan bukti baru. Ini adalah inti dari banyak algoritma ML.</p>
+<h3>${t('Probabilitas Bayesian', 'Bayesian Probability')}</h3>
+<p>${t('Thomas Bayes (1763) memberikan framework untuk memperbarui keyakinan berdasarkan bukti baru. Ini adalah inti dari banyak algoritma ML.', 'Thomas Bayes (1763) provided a framework for updating beliefs based on new evidence. This is the core of many ML algorithms.')}</p>
 
 <div class="code-block">
 <span class="cm">// Bayes Theorem</span>
@@ -470,7 +470,7 @@ P(sakit|+) = (0.99 &times; 0.001) / ((0.99&times;0.001) + (0.05&times;0.999))
 
 <div class="card animate-in">
 <h3>Naive Bayes Classifier</h3>
-<p>Aplikasi Bayes Theorem untuk klasifikasi teks. "Naive" karena mengasumsikan <strong>conditional independence</strong> antar fitur.</p>
+<p>${t('Aplikasi Bayes Theorem untuk klasifikasi teks. "Naive" karena mengasumsikan <strong>conditional independence</strong> antar fitur.', 'Application of Bayes Theorem for text classification. "Naive" because it assumes <strong>conditional independence</strong> between features.')}</p>
 
 <div class="code-block">
 <span class="cm">// Asumsi Naive Bayes:</span>
@@ -501,20 +501,20 @@ score_ham  = log(0.6) + log(0.01) + log(0.02) + log(0.3) + log(0.6)
 
 <div class="card-grid">
     <div class="info-box">
-        <strong>Keunggulan Naive Bayes:</strong>
+        <strong>${t('Keunggulan Naive Bayes:', 'Naive Bayes Advantages:')}</strong>
         <ul>
-            <li>Training sangat cepat O(n&times;d)</li>
-            <li>Bekerja baik untuk text classification</li>
-            <li>Robust terhadap fitur yang tidak relevan</li>
-            <li>Butuh sedikit data training</li>
+            <li>${t('Training sangat cepat O(n&times;d)', 'Very fast training O(n&times;d)')}</li>
+            <li>${t('Bekerja baik untuk text classification', 'Works well for text classification')}</li>
+            <li>${t('Robust terhadap fitur yang tidak relevan', 'Robust against irrelevant features')}</li>
+            <li>${t('Butuh sedikit data training', 'Requires little training data')}</li>
         </ul>
     </div>
     <div class="warn-box">
-        <strong>Kelemahan Naive Bayes:</strong>
+        <strong>${t('Kelemahan Naive Bayes:', 'Naive Bayes Weaknesses:')}</strong>
         <ul>
-            <li>Asumsi independence seringkali tidak realistis</li>
-            <li>Estimasi probabilitas bisa tidak akurat</li>
-            <li>Zero probability problem (solusi: Laplace smoothing)</li>
+            <li>${t('Asumsi independence seringkali tidak realistis', 'Independence assumption is often unrealistic')}</li>
+            <li>${t('Estimasi probabilitas bisa tidak akurat', 'Probability estimates can be inaccurate')}</li>
+            <li>${t('Zero probability problem (solusi: Laplace smoothing)', 'Zero probability problem (solution: Laplace smoothing)')}</li>
         </ul>
     </div>
 </div>
@@ -522,7 +522,7 @@ score_ham  = log(0.6) + log(0.01) + log(0.02) + log(0.3) + log(0.6)
 
 <div class="card animate-in">
 <h3>Bayesian Networks (Probabilistic Graphical Models)</h3>
-<p>Graf berarah asiklik (DAG) di mana node = variabel random, edge = ketergantungan conditional. Merepresentasikan distribusi joint probability secara compact.</p>
+<p>${t('Graf berarah asiklik (DAG) di mana node = variabel random, edge = ketergantungan conditional. Merepresentasikan distribusi joint probability secara compact.', 'Directed acyclic graph (DAG) where node = random variable, edge = conditional dependency. Represents the joint probability distribution compactly.')}</p>
 
 <div class="code-block">
 <span class="cm">// Contoh: Wet Grass Network</span>
@@ -547,7 +547,7 @@ P(WetGrass=T | Rain=F, Sprinkler=F) = 0.0
 <span class="cm">// Gunakan Variable Elimination atau Belief Propagation</span></div>
 
 <div class="info-box">
-    <strong>Aplikasi Bayesian Networks:</strong> Diagnosis medis (menyimpulkan penyakit dari gejala), spam filter, sistem rekomendasi, analisis risiko keuangan, dan Natural Language Processing.
+    <strong>${t('Aplikasi Bayesian Networks:', 'Bayesian Networks Applications:')}</strong> ${t('Diagnosis medis (menyimpulkan penyakit dari gejala), spam filter, sistem rekomendasi, analisis risiko keuangan, dan Natural Language Processing.', 'Medical diagnosis (inferring diseases from symptoms), spam filter, recommendation systems, financial risk analysis, and Natural Language Processing.')}
 </div>
 </div>
 
@@ -555,7 +555,7 @@ P(WetGrass=T | Rain=F, Sprinkler=F) = 0.0
 <h2 class="section-title" style="font-size:1.6rem; margin-top:2rem;">5. Supervised Learning</h2>
 
 <div class="card animate-in">
-<p>Supervised Learning belajar dari <strong>pasangan (input, label)</strong>. Tujuan: pelajari fungsi f sehingga f(x) &approx; y untuk data baru.</p>
+<p>${t('Supervised Learning belajar dari <strong>pasangan (input, label)</strong>. Tujuan: pelajari fungsi f sehingga f(x) &approx; y untuk data baru.', 'Supervised Learning learns from <strong>(input, label) pairs</strong>. Goal: learn function f such that f(x) &approx; y for new data.')}</p>
 
 <div class="tabs" style="margin-bottom:0.5rem;">
     <button class="tab-btn active" data-tab="sl-knn">KNN</button>
@@ -568,16 +568,16 @@ P(WetGrass=T | Rain=F, Sprinkler=F) = 0.0
 
 <div data-tab-content="sl-knn" class="tab-content active">
 <h3>K-Nearest Neighbors (KNN)</h3>
-<p>Algoritma paling sederhana: <strong>"Kamu seperti tetanggamu"</strong>. Untuk mengklasifikasi point baru, lihat K tetangga terdekat dan lakukan voting.</p>
+<p>${t('Algoritma paling sederhana: <strong>"Kamu seperti tetanggamu"</strong>. Untuk mengklasifikasi point baru, lihat K tetangga terdekat dan lakukan voting.', 'The simplest algorithm: <strong>"You are like your neighbors"</strong>. To classify a new point, look at K nearest neighbors and perform voting.')}</p>
 
 <div class="card-grid">
     <div>
-        <h4>Algoritma KNN</h4>
+        <h4>${t('Algoritma KNN', 'KNN Algorithm')}</h4>
         <div class="step-list">
-            <div class="step-item"><div class="step-num">1</div><div class="step-text">Hitung jarak antara query point dan SEMUA training points</div></div>
-            <div class="step-item"><div class="step-num">2</div><div class="step-text">Urutkan berdasarkan jarak (ascending)</div></div>
-            <div class="step-item"><div class="step-num">3</div><div class="step-text">Ambil K titik terdekat</div></div>
-            <div class="step-item"><div class="step-num">4</div><div class="step-text">Voting: kelas terbanyak = prediksi (untuk regresi: rata-rata)</div></div>
+            <div class="step-item"><div class="step-num">1</div><div class="step-text">${t('Hitung jarak antara query point dan SEMUA training points', 'Compute distance between query point and ALL training points')}</div></div>
+            <div class="step-item"><div class="step-num">2</div><div class="step-text">${t('Urutkan berdasarkan jarak (ascending)', 'Sort by distance (ascending)')}</div></div>
+            <div class="step-item"><div class="step-num">3</div><div class="step-text">${t('Ambil K titik terdekat', 'Take K nearest points')}</div></div>
+            <div class="step-item"><div class="step-num">4</div><div class="step-text">${t('Voting: kelas terbanyak = prediksi (untuk regresi: rata-rata)', 'Voting: majority class = prediction (for regression: average)')}</div></div>
         </div>
 
         <h4>Distance Metrics</h4>
@@ -593,7 +593,7 @@ d(p,q) = (&sum;_i |p_i - q_i|^r)^(1/r)
 <span class="cm">// r=1: Manhattan, r=2: Euclidean</span></div>
     </div>
     <div>
-        <h4>Implementasi KNN di Go</h4>
+        <h4>${t('Implementasi KNN di Go', 'KNN Implementation in Go')}</h4>
         <div class="code-block">
 <span class="kw">package</span> main
 
@@ -646,25 +646,25 @@ d(p,q) = (&sum;_i |p_i - q_i|^r)^(1/r)
 </div>
 
 <div class="anim-container">
-    <h4>Visualisasi KNN 2D</h4>
+    <h4>${t('Visualisasi KNN 2D', 'KNN 2D Visualization')}</h4>
     <canvas id="canvas-knn" width="700" height="350" style="width:100%;max-width:700px;border-radius:10px;"></canvas>
     <div class="anim-controls">
-        <button class="anim-btn" id="btn-knn-start">Tambah Query Point</button>
+        <button class="anim-btn" id="btn-knn-start">${t('Tambah Query Point', 'Add Query Point')}</button>
         <button class="anim-btn" id="btn-knn-reset">Reset</button>
         <span style="color:var(--text2);margin-left:12px;font-size:0.9rem;">K = <input type="range" id="slider-k" min="1" max="7" step="2" value="3" style="width:70px;vertical-align:middle;"> <span id="k-val">3</span></span>
     </div>
 </div>
 
-<div class="warn-box"><strong>Kelemahan KNN:</strong> O(n) untuk setiap prediksi. Tidak skalabel untuk data besar. Sensitif terhadap skala fitur (perlu normalisasi). Curse of dimensionality: jarak kehilangan makna di dimensi tinggi.</div>
+<div class="warn-box"><strong>${t('Kelemahan KNN:', 'KNN Weaknesses:')}</strong> ${t('O(n) untuk setiap prediksi. Tidak skalabel untuk data besar. Sensitif terhadap skala fitur (perlu normalisasi). Curse of dimensionality: jarak kehilangan makna di dimensi tinggi.', 'O(n) for every prediction. Not scalable for large data. Sensitive to feature scaling (needs normalization). Curse of dimensionality: distance loses meaning in high dimensions.')}</div>
 </div>
 
 <div data-tab-content="sl-dt" class="tab-content">
 <h3>Decision Trees</h3>
-<p>Model yang membagi data secara rekursif berdasarkan fitur. Mudah diinterpretasi (explainable AI).</p>
+<p>${t('Model yang membagi data secara rekursif berdasarkan fitur. Mudah diinterpretasi (explainable AI).', 'A model that recursively splits data based on features. Easy to interpret (explainable AI).')}</p>
 
 <div class="card-grid">
     <div>
-        <h4>Konsep Kunci</h4>
+        <h4>${t('Konsep Kunci', 'Key Concepts')}</h4>
         <div class="code-block">
 <span class="cm">// Entropy (ukuran ketidakpastian)</span>
 H(S) = -&sum;_c p_c &times; log2(p_c)
@@ -684,14 +684,14 @@ Gini(S) = 1 - &sum;_c p_c&sup2;
 GR(S, A) = IG(S, A) / H_A(S)
 <span class="cm">// H_A = split information entropy</span></div>
 
-        <h4>Perbandingan: ID3 vs C4.5 vs CART vs Random Forest</h4>
+        <h4>${t('Perbandingan: ID3 vs C4.5 vs CART vs Random Forest', 'Comparison: ID3 vs C4.5 vs CART vs Random Forest')}</h4>
         <div class="table-wrapper">
         <table>
-            <thead><tr><th>Algoritma</th><th>Kriteria Split</th><th>Fitur</th></tr></thead>
+            <thead><tr><th>${t('Algoritma', 'Algorithm')}</th><th>${t('Kriteria Split', 'Split Criteria')}</th><th>${t('Fitur', 'Features')}</th></tr></thead>
             <tbody>
-                <tr><td>ID3</td><td>Information Gain</td><td>Kategorik saja</td></tr>
-                <tr><td>C4.5</td><td>Gain Ratio</td><td>Kategorik + kontinu</td></tr>
-                <tr><td>CART</td><td>Gini Impurity</td><td>Kategorik + kontinu, binary split</td></tr>
+                <tr><td>ID3</td><td>Information Gain</td><td>${t('Kategorik saja', 'Categorical only')}</td></tr>
+                <tr><td>C4.5</td><td>Gain Ratio</td><td>${t('Kategorik + kontinu', 'Categorical + continuous')}</td></tr>
+                <tr><td>CART</td><td>Gini Impurity</td><td>${t('Kategorik + kontinu, binary split', 'Categorical + continuous, binary split')}</td></tr>
                 <tr><td>Random Forest</td><td>Gini/IG (bagging)</td><td>Ensemble of trees</td></tr>
             </tbody>
         </table>

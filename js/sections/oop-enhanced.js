@@ -3,8 +3,8 @@
 // Covers: Go, Java, JavaScript/TypeScript (Next.js)
 
 sections.oop = () => `
-<h1 class="section-title animate-in">OOP & SOLID Principles</h1>
-<p class="section-subtitle animate-in">Object-Oriented Programming & SOLID dalam Tiga Bahasa: Go, Java, dan JavaScript/TypeScript (Next.js)</p>
+<h1 class="section-title animate-in">${t('OOP & Prinsip SOLID', 'OOP & SOLID Principles')}</h1>
+<p class="section-subtitle animate-in">${t('Object-Oriented Programming & SOLID dalam Tiga Bahasa: Go, Java, dan JavaScript/TypeScript (Next.js)', 'Object-Oriented Programming & SOLID in Three Languages: Go, Java, and JavaScript/TypeScript (Next.js)')}</p>
 
 <!-- ==================== LANGUAGE COMPARISON CARDS ==================== -->
 <div class="comparison-grid animate-in" style="margin-bottom:2rem">
@@ -13,36 +13,36 @@ sections.oop = () => `
             <span class="lang-icon">🔷</span>
             <span class="lang-name">Go</span>
         </div>
-        <p style="padding:0.8rem;font-size:0.85rem">Tidak memiliki class/inheritance tradisional. Menggunakan <strong>struct + interface implisit + komposisi</strong>. Filosofi: "composition over inheritance".</p>
+        <p style="padding:0.8rem;font-size:0.85rem">${t('Tidak memiliki class/inheritance tradisional. Menggunakan <strong>struct + interface implisit + komposisi</strong>. Filosofi: \"composition over inheritance\".', 'No traditional class/inheritance. Uses <strong>struct + implicit interface + composition</strong>. Philosophy: \"composition over inheritance\".')}</p>
     </div>
     <div class="lang-card">
         <div class="lang-header" style="background:linear-gradient(135deg,#f89820,#e76f00)">
             <span class="lang-icon">☕</span>
             <span class="lang-name">Java</span>
         </div>
-        <p style="padding:0.8rem;font-size:0.85rem">OOP klasik dengan <strong>class, extends, implements, abstract</strong>. Semua adalah object (kecuali primitif). Mendukung penuh 4 pilar OOP.</p>
+        <p style="padding:0.8rem;font-size:0.85rem">${t('OOP klasik dengan <strong>class, extends, implements, abstract</strong>. Semua adalah object (kecuali primitif). Mendukung penuh 4 pilar OOP.', 'Classic OOP with <strong>class, extends, implements, abstract</strong>. Everything is an object (except primitives). Fully supports all 4 OOP pillars.')}</p>
     </div>
     <div class="lang-card">
         <div class="lang-header" style="background:linear-gradient(135deg,#3178c6,#235a97)">
             <span class="lang-icon">🟦</span>
             <span class="lang-name">JS / TypeScript</span>
         </div>
-        <p style="padding:0.8rem;font-size:0.85rem">Prototype-based OOP + class syntax (ES6). TypeScript menambahkan <strong>access modifiers, interface, abstract class</strong>. Digunakan dalam konteks Next.js.</p>
+        <p style="padding:0.8rem;font-size:0.85rem">${t('Prototype-based OOP + class syntax (ES6). TypeScript menambahkan <strong>access modifiers, interface, abstract class</strong>. Digunakan dalam konteks Next.js.', 'Prototype-based OOP + class syntax (ES6). TypeScript adds <strong>access modifiers, interface, abstract class</strong>. Used in the Next.js context.')}</p>
     </div>
 </div>
 
 <!-- =====================================================================
      BAGIAN 1: 4 PILAR OOP
      ===================================================================== -->
-<h2 class="animate-in">1. Empat Pilar OOP</h2>
+<h2 class="animate-in">${t('1. Empat Pilar OOP', '1. Four Pillars of OOP')}</h2>
 
 <!-- ==================== 1A. ENCAPSULATION ==================== -->
 <div class="card animate-in">
-    <h3 style="color:var(--accent)"><span class="badge-blue">Pilar 1</span> Encapsulation (Enkapsulasi)</h3>
-    <p>Enkapsulasi adalah konsep <strong>menyembunyikan data internal</strong> dari dunia luar dan hanya menyediakan akses melalui method yang terkontrol. Tujuannya melindungi integritas data dan mengurangi ketergantungan antar komponen.</p>
+    <h3 style="color:var(--accent)"><span class="badge-blue">${t('Pilar 1', 'Pillar 1')}</span> Encapsulation (${t('Enkapsulasi', 'Encapsulation')})</h3>
+    <p>${t('Enkapsulasi adalah konsep <strong>menyembunyikan data internal</strong> dari dunia luar dan hanya menyediakan akses melalui method yang terkontrol. Tujuannya melindungi integritas data dan mengurangi ketergantungan antar komponen.', 'Encapsulation is the concept of <strong>hiding internal data</strong> from the outside world and only providing access through controlled methods. Its purpose is to protect data integrity and reduce coupling between components.')}</p>
 
     <div class="info-box">
-        <strong>Prinsip Utama:</strong> Data internal (state) harus di-private, akses hanya melalui getter/setter atau method publik yang terdefinisi. Ini mencegah modifikasi tidak sah dan memastikan validasi data.
+        <strong>${t('Prinsip Utama:', 'Key Principle:')}</strong> ${t('Data internal (state) harus di-private, akses hanya melalui getter/setter atau method publik yang terdefinisi. Ini mencegah modifikasi tidak sah dan memastikan validasi data.', 'Internal data (state) should be private, accessed only through defined getter/setter or public methods. This prevents unauthorized modifications and ensures data validation.')}
     </div>
 
     <div class="tabs">
@@ -52,7 +52,7 @@ sections.oop = () => `
     </div>
 
     <div data-tab-content="enc-java" class="tab-content active">
-        <p><strong>Java</strong> menggunakan access modifier <code>private</code>, <code>protected</code>, <code>public</code>:</p>
+        <p><strong>Java</strong> ${t('menggunakan access modifier', 'uses access modifiers')} <code>private</code>, <code>protected</code>, <code>public</code>:</p>
         <div class="code-block"><span class="kw">public class</span> <span class="type">BankAccount</span> {
     <span class="kw">private</span> <span class="type">String</span> accountId;      <span class="cm">// hanya bisa diakses dari dalam class</span>
     <span class="kw">private</span> <span class="type">double</span> balance;
@@ -87,7 +87,7 @@ sections.oop = () => `
     </div>
 
     <div data-tab-content="enc-go" class="tab-content">
-        <p><strong>Go</strong> menggunakan huruf besar (exported) vs huruf kecil (unexported) untuk enkapsulasi:</p>
+        <p><strong>Go</strong> ${t('menggunakan huruf besar (exported) vs huruf kecil (unexported) untuk enkapsulasi:', 'uses uppercase (exported) vs lowercase (unexported) for encapsulation:')} </p>
         <div class="code-block"><span class="kw">package</span> bank
 
 <span class="cm">// BankAccount - huruf besar = exported (publik)</span>
@@ -130,7 +130,7 @@ sections.oop = () => `
     </div>
 
     <div data-tab-content="enc-ts" class="tab-content">
-        <p><strong>TypeScript</strong> dengan access modifier + JavaScript private fields (#):</p>
+        <p><strong>TypeScript</strong> ${t('dengan access modifier + JavaScript private fields (#):', 'with access modifiers + JavaScript private fields (#):')} </p>
         <div class="code-block"><span class="cm">// TypeScript (Next.js context)</span>
 <span class="kw">class</span> <span class="type">BankAccount</span> {
     <span class="kw">private</span> accountId: <span class="type">string</span>;
@@ -171,11 +171,11 @@ sections.oop = () => `
 
 <!-- ==================== 1B. ABSTRACTION ==================== -->
 <div class="card animate-in">
-    <h3 style="color:var(--green)"><span class="badge-green">Pilar 2</span> Abstraction (Abstraksi)</h3>
-    <p>Abstraksi berarti <strong>menyembunyikan kompleksitas implementasi</strong> dan hanya menampilkan fungsionalitas esensial. Pengguna tidak perlu tahu bagaimana mesin bekerja, cukup tahu cara menggunakannya.</p>
+    <h3 style="color:var(--green)"><span class="badge-green">${t('Pilar 2', 'Pillar 2')}</span> Abstraction (${t('Abstraksi', 'Abstraction')})</h3>
+    <p>${t('Abstraksi berarti <strong>menyembunyikan kompleksitas implementasi</strong> dan hanya menampilkan fungsionalitas esensial. Pengguna tidak perlu tahu bagaimana mesin bekerja, cukup tahu cara menggunakannya.', 'Abstraction means <strong>hiding implementation complexity</strong> and only exposing essential functionality. Users don\'t need to know how the engine works, just how to use it.')}</p>
 
     <div class="info-box">
-        <strong>Analogi:</strong> Saat Anda mengendarai mobil, Anda cukup tahu menekan gas dan rem. Anda tidak perlu tahu cara kerja mesin pembakaran internal di baliknya.
+        <strong>${t('Analogi:', 'Analogy:')}</strong> ${t('Saat Anda mengendarai mobil, Anda cukup tahu menekan gas dan rem. Anda tidak perlu tahu cara kerja mesin pembakaran internal di baliknya.', 'When you drive a car, you only need to know how to press the gas and brake pedals. You don\'t need to know how the internal combustion engine works behind it.')}
     </div>
 
     <div class="tabs">
@@ -185,7 +185,7 @@ sections.oop = () => `
     </div>
 
     <div data-tab-content="abs-java" class="tab-content active">
-        <p><strong>Java</strong> - abstract class dan interface:</p>
+        <p><strong>Java</strong> - abstract class ${t('dan', 'and')} interface:</p>
         <div class="code-block"><span class="cm">// Abstract class - tidak bisa di-instantiate langsung</span>
 <span class="kw">public abstract class</span> <span class="type">PaymentGateway</span> {
     <span class="kw">protected</span> <span class="type">String</span> merchantId;
@@ -228,7 +228,7 @@ sections.oop = () => `
     </div>
 
     <div data-tab-content="abs-go" class="tab-content">
-        <p><strong>Go</strong> menggunakan <strong>interface implisit</strong> - tidak perlu keyword <code>implements</code>:</p>
+        <p><strong>Go</strong> ${t('menggunakan <strong>interface implisit</strong> - tidak perlu keyword', 'uses <strong>implicit interfaces</strong> - no need for the keyword')} <code>implements</code>:</p>
         <div class="code-block"><span class="cm">// Interface di Go - kontrak implisit</span>
 <span class="kw">type</span> <span class="type">PaymentGateway</span> <span class="kw">interface</span> {
     <span class="fn">ProcessPayment</span>(amount <span class="type">float64</span>) (*<span class="type">PaymentResult</span>, <span class="type">error</span>)
@@ -268,7 +268,7 @@ sections.oop = () => `
     </div>
 
     <div data-tab-content="abs-ts" class="tab-content">
-        <p><strong>TypeScript</strong> - abstract class dan interface:</p>
+        <p><strong>TypeScript</strong> - abstract class ${t('dan', 'and')} interface:</p>
         <div class="code-block"><span class="cm">// Abstract class di TypeScript</span>
 <span class="kw">abstract class</span> <span class="type">PaymentGateway</span> {
     <span class="kw">protected</span> merchantId: <span class="type">string</span>;
@@ -313,11 +313,11 @@ sections.oop = () => `
 
 <!-- ==================== 1C. INHERITANCE ==================== -->
 <div class="card animate-in">
-    <h3 style="color:var(--accent3)"><span class="badge-purple">Pilar 3</span> Inheritance (Pewarisan)</h3>
-    <p>Inheritance memungkinkan sebuah class <strong>mewarisi properti dan method</strong> dari class lain. Namun, Go <strong>tidak mendukung inheritance tradisional</strong> dan menggantinya dengan komposisi.</p>
+    <h3 style="color:var(--accent3)"><span class="badge-purple">${t('Pilar 3', 'Pillar 3')}</span> Inheritance (${t('Pewarisan', 'Inheritance')})</h3>
+    <p>${t('Inheritance memungkinkan sebuah class <strong>mewarisi properti dan method</strong> dari class lain. Namun, Go <strong>tidak mendukung inheritance tradisional</strong> dan menggantinya dengan komposisi.', 'Inheritance allows a class to <strong>inherit properties and methods</strong> from another class. However, Go <strong>does not support traditional inheritance</strong> and replaces it with composition.')}</p>
 
     <div class="warn-box">
-        <strong>Perhatian:</strong> Go TIDAK memiliki inheritance! Go menggunakan <strong>embedding (komposisi)</strong> yang secara konseptual berbeda. Ini adalah pilihan desain yang disengaja untuk menghindari masalah deep hierarchy dan diamond problem.
+        <strong>${t('Perhatian:', 'Warning:')}</strong> ${t('Go TIDAK memiliki inheritance! Go menggunakan <strong>embedding (komposisi)</strong> yang secara konseptual berbeda. Ini adalah pilihan desain yang disengaja untuk menghindari masalah deep hierarchy dan diamond problem.', 'Go does NOT have inheritance! Go uses <strong>embedding (composition)</strong> which is conceptually different. This is a deliberate design choice to avoid deep hierarchy and diamond problem issues.')}
     </div>
 
     <div class="tabs">
@@ -327,7 +327,7 @@ sections.oop = () => `
     </div>
 
     <div data-tab-content="inh-java" class="tab-content active">
-        <p><strong>Java</strong> - inheritance tradisional dengan <code>extends</code> dan <code>super()</code>:</p>
+        <p><strong>Java</strong> - ${t('inheritance tradisional dengan', 'traditional inheritance with')} <code>extends</code> ${t('dan', 'and')} <code>super()</code>:</p>
         <div class="code-block"><span class="kw">public class</span> <span class="type">Vehicle</span> {
     <span class="kw">protected</span> <span class="type">String</span> brand;
     <span class="kw">protected</span> <span class="type">int</span> year;
@@ -369,7 +369,7 @@ sections.oop = () => `
     </div>
 
     <div data-tab-content="inh-go" class="tab-content">
-        <p><strong>Go</strong> - <strong>TIDAK ADA inheritance!</strong> Menggunakan embedding (komposisi):</p>
+        <p><strong>Go</strong> - <strong>${t('TIDAK ADA inheritance!', 'NO inheritance!')}</strong> ${t('Menggunakan embedding (komposisi):', 'Uses embedding (composition):')} </p>
         <div class="code-block"><span class="cm">// Go menggunakan KOMPOSISI, bukan inheritance</span>
 <span class="kw">type</span> <span class="type">Vehicle</span> <span class="kw">struct</span> {
     Brand <span class="type">string</span>
@@ -407,7 +407,7 @@ sections.oop = () => `
     </div>
 
     <div data-tab-content="inh-ts" class="tab-content">
-        <p><strong>TypeScript</strong> - class inheritance mirip Java:</p>
+        <p><strong>TypeScript</strong> - ${t('class inheritance mirip Java:', 'class inheritance similar to Java:')} </p>
         <div class="code-block"><span class="kw">class</span> <span class="type">Vehicle</span> {
     <span class="kw">protected</span> brand: <span class="type">string</span>;
     <span class="kw">protected</span> year: <span class="type">number</span>;
@@ -450,11 +450,11 @@ sections.oop = () => `
 
 <!-- ==================== 1D. POLYMORPHISM ==================== -->
 <div class="card animate-in">
-    <h3 style="color:var(--red)"><span class="badge-red">Pilar 4</span> Polymorphism (Polimorfisme)</h3>
-    <p>Polimorfisme memungkinkan <strong>satu interface untuk berbagai bentuk implementasi</strong>. Objek yang berbeda dapat merespons pesan yang sama dengan cara yang berbeda.</p>
+    <h3 style="color:var(--red)"><span class="badge-red">${t('Pilar 4', 'Pillar 4')}</span> Polymorphism (${t('Polimorfisme', 'Polymorphism')})</h3>
+    <p>${t('Polimorfisme memungkinkan <strong>satu interface untuk berbagai bentuk implementasi</strong>. Objek yang berbeda dapat merespons pesan yang sama dengan cara yang berbeda.', 'Polymorphism allows <strong>one interface for multiple forms of implementation</strong>. Different objects can respond to the same message in different ways.')}</p>
 
     <div class="success-box">
-        <strong>Kekuatan Polimorfisme:</strong> Kode bisa bekerja dengan tipe abstrak tanpa mengetahui tipe konkrit. Ini membuat sistem mudah di-extend tanpa mengubah kode yang ada.
+        <strong>${t('Kekuatan Polimorfisme:', 'The Power of Polymorphism:')}</strong> ${t('Kode bisa bekerja dengan tipe abstrak tanpa mengetahui tipe konkrit. Ini membuat sistem mudah di-extend tanpa mengubah kode yang ada.', 'Code can work with abstract types without knowing the concrete type. This makes the system easy to extend without modifying existing code.')}
     </div>
 
     <div class="tabs">
@@ -499,7 +499,7 @@ sections.oop = () => `
     </div>
 
     <div data-tab-content="poly-go" class="tab-content">
-        <p><strong>Go</strong> - interface satisfaction (polimorfisme tanpa hierarki):</p>
+        <p><strong>Go</strong> - ${t('interface satisfaction (polimorfisme tanpa hierarki):', 'interface satisfaction (polymorphism without hierarchy):')} </p>
         <div class="code-block"><span class="kw">type</span> <span class="type">Shape</span> <span class="kw">interface</span> {
     <span class="fn">Area</span>() <span class="type">float64</span>
     <span class="fn">Describe</span>() <span class="type">string</span>
@@ -581,10 +581,10 @@ sections.oop = () => `
 <!-- =====================================================================
      BAGIAN 2: SOLID PRINCIPLES
      ===================================================================== -->
-<h2 class="animate-in">2. SOLID Principles</h2>
+<h2 class="animate-in">${t('2. Prinsip SOLID', '2. SOLID Principles')}</h2>
 
 <div class="info-box animate-in">
-    <strong>SOLID</strong> adalah lima prinsip desain OOP yang membantu membuat software yang mudah di-maintain, di-extend, dan di-test. Dikemukakan oleh Robert C. Martin (Uncle Bob).
+    <strong>SOLID</strong> ${t('adalah lima prinsip desain OOP yang membantu membuat software yang mudah di-maintain, di-extend, dan di-test. Dikemukakan oleh Robert C. Martin (Uncle Bob).', 'is a set of five OOP design principles that help create software that is easy to maintain, extend, and test. Introduced by Robert C. Martin (Uncle Bob).')}
 </div>
 
 <div class="flow-diagram animate-in" style="margin-bottom:1.5rem">
@@ -602,8 +602,8 @@ sections.oop = () => `
 <!-- ==================== 2A. SINGLE RESPONSIBILITY ==================== -->
 <div class="card animate-in">
     <h3 style="color:var(--accent)"><span class="badge-blue">S</span> Single Responsibility Principle (SRP)</h3>
-    <p><strong>"Setiap class/module harus memiliki satu dan hanya satu alasan untuk berubah."</strong></p>
-    <p>Sebuah class seharusnya hanya bertanggung jawab atas satu bagian fungsionalitas. Jika sebuah class melakukan banyak hal, perubahan pada satu fitur bisa merusak fitur lainnya.</p>
+    <p><strong>${t('"Setiap class/module harus memiliki satu dan hanya satu alasan untuk berubah."', '"Every class/module should have one, and only one, reason to change."')}</strong></p>
+    <p>${t('Sebuah class seharusnya hanya bertanggung jawab atas satu bagian fungsionalitas. Jika sebuah class melakukan banyak hal, perubahan pada satu fitur bisa merusak fitur lainnya.', 'A class should only be responsible for one part of the functionality. If a class does many things, changes to one feature could break other features.')}</p>
 
     <div class="tabs">
         <button class="tab-btn active" data-tab="srp-java">Java</button>
@@ -612,7 +612,7 @@ sections.oop = () => `
     </div>
 
     <div data-tab-content="srp-java" class="tab-content active">
-        <p><span class="badge-red">BURUK</span> Satu class menangani banyak tanggung jawab:</p>
+        <p><span class="badge-red">${t('BURUK', 'BAD')}</span> ${t('Satu class menangani banyak tanggung jawab:', 'One class handles many responsibilities:')}</p>
         <div class="code-block"><span class="cm">// BURUK - class melakukan terlalu banyak hal</span>
 <span class="kw">public class</span> <span class="type">UserService</span> {
     <span class="kw">public void</span> <span class="fn">createUser</span>(<span class="type">User</span> user) { <span class="cm">/* save ke DB */</span> }
@@ -620,7 +620,7 @@ sections.oop = () => `
     <span class="kw">public</span> <span class="type">String</span> <span class="fn">generateReport</span>() { <span class="cm">/* buat laporan */</span> }
     <span class="kw">public void</span> <span class="fn">logActivity</span>(<span class="type">String</span> msg) { <span class="cm">/* tulis log */</span> }
 }</div>
-        <p><span class="badge-green">BAIK</span> Setiap class satu tanggung jawab:</p>
+        <p><span class="badge-green">${t('BAIK', 'GOOD')}</span> Setiap class satu tanggung jawab:</p>
         <div class="code-block"><span class="cm">// BAIK - setiap class punya satu tanggung jawab</span>
 <span class="kw">public class</span> <span class="type">UserRepository</span> {
     <span class="kw">public void</span> <span class="fn">save</span>(<span class="type">User</span> user) { <span class="cm">/* simpan ke database */</span> }
@@ -641,7 +641,7 @@ sections.oop = () => `
     </div>
 
     <div data-tab-content="srp-go" class="tab-content">
-        <p><span class="badge-red">BURUK</span></p>
+        <p><span class="badge-red">${t('BURUK', 'BAD')}</span></p>
         <div class="code-block"><span class="cm">// BURUK - satu struct melakukan semuanya</span>
 <span class="kw">type</span> <span class="type">UserService</span> <span class="kw">struct</span> {
     db    *sql.<span class="type">DB</span>
@@ -650,7 +650,7 @@ sections.oop = () => `
 <span class="kw">func</span> (s *<span class="type">UserService</span>) <span class="fn">CreateUser</span>(u <span class="type">User</span>) <span class="type">error</span>       { <span class="cm">/* DB + email + log */</span> }
 <span class="kw">func</span> (s *<span class="type">UserService</span>) <span class="fn">SendEmail</span>(to, body <span class="type">string</span>) <span class="type">error</span> { <span class="cm">/* ... */</span> }
 <span class="kw">func</span> (s *<span class="type">UserService</span>) <span class="fn">GenerateReport</span>() <span class="type">string</span>       { <span class="cm">/* ... */</span> }</div>
-        <p><span class="badge-green">BAIK</span></p>
+        <p><span class="badge-green">${t('BAIK', 'GOOD')}</span></p>
         <div class="code-block"><span class="cm">// BAIK - setiap struct satu tanggung jawab</span>
 <span class="kw">type</span> <span class="type">UserRepository</span> <span class="kw">struct</span> { db *sql.<span class="type">DB</span> }
 <span class="kw">func</span> (r *<span class="type">UserRepository</span>) <span class="fn">Save</span>(u <span class="type">User</span>) <span class="type">error</span>     { <span class="cm">/* simpan */</span> }
@@ -667,14 +667,14 @@ sections.oop = () => `
     </div>
 
     <div data-tab-content="srp-ts" class="tab-content">
-        <p><span class="badge-red">BURUK</span></p>
+        <p><span class="badge-red">${t('BURUK', 'BAD')}</span></p>
         <div class="code-block"><span class="cm">// BURUK - satu class melakukan semuanya</span>
 <span class="kw">class</span> <span class="type">UserService</span> {
     <span class="kw">async</span> <span class="fn">createUser</span>(user: <span class="type">User</span>) { <span class="cm">/* save + email + log */</span> }
     <span class="kw">async</span> <span class="fn">sendEmail</span>(to: <span class="type">string</span>) { <span class="cm">/* ... */</span> }
     <span class="fn">generateReport</span>(): <span class="type">string</span> { <span class="cm">/* ... */</span> }
 }</div>
-        <p><span class="badge-green">BAIK</span> - Terpisah dan bisa di-inject di Next.js:</p>
+        <p><span class="badge-green">${t('BAIK', 'GOOD')}</span> - Terpisah dan bisa di-inject di Next.js:</p>
         <div class="code-block"><span class="cm">// BAIK - file terpisah, satu tanggung jawab</span>
 
 <span class="cm">// lib/repositories/userRepository.ts</span>
@@ -709,8 +709,8 @@ sections.oop = () => `
 <!-- ==================== 2B. OPEN/CLOSED ==================== -->
 <div class="card animate-in">
     <h3 style="color:var(--green)"><span class="badge-green">O</span> Open/Closed Principle (OCP)</h3>
-    <p><strong>"Software entities harus terbuka untuk ekstensi, tapi tertutup untuk modifikasi."</strong></p>
-    <p>Ketika ada requirement baru, kita seharusnya menambah kode baru (extend), bukan mengubah kode yang sudah ada dan berfungsi.</p>
+    <p><strong>${t('"Software entities harus terbuka untuk ekstensi, tapi tertutup untuk modifikasi."', '"Software entities should be open for extension, but closed for modification."')}</strong></p>
+    <p>${t('Ketika ada requirement baru, kita seharusnya menambah kode baru (extend), bukan mengubah kode yang sudah ada dan berfungsi.', 'When there are new requirements, we should add new code (extend), not modify existing working code.')}</p>
 
     <div class="tabs">
         <button class="tab-btn active" data-tab="ocp-java">Java</button>
@@ -719,7 +719,7 @@ sections.oop = () => `
     </div>
 
     <div data-tab-content="ocp-java" class="tab-content active">
-        <p><span class="badge-red">BURUK</span> - Harus modifikasi class setiap ada tipe baru:</p>
+        <p><span class="badge-red">${t('BURUK', 'BAD')}</span> - Harus modifikasi class setiap ada tipe baru:</p>
         <div class="code-block"><span class="cm">// BURUK - harus ubah method setiap ada diskon baru</span>
 <span class="kw">public</span> <span class="type">double</span> <span class="fn">calculateDiscount</span>(<span class="type">String</span> type, <span class="type">double</span> price) {
     <span class="kw">if</span> (type.<span class="fn">equals</span>(<span class="str">"regular"</span>)) <span class="kw">return</span> price * <span class="num">0.1</span>;
@@ -727,7 +727,7 @@ sections.oop = () => `
     <span class="cm">// Harus ubah kode ini untuk setiap tipe baru!</span>
     <span class="kw">return</span> <span class="num">0</span>;
 }</div>
-        <p><span class="badge-green">BAIK</span> - Extend tanpa modifikasi:</p>
+        <p><span class="badge-green">${t('BAIK', 'GOOD')}</span> - Extend tanpa modifikasi:</p>
         <div class="code-block"><span class="cm">// BAIK - interface memungkinkan ekstensi tanpa modifikasi</span>
 <span class="kw">public interface</span> <span class="type">DiscountStrategy</span> {
     <span class="type">double</span> <span class="fn">calculate</span>(<span class="type">double</span> price);
@@ -821,11 +821,11 @@ sections.oop = () => `
 <!-- ==================== 2C. LISKOV SUBSTITUTION ==================== -->
 <div class="card animate-in">
     <h3 style="color:var(--accent3)"><span class="badge-purple">L</span> Liskov Substitution Principle (LSP)</h3>
-    <p><strong>"Subtype harus bisa menggantikan base type tanpa merusak program."</strong></p>
-    <p>Jika class B adalah subclass dari A, maka B harus bisa digunakan di mana pun A digunakan tanpa mengubah perilaku yang diharapkan.</p>
+    <p><strong>${t('"Subtype harus bisa menggantikan base type tanpa merusak program."', '"Subtypes must be substitutable for their base types without breaking the program."')}</strong></p>
+    <p>${t('Jika class B adalah subclass dari A, maka B harus bisa digunakan di mana pun A digunakan tanpa mengubah perilaku yang diharapkan.', 'If class B is a subclass of A, then B must be usable wherever A is used without changing the expected behavior.')}</p>
 
     <div class="warn-box">
-        <strong>Contoh Pelanggaran Klasik:</strong> Class Penguin extends Bird. Bird punya method fly(). Tapi Penguin tidak bisa terbang. Ini melanggar LSP karena Penguin tidak bisa menggantikan Bird di konteks yang memerlukan fly().
+        <strong>${t('Contoh Pelanggaran Klasik:', 'Classic Violation Example:')}</strong> ${t('Class Penguin extends Bird. Bird punya method fly(). Tapi Penguin tidak bisa terbang. Ini melanggar LSP karena Penguin tidak bisa menggantikan Bird di konteks yang memerlukan fly().', 'Class Penguin extends Bird. Bird has a fly() method. But Penguin cannot fly. This violates LSP because Penguin cannot substitute Bird in contexts that require fly().')}
     </div>
 
     <div class="tabs">
@@ -835,7 +835,7 @@ sections.oop = () => `
     </div>
 
     <div data-tab-content="lsp-java" class="tab-content active">
-        <p><span class="badge-red">BURUK</span> - Square extends Rectangle melanggar LSP:</p>
+        <p><span class="badge-red">${t('BURUK', 'BAD')}</span> - Square extends Rectangle melanggar LSP:</p>
         <div class="code-block"><span class="cm">// BURUK - Square tidak bisa substitusi Rectangle</span>
 <span class="kw">public class</span> <span class="type">Rectangle</span> {
     <span class="kw">protected</span> <span class="type">int</span> width, height;
@@ -855,7 +855,7 @@ sections.oop = () => `
 <span class="cm">// Rectangle r = new Square();</span>
 <span class="cm">// r.setWidth(5); r.setHeight(3);</span>
 <span class="cm">// r.area() == 15? TIDAK! Hasilnya 9 karena Square override</span></div>
-        <p><span class="badge-green">BAIK</span> - Gunakan interface yang benar:</p>
+        <p><span class="badge-green">${t('BAIK', 'GOOD')}</span> - Gunakan interface yang benar:</p>
         <div class="code-block"><span class="cm">// BAIK - interface yang benar</span>
 <span class="kw">public interface</span> <span class="type">Shape</span> {
     <span class="type">int</span> <span class="fn">area</span>();
@@ -947,11 +947,11 @@ sections.oop = () => `
 <!-- ==================== 2D. INTERFACE SEGREGATION ==================== -->
 <div class="card animate-in">
     <h3 style="color:var(--orange)"><span class="badge-orange">I</span> Interface Segregation Principle (ISP)</h3>
-    <p><strong>"Client tidak boleh dipaksa bergantung pada interface yang tidak digunakannya."</strong></p>
-    <p>Lebih baik memiliki banyak interface kecil dan spesifik daripada satu interface besar yang "gemuk". Go secara natural sangat baik dalam hal ini karena konvensi interface kecil.</p>
+    <p><strong>${t('"Client tidak boleh dipaksa bergantung pada interface yang tidak digunakannya."', '"Clients should not be forced to depend on interfaces they do not use."')}</strong></p>
+    <p>${t('Lebih baik memiliki banyak interface kecil dan spesifik daripada satu interface besar yang "gemuk". Go secara natural sangat baik dalam hal ini karena konvensi interface kecil.', 'It is better to have many small, specific interfaces than one large "fat" interface. Go is naturally excellent at this due to its small interface convention.')}</p>
 
     <div class="success-box">
-        <strong>Go dan ISP:</strong> Go terkenal dengan interface kecil. <code>io.Reader</code> hanya punya satu method <code>Read()</code>. <code>io.Writer</code> hanya punya <code>Write()</code>. Ini adalah contoh sempurna ISP. Proverb Go: "The bigger the interface, the weaker the abstraction."
+        <strong>${t('Go dan ISP:', 'Go and ISP:')}</strong> ${t('Go terkenal dengan interface kecil. <code>io.Reader</code> hanya punya satu method <code>Read()</code>. <code>io.Writer</code> hanya punya <code>Write()</code>. Ini adalah contoh sempurna ISP. Proverb Go: "The bigger the interface, the weaker the abstraction."', 'Go is known for small interfaces. <code>io.Reader</code> has only one method <code>Read()</code>. <code>io.Writer</code> only has <code>Write()</code>. This is a perfect example of ISP. Go Proverb: "The bigger the interface, the weaker the abstraction."')}
     </div>
 
     <div class="tabs">
@@ -961,7 +961,7 @@ sections.oop = () => `
     </div>
 
     <div data-tab-content="isp-java" class="tab-content active">
-        <p><span class="badge-red">BURUK</span> - Satu interface gemuk:</p>
+        <p><span class="badge-red">${t('BURUK', 'BAD')}</span> - Satu interface gemuk:</p>
         <div class="code-block"><span class="cm">// BURUK - interface terlalu besar</span>
 <span class="kw">public interface</span> <span class="type">Worker</span> {
     <span class="type">void</span> <span class="fn">work</span>();
@@ -978,7 +978,7 @@ sections.oop = () => `
     <span class="kw">public void</span> <span class="fn">sleep</span>() { <span class="kw">throw new</span> <span class="type">UnsupportedOperationException</span>(); }
     <span class="cm">// ...</span>
 }</div>
-        <p><span class="badge-green">BAIK</span> - Interface kecil dan spesifik:</p>
+        <p><span class="badge-green">${t('BAIK', 'GOOD')}</span> - Interface kecil dan spesifik:</p>
         <div class="code-block"><span class="cm">// BAIK - interface kecil dan spesifik</span>
 <span class="kw">public interface</span> <span class="type">Workable</span>    { <span class="type">void</span> <span class="fn">work</span>(); }
 <span class="kw">public interface</span> <span class="type">Eatable</span>     { <span class="type">void</span> <span class="fn">eat</span>(); }
@@ -1075,8 +1075,8 @@ sections.oop = () => `
 <!-- ==================== 2E. DEPENDENCY INVERSION ==================== -->
 <div class="card animate-in">
     <h3 style="color:var(--red)"><span class="badge-red">D</span> Dependency Inversion Principle (DIP)</h3>
-    <p><strong>"High-level module tidak boleh bergantung pada low-level module. Keduanya harus bergantung pada abstraksi."</strong></p>
-    <p>Dependency Injection (DI) adalah pattern yang mengimplementasikan DIP. Daripada membuat dependensi di dalam class, kita menyuntikkannya dari luar.</p>
+    <p><strong>${t('"High-level module tidak boleh bergantung pada low-level module. Keduanya harus bergantung pada abstraksi."', '"High-level modules should not depend on low-level modules. Both should depend on abstractions."')}</strong></p>
+    <p>${t('Dependency Injection (DI) adalah pattern yang mengimplementasikan DIP. Daripada membuat dependensi di dalam class, kita menyuntikkannya dari luar.', 'Dependency Injection (DI) is a pattern that implements DIP. Instead of creating dependencies inside a class, we inject them from outside.')}</p>
 
     <div class="tabs">
         <button class="tab-btn active" data-tab="dip-java">Java</button>
@@ -1085,7 +1085,7 @@ sections.oop = () => `
     </div>
 
     <div data-tab-content="dip-java" class="tab-content active">
-        <p><span class="badge-red">BURUK</span> - Bergantung langsung pada class konkrit:</p>
+        <p><span class="badge-red">${t('BURUK', 'BAD')}</span> - Bergantung langsung pada class konkrit:</p>
         <div class="code-block"><span class="cm">// BURUK - high-level bergantung pada low-level konkrit</span>
 <span class="kw">public class</span> <span class="type">OrderService</span> {
     <span class="kw">private</span> <span class="type">MySQLDatabase</span> db = <span class="kw">new</span> <span class="type">MySQLDatabase</span>(); <span class="cm">// tightly coupled!</span>
@@ -1096,7 +1096,7 @@ sections.oop = () => `
         email.<span class="fn">send</span>(order.getCustomerEmail(), <span class="str">"Order dibuat"</span>);
     }
 }</div>
-        <p><span class="badge-green">BAIK</span> - Bergantung pada abstraksi (interface):</p>
+        <p><span class="badge-green">${t('BAIK', 'GOOD')}</span> - Bergantung pada abstraksi (interface):</p>
         <div class="code-block"><span class="cm">// BAIK - bergantung pada abstraksi</span>
 <span class="kw">public interface</span> <span class="type">OrderRepository</span> {
     <span class="type">void</span> <span class="fn">save</span>(<span class="type">Order</span> order);
@@ -1220,48 +1220,48 @@ sections.oop = () => `
 <!-- =====================================================================
      BAGIAN 3: TABEL PERBANDINGAN OOP
      ===================================================================== -->
-<h2 class="animate-in">3. Perbandingan OOP: Go vs Java vs JavaScript/TypeScript</h2>
+<h2 class="animate-in">${t('3. Perbandingan OOP: Go vs Java vs JavaScript/TypeScript', '3. OOP Comparison: Go vs Java vs JavaScript/TypeScript')}</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Bagaimana Tiga Bahasa Menangani OOP</h3>
-    <p>Setiap bahasa memiliki pendekatan yang berbeda terhadap OOP. Berikut perbandingan komprehensif:</p>
+    <h3 style="color:var(--accent)">${t('Bagaimana Tiga Bahasa Menangani OOP', 'How Three Languages Handle OOP')}</h3>
+    <p>${t('Setiap bahasa memiliki pendekatan yang berbeda terhadap OOP. Berikut perbandingan komprehensif:', 'Each language has a different approach to OOP. Here is a comprehensive comparison:')}</p>
 
     <div class="table-wrapper">
         <table>
             <tr>
-                <th>Fitur</th>
+                <th>${t('Fitur', 'Feature')}</th>
                 <th><span class="badge-blue">Go</span></th>
                 <th><span class="badge-orange">Java</span></th>
                 <th><span class="badge-purple">JS / TypeScript</span></th>
             </tr>
             <tr>
-                <td><strong>Definisi Objek</strong></td>
+                <td><strong>${t('Definisi Objek', 'Object Definition')}</strong></td>
                 <td><code>struct</code> (value type)</td>
                 <td><code>class</code> (reference type)</td>
                 <td><code>class</code> (syntax sugar atas prototype)</td>
             </tr>
             <tr>
                 <td><strong>Inheritance</strong></td>
-                <td>Tidak ada. Embedding (komposisi)</td>
+                <td>${t('Tidak ada. Embedding (komposisi)', 'None. Embedding (composition)')}</td>
                 <td><code>extends</code> (single inheritance)</td>
                 <td><code>extends</code> (prototype chain)</td>
             </tr>
             <tr>
                 <td><strong>Interface</strong></td>
-                <td>Implisit (duck typing statis)</td>
-                <td>Eksplisit (<code>implements</code>)</td>
-                <td>TS: eksplisit. JS: duck typing</td>
+                <td>${t('Implisit (duck typing statis)', 'Implicit (static duck typing)')}</td>
+                <td>${t('Eksplisit', 'Explicit')} (<code>implements</code>)</td>
+                <td>${t('TS: eksplisit. JS: duck typing', 'TS: explicit. JS: duck typing')}</td>
             </tr>
             <tr>
                 <td><strong>Access Modifier</strong></td>
-                <td>Huruf besar (exported) / kecil (unexported)</td>
+                <td>${t('Huruf besar (exported) / kecil (unexported)', 'Uppercase (exported) / lowercase (unexported)')}</td>
                 <td><code>public, private, protected, package-private</code></td>
                 <td>TS: <code>public, private, protected</code>. JS: <code>#field</code></td>
             </tr>
             <tr>
                 <td><strong>Constructor</strong></td>
-                <td>Function: <code>NewXxx()</code> (konvensi)</td>
-                <td>Method dengan nama class</td>
+                <td>Function: <code>NewXxx()</code> (${t('konvensi', 'convention')})</td>
+                <td>${t('Method dengan nama class', 'Method with class name')}</td>
                 <td><code>constructor()</code></td>
             </tr>
             <tr>
@@ -1273,20 +1273,20 @@ sections.oop = () => `
             <tr>
                 <td><strong>Multiple Inheritance</strong></td>
                 <td>Multiple embedding</td>
-                <td>Tidak (tapi multiple interface)</td>
-                <td>Tidak (tapi mixins pattern)</td>
+                <td>${t('Tidak (tapi multiple interface)', 'No (but multiple interfaces)')}</td>
+                <td>${t('Tidak (tapi mixins pattern)', 'No (but mixins pattern)')}</td>
             </tr>
             <tr>
                 <td><strong>Abstract Class</strong></td>
-                <td>Tidak ada (gunakan interface)</td>
+                <td>${t('Tidak ada (gunakan interface)', 'None (use interface)')}</td>
                 <td><code>abstract class</code></td>
                 <td>TS: <code>abstract class</code></td>
             </tr>
             <tr>
                 <td><strong>Generics</strong></td>
-                <td>Ya (sejak Go 1.18)</td>
-                <td>Ya (type erasure)</td>
-                <td>TS: Ya. JS: Tidak</td>
+                <td>${t('Ya (sejak Go 1.18)', 'Yes (since Go 1.18)')}</td>
+                <td>${t('Ya (type erasure)', 'Yes (type erasure)')}</td>
+                <td>${t('TS: Ya. JS: Tidak', 'TS: Yes. JS: No')}</td>
             </tr>
             <tr>
                 <td><strong>Enum</strong></td>
@@ -1296,12 +1296,12 @@ sections.oop = () => `
             </tr>
             <tr>
                 <td><strong>Null Safety</strong></td>
-                <td>Zero value (tidak ada null untuk struct)</td>
+                <td>${t('Zero value (tidak ada null untuk struct)', 'Zero value (no null for structs)')}</td>
                 <td>NullPointerException</td>
                 <td>TS: <code>strictNullChecks</code></td>
             </tr>
             <tr>
-                <td><strong>Filosofi</strong></td>
+                <td><strong>${t('Filosofi', 'Philosophy')}</strong></td>
                 <td>"Composition over inheritance"</td>
                 <td>"Everything is an object"</td>
                 <td>"Multi-paradigm + flexibility"</td>
@@ -1316,13 +1316,13 @@ sections.oop = () => `
 <h2 class="animate-in">4. Design Patterns</h2>
 
 <div class="info-box animate-in">
-    Design Patterns adalah solusi yang telah terbukti untuk masalah umum dalam desain software. Berikut tiga pattern yang paling sering digunakan, diimplementasikan di tiga bahasa.
+    ${t('Design Patterns adalah solusi yang telah terbukti untuk masalah umum dalam desain software. Berikut tiga pattern yang paling sering digunakan, diimplementasikan di tiga bahasa.', 'Design Patterns are proven solutions to common problems in software design. Here are three of the most commonly used patterns, implemented in three languages.')}
 </div>
 
 <!-- ==================== 4A. FACTORY PATTERN ==================== -->
 <div class="card animate-in">
     <h3 style="color:var(--accent)"><span class="badge-blue">Creational</span> Factory Pattern</h3>
-    <p>Factory Pattern menyediakan interface untuk membuat objek <strong>tanpa mengekspos logika pembuatan</strong> kepada client. Client hanya perlu tahu "mau buat apa", bukan "bagaimana membuatnya".</p>
+    <p>${t('Factory Pattern menyediakan interface untuk membuat objek <strong>tanpa mengekspos logika pembuatan</strong> kepada client. Client hanya perlu tahu "mau buat apa", bukan "bagaimana membuatnya".', 'Factory Pattern provides an interface for creating objects <strong>without exposing the creation logic</strong> to the client. The client only needs to know "what to create", not "how to create it".')}</p>
 
     <div class="flow-diagram">
         <div class="flow-node" style="background:rgba(56,189,248,0.15);border-color:var(--accent)">Client</div>
@@ -1448,7 +1448,7 @@ sections.oop = () => `
 <!-- ==================== 4B. STRATEGY PATTERN ==================== -->
 <div class="card animate-in">
     <h3 style="color:var(--green)"><span class="badge-green">Behavioral</span> Strategy Pattern</h3>
-    <p>Strategy Pattern mendefinisikan sekelompok algoritma, mengenkapsulasi masing-masing, dan membuatnya <strong>dapat dipertukarkan</strong>. Client bisa memilih strategi yang tepat saat runtime.</p>
+    <p>${t('Strategy Pattern mendefinisikan sekelompok algoritma, mengenkapsulasi masing-masing, dan membuatnya <strong>dapat dipertukarkan</strong>. Client bisa memilih strategi yang tepat saat runtime.', 'Strategy Pattern defines a family of algorithms, encapsulates each one, and makes them <strong>interchangeable</strong>. The client can choose the appropriate strategy at runtime.')}</p>
 
     <div class="tabs">
         <button class="tab-btn active" data-tab="str-java">Java</button>
@@ -1576,7 +1576,7 @@ sections.oop = () => `
 <!-- ==================== 4C. OBSERVER PATTERN ==================== -->
 <div class="card animate-in">
     <h3 style="color:var(--accent3)"><span class="badge-purple">Behavioral</span> Observer Pattern</h3>
-    <p>Observer Pattern mendefinisikan hubungan <strong>one-to-many</strong> antara objek. Ketika satu objek (subject) berubah state, semua observer-nya otomatis diberi tahu dan diperbarui.</p>
+    <p>${t('Observer Pattern mendefinisikan hubungan <strong>one-to-many</strong> antara objek. Ketika satu objek (subject) berubah state, semua observer-nya otomatis diberi tahu dan diperbarui.', 'Observer Pattern defines a <strong>one-to-many</strong> relationship between objects. When one object (subject) changes state, all its observers are automatically notified and updated.')}</p>
 
     <div class="flow-diagram">
         <div class="flow-node" style="background:rgba(52,211,153,0.15);border-color:var(--green)">Subject<br>(Event Emitter)</div>
@@ -1715,47 +1715,47 @@ eventBus.<span class="fn">subscribe</span>&lt;<span class="type">Order</span>&gt
 <!-- =====================================================================
      BAGIAN 5: CLEAN ARCHITECTURE DENGAN SOLID
      ===================================================================== -->
-<h2 class="animate-in">5. Clean Architecture dengan SOLID</h2>
+<h2 class="animate-in">${t('5. Clean Architecture dengan SOLID', '5. Clean Architecture with SOLID')}</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Arsitektur Berlapis (Layered Architecture)</h3>
-    <p>Clean Architecture menerapkan SOLID pada tingkat arsitektur. Dependensi selalu mengarah ke dalam (dari infrastruktur ke domain). Berikut pola <strong>Handler &rarr; Service &rarr; Repository</strong> yang umum digunakan.</p>
+    <h3 style="color:var(--accent)">${t('Arsitektur Berlapis (Layered Architecture)', 'Layered Architecture')}</h3>
+    <p>${t('Clean Architecture menerapkan SOLID pada tingkat arsitektur. Dependensi selalu mengarah ke dalam (dari infrastruktur ke domain). Berikut pola <strong>Handler &rarr; Service &rarr; Repository</strong> yang umum digunakan.', 'Clean Architecture applies SOLID at the architectural level. Dependencies always point inward (from infrastructure to domain). Here is the commonly used <strong>Handler &rarr; Service &rarr; Repository</strong> pattern.')}</p>
 
     <div class="flow-diagram" style="margin:1.5rem 0">
         <div class="flow-node" style="background:rgba(56,189,248,0.15);border-color:var(--accent)">
             <strong>Handler / Controller</strong><br>
-            <span style="font-size:0.8rem">Menerima HTTP request<br>Validasi input<br>Memanggil service</span>
+            <span style="font-size:0.8rem">${t('Menerima HTTP request', 'Receives HTTP request')}<br>${t('Validasi input', 'Input validation')}<br>${t('Memanggil service', 'Calls service')}</span>
         </div>
         <div class="flow-arrow">&rarr;</div>
         <div class="flow-node" style="background:rgba(52,211,153,0.15);border-color:var(--green)">
             <strong>Service / Use Case</strong><br>
-            <span style="font-size:0.8rem">Business logic<br>Orchestration<br>Tidak tahu tentang HTTP</span>
+            <span style="font-size:0.8rem">Business logic<br>Orchestration<br>${t('Tidak tahu tentang HTTP', 'Knows nothing about HTTP')}</span>
         </div>
         <div class="flow-arrow">&rarr;</div>
         <div class="flow-node" style="background:rgba(167,139,250,0.15);border-color:var(--accent3)">
             <strong>Repository / Gateway</strong><br>
-            <span style="font-size:0.8rem">Akses data<br>Database queries<br>External API calls</span>
+            <span style="font-size:0.8rem">${t('Akses data', 'Data access')}<br>Database queries<br>External API calls</span>
         </div>
     </div>
 
     <div class="step-list">
         <div class="step-item">
             <div class="step-num">1</div>
-            <div class="step-text"><strong>Dependency Rule:</strong> Layer luar bergantung pada layer dalam, BUKAN sebaliknya. Service tidak tahu apakah handler-nya adalah REST, gRPC, atau CLI.</div>
+            <div class="step-text"><strong>Dependency Rule:</strong> ${t('Layer luar bergantung pada layer dalam, BUKAN sebaliknya. Service tidak tahu apakah handler-nya adalah REST, gRPC, atau CLI.', 'Outer layers depend on inner layers, NOT the other way around. Service does not know whether its handler is REST, gRPC, or CLI.')}</div>
         </div>
         <div class="step-item">
             <div class="step-num">2</div>
-            <div class="step-text"><strong>Interface di batas layer:</strong> Service mendefinisikan interface repository. Implementasi konkrit ada di layer infrastruktur.</div>
+            <div class="step-text"><strong>${t('Interface di batas layer:', 'Interface at layer boundaries:')}</strong> ${t('Service mendefinisikan interface repository. Implementasi konkrit ada di layer infrastruktur.', 'Service defines the repository interface. Concrete implementations reside in the infrastructure layer.')}</div>
         </div>
         <div class="step-item">
             <div class="step-num">3</div>
-            <div class="step-text"><strong>Dependency Injection:</strong> Semua dependensi di-inject, tidak di-create langsung. Ini membuat testing dan penggantian implementasi mudah.</div>
+            <div class="step-text"><strong>Dependency Injection:</strong> ${t('Semua dependensi di-inject, tidak di-create langsung. Ini membuat testing dan penggantian implementasi mudah.', 'All dependencies are injected, not created directly. This makes testing and swapping implementations easy.')}</div>
         </div>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--green)">Implementasi Clean Architecture</h3>
+    <h3 style="color:var(--green)">${t('Implementasi Clean Architecture', 'Clean Architecture Implementation')}</h3>
 
     <div class="tabs">
         <button class="tab-btn active" data-tab="arch-go">Go (Gin)</button>
@@ -2026,45 +2026,45 @@ eventBus.<span class="fn">subscribe</span>&lt;<span class="type">Order</span>&gt
 
 <!-- SOLID IN ARCHITECTURE SUMMARY -->
 <div class="card animate-in">
-    <h3 style="color:var(--accent3)">Ringkasan: SOLID dalam Arsitektur</h3>
+    <h3 style="color:var(--accent3)">${t('Ringkasan: SOLID dalam Arsitektur', 'Summary: SOLID in Architecture')}</h3>
 
     <div class="table-wrapper">
         <table>
             <tr>
                 <th>SOLID</th>
-                <th>Penerapan di Arsitektur</th>
-                <th>Contoh Praktis</th>
+                <th>${t('Penerapan di Arsitektur', 'Application in Architecture')}</th>
+                <th>${t('Contoh Praktis', 'Practical Example')}</th>
             </tr>
             <tr>
                 <td><span class="badge-blue">SRP</span></td>
-                <td>Setiap layer punya satu tanggung jawab</td>
-                <td>Handler hanya menangani HTTP, Service hanya bisnis logic, Repository hanya data access</td>
+                <td>${t('Setiap layer punya satu tanggung jawab', 'Each layer has a single responsibility')}</td>
+                <td>${t('Handler hanya menangani HTTP, Service hanya bisnis logic, Repository hanya data access', 'Handler only handles HTTP, Service only business logic, Repository only data access')}</td>
             </tr>
             <tr>
                 <td><span class="badge-green">OCP</span></td>
-                <td>Tambah fitur tanpa ubah kode yang ada</td>
-                <td>Tambah repository baru (MongoDB) tanpa mengubah service</td>
+                <td>${t('Tambah fitur tanpa ubah kode yang ada', 'Add features without modifying existing code')}</td>
+                <td>${t('Tambah repository baru (MongoDB) tanpa mengubah service', 'Add a new repository (MongoDB) without changing the service')}</td>
             </tr>
             <tr>
                 <td><span class="badge-purple">LSP</span></td>
-                <td>Implementasi bisa diganti</td>
-                <td>Ganti PostgresRepo dengan MongoRepo tanpa ubah service</td>
+                <td>${t('Implementasi bisa diganti', 'Implementations are substitutable')}</td>
+                <td>${t('Ganti PostgresRepo dengan MongoRepo tanpa ubah service', 'Replace PostgresRepo with MongoRepo without changing the service')}</td>
             </tr>
             <tr>
                 <td><span class="badge-orange">ISP</span></td>
-                <td>Interface spesifik per kebutuhan</td>
-                <td>ReadOnlyRepo vs FullRepo - query service hanya butuh Read</td>
+                <td>${t('Interface spesifik per kebutuhan', 'Specific interfaces per need')}</td>
+                <td>${t('ReadOnlyRepo vs FullRepo - query service hanya butuh Read', 'ReadOnlyRepo vs FullRepo - query service only needs Read')}</td>
             </tr>
             <tr>
                 <td><span class="badge-red">DIP</span></td>
-                <td>Layer dalam mendefinisikan interface</td>
-                <td>Domain mendefinisikan ProductRepository, infra mengimplementasikannya</td>
+                <td>${t('Layer dalam mendefinisikan interface', 'Inner layers define interfaces')}</td>
+                <td>${t('Domain mendefinisikan ProductRepository, infra mengimplementasikannya', 'Domain defines ProductRepository, infra implements it')}</td>
             </tr>
         </table>
     </div>
 
     <div class="success-box" style="margin-top:1rem">
-        <strong>Kesimpulan:</strong> OOP dan SOLID bukan hanya tentang menulis class yang rapi. Prinsip-prinsip ini membentuk dasar arsitektur software yang scalable, testable, dan maintainable. Setiap bahasa mengimplementasikannya dengan cara yang berbeda - Java secara eksplisit dengan class/interface, Go secara pragmatis dengan struct/interface implisit, dan TypeScript menggabungkan fleksibilitas JavaScript dengan type safety.
+        <strong>${t('Kesimpulan:', 'Conclusion:')}</strong> ${t('OOP dan SOLID bukan hanya tentang menulis class yang rapi. Prinsip-prinsip ini membentuk dasar arsitektur software yang scalable, testable, dan maintainable. Setiap bahasa mengimplementasikannya dengan cara yang berbeda - Java secara eksplisit dengan class/interface, Go secara pragmatis dengan struct/interface implisit, dan TypeScript menggabungkan fleksibilitas JavaScript dengan type safety.', 'OOP and SOLID are not just about writing tidy classes. These principles form the foundation of software architecture that is scalable, testable, and maintainable. Each language implements them differently - Java explicitly with class/interface, Go pragmatically with struct/implicit interface, and TypeScript combining JavaScript flexibility with type safety.')}
     </div>
 </div>
 `;

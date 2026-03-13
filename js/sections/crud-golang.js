@@ -6,14 +6,14 @@
 sections['crud-golang'] = () => `
 <section class="animate-in">
 <h1 class="section-title animate-in">Go CRUD: RESTful API &amp; gRPC</h1>
-<p class="section-subtitle animate-in">Panduan komprehensif membangun CRUD production-ready di Go — Clean Architecture, REST dengan Gin, gRPC, Security, Docker, dan deployment best practices</p>
+<p class="section-subtitle animate-in">${t('Panduan komprehensif membangun CRUD production-ready di Go &mdash; Clean Architecture, REST dengan Gin, gRPC, Security, Docker, dan deployment best practices','A comprehensive guide to building production-ready CRUD in Go &mdash; Clean Architecture, REST with Gin, gRPC, Security, Docker, and deployment best practices')}</p>
 
 <!-- ===================== 1. PROJECT STRUCTURE ===================== -->
 <h2 class="animate-in">1. Production-Ready Project Structure</h2>
 
 <div class="card animate-in">
-<h3 style="color:var(--accent)">Struktur Clean Architecture</h3>
-<p>Struktur project Go yang production-ready mengikuti prinsip <strong>Clean Architecture</strong> dan konvensi komunitas Go. Setiap layer memiliki tanggung jawab yang jelas dan dependency hanya mengalir ke dalam (Handler &rarr; Service &rarr; Repository).</p>
+<h3 style="color:var(--accent)">${t('Struktur Clean Architecture','Clean Architecture Structure')}</h3>
+<p>${t('Struktur project Go yang production-ready mengikuti prinsip <strong>Clean Architecture</strong> dan konvensi komunitas Go. Setiap layer memiliki tanggung jawab yang jelas dan dependency hanya mengalir ke dalam (Handler &rarr; Service &rarr; Repository).','A production-ready Go project structure follows <strong>Clean Architecture</strong> principles and Go community conventions. Each layer has clear responsibilities and dependencies only flow inward (Handler &rarr; Service &rarr; Repository).')}</p>
 <div class="code-block"><span class="cm">// Production-Ready Go Project Structure</span>
 myapp/
 &boxur;&boxh;&boxh; cmd/
@@ -46,27 +46,27 @@ myapp/
 </div>
 
 <div class="card animate-in">
-<h3 style="color:var(--green)">Mengapa Struktur Ini?</h3>
+<h3 style="color:var(--green)">${t('Mengapa Struktur Ini?','Why This Structure?')}</h3>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
 <div>
-<h4>Direktori Penting</h4>
+<h4>${t('Direktori Penting','Key Directories')}</h4>
 <ul>
-<li><strong>cmd/</strong> &mdash; Entry point aplikasi. Satu folder per binary yang dihasilkan. Di sini kita melakukan <em>dependency injection</em> (wiring)</li>
-<li><strong>internal/</strong> &mdash; Package privat yang <em>dikunci oleh Go compiler</em>. Package lain di luar module tidak bisa meng-import path internal/. Ini enforcement access control di level bahasa</li>
-<li><strong>pkg/</strong> &mdash; Package yang boleh digunakan oleh project lain. Gunakan untuk utility yang reusable (validator, logger)</li>
-<li><strong>api/proto/</strong> &mdash; Definisi gRPC protobuf. Menjadi single source of truth untuk contract API</li>
+<li><strong>cmd/</strong> &mdash; ${t('Entry point aplikasi. Satu folder per binary yang dihasilkan. Di sini kita melakukan <em>dependency injection</em> (wiring)','Application entry point. One folder per produced binary. This is where we perform <em>dependency injection</em> (wiring)')}</li>
+<li><strong>internal/</strong> &mdash; ${t('Package privat yang <em>dikunci oleh Go compiler</em>. Package lain di luar module tidak bisa meng-import path internal/. Ini enforcement access control di level bahasa','Private packages <em>locked by the Go compiler</em>. Other packages outside the module cannot import internal/ paths. This is language-level access control enforcement')}</li>
+<li><strong>pkg/</strong> &mdash; ${t('Package yang boleh digunakan oleh project lain. Gunakan untuk utility yang reusable (validator, logger)','Packages that can be used by other projects. Use for reusable utilities (validator, logger)')}</li>
+<li><strong>api/proto/</strong> &mdash; ${t('Definisi gRPC protobuf. Menjadi single source of truth untuk contract API','gRPC protobuf definitions. Serves as the single source of truth for API contracts')}</li>
 </ul>
 </div>
 <div>
-<h4>Prinsip Clean Architecture</h4>
+<h4>${t('Prinsip Clean Architecture','Clean Architecture Principles')}</h4>
 <ul>
-<li><strong>Separation of Concerns</strong> &mdash; Setiap layer punya tanggung jawab tunggal</li>
-<li><strong>Dependency Inversion</strong> &mdash; Layer atas bergantung pada interface, bukan implementasi konkret</li>
-<li><strong>Testability</strong> &mdash; Setiap layer bisa di-mock dan di-test secara independen</li>
-<li><strong>Flexibility</strong> &mdash; Ganti database/framework tanpa mengubah business logic</li>
+<li><strong>Separation of Concerns</strong> &mdash; ${t('Setiap layer punya tanggung jawab tunggal','Each layer has a single responsibility')}</li>
+<li><strong>Dependency Inversion</strong> &mdash; ${t('Layer atas bergantung pada interface, bukan implementasi konkret','Upper layers depend on interfaces, not concrete implementations')}</li>
+<li><strong>Testability</strong> &mdash; ${t('Setiap layer bisa di-mock dan di-test secara independen','Each layer can be mocked and tested independently')}</li>
+<li><strong>Flexibility</strong> &mdash; ${t('Ganti database/framework tanpa mengubah business logic','Switch database/framework without changing business logic')}</li>
 </ul>
 <div class="info-box">
-<strong>Aturan Dependency:</strong> Handler &rarr; Service (interface) &rarr; Repository (interface). Handler tidak boleh langsung akses database. Service tidak boleh tahu tentang HTTP.
+<strong>${t('Aturan Dependency:','Dependency Rule:')}</strong> Handler &rarr; Service (interface) &rarr; Repository (interface). ${t('Handler tidak boleh langsung akses database. Service tidak boleh tahu tentang HTTP.','Handler must not directly access the database. Service must not know about HTTP.')}
 </div>
 </div>
 </div>
@@ -76,11 +76,11 @@ myapp/
 <h3 style="color:var(--yellow)">Dependency Flow &amp; Layer Responsibility</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Layer</th><th>Tanggung Jawab</th><th>Tahu Tentang</th><th>Tidak Tahu Tentang</th></tr>
+<tr><th>Layer</th><th>${t('Tanggung Jawab','Responsibility')}</th><th>${t('Tahu Tentang','Knows About')}</th><th>${t('Tidak Tahu Tentang','Does Not Know About')}</th></tr>
 <tr><td><strong>Handler</strong></td><td>Parse request, validate input, return response</td><td>HTTP/gRPC, Service interface</td><td>Database, SQL, business rules</td></tr>
 <tr><td><strong>Service</strong></td><td>Business logic, orchestration, validation rules</td><td>Model, Repository interface</td><td>HTTP, gRPC, SQL query detail</td></tr>
 <tr><td><strong>Repository</strong></td><td>Database operations, query execution</td><td>Database driver, SQL, Model</td><td>HTTP, business rules</td></tr>
-<tr><td><strong>Model</strong></td><td>Domain entities, value objects</td><td>Dirinya sendiri</td><td>Semua layer lain</td></tr>
+<tr><td><strong>Model</strong></td><td>Domain entities, value objects</td><td>${t('Dirinya sendiri','Itself')}</td><td>${t('Semua layer lain','All other layers')}</td></tr>
 </table>
 </div>
 </div>
@@ -141,7 +141,7 @@ myapp/
     }
 }</div>
 <div class="info-box">
-<strong>Penting:</strong> Field <code>Password</code> menggunakan tag <code>json:"-"</code> agar <em>tidak pernah</em> dikirim ke client saat marshaling JSON. Kita juga memisahkan DTO (Data Transfer Object) untuk request dan response agar tidak ada kebocoran data sensitif.
+<strong>${t('Penting:','Important:')}</strong> ${t('Field <code>Password</code> menggunakan tag <code>json:&quot;-&quot;</code> agar <em>tidak pernah</em> dikirim ke client saat marshaling JSON. Kita juga memisahkan DTO (Data Transfer Object) untuk request dan response agar tidak ada kebocoran data sensitif.','The <code>Password</code> field uses the <code>json:&quot;-&quot;</code> tag so it is <em>never</em> sent to the client during JSON marshaling. We also separate DTOs (Data Transfer Objects) for request and response to prevent sensitive data leakage.')}
 </div>
 </div>
 
@@ -233,7 +233,7 @@ myapp/
     <span class="kw">return</span> &amp;cfg
 }</div>
 <div class="warn-box">
-<strong>Jangan pernah hardcode secrets!</strong> Gunakan environment variables atau secret manager (AWS Secrets Manager, HashiCorp Vault). File <code>.env</code> hanya untuk development dan harus ada di <code>.gitignore</code>.
+<strong>${t('Jangan pernah hardcode secrets!','Never hardcode secrets!')}</strong> ${t('Gunakan environment variables atau secret manager (AWS Secrets Manager, HashiCorp Vault). File <code>.env</code> hanya untuk development dan harus ada di <code>.gitignore</code>.','Use environment variables or a secret manager (AWS Secrets Manager, HashiCorp Vault). The <code>.env</code> file is only for development and must be in <code>.gitignore</code>.')}
 </div>
 </div>
 
@@ -278,7 +278,7 @@ myapp/
     <span class="kw">return</span> db, <span class="kw">nil</span>
 }</div>
 <div class="info-box">
-<strong>Connection Pooling:</strong> <code>MaxOpenConns</code> membatasi koneksi aktif ke DB (default 25), <code>MaxIdleConns</code> menyimpan koneksi idle untuk reuse. <code>ConnMaxLifetime</code> mencegah koneksi stale. Ini krusial untuk mencegah connection exhaustion di production.
+<strong>Connection Pooling:</strong> ${t('<code>MaxOpenConns</code> membatasi koneksi aktif ke DB (default 25), <code>MaxIdleConns</code> menyimpan koneksi idle untuk reuse. <code>ConnMaxLifetime</code> mencegah koneksi stale. Ini krusial untuk mencegah connection exhaustion di production.','<code>MaxOpenConns</code> limits active connections to the DB (default 25), <code>MaxIdleConns</code> keeps idle connections for reuse. <code>ConnMaxLifetime</code> prevents stale connections. This is crucial for preventing connection exhaustion in production.')}
 </div>
 </div>
 
@@ -397,7 +397,7 @@ myapp/
     <span class="kw">return</span> <span class="kw">nil</span>
 }</div>
 <div class="warn-box">
-<strong>SQL Injection Prevention:</strong> Perhatikan semua query menggunakan <strong>parameterized queries</strong> ($1, $2, ...) bukan string concatenation. Jangan pernah tulis <code>"WHERE id = '" + id + "'"</code> &mdash; ini membuka celah SQL injection!
+<strong>SQL Injection Prevention:</strong> ${t('Perhatikan semua query menggunakan <strong>parameterized queries</strong> ($1, $2, ...) bukan string concatenation. Jangan pernah tulis <code>&quot;WHERE id = &#39;&quot; + id + &quot;&#39;&quot;</code> &mdash; ini membuka celah SQL injection!','Notice all queries use <strong>parameterized queries</strong> ($1, $2, ...) instead of string concatenation. Never write <code>&quot;WHERE id = &#39;&quot; + id + &quot;&#39;&quot;</code> &mdash; this opens an SQL injection vulnerability!')}
 </div>
 </div>
 
@@ -537,7 +537,7 @@ myapp/
     <span class="kw">return</span> <span class="kw">nil</span>
 }</div>
 <div class="info-box">
-<strong>Kenapa Service Layer?</strong> Layer ini memisahkan business logic dari transport (HTTP/gRPC). Keuntungannya: (1) handler REST dan gRPC bisa pakai service yang sama, (2) mudah di-test dengan mock repository, (3) business rules terpusat di satu tempat.
+<strong>${t('Kenapa Service Layer?','Why a Service Layer?')}</strong> ${t('Layer ini memisahkan business logic dari transport (HTTP/gRPC). Keuntungannya: (1) handler REST dan gRPC bisa pakai service yang sama, (2) mudah di-test dengan mock repository, (3) business rules terpusat di satu tempat.','This layer separates business logic from transport (HTTP/gRPC). The benefits: (1) REST and gRPC handlers can use the same service, (2) easy to test with mock repository, (3) business rules are centralized in one place.')}
 </div>
 </div>
 
@@ -832,7 +832,7 @@ myapp/
 
 <span class="cm">// JANGAN gunakan AllowOrigins: []string{"*"} di production!</span>
 <span class="cm">// Ini membuka API Anda untuk semua domain (CSRF risk)</span></div>
-<div class="warn-box"><strong>Production:</strong> Selalu whitelist domain spesifik. Wildcard (*) hanya untuk development.</div>
+<div class="warn-box"><strong>Production:</strong> ${t('Selalu whitelist domain spesifik. Wildcard (*) hanya untuk development.','Always whitelist specific domains. Wildcard (*) is only for development.')}</div>
 </div>
 
 <div class="tab-content" id="go-ratelimit">
@@ -926,7 +926,7 @@ myapp/
 <span class="cm">// Output: {"time":"...","level":"INFO","msg":"request completed",</span>
 <span class="cm">//          "method":"GET","path":"/api/v1/users","status":200,</span>
 <span class="cm">//          "latency_ms":3,"client_ip":"::1"}</span></div>
-<div class="info-box"><strong>Go 1.21+ slog:</strong> Package <code>log/slog</code> adalah structured logger bawaan Go. Output JSON yang bisa diparsing oleh ELK, Grafana Loki, atau Datadog. Alternatif populer: zerolog, zap.</div>
+<div class="info-box"><strong>Go 1.21+ slog:</strong> ${t('Package <code>log/slog</code> adalah structured logger bawaan Go. Output JSON yang bisa diparsing oleh ELK, Grafana Loki, atau Datadog. Alternatif populer: zerolog, zap.','The <code>log/slog</code> package is Go&#39;s built-in structured logger. It outputs JSON that can be parsed by ELK, Grafana Loki, or Datadog. Popular alternatives: zerolog, zap.')}</div>
 </div>
 </div>
 
@@ -989,7 +989,7 @@ myapp/
     <span class="kw">int32</span> total = <span class="num">2</span>;
 }</div>
 <div class="info-box">
-<strong>Generate Go code:</strong> Jalankan <code>protoc --go_out=. --go-grpc_out=. api/proto/user.proto</code>. Ini menghasilkan <code>user.pb.go</code> (message types) dan <code>user_grpc.pb.go</code> (service interface). Anda perlu install <code>protoc-gen-go</code> dan <code>protoc-gen-go-grpc</code>.
+<strong>${t('Generate Go code:','Generate Go code:')}</strong> ${t('Jalankan <code>protoc --go_out=. --go-grpc_out=. api/proto/user.proto</code>. Ini menghasilkan <code>user.pb.go</code> (message types) dan <code>user_grpc.pb.go</code> (service interface). Anda perlu install <code>protoc-gen-go</code> dan <code>protoc-gen-go-grpc</code>.','Run <code>protoc --go_out=. --go-grpc_out=. api/proto/user.proto</code>. This generates <code>user.pb.go</code> (message types) and <code>user_grpc.pb.go</code> (service interface). You need to install <code>protoc-gen-go</code> and <code>protoc-gen-go-grpc</code>.')}
 </div>
 </div>
 
@@ -1221,21 +1221,21 @@ myapp/
 </div>
 
 <div class="card animate-in">
-<h3 style="color:var(--green)">REST vs gRPC: Perbandingan</h3>
+<h3 style="color:var(--green)">${t('REST vs gRPC: Perbandingan','REST vs gRPC: Comparison')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Aspek</th><th>REST (HTTP/JSON)</th><th>gRPC (HTTP/2 + Protobuf)</th></tr>
-<tr><td>Format Data</td><td>JSON (text-based, human-readable)</td><td>Protobuf (binary, compact)</td></tr>
-<tr><td>Performance</td><td>Baik untuk web clients</td><td>~10x lebih cepat (serialization)</td></tr>
-<tr><td>Streaming</td><td>Limited (SSE, WebSocket terpisah)</td><td>Native bidirectional streaming</td></tr>
-<tr><td>Code Generation</td><td>Manual / OpenAPI codegen</td><td>Otomatis dari .proto</td></tr>
-<tr><td>Browser Support</td><td>Native (fetch/XMLHttpRequest)</td><td>Butuh gRPC-Web proxy</td></tr>
+<tr><th>${t('Aspek','Aspect')}</th><th>REST (HTTP/JSON)</th><th>gRPC (HTTP/2 + Protobuf)</th></tr>
+<tr><td>${t('Format Data','Data Format')}</td><td>JSON (text-based, human-readable)</td><td>Protobuf (binary, compact)</td></tr>
+<tr><td>Performance</td><td>${t('Baik untuk web clients','Good for web clients')}</td><td>${t('~10x lebih cepat (serialization)','~10x faster (serialization)')}</td></tr>
+<tr><td>Streaming</td><td>${t('Limited (SSE, WebSocket terpisah)','Limited (SSE, separate WebSocket)')}</td><td>Native bidirectional streaming</td></tr>
+<tr><td>Code Generation</td><td>Manual / OpenAPI codegen</td><td>${t('Otomatis dari .proto','Automatic from .proto')}</td></tr>
+<tr><td>Browser Support</td><td>Native (fetch/XMLHttpRequest)</td><td>${t('Butuh gRPC-Web proxy','Requires gRPC-Web proxy')}</td></tr>
 <tr><td>Use Case</td><td>Public API, web frontend</td><td>Microservice-to-microservice</td></tr>
 <tr><td>Tooling</td><td>Postman, curl, browser</td><td>grpcurl, BloomRPC, Evans</td></tr>
 </table>
 </div>
 <div class="info-box">
-<strong>gRPC-Gateway:</strong> Dengan <code>grpc-gateway</code>, Anda bisa serve REST dan gRPC dari satu server. Client web mengakses via REST, sementara microservice internal berkomunikasi via gRPC. Ini pola yang sangat umum di production.
+<strong>gRPC-Gateway:</strong> ${t('Dengan <code>grpc-gateway</code>, Anda bisa serve REST dan gRPC dari satu server. Client web mengakses via REST, sementara microservice internal berkomunikasi via gRPC. Ini pola yang sangat umum di production.','With <code>grpc-gateway</code>, you can serve REST and gRPC from a single server. Web clients access via REST, while internal microservices communicate via gRPC. This is a very common pattern in production.')}
 </div>
 </div>
 
@@ -1373,7 +1373,7 @@ myapp/
     logger.<span class="fn">Info</span>(<span class="str">"server exited cleanly"</span>)
 }</div>
 <div class="info-box">
-<strong>Graceful Shutdown:</strong> Server menangkap SIGINT (Ctrl+C) dan SIGTERM (docker stop). In-flight request diberi waktu 30 detik untuk selesai sebelum server benar-benar berhenti. Ini mencegah data corruption dan connection reset ke client.
+<strong>Graceful Shutdown:</strong> ${t('Server menangkap SIGINT (Ctrl+C) dan SIGTERM (docker stop). In-flight request diberi waktu 30 detik untuk selesai sebelum server benar-benar berhenti. Ini mencegah data corruption dan connection reset ke client.','The server catches SIGINT (Ctrl+C) and SIGTERM (docker stop). In-flight requests are given 30 seconds to complete before the server fully stops. This prevents data corruption and connection resets to clients.')}
 </div>
 </div>
 
@@ -1381,24 +1381,24 @@ myapp/
 <h2 class="animate-in">9. Security Best Practices</h2>
 
 <div class="card animate-in">
-<h3 style="color:var(--red)">Security Checklist Production</h3>
+<h3 style="color:var(--red)">${t('Security Checklist Production','Production Security Checklist')}</h3>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
 <div>
 <h4>Input &amp; Data</h4>
 <ul>
-<li><strong>Input Validation</strong> &mdash; Gunakan <code>go-playground/validator</code> untuk setiap request. Jangan pernah trust user input</li>
-<li><strong>SQL Injection Prevention</strong> &mdash; Selalu gunakan parameterized queries ($1, $2). Jangan pernah string concatenation untuk SQL</li>
-<li><strong>Password Hashing</strong> &mdash; bcrypt (cost 12+) atau argon2id. Jangan pernah simpan plaintext</li>
-<li><strong>XSS Prevention</strong> &mdash; Escape output HTML. Go template sudah auto-escape</li>
+<li><strong>Input Validation</strong> &mdash; ${t('Gunakan <code>go-playground/validator</code> untuk setiap request. Jangan pernah trust user input','Use <code>go-playground/validator</code> for every request. Never trust user input')}</li>
+<li><strong>SQL Injection Prevention</strong> &mdash; ${t('Selalu gunakan parameterized queries ($1, $2). Jangan pernah string concatenation untuk SQL','Always use parameterized queries ($1, $2). Never use string concatenation for SQL')}</li>
+<li><strong>Password Hashing</strong> &mdash; ${t('bcrypt (cost 12+) atau argon2id. Jangan pernah simpan plaintext','bcrypt (cost 12+) or argon2id. Never store plaintext')}</li>
+<li><strong>XSS Prevention</strong> &mdash; ${t('Escape output HTML. Go template sudah auto-escape','Escape HTML output. Go templates already auto-escape')}</li>
 </ul>
 </div>
 <div>
 <h4>Transport &amp; Auth</h4>
 <ul>
-<li><strong>HTTPS/TLS</strong> &mdash; Selalu gunakan TLS di production. Gunakan Let's Encrypt untuk cert gratis</li>
-<li><strong>JWT Best Practices</strong> &mdash; Access token pendek (15m), refresh token panjang (7d), simpan di httpOnly cookie</li>
-<li><strong>Rate Limiting</strong> &mdash; Per IP dan per user. Cegah brute force dan DDoS</li>
-<li><strong>CORS</strong> &mdash; Whitelist domain, jangan gunakan wildcard (*)</li>
+<li><strong>HTTPS/TLS</strong> &mdash; ${t('Selalu gunakan TLS di production. Gunakan Let&#39;s Encrypt untuk cert gratis','Always use TLS in production. Use Let&#39;s Encrypt for free certificates')}</li>
+<li><strong>JWT Best Practices</strong> &mdash; ${t('Access token pendek (15m), refresh token panjang (7d), simpan di httpOnly cookie','Short access token (15m), long refresh token (7d), store in httpOnly cookie')}</li>
+<li><strong>Rate Limiting</strong> &mdash; ${t('Per IP dan per user. Cegah brute force dan DDoS','Per IP and per user. Prevent brute force and DDoS')}</li>
+<li><strong>CORS</strong> &mdash; ${t('Whitelist domain, jangan gunakan wildcard (*)','Whitelist domains, do not use wildcard (*)')}</li>
 </ul>
 </div>
 </div>
@@ -1481,7 +1481,7 @@ myapp/
 </div>
 
 <div class="card animate-in">
-<h3 style="color:var(--yellow)">Environment Variables &amp; Secrets</h3>
+<h3 style="color:var(--yellow)">${t('Environment Variables &amp; Secrets','Environment Variables &amp; Secrets')}</h3>
 <div class="code-block"><span class="cm">// .env file (JANGAN commit ke git!)</span>
 DB_HOST=localhost
 DB_PORT=5432
@@ -1505,11 +1505,11 @@ GRPC_PORT=9090</div>
 *.pem
 *.key</div>
 <div class="warn-box">
-<strong>Production Secrets:</strong> Jangan gunakan .env file di production. Gunakan:<br>
+<strong>${t('Production Secrets:','Production Secrets:')}</strong> ${t('Jangan gunakan .env file di production. Gunakan:','Do not use .env files in production. Use:')}<br>
 &bull; <strong>Docker secrets</strong> atau <strong>Kubernetes secrets</strong><br>
-&bull; <strong>HashiCorp Vault</strong> untuk secret rotation<br>
+&bull; <strong>HashiCorp Vault</strong> ${t('untuk secret rotation','for secret rotation')}<br>
 &bull; <strong>AWS Secrets Manager</strong> / <strong>GCP Secret Manager</strong><br>
-&bull; Environment variables yang di-inject oleh CI/CD pipeline
+&bull; ${t('Environment variables yang di-inject oleh CI/CD pipeline','Environment variables injected by CI/CD pipeline')}
 </div>
 </div>
 
@@ -1622,7 +1622,7 @@ $$ <span class="kw">LANGUAGE</span> plpgsql;
     <span class="kw">return</span> tx.<span class="fn">Commit</span>()
 }</div>
 <div class="info-box">
-<strong>Pattern:</strong> Selalu gunakan <code>defer tx.Rollback()</code> setelah <code>BeginTx</code>. Jika <code>Commit()</code> berhasil, Rollback menjadi no-op. Jika ada error sebelum Commit, transaction otomatis di-rollback saat function return.
+<strong>Pattern:</strong> ${t('Selalu gunakan <code>defer tx.Rollback()</code> setelah <code>BeginTx</code>. Jika <code>Commit()</code> berhasil, Rollback menjadi no-op. Jika ada error sebelum Commit, transaction otomatis di-rollback saat function return.','Always use <code>defer tx.Rollback()</code> after <code>BeginTx</code>. If <code>Commit()</code> succeeds, Rollback becomes a no-op. If there is an error before Commit, the transaction is automatically rolled back when the function returns.')}
 </div>
 </div>
 
@@ -1666,7 +1666,7 @@ $$ <span class="kw">LANGUAGE</span> plpgsql;
 
 <span class="kw">ENTRYPOINT</span> [<span class="str">"./server"</span>]</div>
 <div class="info-box">
-<strong>Multi-stage build:</strong> Stage 1 (builder) menggunakan image Go penuh (~800MB) untuk compile. Stage 2 hanya menyalin binary ke Alpine (~5MB). Hasil akhir: image ~15-20MB vs ~800MB. Flags <code>-ldflags="-w -s"</code> menghilangkan debug info untuk binary lebih kecil.
+<strong>Multi-stage build:</strong> ${t('Stage 1 (builder) menggunakan image Go penuh (~800MB) untuk compile. Stage 2 hanya menyalin binary ke Alpine (~5MB). Hasil akhir: image ~15-20MB vs ~800MB. Flags <code>-ldflags=&quot;-w -s&quot;</code> menghilangkan debug info untuk binary lebih kecil.','Stage 1 (builder) uses the full Go image (~800MB) to compile. Stage 2 only copies the binary to Alpine (~5MB). Final result: image ~15-20MB vs ~800MB. Flags <code>-ldflags=&quot;-w -s&quot;</code> strip debug info for a smaller binary.')}
 </div>
 </div>
 
@@ -1842,7 +1842,7 @@ $$ <span class="kw">LANGUAGE</span> plpgsql;
     assert.<span class="fn">Equal</span>(t, <span class="num">409</span>, appErr.Code)
 }</div>
 <div class="info-box">
-<strong>Testing Strategy:</strong> Mock repository untuk unit test service. Gunakan <code>testcontainers-go</code> untuk integration test dengan PostgreSQL asli. Jalankan <code>go test -race</code> untuk detect race conditions.
+<strong>${t('Testing Strategy:','Testing Strategy:')}</strong> ${t('Mock repository untuk unit test service. Gunakan <code>testcontainers-go</code> untuk integration test dengan PostgreSQL asli. Jalankan <code>go test -race</code> untuk detect race conditions.','Mock the repository for unit testing services. Use <code>testcontainers-go</code> for integration tests with a real PostgreSQL. Run <code>go test -race</code> to detect race conditions.')}
 </div>
 </div>
 
@@ -1850,8 +1850,8 @@ $$ <span class="kw">LANGUAGE</span> plpgsql;
 <h2 class="animate-in">13. Clean Architecture Flow</h2>
 
 <div class="card animate-in">
-<h3>Visualisasi: Request Flow melalui Architecture Layers</h3>
-<p>Animasi ini menunjukkan bagaimana sebuah HTTP/gRPC request mengalir melalui layer Clean Architecture: dari client, melalui Handler, Service, Repository, hingga Database, dan kembali sebagai response.</p>
+<h3>${t('Visualisasi: Request Flow melalui Architecture Layers','Visualization: Request Flow through Architecture Layers')}</h3>
+<p>${t('Animasi ini menunjukkan bagaimana sebuah HTTP/gRPC request mengalir melalui layer Clean Architecture: dari client, melalui Handler, Service, Repository, hingga Database, dan kembali sebagai response.','This animation shows how an HTTP/gRPC request flows through Clean Architecture layers: from client, through Handler, Service, Repository, to Database, and back as a response.')}</p>
 <div class="anim-container">
 <canvas id="canvas-crud-go-arch" width="800" height="400" style="width:100%;height:auto;border-radius:8px;"></canvas>
 </div>
@@ -1861,8 +1861,8 @@ $$ <span class="kw">LANGUAGE</span> plpgsql;
 <h2 class="animate-in">14. Swagger / OpenAPI Documentation</h2>
 
 <div class="card animate-in">
-<h3 style="color:var(--accent)">Auto-Generated API Docs dengan swaggo</h3>
-<p>Gunakan <strong>swaggo/swag</strong> untuk auto-generate Swagger/OpenAPI docs dari Go annotations. Swagger UI tersedia di <code>/swagger/index.html</code>.</p>
+<h3 style="color:var(--accent)">${t('Auto-Generated API Docs dengan swaggo','Auto-Generated API Docs with swaggo')}</h3>
+<p>${t('Gunakan <strong>swaggo/swag</strong> untuk auto-generate Swagger/OpenAPI docs dari Go annotations. Swagger UI tersedia di <code>/swagger/index.html</code>.','Use <strong>swaggo/swag</strong> to auto-generate Swagger/OpenAPI docs from Go annotations. Swagger UI is available at <code>/swagger/index.html</code>.')}</p>
 
 <div class="code-block">
 <span class="cm">// 1. Install swaggo</span>
@@ -1907,10 +1907,10 @@ router.<span class="fn">GET</span>(<span class="str">"/swagger/*any"</span>, gin
 </div>
 
 <div class="info-box">
-    <strong>PostgreSQL Connection:</strong> Gunakan <code>pgx</code> driver (native Go PostgreSQL driver, lebih cepat dari lib/pq) atau <code>sqlx</code> (extension database/sql dengan named params, struct scanning).
+    <strong>PostgreSQL Connection:</strong> ${t('Gunakan <code>pgx</code> driver (native Go PostgreSQL driver, lebih cepat dari lib/pq) atau <code>sqlx</code> (extension database/sql dengan named params, struct scanning).','Use the <code>pgx</code> driver (native Go PostgreSQL driver, faster than lib/pq) or <code>sqlx</code> (database/sql extension with named params, struct scanning).')}
     <br><br>
     Connection string: <code>postgres://user:pass@localhost:5432/mydb?sslmode=disable</code><br>
-    Production: selalu gunakan <code>sslmode=require</code> atau <code>verify-full</code>
+    ${t('Production: selalu gunakan <code>sslmode=require</code> atau <code>verify-full</code>','Production: always use <code>sslmode=require</code> or <code>verify-full</code>')}
 </div>
 </div>
 
@@ -1918,7 +1918,7 @@ router.<span class="fn">GET</span>(<span class="str">"/swagger/*any"</span>, gin
 <h2 class="animate-in">15. Quick Reference: curl Commands</h2>
 
 <div class="card animate-in">
-<h3 style="color:var(--accent)">Testing REST API dengan curl</h3>
+<h3 style="color:var(--accent)">${t('Testing REST API dengan curl','Testing REST API with curl')}</h3>
 <div class="code-block"><span class="cm"># 1. Create user</span>
 curl -X POST http://localhost:8080/api/v1/users \
   -H <span class="str">"Content-Type: application/json"</span> \
@@ -1963,26 +1963,26 @@ grpcurl -plaintext -d <span class="str">'{"name":"Bob","email":"bob@test.com","p
 <h2 class="animate-in">15. Common Pitfalls &amp; Anti-Patterns</h2>
 
 <div class="card animate-in">
-<h3 style="color:var(--red)">Kesalahan Umum yang Harus Dihindari</h3>
+<h3 style="color:var(--red)">${t('Kesalahan Umum yang Harus Dihindari','Common Mistakes to Avoid')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Anti-Pattern</th><th>Masalah</th><th>Solusi</th></tr>
-<tr><td><code>db.Query("SELECT * FROM users WHERE id='" + id + "'")</code></td><td>SQL Injection!</td><td>Gunakan parameterized query: <code>db.Query("...WHERE id=$1", id)</code></td></tr>
-<tr><td>Simpan password plaintext</td><td>Data breach = semua password bocor</td><td>Selalu hash dengan bcrypt/argon2</td></tr>
-<tr><td>Return User struct langsung (termasuk password hash)</td><td>Password hash terekspos ke client</td><td>Gunakan DTO terpisah (UserResponse tanpa password)</td></tr>
-<tr><td>Hardcode JWT secret di source code</td><td>Secret terekspos di Git repository</td><td>Gunakan environment variables</td></tr>
-<tr><td>Tidak ada rate limiting</td><td>Brute force login, DDoS</td><td>Implementasi per-IP rate limiter</td></tr>
-<tr><td>CORS AllowOrigins: ["*"]</td><td>Semua domain bisa akses API</td><td>Whitelist domain spesifik</td></tr>
-<tr><td>Tidak handle context cancellation</td><td>Request timeout tapi query masih jalan</td><td>Selalu gunakan <code>context.Context</code> dan pass ke DB</td></tr>
-<tr><td>Tidak ada graceful shutdown</td><td>In-flight request terputus saat deploy</td><td>Handle SIGTERM, drain connections</td></tr>
-<tr><td>Log sensitive data (password, token)</td><td>Credentials di log files</td><td>Hanya log non-sensitive fields</td></tr>
-<tr><td>Tidak ada connection pooling</td><td>Connection exhaustion di production</td><td>Set MaxOpenConns, MaxIdleConns</td></tr>
+<tr><th>Anti-Pattern</th><th>${t('Masalah','Problem')}</th><th>${t('Solusi','Solution')}</th></tr>
+<tr><td><code>db.Query("SELECT * FROM users WHERE id=&#39;" + id + "&#39;")</code></td><td>SQL Injection!</td><td>${t('Gunakan parameterized query: <code>db.Query(&quot;...WHERE id=$1&quot;, id)</code>','Use parameterized query: <code>db.Query(&quot;...WHERE id=$1&quot;, id)</code>')}</td></tr>
+<tr><td>${t('Simpan password plaintext','Store password plaintext')}</td><td>${t('Data breach = semua password bocor','Data breach = all passwords leaked')}</td><td>${t('Selalu hash dengan bcrypt/argon2','Always hash with bcrypt/argon2')}</td></tr>
+<tr><td>${t('Return User struct langsung (termasuk password hash)','Return User struct directly (including password hash)')}</td><td>${t('Password hash terekspos ke client','Password hash exposed to client')}</td><td>${t('Gunakan DTO terpisah (UserResponse tanpa password)','Use a separate DTO (UserResponse without password)')}</td></tr>
+<tr><td>${t('Hardcode JWT secret di source code','Hardcode JWT secret in source code')}</td><td>${t('Secret terekspos di Git repository','Secret exposed in Git repository')}</td><td>${t('Gunakan environment variables','Use environment variables')}</td></tr>
+<tr><td>${t('Tidak ada rate limiting','No rate limiting')}</td><td>Brute force login, DDoS</td><td>${t('Implementasi per-IP rate limiter','Implement per-IP rate limiter')}</td></tr>
+<tr><td>CORS AllowOrigins: ["*"]</td><td>${t('Semua domain bisa akses API','All domains can access API')}</td><td>${t('Whitelist domain spesifik','Whitelist specific domains')}</td></tr>
+<tr><td>${t('Tidak handle context cancellation','No context cancellation handling')}</td><td>${t('Request timeout tapi query masih jalan','Request timeout but query still runs')}</td><td>${t('Selalu gunakan <code>context.Context</code> dan pass ke DB','Always use <code>context.Context</code> and pass to DB')}</td></tr>
+<tr><td>${t('Tidak ada graceful shutdown','No graceful shutdown')}</td><td>${t('In-flight request terputus saat deploy','In-flight requests interrupted during deploy')}</td><td>Handle SIGTERM, drain connections</td></tr>
+<tr><td>Log sensitive data (password, token)</td><td>${t('Credentials di log files','Credentials in log files')}</td><td>${t('Hanya log non-sensitive fields','Only log non-sensitive fields')}</td></tr>
+<tr><td>${t('Tidak ada connection pooling','No connection pooling')}</td><td>Connection exhaustion ${t('di production','in production')}</td><td>Set MaxOpenConns, MaxIdleConns</td></tr>
 </table>
 </div>
 </div>
 
 <div class="card animate-in">
-<h3 style="color:var(--green)">Summary: Production Checklist</h3>
+<h3 style="color:var(--green)">${t('Summary: Checklist Production','Summary: Production Checklist')}</h3>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
 <div>
 <h4>Code &amp; Architecture</h4>

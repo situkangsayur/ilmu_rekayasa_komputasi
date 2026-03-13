@@ -5,16 +5,16 @@
 
 sections.algorithms = () => `
 
-<h1 class="section-title animate-in">10 Algoritma Klasik &mdash; HackerRank Style</h1>
-<p class="section-subtitle animate-in">Memahami 10 problem algoritma fundamental dengan pendekatan brute force vs optimal, implementasi di C, Go, Rust, serta visualisasi interaktif</p>
+<h1 class="section-title animate-in">${t('10 Algoritma Klasik &mdash; HackerRank Style', '10 Classic Algorithms &mdash; HackerRank Style')}</h1>
+<p class="section-subtitle animate-in">${t('Memahami 10 problem algoritma fundamental dengan pendekatan brute force vs optimal, implementasi di C, Go, Rust, serta visualisasi interaktif', 'Understanding 10 fundamental algorithm problems with brute force vs optimal approaches, implementations in C, Go, Rust, and interactive visualizations')}</p>
 
 <!-- ==================== TABLE OF CONTENTS ==================== -->
 <div class="card animate-in">
-<h2>Daftar Problem</h2>
+<h2>${t('Daftar Problem', 'Problem List')}</h2>
 <div class="card-grid-3">
     <div class="info-box"><strong>1.</strong> Two Sum &mdash; Hash Map</div>
     <div class="info-box"><strong>2.</strong> Binary Search &mdash; Divide &amp; Conquer</div>
-    <div class="info-box"><strong>3.</strong> Merge Sort &mdash; Sorting Optimal</div>
+    <div class="info-box"><strong>3.</strong> Merge Sort &mdash; ${t('Sorting Optimal', 'Optimal Sorting')}</div>
     <div class="info-box"><strong>4.</strong> Maximum Subarray &mdash; Kadane's</div>
     <div class="info-box"><strong>5.</strong> Climbing Stairs &mdash; Dynamic Programming</div>
     <div class="info-box"><strong>6.</strong> Longest Common Subsequence &mdash; DP Table</div>
@@ -28,34 +28,34 @@ sections.algorithms = () => `
 <!-- ==================== 1. TWO SUM ==================== -->
 <div class="card animate-in">
 <h2><span class="badge badge-blue">Problem 1</span> Two Sum</h2>
-<p>Diberikan array bilangan bulat <code>nums</code> dan sebuah target <code>target</code>, temukan dua elemen yang jika dijumlahkan menghasilkan <code>target</code>. Kembalikan indeks dari kedua elemen tersebut.</p>
+<p>${t('Diberikan array bilangan bulat <code>nums</code> dan sebuah target <code>target</code>, temukan dua elemen yang jika dijumlahkan menghasilkan <code>target</code>. Kembalikan indeks dari kedua elemen tersebut.', 'Given an array of integers <code>nums</code> and a <code>target</code>, find two elements that sum to <code>target</code>. Return the indices of both elements.')}</p>
 
 <div class="card-grid">
 <div class="card">
 <h3><span class="badge badge-red">Brute Force</span> O(n&sup2;)</h3>
-<p>Gunakan dua nested loop. Untuk setiap elemen, periksa semua elemen setelahnya apakah jumlahnya sama dengan target.</p>
+<p>${t('Gunakan dua nested loop. Untuk setiap elemen, periksa semua elemen setelahnya apakah jumlahnya sama dengan target.', 'Use two nested loops. For each element, check all subsequent elements to see if their sum equals the target.')}</p>
 <div class="step-list">
-    <div class="step-item"><div class="step-num">1</div><div class="step-text">Loop <code>i</code> dari 0 sampai n-1</div></div>
-    <div class="step-item"><div class="step-num">2</div><div class="step-text">Loop <code>j</code> dari i+1 sampai n</div></div>
-    <div class="step-item"><div class="step-num">3</div><div class="step-text">Jika <code>nums[i] + nums[j] == target</code>, kembalikan [i, j]</div></div>
+    <div class="step-item"><div class="step-num">1</div><div class="step-text">${t('Loop <code>i</code> dari 0 sampai n-1', 'Loop <code>i</code> from 0 to n-1')}</div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-text">${t('Loop <code>j</code> dari i+1 sampai n', 'Loop <code>j</code> from i+1 to n')}</div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-text">${t('Jika <code>nums[i] + nums[j] == target</code>, kembalikan [i, j]', 'If <code>nums[i] + nums[j] == target</code>, return [i, j]')}</div></div>
 </div>
-<div class="warn-box">Kompleksitas waktu O(n&sup2;) sangat lambat untuk n besar (misal n=10&sup6;). Butuh ~10&sup1;&sup2; operasi!</div>
+<div class="warn-box">${t('Kompleksitas waktu O(n&sup2;) sangat lambat untuk n besar (misal n=10&sup6;). Butuh ~10&sup1;&sup2; operasi!', 'Time complexity O(n&sup2;) is very slow for large n (e.g. n=10&sup6;). Requires ~10&sup1;&sup2; operations!')}</div>
 </div>
 
 <div class="card">
 <h3><span class="badge badge-green">Optimal</span> O(n) Hash Map</h3>
-<p>Gunakan hash map untuk menyimpan elemen yang sudah dilihat. Untuk setiap elemen, periksa apakah <code>target - nums[i]</code> sudah ada di hash map.</p>
+<p>${t('Gunakan hash map untuk menyimpan elemen yang sudah dilihat. Untuk setiap elemen, periksa apakah <code>target - nums[i]</code> sudah ada di hash map.', 'Use a hash map to store previously seen elements. For each element, check if <code>target - nums[i]</code> already exists in the hash map.')}</p>
 <div class="step-list">
-    <div class="step-item"><div class="step-num">1</div><div class="step-text">Buat hash map kosong</div></div>
-    <div class="step-item"><div class="step-num">2</div><div class="step-text">Untuk setiap elemen <code>nums[i]</code>, hitung <code>complement = target - nums[i]</code></div></div>
-    <div class="step-item"><div class="step-num">3</div><div class="step-text">Jika <code>complement</code> ada di map, kembalikan indeksnya</div></div>
-    <div class="step-item"><div class="step-num">4</div><div class="step-text">Jika tidak, masukkan <code>nums[i]</code> ke map</div></div>
+    <div class="step-item"><div class="step-num">1</div><div class="step-text">${t('Buat hash map kosong', 'Create an empty hash map')}</div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-text">${t('Untuk setiap elemen <code>nums[i]</code>, hitung <code>complement = target - nums[i]</code>', 'For each element <code>nums[i]</code>, compute <code>complement = target - nums[i]</code>')}</div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-text">${t('Jika <code>complement</code> ada di map, kembalikan indeksnya', 'If <code>complement</code> exists in the map, return its index')}</div></div>
+    <div class="step-item"><div class="step-num">4</div><div class="step-text">${t('Jika tidak, masukkan <code>nums[i]</code> ke map', 'Otherwise, insert <code>nums[i]</code> into the map')}</div></div>
 </div>
-<div class="success-box">Hanya butuh satu kali traverse! O(n) waktu, O(n) space.</div>
+<div class="success-box">${t('Hanya butuh satu kali traverse! O(n) waktu, O(n) space.', 'Only requires a single traverse! O(n) time, O(n) space.')}</div>
 </div>
 </div>
 
-<h3>Implementasi</h3>
+<h3>${t('Implementasi', 'Implementation')}</h3>
 <div class="tabs">
     <button class="tab-btn active" data-tab="ts1-c">C</button>
     <button class="tab-btn" data-tab="ts1-go">Go</button>
@@ -143,10 +143,10 @@ sections.algorithms = () => `
 
 <div class="table-wrapper">
 <table>
-<tr><th>Pendekatan</th><th>Waktu</th><th>Space</th><th>Kapan Digunakan</th></tr>
-<tr><td>Brute Force (nested loop)</td><td>O(n&sup2;)</td><td>O(1)</td><td>n sangat kecil (&lt; 100)</td></tr>
-<tr><td>Sorting + Two Pointer</td><td>O(n log n)</td><td>O(1)</td><td>Jika tidak butuh indeks asli</td></tr>
-<tr><td>Hash Map</td><td>O(n)</td><td>O(n)</td><td>Solusi optimal untuk kasus umum</td></tr>
+<tr><th>${t('Pendekatan', 'Approach')}</th><th>${t('Waktu', 'Time')}</th><th>Space</th><th>${t('Kapan Digunakan', 'When to Use')}</th></tr>
+<tr><td>Brute Force (nested loop)</td><td>O(n&sup2;)</td><td>O(1)</td><td>${t('n sangat kecil (&lt; 100)', 'n is very small (&lt; 100)')}</td></tr>
+<tr><td>Sorting + Two Pointer</td><td>O(n log n)</td><td>O(1)</td><td>${t('Jika tidak butuh indeks asli', 'When original indices are not needed')}</td></tr>
+<tr><td>Hash Map</td><td>O(n)</td><td>O(n)</td><td>${t('Solusi optimal untuk kasus umum', 'Optimal solution for general cases')}</td></tr>
 </table>
 </div>
 </div>
@@ -154,22 +154,22 @@ sections.algorithms = () => `
 <!-- ==================== 2. BINARY SEARCH ==================== -->
 <div class="card animate-in">
 <h2><span class="badge badge-blue">Problem 2</span> Binary Search</h2>
-<p>Diberikan array yang sudah <strong>terurut</strong> dan sebuah target, temukan indeks dari target. Jika tidak ditemukan, kembalikan -1.</p>
+<p>${t('Diberikan array yang sudah <strong>terurut</strong> dan sebuah target, temukan indeks dari target. Jika tidak ditemukan, kembalikan -1.', 'Given a <strong>sorted</strong> array and a target, find the index of the target. If not found, return -1.')}</p>
 
 <div class="card-grid">
 <div class="card">
 <h3><span class="badge badge-red">Linear Search</span> O(n)</h3>
-<p>Periksa setiap elemen satu per satu dari awal hingga akhir. Simpel tapi lambat untuk data besar.</p>
-<div class="warn-box">Untuk array 1 juta elemen, worst case butuh 1 juta perbandingan!</div>
+<p>${t('Periksa setiap elemen satu per satu dari awal hingga akhir. Simpel tapi lambat untuk data besar.', 'Check each element one by one from start to end. Simple but slow for large data.')}</p>
+<div class="warn-box">${t('Untuk array 1 juta elemen, worst case butuh 1 juta perbandingan!', 'For an array of 1 million elements, worst case requires 1 million comparisons!')}</div>
 </div>
 <div class="card">
 <h3><span class="badge badge-green">Binary Search</span> O(log n)</h3>
-<p>Bagi array menjadi dua setiap langkah. Bandingkan target dengan elemen tengah, lalu eliminasi setengah array.</p>
-<div class="success-box">Untuk array 1 juta elemen, hanya butuh ~20 perbandingan! log&sub2;(1.000.000) &asymp; 20</div>
+<p>${t('Bagi array menjadi dua setiap langkah. Bandingkan target dengan elemen tengah, lalu eliminasi setengah array.', 'Split the array in half each step. Compare the target with the middle element, then eliminate half the array.')}</p>
+<div class="success-box">${t('Untuk array 1 juta elemen, hanya butuh ~20 perbandingan! log&sub2;(1.000.000) &asymp; 20', 'For an array of 1 million elements, only ~20 comparisons needed! log&sub2;(1,000,000) &asymp; 20')}</div>
 </div>
 </div>
 
-<h3>Visualisasi Binary Search</h3>
+<h3>${t('Visualisasi Binary Search', 'Binary Search Visualization')}</h3>
 <div class="anim-container">
     <canvas id="binary-search-canvas" width="750" height="220" style="width:100%;max-width:750px;"></canvas>
     <div class="anim-controls">
@@ -179,7 +179,7 @@ sections.algorithms = () => `
     </div>
 </div>
 
-<h3>Implementasi</h3>
+<h3>${t('Implementasi', 'Implementation')}</h3>
 <div class="tabs">
     <button class="tab-btn active" data-tab="bs-c">C</button>
     <button class="tab-btn" data-tab="bs-go">Go</button>
@@ -240,10 +240,10 @@ sections.algorithms = () => `
 
 <div class="table-wrapper">
 <table>
-<tr><th>Pendekatan</th><th>Waktu</th><th>Space</th><th>Syarat</th></tr>
-<tr><td>Linear Search</td><td>O(n)</td><td>O(1)</td><td>Tidak perlu terurut</td></tr>
-<tr><td>Binary Search (iteratif)</td><td>O(log n)</td><td>O(1)</td><td>Array harus terurut</td></tr>
-<tr><td>Binary Search (rekursif)</td><td>O(log n)</td><td>O(log n) stack</td><td>Array harus terurut</td></tr>
+<tr><th>${t('Pendekatan', 'Approach')}</th><th>${t('Waktu', 'Time')}</th><th>Space</th><th>${t('Syarat', 'Requirement')}</th></tr>
+<tr><td>Linear Search</td><td>O(n)</td><td>O(1)</td><td>${t('Tidak perlu terurut', 'No sorting required')}</td></tr>
+<tr><td>Binary Search (${t('iteratif', 'iterative')})</td><td>O(log n)</td><td>O(1)</td><td>${t('Array harus terurut', 'Array must be sorted')}</td></tr>
+<tr><td>Binary Search (${t('rekursif', 'recursive')})</td><td>O(log n)</td><td>O(log n) stack</td><td>${t('Array harus terurut', 'Array must be sorted')}</td></tr>
 </table>
 </div>
 </div>
@@ -251,30 +251,30 @@ sections.algorithms = () => `
 <!-- ==================== 3. MERGE SORT ==================== -->
 <div class="card animate-in">
 <h2><span class="badge badge-blue">Problem 3</span> Merge Sort</h2>
-<p>Urutkan array menggunakan strategi <strong>divide and conquer</strong>. Bagi array menjadi dua, sort masing-masing, lalu gabungkan (merge) hasil yang sudah terurut.</p>
+<p>${t('Urutkan array menggunakan strategi <strong>divide and conquer</strong>. Bagi array menjadi dua, sort masing-masing, lalu gabungkan (merge) hasil yang sudah terurut.', 'Sort an array using the <strong>divide and conquer</strong> strategy. Split the array in two, sort each half, then merge the sorted results.')}</p>
 
 <div class="card-grid">
 <div class="card">
 <h3><span class="badge badge-red">Bubble Sort</span> O(n&sup2;)</h3>
-<p>Bandingkan elemen bersebelahan, tukar jika urutan salah. Ulangi sampai tidak ada pertukaran.</p>
+<p>${t('Bandingkan elemen bersebelahan, tukar jika urutan salah. Ulangi sampai tidak ada pertukaran.', 'Compare adjacent elements, swap if in wrong order. Repeat until no swaps are needed.')}</p>
 <div class="step-list">
-    <div class="step-item"><div class="step-num">1</div><div class="step-text">Pass pertama: elemen terbesar "menggelembung" ke akhir</div></div>
-    <div class="step-item"><div class="step-num">2</div><div class="step-text">Ulangi untuk n-1 elemen sisanya</div></div>
-    <div class="step-item"><div class="step-num">3</div><div class="step-text">Total perbandingan: n(n-1)/2</div></div>
+    <div class="step-item"><div class="step-num">1</div><div class="step-text">${t('Pass pertama: elemen terbesar "menggelembung" ke akhir', 'First pass: the largest element "bubbles" to the end')}</div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-text">${t('Ulangi untuk n-1 elemen sisanya', 'Repeat for the remaining n-1 elements')}</div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-text">${t('Total perbandingan: n(n-1)/2', 'Total comparisons: n(n-1)/2')}</div></div>
 </div>
 </div>
 <div class="card">
 <h3><span class="badge badge-green">Merge Sort</span> O(n log n)</h3>
-<p>Divide: bagi array jadi 2. Conquer: sort rekursif. Combine: merge dua array terurut.</p>
+<p>${t('Divide: bagi array jadi 2. Conquer: sort rekursif. Combine: merge dua array terurut.', 'Divide: split array into 2. Conquer: sort recursively. Combine: merge two sorted arrays.')}</p>
 <div class="step-list">
-    <div class="step-item"><div class="step-num">1</div><div class="step-text">Bagi array menjadi dua bagian sama besar</div></div>
-    <div class="step-item"><div class="step-num">2</div><div class="step-text">Sort rekursif masing-masing bagian</div></div>
-    <div class="step-item"><div class="step-num">3</div><div class="step-text">Merge dua bagian yang sudah terurut</div></div>
+    <div class="step-item"><div class="step-num">1</div><div class="step-text">${t('Bagi array menjadi dua bagian sama besar', 'Split the array into two equal halves')}</div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-text">${t('Sort rekursif masing-masing bagian', 'Recursively sort each half')}</div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-text">${t('Merge dua bagian yang sudah terurut', 'Merge the two sorted halves')}</div></div>
 </div>
 </div>
 </div>
 
-<h3>Visualisasi Sorting</h3>
+<h3>${t('Visualisasi Sorting', 'Sorting Visualization')}</h3>
 <div class="anim-container">
     <canvas id="sorting-canvas" width="750" height="300" style="width:100%;max-width:750px;"></canvas>
     <div class="anim-controls">
@@ -283,7 +283,7 @@ sections.algorithms = () => `
     </div>
 </div>
 
-<h3>Implementasi</h3>
+<h3>${t('Implementasi', 'Implementation')}</h3>
 <div class="tabs">
     <button class="tab-btn active" data-tab="ms-c">C</button>
     <button class="tab-btn" data-tab="ms-go">Go</button>
@@ -372,10 +372,10 @@ sections.algorithms = () => `
 
 <div class="table-wrapper">
 <table>
-<tr><th>Algoritma</th><th>Best</th><th>Average</th><th>Worst</th><th>Space</th><th>Stable</th></tr>
-<tr><td>Bubble Sort</td><td>O(n)</td><td>O(n&sup2;)</td><td>O(n&sup2;)</td><td>O(1)</td><td>Ya</td></tr>
-<tr><td>Merge Sort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n)</td><td>Ya</td></tr>
-<tr><td>Quick Sort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n&sup2;)</td><td>O(log n)</td><td>Tidak</td></tr>
+<tr><th>${t('Algoritma', 'Algorithm')}</th><th>Best</th><th>Average</th><th>Worst</th><th>Space</th><th>Stable</th></tr>
+<tr><td>Bubble Sort</td><td>O(n)</td><td>O(n&sup2;)</td><td>O(n&sup2;)</td><td>O(1)</td><td>${t('Ya', 'Yes')}</td></tr>
+<tr><td>Merge Sort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n)</td><td>${t('Ya', 'Yes')}</td></tr>
+<tr><td>Quick Sort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n&sup2;)</td><td>O(log n)</td><td>${t('Tidak', 'No')}</td></tr>
 </table>
 </div>
 </div>
@@ -383,23 +383,23 @@ sections.algorithms = () => `
 <!-- ==================== 4. MAXIMUM SUBARRAY ==================== -->
 <div class="card animate-in">
 <h2><span class="badge badge-blue">Problem 4</span> Maximum Subarray (Kadane's Algorithm)</h2>
-<p>Diberikan array bilangan bulat (bisa negatif), temukan subarray <em>contiguous</em> (bersebelahan) yang memiliki jumlah terbesar.</p>
-<p><strong>Contoh:</strong> <code>[-2, 1, -3, 4, -1, 2, 1, -5, 4]</code> &rarr; subarray <code>[4, -1, 2, 1]</code> dengan jumlah <strong>6</strong>.</p>
+<p>${t('Diberikan array bilangan bulat (bisa negatif), temukan subarray <em>contiguous</em> (bersebelahan) yang memiliki jumlah terbesar.', 'Given an array of integers (may be negative), find the <em>contiguous</em> subarray with the largest sum.')}</p>
+<p><strong>${t('Contoh', 'Example')}:</strong> <code>[-2, 1, -3, 4, -1, 2, 1, -5, 4]</code> &rarr; subarray <code>[4, -1, 2, 1]</code> ${t('dengan jumlah', 'with sum')} <strong>6</strong>.</p>
 
 <div class="card-grid">
 <div class="card">
 <h3><span class="badge badge-red">Brute Force</span> O(n&sup2;) / O(n&sup3;)</h3>
-<p><strong>O(n&sup3;):</strong> Tiga nested loop &mdash; setiap pasangan (i,j) dihitung jumlahnya dari awal.</p>
-<p><strong>O(n&sup2;):</strong> Optimasi dengan running sum &mdash; untuk setiap titik awal i, tambahkan elemen satu per satu.</p>
+<p><strong>O(n&sup3;):</strong> ${t('Tiga nested loop &mdash; setiap pasangan (i,j) dihitung jumlahnya dari awal.', 'Three nested loops &mdash; each pair (i,j) computes the sum from scratch.')}</p>
+<p><strong>O(n&sup2;):</strong> ${t('Optimasi dengan running sum &mdash; untuk setiap titik awal i, tambahkan elemen satu per satu.', 'Optimization with running sum &mdash; for each starting point i, add elements one by one.')}</p>
 </div>
 <div class="card">
 <h3><span class="badge badge-green">Kadane's</span> O(n)</h3>
-<p>Ide kunci: pada setiap posisi, kita memilih antara <strong>memperpanjang subarray sebelumnya</strong> atau <strong>memulai subarray baru</strong>.</p>
+<p>${t('Ide kunci: pada setiap posisi, kita memilih antara <strong>memperpanjang subarray sebelumnya</strong> atau <strong>memulai subarray baru</strong>.', 'Key idea: at each position, we choose between <strong>extending the previous subarray</strong> or <strong>starting a new subarray</strong>.')}</p>
 <div class="info-box"><code>currentMax = max(nums[i], currentMax + nums[i])</code><br><code>globalMax = max(globalMax, currentMax)</code></div>
 </div>
 </div>
 
-<h3>Implementasi</h3>
+<h3>${t('Implementasi', 'Implementation')}</h3>
 <div class="tabs">
     <button class="tab-btn active" data-tab="ka-c">C</button>
     <button class="tab-btn" data-tab="ka-go">Go</button>
@@ -478,35 +478,35 @@ sections.algorithms = () => `
     <div class="flow-arrow">&darr;</div>
     <div class="flow-node">globalMax: -2 &rarr; 1 &rarr; 1 &rarr; 4 &rarr; 4 &rarr; 5 &rarr; <strong>6</strong> &rarr; 6 &rarr; 6</div>
     <div class="flow-arrow">&darr;</div>
-    <div class="flow-node">Jawaban: 6 (subarray [4, -1, 2, 1])</div>
+    <div class="flow-node">${t('Jawaban', 'Answer')}: 6 (subarray [4, -1, 2, 1])</div>
 </div>
 </div>
 
 <!-- ==================== 5. CLIMBING STAIRS ==================== -->
 <div class="card animate-in">
 <h2><span class="badge badge-blue">Problem 5</span> Climbing Stairs (Dynamic Programming)</h2>
-<p>Anda sedang menaiki tangga yang memiliki <code>n</code> anak tangga. Setiap langkah, Anda bisa naik <strong>1 atau 2</strong> anak tangga. Berapa banyak cara berbeda untuk mencapai puncak?</p>
+<p>${t('Anda sedang menaiki tangga yang memiliki <code>n</code> anak tangga. Setiap langkah, Anda bisa naik <strong>1 atau 2</strong> anak tangga. Berapa banyak cara berbeda untuk mencapai puncak?', 'You are climbing a staircase with <code>n</code> steps. Each move, you can climb <strong>1 or 2</strong> steps. How many distinct ways are there to reach the top?')}</p>
 
 <div class="info-box">
-<strong>Pola:</strong> Ini identik dengan deret Fibonacci!<br>
+<strong>${t('Pola', 'Pattern')}:</strong> ${t('Ini identik dengan deret Fibonacci!', 'This is identical to the Fibonacci sequence!')}<br>
 <code>f(1) = 1, f(2) = 2, f(n) = f(n-1) + f(n-2)</code><br>
-Karena untuk sampai ke tangga ke-n, kita bisa datang dari tangga ke-(n-1) dengan 1 langkah, atau dari tangga ke-(n-2) dengan 2 langkah.
+${t('Karena untuk sampai ke tangga ke-n, kita bisa datang dari tangga ke-(n-1) dengan 1 langkah, atau dari tangga ke-(n-2) dengan 2 langkah.', 'Because to reach step n, we can come from step (n-1) with 1 step, or from step (n-2) with 2 steps.')}
 </div>
 
 <div class="card-grid">
 <div class="card">
 <h3><span class="badge badge-red">Rekursif Naive</span> O(2&sup1;)</h3>
-<p>Hitung f(n-1) + f(n-2) secara rekursif. Masalah: banyak subproblem yang dihitung berulang kali (overlapping subproblems).</p>
-<div class="warn-box">Untuk n=40, fungsi ini dipanggil lebih dari 300 juta kali! Untuk n=50, butuh waktu bermenit-menit.</div>
+<p>${t('Hitung f(n-1) + f(n-2) secara rekursif. Masalah: banyak subproblem yang dihitung berulang kali (overlapping subproblems).', 'Compute f(n-1) + f(n-2) recursively. Problem: many subproblems are computed repeatedly (overlapping subproblems).')}</p>
+<div class="warn-box">${t('Untuk n=40, fungsi ini dipanggil lebih dari 300 juta kali! Untuk n=50, butuh waktu bermenit-menit.', 'For n=40, the function is called more than 300 million times! For n=50, it takes minutes.')}</div>
 </div>
 <div class="card">
 <h3><span class="badge badge-green">DP Bottom-Up</span> O(n)</h3>
-<p>Bangun solusi dari bawah ke atas. Simpan hasil subproblem di array (atau dua variabel saja).</p>
-<div class="success-box">Hanya butuh n operasi. O(n) waktu, O(1) space jika hanya simpan 2 variabel terakhir.</div>
+<p>${t('Bangun solusi dari bawah ke atas. Simpan hasil subproblem di array (atau dua variabel saja).', 'Build the solution from the bottom up. Store subproblem results in an array (or just two variables).')}</p>
+<div class="success-box">${t('Hanya butuh n operasi. O(n) waktu, O(1) space jika hanya simpan 2 variabel terakhir.', 'Only requires n operations. O(n) time, O(1) space if only storing the last 2 variables.')}</div>
 </div>
 </div>
 
-<h3>Implementasi</h3>
+<h3>${t('Implementasi', 'Implementation')}</h3>
 <div class="tabs">
     <button class="tab-btn active" data-tab="cs-c">C</button>
     <button class="tab-btn" data-tab="cs-go">Go</button>
@@ -564,7 +564,7 @@ Karena untuk sampai ke tangga ke-n, kita bisa datang dari tangga ke-(n-1) dengan
 
 <div class="table-wrapper">
 <table>
-<tr><th>n</th><th>Cara</th><th>Rekursif calls</th><th>DP operasi</th></tr>
+<tr><th>n</th><th>${t('Cara', 'Ways')}</th><th>${t('Rekursif calls', 'Recursive calls')}</th><th>${t('DP operasi', 'DP operations')}</th></tr>
 <tr><td>5</td><td>8</td><td>15</td><td>3</td></tr>
 <tr><td>10</td><td>89</td><td>177</td><td>8</td></tr>
 <tr><td>20</td><td>10.946</td><td>21.891</td><td>18</td></tr>
@@ -577,27 +577,27 @@ Karena untuk sampai ke tangga ke-n, kita bisa datang dari tangga ke-(n-1) dengan
 <!-- ==================== 6. LCS ==================== -->
 <div class="card animate-in">
 <h2><span class="badge badge-blue">Problem 6</span> Longest Common Subsequence (LCS)</h2>
-<p>Diberikan dua string, temukan <strong>subsequence</strong> terpanjang yang muncul di keduanya. Subsequence tidak harus contiguous (berbeda dari substring).</p>
-<p><strong>Contoh:</strong> <code>"ABCBDAB"</code> dan <code>"BDCAB"</code> &rarr; LCS = <code>"BCAB"</code> (panjang 4)</p>
+<p>${t('Diberikan dua string, temukan <strong>subsequence</strong> terpanjang yang muncul di keduanya. Subsequence tidak harus contiguous (berbeda dari substring).', 'Given two strings, find the longest <strong>subsequence</strong> that appears in both. A subsequence does not have to be contiguous (unlike a substring).')}</p>
+<p><strong>${t('Contoh', 'Example')}:</strong> <code>"ABCBDAB"</code> ${t('dan', 'and')} <code>"BDCAB"</code> &rarr; LCS = <code>"BCAB"</code> (${t('panjang', 'length')} 4)</p>
 
 <div class="card-grid">
 <div class="card">
 <h3><span class="badge badge-red">Brute Force</span> O(2&sup1;)</h3>
-<p>Enumerasi semua subsequence dari string pertama (ada 2&sup1; kemungkinan), lalu periksa mana yang juga subsequence dari string kedua.</p>
-<div class="warn-box">Untuk string panjang 20, ada lebih dari 1 juta subsequence. Panjang 30? Lebih dari 1 miliar!</div>
+<p>${t('Enumerasi semua subsequence dari string pertama (ada 2&sup1; kemungkinan), lalu periksa mana yang juga subsequence dari string kedua.', 'Enumerate all subsequences of the first string (2&sup1; possibilities), then check which are also subsequences of the second string.')}</p>
+<div class="warn-box">${t('Untuk string panjang 20, ada lebih dari 1 juta subsequence. Panjang 30? Lebih dari 1 miliar!', 'For a string of length 20, there are over 1 million subsequences. Length 30? Over 1 billion!')}</div>
 </div>
 <div class="card">
 <h3><span class="badge badge-green">DP Table</span> O(n &times; m)</h3>
-<p>Bangun tabel DP berukuran (n+1) x (m+1). Jika karakter sama, ambil diagonal + 1. Jika beda, ambil max dari kiri atau atas.</p>
-<div class="success-box">Untuk dua string panjang 1000, hanya butuh 1 juta operasi &mdash; sangat cepat!</div>
+<p>${t('Bangun tabel DP berukuran (n+1) x (m+1). Jika karakter sama, ambil diagonal + 1. Jika beda, ambil max dari kiri atau atas.', 'Build a DP table of size (n+1) x (m+1). If characters match, take diagonal + 1. If different, take max of left or top.')}</p>
+<div class="success-box">${t('Untuk dua string panjang 1000, hanya butuh 1 juta operasi &mdash; sangat cepat!', 'For two strings of length 1000, only 1 million operations needed &mdash; very fast!')}</div>
 </div>
 </div>
 
-<h3>DP Table Visual</h3>
+<h3>${t('DP Table Visual', 'DP Table Visual')}</h3>
 <div class="info-box">
-<strong>Rumus:</strong><br>
-Jika <code>s1[i] == s2[j]</code>: <code>dp[i][j] = dp[i-1][j-1] + 1</code><br>
-Jika tidak: <code>dp[i][j] = max(dp[i-1][j], dp[i][j-1])</code>
+<strong>${t('Rumus', 'Formula')}:</strong><br>
+${t('Jika', 'If')} <code>s1[i] == s2[j]</code>: <code>dp[i][j] = dp[i-1][j-1] + 1</code><br>
+${t('Jika tidak', 'Otherwise')}: <code>dp[i][j] = max(dp[i-1][j], dp[i][j-1])</code>
 </div>
 
 <div class="table-wrapper">
@@ -614,7 +614,7 @@ Jika tidak: <code>dp[i][j] = max(dp[i-1][j], dp[i][j-1])</code>
 </table>
 </div>
 
-<h3>Implementasi</h3>
+<h3>${t('Implementasi', 'Implementation')}</h3>
 <div class="tabs">
     <button class="tab-btn active" data-tab="lcs-c">C</button>
     <button class="tab-btn" data-tab="lcs-go">Go</button>
@@ -704,34 +704,34 @@ Jika tidak: <code>dp[i][j] = max(dp[i-1][j], dp[i][j-1])</code>
 <!-- ==================== 7. GRAPH BFS/DFS ==================== -->
 <div class="card animate-in">
 <h2><span class="badge badge-blue">Problem 7</span> Graph BFS / DFS Traversal</h2>
-<p>Dua cara fundamental untuk menjelajahi graph: <strong>Breadth-First Search (BFS)</strong> menjelajah level per level, dan <strong>Depth-First Search (DFS)</strong> menjelajah sedalam mungkin sebelum backtrack.</p>
+<p>${t('Dua cara fundamental untuk menjelajahi graph: <strong>Breadth-First Search (BFS)</strong> menjelajah level per level, dan <strong>Depth-First Search (DFS)</strong> menjelajah sedalam mungkin sebelum backtrack.', 'Two fundamental ways to traverse a graph: <strong>Breadth-First Search (BFS)</strong> explores level by level, and <strong>Depth-First Search (DFS)</strong> explores as deep as possible before backtracking.')}</p>
 
 <div class="card-grid">
 <div class="card">
 <h3><span class="badge badge-purple">BFS</span> Level-by-Level</h3>
-<p>Menggunakan <strong>queue (FIFO)</strong>. Eksplorasi semua tetangga sebelum pindah ke level berikutnya.</p>
+<p>${t('Menggunakan <strong>queue (FIFO)</strong>. Eksplorasi semua tetangga sebelum pindah ke level berikutnya.', 'Uses a <strong>queue (FIFO)</strong>. Explores all neighbors before moving to the next level.')}</p>
 <div class="step-list">
-    <div class="step-item"><div class="step-num">1</div><div class="step-text">Masukkan node awal ke queue</div></div>
-    <div class="step-item"><div class="step-num">2</div><div class="step-text">Dequeue node, proses, tandai visited</div></div>
-    <div class="step-item"><div class="step-num">3</div><div class="step-text">Enqueue semua tetangga yang belum dikunjungi</div></div>
-    <div class="step-item"><div class="step-num">4</div><div class="step-text">Ulangi sampai queue kosong</div></div>
+    <div class="step-item"><div class="step-num">1</div><div class="step-text">${t('Masukkan node awal ke queue', 'Add the starting node to the queue')}</div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-text">${t('Dequeue node, proses, tandai visited', 'Dequeue node, process, mark as visited')}</div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-text">${t('Enqueue semua tetangga yang belum dikunjungi', 'Enqueue all unvisited neighbors')}</div></div>
+    <div class="step-item"><div class="step-num">4</div><div class="step-text">${t('Ulangi sampai queue kosong', 'Repeat until the queue is empty')}</div></div>
 </div>
-<div class="info-box"><strong>Gunakan BFS untuk:</strong> shortest path (unweighted), level-order traversal, minimum steps</div>
+<div class="info-box"><strong>${t('Gunakan BFS untuk:', 'Use BFS for:')}</strong> shortest path (unweighted), level-order traversal, minimum steps</div>
 </div>
 <div class="card">
 <h3><span class="badge badge-orange">DFS</span> Depth-First</h3>
-<p>Menggunakan <strong>stack (LIFO)</strong> atau rekursi. Jelajahi satu path sedalam mungkin sebelum backtrack.</p>
+<p>${t('Menggunakan <strong>stack (LIFO)</strong> atau rekursi. Jelajahi satu path sedalam mungkin sebelum backtrack.', 'Uses a <strong>stack (LIFO)</strong> or recursion. Explores one path as deep as possible before backtracking.')}</p>
 <div class="step-list">
-    <div class="step-item"><div class="step-num">1</div><div class="step-text">Masukkan node awal ke stack</div></div>
-    <div class="step-item"><div class="step-num">2</div><div class="step-text">Pop node, proses, tandai visited</div></div>
-    <div class="step-item"><div class="step-num">3</div><div class="step-text">Push semua tetangga yang belum dikunjungi</div></div>
-    <div class="step-item"><div class="step-num">4</div><div class="step-text">Ulangi sampai stack kosong</div></div>
+    <div class="step-item"><div class="step-num">1</div><div class="step-text">${t('Masukkan node awal ke stack', 'Push the starting node onto the stack')}</div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-text">${t('Pop node, proses, tandai visited', 'Pop node, process, mark as visited')}</div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-text">${t('Push semua tetangga yang belum dikunjungi', 'Push all unvisited neighbors')}</div></div>
+    <div class="step-item"><div class="step-num">4</div><div class="step-text">${t('Ulangi sampai stack kosong', 'Repeat until the stack is empty')}</div></div>
 </div>
-<div class="info-box"><strong>Gunakan DFS untuk:</strong> cycle detection, topological sort, connected components, path finding</div>
+<div class="info-box"><strong>${t('Gunakan DFS untuk:', 'Use DFS for:')}</strong> cycle detection, topological sort, connected components, path finding</div>
 </div>
 </div>
 
-<h3>Visualisasi Graph Traversal</h3>
+<h3>${t('Visualisasi Graph Traversal', 'Graph Traversal Visualization')}</h3>
 <div class="anim-container">
     <canvas id="graph-canvas" width="750" height="350" style="width:100%;max-width:750px;"></canvas>
     <div class="anim-controls">
@@ -741,17 +741,17 @@ Jika tidak: <code>dp[i][j] = max(dp[i-1][j], dp[i][j-1])</code>
     </div>
 </div>
 
-<h3>Kompleksitas</h3>
+<h3>${t('Kompleksitas', 'Complexity')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Algoritma</th><th>Waktu</th><th>Space</th><th>Struktur Data</th></tr>
+<tr><th>${t('Algoritma', 'Algorithm')}</th><th>${t('Waktu', 'Time')}</th><th>Space</th><th>${t('Struktur Data', 'Data Structure')}</th></tr>
 <tr><td>BFS</td><td>O(V + E)</td><td>O(V)</td><td>Queue</td></tr>
-<tr><td>DFS (iteratif)</td><td>O(V + E)</td><td>O(V)</td><td>Stack</td></tr>
-<tr><td>DFS (rekursif)</td><td>O(V + E)</td><td>O(V) call stack</td><td>Rekursi</td></tr>
+<tr><td>DFS (${t('iteratif', 'iterative')})</td><td>O(V + E)</td><td>O(V)</td><td>Stack</td></tr>
+<tr><td>DFS (${t('rekursif', 'recursive')})</td><td>O(V + E)</td><td>O(V) call stack</td><td>${t('Rekursi', 'Recursion')}</td></tr>
 </table>
 </div>
 
-<h3>Implementasi</h3>
+<h3>${t('Implementasi', 'Implementation')}</h3>
 <div class="tabs">
     <button class="tab-btn active" data-tab="gph-c">C</button>
     <button class="tab-btn" data-tab="gph-go">Go</button>
@@ -916,27 +916,27 @@ Jika tidak: <code>dp[i][j] = max(dp[i-1][j], dp[i][j-1])</code>
 <!-- ==================== 8. DIJKSTRA ==================== -->
 <div class="card animate-in">
 <h2><span class="badge badge-blue">Problem 8</span> Dijkstra's Shortest Path</h2>
-<p>Temukan jalur terpendek dari satu node sumber ke semua node lain dalam graph <strong>berbobot non-negatif</strong>.</p>
+<p>${t('Temukan jalur terpendek dari satu node sumber ke semua node lain dalam graph <strong>berbobot non-negatif</strong>.', 'Find the shortest path from a single source node to all other nodes in a graph with <strong>non-negative weights</strong>.')}</p>
 
 <div class="card-grid">
 <div class="card">
-<h3><span class="badge badge-red">BFS Biasa</span> Tidak Cukup!</h3>
-<p>BFS hanya bekerja untuk graph <strong>tanpa bobot</strong> (atau bobot sama). Pada graph berbobot, jalur dengan edge lebih sedikit belum tentu yang terpendek.</p>
-<div class="warn-box"><strong>Contoh:</strong> Path A&rarr;C (bobot 10) vs A&rarr;B&rarr;C (bobot 3+4=7). BFS memilih A&rarr;C karena lebih sedikit edge, tapi bukan yang terpendek!</div>
+<h3><span class="badge badge-red">${t('BFS Biasa', 'Regular BFS')}</span> ${t('Tidak Cukup!', 'Not Enough!')}</h3>
+<p>${t('BFS hanya bekerja untuk graph <strong>tanpa bobot</strong> (atau bobot sama). Pada graph berbobot, jalur dengan edge lebih sedikit belum tentu yang terpendek.', 'BFS only works for <strong>unweighted</strong> graphs (or equal weights). In weighted graphs, a path with fewer edges is not necessarily the shortest.')}</p>
+<div class="warn-box"><strong>${t('Contoh', 'Example')}:</strong> Path A&rarr;C (${t('bobot', 'weight')} 10) vs A&rarr;B&rarr;C (${t('bobot', 'weight')} 3+4=7). ${t('BFS memilih A&rarr;C karena lebih sedikit edge, tapi bukan yang terpendek!', 'BFS chooses A&rarr;C because it has fewer edges, but it is not the shortest!')}</div>
 </div>
 <div class="card">
 <h3><span class="badge badge-green">Dijkstra</span> O((V+E) log V)</h3>
-<p>Gunakan <strong>priority queue (min-heap)</strong>. Selalu proses node dengan jarak terkecil terlebih dahulu. Greedy approach yang dijamin optimal untuk bobot non-negatif.</p>
+<p>${t('Gunakan <strong>priority queue (min-heap)</strong>. Selalu proses node dengan jarak terkecil terlebih dahulu. Greedy approach yang dijamin optimal untuk bobot non-negatif.', 'Use a <strong>priority queue (min-heap)</strong>. Always process the node with the smallest distance first. A greedy approach guaranteed to be optimal for non-negative weights.')}</p>
 <div class="step-list">
-    <div class="step-item"><div class="step-num">1</div><div class="step-text">Set jarak semua node = infinity, sumber = 0</div></div>
-    <div class="step-item"><div class="step-num">2</div><div class="step-text">Masukkan sumber ke priority queue</div></div>
-    <div class="step-item"><div class="step-num">3</div><div class="step-text">Extract min, relax semua tetangga</div></div>
-    <div class="step-item"><div class="step-num">4</div><div class="step-text">Ulangi sampai queue kosong</div></div>
+    <div class="step-item"><div class="step-num">1</div><div class="step-text">${t('Set jarak semua node = infinity, sumber = 0', 'Set distance of all nodes = infinity, source = 0')}</div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-text">${t('Masukkan sumber ke priority queue', 'Add source to the priority queue')}</div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-text">${t('Extract min, relax semua tetangga', 'Extract min, relax all neighbors')}</div></div>
+    <div class="step-item"><div class="step-num">4</div><div class="step-text">${t('Ulangi sampai queue kosong', 'Repeat until the queue is empty')}</div></div>
 </div>
 </div>
 </div>
 
-<h3>Implementasi</h3>
+<h3>${t('Implementasi', 'Implementation')}</h3>
 <div class="tabs">
     <button class="tab-btn active" data-tab="dj-go">Go</button>
     <button class="tab-btn" data-tab="dj-rs">Rust</button>
@@ -1016,11 +1016,11 @@ Jika tidak: <code>dp[i][j] = max(dp[i-1][j], dp[i][j-1])</code>
 
 <div class="table-wrapper">
 <table>
-<tr><th>Algoritma</th><th>Waktu</th><th>Bobot Negatif?</th><th>Kasus Penggunaan</th></tr>
-<tr><td>BFS</td><td>O(V + E)</td><td>Tidak relevan (unweighted)</td><td>Graph tanpa bobot</td></tr>
-<tr><td>Dijkstra (array)</td><td>O(V&sup2;)</td><td>Tidak</td><td>Dense graph</td></tr>
-<tr><td>Dijkstra (heap)</td><td>O((V+E) log V)</td><td>Tidak</td><td>Sparse graph</td></tr>
-<tr><td>Bellman-Ford</td><td>O(V &times; E)</td><td>Ya</td><td>Ada bobot negatif</td></tr>
+<tr><th>${t('Algoritma', 'Algorithm')}</th><th>${t('Waktu', 'Time')}</th><th>${t('Bobot Negatif?', 'Negative Weights?')}</th><th>${t('Kasus Penggunaan', 'Use Case')}</th></tr>
+<tr><td>BFS</td><td>O(V + E)</td><td>${t('Tidak relevan (unweighted)', 'Not relevant (unweighted)')}</td><td>${t('Graph tanpa bobot', 'Unweighted graph')}</td></tr>
+<tr><td>Dijkstra (array)</td><td>O(V&sup2;)</td><td>${t('Tidak', 'No')}</td><td>Dense graph</td></tr>
+<tr><td>Dijkstra (heap)</td><td>O((V+E) log V)</td><td>${t('Tidak', 'No')}</td><td>Sparse graph</td></tr>
+<tr><td>Bellman-Ford</td><td>O(V &times; E)</td><td>${t('Ya', 'Yes')}</td><td>${t('Ada bobot negatif', 'Has negative weights')}</td></tr>
 </table>
 </div>
 </div>
@@ -1028,22 +1028,22 @@ Jika tidak: <code>dp[i][j] = max(dp[i-1][j], dp[i][j-1])</code>
 <!-- ==================== 9. N-QUEENS ==================== -->
 <div class="card animate-in">
 <h2><span class="badge badge-blue">Problem 9</span> N-Queens (Backtracking)</h2>
-<p>Tempatkan <strong>N queens</strong> pada papan catur N&times;N sehingga tidak ada dua queen yang saling menyerang. Queen menyerang secara horizontal, vertikal, dan diagonal.</p>
+<p>${t('Tempatkan <strong>N queens</strong> pada papan catur N&times;N sehingga tidak ada dua queen yang saling menyerang. Queen menyerang secara horizontal, vertikal, dan diagonal.', 'Place <strong>N queens</strong> on an N&times;N chessboard so that no two queens attack each other. Queens attack horizontally, vertically, and diagonally.')}</p>
 
 <div class="card-grid">
 <div class="card">
 <h3><span class="badge badge-red">Brute Force</span> O(N!)</h3>
-<p>Coba semua kemungkinan penempatan N queen di N&sup2; kotak. Ada C(N&sup2;, N) kemungkinan &mdash; untuk N=8, itu lebih dari 4 miliar!</p>
-<div class="warn-box">Bahkan dengan optimasi permutasi (satu queen per baris), masih ada N! = 40.320 kemungkinan untuk N=8.</div>
+<p>${t('Coba semua kemungkinan penempatan N queen di N&sup2; kotak. Ada C(N&sup2;, N) kemungkinan &mdash; untuk N=8, itu lebih dari 4 miliar!', 'Try all possible placements of N queens on N&sup2; squares. There are C(N&sup2;, N) possibilities &mdash; for N=8, that is over 4 billion!')}</p>
+<div class="warn-box">${t('Bahkan dengan optimasi permutasi (satu queen per baris), masih ada N! = 40.320 kemungkinan untuk N=8.', 'Even with permutation optimization (one queen per row), there are still N! = 40,320 possibilities for N=8.')}</div>
 </div>
 <div class="card">
 <h3><span class="badge badge-green">Backtracking</span> Pruning</h3>
-<p>Tempatkan queen baris per baris. Untuk setiap baris, coba setiap kolom. Jika posisi aman, lanjut ke baris berikutnya. Jika tidak ada posisi aman, <strong>backtrack</strong>.</p>
-<div class="success-box">Dengan backtracking, rata-rata hanya perlu memeriksa beberapa ratus posisi untuk N=8, jauh lebih sedikit dari 40.320!</div>
+<p>${t('Tempatkan queen baris per baris. Untuk setiap baris, coba setiap kolom. Jika posisi aman, lanjut ke baris berikutnya. Jika tidak ada posisi aman, <strong>backtrack</strong>.', 'Place queens row by row. For each row, try each column. If the position is safe, proceed to the next row. If no safe position exists, <strong>backtrack</strong>.')}</p>
+<div class="success-box">${t('Dengan backtracking, rata-rata hanya perlu memeriksa beberapa ratus posisi untuk N=8, jauh lebih sedikit dari 40.320!', 'With backtracking, on average only a few hundred positions need to be checked for N=8, far fewer than 40,320!')}</div>
 </div>
 </div>
 
-<h3>Visualisasi N-Queens</h3>
+<h3>${t('Visualisasi N-Queens', 'N-Queens Visualization')}</h3>
 <div class="anim-container">
     <canvas id="nqueens-canvas" width="450" height="450" style="width:100%;max-width:450px;"></canvas>
     <div class="anim-controls">
@@ -1053,7 +1053,7 @@ Jika tidak: <code>dp[i][j] = max(dp[i-1][j], dp[i][j-1])</code>
     </div>
 </div>
 
-<h3>Implementasi</h3>
+<h3>${t('Implementasi', 'Implementation')}</h3>
 <div class="tabs">
     <button class="tab-btn active" data-tab="nq-c">C</button>
     <button class="tab-btn" data-tab="nq-go">Go</button>
@@ -1186,7 +1186,7 @@ Jika tidak: <code>dp[i][j] = max(dp[i-1][j], dp[i][j-1])</code>
 
 <div class="table-wrapper">
 <table>
-<tr><th>N</th><th>Solusi</th><th>Node Diperiksa (Backtracking)</th><th>Brute Force (N!)</th></tr>
+<tr><th>N</th><th>${t('Solusi', 'Solutions')}</th><th>${t('Node Diperiksa (Backtracking)', 'Nodes Checked (Backtracking)')}</th><th>Brute Force (N!)</th></tr>
 <tr><td>4</td><td>2</td><td>~16</td><td>24</td></tr>
 <tr><td>8</td><td>92</td><td>~876</td><td>40.320</td></tr>
 <tr><td>10</td><td>724</td><td>~8.832</td><td>3.628.800</td></tr>
@@ -1198,13 +1198,13 @@ Jika tidak: <code>dp[i][j] = max(dp[i-1][j], dp[i][j-1])</code>
 <!-- ==================== 10. KNAPSACK ==================== -->
 <div class="card animate-in">
 <h2><span class="badge badge-blue">Problem 10</span> 0/1 Knapsack (Dynamic Programming)</h2>
-<p>Diberikan <code>n</code> item, masing-masing dengan berat (<code>weight</code>) dan nilai (<code>value</code>), serta kapasitas knapsack <code>W</code>. Pilih item-item untuk memaksimalkan total nilai tanpa melebihi kapasitas. Setiap item hanya bisa dipilih <strong>sekali</strong> (0/1).</p>
+<p>${t('Diberikan <code>n</code> item, masing-masing dengan berat (<code>weight</code>) dan nilai (<code>value</code>), serta kapasitas knapsack <code>W</code>. Pilih item-item untuk memaksimalkan total nilai tanpa melebihi kapasitas. Setiap item hanya bisa dipilih <strong>sekali</strong> (0/1).', 'Given <code>n</code> items, each with a weight (<code>weight</code>) and value (<code>value</code>), and a knapsack capacity <code>W</code>. Select items to maximize total value without exceeding capacity. Each item can only be chosen <strong>once</strong> (0/1).')}</p>
 
 <div class="card-grid">
 <div class="card">
 <h3><span class="badge badge-red">Brute Force</span> O(2&sup1;)</h3>
-<p>Untuk setiap item, ada dua pilihan: ambil atau tidak. Total kombinasi = 2&sup1;. Periksa semua kombinasi, ambil yang nilai tertinggi dengan total berat &le; W.</p>
-<div class="warn-box">Untuk 20 item: 1.048.576 kombinasi. Untuk 30 item: lebih dari 1 miliar!</div>
+<p>${t('Untuk setiap item, ada dua pilihan: ambil atau tidak. Total kombinasi = 2&sup1;. Periksa semua kombinasi, ambil yang nilai tertinggi dengan total berat &le; W.', 'For each item, there are two choices: take or skip. Total combinations = 2&sup1;. Check all combinations, pick the one with highest value and total weight &le; W.')}</p>
+<div class="warn-box">${t('Untuk 20 item: 1.048.576 kombinasi. Untuk 30 item: lebih dari 1 miliar!', 'For 20 items: 1,048,576 combinations. For 30 items: over 1 billion!')}</div>
 </div>
 <div class="card">
 <h3><span class="badge badge-green">DP</span> O(n &times; W)</h3>
@@ -1220,7 +1220,7 @@ Jika tidak: <code>dp[i][j] = max(dp[i-1][j], dp[i][j-1])</code>
 <strong>Solusi optimal:</strong> Ambil item 1,2,3 (berat=2+3+4=9? Tidak!) &rarr; Ambil item 1,2,4 (berat=2+3+5=10? Tidak!) &rarr; Ambil item 1,3 (berat=2+4=6, nilai=3+5=8) atau item 2,4 (berat=3+5=8, nilai=4+6=10). Jawaban: <strong>10</strong>.
 </div>
 
-<h3>Implementasi</h3>
+<h3>${t('Implementasi', 'Implementation')}</h3>
 <div class="tabs">
     <button class="tab-btn active" data-tab="ks-c">C</button>
     <button class="tab-btn" data-tab="ks-go">Go</button>

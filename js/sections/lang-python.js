@@ -2,28 +2,28 @@
 sections['lang-python'] = () => `
 <section class="animate-in">
 <h1 class="section-title animate-in">Python Deep Dive</h1>
-<p class="section-subtitle animate-in">ML/Data Science, FFI dengan Go &amp; Rust, dan advanced Python internals</p>
+<p class="section-subtitle animate-in">${t('ML/Data Science, FFI dengan Go &amp; Rust, dan advanced Python internals', 'ML/Data Science, FFI with Go &amp; Rust, and advanced Python internals')}</p>
 <p class="animate-in"><em>Ref: docs.python.org; "Fluent Python" (Ramalho, 2022); PyTorch Docs; PyO3 Guide; NumPy Docs</em></p>
 
 <!-- ==================== 1. MENGAPA PYTHON? ==================== -->
-<h2 class="animate-in">1. Mengapa Python?</h2>
+<h2 class="animate-in">${t('1. Mengapa Python?', '1. Why Python?')}</h2>
 
 <div class="card animate-in">
-<h3>Sejarah &amp; Filosofi</h3>
-<p><strong>Python</strong> diciptakan oleh <strong>Guido van Rossum</strong> di Centrum Wiskunde &amp; Informatica (CWI), Belanda. Versi pertama (0.9.0) dirilis <strong>Februari 1991</strong>. Nama diambil dari acara komedi BBC <em>Monty Python's Flying Circus</em>.</p>
-<p>Guido menjabat sebagai <em>Benevolent Dictator For Life (BDFL)</em> hingga 2018. Python 2 End-of-Life resmi terjadi 1 Januari 2020 — seluruh ekosistem kini menggunakan Python 3.</p>
+<h3>${t('Sejarah &amp; Filosofi', 'History &amp; Philosophy')}</h3>
+<p>${t('<strong>Python</strong> diciptakan oleh <strong>Guido van Rossum</strong> di Centrum Wiskunde &amp; Informatica (CWI), Belanda. Versi pertama (0.9.0) dirilis <strong>Februari 1991</strong>. Nama diambil dari acara komedi BBC <em>Monty Python&apos;s Flying Circus</em>.', '<strong>Python</strong> was created by <strong>Guido van Rossum</strong> at Centrum Wiskunde &amp; Informatica (CWI), Netherlands. The first version (0.9.0) was released in <strong>February 1991</strong>. The name was taken from the BBC comedy show <em>Monty Python&apos;s Flying Circus</em>.')}</p>
+<p>${t('Guido menjabat sebagai <em>Benevolent Dictator For Life (BDFL)</em> hingga 2018. Python 2 End-of-Life resmi terjadi 1 Januari 2020 — seluruh ekosistem kini menggunakan Python 3.', 'Guido served as <em>Benevolent Dictator For Life (BDFL)</em> until 2018. Python 2 End-of-Life officially occurred on January 1, 2020 — the entire ecosystem now uses Python 3.')}</p>
 <div class="table-wrapper">
 <table>
-<tr><th>Versi</th><th>Tahun</th><th>Fitur Kunci</th></tr>
-<tr><td>0.9.0</td><td>1991</td><td>Rilis pertama — class, exception, functions</td></tr>
+<tr><th>${t('Versi', 'Version')}</th><th>${t('Tahun', 'Year')}</th><th>${t('Fitur Kunci', 'Key Features')}</th></tr>
+<tr><td>0.9.0</td><td>1991</td><td>${t('Rilis pertama — class, exception, functions', 'First release — class, exception, functions')}</td></tr>
 <tr><td>2.0</td><td>2000</td><td>List comprehension, garbage collector</td></tr>
 <tr><td>3.0</td><td>2008</td><td>print() function, Unicode default, integer division</td></tr>
 <tr><td>3.5</td><td>2015</td><td>Type hints (PEP 484), async/await</td></tr>
 <tr><td>3.6</td><td>2016</td><td>f-strings, __future__ annotations</td></tr>
 <tr><td>3.8</td><td>2019</td><td>Walrus operator :=, Protocol (typing)</td></tr>
-<tr><td>3.9</td><td>2020</td><td>dict merge |=, list[int] tanpa typing</td></tr>
+<tr><td>3.9</td><td>2020</td><td>${t('dict merge |=, list[int] tanpa typing', 'dict merge |=, list[int] without typing')}</td></tr>
 <tr><td>3.10</td><td>2021</td><td>Structural pattern matching (match/case)</td></tr>
-<tr><td>3.11</td><td>2022</td><td>Exception groups, 10-60% lebih cepat</td></tr>
+<tr><td>3.11</td><td>2022</td><td>${t('Exception groups, 10-60% lebih cepat', 'Exception groups, 10-60% faster')}</td></tr>
 <tr><td>3.12</td><td>2023</td><td>Per-interpreter GIL, improved error messages</td></tr>
 <tr><td>3.13</td><td>2024</td><td>Experimental free-threaded mode (no-GIL)</td></tr>
 </table>
@@ -49,21 +49,21 @@ Namespaces are one honking great idea -- let's do more of those!</div>
 </div>
 
 <div class="card animate-in">
-<h3>Python vs Go vs Rust — Perbandingan</h3>
+<h3>${t('Python vs Go vs Rust — Perbandingan', 'Python vs Go vs Rust — Comparison')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Aspek</th><th>Python</th><th>Go</th><th>Rust</th></tr>
-<tr><td>Kecepatan</td><td>Lambat (interpreter)</td><td>Cepat (compiled)</td><td>Sangat cepat (C-level)</td></tr>
-<tr><td>Kemudahan</td><td>Sangat mudah</td><td>Mudah</td><td>Kompleks (ownership)</td></tr>
-<tr><td>ML Ecosystem</td><td>Dominan (PyTorch, TF)</td><td>Minimal</td><td>Berkembang (burn, tch)</td></tr>
+<tr><th>${t('Aspek', 'Aspect')}</th><th>Python</th><th>Go</th><th>Rust</th></tr>
+<tr><td>${t('Kecepatan', 'Speed')}</td><td>${t('Lambat (interpreter)', 'Slow (interpreter)')}</td><td>${t('Cepat (compiled)', 'Fast (compiled)')}</td><td>${t('Sangat cepat (C-level)', 'Very fast (C-level)')}</td></tr>
+<tr><td>${t('Kemudahan', 'Ease of Use')}</td><td>${t('Sangat mudah', 'Very easy')}</td><td>${t('Mudah', 'Easy')}</td><td>${t('Kompleks (ownership)', 'Complex (ownership)')}</td></tr>
+<tr><td>ML Ecosystem</td><td>${t('Dominan (PyTorch, TF)', 'Dominant (PyTorch, TF)')}</td><td>Minimal</td><td>${t('Berkembang (burn, tch)', 'Growing (burn, tch)')}</td></tr>
 <tr><td>Concurrency</td><td>GIL (IO-bound ok)</td><td>Goroutine (excellent)</td><td>Fearless concurrency</td></tr>
 <tr><td>Use Case ML</td><td>Research, prototyping, prod</td><td>Serving/inference API</td><td>Custom CUDA ops, perf</td></tr>
 <tr><td>FFI</td><td>ctypes, cffi, PyO3</td><td>cgo, CGo export</td><td>PyO3 (first-class)</td></tr>
 </table>
 </div>
 <div class="info-box">
-<strong>Mengapa Python mendominasi ML?</strong><br>
-NumPy (1995-&gt;), SciPy, Matplotlib, pandas, scikit-learn, PyTorch, TensorFlow, Hugging Face — ekosistem ini membutuhkan puluhan tahun untuk dibangun. Python menjadi <em>lingua franca</em> ML bukan hanya karena mudah, tapi karena networkeffect ekosistemnya yang tidak tertandingi.
+${t('<strong>Mengapa Python mendominasi ML?</strong>', '<strong>Why does Python dominate ML?</strong>')}<br>
+${t('NumPy (1995-&gt;), SciPy, Matplotlib, pandas, scikit-learn, PyTorch, TensorFlow, Hugging Face — ekosistem ini membutuhkan puluhan tahun untuk dibangun. Python menjadi <em>lingua franca</em> ML bukan hanya karena mudah, tapi karena network effect ekosistemnya yang tidak tertandingi.', 'NumPy (1995-&gt;), SciPy, Matplotlib, pandas, scikit-learn, PyTorch, TensorFlow, Hugging Face — this ecosystem took decades to build. Python became the <em>lingua franca</em> of ML not just because it is easy, but because of its unmatched ecosystem network effect.')}
 </div>
 </div>
 
@@ -71,8 +71,8 @@ NumPy (1995-&gt;), SciPy, Matplotlib, pandas, scikit-learn, PyTorch, TensorFlow,
 <h2 class="animate-in">2. Basic Syntax (Python 3.12+)</h2>
 
 <div class="card animate-in">
-<h3>Indentasi sebagai Sintaks</h3>
-<p>Python menggunakan <strong>indentasi</strong> (bukan kurung kurawal) untuk mendefinisikan blok kode. Standar: 4 spasi per level (PEP 8).</p>
+<h3>${t('Indentasi sebagai Sintaks', 'Indentation as Syntax')}</h3>
+<p>${t('Python menggunakan <strong>indentasi</strong> (bukan kurung kurawal) untuk mendefinisikan blok kode. Standar: 4 spasi per level (PEP 8).', 'Python uses <strong>indentation</strong> (not curly braces) to define code blocks. Standard: 4 spaces per level (PEP 8).')}</p>
 <div class="code-block"><span class="cm"># Benar — konsisten 4 spasi</span>
 <span class="kw">def</span> <span class="fn">greet</span>(name: <span class="type">str</span>) -> <span class="type">str</span>:
     <span class="kw">if</span> name:
@@ -121,17 +121,17 @@ data = [<span class="num">1</span>, <span class="num">2</span>, <span class="num
 </div>
 
 <div class="card animate-in">
-<h3>Tipe Data Dasar</h3>
+<h3>${t('Tipe Data Dasar', 'Basic Data Types')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Tipe</th><th>Contoh</th><th>Keterangan</th><th>Immutable?</th></tr>
-<tr><td><span class="badge-blue">int</span></td><td><code>42, -7, 0xFF, 0b1010, 10_000_000</code></td><td>Presisi tak terbatas</td><td>Ya</td></tr>
-<tr><td><span class="badge-green">float</span></td><td><code>3.14, 2.5e10, float('inf')</code></td><td>IEEE 754 double (64-bit)</td><td>Ya</td></tr>
-<tr><td><span class="badge-purple">complex</span></td><td><code>3+4j, complex(3, 4)</code></td><td>Bilangan kompleks</td><td>Ya</td></tr>
-<tr><td><span class="badge-orange">bool</span></td><td><code>True, False</code></td><td>Subclass int (True=1, False=0)</td><td>Ya</td></tr>
-<tr><td><span class="badge-red">str</span></td><td><code>"hello", 'world'</code></td><td>Unicode, sequence of chars</td><td>Ya</td></tr>
-<tr><td><span class="badge-yellow">bytes</span></td><td><code>b"hello", bytes(5)</code></td><td>Raw bytes</td><td>Ya</td></tr>
-<tr><td>NoneType</td><td><code>None</code></td><td>Singleton, "tidak ada nilai"</td><td>Ya</td></tr>
+<tr><th>${t('Tipe', 'Type')}</th><th>${t('Contoh', 'Example')}</th><th>${t('Keterangan', 'Description')}</th><th>Immutable?</th></tr>
+<tr><td><span class="badge-blue">int</span></td><td><code>42, -7, 0xFF, 0b1010, 10_000_000</code></td><td>${t('Presisi tak terbatas', 'Unlimited precision')}</td><td>${t('Ya', 'Yes')}</td></tr>
+<tr><td><span class="badge-green">float</span></td><td><code>3.14, 2.5e10, float('inf')</code></td><td>IEEE 754 double (64-bit)</td><td>${t('Ya', 'Yes')}</td></tr>
+<tr><td><span class="badge-purple">complex</span></td><td><code>3+4j, complex(3, 4)</code></td><td>${t('Bilangan kompleks', 'Complex number')}</td><td>${t('Ya', 'Yes')}</td></tr>
+<tr><td><span class="badge-orange">bool</span></td><td><code>True, False</code></td><td>Subclass int (True=1, False=0)</td><td>${t('Ya', 'Yes')}</td></tr>
+<tr><td><span class="badge-red">str</span></td><td><code>"hello", 'world'</code></td><td>Unicode, sequence of chars</td><td>${t('Ya', 'Yes')}</td></tr>
+<tr><td><span class="badge-yellow">bytes</span></td><td><code>b"hello", bytes(5)</code></td><td>Raw bytes</td><td>${t('Ya', 'Yes')}</td></tr>
+<tr><td>NoneType</td><td><code>None</code></td><td>${t('Singleton, "tidak ada nilai"', 'Singleton, "no value"')}</td><td>${t('Ya', 'Yes')}</td></tr>
 </table>
 </div>
 </div>
@@ -578,11 +578,11 @@ pip install "my-package[dev]"  <span class="cm"># dengan optional deps</span></d
 </div>
 
 <!-- ==================== 9. DATA SCIENCE & ML ==================== -->
-<h2 class="animate-in">9. Python untuk Data Science &amp; ML</h2>
+<h2 class="animate-in">${t('9. Python untuk Data Science &amp; ML', '9. Python for Data Science &amp; ML')}</h2>
 
 <div class="card animate-in">
 <h3>NumPy — N-dimensional Arrays</h3>
-<p><strong>NumPy</strong> adalah fondasi hampir seluruh ekosistem ML Python. ndarray menyimpan data dalam memori kontiguous dan operasinya dijalankan dalam C/Fortran — jauh lebih cepat dari Python list.</p>
+<p>${t('<strong>NumPy</strong> adalah fondasi hampir seluruh ekosistem ML Python. ndarray menyimpan data dalam memori kontiguous dan operasinya dijalankan dalam C/Fortran — jauh lebih cepat dari Python list.', '<strong>NumPy</strong> is the foundation of nearly the entire Python ML ecosystem. ndarray stores data in contiguous memory and operations run in C/Fortran — much faster than Python lists.')}</p>
 <div class="code-block"><span class="kw">import</span> numpy <span class="kw">as</span> np
 
 <span class="cm"># Membuat array</span>
@@ -800,7 +800,7 @@ scheduler = torch.optim.lr_scheduler.<span class="fn">CosineAnnealingLR</span>(o
 
 <!-- Canvas: PyTorch Tensor Animation -->
 <div class="card animate-in">
-<h3>Visualisasi: Matrix Multiplication &amp; Autograd</h3>
+<h3>${t('Visualisasi: Matrix Multiplication &amp; Autograd', 'Visualization: Matrix Multiplication &amp; Autograd')}</h3>
 <div class="anim-container">
 <canvas id="canvas-pytorch-tensor" width="720" height="300" style="width:100%;height:300px;border-radius:8px;"></canvas>
 </div>
@@ -845,15 +845,15 @@ asyncio.<span class="fn">run</span>(<span class="fn">main</span>())  <span class
 <div class="card animate-in">
 <h3>GIL — Global Interpreter Lock</h3>
 <div class="warn-box">
-<strong>GIL (Global Interpreter Lock)</strong> adalah mutex di CPython yang memastikan hanya satu thread yang mengeksekusi bytecode Python pada satu waktu — bahkan di CPU multi-core. Ini melindungi Python objects dari race condition, tapi membatasi true parallelism untuk CPU-bound tasks.
+${t('<strong>GIL (Global Interpreter Lock)</strong> adalah mutex di CPython yang memastikan hanya satu thread yang mengeksekusi bytecode Python pada satu waktu — bahkan di CPU multi-core. Ini melindungi Python objects dari race condition, tapi membatasi true parallelism untuk CPU-bound tasks.', '<strong>GIL (Global Interpreter Lock)</strong> is a mutex in CPython that ensures only one thread executes Python bytecode at a time — even on multi-core CPUs. It protects Python objects from race conditions, but limits true parallelism for CPU-bound tasks.')}
 </div>
 <div class="table-wrapper">
 <table>
-<tr><th>Approach</th><th>Cocok untuk</th><th>Solusi GIL</th><th>API</th></tr>
-<tr><td>threading</td><td>IO-bound (network, disk)</td><td>GIL dilepas saat IO</td><td>Thread, ThreadPoolExecutor</td></tr>
-<tr><td>multiprocessing</td><td>CPU-bound</td><td>Proses terpisah = GIL berbeda</td><td>Process, ProcessPoolExecutor</td></tr>
-<tr><td>asyncio</td><td>Async IO (banyak koneksi)</td><td>Single-thread, no GIL issue</td><td>async/await, event loop</td></tr>
-<tr><td>NumPy/PyTorch</td><td>Numerical computing</td><td>C extensions lepas GIL</td><td>np.*, torch.*</td></tr>
+<tr><th>Approach</th><th>${t('Cocok untuk', 'Best For')}</th><th>${t('Solusi GIL', 'GIL Solution')}</th><th>API</th></tr>
+<tr><td>threading</td><td>IO-bound (network, disk)</td><td>${t('GIL dilepas saat IO', 'GIL released during IO')}</td><td>Thread, ThreadPoolExecutor</td></tr>
+<tr><td>multiprocessing</td><td>CPU-bound</td><td>${t('Proses terpisah = GIL berbeda', 'Separate process = separate GIL')}</td><td>Process, ProcessPoolExecutor</td></tr>
+<tr><td>asyncio</td><td>${t('Async IO (banyak koneksi)', 'Async IO (many connections)')}</td><td>Single-thread, no GIL issue</td><td>async/await, event loop</td></tr>
+<tr><td>NumPy/PyTorch</td><td>Numerical computing</td><td>${t('C extensions lepas GIL', 'C extensions release GIL')}</td><td>np.*, torch.*</td></tr>
 </table>
 </div>
 <div class="code-block"><span class="kw">from</span> concurrent.futures <span class="kw">import</span> ThreadPoolExecutor, ProcessPoolExecutor
@@ -878,7 +878,7 @@ asyncio.<span class="fn">run</span>(<span class="fn">main</span>())  <span class
 
 <!-- Canvas: GIL Visualization -->
 <div class="card animate-in">
-<h3>Visualisasi: Python GIL vs Go Goroutines</h3>
+<h3>${t('Visualisasi: Python GIL vs Go Goroutines', 'Visualization: Python GIL vs Go Goroutines')}</h3>
 <div class="anim-container">
 <canvas id="canvas-python-gil" width="720" height="320" style="width:100%;height:320px;border-radius:8px;"></canvas>
 </div>
@@ -927,14 +927,14 @@ P = ParamSpec(<span class="str">'P'</span>)
 </div>
 
 <!-- ==================== 11. FFI WITH GO ==================== -->
-<h2 class="animate-in">11. Python FFI dengan Go</h2>
+<h2 class="animate-in">${t('11. Python FFI dengan Go', '11. Python FFI with Go')}</h2>
 
 <div class="card animate-in">
 <h3>Overview: Python C API &amp; ctypes</h3>
-<p>Python dapat memanggil shared library (*.so di Linux, *.dll di Windows) yang ditulis dalam bahasa lain. <strong>ctypes</strong> adalah modul standard library yang memungkinkan ini tanpa compilation step Python.</p>
+<p>${t('Python dapat memanggil shared library (*.so di Linux, *.dll di Windows) yang ditulis dalam bahasa lain. <strong>ctypes</strong> adalah modul standard library yang memungkinkan ini tanpa compilation step Python.', 'Python can call shared libraries (*.so on Linux, *.dll on Windows) written in other languages. <strong>ctypes</strong> is a standard library module that enables this without a Python compilation step.')}</p>
 <div class="table-wrapper">
 <table>
-<tr><th>Pendekatan</th><th>Kelebihan</th><th>Kekurangan</th></tr>
+<tr><th>${t('Pendekatan', 'Approach')}</th><th>${t('Kelebihan', 'Pros')}</th><th>${t('Kekurangan', 'Cons')}</th></tr>
 <tr><td>ctypes</td><td>Built-in, no extra deps</td><td>Manual type mapping, verbose</td></tr>
 <tr><td>cffi</td><td>More Pythonic, auto parse header</td><td>Extra dependency</td></tr>
 <tr><td>Cython</td><td>C performance + Python syntax</td><td>Compilation step</td></tr>
@@ -944,7 +944,7 @@ P = ParamSpec(<span class="str">'P'</span>)
 </div>
 
 <div class="card animate-in">
-<h3>Langkah 1: Tulis Library Go</h3>
+<h3>${t('Langkah 1: Tulis Library Go', 'Step 1: Write Go Library')}</h3>
 <div class="code-block"><span class="cm">// File: math_lib.go</span>
 <span class="cm">// Compile: go build -buildmode=c-shared -o libmath.so math_lib.go</span>
 <span class="kw">package</span> main
@@ -984,14 +984,14 @@ P = ParamSpec(<span class="str">'P'</span>)
 
 <span class="kw">func</span> <span class="fn">main</span>() {} <span class="cm">// Harus ada untuk c-shared mode</span></div>
 <div class="info-box">
-<strong>Perintah build:</strong><br>
+${t('<strong>Perintah build:</strong>', '<strong>Build command:</strong>')}<br>
 <code>go build -buildmode=c-shared -o libmath.so math_lib.go</code><br>
-Menghasilkan: <code>libmath.so</code> (shared library) dan <code>libmath.h</code> (C header).
+${t('Menghasilkan: <code>libmath.so</code> (shared library) dan <code>libmath.h</code> (C header).', 'Produces: <code>libmath.so</code> (shared library) and <code>libmath.h</code> (C header).')}
 </div>
 </div>
 
 <div class="card animate-in">
-<h3>Langkah 2: Panggil dari Python via ctypes</h3>
+<h3>${t('Langkah 2: Panggil dari Python via ctypes', 'Step 2: Call from Python via ctypes')}</h3>
 <div class="code-block"><span class="kw">import</span> ctypes
 <span class="kw">import</span> numpy <span class="kw">as</span> np
 <span class="kw">import</span> time
@@ -1057,7 +1057,7 @@ expected = A @ B
 
 <!-- Canvas: FFI Pipeline Animation -->
 <div class="card animate-in">
-<h3>Visualisasi: FFI Pipeline (Python &rarr; Go/Rust)</h3>
+<h3>${t('Visualisasi: FFI Pipeline (Python &rarr; Go/Rust)', 'Visualization: FFI Pipeline (Python &rarr; Go/Rust)')}</h3>
 <div class="anim-container">
 <canvas id="canvas-python-ffi" width="720" height="260" style="width:100%;height:260px;border-radius:8px;"></canvas>
 </div>
@@ -1068,32 +1068,32 @@ expected = A @ B
 </div>
 
 <!-- ==================== 12. FFI WITH RUST (PyO3) ==================== -->
-<h2 class="animate-in">12. Python FFI dengan Rust (PyO3)</h2>
+<h2 class="animate-in">${t('12. Python FFI dengan Rust (PyO3)', '12. Python FFI with Rust (PyO3)')}</h2>
 
 <div class="card animate-in">
-<h3>Mengapa PyO3?</h3>
+<h3>${t('Mengapa PyO3?', 'Why PyO3?')}</h3>
 <div class="card-grid">
 <div class="info-box">
 <strong>Safe Rust Bindings</strong><br>
-PyO3 menyediakan macro dan trait untuk menulis Python extension module dalam Rust yang aman dari memory bugs dan data races.
+${t('PyO3 menyediakan macro dan trait untuk menulis Python extension module dalam Rust yang aman dari memory bugs dan data races.', 'PyO3 provides macros and traits for writing Python extension modules in Rust that are safe from memory bugs and data races.')}
 </div>
 <div class="info-box">
 <strong>maturin</strong><br>
-Build system yang handle semua: cargo build, create Python wheel, install. <code>maturin develop</code> = instant test cycle.
+${t('Build system yang handle semua: cargo build, create Python wheel, install. <code>maturin develop</code> = instant test cycle.', 'Build system that handles everything: cargo build, create Python wheel, install. <code>maturin develop</code> = instant test cycle.')}
 </div>
 <div class="info-box">
 <strong>Performance</strong><br>
-Rust code berjalan tanpa overhead GC. Cocok untuk: parsing, crypto, numerics, compression, custom CUDA ops.
+${t('Rust code berjalan tanpa overhead GC. Cocok untuk: parsing, crypto, numerics, compression, custom CUDA ops.', 'Rust code runs without GC overhead. Suitable for: parsing, crypto, numerics, compression, custom CUDA ops.')}
 </div>
 <div class="info-box">
 <strong>Ecosystem</strong><br>
-Hugging Face tokenizers, orjson (JSON), polars (DataFrame) — semuanya Python modules berbasis Rust.
+${t('Hugging Face tokenizers, orjson (JSON), polars (DataFrame) — semuanya Python modules berbasis Rust.', 'Hugging Face tokenizers, orjson (JSON), polars (DataFrame) — all Python modules built on Rust.')}
 </div>
 </div>
 </div>
 
 <div class="card animate-in">
-<h3>Langkah 1: Setup Project PyO3</h3>
+<h3>${t('Langkah 1: Setup Project PyO3', 'Step 1: Setup PyO3 Project')}</h3>
 <div class="code-block"><span class="cm"># Buat project baru dengan maturin</span>
 pip install maturin
 maturin new --bindings pyo3 pymath_rs
@@ -1120,7 +1120,7 @@ rayon = <span class="str">"1.8"</span>  <span class="cm"># untuk parallelism</sp
 </div>
 
 <div class="card animate-in">
-<h3>Langkah 2: Rust Implementation (src/lib.rs)</h3>
+<h3>${t('Langkah 2: Rust Implementation (src/lib.rs)', 'Step 2: Rust Implementation (src/lib.rs)')}</h3>
 <div class="code-block"><span class="cm">// src/lib.rs</span>
 <span class="kw">use</span> pyo3::prelude::*;
 <span class="kw">use</span> pyo3::exceptions::PyValueError;
@@ -1184,7 +1184,7 @@ rayon = <span class="str">"1.8"</span>  <span class="cm"># untuk parallelism</sp
 </div>
 
 <div class="card animate-in">
-<h3>Langkah 3: Build &amp; Gunakan dari Python</h3>
+<h3>${t('Langkah 3: Build &amp; Gunakan dari Python', 'Step 3: Build &amp; Use from Python')}</h3>
 <div class="code-block"><span class="cm"># Build dan install ke venv saat ini</span>
 maturin develop --release
 
@@ -1265,7 +1265,7 @@ pi = <span class="fn">monte_carlo_pi</span>(<span class="num">10_000_000</span>)
 </div>
 
 <div class="card animate-in">
-<h3>Perbandingan Performa</h3>
+<h3>${t('Perbandingan Performa', 'Performance Comparison')}</h3>
 <div class="table-wrapper">
 <table>
 <tr><th>Approach</th><th>Relatif Speed</th><th>Setup Effort</th><th>Best For</th></tr>
@@ -1279,25 +1279,25 @@ pi = <span class="fn">monte_carlo_pi</span>(<span class="num">10_000_000</span>)
 </table>
 </div>
 <div class="info-box">
-<strong>Aturan optimasi:</strong> Profile first, optimize second. 80% runtime biasanya ada di 20% kode. Jangan pre-optimize — tulis Python yang bersih dulu, lalu ukur bottleneck, lalu pilih solusi (NumPy, Numba, atau FFI).
+${t('<strong>Aturan optimasi:</strong> Profile first, optimize second. 80% runtime biasanya ada di 20% kode. Jangan pre-optimize — tulis Python yang bersih dulu, lalu ukur bottleneck, lalu pilih solusi (NumPy, Numba, atau FFI).', '<strong>Optimization rule:</strong> Profile first, optimize second. 80% of runtime is usually in 20% of the code. Don&apos;t pre-optimize — write clean Python first, then measure bottlenecks, then choose a solution (NumPy, Numba, or FFI).')}
 </div>
 </div>
 
 <!-- ==================== REFERENCES ==================== -->
-<h2 class="animate-in">Referensi</h2>
+<h2 class="animate-in">${t('Referensi', 'References')}</h2>
 
 <div class="card animate-in">
 <div class="table-wrapper">
 <table>
-<tr><th>Sumber</th><th>Link</th><th>Keterangan</th></tr>
-<tr><td>Python Official Docs</td><td>docs.python.org/3/</td><td>Reference utama bahasa &amp; stdlib</td></tr>
+<tr><th>${t('Sumber', 'Source')}</th><th>Link</th><th>${t('Keterangan', 'Description')}</th></tr>
+<tr><td>Python Official Docs</td><td>docs.python.org/3/</td><td>${t('Reference utama bahasa &amp; stdlib', 'Primary language &amp; stdlib reference')}</td></tr>
 <tr><td>Python Data Model</td><td>docs.python.org/3/reference/datamodel.html</td><td>Dunder methods, object protocol</td></tr>
 <tr><td>NumPy Docs</td><td>numpy.org/doc/</td><td>ndarray, ufuncs, linear algebra</td></tr>
 <tr><td>PyTorch Docs</td><td>pytorch.org/docs/</td><td>Tensors, autograd, nn.Module</td></tr>
-<tr><td>PyO3 Guide</td><td>pyo3.rs/</td><td>Rust bindings untuk Python</td></tr>
+<tr><td>PyO3 Guide</td><td>pyo3.rs/</td><td>${t('Rust bindings untuk Python', 'Rust bindings for Python')}</td></tr>
 <tr><td>Fluent Python</td><td>Luciano Ramalho, 2nd ed. 2022</td><td>Deep dive Python internals</td></tr>
 <tr><td>Real Python</td><td>realpython.com</td><td>Tutorials &amp; how-tos</td></tr>
-<tr><td>maturin</td><td>maturin.rs/</td><td>Build system untuk PyO3</td></tr>
+<tr><td>maturin</td><td>maturin.rs/</td><td>${t('Build system untuk PyO3', 'Build system for PyO3')}</td></tr>
 </table>
 </div>
 </div>

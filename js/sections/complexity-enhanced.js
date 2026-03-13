@@ -6,67 +6,67 @@
 // Override complexity section
 sections.complexity = () => `
 
-<h1 class="section-title animate-in">Teori Kompleksitas Komputasi</h1>
-<p class="section-subtitle animate-in">Memahami batas-batas komputasi: dari notasi asimptotik hingga kelas P, NP, NP-Hard, dan strategi menghadapi masalah intractable</p>
+<h1 class="section-title animate-in">${t('Teori Kompleksitas Komputasi', 'Computational Complexity Theory')}</h1>
+<p class="section-subtitle animate-in">${t('Memahami batas-batas komputasi: dari notasi asimptotik hingga kelas P, NP, NP-Hard, dan strategi menghadapi masalah intractable', 'Understanding the limits of computation: from asymptotic notation to complexity classes P, NP, NP-Hard, and strategies for dealing with intractable problems')}</p>
 
 <!-- ==================== 1. BIG-O NOTATION ==================== -->
-<h2 class="animate-in">1. Big-O Notation (Notasi Kompleksitas)</h2>
+<h2 class="animate-in">${t('1. Big-O Notation (Notasi Kompleksitas)', '1. Big-O Notation (Complexity Notation)')}</h2>
 
 <div class="card animate-in">
-    <h3>Apa Itu Big-O?</h3>
-    <p>Big-O adalah cara matematikawan dan programmer mendeskripsikan <strong>seberapa cepat pertumbuhan</strong> waktu atau memori sebuah algoritma ketika ukuran input (n) membesar. Big-O BUKAN mengukur waktu absolut (misal "3 detik"), tapi mengukur <strong>pola pertumbuhan</strong>.</p>
+    <h3>${t('Apa Itu Big-O?', 'What Is Big-O?')}</h3>
+    <p>${t('Big-O adalah cara matematikawan dan programmer mendeskripsikan <strong>seberapa cepat pertumbuhan</strong> waktu atau memori sebuah algoritma ketika ukuran input (n) membesar. Big-O BUKAN mengukur waktu absolut (misal "3 detik"), tapi mengukur <strong>pola pertumbuhan</strong>.', 'Big-O is how mathematicians and programmers describe <strong>how fast the growth</strong> of an algorithm\'s time or memory is as the input size (n) increases. Big-O does NOT measure absolute time (e.g., "3 seconds"), but measures the <strong>growth pattern</strong>.')}</p>
     <div class="info-box">
-        <strong>Analogi Sederhana:</strong> Bayangkan kamu mengirim file. Kalau pakai internet, waktu kirim tergantung ukuran file (O(n)). Kalau kamu copy ke USB dan kirim pakai kurir, waktu selalu sama berapapun ukurannya (O(1)). Untuk file kecil, internet lebih cepat. Tapi untuk file 1 TB? Kurir menang! Big-O membantu kita memahami <em>kapan</em> satu pendekatan menang dari yang lain.
+        <strong>${t('Analogi Sederhana:', 'Simple Analogy:')}</strong> ${t('Bayangkan kamu mengirim file. Kalau pakai internet, waktu kirim tergantung ukuran file (O(n)). Kalau kamu copy ke USB dan kirim pakai kurir, waktu selalu sama berapapun ukurannya (O(1)). Untuk file kecil, internet lebih cepat. Tapi untuk file 1 TB? Kurir menang! Big-O membantu kita memahami <em>kapan</em> satu pendekatan menang dari yang lain.', 'Imagine you are sending a file. If you use the internet, the transfer time depends on file size (O(n)). If you copy it to a USB drive and send it by courier, the time is always the same regardless of size (O(1)). For small files, internet is faster. But for a 1 TB file? The courier wins! Big-O helps us understand <em>when</em> one approach beats another.')}
     </div>
-    <p>Secara formal: <strong>f(n) = O(g(n))</strong> artinya ada konstanta c &gt; 0 dan n<sub>0</sub> sehingga f(n) &le; c &middot; g(n) untuk semua n &ge; n<sub>0</sub>.</p>
-    <p>Dalam bahasa sehari-hari: "Fungsi f(n) <strong>tidak tumbuh lebih cepat</strong> dari g(n) ketika n membesar."</p>
+    <p>${t('Secara formal: <strong>f(n) = O(g(n))</strong> artinya ada konstanta c &gt; 0 dan n<sub>0</sub> sehingga f(n) &le; c &middot; g(n) untuk semua n &ge; n<sub>0</sub>.', 'Formally: <strong>f(n) = O(g(n))</strong> means there exist constants c &gt; 0 and n<sub>0</sub> such that f(n) &le; c &middot; g(n) for all n &ge; n<sub>0</sub>.')}</p>
+    <p>${t('Dalam bahasa sehari-hari: "Fungsi f(n) <strong>tidak tumbuh lebih cepat</strong> dari g(n) ketika n membesar."', 'In everyday language: "The function f(n) <strong>does not grow faster</strong> than g(n) as n gets larger."')}</p>
 </div>
 
 <div class="card animate-in">
-    <h3>Tabel Notasi Kompleksitas</h3>
-    <p>Berikut adalah semua notasi umum yang wajib dipahami, beserta contoh nyata dan berapa operasi yang dibutuhkan untuk n = 1000:</p>
+    <h3>${t('Tabel Notasi Kompleksitas', 'Complexity Notation Table')}</h3>
+    <p>${t('Berikut adalah semua notasi umum yang wajib dipahami, beserta contoh nyata dan berapa operasi yang dibutuhkan untuk n = 1000:', 'Here are all common notations you need to understand, along with real examples and how many operations are needed for n = 1000:')}</p>
     <div class="table-wrapper">
     <table>
-    <tr><th>Notasi</th><th>Nama</th><th>Contoh Algoritma</th><th>Analogi Sehari-hari</th><th>n=1000</th></tr>
-    <tr><td><code>O(1)</code></td><td>Constant</td><td>Array access, hash lookup</td><td>Buka buku di halaman tertentu (langsung)</td><td>1</td></tr>
-    <tr><td><code>O(log n)</code></td><td>Logarithmic</td><td>Binary search, balanced BST lookup</td><td>Cari kata di kamus (bagi dua terus)</td><td>~10</td></tr>
-    <tr><td><code>O(√n)</code></td><td>Square Root</td><td>Primality trial division</td><td>Periksa lantai demi lantai di gedung</td><td>~32</td></tr>
-    <tr><td><code>O(n)</code></td><td>Linear</td><td>Linear search, array sum</td><td>Baca buku halaman per halaman</td><td>1,000</td></tr>
-    <tr><td><code>O(n log n)</code></td><td>Linearithmic</td><td>Merge sort, heap sort, FFT</td><td>Sortir kartu dengan strategi bagi-gabung</td><td>~10,000</td></tr>
-    <tr><td><code>O(n&sup2;)</code></td><td>Quadratic</td><td>Bubble sort, nested loop</td><td>Bandingkan setiap orang dengan orang lain</td><td>1,000,000</td></tr>
+    <tr><th>${t('Notasi', 'Notation')}</th><th>${t('Nama', 'Name')}</th><th>${t('Contoh Algoritma', 'Example Algorithm')}</th><th>${t('Analogi Sehari-hari', 'Everyday Analogy')}</th><th>n=1000</th></tr>
+    <tr><td><code>O(1)</code></td><td>Constant</td><td>Array access, hash lookup</td><td>${t('Buka buku di halaman tertentu (langsung)', 'Open a book to a specific page (instant)')}</td><td>1</td></tr>
+    <tr><td><code>O(log n)</code></td><td>Logarithmic</td><td>Binary search, balanced BST lookup</td><td>${t('Cari kata di kamus (bagi dua terus)', 'Find a word in a dictionary (keep halving)')}</td><td>~10</td></tr>
+    <tr><td><code>O(√n)</code></td><td>Square Root</td><td>Primality trial division</td><td>${t('Periksa lantai demi lantai di gedung', 'Check floor by floor in a building')}</td><td>~32</td></tr>
+    <tr><td><code>O(n)</code></td><td>Linear</td><td>Linear search, array sum</td><td>${t('Baca buku halaman per halaman', 'Read a book page by page')}</td><td>1,000</td></tr>
+    <tr><td><code>O(n log n)</code></td><td>Linearithmic</td><td>Merge sort, heap sort, FFT</td><td>${t('Sortir kartu dengan strategi bagi-gabung', 'Sort cards with a divide-and-merge strategy')}</td><td>~10,000</td></tr>
+    <tr><td><code>O(n&sup2;)</code></td><td>Quadratic</td><td>Bubble sort, nested loop</td><td>${t('Bandingkan setiap orang dengan orang lain', 'Compare every person with every other person')}</td><td>1,000,000</td></tr>
     <tr><td><code>O(n&sup3;)</code></td><td>Cubic</td><td>Naive matrix multiply, Floyd-Warshall</td><td>3 nested loop</td><td>10<sup>9</sup></td></tr>
-    <tr><td><code>O(2&sup1;)</code></td><td>Exponential</td><td>Subset enumeration, brute force SAT</td><td>Coba semua kombinasi saklar lampu</td><td>~10<sup>301</sup></td></tr>
-    <tr><td><code>O(n!)</code></td><td>Factorial</td><td>TSP brute force, permutation</td><td>Coba semua urutan kota yang dikunjungi</td><td>~10<sup>2567</sup></td></tr>
+    <tr><td><code>O(2&sup1;)</code></td><td>Exponential</td><td>Subset enumeration, brute force SAT</td><td>${t('Coba semua kombinasi saklar lampu', 'Try all combinations of light switches')}</td><td>~10<sup>301</sup></td></tr>
+    <tr><td><code>O(n!)</code></td><td>Factorial</td><td>TSP brute force, permutation</td><td>${t('Coba semua urutan kota yang dikunjungi', 'Try all orderings of cities to visit')}</td><td>~10<sup>2567</sup></td></tr>
     </table>
     </div>
     <div class="warn-box">
-        <strong>Perspektif:</strong> Pada n=1000, O(n&sup2;) = 1 juta operasi (masih OK), tapi O(2<sup>n</sup>) = angka dengan 301 digit! Bahkan komputer tercepat di dunia tidak bisa menghitungnya sebelum alam semesta berakhir.
+        <strong>${t('Perspektif:', 'Perspective:')}</strong> ${t('Pada n=1000, O(n&sup2;) = 1 juta operasi (masih OK), tapi O(2<sup>n</sup>) = angka dengan 301 digit! Bahkan komputer tercepat di dunia tidak bisa menghitungnya sebelum alam semesta berakhir.', 'At n=1000, O(n&sup2;) = 1 million operations (still OK), but O(2<sup>n</sup>) = a number with 301 digits! Even the fastest computer in the world cannot compute it before the universe ends.')}
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3>Aturan Menentukan Big-O</h3>
+    <h3>${t('Aturan Menentukan Big-O', 'Rules for Determining Big-O')}</h3>
     <div class="step-list">
-        <div class="step-item"><div class="step-num">1</div><div class="step-text"><strong>Abaikan konstanta pengali:</strong> 5n&sup2; &rarr; O(n&sup2;). Konstanta tidak mempengaruhi pola pertumbuhan.</div></div>
-        <div class="step-item"><div class="step-num">2</div><div class="step-text"><strong>Ambil suku tertinggi:</strong> 3n&sup2; + 100n + 500 &rarr; O(n&sup2;). Suku n&sup2; mendominasi saat n besar.</div></div>
-        <div class="step-item"><div class="step-num">3</div><div class="step-text"><strong>Loop bertingkat = kalikan:</strong> for(n) { for(n) { ... } } &rarr; O(n) &times; O(n) = O(n&sup2;).</div></div>
-        <div class="step-item"><div class="step-num">4</div><div class="step-text"><strong>Loop berurutan = jumlahkan:</strong> for(n) + for(n) &rarr; O(n) + O(n) = O(n) (ambil yang dominan).</div></div>
-        <div class="step-item"><div class="step-num">5</div><div class="step-text"><strong>Rekursi yang membagi input jadi setengah:</strong> T(n) = T(n/2) + O(1) &rarr; O(log n). Contoh: binary search.</div></div>
+        <div class="step-item"><div class="step-num">1</div><div class="step-text"><strong>${t('Abaikan konstanta pengali:', 'Ignore constant multipliers:')}</strong> 5n&sup2; &rarr; O(n&sup2;). ${t('Konstanta tidak mempengaruhi pola pertumbuhan.', 'Constants do not affect the growth pattern.')}</div></div>
+        <div class="step-item"><div class="step-num">2</div><div class="step-text"><strong>${t('Ambil suku tertinggi:', 'Take the highest order term:')}</strong> 3n&sup2; + 100n + 500 &rarr; O(n&sup2;). ${t('Suku n&sup2; mendominasi saat n besar.', 'The n&sup2; term dominates when n is large.')}</div></div>
+        <div class="step-item"><div class="step-num">3</div><div class="step-text"><strong>${t('Loop bertingkat = kalikan:', 'Nested loops = multiply:')}</strong> for(n) { for(n) { ... } } &rarr; O(n) &times; O(n) = O(n&sup2;).</div></div>
+        <div class="step-item"><div class="step-num">4</div><div class="step-text"><strong>${t('Loop berurutan = jumlahkan:', 'Sequential loops = add:')}</strong> for(n) + for(n) &rarr; O(n) + O(n) = O(n) (${t('ambil yang dominan', 'take the dominant one')}).</div></div>
+        <div class="step-item"><div class="step-num">5</div><div class="step-text"><strong>${t('Rekursi yang membagi input jadi setengah:', 'Recursion that halves the input:')}</strong> T(n) = T(n/2) + O(1) &rarr; O(log n). ${t('Contoh: binary search.', 'Example: binary search.')}</div></div>
     </div>
 </div>
 
 <!-- ==================== 2. BIG-O, BIG-THETA, BIG-OMEGA ==================== -->
-<h2 class="animate-in">2. Big-O, Big-&Theta;, dan Big-&Omega;</h2>
+<h2 class="animate-in">${t('2. Big-O, Big-&Theta;, dan Big-&Omega;', '2. Big-O, Big-&Theta;, and Big-&Omega;')}</h2>
 
 <div class="card animate-in">
-    <p>Tiga notasi asimptotik ini menggambarkan <strong>pertumbuhan fungsi</strong> dari sudut pandang berbeda. Bayangkan kamu memesan ojol &mdash; ada estimasi waktu tercepat, rata-rata, dan paling lambat.</p>
+    <p>${t('Tiga notasi asimptotik ini menggambarkan <strong>pertumbuhan fungsi</strong> dari sudut pandang berbeda. Bayangkan kamu memesan ojol &mdash; ada estimasi waktu tercepat, rata-rata, dan paling lambat.', 'These three asymptotic notations describe <strong>function growth</strong> from different perspectives. Imagine ordering a ride-hailing service &mdash; there is an estimate for the fastest, average, and slowest time.')}</p>
 </div>
 
 <div class="card-grid-3 animate-in">
     <div class="card" style="border-color:var(--red)">
         <h3 style="color:var(--red)">O (Big-O) &mdash; Upper Bound</h3>
-        <p><strong>Analogi:</strong> "Paling lambat segini."</p>
-        <p>Big-O memberikan <strong>batas atas</strong> pertumbuhan. Artinya algoritma <em>tidak akan pernah lebih lambat</em> dari ini untuk input yang cukup besar.</p>
+        <p><strong>${t('Analogi:', 'Analogy:')}</strong> ${t('"Paling lambat segini."', '"At most this slow."')}</p>
+        <p>${t('Big-O memberikan <strong>batas atas</strong> pertumbuhan. Artinya algoritma <em>tidak akan pernah lebih lambat</em> dari ini untuk input yang cukup besar.', 'Big-O provides an <strong>upper bound</strong> on growth. It means the algorithm <em>will never be slower</em> than this for sufficiently large input.')}</p>
         <div class="code-block"><span class="cm">// f(n) = O(g(n)) artinya:</span>
 <span class="cm">// Ada konstanta c &gt; 0 dan n&#8320; sehingga</span>
 <span class="cm">// f(n) &le; c &middot; g(n) untuk semua n &ge; n&#8320;</span>
@@ -74,13 +74,13 @@ sections.complexity = () => `
 <span class="cm">// Contoh: 3n&sup2; + 5n + 2 = O(n&sup2;)</span>
 <span class="cm">// Karena untuk c=4, n&#8320;=6:</span>
 <span class="cm">// 3n&sup2; + 5n + 2 &le; 4n&sup2; &#10003;</span></div>
-        <p><strong>Kapan dipakai:</strong> <em>Paling sering digunakan!</em> Untuk menjamin <strong>worst case</strong> tidak melebihi batas tertentu.</p>
-        <div class="info-box">Analogi: "Paket kamu sampai <strong>paling lambat</strong> 3 hari." Bisa lebih cepat, tapi dijamin tidak lebih dari 3 hari.</div>
+        <p><strong>${t('Kapan dipakai:', 'When to use:')}</strong> <em>${t('Paling sering digunakan!', 'Most commonly used!')}</em> ${t('Untuk menjamin <strong>worst case</strong> tidak melebihi batas tertentu.', 'To guarantee the <strong>worst case</strong> does not exceed a certain bound.')}</p>
+        <div class="info-box">${t('Analogi: "Paket kamu sampai <strong>paling lambat</strong> 3 hari." Bisa lebih cepat, tapi dijamin tidak lebih dari 3 hari.', 'Analogy: "Your package arrives in <strong>at most</strong> 3 days." It could be faster, but guaranteed no more than 3 days.')}</div>
     </div>
     <div class="card" style="border-color:var(--green)">
         <h3 style="color:var(--green)">&Omega; (Big-Omega) &mdash; Lower Bound</h3>
-        <p><strong>Analogi:</strong> "Paling cepat segini."</p>
-        <p>Big-&Omega; memberikan <strong>batas bawah</strong> pertumbuhan. Artinya algoritma <em>pasti membutuhkan setidaknya</em> sebanyak ini operasi.</p>
+        <p><strong>${t('Analogi:', 'Analogy:')}</strong> ${t('"Paling cepat segini."', '"At least this fast."')}</p>
+        <p>${t('Big-&Omega; memberikan <strong>batas bawah</strong> pertumbuhan. Artinya algoritma <em>pasti membutuhkan setidaknya</em> sebanyak ini operasi.', 'Big-&Omega; provides a <strong>lower bound</strong> on growth. It means the algorithm <em>will certainly require at least</em> this many operations.')}</p>
         <div class="code-block"><span class="cm">// f(n) = &Omega;(g(n)) artinya:</span>
 <span class="cm">// Ada konstanta c &gt; 0 dan n&#8320; sehingga</span>
 <span class="cm">// f(n) &ge; c &middot; g(n) untuk semua n &ge; n&#8320;</span>
@@ -88,13 +88,13 @@ sections.complexity = () => `
 <span class="cm">// Contoh: 3n&sup2; + 5n + 2 = &Omega;(n&sup2;)</span>
 <span class="cm">// Karena untuk c=3, n&#8320;=1:</span>
 <span class="cm">// 3n&sup2; + 5n + 2 &ge; 3n&sup2; &#10003;</span></div>
-        <p><strong>Kapan dipakai:</strong> Membuktikan bahwa <strong>tidak ada algoritma yang bisa lebih cepat</strong> dari batas ini. Contoh: comparison-based sorting = &Omega;(n log n).</p>
-        <div class="info-box">Analogi: "Perjalanan ini <strong>minimal</strong> butuh 10 menit." Bisa lebih lama, tapi mustahil lebih cepat dari 10 menit.</div>
+        <p><strong>${t('Kapan dipakai:', 'When to use:')}</strong> ${t('Membuktikan bahwa <strong>tidak ada algoritma yang bisa lebih cepat</strong> dari batas ini. Contoh: comparison-based sorting = &Omega;(n log n).', 'To prove that <strong>no algorithm can be faster</strong> than this bound. Example: comparison-based sorting = &Omega;(n log n).')}</p>
+        <div class="info-box">${t('Analogi: "Perjalanan ini <strong>minimal</strong> butuh 10 menit." Bisa lebih lama, tapi mustahil lebih cepat dari 10 menit.', 'Analogy: "This trip takes <strong>at least</strong> 10 minutes." It could be longer, but impossible to be faster than 10 minutes.')}</div>
     </div>
     <div class="card" style="border-color:var(--accent)">
         <h3 style="color:var(--accent)">&Theta; (Big-Theta) &mdash; Tight Bound</h3>
-        <p><strong>Analogi:</strong> "Persis di kisaran segini."</p>
-        <p>Big-&Theta; memberikan <strong>batas ketat</strong> &mdash; atas DAN bawah sekaligus. Fungsi tumbuh <em>persis sebanding</em> dengan g(n).</p>
+        <p><strong>${t('Analogi:', 'Analogy:')}</strong> ${t('"Persis di kisaran segini."', '"Exactly around this range."')}</p>
+        <p>${t('Big-&Theta; memberikan <strong>batas ketat</strong> &mdash; atas DAN bawah sekaligus. Fungsi tumbuh <em>persis sebanding</em> dengan g(n).', 'Big-&Theta; provides a <strong>tight bound</strong> &mdash; both upper AND lower at the same time. The function grows <em>exactly proportional</em> to g(n).')}</p>
         <div class="code-block"><span class="cm">// f(n) = &Theta;(g(n)) artinya:</span>
 <span class="cm">// f(n) = O(g(n)) DAN f(n) = &Omega;(g(n))</span>
 <span class="cm">// Ada c&#8321;, c&#8322; &gt; 0 dan n&#8320; sehingga</span>
@@ -102,55 +102,55 @@ sections.complexity = () => `
 
 <span class="cm">// Contoh: 3n&sup2; + 5n + 2 = &Theta;(n&sup2;)</span>
 <span class="cm">// Karena O(n&sup2;) DAN &Omega;(n&sup2;) &#10003;</span></div>
-        <p><strong>Kapan dipakai:</strong> Saat kita tahu <strong>persis</strong> berapa pertumbuhannya, bukan hanya batas atas/bawah.</p>
-        <div class="info-box">Analogi: "Perjalanan butuh <strong>antara</strong> 15-20 menit." Tidak kurang, tidak lebih dari rentang itu.</div>
+        <p><strong>${t('Kapan dipakai:', 'When to use:')}</strong> ${t('Saat kita tahu <strong>persis</strong> berapa pertumbuhannya, bukan hanya batas atas/bawah.', 'When we know <strong>exactly</strong> the growth rate, not just the upper/lower bounds.')}</p>
+        <div class="info-box">${t('Analogi: "Perjalanan butuh <strong>antara</strong> 15-20 menit." Tidak kurang, tidak lebih dari rentang itu.', 'Analogy: "The trip takes <strong>between</strong> 15-20 minutes." No less, no more than that range.')}</div>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3>Perbandingan Lengkap Tiga Notasi</h3>
+    <h3>${t('Perbandingan Lengkap Tiga Notasi', 'Complete Comparison of Three Notations')}</h3>
     <div class="table-wrapper">
     <table>
-    <tr><th>Notasi</th><th>Arti</th><th>Analogi</th><th>Matematika</th><th>Contoh Sehari-hari</th></tr>
-    <tr><td><code>O(g(n))</code></td><td>Paling lambat</td><td>&le; (at most)</td><td>f(n) &le; c&middot;g(n)</td><td>"Saya sampai <strong>paling lambat</strong> 30 menit"</td></tr>
-    <tr><td><code>&Omega;(g(n))</code></td><td>Paling cepat</td><td>&ge; (at least)</td><td>f(n) &ge; c&middot;g(n)</td><td>"Saya butuh <strong>minimal</strong> 10 menit"</td></tr>
-    <tr><td><code>&Theta;(g(n))</code></td><td>Persis di kisaran</td><td>= (exactly)</td><td>c&#8321;&middot;g(n) &le; f(n) &le; c&#8322;&middot;g(n)</td><td>"Saya sampai <strong>antara</strong> 15-20 menit"</td></tr>
+    <tr><th>${t('Notasi', 'Notation')}</th><th>${t('Arti', 'Meaning')}</th><th>${t('Analogi', 'Analogy')}</th><th>${t('Matematika', 'Mathematics')}</th><th>${t('Contoh Sehari-hari', 'Everyday Example')}</th></tr>
+    <tr><td><code>O(g(n))</code></td><td>${t('Paling lambat', 'At most')}</td><td>&le; (at most)</td><td>f(n) &le; c&middot;g(n)</td><td>${t('"Saya sampai <strong>paling lambat</strong> 30 menit"', '"I will arrive in <strong>at most</strong> 30 minutes"')}</td></tr>
+    <tr><td><code>&Omega;(g(n))</code></td><td>${t('Paling cepat', 'At least')}</td><td>&ge; (at least)</td><td>f(n) &ge; c&middot;g(n)</td><td>${t('"Saya butuh <strong>minimal</strong> 10 menit"', '"I need <strong>at least</strong> 10 minutes"')}</td></tr>
+    <tr><td><code>&Theta;(g(n))</code></td><td>${t('Persis di kisaran', 'Exactly in range')}</td><td>= (exactly)</td><td>c&#8321;&middot;g(n) &le; f(n) &le; c&#8322;&middot;g(n)</td><td>${t('"Saya sampai <strong>antara</strong> 15-20 menit"', '"I will arrive in <strong>between</strong> 15-20 minutes"')}</td></tr>
     </table>
     </div>
     <div class="info-box">
-        <strong>Tips Mudah:</strong> Jika sebuah algoritma O(n&sup2;) sekaligus &Omega;(n&sup2;), maka dia <strong>&Theta;(n&sup2;)</strong>. Big-&Theta; = Big-O + Big-&Omega; bertemu di kelas yang sama.
+        <strong>${t('Tips Mudah:', 'Easy Tip:')}</strong> ${t('Jika sebuah algoritma O(n&sup2;) sekaligus &Omega;(n&sup2;), maka dia <strong>&Theta;(n&sup2;)</strong>. Big-&Theta; = Big-O + Big-&Omega; bertemu di kelas yang sama.', 'If an algorithm is both O(n&sup2;) and &Omega;(n&sup2;), then it is <strong>&Theta;(n&sup2;)</strong>. Big-&Theta; = Big-O + Big-&Omega; meeting in the same class.')}
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3>Contoh Penerapan pada Algoritma Nyata</h3>
+    <h3>${t('Contoh Penerapan pada Algoritma Nyata', 'Application Examples on Real Algorithms')}</h3>
     <div class="table-wrapper">
     <table>
-    <tr><th>Algoritma</th><th>Best Case (&Omega;)</th><th>Average Case (&Theta;)</th><th>Worst Case (O)</th></tr>
-    <tr><td><strong>Linear Search</strong></td><td>&Omega;(1) &mdash; item di awal</td><td>&Theta;(n) &mdash; rata-rata di tengah</td><td>O(n) &mdash; item di akhir / tidak ada</td></tr>
-    <tr><td><strong>Binary Search</strong></td><td>&Omega;(1) &mdash; item di tengah</td><td>&Theta;(log n)</td><td>O(log n)</td></tr>
-    <tr><td><strong>Bubble Sort</strong></td><td>&Omega;(n) &mdash; sudah terurut</td><td>&Theta;(n&sup2;)</td><td>O(n&sup2;) &mdash; terbalik urutan</td></tr>
-    <tr><td><strong>Merge Sort</strong></td><td>&Omega;(n log n)</td><td>&Theta;(n log n)</td><td>O(n log n) &mdash; selalu sama!</td></tr>
-    <tr><td><strong>Quick Sort</strong></td><td>&Omega;(n log n)</td><td>&Theta;(n log n)</td><td>O(n&sup2;) &mdash; pivot terburuk</td></tr>
-    <tr><td><strong>Hash Table Lookup</strong></td><td>&Omega;(1)</td><td>&Theta;(1) &mdash; amortized</td><td>O(n) &mdash; semua collision</td></tr>
+    <tr><th>${t('Algoritma', 'Algorithm')}</th><th>Best Case (&Omega;)</th><th>Average Case (&Theta;)</th><th>Worst Case (O)</th></tr>
+    <tr><td><strong>Linear Search</strong></td><td>&Omega;(1) &mdash; ${t('item di awal', 'item at beginning')}</td><td>&Theta;(n) &mdash; ${t('rata-rata di tengah', 'average in the middle')}</td><td>O(n) &mdash; ${t('item di akhir / tidak ada', 'item at end / not found')}</td></tr>
+    <tr><td><strong>Binary Search</strong></td><td>&Omega;(1) &mdash; ${t('item di tengah', 'item in the middle')}</td><td>&Theta;(log n)</td><td>O(log n)</td></tr>
+    <tr><td><strong>Bubble Sort</strong></td><td>&Omega;(n) &mdash; ${t('sudah terurut', 'already sorted')}</td><td>&Theta;(n&sup2;)</td><td>O(n&sup2;) &mdash; ${t('terbalik urutan', 'reverse order')}</td></tr>
+    <tr><td><strong>Merge Sort</strong></td><td>&Omega;(n log n)</td><td>&Theta;(n log n)</td><td>O(n log n) &mdash; ${t('selalu sama!', 'always the same!')}</td></tr>
+    <tr><td><strong>Quick Sort</strong></td><td>&Omega;(n log n)</td><td>&Theta;(n log n)</td><td>O(n&sup2;) &mdash; ${t('pivot terburuk', 'worst pivot')}</td></tr>
+    <tr><td><strong>Hash Table Lookup</strong></td><td>&Omega;(1)</td><td>&Theta;(1) &mdash; amortized</td><td>O(n) &mdash; ${t('semua collision', 'all collisions')}</td></tr>
     <tr><td><strong>Heap Sort</strong></td><td>&Omega;(n log n)</td><td>&Theta;(n log n)</td><td>O(n log n)</td></tr>
-    <tr><td><strong>Insertion Sort</strong></td><td>&Omega;(n) &mdash; sudah terurut</td><td>&Theta;(n&sup2;)</td><td>O(n&sup2;)</td></tr>
+    <tr><td><strong>Insertion Sort</strong></td><td>&Omega;(n) &mdash; ${t('sudah terurut', 'already sorted')}</td><td>&Theta;(n&sup2;)</td><td>O(n&sup2;)</td></tr>
     </table>
     </div>
     <div class="warn-box">
-        <strong>Mengapa Merge Sort lebih "predictable" dari Quick Sort?</strong> Karena Merge Sort punya &Theta;(n log n) &mdash; best, average, dan worst case sama. Quick Sort bisa jatuh ke O(n&sup2;) pada worst case, meskipun average-nya &Theta;(n log n).
+        <strong>${t('Mengapa Merge Sort lebih "predictable" dari Quick Sort?', 'Why is Merge Sort more "predictable" than Quick Sort?')}</strong> ${t('Karena Merge Sort punya &Theta;(n log n) &mdash; best, average, dan worst case sama. Quick Sort bisa jatuh ke O(n&sup2;) pada worst case, meskipun average-nya &Theta;(n log n).', 'Because Merge Sort has &Theta;(n log n) &mdash; best, average, and worst case are the same. Quick Sort can fall to O(n&sup2;) in the worst case, even though its average is &Theta;(n log n).')}
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3>Visualisasi Big-O, Big-Theta, Big-Omega</h3>
-    <p>Kurva di bawah menunjukkan sebuah fungsi <strong>f(n) = 2n&sup2; + 3n + 1</strong> dibandingkan dengan batas atas (O), batas bawah (&Omega;), dan batas ketat (&Theta;).</p>
+    <h3>${t('Visualisasi Big-O, Big-Theta, Big-Omega', 'Visualization of Big-O, Big-Theta, Big-Omega')}</h3>
+    <p>${t('Kurva di bawah menunjukkan sebuah fungsi <strong>f(n) = 2n&sup2; + 3n + 1</strong> dibandingkan dengan batas atas (O), batas bawah (&Omega;), dan batas ketat (&Theta;).', 'The curves below show a function <strong>f(n) = 2n&sup2; + 3n + 1</strong> compared with the upper bound (O), lower bound (&Omega;), and tight bound (&Theta;).')}</p>
     <div class="anim-container">
         <canvas id="asymptotic-chart" width="700" height="350"></canvas>
         <div class="anim-controls">
             <span class="anim-label"><span style="color:#f87171">&marker;</span> c&#8322;&middot;g(n) = 3n&sup2; &mdash; Big-O upper bound</span>
             <span class="anim-label"><span style="color:#34d399">&marker;</span> c&#8321;&middot;g(n) = n&sup2; &mdash; Big-&Omega; lower bound</span>
-            <span class="anim-label"><span style="color:#38bdf8">&marker;</span> f(n) = 2n&sup2;+3n+1 &mdash; fungsi aktual</span>
+            <span class="anim-label"><span style="color:#38bdf8">&marker;</span> f(n) = 2n&sup2;+3n+1 &mdash; ${t('fungsi aktual', 'actual function')}</span>
             <span class="anim-label"><span style="color:#fbbf24">&marker;</span> &Theta;(n&sup2;) region (area antara bounds)</span>
         </div>
     </div>
@@ -160,11 +160,11 @@ sections.complexity = () => `
 <h2 class="animate-in">3. Time Complexity vs Space Complexity</h2>
 
 <div class="card animate-in">
-    <p>Setiap algoritma menggunakan dua sumber daya utama. Memahami keduanya sangat penting untuk menulis kode yang efisien.</p>
+    <p>${t('Setiap algoritma menggunakan dua sumber daya utama. Memahami keduanya sangat penting untuk menulis kode yang efisien.', 'Every algorithm uses two main resources. Understanding both is crucial for writing efficient code.')}</p>
     <div class="card-grid">
         <div class="card" style="border-color:var(--yellow)">
-            <h3 style="color:var(--yellow)">Time Complexity (Kompleksitas Waktu)</h3>
-            <p><strong>Berapa lama</strong> algoritma berjalan terhadap ukuran input. Diukur dari jumlah <strong>operasi dasar</strong> (perbandingan, assignment, aritmatika) yang dilakukan.</p>
+            <h3 style="color:var(--yellow)">${t('Time Complexity (Kompleksitas Waktu)', 'Time Complexity')}</h3>
+            <p>${t('<strong>Berapa lama</strong> algoritma berjalan terhadap ukuran input. Diukur dari jumlah <strong>operasi dasar</strong> (perbandingan, assignment, aritmatika) yang dilakukan.', '<strong>How long</strong> the algorithm runs relative to the input size. Measured by the number of <strong>basic operations</strong> (comparisons, assignments, arithmetic) performed.')}</p>
             <div class="code-block"><span class="cm">// Time: O(n) &mdash; loop n kali</span>
 <span class="kw">for</span> i <span class="kw">in</span> range(n):
     total += arr[i]  <span class="cm">// 1 operasi per iterasi</span>
@@ -175,8 +175,8 @@ sections.complexity = () => `
         matrix[i][j] = <span class="num">0</span>  <span class="cm">// n &times; n operasi</span></div>
         </div>
         <div class="card" style="border-color:var(--accent3)">
-            <h3 style="color:var(--accent3)">Space Complexity (Kompleksitas Ruang)</h3>
-            <p><strong>Berapa banyak memori tambahan</strong> yang dibutuhkan algoritma (selain input itu sendiri). Diukur dari variabel, array, stack rekursi, dan struktur data yang dibuat.</p>
+            <h3 style="color:var(--accent3)">${t('Space Complexity (Kompleksitas Ruang)', 'Space Complexity')}</h3>
+            <p>${t('<strong>Berapa banyak memori tambahan</strong> yang dibutuhkan algoritma (selain input itu sendiri). Diukur dari variabel, array, stack rekursi, dan struktur data yang dibuat.', '<strong>How much additional memory</strong> the algorithm needs (besides the input itself). Measured by variables, arrays, recursion stack, and data structures created.')}</p>
             <div class="code-block"><span class="cm">// Space: O(1) &mdash; hanya variabel biasa</span>
 total = <span class="num">0</span>
 <span class="kw">for</span> x <span class="kw">in</span> arr:
@@ -192,27 +192,27 @@ result = [<span class="num">0</span>] * n
 
 <div class="card animate-in">
     <h3>Trade-off: Time vs Space</h3>
-    <p>Seringkali ada <strong>pertukaran</strong> antara waktu dan memori &mdash; kita bisa mempercepat algoritma dengan menggunakan lebih banyak memori, atau menghemat memori dengan mengorbankan kecepatan. Ini adalah salah satu keputusan desain paling fundamental dalam computer science.</p>
+    <p>${t('Seringkali ada <strong>pertukaran</strong> antara waktu dan memori &mdash; kita bisa mempercepat algoritma dengan menggunakan lebih banyak memori, atau menghemat memori dengan mengorbankan kecepatan. Ini adalah salah satu keputusan desain paling fundamental dalam computer science.', 'There is often a <strong>trade-off</strong> between time and memory &mdash; we can speed up an algorithm by using more memory, or save memory by sacrificing speed. This is one of the most fundamental design decisions in computer science.')}</p>
     <div class="table-wrapper">
     <table>
-    <tr><th>Contoh</th><th>Approach A (Hemat Memori)</th><th>Approach B (Hemat Waktu)</th><th>Trade-off</th></tr>
+    <tr><th>${t('Contoh', 'Example')}</th><th>${t('Approach A (Hemat Memori)', 'Approach A (Save Memory)')}</th><th>${t('Approach B (Hemat Waktu)', 'Approach B (Save Time)')}</th><th>Trade-off</th></tr>
     <tr>
         <td><strong>Two Sum</strong></td>
         <td>Brute force: Time O(n&sup2;), Space O(1)</td>
         <td>Hash map: Time O(n), Space O(n)</td>
-        <td>Pakai memori n &rarr; 1000x lebih cepat</td>
+        <td>${t('Pakai memori n &rarr; 1000x lebih cepat', 'Use n memory &rarr; 1000x faster')}</td>
     </tr>
     <tr>
         <td><strong>Fibonacci</strong></td>
         <td>Rekursif: Time O(2<sup>n</sup>), Space O(n)</td>
         <td>DP table: Time O(n), Space O(n)</td>
-        <td>Simpan hasil &rarr; hindari recompute</td>
+        <td>${t('Simpan hasil &rarr; hindari recompute', 'Store results &rarr; avoid recompute')}</td>
     </tr>
     <tr>
         <td><strong>Fibonacci (optimized)</strong></td>
         <td>DP table: Time O(n), Space O(n)</td>
         <td>2 variabel: Time O(n), Space O(1)</td>
-        <td>Hanya perlu 2 angka terakhir</td>
+        <td>${t('Hanya perlu 2 angka terakhir', 'Only need the last 2 numbers')}</td>
     </tr>
     <tr>
         <td><strong>Sorting</strong></td>
@@ -224,37 +224,37 @@ result = [<span class="num">0</span>] * n
         <td><strong>Graph: Adj Matrix vs List</strong></td>
         <td>Adj List: Space O(V+E), lookup O(degree)</td>
         <td>Adj Matrix: Space O(V&sup2;), lookup O(1)</td>
-        <td>Matrix lebih cepat lookup, List hemat memori</td>
+        <td>${t('Matrix lebih cepat lookup, List hemat memori', 'Matrix has faster lookup, List saves memory')}</td>
     </tr>
     <tr>
         <td><strong>Cache/Memoize</strong></td>
-        <td>Tanpa cache: hemat memori, lambat</td>
-        <td>Dengan cache: pakai memori, cepat</td>
-        <td>Klasik time-space trade-off</td>
+        <td>${t('Tanpa cache: hemat memori, lambat', 'Without cache: save memory, slow')}</td>
+        <td>${t('Dengan cache: pakai memori, cepat', 'With cache: use memory, fast')}</td>
+        <td>${t('Klasik time-space trade-off', 'Classic time-space trade-off')}</td>
     </tr>
     </table>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3>Space Complexity pada Algoritma Populer</h3>
+    <h3>${t('Space Complexity pada Algoritma Populer', 'Space Complexity of Popular Algorithms')}</h3>
     <div class="table-wrapper">
     <table>
-    <tr><th>Algoritma</th><th>Time</th><th>Space</th><th>Penjelasan Space</th></tr>
-    <tr><td>Binary Search</td><td>O(log n)</td><td>O(1) iteratif / O(log n) rekursif</td><td>Iteratif: hanya 3 pointer. Rekursif: call stack depth log n.</td></tr>
-    <tr><td>Merge Sort</td><td>O(n log n)</td><td>O(n)</td><td>Butuh array temporary untuk merge step.</td></tr>
-    <tr><td>Quick Sort</td><td>O(n log n) avg</td><td>O(log n)</td><td>In-place, tapi call stack depth log n (avg).</td></tr>
-    <tr><td>BFS</td><td>O(V + E)</td><td>O(V)</td><td>Queue bisa berisi sampai semua vertices.</td></tr>
-    <tr><td>DFS</td><td>O(V + E)</td><td>O(V)</td><td>Stack (rekursif / eksplisit) depth sampai V.</td></tr>
+    <tr><th>${t('Algoritma', 'Algorithm')}</th><th>Time</th><th>Space</th><th>${t('Penjelasan Space', 'Space Explanation')}</th></tr>
+    <tr><td>Binary Search</td><td>O(log n)</td><td>${t('O(1) iteratif / O(log n) rekursif', 'O(1) iterative / O(log n) recursive')}</td><td>${t('Iteratif: hanya 3 pointer. Rekursif: call stack depth log n.', 'Iterative: only 3 pointers. Recursive: call stack depth log n.')}</td></tr>
+    <tr><td>Merge Sort</td><td>O(n log n)</td><td>O(n)</td><td>${t('Butuh array temporary untuk merge step.', 'Needs a temporary array for the merge step.')}</td></tr>
+    <tr><td>Quick Sort</td><td>O(n log n) avg</td><td>O(log n)</td><td>${t('In-place, tapi call stack depth log n (avg).', 'In-place, but call stack depth log n (avg).')}</td></tr>
+    <tr><td>BFS</td><td>O(V + E)</td><td>O(V)</td><td>${t('Queue bisa berisi sampai semua vertices.', 'Queue can contain up to all vertices.')}</td></tr>
+    <tr><td>DFS</td><td>O(V + E)</td><td>O(V)</td><td>${t('Stack (rekursif / eksplisit) depth sampai V.', 'Stack (recursive / explicit) depth up to V.')}</td></tr>
     <tr><td>Dijkstra</td><td>O((V+E) log V)</td><td>O(V)</td><td>Priority queue + distance array.</td></tr>
-    <tr><td>DP (Knapsack)</td><td>O(n &times; W)</td><td>O(n &times; W) &rarr; bisa O(W)</td><td>Tabel 2D, tapi bisa dioptimasi ke 1D.</td></tr>
-    <tr><td>Hash Table</td><td>O(1) avg</td><td>O(n)</td><td>Menyimpan n elemen + bucket overhead.</td></tr>
+    <tr><td>DP (Knapsack)</td><td>O(n &times; W)</td><td>O(n &times; W) &rarr; ${t('bisa', 'can be')} O(W)</td><td>${t('Tabel 2D, tapi bisa dioptimasi ke 1D.', '2D table, but can be optimized to 1D.')}</td></tr>
+    <tr><td>Hash Table</td><td>O(1) avg</td><td>O(n)</td><td>${t('Menyimpan n elemen + bucket overhead.', 'Stores n elements + bucket overhead.')}</td></tr>
     </table>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3>Contoh Analisis: Mencari Duplikat dalam Array</h3>
+    <h3>${t('Contoh Analisis: Mencari Duplikat dalam Array', 'Analysis Example: Finding Duplicates in an Array')}</h3>
     <div class="code-block"><span class="kw">def</span> <span class="fn">find_duplicates</span>(arr):                <span class="cm"># n = len(arr)</span>
     seen = set()                            <span class="cm"># Space: O(n) &mdash; set bisa berisi n elemen</span>
     duplicates = []                         <span class="cm"># Space: O(n) &mdash; worst case semua duplikat</span>
@@ -270,10 +270,10 @@ result = [<span class="num">0</span>] * n
 </div>
 
 <!-- ==================== 4. VISUALISASI PERTUMBUHAN ==================== -->
-<h2 class="animate-in">4. Visualisasi Pertumbuhan Kompleksitas</h2>
+<h2 class="animate-in">${t('4. Visualisasi Pertumbuhan Kompleksitas', '4. Complexity Growth Visualization')}</h2>
 
 <div class="card animate-in">
-    <p>Grafik di bawah menunjukkan bagaimana berbagai fungsi kompleksitas tumbuh seiring bertambahnya n. Perhatikan bagaimana O(2<sup>n</sup>) meledak begitu cepat dibanding yang lain!</p>
+    <p>${t('Grafik di bawah menunjukkan bagaimana berbagai fungsi kompleksitas tumbuh seiring bertambahnya n. Perhatikan bagaimana O(2<sup>n</sup>) meledak begitu cepat dibanding yang lain!', 'The graph below shows how various complexity functions grow as n increases. Notice how O(2<sup>n</sup>) explodes so quickly compared to the others!')}</p>
     <div class="anim-container">
         <canvas id="complexity-chart" width="700" height="350"></canvas>
         <div class="anim-controls">
@@ -286,29 +286,29 @@ result = [<span class="num">0</span>] * n
         </div>
     </div>
     <div class="info-box">
-        <strong>Insight:</strong> Untuk n kecil (&lt; 10), perbedaan antar algoritma tidak terasa. Tapi untuk n = 100+, pilihan algoritma menjadi kritis. Itulah mengapa Big-O fokus pada pertumbuhan untuk n besar (asymptotic behavior).
+        <strong>Insight:</strong> ${t('Untuk n kecil (&lt; 10), perbedaan antar algoritma tidak terasa. Tapi untuk n = 100+, pilihan algoritma menjadi kritis. Itulah mengapa Big-O fokus pada pertumbuhan untuk n besar (asymptotic behavior).', 'For small n (&lt; 10), the difference between algorithms is barely noticeable. But for n = 100+, algorithm choice becomes critical. That is why Big-O focuses on growth for large n (asymptotic behavior).')}
     </div>
 </div>
 
 <!-- ==================== 5. FIBONACCI: 4 APPROACHES ==================== -->
-<h2 class="animate-in">5. Fibonacci: 4 Pendekatan Berbeda</h2>
+<h2 class="animate-in">${t('5. Fibonacci: 4 Pendekatan Berbeda', '5. Fibonacci: 4 Different Approaches')}</h2>
 
 <div class="card animate-in">
-    <p>Fibonacci adalah contoh klasik bagaimana <strong>strategi algoritma</strong> mempengaruhi kompleksitas secara dramatis. Masalah yang sama &mdash; menghitung bilangan Fibonacci ke-n &mdash; bisa memiliki kompleksitas dari O(n) sampai O(2<sup>n</sup>)!</p>
+    <p>${t('Fibonacci adalah contoh klasik bagaimana <strong>strategi algoritma</strong> mempengaruhi kompleksitas secara dramatis. Masalah yang sama &mdash; menghitung bilangan Fibonacci ke-n &mdash; bisa memiliki kompleksitas dari O(n) sampai O(2<sup>n</sup>)!', 'Fibonacci is a classic example of how <strong>algorithm strategy</strong> dramatically affects complexity. The same problem &mdash; computing the n-th Fibonacci number &mdash; can have complexity from O(n) to O(2<sup>n</sup>)!')}</p>
     <p>Definisi: F(0) = 0, F(1) = 1, F(n) = F(n-1) + F(n-2) untuk n &ge; 2.</p>
 </div>
 
 <div class="tabs animate-in">
     <button class="tab-btn active" data-tab="fib-imperative">Imperative Loop</button>
-    <button class="tab-btn" data-tab="fib-recursive">Rekursif Naive</button>
-    <button class="tab-btn" data-tab="fib-dp">Rekursif + DP</button>
-    <button class="tab-btn" data-tab="fib-tail">Tail Rekursif</button>
+    <button class="tab-btn" data-tab="fib-recursive">${t('Rekursif Naive', 'Naive Recursive')}</button>
+    <button class="tab-btn" data-tab="fib-dp">${t('Rekursif + DP', 'Recursive + DP')}</button>
+    <button class="tab-btn" data-tab="fib-tail">${t('Tail Rekursif', 'Tail Recursive')}</button>
 </div>
 
 <div data-tab-content="fib-imperative" class="tab-content active">
 <div class="card">
     <h3 style="color:var(--green)">Imperative Loop &mdash; O(n) Time, O(1) Space</h3>
-    <p>Pendekatan paling efisien dan straightforward. Gunakan dua variabel yang "bergeser" maju. Tidak ada overhead function call, tidak ada memori tambahan.</p>
+    <p>${t('Pendekatan paling efisien dan straightforward. Gunakan dua variabel yang "bergeser" maju. Tidak ada overhead function call, tidak ada memori tambahan.', 'The most efficient and straightforward approach. Use two variables that "shift" forward. No function call overhead, no additional memory.')}</p>
 
     <div class="tabs">
         <button class="tab-btn active" data-tab="fib-imp-c">C</button>
@@ -349,14 +349,14 @@ result = [<span class="num">0</span>] * n
     b
 }</div>
     </div>
-    <div class="success-box"><strong>Rekomendasi: Gunakan ini untuk produksi!</strong> O(n) waktu, O(1) memori. Tidak ada rekursi, tidak ada overhead. Paling efisien dan paling mudah dipahami.</div>
+    <div class="success-box"><strong>${t('Rekomendasi: Gunakan ini untuk produksi!', 'Recommendation: Use this in production!')}</strong> ${t('O(n) waktu, O(1) memori. Tidak ada rekursi, tidak ada overhead. Paling efisien dan paling mudah dipahami.', 'O(n) time, O(1) memory. No recursion, no overhead. Most efficient and easiest to understand.')}</div>
 </div>
 </div>
 
 <div data-tab-content="fib-recursive" class="tab-content">
 <div class="card">
-    <h3 style="color:var(--red)">Rekursif Naive &mdash; O(2<sup>n</sup>) Time, O(n) Space</h3>
-    <p>Intuitif dan mengikuti definisi matematika secara langsung, tapi <strong>sangat lambat</strong>. Menghitung subproblem yang sama berkali-kali! Pohon rekursi tumbuh secara eksponensial.</p>
+    <h3 style="color:var(--red)">${t('Rekursif Naive', 'Naive Recursive')} &mdash; O(2<sup>n</sup>) Time, O(n) Space</h3>
+    <p>${t('Intuitif dan mengikuti definisi matematika secara langsung, tapi <strong>sangat lambat</strong>. Menghitung subproblem yang sama berkali-kali! Pohon rekursi tumbuh secara eksponensial.', 'Intuitive and follows the mathematical definition directly, but <strong>very slow</strong>. Computes the same subproblems over and over! The recursion tree grows exponentially.')}</p>
 
     <div class="tabs">
         <button class="tab-btn active" data-tab="fib-rec-c">C</button>
@@ -385,14 +385,14 @@ result = [<span class="num">0</span>] * n
     <span class="cm">// Rust yang cepat pun tidak bisa menyelamatkan O(2^n)!</span>
 }</div>
     </div>
-    <div class="warn-box"><strong>Jangan gunakan ini di produksi!</strong> fib(40) membutuhkan ~1 milyar operasi. fib(50) = ~12 milyar. fib(100) = angka astronomis. Tree rekursi tumbuh eksponensial karena subproblem dihitung berulang-ulang.</div>
+    <div class="warn-box"><strong>${t('Jangan gunakan ini di produksi!', 'Do not use this in production!')}</strong> ${t('fib(40) membutuhkan ~1 milyar operasi. fib(50) = ~12 milyar. fib(100) = angka astronomis. Tree rekursi tumbuh eksponensial karena subproblem dihitung berulang-ulang.', 'fib(40) requires ~1 billion operations. fib(50) = ~12 billion. fib(100) = an astronomical number. The recursion tree grows exponentially because subproblems are computed repeatedly.')}</div>
 </div>
 </div>
 
 <div data-tab-content="fib-dp" class="tab-content">
 <div class="card">
-    <h3 style="color:var(--accent)">Rekursif + Memoization (DP) &mdash; O(n) Time, O(n) Space</h3>
-    <p>Simpan hasil yang sudah dihitung di tabel (memo). Setiap subproblem hanya dihitung SATU kali. Ini adalah inti dari <strong>Dynamic Programming</strong> &mdash; mengorbankan memori O(n) untuk mendapatkan waktu O(n).</p>
+    <h3 style="color:var(--accent)">${t('Rekursif + Memoization (DP)', 'Recursive + Memoization (DP)')} &mdash; O(n) Time, O(n) Space</h3>
+    <p>${t('Simpan hasil yang sudah dihitung di tabel (memo). Setiap subproblem hanya dihitung SATU kali. Ini adalah inti dari <strong>Dynamic Programming</strong> &mdash; mengorbankan memori O(n) untuk mendapatkan waktu O(n).', 'Store already computed results in a table (memo). Each subproblem is computed only ONCE. This is the essence of <strong>Dynamic Programming</strong> &mdash; trading O(n) memory to achieve O(n) time.')}</p>
 
     <div class="tabs">
         <button class="tab-btn active" data-tab="fib-dp-c">C</button>
@@ -430,14 +430,14 @@ result = [<span class="num">0</span>] * n
     result
 }</div>
     </div>
-    <div class="info-box"><strong>Inti Dynamic Programming:</strong> Menggunakan O(n) memori tambahan tapi waktu turun dari O(2<sup>n</sup>) ke O(n). Dari miliaran operasi menjadi hanya ratusan. Trade-off yang sangat layak!</div>
+    <div class="info-box"><strong>${t('Inti Dynamic Programming:', 'Core of Dynamic Programming:')}</strong> ${t('Menggunakan O(n) memori tambahan tapi waktu turun dari O(2<sup>n</sup>) ke O(n). Dari miliaran operasi menjadi hanya ratusan. Trade-off yang sangat layak!', 'Uses O(n) additional memory but time drops from O(2<sup>n</sup>) to O(n). From billions of operations to just hundreds. A very worthwhile trade-off!')}</div>
 </div>
 </div>
 
 <div data-tab-content="fib-tail" class="tab-content">
 <div class="card">
     <h3 style="color:var(--accent3)">Tail Recursive &mdash; O(n) Time, O(1)* Space</h3>
-    <p>Akumulator membawa state di parameter. Compiler yang mendukung <strong>Tail Call Optimization (TCO)</strong> bisa mengubahnya jadi loop, sehingga space menjadi O(1). *O(1) hanya jika compiler mendukung TCO.</p>
+    <p>${t('Akumulator membawa state di parameter. Compiler yang mendukung <strong>Tail Call Optimization (TCO)</strong> bisa mengubahnya jadi loop, sehingga space menjadi O(1). *O(1) hanya jika compiler mendukung TCO.', 'The accumulator carries state in the parameters. Compilers that support <strong>Tail Call Optimization (TCO)</strong> can transform it into a loop, making space O(1). *O(1) only if the compiler supports TCO.')}</p>
 
     <div class="tabs">
         <button class="tab-btn active" data-tab="fib-tail-c">C</button>

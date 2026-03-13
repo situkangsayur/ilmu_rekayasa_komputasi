@@ -3,33 +3,32 @@
 // Bahasa: Indonesia | Contoh kode: Go & Java
 
 sections['datastructures'] = () => `
-<h1 class="section-title animate-in">Struktur Data</h1>
-<p class="section-subtitle animate-in">Array, Linked List, Stack, Queue, Hash Map, BST, Heap, Graph, Trie — implementasi lengkap dengan Go & Java</p>
+<h1 class="section-title animate-in">${t('Struktur Data', 'Data Structures')}</h1>
+<p class="section-subtitle animate-in">${t('Array, Linked List, Stack, Queue, Hash Map, BST, Heap, Graph, Trie — implementasi lengkap dengan Go &amp; Java', 'Array, Linked List, Stack, Queue, Hash Map, BST, Heap, Graph, Trie — complete implementation with Go &amp; Java')}</p>
 
 <!-- ==================== 1. ARRAY / SLICE / ARRAYLIST ==================== -->
 <h2 class="animate-in">1. Array / Slice / ArrayList</h2>
 
 <div class="card animate-in">
     <h3 style="color:var(--accent)">Fixed Array vs Dynamic Array</h3>
-    <p>Array adalah struktur data paling fundamental yang menyimpan elemen secara <strong>kontiguous (berurutan)</strong> di memori.
-       Ada dua jenis utama:</p>
+    <p>${t('Array adalah struktur data paling fundamental yang menyimpan elemen secara <strong>kontiguous (berurutan)</strong> di memori. Ada dua jenis utama:', 'Array is the most fundamental data structure that stores elements <strong>contiguously (sequentially)</strong> in memory. There are two main types:')}</p>
     <div class="card-grid">
         <div class="info-box">
             <strong>Fixed-size Array</strong><br>
-            Ukuran ditentukan saat deklarasi dan tidak bisa berubah. Alokasi di stack (biasanya).
-            Contoh: <code>[5]int</code> di Go, <code>int[5]</code> di Java.
+            ${t('Ukuran ditentukan saat deklarasi dan tidak bisa berubah. Alokasi di stack (biasanya).', 'Size is determined at declaration and cannot change. Allocated on the stack (usually).')}
+            ${t('Contoh:', 'Example:')} <code>[5]int</code> ${t('di', 'in')} Go, <code>int[5]</code> ${t('di', 'in')} Java.
         </div>
         <div class="info-box">
             <strong>Dynamic Array</strong><br>
-            Ukuran bisa bertambah secara otomatis. Saat kapasitas penuh, alokasi baru dengan ukuran 2x (amortized).
-            Contoh: <code>[]int</code> (slice) di Go, <code>ArrayList</code> di Java.
+            ${t('Ukuran bisa bertambah secara otomatis. Saat kapasitas penuh, alokasi baru dengan ukuran 2x (amortized).', 'Size can grow automatically. When capacity is full, a new allocation with 2x size is made (amortized).')}
+            ${t('Contoh:', 'Example:')} <code>[]int</code> (slice) ${t('di', 'in')} Go, <code>ArrayList</code> ${t('di', 'in')} Java.
         </div>
     </div>
 </div>
 
 <div class="card animate-in">
     <h3 style="color:var(--green)">Memory Layout Array</h3>
-    <p>Array menyimpan elemen di blok memori berurutan. Ini memungkinkan akses O(1) via index karena alamat bisa dihitung langsung: <code>addr = base + index * sizeof(element)</code></p>
+    <p>${t('Array menyimpan elemen di blok memori berurutan. Ini memungkinkan akses O(1) via index karena alamat bisa dihitung langsung:', 'Array stores elements in contiguous memory blocks. This allows O(1) access via index because the address can be calculated directly:')} <code>addr = base + index * sizeof(element)</code></p>
     <div class="mem-layout">
         <div class="mem-row">
             <div class="mem-addr">0x1000</div>
@@ -40,11 +39,11 @@ sections['datastructures'] = () => `
             <div class="mem-cell data" style="min-width:60px">arr[4]=50</div>
         </div>
     </div>
-    <p style="margin-top:8px;font-size:0.85em;color:var(--text-secondary)">Setiap elemen int (4 byte) berurutan di memori. Index ke-i ada di offset <code>base + i*4</code>.</p>
+    <p style="margin-top:8px;font-size:0.85em;color:var(--text-secondary)">${t('Setiap elemen int (4 byte) berurutan di memori. Index ke-i ada di offset', 'Each int element (4 bytes) is sequential in memory. The i-th index is at offset')} <code>base + i*4</code>.</p>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent3)">Implementasi: Go Slice vs Java ArrayList</h3>
+    <h3 style="color:var(--accent3)">${t('Implementasi: Go Slice vs Java ArrayList', 'Implementation: Go Slice vs Java ArrayList')}</h3>
     <div class="tabs">
         <button class="tab-btn active" data-tab="arr-go">Go (Slice)</button>
         <button class="tab-btn" data-tab="arr-java">Java (ArrayList)</button>
@@ -121,17 +120,17 @@ sections['datastructures'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--yellow)">Tabel Kompleksitas Array/Slice/ArrayList</h3>
+    <h3 style="color:var(--yellow)">${t('Tabel Kompleksitas Array/Slice/ArrayList', 'Array/Slice/ArrayList Complexity Table')}</h3>
     <div class="table-wrapper">
         <table>
-            <tr><th>Operasi</th><th>Array (Fixed)</th><th>Slice/ArrayList</th><th>Keterangan</th></tr>
-            <tr><td>Akses by Index</td><td><span class="badge-green">O(1)</span></td><td><span class="badge-green">O(1)</span></td><td>Langsung via pointer arithmetic</td></tr>
+            <tr><th>${t('Operasi', 'Operation')}</th><th>Array (Fixed)</th><th>Slice/ArrayList</th><th>${t('Keterangan', 'Notes')}</th></tr>
+            <tr><td>${t('Akses by Index', 'Access by Index')}</td><td><span class="badge-green">O(1)</span></td><td><span class="badge-green">O(1)</span></td><td>${t('Langsung via pointer arithmetic', 'Direct via pointer arithmetic')}</td></tr>
             <tr><td>Search (unsorted)</td><td><span class="badge-orange">O(n)</span></td><td><span class="badge-orange">O(n)</span></td><td>Linear scan</td></tr>
             <tr><td>Search (sorted)</td><td><span class="badge-blue">O(log n)</span></td><td><span class="badge-blue">O(log n)</span></td><td>Binary search</td></tr>
-            <tr><td>Insert di akhir</td><td><span class="badge-red">N/A</span></td><td><span class="badge-green">O(1)*</span></td><td>*Amortized, bisa O(n) saat grow</td></tr>
-            <tr><td>Insert di tengah</td><td><span class="badge-red">N/A</span></td><td><span class="badge-orange">O(n)</span></td><td>Geser elemen ke kanan</td></tr>
-            <tr><td>Delete di akhir</td><td><span class="badge-red">N/A</span></td><td><span class="badge-green">O(1)</span></td><td>Kurangi length</td></tr>
-            <tr><td>Delete di tengah</td><td><span class="badge-red">N/A</span></td><td><span class="badge-orange">O(n)</span></td><td>Geser elemen ke kiri</td></tr>
+            <tr><td>${t('Insert di akhir', 'Insert at end')}</td><td><span class="badge-red">N/A</span></td><td><span class="badge-green">O(1)*</span></td><td>${t('*Amortized, bisa O(n) saat grow', '*Amortized, can be O(n) during grow')}</td></tr>
+            <tr><td>${t('Insert di tengah', 'Insert in middle')}</td><td><span class="badge-red">N/A</span></td><td><span class="badge-orange">O(n)</span></td><td>${t('Geser elemen ke kanan', 'Shift elements right')}</td></tr>
+            <tr><td>${t('Delete di akhir', 'Delete at end')}</td><td><span class="badge-red">N/A</span></td><td><span class="badge-green">O(1)</span></td><td>${t('Kurangi length', 'Reduce length')}</td></tr>
+            <tr><td>${t('Delete di tengah', 'Delete in middle')}</td><td><span class="badge-red">N/A</span></td><td><span class="badge-orange">O(n)</span></td><td>${t('Geser elemen ke kiri', 'Shift elements left')}</td></tr>
         </table>
     </div>
 </div>
@@ -141,13 +140,13 @@ sections['datastructures'] = () => `
 
 <div class="card animate-in">
     <h3 style="color:var(--accent)">Singly vs Doubly Linked List</h3>
-    <p>Linked List menyimpan elemen di node terpisah yang saling terhubung via pointer. Tidak memerlukan memori kontiguous seperti array.</p>
+    <p>${t('Linked List menyimpan elemen di node terpisah yang saling terhubung via pointer. Tidak memerlukan memori kontiguous seperti array.', 'Linked List stores elements in separate nodes connected via pointers. Does not require contiguous memory like arrays.')}</p>
 
     <div class="card-grid">
         <div class="info-box">
             <strong>Singly Linked List</strong><br>
-            Setiap node punya <code>data</code> dan pointer <code>next</code>.
-            Traversal hanya satu arah (maju).
+            ${t('Setiap node punya', 'Each node has')} <code>data</code> ${t('dan pointer', 'and pointer')} <code>next</code>.
+            ${t('Traversal hanya satu arah (maju).', 'Traversal is one-directional (forward).')}
             <div class="flow-diagram" style="margin-top:8px">
                 <div class="flow-node" style="border-radius:8px">HEAD</div>
                 <div class="flow-arrow">&rarr;</div>
@@ -160,8 +159,8 @@ sections['datastructures'] = () => `
         </div>
         <div class="info-box">
             <strong>Doubly Linked List</strong><br>
-            Setiap node punya <code>prev</code>, <code>data</code>, dan <code>next</code>.
-            Traversal dua arah (maju & mundur).
+            ${t('Setiap node punya', 'Each node has')} <code>prev</code>, <code>data</code>, ${t('dan', 'and')} <code>next</code>.
+            ${t('Traversal dua arah (maju &amp; mundur).', 'Traversal is bidirectional (forward &amp; backward).')}
             <div class="flow-diagram" style="margin-top:8px">
                 <div class="flow-node" style="border-radius:8px;border-color:var(--red)">NULL</div>
                 <div class="flow-arrow">&larr;&rarr;</div>
@@ -176,7 +175,7 @@ sections['datastructures'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--green)">Implementasi Linked List</h3>
+    <h3 style="color:var(--green)">${t('Implementasi Linked List', 'Linked List Implementation')}</h3>
     <div class="tabs">
         <button class="tab-btn active" data-tab="ll-go">Go</button>
         <button class="tab-btn" data-tab="ll-java">Java</button>
@@ -291,8 +290,8 @@ sections['datastructures'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent2)">Animasi: Linked List Insert & Delete</h3>
-    <p>Klik tombol untuk melihat bagaimana pointer berubah saat insert dan delete pada linked list.</p>
+    <h3 style="color:var(--accent2)">${t('Animasi: Linked List Insert &amp; Delete', 'Animation: Linked List Insert &amp; Delete')}</h3>
+    <p>${t('Klik tombol untuk melihat bagaimana pointer berubah saat insert dan delete pada linked list.', 'Click the buttons to see how pointers change during insert and delete operations on a linked list.')}</p>
     <div class="anim-container">
         <canvas id="ll-canvas" width="700" height="200" style="width:100%;max-width:700px;background:var(--card-bg);border-radius:8px;border:1px solid var(--border)"></canvas>
         <div class="anim-controls">
@@ -304,21 +303,20 @@ sections['datastructures'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--yellow)">Kapan Pakai LinkedList vs Array?</h3>
+    <h3 style="color:var(--yellow)">${t('Kapan Pakai LinkedList vs Array?', 'When to Use LinkedList vs Array?')}</h3>
     <div class="table-wrapper">
         <table>
-            <tr><th>Kriteria</th><th>Array/ArrayList</th><th>LinkedList</th></tr>
-            <tr><td>Akses by index</td><td><span class="badge-green">O(1) - Cepat</span></td><td><span class="badge-red">O(n) - Lambat</span></td></tr>
-            <tr><td>Insert/Delete di awal</td><td><span class="badge-red">O(n) - Geser semua</span></td><td><span class="badge-green">O(1) - Ubah pointer</span></td></tr>
-            <tr><td>Insert/Delete di akhir</td><td><span class="badge-green">O(1) amortized</span></td><td><span class="badge-green">O(1) dgn tail</span></td></tr>
-            <tr><td>Memory usage</td><td><span class="badge-green">Hemat (kontiguous)</span></td><td><span class="badge-red">Boros (pointer per node)</span></td></tr>
-            <tr><td>Cache performance</td><td><span class="badge-green">Bagus (locality)</span></td><td><span class="badge-red">Buruk (scattered)</span></td></tr>
-            <tr><td>Insert di tengah</td><td><span class="badge-orange">O(n)</span></td><td><span class="badge-green">O(1) jika punya ref</span></td></tr>
+            <tr><th>${t('Kriteria', 'Criteria')}</th><th>Array/ArrayList</th><th>LinkedList</th></tr>
+            <tr><td>${t('Akses by index', 'Access by index')}</td><td><span class="badge-green">${t('O(1) - Cepat', 'O(1) - Fast')}</span></td><td><span class="badge-red">${t('O(n) - Lambat', 'O(n) - Slow')}</span></td></tr>
+            <tr><td>${t('Insert/Delete di awal', 'Insert/Delete at beginning')}</td><td><span class="badge-red">${t('O(n) - Geser semua', 'O(n) - Shift all')}</span></td><td><span class="badge-green">${t('O(1) - Ubah pointer', 'O(1) - Change pointer')}</span></td></tr>
+            <tr><td>${t('Insert/Delete di akhir', 'Insert/Delete at end')}</td><td><span class="badge-green">O(1) amortized</span></td><td><span class="badge-green">${t('O(1) dgn tail', 'O(1) with tail')}</span></td></tr>
+            <tr><td>Memory usage</td><td><span class="badge-green">${t('Hemat (kontiguous)', 'Efficient (contiguous)')}</span></td><td><span class="badge-red">${t('Boros (pointer per node)', 'Wasteful (pointer per node)')}</span></td></tr>
+            <tr><td>Cache performance</td><td><span class="badge-green">${t('Bagus (locality)', 'Good (locality)')}</span></td><td><span class="badge-red">${t('Buruk (scattered)', 'Poor (scattered)')}</span></td></tr>
+            <tr><td>${t('Insert di tengah', 'Insert in middle')}</td><td><span class="badge-orange">O(n)</span></td><td><span class="badge-green">${t('O(1) jika punya ref', 'O(1) if has ref')}</span></td></tr>
         </table>
     </div>
     <div class="warn-box" style="margin-top:12px">
-        <strong>Rekomendasi:</strong> Dalam praktik, ArrayList/Slice hampir selalu lebih cepat karena cache locality.
-        Gunakan LinkedList hanya jika sering insert/delete di awal atau memerlukan Deque operations.
+        <strong>${t('Rekomendasi:', 'Recommendation:')}</strong> ${t('Dalam praktik, ArrayList/Slice hampir selalu lebih cepat karena cache locality. Gunakan LinkedList hanya jika sering insert/delete di awal atau memerlukan Deque operations.', 'In practice, ArrayList/Slice is almost always faster due to cache locality. Use LinkedList only if you frequently insert/delete at the beginning or need Deque operations.')}
     </div>
 </div>
 
@@ -327,8 +325,7 @@ sections['datastructures'] = () => `
 
 <div class="card animate-in">
     <h3 style="color:var(--accent)">Prinsip LIFO (Last In, First Out)</h3>
-    <p>Stack bekerja seperti <strong>tumpukan piring</strong> di restoran: piring terakhir yang diletakkan adalah yang pertama diambil.
-       Hanya ada dua operasi utama: <code>push</code> (taruh di atas) dan <code>pop</code> (ambil dari atas).</p>
+    <p>${t('Stack bekerja seperti <strong>tumpukan piring</strong> di restoran: piring terakhir yang diletakkan adalah yang pertama diambil. Hanya ada dua operasi utama:', 'Stack works like a <strong>stack of plates</strong> in a restaurant: the last plate placed is the first one taken. There are only two main operations:')} <code>push</code> ${t('(taruh di atas)', '(place on top)')} ${t('dan', 'and')} <code>pop</code> ${t('(ambil dari atas).', '(take from top).')}</p>
 
     <div class="flow-diagram">
         <div class="flow-node" style="border-radius:8px;background:var(--accent);color:#fff">TOP &rarr; 30</div>
@@ -345,12 +342,12 @@ sections['datastructures'] = () => `
         <div class="step-item"><div class="step-num">2</div><div class="step-text"><strong>push(20)</strong> &rarr; Stack: [10, 20]</div></div>
         <div class="step-item"><div class="step-num">3</div><div class="step-text"><strong>push(30)</strong> &rarr; Stack: [10, 20, 30] (top=30)</div></div>
         <div class="step-item"><div class="step-num">4</div><div class="step-text"><strong>pop()</strong> &rarr; return 30, Stack: [10, 20]</div></div>
-        <div class="step-item"><div class="step-num">5</div><div class="step-text"><strong>peek()</strong> &rarr; return 20 (tidak dihapus)</div></div>
+        <div class="step-item"><div class="step-num">5</div><div class="step-text"><strong>peek()</strong> &rarr; return 20 ${t('(tidak dihapus)', '(not removed)')}</div></div>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--green)">Implementasi Stack</h3>
+    <h3 style="color:var(--green)">${t('Implementasi Stack', 'Stack Implementation')}</h3>
     <div class="tabs">
         <button class="tab-btn active" data-tab="stack-go">Go</button>
         <button class="tab-btn" data-tab="stack-java">Java</button>
@@ -442,19 +439,19 @@ sections['datastructures'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent3)">Aplikasi Stack di Dunia Nyata</h3>
+    <h3 style="color:var(--accent3)">${t('Aplikasi Stack di Dunia Nyata', 'Real-World Stack Applications')}</h3>
     <div class="card-grid-3">
         <div class="info-box">
             <strong>Undo/Redo</strong><br>
-            Text editor menyimpan setiap aksi di stack. Undo = pop dari undo-stack dan push ke redo-stack.
+            ${t('Text editor menyimpan setiap aksi di stack. Undo = pop dari undo-stack dan push ke redo-stack.', 'Text editors store each action on a stack. Undo = pop from undo-stack and push to redo-stack.')}
         </div>
         <div class="info-box">
             <strong>Bracket Matching</strong><br>
-            Compiler mengecek pasangan kurung <code>({[]})</code> menggunakan stack. Setiap buka-kurung di-push, tutup-kurung harus match dengan pop.
+            ${t('Compiler mengecek pasangan kurung <code>({[]})</code> menggunakan stack. Setiap buka-kurung di-push, tutup-kurung harus match dengan pop.', 'Compilers check bracket pairs <code>({[]})</code> using a stack. Each opening bracket is pushed, closing bracket must match with pop.')}
         </div>
         <div class="info-box">
             <strong>Function Call Stack</strong><br>
-            CPU menyimpan return address dan local variable di call stack. Rekursi terlalu dalam = Stack Overflow.
+            ${t('CPU menyimpan return address dan local variable di call stack. Rekursi terlalu dalam = Stack Overflow.', 'CPU stores return addresses and local variables on the call stack. Too deep recursion = Stack Overflow.')}
         </div>
     </div>
 </div>
@@ -464,8 +461,7 @@ sections['datastructures'] = () => `
 
 <div class="card animate-in">
     <h3 style="color:var(--accent)">Prinsip FIFO (First In, First Out)</h3>
-    <p>Queue bekerja seperti <strong>antrian di bank</strong>: orang yang datang pertama dilayani pertama.
-       Operasi utama: <code>enqueue</code> (masuk antrian) dan <code>dequeue</code> (keluar antrian).</p>
+    <p>${t('Queue bekerja seperti <strong>antrian di bank</strong>: orang yang datang pertama dilayani pertama. Operasi utama:', 'Queue works like a <strong>bank queue</strong>: the first person to arrive is served first. Main operations:')} <code>enqueue</code> ${t('(masuk antrian)', '(enter queue)')} ${t('dan', 'and')} <code>dequeue</code> ${t('(keluar antrian).', '(leave queue).')}</p>
 
     <div class="flow-diagram">
         <div class="flow-node" style="border-radius:8px;border-color:var(--red)">DEQUEUE &larr;</div>
@@ -488,7 +484,7 @@ sections['datastructures'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--green)">Implementasi Queue</h3>
+    <h3 style="color:var(--green)">${t('Implementasi Queue', 'Queue Implementation')}</h3>
     <div class="tabs">
         <button class="tab-btn active" data-tab="q-go">Go</button>
         <button class="tab-btn" data-tab="q-java">Java</button>
@@ -561,8 +557,7 @@ sections['datastructures'] = () => `
 
 <div class="card animate-in">
     <h3 style="color:var(--accent2)">Circular Queue</h3>
-    <p>Circular Queue menggunakan array fixed-size dengan dua pointer (<code>front</code> dan <code>rear</code>) yang "melingkar" menggunakan modulo.
-       Lebih efisien daripada slice-based queue karena tidak ada alokasi ulang.</p>
+    <p>${t('Circular Queue menggunakan array fixed-size dengan dua pointer (<code>front</code> dan <code>rear</code>) yang "melingkar" menggunakan modulo. Lebih efisien daripada slice-based queue karena tidak ada alokasi ulang.', 'Circular Queue uses a fixed-size array with two pointers (<code>front</code> and <code>rear</code>) that "wrap around" using modulo. More efficient than slice-based queue because there is no reallocation.')}</p>
     <div class="code-block"><span class="cm">// Circular Queue di Go</span>
 <span class="kw">type</span> <span class="type">CircularQueue</span> <span class="kw">struct</span> {
     data  []<span class="type">int</span>
@@ -594,15 +589,15 @@ sections['datastructures'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--yellow)">Aplikasi Queue</h3>
+    <h3 style="color:var(--yellow)">${t('Aplikasi Queue', 'Queue Applications')}</h3>
     <div class="card-grid">
         <div class="info-box">
             <strong>BFS (Breadth-First Search)</strong><br>
-            Traversal graph level-by-level menggunakan queue untuk menyimpan node yang akan dikunjungi.
+            ${t('Traversal graph level-by-level menggunakan queue untuk menyimpan node yang akan dikunjungi.', 'Level-by-level graph traversal using a queue to store nodes to be visited.')}
         </div>
         <div class="info-box">
             <strong>Task Scheduling</strong><br>
-            OS menggunakan queue untuk menjadwalkan proses (Round Robin). Message queue (RabbitMQ, Kafka) untuk distributed systems.
+            ${t('OS menggunakan queue untuk menjadwalkan proses (Round Robin). Message queue (RabbitMQ, Kafka) untuk distributed systems.', 'OS uses queues to schedule processes (Round Robin). Message queues (RabbitMQ, Kafka) for distributed systems.')}
         </div>
     </div>
 </div>
@@ -611,15 +606,14 @@ sections['datastructures'] = () => `
 <h2 class="animate-in">5. Hash Map / Hash Table</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Cara Kerja Hashing</h3>
-    <p>Hash Map menyimpan pasangan <strong>key-value</strong> menggunakan fungsi hash yang mengkonversi key menjadi index array.
-       Ini memungkinkan operasi insert, search, dan delete dalam waktu <span class="badge-green">O(1)</span> rata-rata.</p>
+    <h3 style="color:var(--accent)">${t('Cara Kerja Hashing', 'How Hashing Works')}</h3>
+    <p>${t('Hash Map menyimpan pasangan <strong>key-value</strong> menggunakan fungsi hash yang mengkonversi key menjadi index array. Ini memungkinkan operasi insert, search, dan delete dalam waktu', 'Hash Map stores <strong>key-value</strong> pairs using a hash function that converts keys into array indices. This enables insert, search, and delete operations in')} <span class="badge-green">O(1)</span> ${t('rata-rata.', 'on average.')}</p>
 
     <div class="step-list">
-        <div class="step-item"><div class="step-num">1</div><div class="step-text"><strong>Hash Function:</strong> key &rarr; hash(key) &rarr; index. Contoh: hash("nama") = 3</div></div>
-        <div class="step-item"><div class="step-num">2</div><div class="step-text"><strong>Store:</strong> Simpan value di array[index]. array[3] = "Budi"</div></div>
+        <div class="step-item"><div class="step-num">1</div><div class="step-text"><strong>Hash Function:</strong> key &rarr; hash(key) &rarr; index. ${t('Contoh:', 'Example:')} hash("nama") = 3</div></div>
+        <div class="step-item"><div class="step-num">2</div><div class="step-text"><strong>Store:</strong> ${t('Simpan value di', 'Store value in')} array[index]. array[3] = "Budi"</div></div>
         <div class="step-item"><div class="step-num">3</div><div class="step-text"><strong>Retrieve:</strong> hash("nama") = 3, return array[3] = "Budi"</div></div>
-        <div class="step-item"><div class="step-num">4</div><div class="step-text"><strong>Collision:</strong> Jika hash("kota") juga = 3, perlu collision handling</div></div>
+        <div class="step-item"><div class="step-num">4</div><div class="step-text"><strong>Collision:</strong> ${t('Jika hash("kota") juga = 3, perlu collision handling', 'If hash("kota") also = 3, collision handling is needed')}</div></div>
     </div>
 </div>
 
@@ -628,8 +622,7 @@ sections['datastructures'] = () => `
     <div class="card-grid">
         <div class="info-box">
             <strong>Chaining (Separate Chaining)</strong><br>
-            Setiap slot array berisi linked list. Jika collision, elemen ditambahkan ke linked list di slot tersebut.
-            Digunakan oleh Java HashMap.<br>
+            ${t('Setiap slot array berisi linked list. Jika collision, elemen ditambahkan ke linked list di slot tersebut. Digunakan oleh Java HashMap.', 'Each array slot contains a linked list. On collision, the element is added to the linked list at that slot. Used by Java HashMap.')}<br>
             <div class="flow-diagram" style="margin-top:8px">
                 <div class="flow-node" style="border-radius:4px">Slot[3]</div>
                 <div class="flow-arrow">&rarr;</div>
@@ -642,8 +635,7 @@ sections['datastructures'] = () => `
         </div>
         <div class="info-box">
             <strong>Open Addressing</strong><br>
-            Jika slot penuh, cari slot kosong berikutnya (linear probing, quadratic probing, atau double hashing).
-            Digunakan oleh Go map dan Python dict.<br>
+            ${t('Jika slot penuh, cari slot kosong berikutnya (linear probing, quadratic probing, atau double hashing). Digunakan oleh Go map dan Python dict.', 'If the slot is full, find the next empty slot (linear probing, quadratic probing, or double hashing). Used by Go map and Python dict.')}<br>
             <div class="flow-diagram" style="margin-top:8px">
                 <div class="flow-node" style="border-radius:4px">Slot[3] PENUH</div>
                 <div class="flow-arrow">&rarr;</div>
@@ -656,7 +648,7 @@ sections['datastructures'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--green)">Implementasi Hash Map</h3>
+    <h3 style="color:var(--green)">${t('Implementasi Hash Map', 'Hash Map Implementation')}</h3>
     <div class="tabs">
         <button class="tab-btn active" data-tab="hash-go">Go</button>
         <button class="tab-btn" data-tab="hash-java">Java</button>
@@ -747,8 +739,8 @@ sections['datastructures'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent3)">Animasi: Hash Table Visualization</h3>
-    <p>Masukkan angka untuk melihat bagaimana hash function memetakan key ke slot dan bagaimana collision ditangani.</p>
+    <h3 style="color:var(--accent3)">${t('Animasi: Hash Table Visualization', 'Animation: Hash Table Visualization')}</h3>
+    <p>${t('Masukkan angka untuk melihat bagaimana hash function memetakan key ke slot dan bagaimana collision ditangani.', 'Enter a number to see how the hash function maps a key to a slot and how collisions are handled.')}</p>
     <div class="anim-container">
         <canvas id="hash-canvas" width="700" height="300" style="width:100%;max-width:700px;background:var(--card-bg);border-radius:8px;border:1px solid var(--border)"></canvas>
         <div class="anim-controls">
@@ -761,18 +753,18 @@ sections['datastructures'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--yellow)">Kompleksitas Hash Map</h3>
+    <h3 style="color:var(--yellow)">${t('Kompleksitas Hash Map', 'Hash Map Complexity')}</h3>
     <div class="table-wrapper">
         <table>
-            <tr><th>Operasi</th><th>Average</th><th>Worst Case</th><th>Keterangan</th></tr>
-            <tr><td>Insert</td><td><span class="badge-green">O(1)</span></td><td><span class="badge-red">O(n)</span></td><td>Worst case saat semua key collision</td></tr>
-            <tr><td>Search</td><td><span class="badge-green">O(1)</span></td><td><span class="badge-red">O(n)</span></td><td>Degradasi ke linked list traversal</td></tr>
-            <tr><td>Delete</td><td><span class="badge-green">O(1)</span></td><td><span class="badge-red">O(n)</span></td><td>Sama seperti search</td></tr>
-            <tr><td>Space</td><td colspan="2"><span class="badge-blue">O(n)</span></td><td>Plus overhead bucket array</td></tr>
+            <tr><th>${t('Operasi', 'Operation')}</th><th>Average</th><th>Worst Case</th><th>${t('Keterangan', 'Notes')}</th></tr>
+            <tr><td>Insert</td><td><span class="badge-green">O(1)</span></td><td><span class="badge-red">O(n)</span></td><td>${t('Worst case saat semua key collision', 'Worst case when all keys collide')}</td></tr>
+            <tr><td>Search</td><td><span class="badge-green">O(1)</span></td><td><span class="badge-red">O(n)</span></td><td>${t('Degradasi ke linked list traversal', 'Degrades to linked list traversal')}</td></tr>
+            <tr><td>Delete</td><td><span class="badge-green">O(1)</span></td><td><span class="badge-red">O(n)</span></td><td>${t('Sama seperti search', 'Same as search')}</td></tr>
+            <tr><td>Space</td><td colspan="2"><span class="badge-blue">O(n)</span></td><td>${t('Plus overhead bucket array', 'Plus bucket array overhead')}</td></tr>
         </table>
     </div>
     <div class="success-box" style="margin-top:8px">
-        Java HashMap: saat chain terlalu panjang (>8), otomatis convert ke Red-Black Tree &rarr; worst case menjadi O(log n).
+        ${t('Java HashMap: saat chain terlalu panjang (>8), otomatis convert ke Red-Black Tree &rarr; worst case menjadi O(log n).', 'Java HashMap: when a chain gets too long (>8), it automatically converts to a Red-Black Tree &rarr; worst case becomes O(log n).')}
     </div>
 </div>
 
@@ -780,27 +772,27 @@ sections['datastructures'] = () => `
 <h2 class="animate-in">6. Binary Search Tree (BST)</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Properti BST</h3>
-    <p>Binary Search Tree adalah struktur data tree di mana setiap node memiliki paling banyak dua anak, dengan properti:</p>
+    <h3 style="color:var(--accent)">${t('Properti BST', 'BST Properties')}</h3>
+    <p>${t('Binary Search Tree adalah struktur data tree di mana setiap node memiliki paling banyak dua anak, dengan properti:', 'Binary Search Tree is a tree data structure where each node has at most two children, with the following properties:')}</p>
     <div class="step-list">
-        <div class="step-item"><div class="step-num">1</div><div class="step-text">Semua node di <strong>subtree kiri</strong> memiliki nilai <strong>lebih kecil</strong> dari parent</div></div>
-        <div class="step-item"><div class="step-num">2</div><div class="step-text">Semua node di <strong>subtree kanan</strong> memiliki nilai <strong>lebih besar</strong> dari parent</div></div>
-        <div class="step-item"><div class="step-num">3</div><div class="step-text">Properti ini berlaku <strong>rekursif</strong> untuk setiap subtree</div></div>
+        <div class="step-item"><div class="step-num">1</div><div class="step-text">${t('Semua node di <strong>subtree kiri</strong> memiliki nilai <strong>lebih kecil</strong> dari parent', 'All nodes in the <strong>left subtree</strong> have values <strong>less than</strong> the parent')}</div></div>
+        <div class="step-item"><div class="step-num">2</div><div class="step-text">${t('Semua node di <strong>subtree kanan</strong> memiliki nilai <strong>lebih besar</strong> dari parent', 'All nodes in the <strong>right subtree</strong> have values <strong>greater than</strong> the parent')}</div></div>
+        <div class="step-item"><div class="step-num">3</div><div class="step-text">${t('Properti ini berlaku <strong>rekursif</strong> untuk setiap subtree', 'This property applies <strong>recursively</strong> to every subtree')}</div></div>
     </div>
     <div class="info-box" style="margin-top:12px">
-        <strong>Contoh BST:</strong> Insert 50, 30, 70, 20, 40, 60, 80<br>
+        <strong>${t('Contoh BST:', 'BST Example:')}</strong> Insert 50, 30, 70, 20, 40, 60, 80<br>
         <pre style="margin-top:8px;font-family:monospace;color:var(--text-primary)">
            50
           /  \\
         30    70
        / \\   / \\
      20  40 60  80</pre>
-        In-order traversal menghasilkan: 20, 30, 40, 50, 60, 70, 80 (terurut!)
+        ${t('In-order traversal menghasilkan: 20, 30, 40, 50, 60, 70, 80 (terurut!)', 'In-order traversal produces: 20, 30, 40, 50, 60, 70, 80 (sorted!)')}
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--green)">Implementasi BST</h3>
+    <h3 style="color:var(--green)">${t('Implementasi BST', 'BST Implementation')}</h3>
     <div class="tabs">
         <button class="tab-btn active" data-tab="bst-go">Go</button>
         <button class="tab-btn" data-tab="bst-java">Java</button>
@@ -928,8 +920,8 @@ sections['datastructures'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent2)">Animasi: BST Insert & Visualisasi</h3>
-    <p>Masukkan angka untuk melihat bagaimana node ditempatkan di BST sesuai properti BST.</p>
+    <h3 style="color:var(--accent2)">${t('Animasi: BST Insert &amp; Visualisasi', 'Animation: BST Insert &amp; Visualization')}</h3>
+    <p>${t('Masukkan angka untuk melihat bagaimana node ditempatkan di BST sesuai properti BST.', 'Enter a number to see how nodes are placed in the BST according to BST properties.')}</p>
     <div class="anim-container">
         <canvas id="bst-canvas" width="700" height="350" style="width:100%;max-width:700px;background:var(--card-bg);border-radius:8px;border:1px solid var(--border)"></canvas>
         <div class="anim-controls">
@@ -946,20 +938,20 @@ sections['datastructures'] = () => `
     <div class="card-grid-3">
         <div class="info-box">
             <strong>In-Order (LNR)</strong><br>
-            Kiri &rarr; Node &rarr; Kanan<br>
-            Hasil: data terurut ascending<br>
+            ${t('Kiri', 'Left')} &rarr; Node &rarr; ${t('Kanan', 'Right')}<br>
+            ${t('Hasil: data terurut ascending', 'Result: sorted ascending data')}<br>
             <code>20, 30, 40, 50, 60, 70, 80</code>
         </div>
         <div class="info-box">
             <strong>Pre-Order (NLR)</strong><br>
-            Node &rarr; Kiri &rarr; Kanan<br>
-            Berguna untuk: copy tree, serialisasi<br>
+            Node &rarr; ${t('Kiri', 'Left')} &rarr; ${t('Kanan', 'Right')}<br>
+            ${t('Berguna untuk: copy tree, serialisasi', 'Useful for: copy tree, serialization')}<br>
             <code>50, 30, 20, 40, 70, 60, 80</code>
         </div>
         <div class="info-box">
             <strong>Post-Order (LRN)</strong><br>
-            Kiri &rarr; Kanan &rarr; Node<br>
-            Berguna untuk: delete tree, evaluasi ekspresi<br>
+            ${t('Kiri', 'Left')} &rarr; ${t('Kanan', 'Right')} &rarr; Node<br>
+            ${t('Berguna untuk: delete tree, evaluasi ekspresi', 'Useful for: delete tree, expression evaluation')}<br>
             <code>20, 40, 30, 60, 80, 70, 50</code>
         </div>
     </div>
@@ -970,11 +962,11 @@ sections['datastructures'] = () => `
 
 <div class="card animate-in">
     <h3 style="color:var(--accent)">Min-Heap vs Max-Heap</h3>
-    <p>Heap adalah <strong>complete binary tree</strong> yang memenuhi heap property. Digunakan untuk implementasi Priority Queue.</p>
+    <p>${t('Heap adalah <strong>complete binary tree</strong> yang memenuhi heap property. Digunakan untuk implementasi Priority Queue.', 'Heap is a <strong>complete binary tree</strong> that satisfies the heap property. Used to implement Priority Queue.')}</p>
     <div class="card-grid">
         <div class="info-box">
             <strong>Min-Heap</strong><br>
-            Setiap parent &le; anak-anaknya. Root = elemen terkecil.<br>
+            ${t('Setiap parent &le; anak-anaknya. Root = elemen terkecil.', 'Each parent &le; its children. Root = smallest element.')}<br>
             <pre style="font-family:monospace;margin-top:8px;color:var(--text-primary)">
        1
       / \\
@@ -984,7 +976,7 @@ sections['datastructures'] = () => `
         </div>
         <div class="info-box">
             <strong>Max-Heap</strong><br>
-            Setiap parent &ge; anak-anaknya. Root = elemen terbesar.<br>
+            ${t('Setiap parent &ge; anak-anaknya. Root = elemen terbesar.', 'Each parent &ge; its children. Root = largest element.')}<br>
             <pre style="font-family:monospace;margin-top:8px;color:var(--text-primary)">
        9
       / \\
@@ -996,8 +988,8 @@ sections['datastructures'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent2)">Proses Heapify (Visual)</h3>
-    <p>Heap disimpan sebagai <strong>array</strong>. Untuk node di index <code>i</code>:</p>
+    <h3 style="color:var(--accent2)">${t('Proses Heapify (Visual)', 'Heapify Process (Visual)')}</h3>
+    <p>${t('Heap disimpan sebagai <strong>array</strong>. Untuk node di index', 'Heap is stored as an <strong>array</strong>. For a node at index')} <code>i</code>:</p>
     <div class="step-list">
         <div class="step-item"><div class="step-num">1</div><div class="step-text">Parent: <code>i / 2</code> (atau <code>(i-1)/2</code> untuk 0-indexed)</div></div>
         <div class="step-item"><div class="step-num">2</div><div class="step-text">Left child: <code>2*i + 1</code></div></div>
@@ -1021,11 +1013,11 @@ sections['datastructures'] = () => `
             <div class="mem-cell data" style="min-width:40px">4</div>
         </div>
     </div>
-    <p style="font-size:0.85em;color:var(--text-secondary);margin-top:8px">Min-heap [1,3,5,7,4] di array. Insert: tambah di akhir lalu "bubble up". Delete min: swap root dengan terakhir lalu "sift down".</p>
+    <p style="font-size:0.85em;color:var(--text-secondary);margin-top:8px">${t('Min-heap [1,3,5,7,4] di array. Insert: tambah di akhir lalu "bubble up". Delete min: swap root dengan terakhir lalu "sift down".', 'Min-heap [1,3,5,7,4] in array. Insert: add at end then "bubble up". Delete min: swap root with last then "sift down".')}</p>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--green)">Implementasi Heap / Priority Queue</h3>
+    <h3 style="color:var(--green)">${t('Implementasi Heap / Priority Queue', 'Heap / Priority Queue Implementation')}</h3>
     <div class="tabs">
         <button class="tab-btn active" data-tab="heap-go">Go</button>
         <button class="tab-btn" data-tab="heap-java">Java</button>
@@ -1108,28 +1100,28 @@ sections['datastructures'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--yellow)">Aplikasi Heap</h3>
+    <h3 style="color:var(--yellow)">${t('Aplikasi Heap', 'Heap Applications')}</h3>
     <div class="card-grid-3">
         <div class="info-box">
             <strong>Dijkstra's Algorithm</strong><br>
-            Min-heap untuk memilih node dengan jarak terpendek berikutnya secara efisien O(E log V).
+            ${t('Min-heap untuk memilih node dengan jarak terpendek berikutnya secara efisien O(E log V).', 'Min-heap to efficiently select the next node with the shortest distance O(E log V).')}
         </div>
         <div class="info-box">
             <strong>Task Scheduling</strong><br>
-            OS scheduler menggunakan priority queue untuk menjalankan proses berprioritas tinggi lebih dulu.
+            ${t('OS scheduler menggunakan priority queue untuk menjalankan proses berprioritas tinggi lebih dulu.', 'OS scheduler uses priority queue to run higher-priority processes first.')}
         </div>
         <div class="info-box">
             <strong>Median Finding</strong><br>
-            Dua heap (max-heap + min-heap) untuk mencari median dari streaming data dalam O(log n).
+            ${t('Dua heap (max-heap + min-heap) untuk mencari median dari streaming data dalam O(log n).', 'Two heaps (max-heap + min-heap) to find the median of streaming data in O(log n).')}
         </div>
     </div>
     <div class="table-wrapper" style="margin-top:12px">
         <table>
-            <tr><th>Operasi</th><th>Kompleksitas</th><th>Keterangan</th></tr>
-            <tr><td>Insert (push)</td><td><span class="badge-blue">O(log n)</span></td><td>Bubble up dari leaf ke root</td></tr>
-            <tr><td>Extract Min/Max</td><td><span class="badge-blue">O(log n)</span></td><td>Sift down setelah swap dengan last</td></tr>
-            <tr><td>Peek Min/Max</td><td><span class="badge-green">O(1)</span></td><td>Selalu di root</td></tr>
-            <tr><td>Build Heap</td><td><span class="badge-orange">O(n)</span></td><td>Heapify dari bawah ke atas</td></tr>
+            <tr><th>${t('Operasi', 'Operation')}</th><th>${t('Kompleksitas', 'Complexity')}</th><th>${t('Keterangan', 'Notes')}</th></tr>
+            <tr><td>Insert (push)</td><td><span class="badge-blue">O(log n)</span></td><td>${t('Bubble up dari leaf ke root', 'Bubble up from leaf to root')}</td></tr>
+            <tr><td>Extract Min/Max</td><td><span class="badge-blue">O(log n)</span></td><td>${t('Sift down setelah swap dengan last', 'Sift down after swap with last')}</td></tr>
+            <tr><td>Peek Min/Max</td><td><span class="badge-green">O(1)</span></td><td>${t('Selalu di root', 'Always at root')}</td></tr>
+            <tr><td>Build Heap</td><td><span class="badge-orange">O(n)</span></td><td>${t('Heapify dari bawah ke atas', 'Heapify from bottom to top')}</td></tr>
         </table>
     </div>
 </div>
@@ -1138,13 +1130,13 @@ sections['datastructures'] = () => `
 <h2 class="animate-in">8. Graph</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Representasi Graph</h3>
-    <p>Graph terdiri dari <strong>vertices (node)</strong> dan <strong>edges (sisi)</strong> yang menghubungkan node-node tersebut.</p>
+    <h3 style="color:var(--accent)">${t('Representasi Graph', 'Graph Representation')}</h3>
+    <p>${t('Graph terdiri dari <strong>vertices (node)</strong> dan <strong>edges (sisi)</strong> yang menghubungkan node-node tersebut.', 'A graph consists of <strong>vertices (nodes)</strong> and <strong>edges</strong> that connect those nodes.')}</p>
     <div class="card-grid">
         <div class="info-box">
             <strong>Adjacency Matrix</strong><br>
-            Matrix 2D berukuran V&times;V. <code>matrix[i][j] = 1</code> jika ada edge dari i ke j.<br>
-            Cocok untuk graph padat (dense). Space: O(V&sup2;).<br>
+            ${t('Matrix 2D berukuran V&times;V.', '2D matrix of size V&times;V.')} <code>matrix[i][j] = 1</code> ${t('jika ada edge dari i ke j.', 'if there is an edge from i to j.')}<br>
+            ${t('Cocok untuk graph padat (dense). Space: O(V&sup2;).', 'Suitable for dense graphs. Space: O(V&sup2;).')}<br>
             <pre style="font-family:monospace;margin-top:8px;color:var(--text-primary)">
   0 1 2 3
 0[0 1 1 0]
@@ -1154,8 +1146,8 @@ sections['datastructures'] = () => `
         </div>
         <div class="info-box">
             <strong>Adjacency List</strong><br>
-            Array/map di mana setiap node menyimpan list tetangganya.<br>
-            Cocok untuk graph jarang (sparse). Space: O(V+E).<br>
+            ${t('Array/map di mana setiap node menyimpan list tetangganya.', 'Array/map where each node stores its list of neighbors.')}<br>
+            ${t('Cocok untuk graph jarang (sparse). Space: O(V+E).', 'Suitable for sparse graphs. Space: O(V+E).')}<br>
             <pre style="font-family:monospace;margin-top:8px;color:var(--text-primary)">
 0: [1, 2]
 1: [0, 3]
@@ -1166,23 +1158,23 @@ sections['datastructures'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent3)">Jenis-jenis Graph</h3>
+    <h3 style="color:var(--accent3)">${t('Jenis-jenis Graph', 'Types of Graphs')}</h3>
     <div class="card-grid">
         <div class="info-box">
             <strong>Directed vs Undirected</strong><br>
-            <strong>Directed:</strong> Edge punya arah (A&rarr;B bukan berarti B&rarr;A). Contoh: follower di Twitter.<br>
-            <strong>Undirected:</strong> Edge dua arah (A-B = B-A). Contoh: friendship di Facebook.
+            <strong>Directed:</strong> ${t('Edge punya arah (A&rarr;B bukan berarti B&rarr;A). Contoh: follower di Twitter.', 'Edges have direction (A&rarr;B does not mean B&rarr;A). Example: followers on Twitter.')}<br>
+            <strong>Undirected:</strong> ${t('Edge dua arah (A-B = B-A). Contoh: friendship di Facebook.', 'Edges are bidirectional (A-B = B-A). Example: friendships on Facebook.')}
         </div>
         <div class="info-box">
             <strong>Weighted vs Unweighted</strong><br>
-            <strong>Weighted:</strong> Setiap edge punya bobot/cost. Contoh: jarak antar kota, latency jaringan.<br>
-            <strong>Unweighted:</strong> Semua edge dianggap sama. Contoh: social network connection.
+            <strong>Weighted:</strong> ${t('Setiap edge punya bobot/cost. Contoh: jarak antar kota, latency jaringan.', 'Each edge has a weight/cost. Example: distance between cities, network latency.')}<br>
+            <strong>Unweighted:</strong> ${t('Semua edge dianggap sama. Contoh: social network connection.', 'All edges are considered equal. Example: social network connections.')}
         </div>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--green)">Implementasi Graph</h3>
+    <h3 style="color:var(--green)">${t('Implementasi Graph', 'Graph Implementation')}</h3>
     <div class="tabs">
         <button class="tab-btn active" data-tab="graph-go">Go</button>
         <button class="tab-btn" data-tab="graph-java">Java</button>
@@ -1303,8 +1295,8 @@ sections['datastructures'] = () => `
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent2)">Animasi: Graph Traversal (BFS & DFS)</h3>
-    <p>Klik BFS atau DFS untuk melihat urutan kunjungan node pada graph. Node biru = dikunjungi, hijau = dalam antrian/stack.</p>
+    <h3 style="color:var(--accent2)">${t('Animasi: Graph Traversal (BFS &amp; DFS)', 'Animation: Graph Traversal (BFS &amp; DFS)')}</h3>
+    <p>${t('Klik BFS atau DFS untuk melihat urutan kunjungan node pada graph. Node biru = dikunjungi, hijau = dalam antrian/stack.', 'Click BFS or DFS to see the node visit order on the graph. Blue node = visited, green = in queue/stack.')}</p>
     <div class="anim-container">
         <canvas id="graph-ds-canvas" width="700" height="350" style="width:100%;max-width:700px;background:var(--card-bg);border-radius:8px;border:1px solid var(--border)"></canvas>
         <div class="anim-controls">
@@ -1319,13 +1311,13 @@ sections['datastructures'] = () => `
     <h3 style="color:var(--yellow)">BFS vs DFS</h3>
     <div class="table-wrapper">
         <table>
-            <tr><th>Aspek</th><th>BFS (Breadth-First)</th><th>DFS (Depth-First)</th></tr>
-            <tr><td>Struktur data</td><td>Queue (FIFO)</td><td>Stack / Rekursi (LIFO)</td></tr>
-            <tr><td>Pola explorasi</td><td>Level-by-level</td><td>Sedalam mungkin dulu</td></tr>
-            <tr><td>Shortest path (unweighted)</td><td><span class="badge-green">Ya</span></td><td><span class="badge-red">Tidak</span></td></tr>
-            <tr><td>Memory</td><td>O(V) - bisa besar pada graph lebar</td><td>O(V) - call stack depth</td></tr>
-            <tr><td>Aplikasi</td><td>Shortest path, level-order</td><td>Topological sort, cycle detection</td></tr>
-            <tr><td>Kompleksitas</td><td><span class="badge-blue">O(V + E)</span></td><td><span class="badge-blue">O(V + E)</span></td></tr>
+            <tr><th>${t('Aspek', 'Aspect')}</th><th>BFS (Breadth-First)</th><th>DFS (Depth-First)</th></tr>
+            <tr><td>${t('Struktur data', 'Data structure')}</td><td>Queue (FIFO)</td><td>${t('Stack / Rekursi (LIFO)', 'Stack / Recursion (LIFO)')}</td></tr>
+            <tr><td>${t('Pola explorasi', 'Exploration pattern')}</td><td>Level-by-level</td><td>${t('Sedalam mungkin dulu', 'As deep as possible first')}</td></tr>
+            <tr><td>Shortest path (unweighted)</td><td><span class="badge-green">${t('Ya', 'Yes')}</span></td><td><span class="badge-red">${t('Tidak', 'No')}</span></td></tr>
+            <tr><td>Memory</td><td>${t('O(V) - bisa besar pada graph lebar', 'O(V) - can be large on wide graphs')}</td><td>O(V) - call stack depth</td></tr>
+            <tr><td>${t('Aplikasi', 'Applications')}</td><td>Shortest path, level-order</td><td>Topological sort, cycle detection</td></tr>
+            <tr><td>${t('Kompleksitas', 'Complexity')}</td><td><span class="badge-blue">O(V + E)</span></td><td><span class="badge-blue">O(V + E)</span></td></tr>
         </table>
     </div>
 </div>

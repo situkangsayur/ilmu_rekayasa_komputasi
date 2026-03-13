@@ -1076,7 +1076,6 @@ tr:hover td { background: rgba(56,189,248,0.03); }
     align-items: center;
     gap: 8px;
     padding: 10px 20px;
-    margin-top: 8px;
     cursor: pointer;
     color: var(--text2);
     font-size: 0.85rem;
@@ -1087,7 +1086,6 @@ tr:hover td { background: rgba(56,189,248,0.03); }
     font-family: var(--font);
     width: 100%;
     text-align: left;
-    border-top: 1px solid var(--surface2);
 }
 .theme-toggle:hover {
     color: var(--text);
@@ -1101,6 +1099,42 @@ tr:hover td { background: rgba(56,189,248,0.03); }
 }
 .theme-toggle:hover .theme-toggle-icon {
     transform: rotate(30deg);
+}
+
+/* ========== LANGUAGE TOGGLE ========== */
+[data-lang="id"] .lang-en { display: none !important; }
+[data-lang="en"] .lang-id { display: none !important; }
+.lang-en, .lang-id { display: inline; }
+
+.sidebar-bottom-controls {
+    border-top: 1px solid var(--surface2);
+    margin-top: 8px;
+}
+
+.lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: var(--text2);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    border: none;
+    background: none;
+    font-family: var(--font);
+    width: 100%;
+    text-align: left;
+}
+.lang-toggle:hover {
+    color: var(--text);
+    background: rgba(56,189,248,0.05);
+}
+.lang-toggle-icon {
+    font-size: 1rem;
+    width: 24px;
+    text-align: center;
 }
 
 /* ========== LIGHT THEME CODE SYNTAX ========== */

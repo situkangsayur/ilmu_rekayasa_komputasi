@@ -3,38 +3,38 @@
 // Covers: Cryptography, Hashing, TLS/SSL, PKI, VPN/WireGuard, SMPC, JWT, OWASP, SSDLC
 
 sections.security = () => `
-<h1 class="section-title animate-in">Security, Encryption & Secure Coding</h1>
-<p class="section-subtitle animate-in">Kriptografi, Hashing, TLS/SSL, PKI, VPN & WireGuard, SMPC, JWT, OWASP Top 10, dan SSDLC</p>
+<h1 class="section-title animate-in">${t('Security, Encryption & Secure Coding', 'Security, Encryption & Secure Coding')}</h1>
+<p class="section-subtitle animate-in">${t('Kriptografi, Hashing, TLS/SSL, PKI, VPN & WireGuard, SMPC, JWT, OWASP Top 10, dan SSDLC', 'Cryptography, Hashing, TLS/SSL, PKI, VPN & WireGuard, SMPC, JWT, OWASP Top 10, and SSDLC')}</p>
 
 <!-- ==================== 1. CRYPTOGRAPHY FUNDAMENTALS ==================== -->
-<h2 class="animate-in">1. Dasar-Dasar Kriptografi</h2>
+<h2 class="animate-in">${t('1. Dasar-Dasar Kriptografi', '1. Cryptography Fundamentals')}</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Apa Itu Kriptografi?</h3>
-    <p>Kriptografi adalah ilmu dan seni mengamankan informasi dengan mengubah data menjadi bentuk yang tidak bisa dibaca tanpa kunci dekripsi. Kriptografi menjadi fondasi dari hampir semua sistem keamanan digital modern, dari HTTPS hingga cryptocurrency.</p>
-    <div class="info-box">Kriptografi modern dibangun di atas <strong>prinsip Kerckhoffs</strong>: keamanan sistem harus bergantung pada kerahasiaan <em>kunci</em>, bukan kerahasiaan <em>algoritma</em>.</div>
+    <h3 style="color:var(--accent)">${t('Apa Itu Kriptografi?', 'What Is Cryptography?')}</h3>
+    <p>${t('Kriptografi adalah ilmu dan seni mengamankan informasi dengan mengubah data menjadi bentuk yang tidak bisa dibaca tanpa kunci dekripsi. Kriptografi menjadi fondasi dari hampir semua sistem keamanan digital modern, dari HTTPS hingga cryptocurrency.', 'Cryptography is the science and art of securing information by transforming data into an unreadable form without a decryption key. Cryptography is the foundation of nearly all modern digital security systems, from HTTPS to cryptocurrency.')}</p>
+    <div class="info-box">${t('Kriptografi modern dibangun di atas <strong>prinsip Kerckhoffs</strong>: keamanan sistem harus bergantung pada kerahasiaan <em>kunci</em>, bukan kerahasiaan <em>algoritma</em>.', 'Modern cryptography is built on <strong>Kerckhoffs\'s principle</strong>: the security of a system must depend on the secrecy of the <em>key</em>, not the secrecy of the <em>algorithm</em>.')}</div>
 </div>
 
 <div class="card-grid animate-in">
     <div class="card">
-        <h3 style="color:var(--yellow)"><span class="badge badge-yellow">Symmetric</span> Enkripsi Simetris</h3>
-        <p>Menggunakan <strong>satu kunci yang sama</strong> untuk proses enkripsi dan dekripsi. Cepat dan efisien untuk data besar.</p>
+        <h3 style="color:var(--yellow)"><span class="badge badge-yellow">Symmetric</span> ${t('Enkripsi Simetris', 'Symmetric Encryption')}</h3>
+        <p>${t('Menggunakan <strong>satu kunci yang sama</strong> untuk proses enkripsi dan dekripsi. Cepat dan efisien untuk data besar.', 'Uses <strong>the same key</strong> for both encryption and decryption. Fast and efficient for large data.')}</p>
         <div class="encrypt-vis">
             <div class="encrypt-block">Plaintext<br><small>"Hello World"</small></div>
             <div class="encrypt-arrow">+</div>
-            <div class="encrypt-block key">Kunci Rahasia<br><small>AES-256</small></div>
+            <div class="encrypt-block key">${t('Kunci Rahasia', 'Secret Key')}<br><small>AES-256</small></div>
             <div class="encrypt-arrow">&rarr;</div>
             <div class="encrypt-block cipher">Ciphertext<br><small>"x7Fk2mQ..."</small></div>
         </div>
         <ul>
-            <li><strong>Kelebihan:</strong> Sangat cepat, cocok untuk data besar</li>
-            <li><strong>Kekurangan:</strong> Distribusi kunci sulit (harus ada kanal aman)</li>
-            <li><strong>Contoh:</strong> AES, ChaCha20, 3DES (legacy)</li>
+            <li><strong>${t('Kelebihan', 'Advantages')}:</strong> ${t('Sangat cepat, cocok untuk data besar', 'Very fast, suitable for large data')}</li>
+            <li><strong>${t('Kekurangan', 'Disadvantages')}:</strong> ${t('Distribusi kunci sulit (harus ada kanal aman)', 'Key distribution is difficult (requires a secure channel)')}</li>
+            <li><strong>${t('Contoh', 'Examples')}:</strong> AES, ChaCha20, 3DES (legacy)</li>
         </ul>
     </div>
     <div class="card">
-        <h3 style="color:var(--accent)"><span class="badge badge-blue">Asymmetric</span> Enkripsi Asimetris</h3>
-        <p>Menggunakan <strong>sepasang kunci</strong>: public key (enkripsi) dan private key (dekripsi). Menyelesaikan masalah distribusi kunci.</p>
+        <h3 style="color:var(--accent)"><span class="badge badge-blue">Asymmetric</span> ${t('Enkripsi Asimetris', 'Asymmetric Encryption')}</h3>
+        <p>${t('Menggunakan <strong>sepasang kunci</strong>: public key (enkripsi) dan private key (dekripsi). Menyelesaikan masalah distribusi kunci.', 'Uses <strong>a pair of keys</strong>: public key (encryption) and private key (decryption). Solves the key distribution problem.')}</p>
         <div class="encrypt-vis">
             <div class="encrypt-block">Plaintext</div>
             <div class="encrypt-arrow">+</div>
@@ -47,35 +47,35 @@ sections.security = () => `
             <div class="encrypt-block">Plaintext</div>
         </div>
         <ul>
-            <li><strong>Kelebihan:</strong> Tidak perlu berbagi kunci rahasia</li>
-            <li><strong>Kekurangan:</strong> Lambat (100-1000x lebih lambat dari simetris)</li>
-            <li><strong>Contoh:</strong> RSA, ECDSA, Ed25519, Diffie-Hellman</li>
+            <li><strong>${t('Kelebihan', 'Advantages')}:</strong> ${t('Tidak perlu berbagi kunci rahasia', 'No need to share a secret key')}</li>
+            <li><strong>${t('Kekurangan', 'Disadvantages')}:</strong> ${t('Lambat (100-1000x lebih lambat dari simetris)', 'Slow (100-1000x slower than symmetric)')}</li>
+            <li><strong>${t('Contoh', 'Examples')}:</strong> RSA, ECDSA, Ed25519, Diffie-Hellman</li>
         </ul>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--green)">Perbandingan Symmetric vs Asymmetric</h3>
+    <h3 style="color:var(--green)">${t('Perbandingan Symmetric vs Asymmetric', 'Symmetric vs Asymmetric Comparison')}</h3>
     <div class="table-wrapper">
     <table>
-    <tr><th>Aspek</th><th>Symmetric</th><th>Asymmetric</th></tr>
-    <tr><td>Jumlah Kunci</td><td>1 (shared secret)</td><td>2 (public + private)</td></tr>
-    <tr><td>Kecepatan</td><td><span class="badge badge-green">Sangat Cepat</span></td><td><span class="badge badge-orange">Lambat</span></td></tr>
-    <tr><td>Distribusi Kunci</td><td><span class="badge badge-red">Sulit</span></td><td><span class="badge badge-green">Mudah</span></td></tr>
-    <tr><td>Ukuran Kunci</td><td>128-256 bit</td><td>2048-4096 bit (RSA), 256 bit (ECC)</td></tr>
-    <tr><td>Penggunaan Utama</td><td>Enkripsi data bulk</td><td>Key exchange, digital signature</td></tr>
-    <tr><td>Contoh</td><td>AES-256-GCM, ChaCha20</td><td>RSA, ECDSA, Ed25519</td></tr>
+    <tr><th>${t('Aspek', 'Aspect')}</th><th>Symmetric</th><th>Asymmetric</th></tr>
+    <tr><td>${t('Jumlah Kunci', 'Number of Keys')}</td><td>1 (shared secret)</td><td>2 (public + private)</td></tr>
+    <tr><td>${t('Kecepatan', 'Speed')}</td><td><span class="badge badge-green">${t('Sangat Cepat', 'Very Fast')}</span></td><td><span class="badge badge-orange">${t('Lambat', 'Slow')}</span></td></tr>
+    <tr><td>${t('Distribusi Kunci', 'Key Distribution')}</td><td><span class="badge badge-red">${t('Sulit', 'Difficult')}</span></td><td><span class="badge badge-green">${t('Mudah', 'Easy')}</span></td></tr>
+    <tr><td>${t('Ukuran Kunci', 'Key Size')}</td><td>128-256 bit</td><td>2048-4096 bit (RSA), 256 bit (ECC)</td></tr>
+    <tr><td>${t('Penggunaan Utama', 'Primary Use')}</td><td>${t('Enkripsi data bulk', 'Bulk data encryption')}</td><td>Key exchange, digital signature</td></tr>
+    <tr><td>${t('Contoh', 'Examples')}</td><td>AES-256-GCM, ChaCha20</td><td>RSA, ECDSA, Ed25519</td></tr>
     </table>
     </div>
-    <div class="info-box">Dalam praktiknya, keduanya digabungkan (<strong>hybrid encryption</strong>): Asymmetric untuk pertukaran kunci sesi, lalu Symmetric untuk enkripsi data. Ini yang dilakukan TLS!</div>
+    <div class="info-box">${t('Dalam praktiknya, keduanya digabungkan (<strong>hybrid encryption</strong>): Asymmetric untuk pertukaran kunci sesi, lalu Symmetric untuk enkripsi data. Ini yang dilakukan TLS!', 'In practice, both are combined (<strong>hybrid encryption</strong>): Asymmetric for session key exchange, then Symmetric for data encryption. This is what TLS does!')}</div>
 </div>
 
 <!-- AES Detail -->
 <div class="card animate-in">
     <h3 style="color:var(--yellow)">AES (Advanced Encryption Standard)</h3>
-    <p>AES adalah standar enkripsi simetris yang diadopsi oleh NIST pada tahun 2001, menggantikan DES. AES beroperasi pada <strong>block 128-bit</strong> dengan ukuran kunci 128, 192, atau 256 bit.</p>
+    <p>${t('AES adalah standar enkripsi simetris yang diadopsi oleh NIST pada tahun 2001, menggantikan DES. AES beroperasi pada <strong>block 128-bit</strong> dengan ukuran kunci 128, 192, atau 256 bit.', 'AES is the symmetric encryption standard adopted by NIST in 2001, replacing DES. AES operates on <strong>128-bit blocks</strong> with key sizes of 128, 192, or 256 bits.')}</p>
 
-    <h4>Mode Operasi AES</h4>
+    <h4>${t('Mode Operasi AES', 'AES Operation Modes')}</h4>
     <div class="tabs">
         <button class="tab-btn active" data-tab="aes-cbc">CBC Mode</button>
         <button class="tab-btn" data-tab="aes-gcm">GCM Mode</button>
@@ -83,7 +83,7 @@ sections.security = () => `
     </div>
     <div class="tab-content active" id="aes-cbc">
         <h4>CBC (Cipher Block Chaining)</h4>
-        <p>Setiap block plaintext di-XOR dengan ciphertext block sebelumnya sebelum dienkripsi. Membutuhkan <strong>Initialization Vector (IV)</strong> yang acak untuk block pertama.</p>
+        <p>${t('Setiap block plaintext di-XOR dengan ciphertext block sebelumnya sebelum dienkripsi. Membutuhkan <strong>Initialization Vector (IV)</strong> yang acak untuk block pertama.', 'Each plaintext block is XORed with the previous ciphertext block before encryption. Requires a random <strong>Initialization Vector (IV)</strong> for the first block.')}</p>
         <div class="flow-diagram">
             <div class="flow-node">Plaintext Block 1</div>
             <div class="flow-arrow">XOR IV &rarr;</div>
@@ -98,11 +98,11 @@ sections.security = () => `
             <div class="flow-arrow">&rarr;</div>
             <div class="flow-node cipher" style="border-color:var(--yellow)">Ciphertext 2</div>
         </div>
-        <div class="warn-box">CBC rentan terhadap <strong>padding oracle attack</strong> jika tidak diimplementasikan dengan benar. Selalu gunakan bersama HMAC untuk integritas!</div>
+        <div class="warn-box">${t('CBC rentan terhadap <strong>padding oracle attack</strong> jika tidak diimplementasikan dengan benar. Selalu gunakan bersama HMAC untuk integritas!', 'CBC is vulnerable to <strong>padding oracle attacks</strong> if not implemented correctly. Always use with HMAC for integrity!')}</div>
     </div>
     <div class="tab-content" id="aes-gcm">
         <h4>GCM (Galois/Counter Mode)</h4>
-        <p>Mode <strong>authenticated encryption</strong> yang menyediakan enkripsi + integritas + autentikasi sekaligus (AEAD). Ini adalah mode yang <strong>paling direkomendasikan</strong> saat ini.</p>
+        <p>${t('Mode <strong>authenticated encryption</strong> yang menyediakan enkripsi + integritas + autentikasi sekaligus (AEAD). Ini adalah mode yang <strong>paling direkomendasikan</strong> saat ini.', 'An <strong>authenticated encryption</strong> mode that provides encryption + integrity + authentication simultaneously (AEAD). This is the <strong>most recommended</strong> mode today.')}</p>
         <div class="flow-diagram">
             <div class="flow-node">Plaintext + AAD</div>
             <div class="flow-arrow">&rarr; AES-CTR + GHASH</div>
@@ -110,19 +110,19 @@ sections.security = () => `
         </div>
         <ul>
             <li><strong>AEAD</strong> = Authenticated Encryption with Associated Data</li>
-            <li>Menghasilkan <strong>authentication tag</strong> (biasanya 128-bit) untuk verifikasi integritas</li>
-            <li>Bisa melindungi data tambahan (AAD) yang tidak dienkripsi tapi perlu diverifikasi</li>
-            <li>Sangat cepat di hardware modern (AES-NI instruction set)</li>
+            <li>${t('Menghasilkan <strong>authentication tag</strong> (biasanya 128-bit) untuk verifikasi integritas', 'Produces an <strong>authentication tag</strong> (usually 128-bit) for integrity verification')}</li>
+            <li>${t('Bisa melindungi data tambahan (AAD) yang tidak dienkripsi tapi perlu diverifikasi', 'Can protect additional data (AAD) that is not encrypted but needs verification')}</li>
+            <li>${t('Sangat cepat di hardware modern (AES-NI instruction set)', 'Very fast on modern hardware (AES-NI instruction set)')}</li>
         </ul>
-        <div class="success-box">AES-256-GCM adalah pilihan standar untuk TLS 1.3, IPSec, dan sebagian besar protokol modern.</div>
+        <div class="success-box">${t('AES-256-GCM adalah pilihan standar untuk TLS 1.3, IPSec, dan sebagian besar protokol modern.', 'AES-256-GCM is the standard choice for TLS 1.3, IPSec, and most modern protocols.')}</div>
     </div>
     <div class="tab-content" id="aes-ctr">
         <h4>CTR (Counter Mode)</h4>
-        <p>Mengubah block cipher menjadi stream cipher. Counter di-increment untuk setiap block, lalu dienkripsi dan di-XOR dengan plaintext.</p>
+        <p>${t('Mengubah block cipher menjadi stream cipher. Counter di-increment untuk setiap block, lalu dienkripsi dan di-XOR dengan plaintext.', 'Converts a block cipher into a stream cipher. The counter is incremented for each block, then encrypted and XORed with plaintext.')}</p>
         <ul>
-            <li>Parallelizable (bisa diproses bersamaan)</li>
-            <li>Tidak butuh padding</li>
-            <li>Tidak menyediakan autentikasi (perlu ditambah HMAC)</li>
+            <li>${t('Parallelizable (bisa diproses bersamaan)', 'Parallelizable (can be processed simultaneously)')}</li>
+            <li>${t('Tidak butuh padding', 'No padding needed')}</li>
+            <li>${t('Tidak menyediakan autentikasi (perlu ditambah HMAC)', 'Does not provide authentication (needs HMAC addition)')}</li>
         </ul>
     </div>
 </div>
@@ -130,7 +130,7 @@ sections.security = () => `
 <!-- RSA Detail -->
 <div class="card animate-in">
     <h3 style="color:var(--accent3)">RSA (Rivest-Shamir-Adleman)</h3>
-    <p>Algoritma enkripsi asimetris pertama yang dipublikasikan (1977). Keamanan RSA bergantung pada kesulitan <strong>memfaktorkan bilangan besar</strong> (integer factorization problem).</p>
+    <p>${t('Algoritma enkripsi asimetris pertama yang dipublikasikan (1977). Keamanan RSA bergantung pada kesulitan <strong>memfaktorkan bilangan besar</strong> (integer factorization problem).', 'The first publicly published asymmetric encryption algorithm (1977). RSA security relies on the difficulty of <strong>factoring large numbers</strong> (integer factorization problem).')}</p>
     <div class="code-block"><span class="cm">// RSA Key Generation</span>
 <span class="num">1.</span> Pilih 2 bilangan prima besar: <span class="kw">p</span>, <span class="kw">q</span>
 <span class="num">2.</span> <span class="kw">n</span> = p &times; q                     <span class="cm">// modulus (2048+ bit)</span>
@@ -144,16 +144,16 @@ sections.security = () => `
 <span class="cm">// Enkripsi:  C = M^e mod n</span>
 <span class="cm">// Dekripsi:  M = C^d mod n</span>
 <span class="cm">// Keamanan:  memfaktorkan n = p &times; q sangat sulit untuk n besar</span></div>
-    <div class="warn-box">RSA minimum <strong>2048 bit</strong> (NIST merekomendasikan 3072+ bit). RSA 1024 bit sudah dianggap <strong>tidak aman</strong> sejak 2010.</div>
+    <div class="warn-box">${t('RSA minimum <strong>2048 bit</strong> (NIST merekomendasikan 3072+ bit). RSA 1024 bit sudah dianggap <strong>tidak aman</strong> sejak 2010.', 'RSA minimum <strong>2048 bit</strong> (NIST recommends 3072+ bit). RSA 1024 bit has been considered <strong>insecure</strong> since 2010.')}</div>
 </div>
 
 <!-- ECC -->
 <div class="card animate-in">
     <h3 style="color:var(--green)">Elliptic Curve Cryptography (ECC)</h3>
-    <p>ECC menggunakan matematika kurva eliptik untuk kriptografi. ECC menawarkan keamanan setara dengan RSA tetapi dengan <strong>ukuran kunci yang jauh lebih kecil</strong>.</p>
+    <p>${t('ECC menggunakan matematika kurva eliptik untuk kriptografi. ECC menawarkan keamanan setara dengan RSA tetapi dengan <strong>ukuran kunci yang jauh lebih kecil</strong>.', 'ECC uses elliptic curve mathematics for cryptography. ECC offers security equivalent to RSA but with <strong>much smaller key sizes</strong>.')}</p>
     <div class="table-wrapper">
     <table>
-    <tr><th>Keamanan (bit)</th><th>RSA Key Size</th><th>ECC Key Size</th><th>Rasio</th></tr>
+    <tr><th>${t('Keamanan (bit)', 'Security (bit)')}</th><th>RSA Key Size</th><th>ECC Key Size</th><th>${t('Rasio', 'Ratio')}</th></tr>
     <tr><td>80</td><td>1024 bit</td><td>160 bit</td><td>6.4x</td></tr>
     <tr><td>112</td><td>2048 bit</td><td>224 bit</td><td>9.1x</td></tr>
     <tr><td>128</td><td>3072 bit</td><td>256 bit</td><td>12x</td></tr>
@@ -169,88 +169,88 @@ sections.security = () => `
 <span class="kw">P-384</span>  (secp384r1)  <span class="cm">// Keamanan lebih tinggi</span>
 <span class="kw">Curve25519</span>          <span class="cm">// Daniel Bernstein, digunakan di WireGuard, Signal</span>
 <span class="kw">Ed25519</span>             <span class="cm">// EdDSA signature scheme, digunakan di SSH, GPG</span></div>
-    <div class="success-box">ECC adalah pilihan utama untuk perangkat dengan resource terbatas (IoT, mobile) karena ukuran kunci kecil tapi keamanan setara.</div>
+    <div class="success-box">${t('ECC adalah pilihan utama untuk perangkat dengan resource terbatas (IoT, mobile) karena ukuran kunci kecil tapi keamanan setara.', 'ECC is the primary choice for resource-constrained devices (IoT, mobile) due to small key sizes with equivalent security.')}</div>
 </div>
 
 <!-- Canvas: Encryption Process -->
 <div class="card animate-in">
-    <h3>Animasi: Proses Enkripsi & Dekripsi</h3>
-    <p>Visualisasi langkah demi langkah bagaimana plaintext diubah menjadi ciphertext dan dikembalikan lagi.</p>
+    <h3>${t('Animasi: Proses Enkripsi & Dekripsi', 'Animation: Encryption & Decryption Process')}</h3>
+    <p>${t('Visualisasi langkah demi langkah bagaimana plaintext diubah menjadi ciphertext dan dikembalikan lagi.', 'Step-by-step visualization of how plaintext is transformed into ciphertext and back again.')}</p>
     <div class="anim-container">
         <canvas id="encrypt-anim-canvas" width="800" height="300" style="width:100%;max-width:800px;background:var(--card-bg);border-radius:12px;border:1px solid var(--border)"></canvas>
         <div class="anim-controls">
-            <button class="anim-btn" id="encrypt-run">Jalankan Animasi</button>
+            <button class="anim-btn" id="encrypt-run">${t('Jalankan Animasi', 'Run Animation')}</button>
             <button class="anim-btn" id="encrypt-reset">Reset</button>
         </div>
     </div>
 </div>
 
 <!-- ==================== 2. HASHING ==================== -->
-<h2 class="animate-in">2. Hashing</h2>
+<h2 class="animate-in">${t('2. Hashing', '2. Hashing')}</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Apa Itu Hash Function?</h3>
-    <p>Hash function adalah fungsi matematika yang mengubah input berukuran <strong>sembarang</strong> menjadi output berukuran <strong>tetap</strong> (digest/hash). Hash bersifat <strong>satu arah</strong> &mdash; tidak bisa dikembalikan ke input asli.</p>
+    <h3 style="color:var(--accent)">${t('Apa Itu Hash Function?', 'What Is a Hash Function?')}</h3>
+    <p>${t('Hash function adalah fungsi matematika yang mengubah input berukuran <strong>sembarang</strong> menjadi output berukuran <strong>tetap</strong> (digest/hash). Hash bersifat <strong>satu arah</strong> &mdash; tidak bisa dikembalikan ke input asli.', 'A hash function is a mathematical function that converts input of <strong>any size</strong> into a <strong>fixed-size</strong> output (digest/hash). Hashing is <strong>one-way</strong> &mdash; it cannot be reversed to the original input.')}</p>
     <div class="flow-diagram">
         <div class="flow-node">"Hello World"</div>
         <div class="flow-arrow">&rarr; SHA-256 &rarr;</div>
         <div class="flow-node cipher" style="font-size:0.6rem;border-color:var(--green)">a591a6d40bf420...64e4d8<br>(256 bit / 64 hex chars)</div>
     </div>
 
-    <h4>Properti Hash Function yang Baik</h4>
+    <h4>${t('Properti Hash Function yang Baik', 'Properties of a Good Hash Function')}</h4>
     <div class="card-grid-3 animate-in">
         <div class="card">
-            <h4><span class="badge badge-blue">Deterministik</span></h4>
-            <p>Input yang sama <strong>selalu</strong> menghasilkan output yang sama. Tidak ada elemen acak.</p>
+            <h4><span class="badge badge-blue">${t('Deterministik', 'Deterministic')}</span></h4>
+            <p>${t('Input yang sama <strong>selalu</strong> menghasilkan output yang sama. Tidak ada elemen acak.', 'The same input <strong>always</strong> produces the same output. No random elements.')}</p>
         </div>
         <div class="card">
-            <h4><span class="badge badge-green">Cepat</span></h4>
-            <p>Menghitung hash harus efisien untuk input berukuran apapun.</p>
+            <h4><span class="badge badge-green">${t('Cepat', 'Fast')}</span></h4>
+            <p>${t('Menghitung hash harus efisien untuk input berukuran apapun.', 'Computing a hash must be efficient for any input size.')}</p>
         </div>
         <div class="card">
             <h4><span class="badge badge-orange">Avalanche Effect</span></h4>
-            <p>Perubahan 1 bit pada input mengubah ~50% bit output. Perubahan kecil &rarr; output sangat berbeda.</p>
+            <p>${t('Perubahan 1 bit pada input mengubah ~50% bit output. Perubahan kecil &rarr; output sangat berbeda.', 'A 1-bit change in input changes ~50% of output bits. Small change &rarr; vastly different output.')}</p>
         </div>
         <div class="card">
             <h4><span class="badge badge-red">Pre-image Resistant</span></h4>
-            <p>Diberi hash h, sangat sulit mencari input m sehingga hash(m) = h.</p>
+            <p>${t('Diberi hash h, sangat sulit mencari input m sehingga hash(m) = h.', 'Given hash h, it is very hard to find input m such that hash(m) = h.')}</p>
         </div>
         <div class="card">
             <h4><span class="badge badge-purple">Second Pre-image Resistant</span></h4>
-            <p>Diberi m1, sangat sulit mencari m2 &ne; m1 sehingga hash(m1) = hash(m2).</p>
+            <p>${t('Diberi m1, sangat sulit mencari m2 &ne; m1 sehingga hash(m1) = hash(m2).', 'Given m1, it is very hard to find m2 &ne; m1 such that hash(m1) = hash(m2).')}</p>
         </div>
         <div class="card">
             <h4><span class="badge badge-pink">Collision Resistant</span></h4>
-            <p>Sangat sulit mencari dua input berbeda yang menghasilkan hash yang sama.</p>
+            <p>${t('Sangat sulit mencari dua input berbeda yang menghasilkan hash yang sama.', 'It is very hard to find two different inputs that produce the same hash.')}</p>
         </div>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--yellow)">Algoritma Hash Populer</h3>
+    <h3 style="color:var(--yellow)">${t('Algoritma Hash Populer', 'Popular Hash Algorithms')}</h3>
     <div class="table-wrapper">
     <table>
-    <tr><th>Algoritma</th><th>Output</th><th>Status</th><th>Kecepatan</th><th>Penggunaan</th></tr>
-    <tr><td><strong>MD5</strong></td><td>128 bit</td><td><span class="badge badge-red">BROKEN</span></td><td>Sangat cepat</td><td>Checksum file (non-security only)</td></tr>
-    <tr><td><strong>SHA-1</strong></td><td>160 bit</td><td><span class="badge badge-red">BROKEN</span></td><td>Cepat</td><td>Legacy (Git masih pakai, tapi migrasi)</td></tr>
-    <tr><td><strong>SHA-256</strong></td><td>256 bit</td><td><span class="badge badge-green">SECURE</span></td><td>Cepat</td><td>Digital signature, blockchain, TLS</td></tr>
-    <tr><td><strong>SHA-512</strong></td><td>512 bit</td><td><span class="badge badge-green">SECURE</span></td><td>Cepat (64-bit CPU)</td><td>High-security applications</td></tr>
-    <tr><td><strong>SHA-3</strong></td><td>224-512 bit</td><td><span class="badge badge-green">SECURE</span></td><td>Sedang</td><td>Alternatif SHA-2, desain berbeda (Keccak)</td></tr>
-    <tr><td><strong>BLAKE2</strong></td><td>1-64 bytes</td><td><span class="badge badge-green">SECURE</span></td><td>Sangat cepat</td><td>General purpose, WireGuard (BLAKE2s)</td></tr>
-    <tr><td><strong>BLAKE3</strong></td><td>256 bit</td><td><span class="badge badge-green">SECURE</span></td><td>Tercepat</td><td>Parallelizable, modern replacement</td></tr>
+    <tr><th>${t('Algoritma', 'Algorithm')}</th><th>Output</th><th>Status</th><th>${t('Kecepatan', 'Speed')}</th><th>${t('Penggunaan', 'Usage')}</th></tr>
+    <tr><td><strong>MD5</strong></td><td>128 bit</td><td><span class="badge badge-red">BROKEN</span></td><td>${t('Sangat cepat', 'Very fast')}</td><td>Checksum file (non-security only)</td></tr>
+    <tr><td><strong>SHA-1</strong></td><td>160 bit</td><td><span class="badge badge-red">BROKEN</span></td><td>${t('Cepat', 'Fast')}</td><td>${t('Legacy (Git masih pakai, tapi migrasi)', 'Legacy (Git still uses it, but migrating)')}</td></tr>
+    <tr><td><strong>SHA-256</strong></td><td>256 bit</td><td><span class="badge badge-green">SECURE</span></td><td>${t('Cepat', 'Fast')}</td><td>Digital signature, blockchain, TLS</td></tr>
+    <tr><td><strong>SHA-512</strong></td><td>512 bit</td><td><span class="badge badge-green">SECURE</span></td><td>${t('Cepat (64-bit CPU)', 'Fast (64-bit CPU)')}</td><td>High-security applications</td></tr>
+    <tr><td><strong>SHA-3</strong></td><td>224-512 bit</td><td><span class="badge badge-green">SECURE</span></td><td>${t('Sedang', 'Medium')}</td><td>${t('Alternatif SHA-2, desain berbeda (Keccak)', 'SHA-2 alternative, different design (Keccak)')}</td></tr>
+    <tr><td><strong>BLAKE2</strong></td><td>1-64 bytes</td><td><span class="badge badge-green">SECURE</span></td><td>${t('Sangat cepat', 'Very fast')}</td><td>General purpose, WireGuard (BLAKE2s)</td></tr>
+    <tr><td><strong>BLAKE3</strong></td><td>256 bit</td><td><span class="badge badge-green">SECURE</span></td><td>${t('Tercepat', 'Fastest')}</td><td>Parallelizable, modern replacement</td></tr>
     </table>
     </div>
-    <div class="warn-box"><strong>MD5</strong> dan <strong>SHA-1</strong> sudah terbukti rentan terhadap collision attack. Google membuktikan collision SHA-1 pada 2017 (proyek SHAttered). Jangan gunakan untuk keamanan!</div>
+    <div class="warn-box">${t('<strong>MD5</strong> dan <strong>SHA-1</strong> sudah terbukti rentan terhadap collision attack. Google membuktikan collision SHA-1 pada 2017 (proyek SHAttered). Jangan gunakan untuk keamanan!', '<strong>MD5</strong> and <strong>SHA-1</strong> have been proven vulnerable to collision attacks. Google demonstrated a SHA-1 collision in 2017 (SHAttered project). Do not use for security!')}</div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--red)">Password Hashing: Berbeda dari Hash Biasa!</h3>
-    <p>Hash biasa (SHA-256) terlalu <strong>cepat</strong> untuk password &mdash; attacker bisa mencoba miliaran password per detik. Password hash dirancang <strong>sengaja lambat</strong> dan menggunakan <strong>salt</strong> unik per password.</p>
+    <h3 style="color:var(--red)">${t('Password Hashing: Berbeda dari Hash Biasa!', 'Password Hashing: Different from Regular Hashing!')}</h3>
+    <p>${t('Hash biasa (SHA-256) terlalu <strong>cepat</strong> untuk password &mdash; attacker bisa mencoba miliaran password per detik. Password hash dirancang <strong>sengaja lambat</strong> dan menggunakan <strong>salt</strong> unik per password.', 'Regular hashes (SHA-256) are too <strong>fast</strong> for passwords &mdash; attackers can try billions of passwords per second. Password hashes are designed to be <strong>intentionally slow</strong> and use a unique <strong>salt</strong> per password.')}</p>
 
     <div class="card-grid-3">
         <div class="card">
             <h4><span class="badge badge-blue">bcrypt</span></h4>
-            <p>Berdasarkan Blowfish cipher. Cost factor bisa diatur (default 10 = ~100ms).</p>
+            <p>${t('Berdasarkan Blowfish cipher. Cost factor bisa diatur (default 10 = ~100ms).', 'Based on Blowfish cipher. Cost factor is adjustable (default 10 = ~100ms).')}</p>
             <div class="code-block"><span class="cm">// Format output bcrypt:</span>
 <span class="str">$2b$10$salt22chars.hash31chars</span>
 <span class="cm">// $2b = versi</span>
@@ -259,7 +259,7 @@ sections.security = () => `
         </div>
         <div class="card">
             <h4><span class="badge badge-green">scrypt</span></h4>
-            <p>Memory-hard function. Selain CPU-intensive, juga membutuhkan banyak <strong>memori</strong> &mdash; membuat serangan GPU/ASIC lebih mahal.</p>
+            <p>${t('Memory-hard function. Selain CPU-intensive, juga membutuhkan banyak <strong>memori</strong> &mdash; membuat serangan GPU/ASIC lebih mahal.', 'Memory-hard function. Besides being CPU-intensive, it also requires a lot of <strong>memory</strong> &mdash; making GPU/ASIC attacks more expensive.')}</p>
             <div class="code-block"><span class="cm">// Parameter scrypt:</span>
 <span class="kw">N</span> = CPU/memory cost  <span class="cm">// 2^14 - 2^20</span>
 <span class="kw">r</span> = block size       <span class="cm">// 8</span>
@@ -267,7 +267,7 @@ sections.security = () => `
         </div>
         <div class="card">
             <h4><span class="badge badge-purple">Argon2</span></h4>
-            <p>Pemenang Password Hashing Competition (2015). <strong>Paling direkomendasikan</strong> saat ini.</p>
+            <p>${t('Pemenang Password Hashing Competition (2015). <strong>Paling direkomendasikan</strong> saat ini.', 'Winner of the Password Hashing Competition (2015). <strong>Most recommended</strong> currently.')}</p>
             <div class="code-block"><span class="cm">// Varian Argon2:</span>
 <span class="kw">Argon2d</span>  <span class="cm">// GPU-resistant (data-dependent)</span>
 <span class="kw">Argon2i</span>  <span class="cm">// Side-channel resistant</span>
@@ -275,12 +275,12 @@ sections.security = () => `
 <span class="cm">// Parameter: memory, iterations, parallelism</span></div>
         </div>
     </div>
-    <div class="success-box"><strong>Rekomendasi 2024:</strong> Gunakan <strong>Argon2id</strong> dengan minimal 64MB memori, 3 iterasi, 4 thread. Jika tidak tersedia, gunakan <strong>bcrypt</strong> dengan cost factor 12+.</div>
+    <div class="success-box">${t('<strong>Rekomendasi 2024:</strong> Gunakan <strong>Argon2id</strong> dengan minimal 64MB memori, 3 iterasi, 4 thread. Jika tidak tersedia, gunakan <strong>bcrypt</strong> dengan cost factor 12+.', '<strong>Recommendation 2024:</strong> Use <strong>Argon2id</strong> with at least 64MB memory, 3 iterations, 4 threads. If unavailable, use <strong>bcrypt</strong> with cost factor 12+.')}</div>
 </div>
 
 <div class="card animate-in">
     <h3 style="color:var(--accent3)">HMAC (Hash-based Message Authentication Code)</h3>
-    <p>HMAC menggabungkan hash function dengan secret key untuk menyediakan <strong>integritas data</strong> dan <strong>autentikasi</strong>. Tidak cukup hanya hash &mdash; attacker bisa mengubah data dan menghitung ulang hash-nya.</p>
+    <p>${t('HMAC menggabungkan hash function dengan secret key untuk menyediakan <strong>integritas data</strong> dan <strong>autentikasi</strong>. Tidak cukup hanya hash &mdash; attacker bisa mengubah data dan menghitung ulang hash-nya.', 'HMAC combines a hash function with a secret key to provide <strong>data integrity</strong> and <strong>authentication</strong>. Hashing alone is not enough &mdash; attackers can modify data and recompute the hash.')}</p>
     <div class="flow-diagram">
         <div class="flow-node">Message + Secret Key</div>
         <div class="flow-arrow">&rarr; HMAC-SHA256 &rarr;</div>
@@ -299,81 +299,81 @@ HMAC(K, m) = H((K' &oplus; opad) || H((K' &oplus; ipad) || m))
 
 <!-- Canvas: Hash Animation -->
 <div class="card animate-in">
-    <h3>Animasi: Hash & Avalanche Effect</h3>
-    <p>Lihat bagaimana perubahan kecil pada input menghasilkan output hash yang sangat berbeda.</p>
+    <h3>${t('Animasi: Hash & Avalanche Effect', 'Animation: Hash & Avalanche Effect')}</h3>
+    <p>${t('Lihat bagaimana perubahan kecil pada input menghasilkan output hash yang sangat berbeda.', 'See how a small change in input produces a vastly different hash output.')}</p>
     <div class="anim-container">
         <canvas id="hash-anim-canvas" width="800" height="300" style="width:100%;max-width:800px;background:var(--card-bg);border-radius:12px;border:1px solid var(--border)"></canvas>
         <div class="anim-controls">
-            <button class="anim-btn" id="hash-run">Jalankan Animasi</button>
+            <button class="anim-btn" id="hash-run">${t('Jalankan Animasi', 'Run Animation')}</button>
             <button class="anim-btn" id="hash-reset">Reset</button>
         </div>
     </div>
 </div>
 
 <!-- ==================== 3. TLS/SSL ==================== -->
-<h2 class="animate-in">3. TLS/SSL (Transport Layer Security)</h2>
+<h2 class="animate-in">${t('3. TLS/SSL (Transport Layer Security)', '3. TLS/SSL (Transport Layer Security)')}</h2>
 
 <div class="card animate-in">
-    <h3 style="color:var(--accent)">Evolusi SSL/TLS</h3>
-    <p>TLS (Transport Layer Security) adalah protokol kriptografi yang menyediakan komunikasi aman melalui jaringan. TLS adalah penerus SSL (Secure Sockets Layer).</p>
+    <h3 style="color:var(--accent)">${t('Evolusi SSL/TLS', 'SSL/TLS Evolution')}</h3>
+    <p>${t('TLS (Transport Layer Security) adalah protokol kriptografi yang menyediakan komunikasi aman melalui jaringan. TLS adalah penerus SSL (Secure Sockets Layer).', 'TLS (Transport Layer Security) is a cryptographic protocol that provides secure communication over networks. TLS is the successor to SSL (Secure Sockets Layer).')}</p>
     <div class="table-wrapper">
     <table>
-    <tr><th>Versi</th><th>Tahun</th><th>Status</th><th>Catatan</th></tr>
-    <tr><td>SSL 2.0</td><td>1995</td><td><span class="badge badge-red">DEPRECATED</span></td><td>Banyak kerentanan kritis</td></tr>
+    <tr><th>${t('Versi', 'Version')}</th><th>${t('Tahun', 'Year')}</th><th>Status</th><th>${t('Catatan', 'Notes')}</th></tr>
+    <tr><td>SSL 2.0</td><td>1995</td><td><span class="badge badge-red">DEPRECATED</span></td><td>${t('Banyak kerentanan kritis', 'Many critical vulnerabilities')}</td></tr>
     <tr><td>SSL 3.0</td><td>1996</td><td><span class="badge badge-red">DEPRECATED</span></td><td>POODLE attack (2014)</td></tr>
-    <tr><td>TLS 1.0</td><td>1999</td><td><span class="badge badge-red">DEPRECATED</span></td><td>BEAST attack. Dimatikan 2020</td></tr>
-    <tr><td>TLS 1.1</td><td>2006</td><td><span class="badge badge-red">DEPRECATED</span></td><td>Dimatikan 2020</td></tr>
-    <tr><td>TLS 1.2</td><td>2008</td><td><span class="badge badge-orange">SUPPORTED</span></td><td>Masih banyak digunakan, aman jika dikonfigurasi benar</td></tr>
-    <tr><td>TLS 1.3</td><td>2018</td><td><span class="badge badge-green">RECOMMENDED</span></td><td>Lebih cepat, lebih aman. 1-RTT handshake</td></tr>
+    <tr><td>TLS 1.0</td><td>1999</td><td><span class="badge badge-red">DEPRECATED</span></td><td>${t('BEAST attack. Dimatikan 2020', 'BEAST attack. Retired 2020')}</td></tr>
+    <tr><td>TLS 1.1</td><td>2006</td><td><span class="badge badge-red">DEPRECATED</span></td><td>${t('Dimatikan 2020', 'Retired 2020')}</td></tr>
+    <tr><td>TLS 1.2</td><td>2008</td><td><span class="badge badge-orange">SUPPORTED</span></td><td>${t('Masih banyak digunakan, aman jika dikonfigurasi benar', 'Still widely used, secure if properly configured')}</td></tr>
+    <tr><td>TLS 1.3</td><td>2018</td><td><span class="badge badge-green">RECOMMENDED</span></td><td>${t('Lebih cepat, lebih aman. 1-RTT handshake', 'Faster, more secure. 1-RTT handshake')}</td></tr>
     </table>
     </div>
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--yellow)">TLS 1.2 Handshake (Detail 6 Langkah)</h3>
-    <p>TLS 1.2 membutuhkan <strong>2 round-trip</strong> sebelum data terenkripsi bisa dikirim.</p>
+    <h3 style="color:var(--yellow)">${t('TLS 1.2 Handshake (Detail 6 Langkah)', 'TLS 1.2 Handshake (6-Step Detail)')}</h3>
+    <p>${t('TLS 1.2 membutuhkan <strong>2 round-trip</strong> sebelum data terenkripsi bisa dikirim.', 'TLS 1.2 requires <strong>2 round-trips</strong> before encrypted data can be sent.')}</p>
 
     <div class="step-list">
         <div class="step-item">
             <div class="step-num">1</div>
             <div class="step-text">
                 <strong>Client Hello</strong><br>
-                Client mengirim: versi TLS yang didukung, daftar cipher suites, client random (32 byte), session ID, dan extensions (SNI, ALPN).
+                ${t('Client mengirim: versi TLS yang didukung, daftar cipher suites, client random (32 byte), session ID, dan extensions (SNI, ALPN).', 'Client sends: supported TLS versions, cipher suite list, client random (32 bytes), session ID, and extensions (SNI, ALPN).')}
             </div>
         </div>
         <div class="step-item">
             <div class="step-num">2</div>
             <div class="step-text">
                 <strong>Server Hello + Certificate + ServerKeyExchange + ServerHelloDone</strong><br>
-                Server memilih cipher suite, mengirim server random, sertifikat X.509, parameter key exchange (DH/ECDH), dan sinyal bahwa server selesai.
+                ${t('Server memilih cipher suite, mengirim server random, sertifikat X.509, parameter key exchange (DH/ECDH), dan sinyal bahwa server selesai.', 'Server selects cipher suite, sends server random, X.509 certificate, key exchange parameters (DH/ECDH), and signals completion.')}
             </div>
         </div>
         <div class="step-item">
             <div class="step-num">3</div>
             <div class="step-text">
                 <strong>Client: Certificate Verify</strong><br>
-                Client memverifikasi sertifikat server terhadap trusted CA. Mengecek: tanggal valid, domain match, chain of trust, revocation (CRL/OCSP).
+                ${t('Client memverifikasi sertifikat server terhadap trusted CA. Mengecek: tanggal valid, domain match, chain of trust, revocation (CRL/OCSP).', 'Client verifies server certificate against trusted CA. Checks: valid dates, domain match, chain of trust, revocation (CRL/OCSP).')}
             </div>
         </div>
         <div class="step-item">
             <div class="step-num">4</div>
             <div class="step-text">
                 <strong>Client Key Exchange + ChangeCipherSpec + Finished</strong><br>
-                Client mengirim pre-master secret (dienkripsi dengan server public key atau ECDH params). Kedua sisi menghitung master secret. Client mengirim sinyal beralih ke enkripsi.
+                ${t('Client mengirim pre-master secret (dienkripsi dengan server public key atau ECDH params). Kedua sisi menghitung master secret. Client mengirim sinyal beralih ke enkripsi.', 'Client sends pre-master secret (encrypted with server public key or ECDH params). Both sides compute master secret. Client signals switch to encryption.')}
             </div>
         </div>
         <div class="step-item">
             <div class="step-num">5</div>
             <div class="step-text">
                 <strong>Server: ChangeCipherSpec + Finished</strong><br>
-                Server mengkonfirmasi beralih ke enkripsi. Mengirim pesan Finished yang dienkripsi sebagai verifikasi.
+                ${t('Server mengkonfirmasi beralih ke enkripsi. Mengirim pesan Finished yang dienkripsi sebagai verifikasi.', 'Server confirms switch to encryption. Sends encrypted Finished message as verification.')}
             </div>
         </div>
         <div class="step-item">
             <div class="step-num">6</div>
             <div class="step-text">
                 <strong>Application Data (Encrypted)</strong><br>
-                Kedua pihak sekarang berkomunikasi melalui kanal terenkripsi menggunakan symmetric key yang diturunkan dari master secret.
+                ${t('Kedua pihak sekarang berkomunikasi melalui kanal terenkripsi menggunakan symmetric key yang diturunkan dari master secret.', 'Both parties now communicate through an encrypted channel using symmetric keys derived from the master secret.')}
             </div>
         </div>
     </div>
@@ -396,8 +396,8 @@ HMAC(K, m) = H((K' &oplus; opad) || H((K' &oplus; ipad) || m))
 </div>
 
 <div class="card animate-in">
-    <h3 style="color:var(--green)">TLS 1.3 Handshake (1-RTT, Lebih Sederhana)</h3>
-    <p>TLS 1.3 mengurangi handshake menjadi <strong>1 round-trip</strong> dan menghapus fitur-fitur tidak aman.</p>
+    <h3 style="color:var(--green)">${t('TLS 1.3 Handshake (1-RTT, Lebih Sederhana)', 'TLS 1.3 Handshake (1-RTT, Simpler)')}</h3>
+    <p>${t('TLS 1.3 mengurangi handshake menjadi <strong>1 round-trip</strong> dan menghapus fitur-fitur tidak aman.', 'TLS 1.3 reduces the handshake to <strong>1 round-trip</strong> and removes insecure features.')}</p>
 
     <div class="handshake-vis">
         <div class="handshake-col">
@@ -414,16 +414,16 @@ HMAC(K, m) = H((K' &oplus; opad) || H((K' &oplus; ipad) || m))
         </div>
     </div>
 
-    <h4>Perubahan di TLS 1.3 vs 1.2:</h4>
+    <h4>${t('Perubahan di TLS 1.3 vs 1.2:', 'Changes in TLS 1.3 vs 1.2:')}</h4>
     <div class="table-wrapper">
     <table>
-    <tr><th>Aspek</th><th>TLS 1.2</th><th>TLS 1.3</th></tr>
+    <tr><th>${t('Aspek', 'Aspect')}</th><th>TLS 1.2</th><th>TLS 1.3</th></tr>
     <tr><td>Round-trips</td><td>2-RTT</td><td><span class="badge badge-green">1-RTT (0-RTT resumption)</span></td></tr>
-    <tr><td>Key Exchange</td><td>RSA, DHE, ECDHE</td><td><span class="badge badge-green">ECDHE only (forward secrecy wajib)</span></td></tr>
-    <tr><td>Cipher Suites</td><td>37+ opsi</td><td><span class="badge badge-green">5 opsi (hanya AEAD)</span></td></tr>
-    <tr><td>RSA Key Exchange</td><td>Didukung</td><td><span class="badge badge-red">Dihapus (no forward secrecy)</span></td></tr>
-    <tr><td>Kompresi</td><td>Didukung</td><td><span class="badge badge-red">Dihapus (CRIME attack)</span></td></tr>
-    <tr><td>Renegotiation</td><td>Didukung</td><td><span class="badge badge-red">Dihapus</span></td></tr>
+    <tr><td>Key Exchange</td><td>RSA, DHE, ECDHE</td><td><span class="badge badge-green">${t('ECDHE only (forward secrecy wajib)', 'ECDHE only (forward secrecy mandatory)')}</span></td></tr>
+    <tr><td>Cipher Suites</td><td>${t('37+ opsi', '37+ options')}</td><td><span class="badge badge-green">${t('5 opsi (hanya AEAD)', '5 options (AEAD only)')}</span></td></tr>
+    <tr><td>RSA Key Exchange</td><td>${t('Didukung', 'Supported')}</td><td><span class="badge badge-red">${t('Dihapus (no forward secrecy)', 'Removed (no forward secrecy)')}</span></td></tr>
+    <tr><td>${t('Kompresi', 'Compression')}</td><td>${t('Didukung', 'Supported')}</td><td><span class="badge badge-red">${t('Dihapus (CRIME attack)', 'Removed (CRIME attack)')}</span></td></tr>
+    <tr><td>Renegotiation</td><td>${t('Didukung', 'Supported')}</td><td><span class="badge badge-red">${t('Dihapus', 'Removed')}</span></td></tr>
     </table>
     </div>
     <div class="info-box"><strong>0-RTT Resumption:</strong> TLS 1.3 mendukung pengiriman data terenkripsi pada koneksi pertama (tanpa round-trip tambahan) untuk koneksi berulang. Namun, rentan terhadap <strong>replay attack</strong> &mdash; hanya digunakan untuk request idempotent.</div>

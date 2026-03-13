@@ -12,8 +12,8 @@ sections['crud-python'] = () => `
 <h2 class="animate-in">1. Production-Ready Project Structure</h2>
 
 <div class="card animate-in">
-<h3 style="color:var(--accent)">Struktur Direktori</h3>
-<p>Arsitektur berlapis (<strong>Layered Architecture</strong>) memisahkan concern menjadi: <strong>Router</strong> (HTTP/gRPC handler) &rarr; <strong>Service</strong> (business logic) &rarr; <strong>Repository</strong> (data access) &rarr; <strong>Database</strong>. Ini memudahkan testing, maintenance, dan scaling.</p>
+<h3 style="color:var(--accent)">${t('Struktur Direktori', 'Directory Structure')}</h3>
+<p>${t('Arsitektur berlapis (<strong>Layered Architecture</strong>) memisahkan concern menjadi: <strong>Router</strong> (HTTP/gRPC handler) &rarr; <strong>Service</strong> (business logic) &rarr; <strong>Repository</strong> (data access) &rarr; <strong>Database</strong>. Ini memudahkan testing, maintenance, dan scaling.', 'Layered Architecture separates concerns into: <strong>Router</strong> (HTTP/gRPC handler) &rarr; <strong>Service</strong> (business logic) &rarr; <strong>Repository</strong> (data access) &rarr; <strong>Database</strong>. This makes testing, maintenance, and scaling easier.')}</p>
 <div class="code-block"><span class="cm"># Production-ready project layout</span>
 myapp/
 &boxv;&boxh;&boxh; app/
@@ -54,10 +54,10 @@ myapp/
 </div>
 
 <div class="card animate-in">
-<h3 style="color:var(--green)">Mengapa Layered Architecture?</h3>
+<h3 style="color:var(--green)">${t('Mengapa Layered Architecture?', 'Why Layered Architecture?')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Layer</th><th>Tanggung Jawab</th><th>Contoh File</th></tr>
+<tr><th>Layer</th><th>${t('Tanggung Jawab', 'Responsibility')}</th><th>${t('Contoh File', 'Example File')}</th></tr>
 <tr><td><span class="badge badge-blue">Router</span></td><td>HTTP/gRPC request handling, response formatting</td><td>routers/user.py</td></tr>
 <tr><td><span class="badge badge-green">Service</span></td><td>Business logic, orchestration, validation rules</td><td>services/user.py</td></tr>
 <tr><td><span class="badge badge-yellow">Repository</span></td><td>Database queries, CRUD operations</td><td>repositories/user.py</td></tr>
@@ -66,7 +66,7 @@ myapp/
 </table>
 </div>
 <div class="info-box">
-<strong>Prinsip:</strong> Setiap layer hanya bergantung pada layer di bawahnya. Router bergantung pada Service, Service bergantung pada Repository, Repository bergantung pada Model. Ini membuat unit testing sangat mudah karena dependency bisa di-mock.
+${t('<strong>Prinsip:</strong> Setiap layer hanya bergantung pada layer di bawahnya. Router bergantung pada Service, Service bergantung pada Repository, Repository bergantung pada Model. Ini membuat unit testing sangat mudah karena dependency bisa di-mock.', '<strong>Principle:</strong> Each layer only depends on the layer below it. Router depends on Service, Service depends on Repository, Repository depends on Model. This makes unit testing very easy because dependencies can be mocked.')}
 </div>
 </div>
 
@@ -98,7 +98,7 @@ factory-boy==3.3.1             <span class="cm"># Test data factories</span></di
 
 <div class="card animate-in">
 <h3 style="color:var(--accent)">app/config.py &mdash; Pydantic Settings</h3>
-<p>Menggunakan <strong>pydantic-settings</strong> untuk type-safe environment variable loading. Ini memastikan semua konfigurasi tervalidasi saat startup, bukan saat runtime.</p>
+<p>${t('Menggunakan <strong>pydantic-settings</strong> untuk type-safe environment variable loading. Ini memastikan semua konfigurasi tervalidasi saat startup, bukan saat runtime.', 'Uses <strong>pydantic-settings</strong> for type-safe environment variable loading. This ensures all configurations are validated at startup, not at runtime.')}</p>
 <div class="code-block"><span class="cm"># app/config.py</span>
 <span class="kw">from</span> pydantic_settings <span class="kw">import</span> BaseSettings, SettingsConfigDict
 <span class="kw">from</span> functools <span class="kw">import</span> lru_cache
@@ -133,13 +133,13 @@ factory-boy==3.3.1             <span class="cm"># Test data factories</span></di
 <span class="kw">def</span> <span class="fn">get_settings</span>() -&gt; Settings:
     <span class="kw">return</span> Settings()</div>
 <div class="info-box">
-<strong>Keamanan:</strong> Jangan pernah hardcode SECRET_KEY di kode. Gunakan file <code>.env</code> yang tidak di-commit ke git. Tambahkan <code>.env</code> ke <code>.gitignore</code>.
+${t('<strong>Keamanan:</strong> Jangan pernah hardcode SECRET_KEY di kode. Gunakan file <code>.env</code> yang tidak di-commit ke git. Tambahkan <code>.env</code> ke <code>.gitignore</code>.', '<strong>Security:</strong> Never hardcode SECRET_KEY in code. Use a <code>.env</code> file that is not committed to git. Add <code>.env</code> to <code>.gitignore</code>.')}
 </div>
 </div>
 
 <div class="card animate-in">
 <h3 style="color:var(--green)">app/database.py &mdash; Async SQLAlchemy</h3>
-<p>SQLAlchemy 2.0 mendukung async secara native. Kita gunakan <strong>asyncpg</strong> sebagai driver PostgreSQL async untuk performa tinggi.</p>
+<p>${t('SQLAlchemy 2.0 mendukung async secara native. Kita gunakan <strong>asyncpg</strong> sebagai driver PostgreSQL async untuk performa tinggi.', 'SQLAlchemy 2.0 supports async natively. We use <strong>asyncpg</strong> as the async PostgreSQL driver for high performance.')}</p>
 <div class="code-block"><span class="cm"># app/database.py</span>
 <span class="kw">from</span> sqlalchemy.ext.asyncio <span class="kw">import</span> (
     create_async_engine,
@@ -190,7 +190,7 @@ DEBUG=false
 ALLOWED_ORIGINS=["https://myapp.com","https://admin.myapp.com"]
 RATE_LIMIT=100/minute</div>
 <div class="warning-box">
-<strong>PENTING:</strong> Pastikan file <code>.env</code> ada di <code>.gitignore</code>. Untuk production, gunakan secrets manager seperti AWS Secrets Manager, HashiCorp Vault, atau Docker secrets.
+${t('<strong>PENTING:</strong> Pastikan file <code>.env</code> ada di <code>.gitignore</code>. Untuk production, gunakan secrets manager seperti AWS Secrets Manager, HashiCorp Vault, atau Docker secrets.', '<strong>IMPORTANT:</strong> Make sure the <code>.env</code> file is in <code>.gitignore</code>. For production, use a secrets manager like AWS Secrets Manager, HashiCorp Vault, or Docker secrets.')}
 </div>
 </div>
 
@@ -199,7 +199,7 @@ RATE_LIMIT=100/minute</div>
 
 <div class="card animate-in">
 <h3 style="color:var(--accent)">app/models/user.py</h3>
-<p>SQLAlchemy 2.0 menggunakan <strong>Mapped</strong> type annotations untuk definisi kolom yang type-safe.</p>
+<p>${t('SQLAlchemy 2.0 menggunakan <strong>Mapped</strong> type annotations untuk definisi kolom yang type-safe.', 'SQLAlchemy 2.0 uses <strong>Mapped</strong> type annotations for type-safe column definitions.')}</p>
 <div class="code-block"><span class="cm"># app/models/user.py</span>
 <span class="kw">from</span> datetime <span class="kw">import</span> datetime
 <span class="kw">from</span> uuid <span class="kw">import</span> uuid4
@@ -263,7 +263,7 @@ RATE_LIMIT=100/minute</div>
 
 <div class="card animate-in">
 <h3 style="color:var(--accent)">app/schemas/user.py</h3>
-<p>Pydantic secara otomatis melakukan <strong>input validation</strong>, <strong>type coercion</strong>, dan <strong>serialization</strong>. Ini adalah garis pertahanan pertama terhadap data tidak valid.</p>
+<p>${t('Pydantic secara otomatis melakukan <strong>input validation</strong>, <strong>type coercion</strong>, dan <strong>serialization</strong>. Ini adalah garis pertahanan pertama terhadap data tidak valid.', 'Pydantic automatically performs <strong>input validation</strong>, <strong>type coercion</strong>, and <strong>serialization</strong>. This is the first line of defense against invalid data.')}</p>
 <div class="code-block"><span class="cm"># app/schemas/user.py</span>
 <span class="kw">from</span> datetime <span class="kw">import</span> datetime
 <span class="kw">from</span> pydantic <span class="kw">import</span> BaseModel, EmailStr, Field, field_validator
@@ -345,7 +345,7 @@ RATE_LIMIT=100/minute</div>
     exp: <span class="type">int</span>
     type: <span class="type">str</span> = <span class="str">"access"</span></div>
 <div class="info-box">
-<strong>Pydantic Auto-Validation:</strong> Input yang tidak sesuai schema akan otomatis ditolak dengan error 422 Unprocessable Entity. Anda tidak perlu menulis validasi manual — Pydantic menangani semuanya.
+${t('<strong>Pydantic Auto-Validation:</strong> Input yang tidak sesuai schema akan otomatis ditolak dengan error 422 Unprocessable Entity. Anda tidak perlu menulis validasi manual &mdash; Pydantic menangani semuanya.', '<strong>Pydantic Auto-Validation:</strong> Input that does not match the schema is automatically rejected with a 422 Unprocessable Entity error. You do not need to write manual validation &mdash; Pydantic handles everything.')}
 </div>
 </div>
 
@@ -354,7 +354,7 @@ RATE_LIMIT=100/minute</div>
 
 <div class="card animate-in">
 <h3 style="color:var(--accent)">app/repositories/user.py</h3>
-<p>Repository layer mengisolasi semua database queries. Ini membuat kode mudah di-test (bisa di-mock) dan memudahkan perpindahan database engine jika diperlukan.</p>
+<p>${t('Repository layer mengisolasi semua database queries. Ini membuat kode mudah di-test (bisa di-mock) dan memudahkan perpindahan database engine jika diperlukan.', 'The repository layer isolates all database queries. This makes the code easy to test (can be mocked) and facilitates switching database engines if needed.')}</p>
 <div class="code-block"><span class="cm"># app/repositories/user.py</span>
 <span class="kw">from</span> sqlalchemy <span class="kw">import</span> select, func, update, delete
 <span class="kw">from</span> sqlalchemy.ext.asyncio <span class="kw">import</span> AsyncSession
@@ -419,7 +419,7 @@ RATE_LIMIT=100/minute</div>
         result = <span class="kw">await</span> self.session.execute(stmt)
         <span class="kw">return</span> result.rowcount &gt; <span class="num">0</span></div>
 <div class="info-box">
-<strong>SQL Injection Prevention:</strong> SQLAlchemy menggunakan parameterized queries secara internal. Setiap <code>.where(User.id == user_id)</code> menghasilkan parameterized SQL, bukan string concatenation. Ini mencegah SQL injection secara otomatis.
+${t('<strong>SQL Injection Prevention:</strong> SQLAlchemy menggunakan parameterized queries secara internal. Setiap <code>.where(User.id == user_id)</code> menghasilkan parameterized SQL, bukan string concatenation. Ini mencegah SQL injection secara otomatis.', '<strong>SQL Injection Prevention:</strong> SQLAlchemy uses parameterized queries internally. Each <code>.where(User.id == user_id)</code> produces parameterized SQL, not string concatenation. This prevents SQL injection automatically.')}
 </div>
 </div>
 
@@ -615,7 +615,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl=<span class="str">"/api/v1/auth/lo
 
 <div class="card animate-in">
 <h3 style="color:var(--accent)">app/routers/user.py</h3>
-<p>FastAPI router menggunakan <strong>Depends()</strong> untuk dependency injection. Setiap endpoint secara otomatis terdokumentasi di OpenAPI/Swagger.</p>
+<p>${t('FastAPI router menggunakan <strong>Depends()</strong> untuk dependency injection. Setiap endpoint secara otomatis terdokumentasi di OpenAPI/Swagger.', 'FastAPI router uses <strong>Depends()</strong> for dependency injection. Each endpoint is automatically documented in OpenAPI/Swagger.')}</p>
 <div class="code-block"><span class="cm"># app/routers/user.py</span>
 <span class="kw">from</span> fastapi <span class="kw">import</span> APIRouter, Depends, Query, status
 <span class="kw">from</span> sqlalchemy.ext.asyncio <span class="kw">import</span> AsyncSession
@@ -726,8 +726,8 @@ router = APIRouter(prefix=<span class="str">"/api/v1"</span>, tags=[<span class=
 <h3 style="color:var(--green)">RESTful API Endpoints Summary</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Method</th><th>Endpoint</th><th>Auth</th><th>Description</th></tr>
-<tr><td><span class="badge badge-green">POST</span></td><td>/api/v1/users</td><td>None</td><td>Register user baru</td></tr>
+<tr><th>Method</th><th>Endpoint</th><th>Auth</th><th>${t('Deskripsi', 'Description')}</th></tr>
+<tr><td><span class="badge badge-green">POST</span></td><td>/api/v1/users</td><td>None</td><td>${t('Register user baru', 'Register new user')}</td></tr>
 <tr><td><span class="badge badge-blue">GET</span></td><td>/api/v1/users</td><td>JWT</td><td>List users (paginated)</td></tr>
 <tr><td><span class="badge badge-blue">GET</span></td><td>/api/v1/users/{id}</td><td>JWT</td><td>Get user detail</td></tr>
 <tr><td><span class="badge badge-yellow">PUT</span></td><td>/api/v1/users/{id}</td><td>JWT</td><td>Update user data</td></tr>
@@ -742,7 +742,7 @@ router = APIRouter(prefix=<span class="str">"/api/v1"</span>, tags=[<span class=
 
 <div class="card animate-in">
 <h3 style="color:var(--accent)">app/main.py &mdash; Application Entry</h3>
-<p>Main entry point yang merangkai semua komponen: CORS middleware, rate limiting, routers, dan exception handlers.</p>
+<p>${t('Main entry point yang merangkai semua komponen: CORS middleware, rate limiting, routers, dan exception handlers.', 'Main entry point that assembles all components: CORS middleware, rate limiting, routers, and exception handlers.')}</p>
 <div class="code-block"><span class="cm"># app/main.py</span>
 <span class="kw">from</span> contextlib <span class="kw">import</span> asynccontextmanager
 <span class="kw">from</span> fastapi <span class="kw">import</span> FastAPI, Request
@@ -807,7 +807,7 @@ app.include_router(user_router.router)
         content={<span class="str">"detail"</span>: <span class="str">"Internal server error"</span>},
     )</div>
 <div class="info-box">
-<strong>Swagger UI:</strong> FastAPI secara otomatis menghasilkan dokumentasi API di <code>/docs</code> (Swagger UI) dan <code>/redoc</code> (ReDoc). Semua endpoint, schemas, dan response codes terdokumentasi dari type annotations.
+${t('<strong>Swagger UI:</strong> FastAPI secara otomatis menghasilkan dokumentasi API di <code>/docs</code> (Swagger UI) dan <code>/redoc</code> (ReDoc). Semua endpoint, schemas, dan response codes terdokumentasi dari type annotations.', '<strong>Swagger UI:</strong> FastAPI automatically generates API documentation at <code>/docs</code> (Swagger UI) and <code>/redoc</code> (ReDoc). All endpoints, schemas, and response codes are documented from type annotations.')}
 </div>
 </div>
 
@@ -816,7 +816,7 @@ app.include_router(user_router.router)
 
 <div class="card animate-in">
 <h3 style="color:var(--accent)">Proto File &mdash; app/proto/user.proto</h3>
-<p>Protocol Buffers mendefinisikan service interface dan message format secara language-neutral. gRPC menggunakan HTTP/2 untuk komunikasi yang lebih efisien dibanding REST.</p>
+<p>${t('Protocol Buffers mendefinisikan service interface dan message format secara language-neutral. gRPC menggunakan HTTP/2 untuk komunikasi yang lebih efisien dibanding REST.', 'Protocol Buffers define service interfaces and message formats in a language-neutral way. gRPC uses HTTP/2 for more efficient communication compared to REST.')}</p>
 <div class="code-block"><span class="cm">// app/proto/user.proto</span>
 syntax = <span class="str">"proto3"</span>;
 
@@ -883,7 +883,7 @@ package user;
 </div>
 
 <div class="card animate-in">
-<h3 style="color:var(--yellow)">Generate Python Code dari Proto</h3>
+<h3 style="color:var(--yellow)">${t('Generate Python Code dari Proto', 'Generate Python Code from Proto')}</h3>
 <div class="code-block"><span class="cm"># Generate Python gRPC stubs</span>
 python -m grpc_tools.protoc \
     -I app/proto \
@@ -898,7 +898,7 @@ python -m grpc_tools.protoc \
 
 <div class="card animate-in">
 <h3 style="color:var(--green)">gRPC Servicer Implementation</h3>
-<p>Servicer mengimplementasikan interface yang didefinisikan di proto file. Ini mirip dengan FastAPI router, tapi menggunakan Protocol Buffers alih-alih JSON.</p>
+<p>${t('Servicer mengimplementasikan interface yang didefinisikan di proto file. Ini mirip dengan FastAPI router, tapi menggunakan Protocol Buffers alih-alih JSON.', 'The Servicer implements the interface defined in the proto file. It is similar to a FastAPI router, but uses Protocol Buffers instead of JSON.')}</p>
 <div class="code-block"><span class="cm"># app/grpc_server.py</span>
 <span class="kw">import</span> grpc
 <span class="kw">from</span> concurrent <span class="kw">import</span> futures
@@ -1028,8 +1028,8 @@ python -m grpc_tools.protoc \
 </div>
 
 <div class="card animate-in">
-<h3 style="color:var(--yellow)">Async gRPC dengan grpclib</h3>
-<p><strong>grpclib</strong> mendukung async secara native, cocok untuk integrasi dengan async SQLAlchemy tanpa bridge sync/async.</p>
+<h3 style="color:var(--yellow)">${t('Async gRPC dengan grpclib', 'Async gRPC with grpclib')}</h3>
+<p>${t('<strong>grpclib</strong> mendukung async secara native, cocok untuk integrasi dengan async SQLAlchemy tanpa bridge sync/async.', '<strong>grpclib</strong> supports async natively, suitable for integration with async SQLAlchemy without a sync/async bridge.')}</p>
 <div class="code-block"><span class="cm"># app/grpc_async_server.py (menggunakan grpclib)</span>
 <span class="kw">import</span> asyncio
 <span class="kw">from</span> grpclib.server <span class="kw">import</span> Server
@@ -1125,23 +1125,23 @@ python -m grpc_tools.protoc \
 </div>
 
 <div class="card animate-in">
-<h3 style="color:var(--green)">REST vs gRPC Comparison</h3>
+<h3 style="color:var(--green)">${t('REST vs gRPC Perbandingan', 'REST vs gRPC Comparison')}</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>Aspek</th><th>REST (FastAPI)</th><th>gRPC</th></tr>
-<tr><td>Protocol</td><td>HTTP/1.1 atau HTTP/2</td><td>HTTP/2 (wajib)</td></tr>
-<tr><td>Format Data</td><td>JSON (text)</td><td>Protocol Buffers (binary)</td></tr>
-<tr><td>Performa</td><td>Baik</td><td><span class="badge badge-green">Sangat baik (5-10x)</span></td></tr>
+<tr><th>${t('Aspek', 'Aspect')}</th><th>REST (FastAPI)</th><th>gRPC</th></tr>
+<tr><td>Protocol</td><td>${t('HTTP/1.1 atau HTTP/2', 'HTTP/1.1 or HTTP/2')}</td><td>${t('HTTP/2 (wajib)', 'HTTP/2 (required)')}</td></tr>
+<tr><td>${t('Format Data', 'Data Format')}</td><td>JSON (text)</td><td>Protocol Buffers (binary)</td></tr>
+<tr><td>${t('Performa', 'Performance')}</td><td>${t('Baik', 'Good')}</td><td><span class="badge badge-green">${t('Sangat baik (5-10x)', 'Excellent (5-10x)')}</span></td></tr>
 <tr><td>Streaming</td><td>SSE, WebSocket</td><td><span class="badge badge-green">Bidirectional native</span></td></tr>
-<tr><td>Browser Support</td><td><span class="badge badge-green">Langsung</span></td><td>Perlu grpc-web proxy</td></tr>
-<tr><td>Code Generation</td><td>Manual / OpenAPI</td><td><span class="badge badge-green">Otomatis dari .proto</span></td></tr>
-<tr><td>Debugging</td><td><span class="badge badge-green">Mudah (JSON)</span></td><td>Perlu tools khusus</td></tr>
+<tr><td>Browser Support</td><td><span class="badge badge-green">${t('Langsung', 'Direct')}</span></td><td>${t('Perlu grpc-web proxy', 'Needs grpc-web proxy')}</td></tr>
+<tr><td>Code Generation</td><td>Manual / OpenAPI</td><td><span class="badge badge-green">${t('Otomatis dari .proto', 'Auto-generated from .proto')}</span></td></tr>
+<tr><td>Debugging</td><td><span class="badge badge-green">${t('Mudah (JSON)', 'Easy (JSON)')}</span></td><td>${t('Perlu tools khusus', 'Needs specialized tools')}</td></tr>
 <tr><td>Documentation</td><td><span class="badge badge-green">Swagger/OpenAPI</span></td><td>.proto file</td></tr>
 <tr><td>Use Case</td><td>Public API, web frontend</td><td>Internal microservices</td></tr>
 </table>
 </div>
 <div class="info-box">
-<strong>Kapan pakai gRPC?</strong> Gunakan gRPC untuk komunikasi antar microservice internal di mana performa kritis. Gunakan REST/FastAPI untuk public-facing API yang akan diakses browser atau third-party.
+${t('<strong>Kapan pakai gRPC?</strong> Gunakan gRPC untuk komunikasi antar microservice internal di mana performa kritis. Gunakan REST/FastAPI untuk public-facing API yang akan diakses browser atau third-party.', '<strong>When to use gRPC?</strong> Use gRPC for internal microservice communication where performance is critical. Use REST/FastAPI for public-facing APIs accessed by browsers or third parties.')}
 </div>
 </div>
 
@@ -1152,13 +1152,13 @@ python -m grpc_tools.protoc \
 <h3 style="color:var(--red)">OWASP API Security Top 10 &mdash; Coverage</h3>
 <div class="table-wrapper">
 <table>
-<tr><th>OWASP Risk</th><th>Mitigasi</th><th>Implementasi</th></tr>
-<tr><td>API1: Broken Object Level Auth</td><td>Cek ownership di service layer</td><td>get_current_user + ownership check</td></tr>
+<tr><th>OWASP Risk</th><th>${t('Mitigasi', 'Mitigation')}</th><th>${t('Implementasi', 'Implementation')}</th></tr>
+<tr><td>API1: Broken Object Level Auth</td><td>${t('Cek ownership di service layer', 'Check ownership in service layer')}</td><td>get_current_user + ownership check</td></tr>
 <tr><td>API2: Broken Authentication</td><td>JWT + bcrypt + rate limiting</td><td>passlib + python-jose + slowapi</td></tr>
 <tr><td>API3: Excessive Data Exposure</td><td>Response schema filtering</td><td>Pydantic UserResponse (no password)</td></tr>
 <tr><td>API4: Lack of Resources</td><td>Rate limiting + pagination</td><td>slowapi + Query(le=100)</td></tr>
 <tr><td>API5: Broken Function Level Auth</td><td>Role-based access</td><td>get_current_superuser dependency</td></tr>
-<tr><td>API6: Mass Assignment</td><td>Explicit field definitions</td><td>Pydantic UserUpdate schema</td></tr>
+<tr><td>API6: Mass Assignment</td><td>${t('Definisi field eksplisit', 'Explicit field definitions')}</td><td>Pydantic UserUpdate schema</td></tr>
 <tr><td>API7: Security Misconfiguration</td><td>Strict CORS + env config</td><td>CORSMiddleware + pydantic-settings</td></tr>
 <tr><td>API8: Injection</td><td>ORM + parameterized queries</td><td>SQLAlchemy (auto-parameterized)</td></tr>
 <tr><td>API9: Improper Assets Management</td><td>API versioning</td><td>/api/v1/ prefix</td></tr>
@@ -1169,7 +1169,7 @@ python -m grpc_tools.protoc \
 
 <div class="card animate-in">
 <h3 style="color:var(--yellow)">Password Hashing &mdash; bcrypt</h3>
-<p>Jangan pernah simpan password plaintext. <strong>bcrypt</strong> secara otomatis menambahkan salt dan menggunakan adaptive hashing (cost factor dapat ditingkatkan seiring waktu).</p>
+<p>${t('Jangan pernah simpan password plaintext. <strong>bcrypt</strong> secara otomatis menambahkan salt dan menggunakan adaptive hashing (cost factor dapat ditingkatkan seiring waktu).', 'Never store plaintext passwords. <strong>bcrypt</strong> automatically adds salt and uses adaptive hashing (cost factor can be increased over time).')}</p>
 <div class="code-block"><span class="cm"># Password hashing flow</span>
 <span class="kw">from</span> passlib.context <span class="kw">import</span> CryptContext
 
@@ -1306,7 +1306,7 @@ limiter = Limiter(key_func=get_remote_address)
 
 <div class="card animate-in">
 <h3 style="color:var(--accent)">tests/conftest.py &mdash; Shared Fixtures</h3>
-<p>Menggunakan <strong>pytest-asyncio</strong> untuk async test support dan <strong>httpx.AsyncClient</strong> untuk testing FastAPI endpoints tanpa server.</p>
+<p>${t('Menggunakan <strong>pytest-asyncio</strong> untuk async test support dan <strong>httpx.AsyncClient</strong> untuk testing FastAPI endpoints tanpa server.', 'Uses <strong>pytest-asyncio</strong> for async test support and <strong>httpx.AsyncClient</strong> for testing FastAPI endpoints without a server.')}</p>
 <div class="code-block"><span class="cm"># tests/conftest.py</span>
 <span class="kw">import</span> pytest
 <span class="kw">import</span> pytest_asyncio
@@ -1599,7 +1599,7 @@ target_metadata = Base.metadata
 
 <div class="card animate-in">
 <h3 style="color:var(--accent)">Dockerfile</h3>
-<p>Multi-stage build untuk image yang kecil dan aman.</p>
+<p>${t('Multi-stage build untuk image yang kecil dan aman.', 'Multi-stage build for small and secure images.')}</p>
 <div class="code-block"><span class="cm"># Dockerfile</span>
 <span class="kw">FROM</span> python:3.12-slim <span class="kw">AS</span> builder
 
@@ -1730,7 +1730,7 @@ docker compose down -v</div>
 
 <div class="card animate-in">
 <h3 style="color:var(--accent)">FastAPI Request Flow</h3>
-<p>Visualisasi alur request dari client melalui semua layer hingga database dan kembali.</p>
+<p>${t('Visualisasi alur request dari client melalui semua layer hingga database dan kembali.', 'Visualization of the request flow from client through all layers to the database and back.')}</p>
 <div style="text-align:center;margin:16px 0;">
 <canvas id="canvas-crud-python-arch" width="720" height="400" style="width:100%;max-width:720px;height:400px;border-radius:8px;"></canvas>
 </div>
@@ -1892,19 +1892,19 @@ logger.setLevel(logging.INFO)
 </table>
 </div>
 <div class="info-box">
-<strong>Middleware Order:</strong> FastAPI middleware dieksekusi dalam urutan terbalik (LIFO). Middleware yang didaftarkan terakhir akan dieksekusi pertama untuk request masuk. Pastikan CORS dan Rate Limiting didaftarkan sebelum auth.
+${t('<strong>Middleware Order:</strong> FastAPI middleware dieksekusi dalam urutan terbalik (LIFO). Middleware yang didaftarkan terakhir akan dieksekusi pertama untuk request masuk. Pastikan CORS dan Rate Limiting didaftarkan sebelum auth.', '<strong>Middleware Order:</strong> FastAPI middleware is executed in reverse order (LIFO). The last registered middleware is executed first for incoming requests. Make sure CORS and Rate Limiting are registered before auth.')}
 </div>
 </div>
 
 <!-- ==================== 16. SUMMARY ==================== -->
-<h2 class="animate-in">16. Ringkasan &amp; Best Practices</h2>
+<h2 class="animate-in">16. ${t('Ringkasan &amp; Best Practices', 'Summary &amp; Best Practices')}</h2>
 
 <div class="card-grid animate-in">
 <div class="card">
 <h3 style="color:var(--accent)">Architecture</h3>
 <ul>
 <li>Layered architecture (Router &rarr; Service &rarr; Repository)</li>
-<li>Dependency injection dengan <code>Depends()</code></li>
+<li>${t('Dependency injection dengan <code>Depends()</code>', 'Dependency injection with <code>Depends()</code>')}</li>
 <li>Pydantic for input/output contracts</li>
 <li>Async everywhere (SQLAlchemy, FastAPI)</li>
 </ul>
