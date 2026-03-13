@@ -82,6 +82,7 @@ function initSectionInteractions(name) {
     if (name === 'lang-rust' && typeof initRustAnimations === 'function') initRustAnimations();
     if (name === 'lang-python' && typeof initPythonAnimations === 'function') initPythonAnimations();
     if (name === 'lang-javascript' && typeof initJavaScriptAnimations === 'function') initJavaScriptAnimations();
+    if (name === 'lang-typescript' && typeof initTypeScriptAnimations === 'function') initTypeScriptAnimations();
     if (name === 'networking' && typeof initNetworkingAnimations === 'function') initNetworkingAnimations();
 }
 
