@@ -1,2257 +1,1875 @@
 // ====================== PYTHON DEEP DIVE ======================
 sections['lang-python'] = () => `
+<section class="animate-in">
 <h1 class="section-title animate-in">Python Deep Dive</h1>
-<p class="section-subtitle animate-in">Dari dasar bahasa hingga REST API, concurrency, dan integrasi lintas bahasa</p>
-<p class="animate-in"><em>Ref: Guido van Rossum; "Fluent Python" (Ramalho, 2022); "Python Cookbook" (Beazley & Jones, 2013); docs.python.org</em></p>
+<p class="section-subtitle animate-in">ML/Data Science, FFI dengan Go &amp; Rust, dan advanced Python internals</p>
+<p class="animate-in"><em>Ref: docs.python.org; "Fluent Python" (Ramalho, 2022); PyTorch Docs; PyO3 Guide; NumPy Docs</em></p>
 
-<!-- ==================== 1. PENGENALAN PYTHON ==================== -->
-<h2 class="animate-in">1. Pengenalan Python</h2>
+<!-- ==================== 1. MENGAPA PYTHON? ==================== -->
+<h2 class="animate-in">1. Mengapa Python?</h2>
 
 <div class="card animate-in">
-    <h3>Sejarah & Filosofi</h3>
-    <p><strong>Python</strong> diciptakan oleh <strong>Guido van Rossum</strong> pada akhir tahun 1980-an di Centrum Wiskunde & Informatica (CWI), Belanda. Versi pertama (0.9.0) dirilis pada <strong>Februari 1991</strong>. Nama "Python" diambil dari acara komedi BBC <em>Monty Python's Flying Circus</em>, bukan dari ular.</p>
-    <p>Python dirancang dengan filosofi <strong>"readability counts"</strong> — kode harus mudah dibaca dan dipahami. Guido sering disebut sebagai <em>Benevolent Dictator For Life (BDFL)</em> hingga ia mengundurkan diri dari peran tersebut pada 2018.</p>
+<h3>Sejarah &amp; Filosofi</h3>
+<p><strong>Python</strong> diciptakan oleh <strong>Guido van Rossum</strong> di Centrum Wiskunde &amp; Informatica (CWI), Belanda. Versi pertama (0.9.0) dirilis <strong>Februari 1991</strong>. Nama diambil dari acara komedi BBC <em>Monty Python's Flying Circus</em>.</p>
+<p>Guido menjabat sebagai <em>Benevolent Dictator For Life (BDFL)</em> hingga 2018. Python 2 End-of-Life resmi terjadi 1 Januari 2020 — seluruh ekosistem kini menggunakan Python 3.</p>
+<div class="table-wrapper">
+<table>
+<tr><th>Versi</th><th>Tahun</th><th>Fitur Kunci</th></tr>
+<tr><td>0.9.0</td><td>1991</td><td>Rilis pertama — class, exception, functions</td></tr>
+<tr><td>2.0</td><td>2000</td><td>List comprehension, garbage collector</td></tr>
+<tr><td>3.0</td><td>2008</td><td>print() function, Unicode default, integer division</td></tr>
+<tr><td>3.5</td><td>2015</td><td>Type hints (PEP 484), async/await</td></tr>
+<tr><td>3.6</td><td>2016</td><td>f-strings, __future__ annotations</td></tr>
+<tr><td>3.8</td><td>2019</td><td>Walrus operator :=, Protocol (typing)</td></tr>
+<tr><td>3.9</td><td>2020</td><td>dict merge |=, list[int] tanpa typing</td></tr>
+<tr><td>3.10</td><td>2021</td><td>Structural pattern matching (match/case)</td></tr>
+<tr><td>3.11</td><td>2022</td><td>Exception groups, 10-60% lebih cepat</td></tr>
+<tr><td>3.12</td><td>2023</td><td>Per-interpreter GIL, improved error messages</td></tr>
+<tr><td>3.13</td><td>2024</td><td>Experimental free-threaded mode (no-GIL)</td></tr>
+</table>
+</div>
 </div>
 
 <div class="card animate-in">
-    <h3>Timeline Python</h3>
-    <div class="table-wrapper">
-        <table>
-            <tr><th>Versi</th><th>Tahun</th><th>Fitur Penting</th></tr>
-            <tr><td>0.9.0</td><td>1991</td><td>Rilis pertama — class, exception handling, functions</td></tr>
-            <tr><td>1.0</td><td>1994</td><td>lambda, map, filter, reduce</td></tr>
-            <tr><td>2.0</td><td>2000</td><td>List comprehension, garbage collector</td></tr>
-            <tr><td>3.0</td><td>2008</td><td>print() function, Unicode default, integer division</td></tr>
-            <tr><td>3.5</td><td>2015</td><td>Type hints (PEP 484), async/await</td></tr>
-            <tr><td>3.6</td><td>2016</td><td>f-strings, variable annotations</td></tr>
-            <tr><td>3.8</td><td>2019</td><td>Walrus operator :=, Protocol</td></tr>
-            <tr><td>3.10</td><td>2021</td><td>Structural pattern matching (match/case)</td></tr>
-            <tr><td>3.11</td><td>2022</td><td>Exception groups, 10-60% faster</td></tr>
-            <tr><td>3.12</td><td>2023</td><td>Per-interpreter GIL, improved error messages</td></tr>
-            <tr><td>3.13</td><td>2024</td><td>Experimental free-threaded mode (no-GIL)</td></tr>
-        </table>
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>The Zen of Python (PEP 20)</h3>
-    <div class="code-block">
-<span class="cm">>>> import this</span>
+<h3>The Zen of Python (PEP 20)</h3>
+<div class="code-block"><span class="cm">&gt;&gt;&gt; import this</span>
 
 Beautiful is better than ugly.
 Explicit is better than implicit.
 Simple is better than complex.
 Complex is better than complicated.
 Flat is better than nested.
-Sparse is better than dense.
 Readability counts.
-Special cases aren't special enough to break the rules.
-Although practicality beats purity.
 Errors should never pass silently.
 Unless explicitly silenced.
-In the face of ambiguity, refuse the temptation to guess.
 There should be one-- and preferably only one --obvious way to do it.
 Now is better than never.
-Although never is often better than *right* now.
 If the implementation is hard to explain, it's a bad idea.
-If the implementation is easy to explain, it may be a good idea.
-Namespaces are one honking great idea -- let's do more of those!
-    </div>
+Namespaces are one honking great idea -- let's do more of those!</div>
 </div>
 
 <div class="card animate-in">
-    <h3>Mengapa Python?</h3>
-    <div class="card-grid">
-        <div class="info-box">
-            <strong>Mudah Dipelajari</strong><br>
-            Sintaks sederhana, mendekati pseudocode. Cocok untuk pemula maupun expert.
-        </div>
-        <div class="info-box">
-            <strong>Ekosistem Luas</strong><br>
-            PyPI memiliki 400.000+ packages — dari web dev, data science, hingga robotics.
-        </div>
-        <div class="info-box">
-            <strong>Multi-Paradigma</strong><br>
-            Mendukung OOP, functional, procedural, dan metaprogramming.
-        </div>
-        <div class="info-box">
-            <strong>Use Cases</strong><br>
-            Web (Django, Flask, FastAPI), ML/AI (PyTorch, TensorFlow), Data (Pandas), DevOps, Scripting, IoT.
-        </div>
-    </div>
+<h3>Python vs Go vs Rust — Perbandingan</h3>
+<div class="table-wrapper">
+<table>
+<tr><th>Aspek</th><th>Python</th><th>Go</th><th>Rust</th></tr>
+<tr><td>Kecepatan</td><td>Lambat (interpreter)</td><td>Cepat (compiled)</td><td>Sangat cepat (C-level)</td></tr>
+<tr><td>Kemudahan</td><td>Sangat mudah</td><td>Mudah</td><td>Kompleks (ownership)</td></tr>
+<tr><td>ML Ecosystem</td><td>Dominan (PyTorch, TF)</td><td>Minimal</td><td>Berkembang (burn, tch)</td></tr>
+<tr><td>Concurrency</td><td>GIL (IO-bound ok)</td><td>Goroutine (excellent)</td><td>Fearless concurrency</td></tr>
+<tr><td>Use Case ML</td><td>Research, prototyping, prod</td><td>Serving/inference API</td><td>Custom CUDA ops, perf</td></tr>
+<tr><td>FFI</td><td>ctypes, cffi, PyO3</td><td>cgo, CGo export</td><td>PyO3 (first-class)</td></tr>
+</table>
+</div>
+<div class="info-box">
+<strong>Mengapa Python mendominasi ML?</strong><br>
+NumPy (1995-&gt;), SciPy, Matplotlib, pandas, scikit-learn, PyTorch, TensorFlow, Hugging Face — ekosistem ini membutuhkan puluhan tahun untuk dibangun. Python menjadi <em>lingua franca</em> ML bukan hanya karena mudah, tapi karena networkeffect ekosistemnya yang tidak tertandingi.
+</div>
 </div>
 
-<!-- ==================== 2. VARIABEL & KONSTANTA ==================== -->
-<h2 class="animate-in">2. Variabel & Konstanta</h2>
+<!-- ==================== 2. BASIC SYNTAX ==================== -->
+<h2 class="animate-in">2. Basic Syntax (Python 3.12+)</h2>
 
 <div class="card animate-in">
-    <h3>Dynamic Typing</h3>
-    <p>Python adalah bahasa <strong>dynamically typed</strong> — tipe variabel ditentukan saat runtime, bukan saat compile. Variabel hanyalah <em>label</em> yang merujuk ke objek di memori.</p>
-    <div class="code-block">
-<span class="cm"># Variabel adalah label, bukan kotak penyimpan</span>
-x = <span class="num">42</span>          <span class="cm"># x merujuk ke objek int 42</span>
-x = <span class="str">"hello"</span>     <span class="cm"># x sekarang merujuk ke objek str "hello"</span>
-x = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]   <span class="cm"># x sekarang merujuk ke objek list</span>
+<h3>Indentasi sebagai Sintaks</h3>
+<p>Python menggunakan <strong>indentasi</strong> (bukan kurung kurawal) untuk mendefinisikan blok kode. Standar: 4 spasi per level (PEP 8).</p>
+<div class="code-block"><span class="cm"># Benar — konsisten 4 spasi</span>
+<span class="kw">def</span> <span class="fn">greet</span>(name: <span class="type">str</span>) -> <span class="type">str</span>:
+    <span class="kw">if</span> name:
+        <span class="kw">return</span> <span class="str">f"Hello, {name}!"</span>
+    <span class="kw">else</span>:
+        <span class="kw">return</span> <span class="str">"Hello, stranger!"</span>
 
-<span class="cm"># Cek tipe saat runtime</span>
-<span class="fn">print</span>(<span class="fn">type</span>(x))   <span class="cm"># &lt;class 'list'&gt;</span>
-<span class="fn">print</span>(<span class="fn">isinstance</span>(x, <span class="type">list</span>))  <span class="cm"># True</span>
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>Variable Assignment & Multiple Assignment</h3>
-    <div class="code-block">
-<span class="cm"># Assignment biasa</span>
-name = <span class="str">"Tazkia"</span>
-age = <span class="num">25</span>
-
-<span class="cm"># Multiple assignment (tuple unpacking)</span>
-a, b, c = <span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>
-
-<span class="cm"># Swap tanpa temp variable</span>
-a, b = b, a
-
-<span class="cm"># Augmented assignment</span>
-count = <span class="num">0</span>
-count += <span class="num">1</span>   <span class="cm"># count = count + 1</span>
-count *= <span class="num">2</span>   <span class="cm"># count = count * 2</span>
-
-<span class="cm"># Walrus operator (Python 3.8+)</span>
-<span class="kw">if</span> (n := <span class="fn">len</span>(name)) > <span class="num">3</span>:
-    <span class="fn">print</span>(<span class="str">f"Panjang nama: </span>{n}<span class="str">"</span>)
-    </div>
+<span class="cm"># Salah — IndentationError</span>
+<span class="kw">def</span> <span class="fn">broken</span>():
+  x = <span class="num">1</span>
+    y = <span class="num">2</span>  <span class="cm"># IndentationError: unexpected indent</span></div>
 </div>
 
 <div class="card animate-in">
-    <h3>Konstanta (Konvensi)</h3>
-    <p>Python <strong>tidak memiliki</strong> keyword <code>const</code>. Konstanta ditulis dengan <strong>UPPER_CASE</strong> sebagai konvensi — programmer <em>sepakat</em> untuk tidak mengubahnya.</p>
-    <div class="code-block">
-<span class="cm"># Konvensi konstanta</span>
-MAX_CONNECTIONS = <span class="num">100</span>
-PI = <span class="num">3.14159265358979</span>
-DATABASE_URL = <span class="str">"postgresql://localhost/mydb"</span>
-API_VERSION = <span class="str">"v2"</span>
+<h3>Variables, Type Hints &amp; f-strings</h3>
+<div class="code-block"><span class="cm"># Dynamic typing — variabel adalah label ke objek</span>
+x = <span class="num">42</span>
+x = <span class="str">"hello"</span>  <span class="cm"># Sah — x kini merujuk ke str</span>
 
-<span class="cm"># Bisa di-enforce dengan @property di class</span>
-<span class="kw">class</span> <span class="type">Config</span>:
-    @<span class="fn">property</span>
-    <span class="kw">def</span> <span class="fn">MAX_RETRIES</span>(<span class="kw">self</span>):
-        <span class="kw">return</span> <span class="num">3</span>   <span class="cm"># read-only, cannot be set</span>
+<span class="cm"># Type hints (PEP 484) — tidak mempengaruhi runtime</span>
+name: <span class="type">str</span> = <span class="str">"Tazkia"</span>
+score: <span class="type">float</span> = <span class="num">99.5</span>
+active: <span class="type">bool</span> = <span class="kw">True</span>
+value: <span class="type">int</span> | <span class="type">None</span> = <span class="kw">None</span>  <span class="cm"># Python 3.10+ union</span>
 
-<span class="cm"># Atau dengan typing.Final (Python 3.8+)</span>
-<span class="kw">from</span> typing <span class="kw">import</span> Final
-MAX_SIZE: Final = <span class="num">1024</span>  <span class="cm"># type checker akan warn jika diubah</span>
-    </div>
+<span class="cm"># f-strings (Python 3.6+) — cara terbaik format string</span>
+pi = <span class="num">3.14159</span>
+<span class="fn">print</span>(<span class="str">f"Pi = {pi:.2f}"</span>)           <span class="cm"># Pi = 3.14</span>
+<span class="fn">print</span>(<span class="str">f"Result: {2 ** 10}"</span>)        <span class="cm"># Result: 1024</span>
+<span class="fn">print</span>(<span class="str">f"{name!r} len={len(name)}"</span>)  <span class="cm"># 'Tazkia' len=6</span>
+
+<span class="cm"># f-string debug (Python 3.8+)</span>
+<span class="fn">print</span>(<span class="str">f"{score=}"</span>)  <span class="cm"># score=99.5</span>
+
+<span class="cm"># Multi-line strings</span>
+query = <span class="str">"""
+    SELECT *
+    FROM users
+    WHERE active = true
+"""</span>
+
+<span class="cm"># Walrus operator := (Python 3.8+) — assign and test</span>
+data = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>]
+<span class="kw">if</span> (n := <span class="fn">len</span>(data)) &gt; <span class="num">3</span>:
+    <span class="fn">print</span>(<span class="str">f"Long list: {n} items"</span>)  <span class="cm"># Long list: 5 items</span></div>
 </div>
 
 <div class="card animate-in">
-    <h3>Type Hints (Python 3.5+)</h3>
-    <p>Type hints tidak mempengaruhi runtime, tapi membantu <strong>IDE</strong>, <strong>mypy</strong>, dan developer lain memahami kode.</p>
-    <div class="code-block">
-<span class="cm"># Basic type hints</span>
-name: <span class="type">str</span> = <span class="str">"Python"</span>
-version: <span class="type">float</span> = <span class="num">3.12</span>
-is_active: <span class="type">bool</span> = <span class="kw">True</span>
-
-<span class="cm"># Collection types (Python 3.9+)</span>
-numbers: <span class="type">list</span>[<span class="type">int</span>] = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
-mapping: <span class="type">dict</span>[<span class="type">str</span>, <span class="type">int</span>] = {<span class="str">"a"</span>: <span class="num">1</span>}
-coords: <span class="type">tuple</span>[<span class="type">float</span>, <span class="type">float</span>] = (<span class="num">1.0</span>, <span class="num">2.0</span>)
-unique: <span class="type">set</span>[<span class="type">str</span>] = {<span class="str">"x"</span>, <span class="str">"y"</span>}
-
-<span class="cm"># Optional dan Union</span>
-<span class="kw">from</span> typing <span class="kw">import</span> Optional, Union
-value: Optional[<span class="type">int</span>] = <span class="kw">None</span>         <span class="cm"># int atau None</span>
-data: Union[<span class="type">str</span>, <span class="type">int</span>] = <span class="str">"hello"</span>     <span class="cm"># str atau int</span>
-
-<span class="cm"># Python 3.10+ union syntax</span>
-data: <span class="type">str</span> | <span class="type">int</span> = <span class="str">"hello"</span>
-
-<span class="cm"># Function type hints</span>
-<span class="kw">def</span> <span class="fn">greet</span>(name: <span class="type">str</span>, times: <span class="type">int</span> = <span class="num">1</span>) -> <span class="type">str</span>:
-    <span class="kw">return</span> <span class="str">f"Hello, </span>{name}<span class="str">!"</span> * times
-    </div>
+<h3>Tipe Data Dasar</h3>
+<div class="table-wrapper">
+<table>
+<tr><th>Tipe</th><th>Contoh</th><th>Keterangan</th><th>Immutable?</th></tr>
+<tr><td><span class="badge-blue">int</span></td><td><code>42, -7, 0xFF, 0b1010, 10_000_000</code></td><td>Presisi tak terbatas</td><td>Ya</td></tr>
+<tr><td><span class="badge-green">float</span></td><td><code>3.14, 2.5e10, float('inf')</code></td><td>IEEE 754 double (64-bit)</td><td>Ya</td></tr>
+<tr><td><span class="badge-purple">complex</span></td><td><code>3+4j, complex(3, 4)</code></td><td>Bilangan kompleks</td><td>Ya</td></tr>
+<tr><td><span class="badge-orange">bool</span></td><td><code>True, False</code></td><td>Subclass int (True=1, False=0)</td><td>Ya</td></tr>
+<tr><td><span class="badge-red">str</span></td><td><code>"hello", 'world'</code></td><td>Unicode, sequence of chars</td><td>Ya</td></tr>
+<tr><td><span class="badge-yellow">bytes</span></td><td><code>b"hello", bytes(5)</code></td><td>Raw bytes</td><td>Ya</td></tr>
+<tr><td>NoneType</td><td><code>None</code></td><td>Singleton, "tidak ada nilai"</td><td>Ya</td></tr>
+</table>
+</div>
 </div>
 
-<!-- ==================== 3. TIPE DATA ==================== -->
-<h2 class="animate-in">3. Tipe Data</h2>
+<!-- ==================== 3. DATA STRUCTURES ==================== -->
+<h2 class="animate-in">3. Data Structures</h2>
 
 <div class="card animate-in">
-    <h3>Tipe Data Primitif</h3>
-    <div class="table-wrapper">
-        <table>
-            <tr><th>Tipe</th><th>Contoh</th><th>Keterangan</th><th>Immutable?</th></tr>
-            <tr><td><span class="badge-blue">int</span></td><td><code>42, -7, 0xFF, 0b1010</code></td><td>Bilangan bulat, presisi tak terbatas</td><td>Ya</td></tr>
-            <tr><td><span class="badge-green">float</span></td><td><code>3.14, 2.5e10, float('inf')</code></td><td>IEEE 754 double precision (64-bit)</td><td>Ya</td></tr>
-            <tr><td><span class="badge-purple">str</span></td><td><code>"hello", 'world', """multi"""</code></td><td>Sequence of Unicode characters</td><td>Ya</td></tr>
-            <tr><td><span class="badge-orange">bool</span></td><td><code>True, False</code></td><td>Subclass dari int (True=1, False=0)</td><td>Ya</td></tr>
-            <tr><td><span class="badge-red">NoneType</span></td><td><code>None</code></td><td>Singleton, merepresentasikan "tidak ada nilai"</td><td>Ya</td></tr>
-            <tr><td><span class="badge-yellow">complex</span></td><td><code>3+4j, complex(3, 4)</code></td><td>Bilangan kompleks</td><td>Ya</td></tr>
-        </table>
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>Tipe Data Koleksi</h3>
-    <div class="tabs">
-        <button class="tab-btn active" data-tab="py-list">list</button>
-        <button class="tab-btn" data-tab="py-tuple">tuple</button>
-        <button class="tab-btn" data-tab="py-dict">dict</button>
-        <button class="tab-btn" data-tab="py-set">set</button>
-    </div>
-    <div class="tab-content active" data-tab-content="py-list">
-        <p><strong>list</strong> — ordered, mutable, allows duplicates. Diimplementasikan sebagai dynamic array.</p>
-        <div class="code-block">
-<span class="cm"># Membuat list</span>
-fruits = [<span class="str">"apple"</span>, <span class="str">"banana"</span>, <span class="str">"cherry"</span>]
-numbers = <span class="fn">list</span>(<span class="fn">range</span>(<span class="num">1</span>, <span class="num">6</span>))  <span class="cm"># [1, 2, 3, 4, 5]</span>
-
-<span class="cm"># Operasi list</span>
-fruits.<span class="fn">append</span>(<span class="str">"date"</span>)       <span class="cm"># Tambah di akhir</span>
-fruits.<span class="fn">insert</span>(<span class="num">0</span>, <span class="str">"avocado"</span>) <span class="cm"># Tambah di posisi 0</span>
-fruits.<span class="fn">pop</span>()                 <span class="cm"># Hapus dan return elemen terakhir</span>
-fruits.<span class="fn">remove</span>(<span class="str">"banana"</span>)     <span class="cm"># Hapus by value</span>
+<h3>Lists &amp; Comprehensions</h3>
+<div class="code-block"><span class="cm"># List — mutable, ordered, allow duplicates</span>
+nums = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>]
 
 <span class="cm"># Slicing [start:stop:step]</span>
-nums = [<span class="num">0</span>,<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>,<span class="num">4</span>,<span class="num">5</span>,<span class="num">6</span>,<span class="num">7</span>,<span class="num">8</span>,<span class="num">9</span>]
-nums[<span class="num">2</span>:<span class="num">5</span>]      <span class="cm"># [2, 3, 4]</span>
-nums[::<span class="num">2</span>]      <span class="cm"># [0, 2, 4, 6, 8] — setiap 2 langkah</span>
-nums[::-<span class="num">1</span>]     <span class="cm"># [9, 8, 7, ...] — reverse</span>
+nums[<span class="num">1</span>:<span class="num">4</span>]    <span class="cm"># [2, 3, 4]</span>
+nums[::<span class="num">-1</span>]   <span class="cm"># [5, 4, 3, 2, 1] — reversed</span>
+nums[<span class="num">2</span>:]     <span class="cm"># [3, 4, 5]</span>
 
-<span class="cm"># List comprehension</span>
+<span class="cm"># Methods</span>
+nums.<span class="fn">append</span>(<span class="num">6</span>)
+nums.<span class="fn">extend</span>([<span class="num">7</span>, <span class="num">8</span>])
+nums.<span class="fn">insert</span>(<span class="num">0</span>, <span class="num">0</span>)
+nums.<span class="fn">remove</span>(<span class="num">0</span>)
+nums.<span class="fn">sort</span>(reverse=<span class="kw">True</span>)
+
+<span class="cm"># List comprehension — lebih cepat dari loop biasa</span>
 squares = [x**<span class="num">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>)]
-evens = [x <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">20</span>) <span class="kw">if</span> x % <span class="num">2</span> == <span class="num">0</span>]
-        </div>
-    </div>
-    <div class="tab-content" data-tab-content="py-tuple">
-        <p><strong>tuple</strong> — ordered, <strong>immutable</strong>, allows duplicates. Digunakan untuk data yang tidak boleh berubah.</p>
-        <div class="code-block">
-<span class="cm"># Membuat tuple</span>
-point = (<span class="num">10</span>, <span class="num">20</span>)
-rgb = (<span class="num">255</span>, <span class="num">128</span>, <span class="num">0</span>)
-single = (<span class="num">42</span>,)   <span class="cm"># trailing comma untuk single element</span>
+evens   = [x <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">20</span>) <span class="kw">if</span> x % <span class="num">2</span> == <span class="num">0</span>]
+matrix  = [[i*j <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(<span class="num">3</span>)] <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">3</span>)]
 
-<span class="cm"># Named tuple — lebih readable</span>
+<span class="cm"># Flattening nested list</span>
+flat = [x <span class="kw">for</span> row <span class="kw">in</span> matrix <span class="kw">for</span> x <span class="kw">in</span> row]</div>
+</div>
+
+<div class="card animate-in">
+<h3>Tuples &amp; Named Tuples</h3>
+<div class="code-block"><span class="cm"># Tuple — immutable, ordered, faster than list</span>
+point = (<span class="num">3.0</span>, <span class="num">4.0</span>)
+x, y = point  <span class="cm"># unpacking</span>
+
+<span class="cm"># Extended unpacking (Python 3+)</span>
+first, *rest = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>]  <span class="cm"># first=1, rest=[2,3,4,5]</span>
+
+<span class="cm"># Named tuple — lebih readable, masih immutable</span>
 <span class="kw">from</span> collections <span class="kw">import</span> namedtuple
-Point = <span class="fn">namedtuple</span>(<span class="str">'Point'</span>, [<span class="str">'x'</span>, <span class="str">'y'</span>])
-p = Point(<span class="num">10</span>, <span class="num">20</span>)
-<span class="fn">print</span>(p.x, p.y)   <span class="cm"># 10 20</span>
+Point = <span class="fn">namedtuple</span>(<span class="str">'Point'</span>, [<span class="str">'x'</span>, <span class="str">'y'</span>, <span class="str">'z'</span>])
+p = <span class="fn">Point</span>(<span class="num">1.0</span>, <span class="num">2.0</span>, <span class="num">3.0</span>)
+<span class="fn">print</span>(p.x, p.y, p.z)   <span class="cm"># 1.0 2.0 3.0</span>
+<span class="fn">print</span>(p._asdict())      <span class="cm"># OrderedDict</span></div>
+</div>
 
-<span class="cm"># Tuple unpacking</span>
-x, y = point
-first, *rest = (<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>)  <span class="cm"># first=1, rest=[2,3,4]</span>
+<div class="card animate-in">
+<h3>Dictionaries &amp; Sets</h3>
+<div class="code-block"><span class="cm"># Dict — mutable, ordered (Python 3.7+), key-value</span>
+user = {<span class="str">"name"</span>: <span class="str">"Ali"</span>, <span class="str">"age"</span>: <span class="num">30</span>, <span class="str">"active"</span>: <span class="kw">True</span>}
 
-<span class="cm"># Tuple sebagai dict key (karena immutable)</span>
-grid = {(<span class="num">0</span>,<span class="num">0</span>): <span class="str">"start"</span>, (<span class="num">1</span>,<span class="num">1</span>): <span class="str">"end"</span>}
-        </div>
-    </div>
-    <div class="tab-content" data-tab-content="py-dict">
-        <p><strong>dict</strong> — key-value pairs, ordered (Python 3.7+), mutable. Diimplementasikan sebagai hash table.</p>
-        <div class="code-block">
-<span class="cm"># Membuat dict</span>
-user = {<span class="str">"name"</span>: <span class="str">"Alice"</span>, <span class="str">"age"</span>: <span class="num">30</span>, <span class="str">"active"</span>: <span class="kw">True</span>}
-config = <span class="fn">dict</span>(host=<span class="str">"localhost"</span>, port=<span class="num">8080</span>)
-
-<span class="cm"># Akses & modifikasi</span>
-user[<span class="str">"email"</span>] = <span class="str">"alice@mail.com"</span>   <span class="cm"># Tambah/update</span>
-name = user.<span class="fn">get</span>(<span class="str">"name"</span>, <span class="str">"Unknown"</span>)  <span class="cm"># Safe access dengan default</span>
-<span class="kw">del</span> user[<span class="str">"active"</span>]                   <span class="cm"># Hapus key</span>
-
-<span class="cm"># Iterasi</span>
-<span class="kw">for</span> key, value <span class="kw">in</span> user.<span class="fn">items</span>():
-    <span class="fn">print</span>(<span class="str">f"</span>{key}<span class="str">: </span>{value}<span class="str">"</span>)
+<span class="cm"># Safe access</span>
+user.<span class="fn">get</span>(<span class="str">"email"</span>, <span class="str">"N/A"</span>)  <span class="cm"># "N/A" (key tidak ada)</span>
 
 <span class="cm"># Dict comprehension</span>
-squares = {x: x**<span class="num">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>)}
-<span class="cm"># {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}</span>
+sq_map = {x: x**<span class="num">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>)}  <span class="cm"># {0:0, 1:1, 2:4, ...}</span>
 
-<span class="cm"># Merge (Python 3.9+)</span>
-merged = {<span class="str">"a"</span>: <span class="num">1</span>} | {<span class="str">"b"</span>: <span class="num">2</span>}  <span class="cm"># {"a": 1, "b": 2}</span>
-        </div>
-    </div>
-    <div class="tab-content" data-tab-content="py-set">
-        <p><strong>set</strong> — unordered, mutable, <strong>no duplicates</strong>. Digunakan untuk operasi matematika himpunan.</p>
-        <div class="code-block">
-<span class="cm"># Membuat set</span>
-colors = {<span class="str">"red"</span>, <span class="str">"green"</span>, <span class="str">"blue"</span>}
-nums = <span class="fn">set</span>([<span class="num">1</span>, <span class="num">2</span>, <span class="num">2</span>, <span class="num">3</span>])  <span class="cm"># {1, 2, 3} — duplikat dihapus</span>
+<span class="cm"># Merge dicts (Python 3.9+)</span>
+defaults = {<span class="str">"timeout"</span>: <span class="num">30</span>, <span class="str">"retries"</span>: <span class="num">3</span>}
+config   = {<span class="str">"timeout"</span>: <span class="num">60</span>}
+merged = defaults | config        <span class="cm"># baru: {timeout:60, retries:3}</span>
+defaults |= config                <span class="cm"># in-place merge</span>
 
-<span class="cm"># Operasi set</span>
-a = {<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>}
-b = {<span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>}
-a | b    <span class="cm"># Union:        {1, 2, 3, 4, 5}</span>
-a & b    <span class="cm"># Intersection: {3}</span>
-a - b    <span class="cm"># Difference:   {1, 2}</span>
-a ^ b    <span class="cm"># Symmetric:    {1, 2, 4, 5}</span>
+<span class="cm"># Iterasi</span>
+<span class="kw">for</span> k, v <span class="kw">in</span> user.<span class="fn">items</span>():
+    <span class="fn">print</span>(<span class="str">f"{k}: {v}"</span>)
 
-<span class="cm"># frozenset — immutable set (bisa jadi dict key)</span>
-fs = <span class="fn">frozenset</span>([<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>])
-        </div>
-    </div>
+<span class="cm"># Sets — unique elements, unordered</span>
+a = {<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>}
+b = {<span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>, <span class="num">6</span>}
+<span class="fn">print</span>(a | b)   <span class="cm"># union: {1,2,3,4,5,6}</span>
+<span class="fn">print</span>(a &amp; b)   <span class="cm"># intersection: {3,4}</span>
+<span class="fn">print</span>(a - b)   <span class="cm"># difference: {1,2}</span>
+<span class="fn">print</span>(a ^ b)   <span class="cm"># symmetric diff: {1,2,5,6}</span></div>
 </div>
 
-<div class="card animate-in">
-    <h3>Type Conversion & Mutable vs Immutable</h3>
-    <div class="card-grid">
-        <div class="info-box">
-            <strong>Type Conversion</strong>
-            <div class="code-block">
-<span class="fn">int</span>(<span class="str">"42"</span>)       <span class="cm"># 42</span>
-<span class="fn">float</span>(<span class="str">"3.14"</span>)   <span class="cm"># 3.14</span>
-<span class="fn">str</span>(<span class="num">100</span>)        <span class="cm"># "100"</span>
-<span class="fn">list</span>(<span class="str">"abc"</span>)     <span class="cm"># ['a','b','c']</span>
-<span class="fn">tuple</span>([<span class="num">1</span>,<span class="num">2</span>])   <span class="cm"># (1, 2)</span>
-<span class="fn">set</span>([<span class="num">1</span>,<span class="num">1</span>,<span class="num">2</span>])   <span class="cm"># {1, 2}</span>
-<span class="fn">bool</span>(<span class="num">0</span>)        <span class="cm"># False</span>
-<span class="fn">bool</span>(<span class="str">""</span>)       <span class="cm"># False</span>
-<span class="fn">bool</span>(<span class="str">"hi"</span>)     <span class="cm"># True</span>
-            </div>
-        </div>
-        <div class="warn-box">
-            <strong>Mutable vs Immutable</strong><br><br>
-            <strong>Immutable:</strong> int, float, str, bool, tuple, frozenset, bytes<br>
-            Tidak bisa diubah setelah dibuat. Operasi selalu membuat objek baru.<br><br>
-            <strong>Mutable:</strong> list, dict, set, bytearray<br>
-            Bisa diubah di tempat (in-place). Hati-hati dengan aliasing!<br><br>
-            <div class="code-block">
-<span class="cm"># Aliasing trap</span>
-a = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
-b = a        <span class="cm"># b merujuk objek SAMA</span>
-b.<span class="fn">append</span>(<span class="num">4</span>)
-<span class="fn">print</span>(a)     <span class="cm"># [1, 2, 3, 4] — a juga berubah!</span>
-
-<span class="cm"># Solusi: copy</span>
-b = a.<span class="fn">copy</span>()      <span class="cm"># shallow copy</span>
-b = a[:]          <span class="cm"># shallow copy via slice</span>
-<span class="kw">import</span> copy
-b = copy.<span class="fn">deepcopy</span>(a)  <span class="cm"># deep copy</span>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ==================== 4. PRINT & LOGGING ==================== -->
-<h2 class="animate-in">4. Print & Logging</h2>
+<!-- ==================== 4. CONTROL FLOW ==================== -->
+<h2 class="animate-in">4. Control Flow</h2>
 
 <div class="card animate-in">
-    <h3>print() dan f-strings</h3>
-    <div class="code-block">
-<span class="cm"># print() dasar</span>
-<span class="fn">print</span>(<span class="str">"Hello, World!"</span>)
-<span class="fn">print</span>(<span class="str">"a"</span>, <span class="str">"b"</span>, <span class="str">"c"</span>, sep=<span class="str">", "</span>)  <span class="cm"># a, b, c</span>
-<span class="fn">print</span>(<span class="str">"no newline"</span>, end=<span class="str">""</span>)        <span class="cm"># tanpa newline</span>
-
-<span class="cm"># f-string (Python 3.6+) — cara terbaik</span>
-name = <span class="str">"Alice"</span>
-age = <span class="num">30</span>
-<span class="fn">print</span>(<span class="str">f"Name: </span>{name}<span class="str">, Age: </span>{age}<span class="str">"</span>)
-
-<span class="cm"># f-string formatting</span>
-pi = <span class="num">3.14159</span>
-<span class="fn">print</span>(<span class="str">f"Pi: </span>{pi:<span class="num">.2f</span>}<span class="str">"</span>)           <span class="cm"># Pi: 3.14</span>
-<span class="fn">print</span>(<span class="str">f"Hex: </span>{<span class="num">255</span>:<span class="num">#x</span>}<span class="str">"</span>)          <span class="cm"># Hex: 0xff</span>
-<span class="fn">print</span>(<span class="str">f"Padded: </span>{<span class="num">42</span>:<span class="num">05d</span>}<span class="str">"</span>)       <span class="cm"># Padded: 00042</span>
-<span class="fn">print</span>(<span class="str">f"Big: </span>{<span class="num">1000000</span>:<span class="num">,</span>}<span class="str">"</span>)       <span class="cm"># Big: 1,000,000</span>
-<span class="fn">print</span>(<span class="str">f"Center: </span>{<span class="str">'hi'</span>:<span class="num">^10</span>}<span class="str">"</span>)    <span class="cm"># Center:    hi    </span>
-
-<span class="cm"># f-string debugging (Python 3.8+)</span>
-x = <span class="num">10</span>
-<span class="fn">print</span>(<span class="str">f"</span>{x=}<span class="str">"</span>)   <span class="cm"># x=10</span>
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>String Formatting Methods</h3>
-    <div class="code-block">
-<span class="cm"># Method 1: f-strings (recommended, Python 3.6+)</span>
-name = <span class="str">"World"</span>
-<span class="fn">print</span>(<span class="str">f"Hello, </span>{name}<span class="str">!"</span>)
-
-<span class="cm"># Method 2: str.format()</span>
-<span class="fn">print</span>(<span class="str">"Hello, {}!"</span>.<span class="fn">format</span>(name))
-<span class="fn">print</span>(<span class="str">"{0} vs {1}"</span>.<span class="fn">format</span>(<span class="str">"A"</span>, <span class="str">"B"</span>))
-<span class="fn">print</span>(<span class="str">"{name}: {score}"</span>.<span class="fn">format</span>(name=<span class="str">"Alice"</span>, score=<span class="num">95</span>))
-
-<span class="cm"># Method 3: % operator (C-style, legacy)</span>
-<span class="fn">print</span>(<span class="str">"Hello, %s! Score: %d"</span> % (name, <span class="num">95</span>))
-
-<span class="cm"># Method 4: Template strings (untuk user input — aman)</span>
-<span class="kw">from</span> string <span class="kw">import</span> Template
-t = Template(<span class="str">"Hello, $name!"</span>)
-<span class="fn">print</span>(t.<span class="fn">substitute</span>(name=<span class="str">"World"</span>))
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>Logging Module</h3>
-    <p>Gunakan <code>logging</code> daripada <code>print()</code> untuk aplikasi production. Logging mendukung level, formatting, dan output ke file.</p>
-    <div class="code-block">
-<span class="kw">import</span> logging
-
-<span class="cm"># Basic configuration</span>
-logging.<span class="fn">basicConfig</span>(
-    level=logging.DEBUG,
-    format=<span class="str">'%(asctime)s - %(name)s - %(levelname)s - %(message)s'</span>,
-    handlers=[
-        logging.<span class="fn">FileHandler</span>(<span class="str">'app.log'</span>),
-        logging.<span class="fn">StreamHandler</span>()
-    ]
-)
-
-logger = logging.<span class="fn">getLogger</span>(<span class="str">__name__</span>)
-
-<span class="cm"># 5 Level logging (ascending severity)</span>
-logger.<span class="fn">debug</span>(<span class="str">"Detail untuk debugging"</span>)       <span class="cm"># Level 10</span>
-logger.<span class="fn">info</span>(<span class="str">"Informasi umum"</span>)                <span class="cm"># Level 20</span>
-logger.<span class="fn">warning</span>(<span class="str">"Peringatan, masih jalan"</span>)     <span class="cm"># Level 30</span>
-logger.<span class="fn">error</span>(<span class="str">"Error terjadi"</span>)                 <span class="cm"># Level 40</span>
-logger.<span class="fn">critical</span>(<span class="str">"Fatal! Aplikasi berhenti"</span>)  <span class="cm"># Level 50</span>
-
-<span class="cm"># Structured logging dengan extra data</span>
-logger.<span class="fn">info</span>(<span class="str">"User login"</span>, extra={<span class="str">"user_id"</span>: <span class="num">42</span>, <span class="str">"ip"</span>: <span class="str">"192.168.1.1"</span>})
-    </div>
-    <div class="flow-diagram" style="margin-top: 15px;">
-        <div class="flow-node" style="background: var(--bg2); border-color: var(--text2);">DEBUG</div>
-        <div class="flow-arrow">&#8594;</div>
-        <div class="flow-node" style="background: var(--bg2); border-color: var(--accent);">INFO</div>
-        <div class="flow-arrow">&#8594;</div>
-        <div class="flow-node" style="background: var(--bg2); border-color: var(--orange);">WARNING</div>
-        <div class="flow-arrow">&#8594;</div>
-        <div class="flow-node" style="background: var(--bg2); border-color: var(--red);">ERROR</div>
-        <div class="flow-arrow">&#8594;</div>
-        <div class="flow-node" style="background: var(--bg2); border-color: #dc2626;">CRITICAL</div>
-    </div>
-</div>
-
-<!-- ==================== 5. CONTROL FLOW ==================== -->
-<h2 class="animate-in">5. Control Flow</h2>
-
-<div class="card animate-in">
-    <h3>if / elif / else</h3>
-    <div class="code-block">
+<h3>if/elif/else &amp; match/case</h3>
+<div class="code-block"><span class="cm"># Standard conditional</span>
 score = <span class="num">85</span>
-
-<span class="kw">if</span> score >= <span class="num">90</span>:
+<span class="kw">if</span> score &gt;= <span class="num">90</span>:
     grade = <span class="str">"A"</span>
-<span class="kw">elif</span> score >= <span class="num">80</span>:
+<span class="kw">elif</span> score &gt;= <span class="num">80</span>:
     grade = <span class="str">"B"</span>
-<span class="kw">elif</span> score >= <span class="num">70</span>:
+<span class="kw">elif</span> score &gt;= <span class="num">70</span>:
     grade = <span class="str">"C"</span>
 <span class="kw">else</span>:
     grade = <span class="str">"D"</span>
 
-<span class="cm"># Ternary (conditional expression)</span>
-status = <span class="str">"pass"</span> <span class="kw">if</span> score >= <span class="num">60</span> <span class="kw">else</span> <span class="str">"fail"</span>
+<span class="cm"># Ternary expression</span>
+result = <span class="str">"pass"</span> <span class="kw">if</span> score &gt;= <span class="num">60</span> <span class="kw">else</span> <span class="str">"fail"</span>
 
-<span class="cm"># Truthy / Falsy</span>
-<span class="cm"># Falsy: None, 0, 0.0, "", [], {}, set(), False</span>
-<span class="cm"># Semua yang lain adalah Truthy</span>
-<span class="kw">if</span> my_list:   <span class="cm"># lebih Pythonic dari len(my_list) > 0</span>
-    <span class="fn">print</span>(<span class="str">"list is not empty"</span>)
-    </div>
+<span class="cm"># match/case — Structural Pattern Matching (Python 3.10+)</span>
+<span class="kw">def</span> <span class="fn">handle_command</span>(command):
+    <span class="kw">match</span> command.<span class="fn">split</span>():
+        <span class="kw">case</span> [<span class="str">"quit"</span>]:
+            <span class="kw">return</span> <span class="str">"Exiting..."</span>
+        <span class="kw">case</span> [<span class="str">"go"</span>, direction] <span class="kw">if</span> direction <span class="kw">in</span> (<span class="str">"north"</span>, <span class="str">"south"</span>):
+            <span class="kw">return</span> <span class="str">f"Going {direction}"</span>
+        <span class="kw">case</span> [<span class="str">"pick"</span>, item]:
+            <span class="kw">return</span> <span class="str">f"Picking up {item}"</span>
+        <span class="kw">case</span> _:
+            <span class="kw">return</span> <span class="str">"Unknown command"</span>
+
+<span class="cm"># match dengan dataclass/TypedDict</span>
+<span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass
+
+@dataclass
+<span class="kw">class</span> <span class="type">Point</span>:
+    x: <span class="type">float</span>
+    y: <span class="type">float</span>
+
+<span class="kw">def</span> <span class="fn">classify_point</span>(p):
+    <span class="kw">match</span> p:
+        <span class="kw">case</span> Point(x=<span class="num">0</span>, y=<span class="num">0</span>):
+            <span class="kw">return</span> <span class="str">"origin"</span>
+        <span class="kw">case</span> Point(x=<span class="num">0</span>, y=y):
+            <span class="kw">return</span> <span class="str">f"Y axis at {y}"</span>
+        <span class="kw">case</span> Point(x=x, y=<span class="num">0</span>):
+            <span class="kw">return</span> <span class="str">f"X axis at {x}"</span>
+        <span class="kw">case</span> _:
+            <span class="kw">return</span> <span class="str">"Quadrant"</span></div>
 </div>
 
 <div class="card animate-in">
-    <h3>for Loop</h3>
-    <div class="code-block">
-<span class="cm"># Iterasi sederhana</span>
-<span class="kw">for</span> fruit <span class="kw">in</span> [<span class="str">"apple"</span>, <span class="str">"banana"</span>, <span class="str">"cherry"</span>]:
-    <span class="fn">print</span>(fruit)
+<h3>Loops &amp; Generators</h3>
+<div class="code-block"><span class="cm"># enumerate — indeks + nilai</span>
+fruits = [<span class="str">"apple"</span>, <span class="str">"banana"</span>, <span class="str">"cherry"</span>]
+<span class="kw">for</span> i, fruit <span class="kw">in</span> <span class="fn">enumerate</span>(fruits, start=<span class="num">1</span>):
+    <span class="fn">print</span>(<span class="str">f"{i}. {fruit}"</span>)
 
-<span class="cm"># range(start, stop, step)</span>
-<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):          <span class="cm"># 0, 1, 2, 3, 4</span>
-    <span class="fn">print</span>(i)
-<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">2</span>, <span class="num">10</span>, <span class="num">2</span>):  <span class="cm"># 2, 4, 6, 8</span>
-    <span class="fn">print</span>(i)
-
-<span class="cm"># enumerate — index + value</span>
-<span class="kw">for</span> i, name <span class="kw">in</span> <span class="fn">enumerate</span>([<span class="str">"a"</span>, <span class="str">"b"</span>, <span class="str">"c"</span>], start=<span class="num">1</span>):
-    <span class="fn">print</span>(<span class="str">f"</span>{i}<span class="str">. </span>{name}<span class="str">"</span>)  <span class="cm"># 1. a, 2. b, 3. c</span>
-
-<span class="cm"># zip — iterasi paralel</span>
+<span class="cm"># zip — gabungkan iterables</span>
 names = [<span class="str">"Alice"</span>, <span class="str">"Bob"</span>]
 scores = [<span class="num">90</span>, <span class="num">85</span>]
 <span class="kw">for</span> name, score <span class="kw">in</span> <span class="fn">zip</span>(names, scores):
-    <span class="fn">print</span>(<span class="str">f"</span>{name}<span class="str">: </span>{score}<span class="str">"</span>)
+    <span class="fn">print</span>(<span class="str">f"{name}: {score}"</span>)
 
-<span class="cm"># for/else — else dieksekusi jika loop selesai tanpa break</span>
-<span class="kw">for</span> n <span class="kw">in</span> <span class="fn">range</span>(<span class="num">2</span>, <span class="num">10</span>):
-    <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">2</span>, n):
-        <span class="kw">if</span> n % x == <span class="num">0</span>:
-            <span class="kw">break</span>
-    <span class="kw">else</span>:
-        <span class="fn">print</span>(<span class="str">f"</span>{n}<span class="str"> is prime"</span>)
-    </div>
-</div>
+<span class="cm"># Generator expression — lazy, hemat memori</span>
+total = <span class="fn">sum</span>(x**<span class="num">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1_000_000</span>))
 
-<div class="card animate-in">
-    <h3>while Loop</h3>
-    <div class="code-block">
-<span class="cm"># while dasar</span>
-count = <span class="num">0</span>
-<span class="kw">while</span> count < <span class="num">5</span>:
-    <span class="fn">print</span>(count)
-    count += <span class="num">1</span>
+<span class="cm"># Dict comprehension &amp; set comprehension</span>
+word_len = {word: <span class="fn">len</span>(word) <span class="kw">for</span> word <span class="kw">in</span> [<span class="str">"hello"</span>, <span class="str">"world"</span>]}
+unique_lens = {<span class="fn">len</span>(word) <span class="kw">for</span> word <span class="kw">in</span> [<span class="str">"hi"</span>, <span class="str">"bye"</span>, <span class="str">"ok"</span>]}
 
-<span class="cm"># while/else</span>
-<span class="kw">while</span> count > <span class="num">0</span>:
-    count -= <span class="num">1</span>
-<span class="kw">else</span>:
-    <span class="fn">print</span>(<span class="str">"Loop selesai normal (tanpa break)"</span>)
-
-<span class="cm"># Infinite loop dengan break</span>
-<span class="kw">while</span> <span class="kw">True</span>:
-    line = <span class="fn">input</span>(<span class="str">"Enter (q to quit): "</span>)
-    <span class="kw">if</span> line == <span class="str">"q"</span>:
-        <span class="kw">break</span>
-    <span class="fn">print</span>(<span class="str">f"You said: </span>{line}<span class="str">"</span>)
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>match / case (Python 3.10+)</h3>
-    <p>Structural pattern matching — jauh lebih powerful dari switch/case biasa. Bisa match structure, type, dan guard conditions.</p>
-    <div class="code-block">
-<span class="cm"># Basic matching</span>
-<span class="kw">match</span> command:
-    <span class="kw">case</span> <span class="str">"quit"</span>:
-        <span class="fn">print</span>(<span class="str">"Exiting..."</span>)
-    <span class="kw">case</span> <span class="str">"hello"</span>:
-        <span class="fn">print</span>(<span class="str">"Hi there!"</span>)
-    <span class="kw">case</span> _:
-        <span class="fn">print</span>(<span class="str">"Unknown command"</span>)
-
-<span class="cm"># Structural matching</span>
-<span class="kw">match</span> point:
-    <span class="kw">case</span> (<span class="num">0</span>, <span class="num">0</span>):
-        <span class="fn">print</span>(<span class="str">"Origin"</span>)
-    <span class="kw">case</span> (x, <span class="num">0</span>):
-        <span class="fn">print</span>(<span class="str">f"On x-axis at </span>{x}<span class="str">"</span>)
-    <span class="kw">case</span> (<span class="num">0</span>, y):
-        <span class="fn">print</span>(<span class="str">f"On y-axis at </span>{y}<span class="str">"</span>)
-    <span class="kw">case</span> (x, y) <span class="kw">if</span> x == y:
-        <span class="fn">print</span>(<span class="str">f"On diagonal at </span>{x}<span class="str">"</span>)
-    <span class="kw">case</span> (x, y):
-        <span class="fn">print</span>(<span class="str">f"At </span>{x}<span class="str">, </span>{y}<span class="str">"</span>)
-
-<span class="cm"># Type matching</span>
-<span class="kw">match</span> event:
-    <span class="kw">case</span> <span class="type">Click</span>(position=(x, y)):
-        <span class="fn">print</span>(<span class="str">f"Click at </span>{x}<span class="str">,</span>{y}<span class="str">"</span>)
-    <span class="kw">case</span> <span class="type">KeyPress</span>(key=<span class="str">"q"</span>):
-        quit()
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>Comprehensions</h3>
-    <div class="code-block">
-<span class="cm"># List comprehension</span>
-squares = [x**<span class="num">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>)]
-
-<span class="cm"># Dengan kondisi</span>
-evens = [x <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">20</span>) <span class="kw">if</span> x % <span class="num">2</span> == <span class="num">0</span>]
-
-<span class="cm"># Nested comprehension</span>
-matrix = [[<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>], [<span class="num">4</span>,<span class="num">5</span>,<span class="num">6</span>], [<span class="num">7</span>,<span class="num">8</span>,<span class="num">9</span>]]
-flat = [x <span class="kw">for</span> row <span class="kw">in</span> matrix <span class="kw">for</span> x <span class="kw">in</span> row]
-<span class="cm"># [1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
-
-<span class="cm"># Dict comprehension</span>
-word_lengths = {w: <span class="fn">len</span>(w) <span class="kw">for</span> w <span class="kw">in</span> [<span class="str">"hello"</span>, <span class="str">"world"</span>]}
-
-<span class="cm"># Set comprehension</span>
-unique_lengths = {<span class="fn">len</span>(w) <span class="kw">for</span> w <span class="kw">in</span> [<span class="str">"hi"</span>, <span class="str">"no"</span>, <span class="str">"yes"</span>]}
-<span class="cm"># {2, 3}</span>
-
-<span class="cm"># Generator expression (lazy evaluation, hemat memori)</span>
-total = <span class="fn">sum</span>(x**<span class="num">2</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1000000</span>))
-    </div>
-</div>
-
-<!-- ==================== 6. FUNCTIONS ==================== -->
-<h2 class="animate-in">6. Functions</h2>
-
-<div class="card animate-in">
-    <h3>Definisi Fungsi & Return</h3>
-    <div class="code-block">
-<span class="cm"># Fungsi dasar</span>
-<span class="kw">def</span> <span class="fn">greet</span>(name: <span class="type">str</span>) -> <span class="type">str</span>:
-    <span class="str">"""Memberikan salam kepada user."""</span>
-    <span class="kw">return</span> <span class="str">f"Hello, </span>{name}<span class="str">!"</span>
-
-<span class="cm"># Multiple return values (tuple)</span>
-<span class="kw">def</span> <span class="fn">divmod_custom</span>(a: <span class="type">int</span>, b: <span class="type">int</span>) -> <span class="type">tuple</span>[<span class="type">int</span>, <span class="type">int</span>]:
-    <span class="kw">return</span> a // b, a % b
-
-quotient, remainder = <span class="fn">divmod_custom</span>(<span class="num">17</span>, <span class="num">5</span>)
-
-<span class="cm"># Docstring conventions (Google style)</span>
-<span class="kw">def</span> <span class="fn">calculate_area</span>(length: <span class="type">float</span>, width: <span class="type">float</span>) -> <span class="type">float</span>:
-    <span class="str">"""Calculate the area of a rectangle.
-
-    Args:
-        length: The length of the rectangle.
-        width: The width of the rectangle.
-
-    Returns:
-        The area as a float.
-
-    Raises:
-        ValueError: If length or width is negative.
-    """</span>
-    <span class="kw">if</span> length < <span class="num">0</span> <span class="kw">or</span> width < <span class="num">0</span>:
-        <span class="kw">raise</span> <span class="type">ValueError</span>(<span class="str">"Dimensions must be positive"</span>)
-    <span class="kw">return</span> length * width
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>Default Arguments, *args, **kwargs</h3>
-    <div class="code-block">
-<span class="cm"># Default arguments</span>
-<span class="kw">def</span> <span class="fn">connect</span>(host: <span class="type">str</span> = <span class="str">"localhost"</span>, port: <span class="type">int</span> = <span class="num">5432</span>) -> <span class="type">str</span>:
-    <span class="kw">return</span> <span class="str">f"</span>{host}<span class="str">:</span>{port}<span class="str">"</span>
-
-<span class="fn">connect</span>()                    <span class="cm"># localhost:5432</span>
-<span class="fn">connect</span>(<span class="str">"db.example.com"</span>)    <span class="cm"># db.example.com:5432</span>
-<span class="fn">connect</span>(port=<span class="num">3306</span>)           <span class="cm"># localhost:3306</span>
-
-<span class="cm"># *args — variadic positional arguments</span>
-<span class="kw">def</span> <span class="fn">sum_all</span>(*args: <span class="type">int</span>) -> <span class="type">int</span>:
-    <span class="kw">return</span> <span class="fn">sum</span>(args)
-
-<span class="fn">sum_all</span>(<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>)  <span class="cm"># 6</span>
-
-<span class="cm"># **kwargs — variadic keyword arguments</span>
-<span class="kw">def</span> <span class="fn">build_profile</span>(**kwargs) -> <span class="type">dict</span>:
-    <span class="kw">return</span> kwargs
-
-<span class="fn">build_profile</span>(name=<span class="str">"Alice"</span>, age=<span class="num">30</span>, role=<span class="str">"dev"</span>)
-<span class="cm"># {'name': 'Alice', 'age': 30, 'role': 'dev'}</span>
-
-<span class="cm"># Kombinasi (urutan harus benar!)</span>
-<span class="kw">def</span> <span class="fn">func</span>(pos, /, normal, *, kw_only, **kwargs):
-    <span class="kw">pass</span>
-<span class="cm"># pos      — positional-only (sebelum /)</span>
-<span class="cm"># normal   — normal (positional atau keyword)</span>
-<span class="cm"># kw_only  — keyword-only (setelah *)</span>
-<span class="cm"># **kwargs — remaining keyword args</span>
-
-<span class="cm"># PERINGATAN: Mutable default argument!</span>
-<span class="kw">def</span> <span class="fn">bad</span>(items=[]):   <span class="cm"># BUG! list di-share antar calls</span>
-    items.<span class="fn">append</span>(<span class="num">1</span>)
-    <span class="kw">return</span> items
-
-<span class="kw">def</span> <span class="fn">good</span>(items=<span class="kw">None</span>):  <span class="cm"># Solusi: gunakan None</span>
-    <span class="kw">if</span> items <span class="kw">is</span> <span class="kw">None</span>:
-        items = []
-    items.<span class="fn">append</span>(<span class="num">1</span>)
-    <span class="kw">return</span> items
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>Lambda Functions</h3>
-    <div class="code-block">
-<span class="cm"># Lambda — anonymous function, satu ekspresi</span>
-square = <span class="kw">lambda</span> x: x ** <span class="num">2</span>
-add = <span class="kw">lambda</span> a, b: a + b
-
-<span class="cm"># Sering digunakan dengan higher-order functions</span>
-names = [<span class="str">"Charlie"</span>, <span class="str">"Alice"</span>, <span class="str">"Bob"</span>]
-<span class="fn">sorted</span>(names, key=<span class="kw">lambda</span> n: <span class="fn">len</span>(n))  <span class="cm"># sort by length</span>
-
-students = [(<span class="str">"Alice"</span>, <span class="num">90</span>), (<span class="str">"Bob"</span>, <span class="num">85</span>), (<span class="str">"Charlie"</span>, <span class="num">92</span>)]
-<span class="fn">sorted</span>(students, key=<span class="kw">lambda</span> s: s[<span class="num">1</span>], reverse=<span class="kw">True</span>)
-
-<span class="cm"># map, filter, reduce</span>
-nums = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>]
-doubled = <span class="fn">list</span>(<span class="fn">map</span>(<span class="kw">lambda</span> x: x * <span class="num">2</span>, nums))
-evens = <span class="fn">list</span>(<span class="fn">filter</span>(<span class="kw">lambda</span> x: x % <span class="num">2</span> == <span class="num">0</span>, nums))
-
-<span class="kw">from</span> functools <span class="kw">import</span> reduce
-total = <span class="fn">reduce</span>(<span class="kw">lambda</span> a, b: a + b, nums)  <span class="cm"># 15</span>
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>Decorators</h3>
-    <p>Decorator adalah fungsi yang membungkus fungsi lain untuk menambahkan fungsionalitas tanpa mengubah kode aslinya. Implementasi dari <strong>Higher-Order Function</strong> pattern.</p>
-    <div class="code-block">
-<span class="kw">import</span> functools
-<span class="kw">import</span> time
-
-<span class="cm"># Decorator untuk mengukur waktu eksekusi</span>
-<span class="kw">def</span> <span class="fn">timer</span>(func):
-    @functools.<span class="fn">wraps</span>(func)
-    <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
-        start = time.<span class="fn">perf_counter</span>()
-        result = <span class="fn">func</span>(*args, **kwargs)
-        elapsed = time.<span class="fn">perf_counter</span>() - start
-        <span class="fn">print</span>(<span class="str">f"</span>{func.__name__}<span class="str"> took </span>{elapsed:<span class="num">.4f</span>}<span class="str">s"</span>)
-        <span class="kw">return</span> result
-    <span class="kw">return</span> wrapper
-
-@timer
-<span class="kw">def</span> <span class="fn">slow_function</span>():
-    time.<span class="fn">sleep</span>(<span class="num">1</span>)
-    <span class="kw">return</span> <span class="str">"done"</span>
-
-<span class="cm"># Decorator dengan argument</span>
-<span class="kw">def</span> <span class="fn">retry</span>(max_attempts: <span class="type">int</span> = <span class="num">3</span>):
-    <span class="kw">def</span> <span class="fn">decorator</span>(func):
-        @functools.<span class="fn">wraps</span>(func)
-        <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
-            <span class="kw">for</span> attempt <span class="kw">in</span> <span class="fn">range</span>(max_attempts):
-                <span class="kw">try</span>:
-                    <span class="kw">return</span> <span class="fn">func</span>(*args, **kwargs)
-                <span class="kw">except</span> <span class="type">Exception</span> <span class="kw">as</span> e:
-                    <span class="kw">if</span> attempt == max_attempts - <span class="num">1</span>:
-                        <span class="kw">raise</span>
-                    <span class="fn">print</span>(<span class="str">f"Retry </span>{attempt + <span class="num">1</span>}<span class="str">: </span>{e}<span class="str">"</span>)
-        <span class="kw">return</span> wrapper
-    <span class="kw">return</span> decorator
-
-@retry(max_attempts=<span class="num">5</span>)
-<span class="kw">def</span> <span class="fn">fetch_data</span>(url):
-    ...
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>Generators (yield)</h3>
-    <p>Generator menghasilkan nilai satu per satu (lazy evaluation) — sangat hemat memori untuk data besar.</p>
-    <div class="code-block">
-<span class="cm"># Generator function</span>
+<span class="cm"># Generator function dengan yield</span>
 <span class="kw">def</span> <span class="fn">fibonacci</span>():
     a, b = <span class="num">0</span>, <span class="num">1</span>
     <span class="kw">while</span> <span class="kw">True</span>:
         <span class="kw">yield</span> a
         a, b = b, a + b
 
-<span class="cm"># Menggunakan generator</span>
 fib = <span class="fn">fibonacci</span>()
-<span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>):
-    <span class="fn">print</span>(<span class="fn">next</span>(fib), end=<span class="str">" "</span>)
-<span class="cm"># 0 1 1 2 3 5 8 13 21 34</span>
-
-<span class="cm"># Generator untuk membaca file besar line by line</span>
-<span class="kw">def</span> <span class="fn">read_large_file</span>(path: <span class="type">str</span>):
-    <span class="kw">with</span> <span class="fn">open</span>(path) <span class="kw">as</span> f:
-        <span class="kw">for</span> line <span class="kw">in</span> f:
-            <span class="kw">yield</span> line.<span class="fn">strip</span>()
-
-<span class="cm"># yield from — delegate ke sub-generator</span>
-<span class="kw">def</span> <span class="fn">chain</span>(*iterables):
-    <span class="kw">for</span> it <span class="kw">in</span> iterables:
-        <span class="kw">yield from</span> it
-
-<span class="fn">list</span>(<span class="fn">chain</span>([<span class="num">1</span>,<span class="num">2</span>], [<span class="num">3</span>,<span class="num">4</span>]))  <span class="cm"># [1, 2, 3, 4]</span>
-    </div>
+<span class="fn">print</span>([<span class="fn">next</span>(fib) <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>)])
+<span class="cm"># [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]</span></div>
 </div>
 
-<!-- ==================== 7. CLASS & OOP ==================== -->
-<h2 class="animate-in">7. Class & OOP</h2>
+<!-- ==================== 5. FUNCTIONS ==================== -->
+<h2 class="animate-in">5. Functions</h2>
 
 <div class="card animate-in">
-    <h3>Class Dasar</h3>
-    <div class="code-block">
-<span class="kw">class</span> <span class="type">User</span>:
-    <span class="str">"""Representasi user dalam sistem."""</span>
+<h3>def, *args, **kwargs, Lambda</h3>
+<div class="code-block"><span class="cm"># Default args, *args, **kwargs</span>
+<span class="kw">def</span> <span class="fn">create_user</span>(name: <span class="type">str</span>, age: <span class="type">int</span> = <span class="num">18</span>, *roles, **opts):
+    <span class="fn">print</span>(<span class="str">f"User: {name}, age={age}"</span>)
+    <span class="fn">print</span>(<span class="str">f"Roles: {roles}"</span>)       <span class="cm"># tuple</span>
+    <span class="fn">print</span>(<span class="str">f"Options: {opts}"</span>)     <span class="cm"># dict</span>
 
-    <span class="cm"># Class variable — shared by all instances</span>
-    user_count: <span class="type">int</span> = <span class="num">0</span>
+<span class="fn">create_user</span>(<span class="str">"Ali"</span>, <span class="num">25</span>, <span class="str">"admin"</span>, <span class="str">"editor"</span>, active=<span class="kw">True</span>, theme=<span class="str">"dark"</span>)
 
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: <span class="type">str</span>, email: <span class="type">str</span>):
-        <span class="cm"># Instance variables — unique per instance</span>
-        <span class="kw">self</span>.name = name
-        <span class="kw">self</span>.email = email
-        <span class="kw">self</span>._active = <span class="kw">True</span>     <span class="cm"># convention: "protected"</span>
-        <span class="kw">self</span>.__secret = <span class="str">"xyz"</span>   <span class="cm"># name mangling: _User__secret</span>
-        User.user_count += <span class="num">1</span>
+<span class="cm"># Keyword-only args (setelah *)</span>
+<span class="kw">def</span> <span class="fn">connect</span>(host: <span class="type">str</span>, *, port: <span class="type">int</span> = <span class="num">5432</span>, timeout: <span class="type">int</span> = <span class="num">30</span>):
+    <span class="kw">return</span> <span class="str">f"{host}:{port}"</span>
 
-    <span class="kw">def</span> <span class="fn">greet</span>(<span class="kw">self</span>) -> <span class="type">str</span>:
-        <span class="kw">return</span> <span class="str">f"Hello, I'm </span>{<span class="kw">self</span>.name}<span class="str">"</span>
+<span class="fn">connect</span>(<span class="str">"localhost"</span>, port=<span class="num">5433</span>)  <span class="cm"># port harus keyword</span>
 
-    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="kw">self</span>) -> <span class="type">str</span>:
-        <span class="kw">return</span> <span class="str">f"User(</span>{<span class="kw">self</span>.name}<span class="str">)"</span>
+<span class="cm"># Lambda — anonymous single-expression function</span>
+square = <span class="kw">lambda</span> x: x**<span class="num">2</span>
+add = <span class="kw">lambda</span> x, y: x + y
+sorter = <span class="fn">sorted</span>([(<span class="str">"Alice"</span>, <span class="num">90</span>), (<span class="str">"Bob"</span>, <span class="num">85</span>)], key=<span class="kw">lambda</span> t: t[<span class="num">1</span>], reverse=<span class="kw">True</span>)
 
-    <span class="kw">def</span> <span class="fn">__repr__</span>(<span class="kw">self</span>) -> <span class="type">str</span>:
-        <span class="kw">return</span> <span class="str">f"User(name=</span>{<span class="kw">self</span>.name!r}<span class="str">, email=</span>{<span class="kw">self</span>.email!r}<span class="str">)"</span>
+<span class="cm"># Closures</span>
+<span class="kw">def</span> <span class="fn">make_multiplier</span>(n: <span class="type">int</span>):
+    <span class="kw">def</span> <span class="fn">multiplier</span>(x):
+        <span class="kw">return</span> x * n  <span class="cm"># n di-capture dari enclosing scope</span>
+    <span class="kw">return</span> multiplier
 
-<span class="cm"># Penggunaan</span>
-alice = User(<span class="str">"Alice"</span>, <span class="str">"alice@mail.com"</span>)
-<span class="fn">print</span>(alice.<span class="fn">greet</span>())      <span class="cm"># Hello, I'm Alice</span>
-<span class="fn">print</span>(User.user_count)    <span class="cm"># 1</span>
-    </div>
+triple = <span class="fn">make_multiplier</span>(<span class="num">3</span>)
+<span class="fn">print</span>(<span class="fn">triple</span>(<span class="num">7</span>))  <span class="cm"># 21</span></div>
 </div>
 
 <div class="card animate-in">
-    <h3>Inheritance & super()</h3>
-    <div class="code-block">
-<span class="kw">class</span> <span class="type">Animal</span>:
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: <span class="type">str</span>):
-        <span class="kw">self</span>.name = name
+<h3>Decorators &amp; functools</h3>
+<div class="code-block"><span class="kw">import</span> functools
+<span class="kw">import</span> time
 
-    <span class="kw">def</span> <span class="fn">speak</span>(<span class="kw">self</span>) -> <span class="type">str</span>:
-        <span class="kw">raise</span> <span class="type">NotImplementedError</span>
+<span class="cm"># Decorator sederhana</span>
+<span class="kw">def</span> <span class="fn">timer</span>(func):
+    @functools.<span class="fn">wraps</span>(func)  <span class="cm"># preserve metadata</span>
+    <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
+        t0 = time.<span class="fn">perf_counter</span>()
+        result = <span class="fn">func</span>(*args, **kwargs)
+        dt = time.<span class="fn">perf_counter</span>() - t0
+        <span class="fn">print</span>(<span class="str">f"{func.__name__} took {dt:.4f}s"</span>)
+        <span class="kw">return</span> result
+    <span class="kw">return</span> wrapper
 
-<span class="kw">class</span> <span class="type">Dog</span>(<span class="type">Animal</span>):
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name: <span class="type">str</span>, breed: <span class="type">str</span>):
-        <span class="fn">super</span>().<span class="fn">__init__</span>(name)  <span class="cm"># panggil parent __init__</span>
-        <span class="kw">self</span>.breed = breed
+@<span class="fn">timer</span>
+<span class="kw">def</span> <span class="fn">slow_function</span>(n: <span class="type">int</span>) -> <span class="type">int</span>:
+    <span class="kw">return</span> <span class="fn">sum</span>(<span class="fn">range</span>(n))
 
-    <span class="kw">def</span> <span class="fn">speak</span>(<span class="kw">self</span>) -> <span class="type">str</span>:
-        <span class="kw">return</span> <span class="str">f"</span>{<span class="kw">self</span>.name}<span class="str"> says Woof!"</span>
+<span class="cm"># Decorator dengan argumen (factory)</span>
+<span class="kw">def</span> <span class="fn">retry</span>(times=<span class="num">3</span>, delay=<span class="num">1.0</span>):
+    <span class="kw">def</span> <span class="fn">decorator</span>(func):
+        @functools.<span class="fn">wraps</span>(func)
+        <span class="kw">def</span> <span class="fn">wrapper</span>(*args, **kwargs):
+            <span class="kw">for</span> attempt <span class="kw">in</span> <span class="fn">range</span>(times):
+                <span class="kw">try</span>:
+                    <span class="kw">return</span> <span class="fn">func</span>(*args, **kwargs)
+                <span class="kw">except</span> Exception <span class="kw">as</span> e:
+                    <span class="kw">if</span> attempt == times - <span class="num">1</span>: <span class="kw">raise</span>
+                    time.<span class="fn">sleep</span>(delay)
+        <span class="kw">return</span> wrapper
+    <span class="kw">return</span> decorator
 
-<span class="kw">class</span> <span class="type">Cat</span>(<span class="type">Animal</span>):
-    <span class="kw">def</span> <span class="fn">speak</span>(<span class="kw">self</span>) -> <span class="type">str</span>:
-        <span class="kw">return</span> <span class="str">f"</span>{<span class="kw">self</span>.name}<span class="str"> says Meow!"</span>
+@<span class="fn">retry</span>(times=<span class="num">3</span>, delay=<span class="num">0.5</span>)
+<span class="kw">def</span> <span class="fn">fetch_data</span>(url: <span class="type">str</span>): ...
 
-<span class="cm"># Polymorphism</span>
-<span class="kw">def</span> <span class="fn">animal_sound</span>(animal: <span class="type">Animal</span>):
-    <span class="fn">print</span>(animal.<span class="fn">speak</span>())
+<span class="cm"># lru_cache — memoization</span>
+@functools.<span class="fn">lru_cache</span>(maxsize=<span class="num">128</span>)
+<span class="kw">def</span> <span class="fn">fib</span>(n: <span class="type">int</span>) -> <span class="type">int</span>:
+    <span class="kw">if</span> n &lt; <span class="num">2</span>: <span class="kw">return</span> n
+    <span class="kw">return</span> <span class="fn">fib</span>(n-<span class="num">1</span>) + <span class="fn">fib</span>(n-<span class="num">2</span>)
 
-<span class="fn">animal_sound</span>(Dog(<span class="str">"Rex"</span>, <span class="str">"German Shepherd"</span>))  <span class="cm"># Rex says Woof!</span>
-<span class="fn">animal_sound</span>(Cat(<span class="str">"Whiskers"</span>))               <span class="cm"># Whiskers says Meow!</span>
-    </div>
+<span class="cm"># functools.partial — pre-fill arguments</span>
+<span class="kw">from</span> functools <span class="kw">import</span> partial
+log_error = <span class="fn">partial</span>(<span class="fn">print</span>, <span class="str">"[ERROR]"</span>)
+<span class="fn">log_error</span>(<span class="str">"Something went wrong"</span>)  <span class="cm"># [ERROR] Something went wrong</span></div>
 </div>
 
-<div class="card animate-in">
-    <h3>Multiple Inheritance & MRO</h3>
-    <div class="code-block">
-<span class="kw">class</span> <span class="type">Flyable</span>:
-    <span class="kw">def</span> <span class="fn">fly</span>(<span class="kw">self</span>):
-        <span class="kw">return</span> <span class="str">"Flying!"</span>
-
-<span class="kw">class</span> <span class="type">Swimmable</span>:
-    <span class="kw">def</span> <span class="fn">swim</span>(<span class="kw">self</span>):
-        <span class="kw">return</span> <span class="str">"Swimming!"</span>
-
-<span class="kw">class</span> <span class="type">Duck</span>(<span class="type">Animal</span>, <span class="type">Flyable</span>, <span class="type">Swimmable</span>):
-    <span class="kw">def</span> <span class="fn">speak</span>(<span class="kw">self</span>) -> <span class="type">str</span>:
-        <span class="kw">return</span> <span class="str">"Quack!"</span>
-
-donald = Duck(<span class="str">"Donald"</span>)
-donald.<span class="fn">fly</span>()    <span class="cm"># Flying!</span>
-donald.<span class="fn">swim</span>()   <span class="cm"># Swimming!</span>
-
-<span class="cm"># MRO — Method Resolution Order (C3 linearization)</span>
-<span class="fn">print</span>(Duck.<span class="fn">mro</span>())
-<span class="cm"># [Duck, Animal, Flyable, Swimmable, object]</span>
-
-<span class="cm"># Diamond problem — Python menyelesaikannya dengan MRO</span>
-<span class="kw">class</span> <span class="type">A</span>:
-    <span class="kw">def</span> <span class="fn">method</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="str">"A"</span>
-<span class="kw">class</span> <span class="type">B</span>(<span class="type">A</span>):
-    <span class="kw">def</span> <span class="fn">method</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="str">"B"</span>
-<span class="kw">class</span> <span class="type">C</span>(<span class="type">A</span>):
-    <span class="kw">def</span> <span class="fn">method</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="str">"C"</span>
-<span class="kw">class</span> <span class="type">D</span>(<span class="type">B</span>, <span class="type">C</span>):
-    <span class="kw">pass</span>
-<span class="fn">print</span>(D().<span class="fn">method</span>())  <span class="cm"># "B" — MRO: D -> B -> C -> A</span>
-    </div>
-</div>
+<!-- ==================== 6. OOP ==================== -->
+<h2 class="animate-in">6. OOP in Python</h2>
 
 <div class="card animate-in">
-    <h3>@property, @staticmethod, @classmethod</h3>
-    <div class="code-block">
-<span class="kw">class</span> <span class="type">Circle</span>:
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, radius: <span class="type">float</span>):
-        <span class="kw">self</span>._radius = radius
+<h3>class, Inheritance, Dunder Methods</h3>
+<div class="code-block"><span class="kw">from</span> typing <span class="kw">import</span> Iterator
 
-    @<span class="fn">property</span>
-    <span class="kw">def</span> <span class="fn">radius</span>(<span class="kw">self</span>) -> <span class="type">float</span>:
-        <span class="kw">return</span> <span class="kw">self</span>._radius
-
-    @radius.<span class="fn">setter</span>
-    <span class="kw">def</span> <span class="fn">radius</span>(<span class="kw">self</span>, value: <span class="type">float</span>):
-        <span class="kw">if</span> value < <span class="num">0</span>:
-            <span class="kw">raise</span> <span class="type">ValueError</span>(<span class="str">"Radius must be positive"</span>)
-        <span class="kw">self</span>._radius = value
-
-    @<span class="fn">property</span>
-    <span class="kw">def</span> <span class="fn">area</span>(<span class="kw">self</span>) -> <span class="type">float</span>:
-        <span class="kw">return</span> <span class="num">3.14159</span> * <span class="kw">self</span>._radius ** <span class="num">2</span>
-
-    @<span class="fn">staticmethod</span>
-    <span class="kw">def</span> <span class="fn">is_valid_radius</span>(value: <span class="type">float</span>) -> <span class="type">bool</span>:
-        <span class="str">"""Tidak perlu self atau cls."""</span>
-        <span class="kw">return</span> value > <span class="num">0</span>
-
-    @<span class="fn">classmethod</span>
-    <span class="kw">def</span> <span class="fn">from_diameter</span>(cls, diameter: <span class="type">float</span>) -> <span class="str">"Circle"</span>:
-        <span class="str">"""Factory method — alternative constructor."""</span>
-        <span class="kw">return</span> <span class="fn">cls</span>(diameter / <span class="num">2</span>)
-
-c = Circle.<span class="fn">from_diameter</span>(<span class="num">10</span>)  <span class="cm"># radius = 5</span>
-<span class="fn">print</span>(c.area)               <span class="cm"># 78.53975 (accessed like attribute)</span>
-c.radius = <span class="num">7</span>                <span class="cm"># setter called, validation runs</span>
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>Dunder Methods (Magic Methods)</h3>
-    <div class="code-block">
 <span class="kw">class</span> <span class="type">Vector</span>:
+    <span class="str">"""2D Vector dengan operator overloading."""</span>
+
     <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, x: <span class="type">float</span>, y: <span class="type">float</span>):
         <span class="kw">self</span>.x = x
         <span class="kw">self</span>.y = y
 
-    <span class="kw">def</span> <span class="fn">__repr__</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="str">f"Vector(</span>{<span class="kw">self</span>.x}<span class="str">, </span>{<span class="kw">self</span>.y}<span class="str">)"</span>
-    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="kw">self</span>):  <span class="kw">return</span> <span class="str">f"(</span>{<span class="kw">self</span>.x}<span class="str">, </span>{<span class="kw">self</span>.y}<span class="str">)"</span>
+    <span class="kw">def</span> <span class="fn">__repr__</span>(<span class="kw">self</span>) -> <span class="type">str</span>:
+        <span class="kw">return</span> <span class="str">f"Vector({self.x}, {self.y})"</span>
 
-    <span class="cm"># Arithmetic</span>
-    <span class="kw">def</span> <span class="fn">__add__</span>(<span class="kw">self</span>, other):  <span class="kw">return</span> Vector(<span class="kw">self</span>.x + other.x, <span class="kw">self</span>.y + other.y)
-    <span class="kw">def</span> <span class="fn">__sub__</span>(<span class="kw">self</span>, other):  <span class="kw">return</span> Vector(<span class="kw">self</span>.x - other.x, <span class="kw">self</span>.y - other.y)
-    <span class="kw">def</span> <span class="fn">__mul__</span>(<span class="kw">self</span>, scalar): <span class="kw">return</span> Vector(<span class="kw">self</span>.x * scalar, <span class="kw">self</span>.y * scalar)
-    <span class="kw">def</span> <span class="fn">__abs__</span>(<span class="kw">self</span>):         <span class="kw">return</span> (<span class="kw">self</span>.x**<span class="num">2</span> + <span class="kw">self</span>.y**<span class="num">2</span>) ** <span class="num">0.5</span>
+    <span class="kw">def</span> <span class="fn">__add__</span>(<span class="kw">self</span>, other: <span class="str">"Vector"</span>) -> <span class="str">"Vector"</span>:
+        <span class="kw">return</span> Vector(<span class="kw">self</span>.x + other.x, <span class="kw">self</span>.y + other.y)
 
-    <span class="cm"># Comparison</span>
-    <span class="kw">def</span> <span class="fn">__eq__</span>(<span class="kw">self</span>, other):   <span class="kw">return</span> <span class="kw">self</span>.x == other.x <span class="kw">and</span> <span class="kw">self</span>.y == other.y
-    <span class="kw">def</span> <span class="fn">__lt__</span>(<span class="kw">self</span>, other):   <span class="kw">return</span> <span class="fn">abs</span>(<span class="kw">self</span>) < <span class="fn">abs</span>(other)
+    <span class="kw">def</span> <span class="fn">__mul__</span>(<span class="kw">self</span>, scalar: <span class="type">float</span>) -> <span class="str">"Vector"</span>:
+        <span class="kw">return</span> Vector(<span class="kw">self</span>.x * scalar, <span class="kw">self</span>.y * scalar)
 
-    <span class="cm"># Container</span>
-    <span class="kw">def</span> <span class="fn">__len__</span>(<span class="kw">self</span>):         <span class="kw">return</span> <span class="num">2</span>
-    <span class="kw">def</span> <span class="fn">__getitem__</span>(<span class="kw">self</span>, i): <span class="kw">return</span> (<span class="kw">self</span>.x, <span class="kw">self</span>.y)[i]
-    <span class="kw">def</span> <span class="fn">__iter__</span>(<span class="kw">self</span>):       <span class="kw">yield</span> <span class="kw">self</span>.x; <span class="kw">yield</span> <span class="kw">self</span>.y
+    <span class="kw">def</span> <span class="fn">__abs__</span>(<span class="kw">self</span>) -> <span class="type">float</span>:
+        <span class="kw">return</span> (<span class="kw">self</span>.x**<span class="num">2</span> + <span class="kw">self</span>.y**<span class="num">2</span>) ** <span class="num">0.5</span>
 
-    <span class="cm"># Hashable (untuk dict key / set)</span>
-    <span class="kw">def</span> <span class="fn">__hash__</span>(<span class="kw">self</span>):       <span class="kw">return</span> <span class="fn">hash</span>((<span class="kw">self</span>.x, <span class="kw">self</span>.y))
+    <span class="kw">def</span> <span class="fn">__bool__</span>(<span class="kw">self</span>) -> <span class="type">bool</span>:
+        <span class="kw">return</span> bool(<span class="fn">abs</span>(<span class="kw">self</span>))
+
+    <span class="kw">def</span> <span class="fn">__iter__</span>(<span class="kw">self</span>) -> Iterator[<span class="type">float</span>]:
+        <span class="kw">yield</span> <span class="kw">self</span>.x
+        <span class="kw">yield</span> <span class="kw">self</span>.y
 
 v1 = Vector(<span class="num">3</span>, <span class="num">4</span>)
 v2 = Vector(<span class="num">1</span>, <span class="num">2</span>)
-<span class="fn">print</span>(v1 + v2)        <span class="cm"># (4, 6)</span>
-<span class="fn">print</span>(<span class="fn">abs</span>(v1))         <span class="cm"># 5.0</span>
-<span class="fn">print</span>(v1 * <span class="num">3</span>)         <span class="cm"># (9, 12)</span>
-x, y = v1             <span class="cm"># unpacking via __iter__</span>
-    </div>
+<span class="fn">print</span>(v1 + v2)     <span class="cm"># Vector(4, 6)</span>
+<span class="fn">print</span>(v1 * <span class="num">2</span>)      <span class="cm"># Vector(6, 8)</span>
+<span class="fn">print</span>(<span class="fn">abs</span>(v1))     <span class="cm"># 5.0</span>
+x, y = v1           <span class="cm"># unpacking via __iter__</span></div>
 </div>
 
 <div class="card animate-in">
-    <h3>Abstract Classes (ABC)</h3>
-    <div class="code-block">
-<span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+<h3>dataclasses, @property, Protocols</h3>
+<div class="code-block"><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass, field
+<span class="kw">from</span> typing <span class="kw">import</span> Protocol
 
-<span class="kw">class</span> <span class="type">Shape</span>(ABC):
-    @<span class="fn">abstractmethod</span>
-    <span class="kw">def</span> <span class="fn">area</span>(<span class="kw">self</span>) -> <span class="type">float</span>:
-        <span class="str">"""Harus diimplementasikan oleh subclass."""</span>
-        ...
+<span class="cm"># dataclass (Python 3.7+) — otomatis __init__, __repr__, __eq__</span>
+@dataclass(frozen=<span class="kw">True</span>, order=<span class="kw">True</span>)
+<span class="kw">class</span> <span class="type">Employee</span>:
+    name: <span class="type">str</span>
+    department: <span class="type">str</span>
+    salary: <span class="type">float</span>
+    skills: <span class="type">list</span>[<span class="type">str</span>] = field(default_factory=<span class="fn">list</span>)
 
-    @<span class="fn">abstractmethod</span>
-    <span class="kw">def</span> <span class="fn">perimeter</span>(<span class="kw">self</span>) -> <span class="type">float</span>:
-        ...
+    @property
+    <span class="kw">def</span> <span class="fn">annual_bonus</span>(<span class="kw">self</span>) -> <span class="type">float</span>:
+        <span class="kw">return</span> <span class="kw">self</span>.salary * <span class="num">0.1</span>
 
-    <span class="kw">def</span> <span class="fn">describe</span>(<span class="kw">self</span>) -> <span class="type">str</span>:
-        <span class="str">"""Concrete method — bisa langsung dipakai."""</span>
-        <span class="kw">return</span> <span class="str">f"Area: </span>{<span class="kw">self</span>.<span class="fn">area</span>():<span class="num">.2f</span>}<span class="str">, Perimeter: </span>{<span class="kw">self</span>.<span class="fn">perimeter</span>():<span class="num">.2f</span>}<span class="str">"</span>
+emp = <span class="fn">Employee</span>(<span class="str">"Ali"</span>, <span class="str">"Engineering"</span>, <span class="num">80_000</span>)
+<span class="fn">print</span>(emp.annual_bonus)  <span class="cm"># 8000.0</span>
 
-<span class="kw">class</span> <span class="type">Rectangle</span>(<span class="type">Shape</span>):
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, w: <span class="type">float</span>, h: <span class="type">float</span>):
-        <span class="kw">self</span>.w, <span class="kw">self</span>.h = w, h
-
-    <span class="kw">def</span> <span class="fn">area</span>(<span class="kw">self</span>) -> <span class="type">float</span>:
-        <span class="kw">return</span> <span class="kw">self</span>.w * <span class="kw">self</span>.h
-
-    <span class="kw">def</span> <span class="fn">perimeter</span>(<span class="kw">self</span>) -> <span class="type">float</span>:
-        <span class="kw">return</span> <span class="num">2</span> * (<span class="kw">self</span>.w + <span class="kw">self</span>.h)
-
-<span class="cm"># Shape() → TypeError: Can't instantiate abstract class</span>
-r = Rectangle(<span class="num">5</span>, <span class="num">3</span>)
-<span class="fn">print</span>(r.<span class="fn">describe</span>())  <span class="cm"># Area: 15.00, Perimeter: 16.00</span>
-    </div>
-</div>
-
-<!-- ==================== 8. SOLID IN PYTHON ==================== -->
-<h2 class="animate-in">8. SOLID Principles in Python</h2>
-
-<div class="card animate-in">
-    <h3>S — Single Responsibility Principle</h3>
-    <p>Setiap class harus memiliki <strong>satu alasan untuk berubah</strong>.</p>
-    <div class="card-grid">
-        <div class="warn-box">
-            <strong>Buruk: Satu class banyak tanggung jawab</strong>
-            <div class="code-block">
-<span class="kw">class</span> <span class="type">User</span>:
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name, email):
-        <span class="kw">self</span>.name = name
-        <span class="kw">self</span>.email = email
-
-    <span class="kw">def</span> <span class="fn">save_to_db</span>(<span class="kw">self</span>):  <span class="cm"># persistence</span>
-        ...
-    <span class="kw">def</span> <span class="fn">send_email</span>(<span class="kw">self</span>):  <span class="cm"># notification</span>
-        ...
-    <span class="kw">def</span> <span class="fn">generate_report</span>(<span class="kw">self</span>):  <span class="cm"># reporting</span>
-        ...
-            </div>
-        </div>
-        <div class="success-box">
-            <strong>Baik: Pisahkan tanggung jawab</strong>
-            <div class="code-block">
-<span class="kw">class</span> <span class="type">User</span>:
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, name, email):
-        <span class="kw">self</span>.name = name
-        <span class="kw">self</span>.email = email
-
-<span class="kw">class</span> <span class="type">UserRepository</span>:
-    <span class="kw">def</span> <span class="fn">save</span>(<span class="kw">self</span>, user: User): ...
-
-<span class="kw">class</span> <span class="type">EmailService</span>:
-    <span class="kw">def</span> <span class="fn">send</span>(<span class="kw">self</span>, to, msg): ...
-
-<span class="kw">class</span> <span class="type">UserReport</span>:
-    <span class="kw">def</span> <span class="fn">generate</span>(<span class="kw">self</span>, user): ...
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>O — Open/Closed Principle</h3>
-    <p>Terbuka untuk ekstensi, tertutup untuk modifikasi.</p>
-    <div class="code-block">
-<span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
-
-<span class="kw">class</span> <span class="type">Discount</span>(ABC):
-    @<span class="fn">abstractmethod</span>
-    <span class="kw">def</span> <span class="fn">calculate</span>(<span class="kw">self</span>, price: <span class="type">float</span>) -> <span class="type">float</span>: ...
-
-<span class="kw">class</span> <span class="type">NoDiscount</span>(<span class="type">Discount</span>):
-    <span class="kw">def</span> <span class="fn">calculate</span>(<span class="kw">self</span>, price): <span class="kw">return</span> price
-
-<span class="kw">class</span> <span class="type">PercentageDiscount</span>(<span class="type">Discount</span>):
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, pct: <span class="type">float</span>):
-        <span class="kw">self</span>.pct = pct
-    <span class="kw">def</span> <span class="fn">calculate</span>(<span class="kw">self</span>, price): <span class="kw">return</span> price * (<span class="num">1</span> - <span class="kw">self</span>.pct)
-
-<span class="cm"># Tambah diskon baru TANPA ubah kode yang ada</span>
-<span class="kw">class</span> <span class="type">BuyOneGetOne</span>(<span class="type">Discount</span>):
-    <span class="kw">def</span> <span class="fn">calculate</span>(<span class="kw">self</span>, price): <span class="kw">return</span> price / <span class="num">2</span>
-
-<span class="kw">def</span> <span class="fn">checkout</span>(price: <span class="type">float</span>, discount: <span class="type">Discount</span>) -> <span class="type">float</span>:
-    <span class="kw">return</span> discount.<span class="fn">calculate</span>(price)
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>L — Liskov Substitution Principle</h3>
-    <p>Subclass harus bisa menggantikan parent class tanpa merusak program.</p>
-    <div class="code-block">
-<span class="cm"># Contoh PELANGGARAN klasik: Square extends Rectangle</span>
-<span class="kw">class</span> <span class="type">Rectangle</span>:
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, w, h):
-        <span class="kw">self</span>._w, <span class="kw">self</span>._h = w, h
-
-    @<span class="fn">property</span>
-    <span class="kw">def</span> <span class="fn">width</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="kw">self</span>._w
-    @width.<span class="fn">setter</span>
-    <span class="kw">def</span> <span class="fn">width</span>(<span class="kw">self</span>, v): <span class="kw">self</span>._w = v
-
-    @<span class="fn">property</span>
-    <span class="kw">def</span> <span class="fn">height</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="kw">self</span>._h
-    @height.<span class="fn">setter</span>
-    <span class="kw">def</span> <span class="fn">height</span>(<span class="kw">self</span>, v): <span class="kw">self</span>._h = v
-
-    <span class="kw">def</span> <span class="fn">area</span>(<span class="kw">self</span>): <span class="kw">return</span> <span class="kw">self</span>._w * <span class="kw">self</span>._h
-
-<span class="cm"># MELANGGAR LSP — Square mengubah perilaku setter</span>
-<span class="kw">class</span> <span class="type">Square</span>(<span class="type">Rectangle</span>):
-    @Rectangle.width.<span class="fn">setter</span>
-    <span class="kw">def</span> <span class="fn">width</span>(<span class="kw">self</span>, v):
-        <span class="kw">self</span>._w = <span class="kw">self</span>._h = v  <span class="cm"># mengubah kedua sisi!</span>
-
-<span class="cm"># Solusi: gunakan interface terpisah</span>
-<span class="kw">class</span> <span class="type">Shape</span>(ABC):
-    @<span class="fn">abstractmethod</span>
+<span class="cm"># Protocol — structural subtyping (duck typing formal)</span>
+<span class="kw">class</span> <span class="type">Drawable</span>(Protocol):
+    <span class="kw">def</span> <span class="fn">draw</span>(<span class="kw">self</span>) -> <span class="kw">None</span>: ...
     <span class="kw">def</span> <span class="fn">area</span>(<span class="kw">self</span>) -> <span class="type">float</span>: ...
-    </div>
+
+<span class="cm"># Kelas tidak perlu inherit dari Drawable!</span>
+<span class="kw">class</span> <span class="type">Circle</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, r: <span class="type">float</span>): <span class="kw">self</span>.r = r
+    <span class="kw">def</span> <span class="fn">draw</span>(<span class="kw">self</span>): <span class="fn">print</span>(<span class="str">"O"</span>)
+    <span class="kw">def</span> <span class="fn">area</span>(<span class="kw">self</span>) -> <span class="type">float</span>: <span class="kw">return</span> <span class="num">3.14159</span> * <span class="kw">self</span>.r**<span class="num">2</span>
+
+<span class="kw">def</span> <span class="fn">render</span>(shape: <span class="type">Drawable</span>) -> <span class="kw">None</span>:
+    shape.<span class="fn">draw</span>()
+    <span class="fn">print</span>(<span class="str">f"area = {shape.area():.2f}"</span>)
+
+<span class="fn">render</span>(<span class="fn">Circle</span>(<span class="num">5</span>))  <span class="cm"># mypy happy!</span></div>
 </div>
 
 <div class="card animate-in">
-    <h3>I — Interface Segregation Principle</h3>
-    <p>Client tidak boleh dipaksa bergantung pada method yang tidak mereka gunakan.</p>
-    <div class="code-block">
-<span class="cm"># Python menggunakan Protocol (structural subtyping) untuk ISP</span>
-<span class="kw">from</span> typing <span class="kw">import</span> Protocol
+<h3>MRO, Abstract Classes &amp; __slots__</h3>
+<div class="code-block"><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
 
-<span class="kw">class</span> <span class="type">Readable</span>(Protocol):
-    <span class="kw">def</span> <span class="fn">read</span>(<span class="kw">self</span>) -> <span class="type">str</span>: ...
+<span class="cm"># Abstract base class</span>
+<span class="kw">class</span> <span class="type">Model</span>(ABC):
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">forward</span>(<span class="kw">self</span>, x): ...
 
-<span class="kw">class</span> <span class="type">Writable</span>(Protocol):
-    <span class="kw">def</span> <span class="fn">write</span>(<span class="kw">self</span>, data: <span class="type">str</span>) -> <span class="kw">None</span>: ...
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">parameters</span>(<span class="kw">self</span>): ...
 
-<span class="kw">class</span> <span class="type">Closeable</span>(Protocol):
-    <span class="kw">def</span> <span class="fn">close</span>(<span class="kw">self</span>) -> <span class="kw">None</span>: ...
+<span class="kw">class</span> <span class="type">LinearModel</span>(<span class="type">Model</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, w, b): <span class="kw">self</span>.w, <span class="kw">self</span>.b = w, b
+    <span class="kw">def</span> <span class="fn">forward</span>(<span class="kw">self</span>, x): <span class="kw">return</span> <span class="kw">self</span>.w * x + <span class="kw">self</span>.b
+    <span class="kw">def</span> <span class="fn">parameters</span>(<span class="kw">self</span>): <span class="kw">return</span> [<span class="kw">self</span>.w, <span class="kw">self</span>.b]
 
-<span class="cm"># Class hanya implement interface yang diperlukan</span>
-<span class="kw">class</span> <span class="type">ReadOnlyFile</span>:
-    <span class="kw">def</span> <span class="fn">read</span>(<span class="kw">self</span>) -> <span class="type">str</span>:
-        <span class="kw">return</span> <span class="str">"data"</span>
+<span class="cm"># __slots__ — optimalkan memori (tidak ada __dict__ per instance)</span>
+<span class="kw">class</span> <span class="type">Point</span>:
+    __slots__ = (<span class="str">'x'</span>, <span class="str">'y'</span>)  <span class="cm"># hemat ~40% memori vs normal class</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, x, y): <span class="kw">self</span>.x = x; <span class="kw">self</span>.y = y
 
-<span class="kw">def</span> <span class="fn">process</span>(source: <span class="type">Readable</span>):
-    <span class="cm"># Hanya butuh read(), tidak peduli write() atau close()</span>
-    data = source.<span class="fn">read</span>()
-    <span class="kw">return</span> data
-
-<span class="fn">process</span>(ReadOnlyFile())  <span class="cm"># Works! Structural subtyping</span>
-    </div>
+<span class="cm"># MRO — Method Resolution Order (C3 linearization)</span>
+<span class="kw">class</span> <span class="type">A</span>: <span class="kw">pass</span>
+<span class="kw">class</span> <span class="type">B</span>(<span class="type">A</span>): <span class="kw">pass</span>
+<span class="kw">class</span> <span class="type">C</span>(<span class="type">A</span>): <span class="kw">pass</span>
+<span class="kw">class</span> <span class="type">D</span>(<span class="type">B</span>, <span class="type">C</span>): <span class="kw">pass</span>
+<span class="fn">print</span>(D.__mro__)  <span class="cm"># (D, B, C, A, object)</span></div>
 </div>
 
-<div class="card animate-in">
-    <h3>D — Dependency Inversion Principle</h3>
-    <p>High-level modules tidak bergantung pada low-level modules. Keduanya bergantung pada abstraksi.</p>
-    <div class="code-block">
-<span class="kw">from</span> typing <span class="kw">import</span> Protocol
-
-<span class="cm"># Abstraksi (Protocol — tidak perlu inherit)</span>
-<span class="kw">class</span> <span class="type">MessageSender</span>(Protocol):
-    <span class="kw">def</span> <span class="fn">send</span>(<span class="kw">self</span>, to: <span class="type">str</span>, body: <span class="type">str</span>) -> <span class="kw">None</span>: ...
-
-<span class="cm"># Low-level implementations</span>
-<span class="kw">class</span> <span class="type">EmailSender</span>:
-    <span class="kw">def</span> <span class="fn">send</span>(<span class="kw">self</span>, to: <span class="type">str</span>, body: <span class="type">str</span>) -> <span class="kw">None</span>:
-        <span class="fn">print</span>(<span class="str">f"Email to </span>{to}<span class="str">: </span>{body}<span class="str">"</span>)
-
-<span class="kw">class</span> <span class="type">SMSSender</span>:
-    <span class="kw">def</span> <span class="fn">send</span>(<span class="kw">self</span>, to: <span class="type">str</span>, body: <span class="type">str</span>) -> <span class="kw">None</span>:
-        <span class="fn">print</span>(<span class="str">f"SMS to </span>{to}<span class="str">: </span>{body}<span class="str">"</span>)
-
-<span class="cm"># High-level module — bergantung pada abstraksi</span>
-<span class="kw">class</span> <span class="type">NotificationService</span>:
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, sender: <span class="type">MessageSender</span>):
-        <span class="kw">self</span>._sender = sender  <span class="cm"># dependency injection</span>
-
-    <span class="kw">def</span> <span class="fn">notify</span>(<span class="kw">self</span>, user: <span class="type">str</span>, msg: <span class="type">str</span>):
-        <span class="kw">self</span>._sender.<span class="fn">send</span>(user, msg)
-
-<span class="cm"># Mudah di-swap dan di-test</span>
-svc = NotificationService(EmailSender())
-svc.<span class="fn">notify</span>(<span class="str">"alice@mail.com"</span>, <span class="str">"Hello!"</span>)
-
-svc = NotificationService(SMSSender())
-svc.<span class="fn">notify</span>(<span class="str">"+628123456"</span>, <span class="str">"Hello!"</span>)
-    </div>
-</div>
-
-<!-- ==================== 9. ERROR HANDLING ==================== -->
-<h2 class="animate-in">9. Error Handling</h2>
+<!-- ==================== 7. ERROR HANDLING ==================== -->
+<h2 class="animate-in">7. Error Handling</h2>
 
 <div class="card animate-in">
-    <h3>try / except / else / finally</h3>
-    <div class="code-block">
+<h3>try/except/else/finally &amp; Context Managers</h3>
+<div class="code-block"><span class="kw">from</span> contextlib <span class="kw">import</span> contextmanager
+<span class="kw">import</span> contextlib
+
+<span class="cm"># Full exception handling</span>
 <span class="kw">try</span>:
-    result = <span class="num">10</span> / <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter number: "</span>))
-<span class="kw">except</span> <span class="type">ZeroDivisionError</span>:
-    <span class="fn">print</span>(<span class="str">"Cannot divide by zero!"</span>)
-<span class="kw">except</span> <span class="type">ValueError</span> <span class="kw">as</span> e:
-    <span class="fn">print</span>(<span class="str">f"Invalid input: </span>{e}<span class="str">"</span>)
-<span class="kw">except</span> (<span class="type">TypeError</span>, <span class="type">OverflowError</span>):
-    <span class="fn">print</span>(<span class="str">"Type or overflow error"</span>)
-<span class="kw">except</span> <span class="type">Exception</span> <span class="kw">as</span> e:
-    <span class="fn">print</span>(<span class="str">f"Unexpected: </span>{e}<span class="str">"</span>)
-    <span class="kw">raise</span>  <span class="cm"># re-raise the exception</span>
+    result = <span class="num">10</span> / <span class="num">0</span>
+<span class="kw">except</span> ZeroDivisionError <span class="kw">as</span> e:
+    <span class="fn">print</span>(<span class="str">f"Math error: {e}"</span>)
+<span class="kw">except</span> (TypeError, ValueError) <span class="kw">as</span> e:
+    <span class="fn">print</span>(<span class="str">f"Type/Value error: {e}"</span>)
 <span class="kw">else</span>:
-    <span class="cm"># Hanya dieksekusi jika TIDAK ada exception</span>
-    <span class="fn">print</span>(<span class="str">f"Result: </span>{result}<span class="str">"</span>)
+    <span class="fn">print</span>(<span class="str">"No exception!"</span>)   <span class="cm"># hanya jika try berhasil</span>
 <span class="kw">finally</span>:
-    <span class="cm"># SELALU dieksekusi, ada atau tidak ada exception</span>
-    <span class="fn">print</span>(<span class="str">"Cleanup done"</span>)
-    </div>
-</div>
+    <span class="fn">print</span>(<span class="str">"Always runs"</span>)     <span class="cm"># selalu dieksekusi</span>
 
-<div class="card animate-in">
-    <h3>Custom Exceptions & Exception Hierarchy</h3>
-    <div class="code-block">
 <span class="cm"># Custom exception hierarchy</span>
-<span class="kw">class</span> <span class="type">AppError</span>(<span class="type">Exception</span>):
-    <span class="str">"""Base exception for our application."""</span>
-    <span class="kw">pass</span>
+<span class="kw">class</span> <span class="type">AppError</span>(Exception):
+    <span class="str">"""Base exception untuk aplikasi."""</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, message: <span class="type">str</span>, code: <span class="type">int</span> = <span class="num">0</span>):
+        <span class="fn">super</span>().__init__(message)
+        <span class="kw">self</span>.code = code
 
-<span class="kw">class</span> <span class="type">ValidationError</span>(<span class="type">AppError</span>):
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, field: <span class="type">str</span>, message: <span class="type">str</span>):
-        <span class="kw">self</span>.field = field
-        <span class="fn">super</span>().<span class="fn">__init__</span>(<span class="str">f"</span>{field}<span class="str">: </span>{message}<span class="str">"</span>)
+<span class="kw">class</span> <span class="type">DatabaseError</span>(<span class="type">AppError</span>): <span class="kw">pass</span>
+<span class="kw">class</span> <span class="type">NetworkError</span>(<span class="type">AppError</span>): <span class="kw">pass</span>
 
-<span class="kw">class</span> <span class="type">NotFoundError</span>(<span class="type">AppError</span>):
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, entity: <span class="type">str</span>, id: <span class="type">int</span>):
-        <span class="fn">super</span>().<span class="fn">__init__</span>(<span class="str">f"</span>{entity}<span class="str"> with id </span>{id}<span class="str"> not found"</span>)
-
-<span class="kw">class</span> <span class="type">AuthenticationError</span>(<span class="type">AppError</span>):
-    <span class="kw">pass</span>
-
-<span class="cm"># Penggunaan</span>
-<span class="kw">def</span> <span class="fn">get_user</span>(user_id: <span class="type">int</span>):
-    <span class="kw">if</span> user_id < <span class="num">0</span>:
-        <span class="kw">raise</span> ValidationError(<span class="str">"user_id"</span>, <span class="str">"must be positive"</span>)
-    <span class="cm"># ... lookup ...</span>
-    <span class="kw">raise</span> NotFoundError(<span class="str">"User"</span>, user_id)
-    </div>
-    <div class="info-box" style="margin-top: 15px;">
-        <strong>Python Exception Hierarchy (sebagian):</strong><br>
-        <code>BaseException > Exception > (ValueError, TypeError, KeyError, IndexError, OSError, RuntimeError, ...)</code><br>
-        <code>BaseException > KeyboardInterrupt, SystemExit, GeneratorExit</code><br>
-        Jangan catch <code>BaseException</code> — gunakan <code>Exception</code> sebagai base.
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>Context Managers (with statement)</h3>
-    <p>Context manager memastikan resource di-cleanup otomatis, bahkan jika terjadi exception.</p>
-    <div class="code-block">
-<span class="cm"># Built-in context managers</span>
-<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"data.txt"</span>, <span class="str">"r"</span>) <span class="kw">as</span> f:
-    content = f.<span class="fn">read</span>()
-<span class="cm"># File otomatis ditutup setelah blok with</span>
-
-<span class="cm"># Custom context manager dengan class</span>
-<span class="kw">class</span> <span class="type">DatabaseConnection</span>:
-    <span class="kw">def</span> <span class="fn">__enter__</span>(<span class="kw">self</span>):
-        <span class="kw">self</span>.conn = <span class="fn">create_connection</span>()
-        <span class="kw">return</span> <span class="kw">self</span>.conn
-
-    <span class="kw">def</span> <span class="fn">__exit__</span>(<span class="kw">self</span>, exc_type, exc_val, exc_tb):
-        <span class="kw">if</span> exc_type:
-            <span class="kw">self</span>.conn.<span class="fn">rollback</span>()
-        <span class="kw">else</span>:
-            <span class="kw">self</span>.conn.<span class="fn">commit</span>()
-        <span class="kw">self</span>.conn.<span class="fn">close</span>()
-        <span class="kw">return</span> <span class="kw">False</span>  <span class="cm"># False = don't suppress exception</span>
-
-<span class="cm"># Custom context manager dengan @contextmanager</span>
-<span class="kw">from</span> contextlib <span class="kw">import</span> contextmanager
-
+<span class="cm"># Context manager via @contextmanager</span>
 @contextmanager
-<span class="kw">def</span> <span class="fn">timer</span>(label: <span class="type">str</span>):
-    <span class="kw">import</span> time
-    start = time.<span class="fn">perf_counter</span>()
+<span class="kw">def</span> <span class="fn">managed_resource</span>(name: <span class="type">str</span>):
+    <span class="fn">print</span>(<span class="str">f"Opening {name}"</span>)
+    resource = {<span class="str">"name"</span>: name, <span class="str">"open"</span>: <span class="kw">True</span>}
     <span class="kw">try</span>:
-        <span class="kw">yield</span>  <span class="cm"># kode di dalam 'with' dieksekusi di sini</span>
+        <span class="kw">yield</span> resource
     <span class="kw">finally</span>:
-        elapsed = time.<span class="fn">perf_counter</span>() - start
-        <span class="fn">print</span>(<span class="str">f"</span>{label}<span class="str">: </span>{elapsed:<span class="num">.4f</span>}<span class="str">s"</span>)
+        resource[<span class="str">"open"</span>] = <span class="kw">False</span>
+        <span class="fn">print</span>(<span class="str">f"Closing {name}"</span>)
 
-<span class="kw">with</span> <span class="fn">timer</span>(<span class="str">"Processing"</span>):
-    <span class="cm"># ... operasi yang ingin diukur ...</span>
-    <span class="kw">pass</span>
-    </div>
+<span class="kw">with</span> <span class="fn">managed_resource</span>(<span class="str">"database"</span>) <span class="kw">as</span> r:
+    <span class="fn">print</span>(<span class="str">f"Using: {r['name']}"</span>)
+
+<span class="cm"># contextlib.suppress — ignore specific exceptions</span>
+<span class="kw">with</span> contextlib.<span class="fn">suppress</span>(FileNotFoundError):
+    <span class="fn">open</span>(<span class="str">"nonexistent.txt"</span>)</div>
 </div>
+
+<!-- ==================== 8. MODULES & PACKAGES ==================== -->
+<h2 class="animate-in">8. Modules &amp; Packages</h2>
 
 <div class="card animate-in">
-    <h3>Best Practices Error Handling</h3>
-    <div class="step-list">
-        <div class="step-item"><div class="step-num">1</div><div class="step-text"><strong>Catch specific exceptions</strong> — hindari bare <code>except:</code> atau <code>except Exception</code></div></div>
-        <div class="step-item"><div class="step-num">2</div><div class="step-text"><strong>Gunakan else clause</strong> — taruh kode "happy path" di else, bukan di try</div></div>
-        <div class="step-item"><div class="step-num">3</div><div class="step-text"><strong>Gunakan finally atau context manager</strong> — untuk cleanup resources</div></div>
-        <div class="step-item"><div class="step-num">4</div><div class="step-text"><strong>Buat custom exception hierarchy</strong> — satu base exception per aplikasi/library</div></div>
-        <div class="step-item"><div class="step-num">5</div><div class="step-text"><strong>Log exception details</strong> — gunakan <code>logger.exception()</code> yang otomatis include traceback</div></div>
-        <div class="step-item"><div class="step-num">6</div><div class="step-text"><strong>Jangan pakai exception untuk control flow</strong> — kecuali pattern EAFP (Easier to Ask Forgiveness than Permission) yang Pythonic</div></div>
-    </div>
-    <div class="code-block" style="margin-top: 10px;">
-<span class="cm"># EAFP (Pythonic) vs LBYL</span>
-
-<span class="cm"># LBYL (Look Before You Leap) — C-style</span>
-<span class="kw">if</span> <span class="str">"key"</span> <span class="kw">in</span> my_dict:
-    value = my_dict[<span class="str">"key"</span>]
-
-<span class="cm"># EAFP (Pythonic)</span>
-<span class="kw">try</span>:
-    value = my_dict[<span class="str">"key"</span>]
-<span class="kw">except</span> <span class="type">KeyError</span>:
-    value = default
-    </div>
-</div>
-
-<!-- ==================== 10. CONCURRENCY ==================== -->
-<h2 class="animate-in">10. Concurrency</h2>
-
-<div class="card animate-in">
-    <h3>GIL — Global Interpreter Lock</h3>
-    <p>CPython menggunakan <strong>GIL</strong> — sebuah mutex yang hanya mengizinkan <strong>satu thread</strong> menjalankan Python bytecode pada satu waktu. Ini berarti threading di Python <strong>tidak memberikan true parallelism</strong> untuk CPU-bound tasks.</p>
-    <div class="warn-box">
-        <strong>Implikasi GIL:</strong><br>
-        - Threading cocok untuk <strong>I/O-bound</strong> tasks (network, file, database)<br>
-        - Untuk <strong>CPU-bound</strong> tasks, gunakan <strong>multiprocessing</strong> atau async<br>
-        - Python 3.13+ memiliki experimental <strong>free-threaded mode</strong> (tanpa GIL)
-    </div>
-</div>
-
-<div class="anim-container animate-in">
-    <h3>Visualisasi GIL</h3>
-    <p style="margin-bottom:10px;">Animasi menunjukkan bagaimana GIL membatasi eksekusi thread secara bergantian — hanya satu thread aktif pada satu waktu, meskipun ada multiple cores.</p>
-    <canvas id="pythonGilCanvas" width="700" height="320" style="width:100%;border-radius:8px;background:var(--bg2);"></canvas>
-    <div class="anim-controls" style="margin-top:10px;">
-        <button class="anim-btn" id="gilStartBtn">&#9654; Start</button>
-        <button class="anim-btn" id="gilResetBtn">&#8634; Reset</button>
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>Threading (I/O-bound)</h3>
-    <div class="code-block">
-<span class="kw">import</span> threading
-<span class="kw">import</span> time
-
-<span class="kw">def</span> <span class="fn">download</span>(url: <span class="type">str</span>):
-    <span class="fn">print</span>(<span class="str">f"Downloading </span>{url}<span class="str">..."</span>)
-    time.<span class="fn">sleep</span>(<span class="num">2</span>)  <span class="cm"># Simulasi I/O</span>
-    <span class="fn">print</span>(<span class="str">f"Done: </span>{url}<span class="str">"</span>)
-
-<span class="cm"># Membuat dan menjalankan threads</span>
-urls = [<span class="str">"url1.com"</span>, <span class="str">"url2.com"</span>, <span class="str">"url3.com"</span>]
-threads = []
-<span class="kw">for</span> url <span class="kw">in</span> urls:
-    t = threading.<span class="fn">Thread</span>(target=download, args=(url,))
-    threads.<span class="fn">append</span>(t)
-    t.<span class="fn">start</span>()
-
-<span class="cm"># Wait semua thread selesai</span>
-<span class="kw">for</span> t <span class="kw">in</span> threads:
-    t.<span class="fn">join</span>()
-
-<span class="cm"># Thread-safe dengan Lock</span>
-lock = threading.<span class="fn">Lock</span>()
-counter = <span class="num">0</span>
-
-<span class="kw">def</span> <span class="fn">increment</span>():
-    <span class="kw">global</span> counter
-    <span class="kw">with</span> lock:
-        counter += <span class="num">1</span>
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>Multiprocessing (CPU-bound)</h3>
-    <div class="code-block">
-<span class="kw">from</span> multiprocessing <span class="kw">import</span> Process, Pool
+<h3>Import, Virtual Environments &amp; pyproject.toml</h3>
+<div class="code-block"><span class="cm"># Import patterns</span>
 <span class="kw">import</span> os
+<span class="kw">import</span> os.path <span class="kw">as</span> osp
+<span class="kw">from</span> pathlib <span class="kw">import</span> Path
+<span class="kw">from</span> typing <span class="kw">import</span> Optional, Union, TypeVar
 
-<span class="kw">def</span> <span class="fn">heavy_computation</span>(n: <span class="type">int</span>) -> <span class="type">int</span>:
-    <span class="fn">print</span>(<span class="str">f"PID </span>{os.<span class="fn">getpid</span>()}<span class="str">: computing </span>{n}<span class="str">"</span>)
-    <span class="kw">return</span> <span class="fn">sum</span>(i * i <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(n))
+<span class="cm"># Lazy import untuk mempercepat startup</span>
+<span class="kw">def</span> <span class="fn">load_data</span>(path: <span class="type">str</span>):
+    <span class="kw">import</span> pandas <span class="kw">as</span> pd  <span class="cm"># import saat dibutuhkan</span>
+    <span class="kw">return</span> pd.<span class="fn">read_csv</span>(path)
 
-<span class="cm"># Process — manual</span>
-p1 = Process(target=heavy_computation, args=(<span class="num">10_000_000</span>,))
-p2 = Process(target=heavy_computation, args=(<span class="num">20_000_000</span>,))
-p1.<span class="fn">start</span>(); p2.<span class="fn">start</span>()
-p1.<span class="fn">join</span>(); p2.<span class="fn">join</span>()
+<span class="cm"># __name__ == '__main__' guard</span>
+<span class="kw">if</span> __name__ == <span class="str">'__main__'</span>:
+    <span class="fn">print</span>(<span class="str">"Dijalankan langsung"</span>)
+<span class="cm"># Saat diimport, blok ini tidak dieksekusi</span></div>
+<div class="code-block"><span class="cm"># Virtual environment</span>
+python3 -m venv .venv
+source .venv/bin/activate     <span class="cm"># Linux/macOS</span>
+.venv\Scripts\activate.bat    <span class="cm"># Windows</span>
 
-<span class="cm"># Pool — lebih praktis</span>
-<span class="kw">with</span> Pool(processes=<span class="num">4</span>) <span class="kw">as</span> pool:
-    results = pool.<span class="fn">map</span>(heavy_computation, [<span class="num">1_000_000</span>] * <span class="num">4</span>)
-    <span class="fn">print</span>(results)
-    </div>
+<span class="cm"># pyproject.toml — modern Python packaging (PEP 517/518)</span>
+<span class="cm"># [build-system]</span>
+<span class="cm"># requires = ["hatchling"]</span>
+<span class="cm"># build-backend = "hatchling.build"</span>
+
+<span class="cm"># [project]</span>
+<span class="cm"># name = "my-package"</span>
+<span class="cm"># version = "0.1.0"</span>
+<span class="cm"># dependencies = ["numpy&gt;=1.24", "pandas&gt;=2.0"]</span>
+<span class="cm"># requires-python = "&gt;=3.11"</span>
+
+<span class="cm"># Install project</span>
+pip install -e .              <span class="cm"># editable install</span>
+pip install "my-package[dev]"  <span class="cm"># dengan optional deps</span></div>
+</div>
+
+<!-- ==================== 9. DATA SCIENCE & ML ==================== -->
+<h2 class="animate-in">9. Python untuk Data Science &amp; ML</h2>
+
+<div class="card animate-in">
+<h3>NumPy — N-dimensional Arrays</h3>
+<p><strong>NumPy</strong> adalah fondasi hampir seluruh ekosistem ML Python. ndarray menyimpan data dalam memori kontiguous dan operasinya dijalankan dalam C/Fortran — jauh lebih cepat dari Python list.</p>
+<div class="code-block"><span class="kw">import</span> numpy <span class="kw">as</span> np
+
+<span class="cm"># Membuat array</span>
+a = np.<span class="fn">array</span>([<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>], dtype=np.float32)
+zeros = np.<span class="fn">zeros</span>((<span class="num">3</span>, <span class="num">4</span>))
+eye   = np.<span class="fn">eye</span>(<span class="num">3</span>)                   <span class="cm"># identity matrix 3x3</span>
+rand  = np.random.<span class="fn">randn</span>(<span class="num">100</span>, <span class="num">10</span>)   <span class="cm"># normal distribution</span>
+lin   = np.<span class="fn">linspace</span>(<span class="num">0</span>, <span class="num">2</span>*np.pi, <span class="num">100</span>)
+
+<span class="cm"># Indexing &amp; Slicing</span>
+mat = np.<span class="fn">arange</span>(<span class="num">12</span>).<span class="fn">reshape</span>(<span class="num">3</span>, <span class="num">4</span>)
+mat[<span class="num">0</span>, :]        <span class="cm"># baris pertama</span>
+mat[:, <span class="num">1</span>]        <span class="cm"># kolom kedua</span>
+mat[<span class="num">1</span>:<span class="num">3</span>, <span class="num">0</span>:<span class="num">2</span>]   <span class="cm"># submatrix</span>
+mat[mat &gt; <span class="num">5</span>]     <span class="cm"># boolean indexing</span>
+
+<span class="cm"># Broadcasting — operasi antar shape yang compatible</span>
+A = np.<span class="fn">ones</span>((<span class="num">3</span>, <span class="num">4</span>))
+B = np.<span class="fn">array</span>([<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>])  <span class="cm"># shape (4,)</span>
+C = A + B  <span class="cm"># B di-broadcast ke shape (3,4)</span>
+
+<span class="cm"># Vectorized computation vs loop</span>
+x = np.random.<span class="fn">rand</span>(<span class="num">1_000_000</span>)
+result_np = np.<span class="fn">sqrt</span>(x) * np.<span class="fn">sin</span>(x)  <span class="cm"># ~10ms</span>
+<span class="cm"># result_py = [math.sqrt(v)*math.sin(v) for v in x]  # ~500ms</span>
+
+<span class="cm"># Linear algebra</span>
+A = np.random.<span class="fn">randn</span>(<span class="num">4</span>, <span class="num">4</span>)
+b = np.random.<span class="fn">randn</span>(<span class="num">4</span>)
+x = np.linalg.<span class="fn">solve</span>(A, b)      <span class="cm"># solve Ax = b</span>
+U, S, Vt = np.linalg.<span class="fn">svd</span>(A)    <span class="cm"># Singular Value Decomposition</span>
+eigvals = np.linalg.<span class="fn">eigvals</span>(A) <span class="cm"># eigenvalues</span>
+norm = np.linalg.<span class="fn">norm</span>(b)        <span class="cm"># L2 norm</span></div>
 </div>
 
 <div class="card animate-in">
-    <h3>asyncio (Cooperative Concurrency)</h3>
-    <p><code>asyncio</code> menggunakan <strong>event loop</strong> dan cooperative multitasking. Cocok untuk I/O-bound tasks yang banyak, seperti web server.</p>
-    <div class="code-block">
-<span class="kw">import</span> asyncio
+<h3>Pandas — DataFrames untuk Data Analysis</h3>
+<div class="code-block"><span class="kw">import</span> pandas <span class="kw">as</span> pd
+<span class="kw">import</span> numpy <span class="kw">as</span> np
 
-<span class="kw">async def</span> <span class="fn">fetch_data</span>(url: <span class="type">str</span>, delay: <span class="type">float</span>) -> <span class="type">str</span>:
-    <span class="fn">print</span>(<span class="str">f"Fetching </span>{url}<span class="str">..."</span>)
-    <span class="kw">await</span> asyncio.<span class="fn">sleep</span>(delay)  <span class="cm"># Non-blocking sleep</span>
-    <span class="kw">return</span> <span class="str">f"Data from </span>{url}<span class="str">"</span>
+<span class="cm"># Membuat DataFrame</span>
+df = pd.<span class="fn">DataFrame</span>({
+    <span class="str">"name"</span>: [<span class="str">"Alice"</span>, <span class="str">"Bob"</span>, <span class="str">"Charlie"</span>, <span class="str">"Diana"</span>],
+    <span class="str">"age"</span>: [<span class="num">25</span>, <span class="num">30</span>, <span class="num">35</span>, <span class="num">28</span>],
+    <span class="str">"salary"</span>: [<span class="num">70_000</span>, <span class="num">90_000</span>, <span class="num">85_000</span>, <span class="num">75_000</span>],
+    <span class="str">"dept"</span>: [<span class="str">"Eng"</span>, <span class="str">"Eng"</span>, <span class="str">"HR"</span>, <span class="str">"Marketing"</span>],
+})
 
-<span class="kw">async def</span> <span class="fn">main</span>():
-    <span class="cm"># Jalankan tasks secara concurrent</span>
-    tasks = [
-        <span class="fn">fetch_data</span>(<span class="str">"api.example.com/users"</span>, <span class="num">2</span>),
-        <span class="fn">fetch_data</span>(<span class="str">"api.example.com/posts"</span>, <span class="num">1</span>),
-        <span class="fn">fetch_data</span>(<span class="str">"api.example.com/comments"</span>, <span class="num">3</span>),
-    ]
-    results = <span class="kw">await</span> asyncio.<span class="fn">gather</span>(*tasks)
-    <span class="kw">for</span> r <span class="kw">in</span> results:
-        <span class="fn">print</span>(r)
+<span class="cm"># Membaca data</span>
+df = pd.<span class="fn">read_csv</span>(<span class="str">"data.csv"</span>, parse_dates=[<span class="str">"date"</span>], dtype={<span class="str">"id"</span>: np.int32})
+df = pd.<span class="fn">read_json</span>(<span class="str">"data.json"</span>)
+df = pd.<span class="fn">read_parquet</span>(<span class="str">"data.parquet"</span>)
 
-asyncio.<span class="fn">run</span>(<span class="fn">main</span>())  <span class="cm"># Total ~3s, bukan 6s</span>
+<span class="cm"># Filtering</span>
+eng_team = df[df[<span class="str">"dept"</span>] == <span class="str">"Eng"</span>]
+senior = df[(df[<span class="str">"age"</span>] &gt; <span class="num">27</span>) &amp; (df[<span class="str">"salary"</span>] &gt; <span class="num">80_000</span>)]
 
-<span class="cm"># Async context manager & iterator</span>
-<span class="kw">async def</span> <span class="fn">async_generator</span>():
-    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):
-        <span class="kw">await</span> asyncio.<span class="fn">sleep</span>(<span class="num">0.1</span>)
-        <span class="kw">yield</span> i
+<span class="cm"># GroupBy</span>
+dept_stats = df.<span class="fn">groupby</span>(<span class="str">"dept"</span>).<span class="fn">agg</span>(
+    avg_salary=(<span class="str">"salary"</span>, <span class="str">"mean"</span>),
+    headcount=(<span class="str">"name"</span>, <span class="str">"count"</span>),
+    max_age=(<span class="str">"age"</span>, <span class="str">"max"</span>),
+)
 
-<span class="kw">async for</span> value <span class="kw">in</span> <span class="fn">async_generator</span>():
-    <span class="fn">print</span>(value)
-    </div>
+<span class="cm"># Merge / Join</span>
+departments = pd.<span class="fn">DataFrame</span>({<span class="str">"dept"</span>: [<span class="str">"Eng"</span>, <span class="str">"HR"</span>], <span class="str">"budget"</span>: [<span class="num">1_000_000</span>, <span class="num">500_000</span>]})
+merged = df.<span class="fn">merge</span>(departments, on=<span class="str">"dept"</span>, how=<span class="str">"left"</span>)
+
+<span class="cm"># Data cleaning</span>
+df_clean = (df
+    .<span class="fn">dropna</span>(subset=[<span class="str">"salary"</span>])          <span class="cm"># drop rows dengan NaN salary</span>
+    .<span class="fn">fillna</span>({<span class="str">"age"</span>: df[<span class="str">"age"</span>].<span class="fn">median</span>()}) <span class="cm"># fill NaN age dengan median</span>
+    .<span class="fn">astype</span>({<span class="str">"age"</span>: np.int32})            <span class="cm"># cast tipe data</span>
+    .<span class="fn">reset_index</span>(drop=<span class="kw">True</span>)
+)</div>
 </div>
 
 <div class="card animate-in">
-    <h3>concurrent.futures</h3>
-    <p>High-level API yang menyatukan threading dan multiprocessing dalam interface yang sama.</p>
-    <div class="code-block">
-<span class="kw">from</span> concurrent.futures <span class="kw">import</span> ThreadPoolExecutor, ProcessPoolExecutor
-<span class="kw">import</span> time
+<h3>Scikit-learn — ML Pipeline</h3>
+<div class="code-block"><span class="kw">from</span> sklearn.pipeline <span class="kw">import</span> Pipeline
+<span class="kw">from</span> sklearn.preprocessing <span class="kw">import</span> StandardScaler, LabelEncoder
+<span class="kw">from</span> sklearn.ensemble <span class="kw">import</span> RandomForestClassifier
+<span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LinearRegression
+<span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> train_test_split, cross_val_score
+<span class="kw">from</span> sklearn.metrics <span class="kw">import</span> classification_report
+<span class="kw">import</span> numpy <span class="kw">as</span> np
 
-<span class="kw">def</span> <span class="fn">task</span>(n):
-    time.<span class="fn">sleep</span>(<span class="num">1</span>)
-    <span class="kw">return</span> n * n
+<span class="cm"># Generate data</span>
+X = np.random.<span class="fn">randn</span>(<span class="num">1000</span>, <span class="num">10</span>)
+y = (X[:, <span class="num">0</span>] + X[:, <span class="num">1</span>] &gt; <span class="num">0</span>).<span class="fn">astype</span>(int)
 
-<span class="cm"># ThreadPoolExecutor — untuk I/O-bound</span>
-<span class="kw">with</span> ThreadPoolExecutor(max_workers=<span class="num">4</span>) <span class="kw">as</span> executor:
-    futures = [executor.<span class="fn">submit</span>(task, i) <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">4</span>)]
+<span class="cm"># Split train/test</span>
+X_train, X_test, y_train, y_test = <span class="fn">train_test_split</span>(
+    X, y, test_size=<span class="num">0.2</span>, random_state=<span class="num">42</span>
+)
+
+<span class="cm"># Pipeline — chaining transforms + estimator</span>
+pipe = <span class="fn">Pipeline</span>([
+    (<span class="str">"scaler"</span>, <span class="fn">StandardScaler</span>()),
+    (<span class="str">"clf"</span>, <span class="fn">RandomForestClassifier</span>(n_estimators=<span class="num">100</span>, random_state=<span class="num">42</span>)),
+])
+
+<span class="cm"># fit/transform/predict pattern</span>
+pipe.<span class="fn">fit</span>(X_train, y_train)
+y_pred = pipe.<span class="fn">predict</span>(X_test)
+proba  = pipe.<span class="fn">predict_proba</span>(X_test)
+
+<span class="fn">print</span>(<span class="fn">classification_report</span>(y_test, y_pred))
+
+<span class="cm"># Cross-validation — lebih reliable dari single split</span>
+scores = <span class="fn">cross_val_score</span>(pipe, X, y, cv=<span class="num">5</span>, scoring=<span class="str">"f1"</span>)
+<span class="fn">print</span>(<span class="str">f"CV F1: {scores.mean():.3f} +/- {scores.std():.3f}"</span>)</div>
+</div>
+
+<div class="card animate-in">
+<h3>PyTorch — Deep Learning</h3>
+<div class="tabs">
+<button class="tab-btn active" data-tab="torch-tensor">Tensors</button>
+<button class="tab-btn" data-tab="torch-nn">nn.Module</button>
+<button class="tab-btn" data-tab="torch-train">Training Loop</button>
+</div>
+<div id="torch-tensor" class="tab-content active">
+<div class="code-block"><span class="kw">import</span> torch
+<span class="kw">import</span> torch.nn <span class="kw">as</span> nn
+
+<span class="cm"># Tensor creation</span>
+x = torch.<span class="fn">tensor</span>([<span class="num">1.0</span>, <span class="num">2.0</span>, <span class="num">3.0</span>])
+zeros = torch.<span class="fn">zeros</span>(<span class="num">3</span>, <span class="num">4</span>)
+rand  = torch.<span class="fn">randn</span>(<span class="num">100</span>, <span class="num">10</span>)           <span class="cm"># normal(0,1)</span>
+ones  = torch.<span class="fn">ones</span>(<span class="num">3</span>, requires_grad=<span class="kw">True</span>)
+
+<span class="cm"># Device management</span>
+device = torch.<span class="fn">device</span>(<span class="str">"cuda"</span> <span class="kw">if</span> torch.cuda.<span class="fn">is_available</span>() <span class="kw">else</span> <span class="str">"cpu"</span>)
+x = rand.<span class="fn">to</span>(device)
+
+<span class="cm"># Tensor operations</span>
+a = torch.<span class="fn">randn</span>(<span class="num">3</span>, <span class="num">4</span>)
+b = torch.<span class="fn">randn</span>(<span class="num">4</span>, <span class="num">5</span>)
+c = torch.<span class="fn">matmul</span>(a, b)   <span class="cm"># matrix multiply (3,5)</span>
+c = a @ b                  <span class="cm"># shorthand</span>
+
+<span class="cm"># Autograd — automatic differentiation</span>
+x = torch.<span class="fn">tensor</span>([<span class="num">2.0</span>], requires_grad=<span class="kw">True</span>)
+y = x**<span class="num">3</span> + <span class="num">2</span>*x + <span class="num">1</span>   <span class="cm"># y = x^3 + 2x + 1</span>
+y.<span class="fn">backward</span>()           <span class="cm"># compute dy/dx</span>
+<span class="fn">print</span>(x.grad)           <span class="cm"># tensor([14.]) = 3*2^2 + 2</span>
+
+<span class="cm"># No grad context (inference)</span>
+<span class="kw">with</span> torch.<span class="fn">no_grad</span>():
+    prediction = <span class="fn">model</span>(x_test)</div>
+</div>
+<div id="torch-nn" class="tab-content">
+<div class="code-block"><span class="kw">import</span> torch
+<span class="kw">import</span> torch.nn <span class="kw">as</span> nn
+<span class="kw">import</span> torch.nn.functional <span class="kw">as</span> F
+
+<span class="cm"># Custom model dengan nn.Module</span>
+<span class="kw">class</span> <span class="type">MLP</span>(nn.<span class="type">Module</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, in_dim: <span class="type">int</span>, hidden: <span class="type">int</span>, out_dim: <span class="type">int</span>):
+        <span class="fn">super</span>().__init__()
+        <span class="kw">self</span>.layers = nn.<span class="fn">Sequential</span>(
+            nn.<span class="fn">Linear</span>(in_dim, hidden),
+            nn.<span class="fn">BatchNorm1d</span>(hidden),
+            nn.<span class="fn">ReLU</span>(),
+            nn.<span class="fn">Dropout</span>(<span class="num">0.3</span>),
+            nn.<span class="fn">Linear</span>(hidden, hidden // <span class="num">2</span>),
+            nn.<span class="fn">ReLU</span>(),
+            nn.<span class="fn">Linear</span>(hidden // <span class="num">2</span>, out_dim),
+        )
+
+    <span class="kw">def</span> <span class="fn">forward</span>(<span class="kw">self</span>, x: torch.<span class="type">Tensor</span>) -> torch.<span class="type">Tensor</span>:
+        <span class="kw">return</span> <span class="kw">self</span>.layers(x)
+
+model = <span class="fn">MLP</span>(in_dim=<span class="num">784</span>, hidden=<span class="num">256</span>, out_dim=<span class="num">10</span>)
+<span class="fn">print</span>(model)
+<span class="cm"># MLP(layers=Sequential(...))</span>
+
+<span class="cm"># Total params</span>
+total = <span class="fn">sum</span>(p.<span class="fn">numel</span>() <span class="kw">for</span> p <span class="kw">in</span> model.<span class="fn">parameters</span>())
+trainable = <span class="fn">sum</span>(p.<span class="fn">numel</span>() <span class="kw">for</span> p <span class="kw">in</span> model.<span class="fn">parameters</span>() <span class="kw">if</span> p.requires_grad)
+<span class="fn">print</span>(<span class="str">f"Total params: {total:,} | Trainable: {trainable:,}"</span>)</div>
+</div>
+<div id="torch-train" class="tab-content">
+<div class="code-block"><span class="kw">import</span> torch
+<span class="kw">import</span> torch.nn <span class="kw">as</span> nn
+<span class="kw">from</span> torch.utils.data <span class="kw">import</span> DataLoader, TensorDataset
+
+<span class="cm"># Dataset &amp; DataLoader</span>
+X = torch.<span class="fn">randn</span>(<span class="num">1000</span>, <span class="num">20</span>)
+y = (X[:, <span class="num">0</span>] + X[:, <span class="num">1</span>] &gt; <span class="num">0</span>).<span class="fn">long</span>()
+dataset = <span class="fn">TensorDataset</span>(X, y)
+loader  = <span class="fn">DataLoader</span>(dataset, batch_size=<span class="num">32</span>, shuffle=<span class="kw">True</span>, num_workers=<span class="num">2</span>)
+
+model = nn.<span class="fn">Sequential</span>(nn.<span class="fn">Linear</span>(<span class="num">20</span>, <span class="num">64</span>), nn.<span class="fn">ReLU</span>(), nn.<span class="fn">Linear</span>(<span class="num">64</span>, <span class="num">2</span>))
+optimizer = torch.optim.<span class="fn">Adam</span>(model.<span class="fn">parameters</span>(), lr=<span class="num">1e-3</span>)
+criterion = nn.<span class="fn">CrossEntropyLoss</span>()
+scheduler = torch.optim.lr_scheduler.<span class="fn">CosineAnnealingLR</span>(optimizer, T_max=<span class="num">10</span>)
+
+<span class="cm"># Training loop</span>
+<span class="kw">for</span> epoch <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>):
+    model.<span class="fn">train</span>()
+    total_loss = <span class="num">0.0</span>
+    <span class="kw">for</span> x_batch, y_batch <span class="kw">in</span> loader:
+        optimizer.<span class="fn">zero_grad</span>()          <span class="cm"># reset gradients</span>
+        logits = <span class="fn">model</span>(x_batch)         <span class="cm"># forward pass</span>
+        loss = <span class="fn">criterion</span>(logits, y_batch) <span class="cm"># compute loss</span>
+        loss.<span class="fn">backward</span>()                <span class="cm"># backprop</span>
+        nn.utils.<span class="fn">clip_grad_norm_</span>(model.<span class="fn">parameters</span>(), max_norm=<span class="num">1.0</span>)
+        optimizer.<span class="fn">step</span>()               <span class="cm"># update weights</span>
+        total_loss += loss.<span class="fn">item</span>()
+    scheduler.<span class="fn">step</span>()
+    <span class="fn">print</span>(<span class="str">f"Epoch {epoch+1}: loss={total_loss/len(loader):.4f}"</span>)</div>
+</div>
+</div>
+
+<!-- Canvas: PyTorch Tensor Animation -->
+<div class="card animate-in">
+<h3>Visualisasi: Matrix Multiplication &amp; Autograd</h3>
+<div class="anim-container">
+<canvas id="canvas-pytorch-tensor" width="720" height="300" style="width:100%;height:300px;border-radius:8px;"></canvas>
+</div>
+<div class="anim-controls">
+<button class="anim-btn" id="pytorchTensorStart">Start</button>
+<button class="anim-btn" id="pytorchTensorReset">Reset</button>
+</div>
+</div>
+
+<!-- ==================== 10. ADVANCED PYTHON ==================== -->
+<h2 class="animate-in">10. Advanced Python</h2>
+
+<div class="card animate-in">
+<h3>Async/Await &amp; asyncio</h3>
+<div class="code-block"><span class="kw">import</span> asyncio
+<span class="kw">import</span> aiohttp
+
+<span class="cm"># Coroutine — dijalankan oleh event loop</span>
+<span class="kw">async</span> <span class="kw">def</span> <span class="fn">fetch_url</span>(session: aiohttp.<span class="type">ClientSession</span>, url: <span class="type">str</span>) -> <span class="type">str</span>:
+    <span class="kw">async</span> <span class="kw">with</span> session.<span class="fn">get</span>(url) <span class="kw">as</span> response:
+        <span class="kw">return</span> <span class="kw">await</span> response.<span class="fn">text</span>()
+
+<span class="kw">async</span> <span class="kw">def</span> <span class="fn">fetch_all</span>(urls: <span class="type">list</span>[<span class="type">str</span>]) -> <span class="type">list</span>[<span class="type">str</span>]:
+    <span class="kw">async</span> <span class="kw">with</span> aiohttp.<span class="fn">ClientSession</span>() <span class="kw">as</span> session:
+        tasks = [<span class="fn">fetch_url</span>(session, url) <span class="kw">for</span> url <span class="kw">in</span> urls]
+        <span class="kw">return</span> <span class="kw">await</span> asyncio.<span class="fn">gather</span>(*tasks)  <span class="cm"># concurrent!</span>
+
+<span class="cm"># asyncio.create_task — schedule tanpa await</span>
+<span class="kw">async</span> <span class="kw">def</span> <span class="fn">background_worker</span>():
+    <span class="kw">while</span> <span class="kw">True</span>:
+        <span class="kw">await</span> asyncio.<span class="fn">sleep</span>(<span class="num">60</span>)
+        <span class="fn">print</span>(<span class="str">"Heartbeat"</span>)
+
+<span class="kw">async</span> <span class="kw">def</span> <span class="fn">main</span>():
+    task = asyncio.<span class="fn">create_task</span>(<span class="fn">background_worker</span>())
+    results = <span class="kw">await</span> <span class="fn">fetch_all</span>([<span class="str">"https://httpbin.org/get"</span>] * <span class="num">5</span>)
+    task.<span class="fn">cancel</span>()
+
+asyncio.<span class="fn">run</span>(<span class="fn">main</span>())  <span class="cm"># entry point untuk async program</span></div>
+</div>
+
+<div class="card animate-in">
+<h3>GIL — Global Interpreter Lock</h3>
+<div class="warn-box">
+<strong>GIL (Global Interpreter Lock)</strong> adalah mutex di CPython yang memastikan hanya satu thread yang mengeksekusi bytecode Python pada satu waktu — bahkan di CPU multi-core. Ini melindungi Python objects dari race condition, tapi membatasi true parallelism untuk CPU-bound tasks.
+</div>
+<div class="table-wrapper">
+<table>
+<tr><th>Approach</th><th>Cocok untuk</th><th>Solusi GIL</th><th>API</th></tr>
+<tr><td>threading</td><td>IO-bound (network, disk)</td><td>GIL dilepas saat IO</td><td>Thread, ThreadPoolExecutor</td></tr>
+<tr><td>multiprocessing</td><td>CPU-bound</td><td>Proses terpisah = GIL berbeda</td><td>Process, ProcessPoolExecutor</td></tr>
+<tr><td>asyncio</td><td>Async IO (banyak koneksi)</td><td>Single-thread, no GIL issue</td><td>async/await, event loop</td></tr>
+<tr><td>NumPy/PyTorch</td><td>Numerical computing</td><td>C extensions lepas GIL</td><td>np.*, torch.*</td></tr>
+</table>
+</div>
+<div class="code-block"><span class="kw">from</span> concurrent.futures <span class="kw">import</span> ThreadPoolExecutor, ProcessPoolExecutor
+
+<span class="cm"># IO-bound: threading (GIL dilepas saat IO syscall)</span>
+<span class="kw">def</span> <span class="fn">download_file</span>(url: <span class="type">str</span>) -> bytes:
+    <span class="kw">import</span> urllib.request
+    <span class="kw">with</span> urllib.request.<span class="fn">urlopen</span>(url) <span class="kw">as</span> r:
+        <span class="kw">return</span> r.<span class="fn">read</span>()
+
+<span class="kw">with</span> <span class="fn">ThreadPoolExecutor</span>(max_workers=<span class="num">10</span>) <span class="kw">as</span> ex:
+    futures = [ex.<span class="fn">submit</span>(<span class="fn">download_file</span>, url) <span class="kw">for</span> url <span class="kw">in</span> url_list]
     results = [f.<span class="fn">result</span>() <span class="kw">for</span> f <span class="kw">in</span> futures]
 
-<span class="cm"># ProcessPoolExecutor — untuk CPU-bound</span>
-<span class="kw">with</span> ProcessPoolExecutor(max_workers=<span class="num">4</span>) <span class="kw">as</span> executor:
-    results = <span class="fn">list</span>(executor.<span class="fn">map</span>(task, <span class="fn">range</span>(<span class="num">4</span>)))
-    </div>
+<span class="cm"># CPU-bound: multiprocessing (proses baru, GIL terpisah)</span>
+<span class="kw">def</span> <span class="fn">heavy_compute</span>(n: <span class="type">int</span>) -> <span class="type">int</span>:
+    <span class="kw">return</span> <span class="fn">sum</span>(i**<span class="num">2</span> <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(n))
+
+<span class="kw">with</span> <span class="fn">ProcessPoolExecutor</span>(max_workers=<span class="num">4</span>) <span class="kw">as</span> ex:
+    results = <span class="fn">list</span>(ex.<span class="fn">map</span>(<span class="fn">heavy_compute</span>, [<span class="num">1_000_000</span>] * <span class="num">8</span>))</div>
+</div>
+
+<!-- Canvas: GIL Visualization -->
+<div class="card animate-in">
+<h3>Visualisasi: Python GIL vs Go Goroutines</h3>
+<div class="anim-container">
+<canvas id="canvas-python-gil" width="720" height="320" style="width:100%;height:320px;border-radius:8px;"></canvas>
+</div>
+<div class="anim-controls">
+<button class="anim-btn" id="gilStartBtn">Start</button>
+<button class="anim-btn" id="gilResetBtn">Reset</button>
+</div>
 </div>
 
 <div class="card animate-in">
-    <h3>Kapan Menggunakan Apa?</h3>
-    <div class="table-wrapper">
-        <table>
-            <tr><th>Metode</th><th>Tipe Task</th><th>GIL</th><th>Use Case</th></tr>
-            <tr>
-                <td><span class="badge-blue">Threading</span></td>
-                <td>I/O-bound</td>
-                <td>Terkena GIL</td>
-                <td>Network requests, file I/O, database queries</td>
-            </tr>
-            <tr>
-                <td><span class="badge-green">Multiprocessing</span></td>
-                <td>CPU-bound</td>
-                <td>Bypass GIL (proses terpisah)</td>
-                <td>Number crunching, image processing, ML training</td>
-            </tr>
-            <tr>
-                <td><span class="badge-purple">asyncio</span></td>
-                <td>I/O-bound (banyak)</td>
-                <td>Single thread</td>
-                <td>Web servers, API clients, websockets, crawlers</td>
-            </tr>
-            <tr>
-                <td><span class="badge-orange">concurrent.futures</span></td>
-                <td>Keduanya</td>
-                <td>Tergantung Executor</td>
-                <td>Simple parallel tasks, map-reduce pattern</td>
-            </tr>
-        </table>
-    </div>
+<h3>Advanced Typing</h3>
+<div class="code-block"><span class="kw">from</span> typing <span class="kw">import</span> TypeVar, Generic, Protocol, Callable, Awaitable
+
+<span class="cm"># TypeVar &amp; Generic — type-safe containers</span>
+T = TypeVar(<span class="str">'T'</span>)
+K = TypeVar(<span class="str">'K'</span>)
+V = TypeVar(<span class="str">'V'</span>)
+
+<span class="kw">class</span> <span class="type">Stack</span>(Generic[T]):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>): <span class="kw">self</span>._data: <span class="type">list</span>[T] = []
+    <span class="kw">def</span> <span class="fn">push</span>(<span class="kw">self</span>, item: T) -> <span class="kw">None</span>: <span class="kw">self</span>._data.<span class="fn">append</span>(item)
+    <span class="kw">def</span> <span class="fn">pop</span>(<span class="kw">self</span>) -> T: <span class="kw">return</span> <span class="kw">self</span>._data.<span class="fn">pop</span>()
+    <span class="kw">def</span> <span class="fn">__len__</span>(<span class="kw">self</span>) -> <span class="type">int</span>: <span class="kw">return</span> <span class="fn">len</span>(<span class="kw">self</span>._data)
+
+s: Stack[int] = <span class="fn">Stack</span>()
+s.<span class="fn">push</span>(<span class="num">42</span>)  <span class="cm"># mypy: OK</span>
+
+<span class="cm"># ParamSpec &amp; Concatenate (Python 3.10+)</span>
+<span class="kw">from</span> typing <span class="kw">import</span> ParamSpec
+
+P = ParamSpec(<span class="str">'P'</span>)
+
+<span class="kw">def</span> <span class="fn">add_logging</span>(f: Callable[P, T]) -> Callable[P, T]:
+    @functools.<span class="fn">wraps</span>(f)
+    <span class="kw">def</span> <span class="fn">wrapper</span>(*args: P.args, **kwargs: P.kwargs) -> T:
+        <span class="fn">print</span>(<span class="str">f"Calling {f.__name__}"</span>)
+        <span class="kw">return</span> <span class="fn">f</span>(*args, **kwargs)
+    <span class="kw">return</span> wrapper
+
+<span class="cm"># Literal types</span>
+<span class="kw">from</span> typing <span class="kw">import</span> Literal
+
+<span class="type">Mode</span> = Literal[<span class="str">"r"</span>, <span class="str">"w"</span>, <span class="str">"a"</span>, <span class="str">"rb"</span>, <span class="str">"wb"</span>]
+
+<span class="kw">def</span> <span class="fn">open_file</span>(path: <span class="type">str</span>, mode: <span class="type">Mode</span> = <span class="str">"r"</span>): ...</div>
 </div>
 
-<!-- ==================== 11. REST API - SIMPLE ==================== -->
-<h2 class="animate-in">11. REST API — Simple Version (Flask)</h2>
+<!-- ==================== 11. FFI WITH GO ==================== -->
+<h2 class="animate-in">11. Python FFI dengan Go</h2>
 
 <div class="card animate-in">
-    <h3>Flask — Micro Framework</h3>
-    <p><strong>Flask</strong> adalah micro web framework yang ringan dan fleksibel. Cocok untuk prototyping, small apps, dan learning.</p>
-    <div class="code-block">
-<span class="cm"># pip install flask</span>
-<span class="kw">from</span> flask <span class="kw">import</span> Flask, jsonify, request
-
-app = Flask(<span class="str">__name__</span>)
-
-<span class="cm"># In-memory "database"</span>
-todos = [
-    {<span class="str">"id"</span>: <span class="num">1</span>, <span class="str">"title"</span>: <span class="str">"Belajar Python"</span>, <span class="str">"done"</span>: <span class="kw">False</span>},
-    {<span class="str">"id"</span>: <span class="num">2</span>, <span class="str">"title"</span>: <span class="str">"Buat REST API"</span>, <span class="str">"done"</span>: <span class="kw">False</span>},
-]
-next_id = <span class="num">3</span>
-
-<span class="cm"># GET — List semua todos</span>
-@app.<span class="fn">route</span>(<span class="str">"/api/todos"</span>, methods=[<span class="str">"GET"</span>])
-<span class="kw">def</span> <span class="fn">get_todos</span>():
-    <span class="kw">return</span> <span class="fn">jsonify</span>(todos)
-
-<span class="cm"># GET — Satu todo by ID</span>
-@app.<span class="fn">route</span>(<span class="str">"/api/todos/&lt;int:todo_id&gt;"</span>, methods=[<span class="str">"GET"</span>])
-<span class="kw">def</span> <span class="fn">get_todo</span>(todo_id):
-    todo = <span class="fn">next</span>((t <span class="kw">for</span> t <span class="kw">in</span> todos <span class="kw">if</span> t[<span class="str">"id"</span>] == todo_id), <span class="kw">None</span>)
-    <span class="kw">if</span> todo <span class="kw">is</span> <span class="kw">None</span>:
-        <span class="kw">return</span> <span class="fn">jsonify</span>({<span class="str">"error"</span>: <span class="str">"Not found"</span>}), <span class="num">404</span>
-    <span class="kw">return</span> <span class="fn">jsonify</span>(todo)
-
-<span class="cm"># POST — Buat todo baru</span>
-@app.<span class="fn">route</span>(<span class="str">"/api/todos"</span>, methods=[<span class="str">"POST"</span>])
-<span class="kw">def</span> <span class="fn">create_todo</span>():
-    <span class="kw">global</span> next_id
-    data = request.<span class="fn">get_json</span>()
-    todo = {
-        <span class="str">"id"</span>: next_id,
-        <span class="str">"title"</span>: data[<span class="str">"title"</span>],
-        <span class="str">"done"</span>: <span class="kw">False</span>,
-    }
-    todos.<span class="fn">append</span>(todo)
-    next_id += <span class="num">1</span>
-    <span class="kw">return</span> <span class="fn">jsonify</span>(todo), <span class="num">201</span>
-
-<span class="cm"># PUT — Update todo</span>
-@app.<span class="fn">route</span>(<span class="str">"/api/todos/&lt;int:todo_id&gt;"</span>, methods=[<span class="str">"PUT"</span>])
-<span class="kw">def</span> <span class="fn">update_todo</span>(todo_id):
-    todo = <span class="fn">next</span>((t <span class="kw">for</span> t <span class="kw">in</span> todos <span class="kw">if</span> t[<span class="str">"id"</span>] == todo_id), <span class="kw">None</span>)
-    <span class="kw">if</span> <span class="kw">not</span> todo:
-        <span class="kw">return</span> <span class="fn">jsonify</span>({<span class="str">"error"</span>: <span class="str">"Not found"</span>}), <span class="num">404</span>
-    data = request.<span class="fn">get_json</span>()
-    todo[<span class="str">"title"</span>] = data.<span class="fn">get</span>(<span class="str">"title"</span>, todo[<span class="str">"title"</span>])
-    todo[<span class="str">"done"</span>] = data.<span class="fn">get</span>(<span class="str">"done"</span>, todo[<span class="str">"done"</span>])
-    <span class="kw">return</span> <span class="fn">jsonify</span>(todo)
-
-<span class="cm"># DELETE — Hapus todo</span>
-@app.<span class="fn">route</span>(<span class="str">"/api/todos/&lt;int:todo_id&gt;"</span>, methods=[<span class="str">"DELETE"</span>])
-<span class="kw">def</span> <span class="fn">delete_todo</span>(todo_id):
-    <span class="kw">global</span> todos
-    todos = [t <span class="kw">for</span> t <span class="kw">in</span> todos <span class="kw">if</span> t[<span class="str">"id"</span>] != todo_id]
-    <span class="kw">return</span> <span class="str">""</span>, <span class="num">204</span>
-
-<span class="kw">if</span> <span class="str">__name__</span> == <span class="str">"__main__"</span>:
-    app.<span class="fn">run</span>(debug=<span class="kw">True</span>, port=<span class="num">5000</span>)
-    </div>
+<h3>Overview: Python C API &amp; ctypes</h3>
+<p>Python dapat memanggil shared library (*.so di Linux, *.dll di Windows) yang ditulis dalam bahasa lain. <strong>ctypes</strong> adalah modul standard library yang memungkinkan ini tanpa compilation step Python.</p>
+<div class="table-wrapper">
+<table>
+<tr><th>Pendekatan</th><th>Kelebihan</th><th>Kekurangan</th></tr>
+<tr><td>ctypes</td><td>Built-in, no extra deps</td><td>Manual type mapping, verbose</td></tr>
+<tr><td>cffi</td><td>More Pythonic, auto parse header</td><td>Extra dependency</td></tr>
+<tr><td>Cython</td><td>C performance + Python syntax</td><td>Compilation step</td></tr>
+<tr><td>PyO3 (Rust)</td><td>Safe, idiomatic, best DX</td><td>Rust knowledge needed</td></tr>
+</table>
+</div>
 </div>
 
 <div class="card animate-in">
-    <h3>Testing Flask API</h3>
-    <div class="code-block">
-<span class="cm"># Menggunakan curl untuk test</span>
-<span class="cm"># GET all</span>
-$ curl http://localhost:5000/api/todos
-
-<span class="cm"># POST</span>
-$ curl -X POST http://localhost:5000/api/todos \\
-    -H "Content-Type: application/json" \\
-    -d '{"title": "New Task"}'
-
-<span class="cm"># PUT</span>
-$ curl -X PUT http://localhost:5000/api/todos/1 \\
-    -H "Content-Type: application/json" \\
-    -d '{"done": true}'
-
-<span class="cm"># DELETE</span>
-$ curl -X DELETE http://localhost:5000/api/todos/1
-    </div>
-</div>
-
-<!-- ==================== 12. REST API - BEST PRACTICE ==================== -->
-<h2 class="animate-in">12. REST API — Best Practice (FastAPI)</h2>
-
-<div class="card animate-in">
-    <h3>Mengapa FastAPI?</h3>
-    <div class="card-grid">
-        <div class="info-box">
-            <strong>Type Safety</strong><br>
-            Pydantic models untuk validasi otomatis request/response.
-        </div>
-        <div class="info-box">
-            <strong>Auto Documentation</strong><br>
-            Swagger UI dan ReDoc otomatis dari type hints.
-        </div>
-        <div class="info-box">
-            <strong>Async Native</strong><br>
-            Built on Starlette, mendukung async/await secara native.
-        </div>
-        <div class="info-box">
-            <strong>Performance</strong><br>
-            Salah satu framework Python tercepat, setara Go dan Node.js.
-        </div>
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>Project Structure</h3>
-    <div class="code-block">
-my_api/
-├── app/
-│   ├── __init__.py
-│   ├── main.py            <span class="cm"># FastAPI app & startup</span>
-│   ├── config.py           <span class="cm"># Settings (pydantic-settings)</span>
-│   ├── database.py         <span class="cm"># SQLAlchemy setup</span>
-│   ├── models/
-│   │   ├── __init__.py
-│   │   └── user.py         <span class="cm"># SQLAlchemy models</span>
-│   ├── schemas/
-│   │   ├── __init__.py
-│   │   └── user.py         <span class="cm"># Pydantic schemas</span>
-│   ├── routers/
-│   │   ├── __init__.py
-│   │   └── users.py        <span class="cm"># Route handlers</span>
-│   ├── services/
-│   │   ├── __init__.py
-│   │   └── user_service.py <span class="cm"># Business logic</span>
-│   ├── dependencies.py     <span class="cm"># DI providers</span>
-│   └── middleware.py       <span class="cm"># Custom middleware</span>
-├── tests/
-│   └── test_users.py
-├── alembic/                <span class="cm"># DB migrations</span>
-├── pyproject.toml
-└── Dockerfile
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>Pydantic Models (Schemas)</h3>
-    <div class="code-block">
-<span class="cm"># app/schemas/user.py</span>
-<span class="kw">from</span> pydantic <span class="kw">import</span> BaseModel, EmailStr, Field
-<span class="kw">from</span> datetime <span class="kw">import</span> datetime
-<span class="kw">from</span> typing <span class="kw">import</span> Optional
-
-<span class="kw">class</span> <span class="type">UserBase</span>(BaseModel):
-    name: <span class="type">str</span> = Field(..., min_length=<span class="num">1</span>, max_length=<span class="num">100</span>)
-    email: EmailStr
-
-<span class="kw">class</span> <span class="type">UserCreate</span>(<span class="type">UserBase</span>):
-    password: <span class="type">str</span> = Field(..., min_length=<span class="num">8</span>)
-
-<span class="kw">class</span> <span class="type">UserUpdate</span>(BaseModel):
-    name: Optional[<span class="type">str</span>] = <span class="kw">None</span>
-    email: Optional[EmailStr] = <span class="kw">None</span>
-
-<span class="kw">class</span> <span class="type">UserResponse</span>(<span class="type">UserBase</span>):
-    id: <span class="type">int</span>
-    is_active: <span class="type">bool</span>
-    created_at: datetime
-
-    <span class="kw">class</span> <span class="type">Config</span>:
-        from_attributes = <span class="kw">True</span>  <span class="cm"># Enable ORM mode</span>
-
-<span class="kw">class</span> <span class="type">PaginatedResponse</span>(BaseModel):
-    items: <span class="type">list</span>[<span class="type">UserResponse</span>]
-    total: <span class="type">int</span>
-    page: <span class="type">int</span>
-    per_page: <span class="type">int</span>
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>SQLAlchemy Models & Database</h3>
-    <div class="code-block">
-<span class="cm"># app/database.py</span>
-<span class="kw">from</span> sqlalchemy <span class="kw">import</span> create_engine
-<span class="kw">from</span> sqlalchemy.orm <span class="kw">import</span> sessionmaker, DeclarativeBase
-
-DATABASE_URL = <span class="str">"postgresql://user:pass@localhost/mydb"</span>
-
-engine = <span class="fn">create_engine</span>(DATABASE_URL)
-SessionLocal = <span class="fn">sessionmaker</span>(bind=engine, autoflush=<span class="kw">False</span>)
-
-<span class="kw">class</span> <span class="type">Base</span>(DeclarativeBase):
-    <span class="kw">pass</span>
-
-<span class="cm"># Dependency — session per request</span>
-<span class="kw">def</span> <span class="fn">get_db</span>():
-    db = <span class="fn">SessionLocal</span>()
-    <span class="kw">try</span>:
-        <span class="kw">yield</span> db
-    <span class="kw">finally</span>:
-        db.<span class="fn">close</span>()
-
-<span class="cm"># app/models/user.py</span>
-<span class="kw">from</span> sqlalchemy <span class="kw">import</span> Column, Integer, String, Boolean, DateTime
-<span class="kw">from</span> sqlalchemy.sql <span class="kw">import</span> func
-<span class="kw">from</span> app.database <span class="kw">import</span> Base
-
-<span class="kw">class</span> <span class="type">User</span>(Base):
-    __tablename__ = <span class="str">"users"</span>
-
-    id = Column(Integer, primary_key=<span class="kw">True</span>, index=<span class="kw">True</span>)
-    name = Column(String(<span class="num">100</span>), nullable=<span class="kw">False</span>)
-    email = Column(String(<span class="num">255</span>), unique=<span class="kw">True</span>, index=<span class="kw">True</span>)
-    hashed_password = Column(String(<span class="num">255</span>))
-    is_active = Column(Boolean, default=<span class="kw">True</span>)
-    created_at = Column(DateTime, server_default=<span class="fn">func</span>.<span class="fn">now</span>())
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>FastAPI Routes & Dependency Injection</h3>
-    <div class="code-block">
-<span class="cm"># app/routers/users.py</span>
-<span class="kw">from</span> fastapi <span class="kw">import</span> APIRouter, Depends, HTTPException, status, Query
-<span class="kw">from</span> sqlalchemy.orm <span class="kw">import</span> Session
-<span class="kw">from</span> app.database <span class="kw">import</span> get_db
-<span class="kw">from</span> app.schemas.user <span class="kw">import</span> UserCreate, UserResponse, UserUpdate, PaginatedResponse
-<span class="kw">from</span> app.services.user_service <span class="kw">import</span> UserService
-
-router = APIRouter(prefix=<span class="str">"/api/v1/users"</span>, tags=[<span class="str">"users"</span>])
-
-<span class="kw">def</span> <span class="fn">get_user_service</span>(db: Session = Depends(get_db)) -> UserService:
-    <span class="kw">return</span> UserService(db)
-
-@router.<span class="fn">get</span>(<span class="str">"/"</span>, response_model=PaginatedResponse)
-<span class="kw">async def</span> <span class="fn">list_users</span>(
-    page: <span class="type">int</span> = Query(<span class="num">1</span>, ge=<span class="num">1</span>),
-    per_page: <span class="type">int</span> = Query(<span class="num">20</span>, ge=<span class="num">1</span>, le=<span class="num">100</span>),
-    svc: UserService = Depends(get_user_service),
-):
-    <span class="kw">return</span> svc.<span class="fn">list_users</span>(page, per_page)
-
-@router.<span class="fn">post</span>(<span class="str">"/"</span>, response_model=UserResponse, status_code=<span class="num">201</span>)
-<span class="kw">async def</span> <span class="fn">create_user</span>(
-    user_in: UserCreate,
-    svc: UserService = Depends(get_user_service),
-):
-    <span class="kw">return</span> svc.<span class="fn">create_user</span>(user_in)
-
-@router.<span class="fn">get</span>(<span class="str">"/{user_id}"</span>, response_model=UserResponse)
-<span class="kw">async def</span> <span class="fn">get_user</span>(
-    user_id: <span class="type">int</span>,
-    svc: UserService = Depends(get_user_service),
-):
-    user = svc.<span class="fn">get_user</span>(user_id)
-    <span class="kw">if</span> <span class="kw">not</span> user:
-        <span class="kw">raise</span> HTTPException(status_code=<span class="num">404</span>, detail=<span class="str">"User not found"</span>)
-    <span class="kw">return</span> user
-
-@router.<span class="fn">patch</span>(<span class="str">"/{user_id}"</span>, response_model=UserResponse)
-<span class="kw">async def</span> <span class="fn">update_user</span>(
-    user_id: <span class="type">int</span>,
-    user_in: UserUpdate,
-    svc: UserService = Depends(get_user_service),
-):
-    <span class="kw">return</span> svc.<span class="fn">update_user</span>(user_id, user_in)
-
-@router.<span class="fn">delete</span>(<span class="str">"/{user_id}"</span>, status_code=<span class="num">204</span>)
-<span class="kw">async def</span> <span class="fn">delete_user</span>(
-    user_id: <span class="type">int</span>,
-    svc: UserService = Depends(get_user_service),
-):
-    svc.<span class="fn">delete_user</span>(user_id)
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>Service Layer</h3>
-    <div class="code-block">
-<span class="cm"># app/services/user_service.py</span>
-<span class="kw">from</span> sqlalchemy.orm <span class="kw">import</span> Session
-<span class="kw">from</span> fastapi <span class="kw">import</span> HTTPException
-<span class="kw">from</span> passlib.context <span class="kw">import</span> CryptContext
-<span class="kw">from</span> app.models.user <span class="kw">import</span> User
-<span class="kw">from</span> app.schemas.user <span class="kw">import</span> UserCreate, UserUpdate
-
-pwd_context = CryptContext(schemes=[<span class="str">"bcrypt"</span>])
-
-<span class="kw">class</span> <span class="type">UserService</span>:
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, db: Session):
-        <span class="kw">self</span>.db = db
-
-    <span class="kw">def</span> <span class="fn">create_user</span>(<span class="kw">self</span>, data: UserCreate) -> User:
-        <span class="cm"># Check duplicate email</span>
-        existing = <span class="kw">self</span>.db.<span class="fn">query</span>(User).<span class="fn">filter</span>(
-            User.email == data.email
-        ).<span class="fn">first</span>()
-        <span class="kw">if</span> existing:
-            <span class="kw">raise</span> HTTPException(<span class="num">409</span>, <span class="str">"Email already registered"</span>)
-
-        user = User(
-            name=data.name,
-            email=data.email,
-            hashed_password=pwd_context.<span class="fn">hash</span>(data.password),
-        )
-        <span class="kw">self</span>.db.<span class="fn">add</span>(user)
-        <span class="kw">self</span>.db.<span class="fn">commit</span>()
-        <span class="kw">self</span>.db.<span class="fn">refresh</span>(user)
-        <span class="kw">return</span> user
-
-    <span class="kw">def</span> <span class="fn">get_user</span>(<span class="kw">self</span>, user_id: <span class="type">int</span>) -> User | <span class="kw">None</span>:
-        <span class="kw">return</span> <span class="kw">self</span>.db.<span class="fn">query</span>(User).<span class="fn">filter</span>(User.id == user_id).<span class="fn">first</span>()
-
-    <span class="kw">def</span> <span class="fn">list_users</span>(<span class="kw">self</span>, page: <span class="type">int</span>, per_page: <span class="type">int</span>):
-        total = <span class="kw">self</span>.db.<span class="fn">query</span>(User).<span class="fn">count</span>()
-        items = (<span class="kw">self</span>.db.<span class="fn">query</span>(User)
-                 .<span class="fn">offset</span>((page - <span class="num">1</span>) * per_page)
-                 .<span class="fn">limit</span>(per_page)
-                 .<span class="fn">all</span>())
-        <span class="kw">return</span> {<span class="str">"items"</span>: items, <span class="str">"total"</span>: total,
-                <span class="str">"page"</span>: page, <span class="str">"per_page"</span>: per_page}
-
-    <span class="kw">def</span> <span class="fn">update_user</span>(<span class="kw">self</span>, user_id: <span class="type">int</span>, data: UserUpdate) -> User:
-        user = <span class="kw">self</span>.<span class="fn">get_user</span>(user_id)
-        <span class="kw">if</span> <span class="kw">not</span> user:
-            <span class="kw">raise</span> HTTPException(<span class="num">404</span>, <span class="str">"User not found"</span>)
-        update_data = data.<span class="fn">model_dump</span>(exclude_unset=<span class="kw">True</span>)
-        <span class="kw">for</span> field, value <span class="kw">in</span> update_data.<span class="fn">items</span>():
-            <span class="fn">setattr</span>(user, field, value)
-        <span class="kw">self</span>.db.<span class="fn">commit</span>()
-        <span class="kw">self</span>.db.<span class="fn">refresh</span>(user)
-        <span class="kw">return</span> user
-
-    <span class="kw">def</span> <span class="fn">delete_user</span>(<span class="kw">self</span>, user_id: <span class="type">int</span>):
-        user = <span class="kw">self</span>.<span class="fn">get_user</span>(user_id)
-        <span class="kw">if</span> <span class="kw">not</span> user:
-            <span class="kw">raise</span> HTTPException(<span class="num">404</span>, <span class="str">"User not found"</span>)
-        <span class="kw">self</span>.db.<span class="fn">delete</span>(user)
-        <span class="kw">self</span>.db.<span class="fn">commit</span>()
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>Middleware & Error Handling</h3>
-    <div class="code-block">
-<span class="cm"># app/main.py</span>
-<span class="kw">from</span> fastapi <span class="kw">import</span> FastAPI, Request
-<span class="kw">from</span> fastapi.middleware.cors <span class="kw">import</span> CORSMiddleware
-<span class="kw">from</span> fastapi.responses <span class="kw">import</span> JSONResponse
-<span class="kw">import</span> time
-<span class="kw">import</span> logging
-
-app = FastAPI(title=<span class="str">"My API"</span>, version=<span class="str">"1.0.0"</span>)
-logger = logging.<span class="fn">getLogger</span>(<span class="str">__name__</span>)
-
-<span class="cm"># CORS Middleware</span>
-app.<span class="fn">add_middleware</span>(
-    CORSMiddleware,
-    allow_origins=[<span class="str">"*"</span>],
-    allow_methods=[<span class="str">"*"</span>],
-    allow_headers=[<span class="str">"*"</span>],
-)
-
-<span class="cm"># Custom logging middleware</span>
-@app.<span class="fn">middleware</span>(<span class="str">"http"</span>)
-<span class="kw">async def</span> <span class="fn">log_requests</span>(request: Request, call_next):
-    start = time.<span class="fn">perf_counter</span>()
-    response = <span class="kw">await</span> <span class="fn">call_next</span>(request)
-    duration = time.<span class="fn">perf_counter</span>() - start
-    logger.<span class="fn">info</span>(
-        <span class="str">f"</span>{request.method}<span class="str"> </span>{request.url.path}<span class="str"> "</span>
-        <span class="str">f"</span>{response.status_code}<span class="str"> </span>{duration:<span class="num">.3f</span>}<span class="str">s"</span>
-    )
-    <span class="kw">return</span> response
-
-<span class="cm"># Global exception handler</span>
-@app.<span class="fn">exception_handler</span>(<span class="type">Exception</span>)
-<span class="kw">async def</span> <span class="fn">global_exception_handler</span>(request: Request, exc: <span class="type">Exception</span>):
-    logger.<span class="fn">exception</span>(<span class="str">f"Unhandled error: </span>{exc}<span class="str">"</span>)
-    <span class="kw">return</span> JSONResponse(
-        status_code=<span class="num">500</span>,
-        content={<span class="str">"detail"</span>: <span class="str">"Internal server error"</span>},
-    )
-
-<span class="cm"># Register routers</span>
-<span class="kw">from</span> app.routers <span class="kw">import</span> users
-app.<span class="fn">include_router</span>(users.router)
-    </div>
-</div>
-
-<!-- ==================== 13. PYTHON AS INTEGRATION LANGUAGE ==================== -->
-<h2 class="animate-in">13. Python sebagai Integration Language</h2>
-
-<div class="card animate-in">
-    <h3>Mengapa Python Populer untuk ML/AI?</h3>
-    <div class="card-grid-3">
-        <div class="info-box">
-            <strong>Ekosistem Library</strong><br>
-            NumPy, Pandas, scikit-learn, PyTorch, TensorFlow, Hugging Face — semua di Python.
-        </div>
-        <div class="info-box">
-            <strong>Glue Language</strong><br>
-            Python menghubungkan komponen C/C++/Fortran yang sudah dioptimasi (BLAS, cuDNN).
-        </div>
-        <div class="info-box">
-            <strong>Rapid Prototyping</strong><br>
-            Eksperimen cepat, REPL interaktif, Jupyter notebook — ideal untuk riset.
-        </div>
-    </div>
-    <div class="success-box" style="margin-top: 15px;">
-        <strong>Fakta:</strong> Sebagian besar library ML Python sebenarnya <strong>ditulis dalam C/C++</strong> untuk performa. Python hanya menjadi "frontend" yang mudah digunakan. NumPy core ditulis dalam C, PyTorch backend dalam C++/CUDA.
-    </div>
-</div>
-
-<div class="card animate-in">
-    <h3>Go dan Rust Memanggil Python</h3>
-    <div class="tabs">
-        <button class="tab-btn active" data-tab="py-from-go">Go calls Python</button>
-        <button class="tab-btn" data-tab="py-from-rust">Rust calls Python</button>
-    </div>
-    <div class="tab-content active" data-tab-content="py-from-go">
-        <p>Go bisa memanggil Python via subprocess atau CPython embedding.</p>
-        <div class="code-block">
-<span class="cm">// Go: Memanggil Python script via subprocess</span>
+<h3>Langkah 1: Tulis Library Go</h3>
+<div class="code-block"><span class="cm">// File: math_lib.go</span>
+<span class="cm">// Compile: go build -buildmode=c-shared -o libmath.so math_lib.go</span>
 <span class="kw">package</span> main
 
-<span class="kw">import</span> (
-    <span class="str">"fmt"</span>
-    <span class="str">"os/exec"</span>
-)
+<span class="kw">import</span> <span class="str">"C"</span>   <span class="cm">// Import "C" pseudo-package — enables cgo</span>
+<span class="kw">import</span> <span class="str">"math"</span>
 
-<span class="kw">func</span> <span class="fn">main</span>() {
-    cmd := exec.<span class="fn">Command</span>(<span class="str">"python3"</span>, <span class="str">"-c"</span>,
-        <span class="str">"import json; print(json.dumps({'result': 42}))"</span>)
-    output, err := cmd.<span class="fn">Output</span>()
-    <span class="kw">if</span> err != <span class="kw">nil</span> {
-        panic(err)
+<span class="cm">// Fungsi yang di-export ke C (dan bisa dipanggil Python via ctypes)</span>
+<span class="cm">//export AddInts</span>
+<span class="kw">func</span> <span class="fn">AddInts</span>(a, b C.longlong) C.longlong {
+    <span class="kw">return</span> a + b
+}
+
+<span class="cm">//export MatMulFlat</span>
+<span class="cm">// Mengalikan dua matriks NxN yang disimpan sebagai flat array</span>
+<span class="kw">func</span> <span class="fn">MatMulFlat</span>(aPtr, bPtr, cPtr *C.double, n C.int) {
+    N := <span class="kw">int</span>(n)
+    A := (*[<span class="num">1</span> &lt;&lt; <span class="num">28</span>]C.double)(<span class="fn">aPtr</span>)
+    B := (*[<span class="num">1</span> &lt;&lt; <span class="num">28</span>]C.double)(<span class="fn">bPtr</span>)
+    C_ := (*[<span class="num">1</span> &lt;&lt; <span class="num">28</span>]C.double)(<span class="fn">cPtr</span>)
+    <span class="kw">for</span> i := <span class="num">0</span>; i &lt; N; i++ {
+        <span class="kw">for</span> j := <span class="num">0</span>; j &lt; N; j++ {
+            <span class="kw">var</span> sum C.double
+            <span class="kw">for</span> k := <span class="num">0</span>; k &lt; N; k++ {
+                sum += A[i*N+k] * B[k*N+j]
+            }
+            C_[i*N+j] = sum
+        }
     }
-    fmt.<span class="fn">Println</span>(<span class="fn">string</span>(output))
 }
 
-<span class="cm">// Atau via gRPC / REST API untuk production</span>
-<span class="cm">// Python menjalankan ML model server</span>
-<span class="cm">// Go mengirim request dan menerima predictions</span>
-        </div>
-    </div>
-    <div class="tab-content" data-tab-content="py-from-rust">
-        <p>Rust menggunakan <code>pyo3</code> crate untuk embedding Python interpreter.</p>
-        <div class="code-block">
-<span class="cm">// Cargo.toml: pyo3 = { version = "0.20", features = ["auto-initialize"] }</span>
-<span class="kw">use</span> pyo3::prelude::*;
-
-<span class="kw">fn</span> <span class="fn">main</span>() -> PyResult&lt;()&gt; {
-    Python::<span class="fn">with_gil</span>(|py| {
-        <span class="cm">// Jalankan kode Python dari Rust</span>
-        <span class="kw">let</span> result: <span class="type">i32</span> = py
-            .<span class="fn">eval</span>(<span class="str">"2 + 2"</span>, None, None)?
-            .<span class="fn">extract</span>()?;
-        <span class="fn">println!</span>(<span class="str">"Python says: {}"</span>, result);
-
-        <span class="cm">// Import dan gunakan module Python</span>
-        <span class="kw">let</span> np = py.<span class="fn">import</span>(<span class="str">"numpy"</span>)?;
-        <span class="kw">let</span> arr = np.<span class="fn">call_method1</span>(<span class="str">"array"</span>,
-            (vec![<span class="num">1.0</span>, <span class="num">2.0</span>, <span class="num">3.0</span>],))?;
-        <span class="kw">let</span> mean: <span class="type">f64</span> = arr
-            .<span class="fn">call_method0</span>(<span class="str">"mean"</span>)?
-            .<span class="fn">extract</span>()?;
-        <span class="fn">println!</span>(<span class="str">"Mean: {}"</span>, mean);
-
-        Ok(())
-    })
+<span class="cm">//export HypotVec</span>
+<span class="cm">// Hypot dari (x, y)</span>
+<span class="kw">func</span> <span class="fn">HypotVec</span>(x, y C.double) C.double {
+    <span class="kw">return</span> C.<span class="fn">double</span>(math.<span class="fn">Hypot</span>(<span class="kw">float64</span>(x), <span class="kw">float64</span>(y)))
 }
-        </div>
-    </div>
+
+<span class="kw">func</span> <span class="fn">main</span>() {} <span class="cm">// Harus ada untuk c-shared mode</span></div>
+<div class="info-box">
+<strong>Perintah build:</strong><br>
+<code>go build -buildmode=c-shared -o libmath.so math_lib.go</code><br>
+Menghasilkan: <code>libmath.so</code> (shared library) dan <code>libmath.h</code> (C header).
+</div>
 </div>
 
 <div class="card animate-in">
-    <h3>Python Memanggil C Extensions</h3>
-    <div class="tabs">
-        <button class="tab-btn active" data-tab="py-ctypes">ctypes</button>
-        <button class="tab-btn" data-tab="py-cffi">cffi</button>
-        <button class="tab-btn" data-tab="py-cython">Cython</button>
-    </div>
-    <div class="tab-content active" data-tab-content="py-ctypes">
-        <p><strong>ctypes</strong> — built-in, memanggil shared library (.so/.dll) tanpa compile step.</p>
-        <div class="code-block">
-<span class="cm"># Misalkan kita punya libmath.so yang ditulis dalam C:</span>
-<span class="cm"># int add(int a, int b) { return a + b; }</span>
-<span class="cm"># double compute(double* arr, int n) { ... }</span>
+<h3>Langkah 2: Panggil dari Python via ctypes</h3>
+<div class="code-block"><span class="kw">import</span> ctypes
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">import</span> time
 
-<span class="kw">import</span> ctypes
-
-<span class="cm"># Load shared library</span>
+<span class="cm"># Load shared library Go</span>
 lib = ctypes.<span class="fn">CDLL</span>(<span class="str">"./libmath.so"</span>)
 
-<span class="cm"># Definisikan argument dan return types</span>
-lib.add.argtypes = [ctypes.c_int, ctypes.c_int]
-lib.add.restype = ctypes.c_int
+<span class="cm"># === AddInts ===</span>
+lib.AddInts.argtypes = [ctypes.c_longlong, ctypes.c_longlong]
+lib.AddInts.restype  = ctypes.c_longlong
+result = lib.<span class="fn">AddInts</span>(<span class="num">1_000_000</span>, <span class="num">2_000_000</span>)
+<span class="fn">print</span>(<span class="str">f"AddInts: {result}"</span>)  <span class="cm"># 3000000</span>
 
-result = lib.<span class="fn">add</span>(<span class="num">3</span>, <span class="num">4</span>)  <span class="cm"># 7</span>
+<span class="cm"># === HypotVec ===</span>
+lib.HypotVec.argtypes = [ctypes.c_double, ctypes.c_double]
+lib.HypotVec.restype  = ctypes.c_double
+h = lib.<span class="fn">HypotVec</span>(<span class="num">3.0</span>, <span class="num">4.0</span>)
+<span class="fn">print</span>(<span class="str">f"Hypot(3,4) = {h}"</span>)  <span class="cm"># 5.0</span>
 
-<span class="cm"># Array passing</span>
-arr_type = ctypes.c_double * <span class="num">5</span>
-arr = arr_type(<span class="num">1.0</span>, <span class="num">2.0</span>, <span class="num">3.0</span>, <span class="num">4.0</span>, <span class="num">5.0</span>)
-lib.compute.argtypes = [ctypes.POINTER(ctypes.c_double), ctypes.c_int]
-lib.compute.restype = ctypes.c_double
-result = lib.<span class="fn">compute</span>(arr, <span class="num">5</span>)
-        </div>
-    </div>
-    <div class="tab-content" data-tab-content="py-cffi">
-        <p><strong>cffi</strong> — lebih modern, bisa parse C header files.</p>
-        <div class="code-block">
-<span class="cm"># pip install cffi</span>
-<span class="kw">from</span> cffi <span class="kw">import</span> FFI
+<span class="cm"># === MatMulFlat (matriks 512x512) ===</span>
+lib.MatMulFlat.argtypes = [
+    ctypes.<span class="fn">POINTER</span>(ctypes.c_double),
+    ctypes.<span class="fn">POINTER</span>(ctypes.c_double),
+    ctypes.<span class="fn">POINTER</span>(ctypes.c_double),
+    ctypes.c_int,
+]
+lib.MatMulFlat.restype = <span class="kw">None</span>
 
-ffi = FFI()
+N = <span class="num">128</span>
+A = np.<span class="fn">random.rand</span>(N, N).<span class="fn">astype</span>(np.float64)
+B = np.<span class="fn">random.rand</span>(N, N).<span class="fn">astype</span>(np.float64)
+C = np.<span class="fn">zeros</span>((N, N), dtype=np.float64)
 
-<span class="cm"># Deklarasi fungsi C</span>
-ffi.<span class="fn">cdef</span>(<span class="str">"""
-    int add(int a, int b);
-    double compute(double* arr, int n);
-"""</span>)
+a_ptr = A.<span class="fn">ctypes.data_as</span>(ctypes.<span class="fn">POINTER</span>(ctypes.c_double))
+b_ptr = B.<span class="fn">ctypes.data_as</span>(ctypes.<span class="fn">POINTER</span>(ctypes.c_double))
+c_ptr = C.<span class="fn">ctypes.data_as</span>(ctypes.<span class="fn">POINTER</span>(ctypes.c_double))
 
-<span class="cm"># Load library</span>
-lib = ffi.<span class="fn">dlopen</span>(<span class="str">"./libmath.so"</span>)
+t0 = time.<span class="fn">perf_counter</span>()
+lib.<span class="fn">MatMulFlat</span>(a_ptr, b_ptr, c_ptr, N)
+dt = time.<span class="fn">perf_counter</span>() - t0
+<span class="fn">print</span>(<span class="str">f"Go MatMul {N}x{N} in {dt*1000:.2f}ms"</span>)
 
-<span class="cm"># Panggil fungsi</span>
-result = lib.<span class="fn">add</span>(<span class="num">3</span>, <span class="num">4</span>)
-
-<span class="cm"># Array</span>
-arr = ffi.<span class="fn">new</span>(<span class="str">"double[]"</span>, [<span class="num">1.0</span>, <span class="num">2.0</span>, <span class="num">3.0</span>, <span class="num">4.0</span>, <span class="num">5.0</span>])
-result = lib.<span class="fn">compute</span>(arr, <span class="num">5</span>)
-        </div>
-    </div>
-    <div class="tab-content" data-tab-content="py-cython">
-        <p><strong>Cython</strong> — compile Python ke C untuk performa mendekati native.</p>
-        <div class="code-block">
-<span class="cm"># fibonacci.pyx (Cython file)</span>
-<span class="cm"># Compile: cythonize -i fibonacci.pyx</span>
-
-<span class="kw">def</span> <span class="fn">fib_python</span>(n):
-    <span class="str">"""Pure Python — lambat untuk n besar."""</span>
-    a, b = <span class="num">0</span>, <span class="num">1</span>
-    <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(n):
-        a, b = b, a + b
-    <span class="kw">return</span> a
-
-<span class="cm"># Cython optimized — 100x lebih cepat!</span>
-<span class="kw">def</span> <span class="type">long long</span> <span class="fn">fib_cython</span>(<span class="type">int</span> n):
-    <span class="kw">cdef</span> <span class="type">long long</span> a = <span class="num">0</span>, b = <span class="num">1</span>
-    <span class="kw">cdef</span> <span class="type">int</span> i
-    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(n):
-        a, b = b, a + b
-    <span class="kw">return</span> a
-
-<span class="cm"># Penggunaan dari Python biasa:</span>
-<span class="cm"># import fibonacci</span>
-<span class="cm"># fibonacci.fib_cython(1000000)</span>
-        </div>
-    </div>
+<span class="cm"># Verifikasi dengan NumPy</span>
+expected = A @ B
+<span class="fn">print</span>(<span class="str">f"Max error: {np.max(np.abs(C - expected)):.2e}"</span>)</div>
 </div>
 
 <div class="card animate-in">
-    <h3>Arsitektur Integrasi Umum</h3>
-    <p>Dalam production, Python sering menjadi bagian dari arsitektur polyglot:</p>
-    <div class="flow-diagram">
-        <div class="flow-node" style="background: rgba(56,189,248,0.1); border-color: var(--accent);">Go/Rust<br><small>API Gateway</small></div>
-        <div class="flow-arrow">gRPC</div>
-        <div class="flow-node" style="background: rgba(52,211,153,0.1); border-color: var(--green);">Python<br><small>ML Service</small></div>
-        <div class="flow-arrow">SQL</div>
-        <div class="flow-node" style="background: rgba(251,146,60,0.1); border-color: var(--orange);">PostgreSQL<br><small>Database</small></div>
-    </div>
-    <div class="info-box" style="margin-top: 15px;">
-        <strong>Pattern umum:</strong><br>
-        - <strong>Go</strong> untuk high-throughput API gateway dan microservices<br>
-        - <strong>Python</strong> untuk ML inference, data pipeline, scripting<br>
-        - <strong>Rust</strong> untuk komponen performance-critical (parsing, crypto, encoding)<br>
-        - Komunikasi via <strong>gRPC</strong>, <strong>REST</strong>, atau <strong>message queue</strong> (RabbitMQ, Kafka)
-    </div>
+<h3>Type Mapping: Python ctypes &lt;-&gt; Go</h3>
+<div class="table-wrapper">
+<table>
+<tr><th>Go Type</th><th>C Type</th><th>ctypes Type</th><th>NumPy dtype</th></tr>
+<tr><td>C.int</td><td>int</td><td>ctypes.c_int</td><td>np.int32</td></tr>
+<tr><td>C.long</td><td>long</td><td>ctypes.c_long</td><td>np.int64 (Linux)</td></tr>
+<tr><td>C.longlong</td><td>long long</td><td>ctypes.c_longlong</td><td>np.int64</td></tr>
+<tr><td>C.float</td><td>float</td><td>ctypes.c_float</td><td>np.float32</td></tr>
+<tr><td>C.double</td><td>double</td><td>ctypes.c_double</td><td>np.float64</td></tr>
+<tr><td>*C.double</td><td>double*</td><td>ctypes.POINTER(c_double)</td><td>array.ctypes.data_as(...)</td></tr>
+<tr><td>C.CString</td><td>char*</td><td>ctypes.c_char_p</td><td>-</td></tr>
+</table>
+</div>
+</div>
+
+<!-- Canvas: FFI Pipeline Animation -->
+<div class="card animate-in">
+<h3>Visualisasi: FFI Pipeline (Python &rarr; Go/Rust)</h3>
+<div class="anim-container">
+<canvas id="canvas-python-ffi" width="720" height="260" style="width:100%;height:260px;border-radius:8px;"></canvas>
+</div>
+<div class="anim-controls">
+<button class="anim-btn" id="ffiStartBtn">Start</button>
+<button class="anim-btn" id="ffiResetBtn">Reset</button>
+</div>
+</div>
+
+<!-- ==================== 12. FFI WITH RUST (PyO3) ==================== -->
+<h2 class="animate-in">12. Python FFI dengan Rust (PyO3)</h2>
+
+<div class="card animate-in">
+<h3>Mengapa PyO3?</h3>
+<div class="card-grid">
+<div class="info-box">
+<strong>Safe Rust Bindings</strong><br>
+PyO3 menyediakan macro dan trait untuk menulis Python extension module dalam Rust yang aman dari memory bugs dan data races.
+</div>
+<div class="info-box">
+<strong>maturin</strong><br>
+Build system yang handle semua: cargo build, create Python wheel, install. <code>maturin develop</code> = instant test cycle.
+</div>
+<div class="info-box">
+<strong>Performance</strong><br>
+Rust code berjalan tanpa overhead GC. Cocok untuk: parsing, crypto, numerics, compression, custom CUDA ops.
+</div>
+<div class="info-box">
+<strong>Ecosystem</strong><br>
+Hugging Face tokenizers, orjson (JSON), polars (DataFrame) — semuanya Python modules berbasis Rust.
+</div>
+</div>
 </div>
 
 <div class="card animate-in">
-    <h3>Python Ecosystem Overview</h3>
-    <div class="table-wrapper">
-        <table>
-            <tr><th>Domain</th><th>Libraries</th><th>Keterangan</th></tr>
-            <tr><td><span class="badge-blue">Web</span></td><td>Django, Flask, FastAPI, Starlette</td><td>Full-stack hingga micro framework</td></tr>
-            <tr><td><span class="badge-green">Data Science</span></td><td>NumPy, Pandas, Matplotlib, Seaborn</td><td>Data manipulation & visualization</td></tr>
-            <tr><td><span class="badge-purple">ML/AI</span></td><td>scikit-learn, PyTorch, TensorFlow, JAX</td><td>Training & inference</td></tr>
-            <tr><td><span class="badge-orange">NLP/LLM</span></td><td>Hugging Face, LangChain, spaCy</td><td>Language processing & LLM apps</td></tr>
-            <tr><td><span class="badge-red">DevOps</span></td><td>Ansible, Fabric, Invoke</td><td>Infrastructure automation</td></tr>
-            <tr><td><span class="badge-yellow">Testing</span></td><td>pytest, unittest, hypothesis</td><td>Unit, integration, property-based testing</td></tr>
-        </table>
-    </div>
+<h3>Langkah 1: Setup Project PyO3</h3>
+<div class="code-block"><span class="cm"># Buat project baru dengan maturin</span>
+pip install maturin
+maturin new --bindings pyo3 pymath_rs
+cd pymath_rs
+
+<span class="cm"># Struktur:</span>
+<span class="cm"># pymath_rs/</span>
+<span class="cm">#   Cargo.toml</span>
+<span class="cm">#   src/lib.rs</span>
+<span class="cm">#   pyproject.toml</span></div>
+<div class="code-block"><span class="cm"># Cargo.toml</span>
+[package]
+name = <span class="str">"pymath_rs"</span>
+version = <span class="str">"0.1.0"</span>
+edition = <span class="str">"2021"</span>
+
+[lib]
+name = <span class="str">"pymath_rs"</span>
+crate-type = [<span class="str">"cdylib"</span>]
+
+[dependencies]
+pyo3 = { version = <span class="str">"0.21"</span>, features = [<span class="str">"extension-module"</span>] }
+rayon = <span class="str">"1.8"</span>  <span class="cm"># untuk parallelism</span></div>
 </div>
+
+<div class="card animate-in">
+<h3>Langkah 2: Rust Implementation (src/lib.rs)</h3>
+<div class="code-block"><span class="cm">// src/lib.rs</span>
+<span class="kw">use</span> pyo3::prelude::*;
+<span class="kw">use</span> pyo3::exceptions::PyValueError;
+<span class="kw">use</span> rayon::prelude::*;
+
+<span class="cm">/// Hitung Fibonacci ke-n menggunakan iterasi cepat</span>
+#[pyfunction]
+<span class="kw">fn</span> <span class="fn">fibonacci</span>(n: u64) -> PyResult&lt;u64&gt; {
+    <span class="kw">if</span> n &gt; <span class="num">93</span> {
+        <span class="kw">return</span> <span class="fn">Err</span>(PyValueError::new_err(<span class="str">"n must be &lt;= 93 to avoid overflow"</span>));
+    }
+    <span class="kw">let</span> (mut a, mut b) = (<span class="num">0u64</span>, <span class="num">1u64</span>);
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="num">0</span>..n { <span class="kw">let</span> tmp = a + b; a = b; b = tmp; }
+    <span class="fn">Ok</span>(a)
+}
+
+<span class="cm">/// Parallel prime counting menggunakan rayon</span>
+#[pyfunction]
+<span class="kw">fn</span> <span class="fn">count_primes</span>(limit: u64) -> PyResult&lt;u64&gt; {
+    <span class="kw">let</span> count = (<span class="num">2</span>..limit)
+        .<span class="fn">into_par_iter</span>()  <span class="cm">// rayon parallel iterator</span>
+        .<span class="fn">filter</span>(|&amp;n| <span class="fn">is_prime</span>(n))
+        .<span class="fn">count</span>() <span class="kw">as</span> u64;
+    <span class="fn">Ok</span>(count)
+}
+
+<span class="kw">fn</span> <span class="fn">is_prime</span>(n: u64) -> bool {
+    <span class="kw">if</span> n &lt; <span class="num">2</span> { <span class="kw">return</span> <span class="kw">false</span>; }
+    <span class="kw">if</span> n == <span class="num">2</span> { <span class="kw">return</span> <span class="kw">true</span>; }
+    <span class="kw">if</span> n % <span class="num">2</span> == <span class="num">0</span> { <span class="kw">return</span> <span class="kw">false</span>; }
+    <span class="kw">let</span> limit = (n <span class="kw">as</span> f64).<span class="fn">sqrt</span>() <span class="kw">as</span> u64 + <span class="num">1</span>;
+    !(<span class="num">3</span>..limit).<span class="fn">step_by</span>(<span class="num">2</span>).<span class="fn">any</span>(|i| n % i == <span class="num">0</span>)
+}
+
+<span class="cm">/// Python class dari Rust struct</span>
+#[pyclass]
+<span class="kw">struct</span> <span class="type">Counter</span> {
+    count: i64,
+    step: i64,
+}
+
+#[pymethods]
+<span class="kw">impl</span> <span class="type">Counter</span> {
+    #[new]
+    <span class="kw">fn</span> <span class="fn">new</span>(step: i64) -> Self {
+        Counter { count: <span class="num">0</span>, step }
+    }
+    <span class="kw">fn</span> <span class="fn">increment</span>(&amp;mut self) { self.count += self.step; }
+    <span class="kw">fn</span> <span class="fn">value</span>(&amp;self) -> i64 { self.count }
+    <span class="kw">fn</span> <span class="fn">reset</span>(&amp;mut self) { self.count = <span class="num">0</span>; }
+}
+
+<span class="cm">/// Module definition</span>
+#[pymodule]
+<span class="kw">fn</span> <span class="fn">pymath_rs</span>(_py: Python&lt;'_&gt;, m: &amp;PyModule) -> PyResult&lt;()&gt; {
+    m.<span class="fn">add_function</span>(wrap_pyfunction!(fibonacci, m)?)?;
+    m.<span class="fn">add_function</span>(wrap_pyfunction!(count_primes, m)?)?;
+    m.<span class="fn">add_class</span>::&lt;Counter&gt;()?;
+    <span class="fn">Ok</span>(())
+}</div>
+</div>
+
+<div class="card animate-in">
+<h3>Langkah 3: Build &amp; Gunakan dari Python</h3>
+<div class="code-block"><span class="cm"># Build dan install ke venv saat ini</span>
+maturin develop --release
+
+<span class="cm"># Atau build wheel untuk distribusi</span>
+maturin build --release</div>
+<div class="code-block"><span class="kw">import</span> pymath_rs
+<span class="kw">import</span> time
+
+<span class="cm"># Panggil Rust function</span>
+<span class="fn">print</span>(pymath_rs.<span class="fn">fibonacci</span>(<span class="num">50</span>))  <span class="cm"># 12586269025</span>
+
+<span class="cm"># Benchmark: Python vs Rust prime counting</span>
+<span class="kw">def</span> <span class="fn">count_primes_python</span>(limit: <span class="type">int</span>) -> <span class="type">int</span>:
+    <span class="kw">def</span> <span class="fn">is_prime</span>(n):
+        <span class="kw">if</span> n &lt; <span class="num">2</span>: <span class="kw">return</span> <span class="kw">False</span>
+        <span class="kw">return</span> <span class="fn">all</span>(n % i != <span class="num">0</span> <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">2</span>, <span class="type">int</span>(n**<span class="num">0.5</span>)+<span class="num">1</span>))
+    <span class="kw">return</span> <span class="fn">sum</span>(<span class="num">1</span> <span class="kw">for</span> n <span class="kw">in</span> <span class="fn">range</span>(<span class="num">2</span>, limit) <span class="kw">if</span> <span class="fn">is_prime</span>(n))
+
+LIMIT = <span class="num">100_000</span>
+
+t0 = time.<span class="fn">perf_counter</span>()
+py_result = <span class="fn">count_primes_python</span>(LIMIT)
+py_time = time.<span class="fn">perf_counter</span>() - t0
+
+t0 = time.<span class="fn">perf_counter</span>()
+rs_result = pymath_rs.<span class="fn">count_primes</span>(LIMIT)
+rs_time = time.<span class="fn">perf_counter</span>() - t0
+
+<span class="fn">print</span>(<span class="str">f"Python: {py_result} primes in {py_time:.3f}s"</span>)
+<span class="fn">print</span>(<span class="str">f"Rust:   {rs_result} primes in {rs_time:.3f}s"</span>)
+<span class="fn">print</span>(<span class="str">f"Speedup: {py_time / rs_time:.1f}x"</span>)
+<span class="cm"># Typical: Python: 0.420s | Rust: 0.008s | Speedup: 52.5x</span>
+
+<span class="cm"># Gunakan Rust class</span>
+c = pymath_rs.<span class="fn">Counter</span>(step=<span class="num">5</span>)
+c.<span class="fn">increment</span>(); c.<span class="fn">increment</span>()
+<span class="fn">print</span>(c.<span class="fn">value</span>())  <span class="cm"># 10</span></div>
+</div>
+
+<!-- ==================== 13. PERFORMANCE OPTIMIZATION ==================== -->
+<h2 class="animate-in">13. Performance Optimization</h2>
+
+<div class="card animate-in">
+<h3>Profiling &amp; Numba</h3>
+<div class="code-block"><span class="kw">import</span> cProfile
+<span class="kw">import</span> pstats
+<span class="kw">from</span> numba <span class="kw">import</span> jit, njit
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">import</span> time
+
+<span class="cm"># cProfile — built-in profiler</span>
+<span class="kw">def</span> <span class="fn">my_function</span>():
+    <span class="kw">return</span> <span class="fn">sum</span>(i**<span class="num">2</span> <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1_000_000</span>))
+
+<span class="kw">with</span> cProfile.<span class="fn">Profile</span>() <span class="kw">as</span> pr:
+    <span class="fn">my_function</span>()
+stats = pstats.<span class="fn">Stats</span>(pr)
+stats.<span class="fn">sort_stats</span>(<span class="str">"cumulative"</span>)
+stats.<span class="fn">print_stats</span>(<span class="num">10</span>)  <span class="cm"># top 10 hotspots</span>
+
+<span class="cm"># Numba @jit — JIT compilation untuk NumPy code</span>
+@njit(parallel=<span class="kw">True</span>)  <span class="cm"># @njit = no-python mode (paling cepat)</span>
+<span class="kw">def</span> <span class="fn">monte_carlo_pi</span>(n_samples: <span class="type">int</span>) -> <span class="type">float</span>:
+    count = <span class="num">0</span>
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(n_samples):
+        x = np.random.<span class="fn">random</span>()
+        y = np.random.<span class="fn">random</span>()
+        <span class="kw">if</span> x**<span class="num">2</span> + y**<span class="num">2</span> &lt;= <span class="num">1.0</span>:
+            count += <span class="num">1</span>
+    <span class="kw">return</span> <span class="num">4.0</span> * count / n_samples
+
+<span class="cm"># Warm up JIT (first call compiles)</span>
+<span class="fn">monte_carlo_pi</span>(<span class="num">100</span>)
+
+t0 = time.<span class="fn">perf_counter</span>()
+pi = <span class="fn">monte_carlo_pi</span>(<span class="num">10_000_000</span>)
+<span class="fn">print</span>(<span class="str">f"Pi ~ {pi:.5f} in {time.perf_counter()-t0:.3f}s"</span>)</div>
+</div>
+
+<div class="card animate-in">
+<h3>Perbandingan Performa</h3>
+<div class="table-wrapper">
+<table>
+<tr><th>Approach</th><th>Relatif Speed</th><th>Setup Effort</th><th>Best For</th></tr>
+<tr><td>Pure Python</td><td>1x</td><td>Zero</td><td>Prototype, business logic</td></tr>
+<tr><td>NumPy vectorized</td><td>10-100x</td><td>Low</td><td>Array math, linear algebra</td></tr>
+<tr><td>Numba @njit</td><td>50-200x</td><td>Low (decorator)</td><td>Loops, numerical kernels</td></tr>
+<tr><td>Cython</td><td>50-200x</td><td>Medium</td><td>Existing Python code + types</td></tr>
+<tr><td>PyO3/Rust</td><td>100-500x</td><td>High</td><td>Perf-critical, safe concurrency</td></tr>
+<tr><td>ctypes/Go</td><td>50-300x</td><td>Medium</td><td>Leverage Go stdlib, goroutines</td></tr>
+<tr><td>PyPy</td><td>5-50x</td><td>Drop-in</td><td>General Python, no C-ext needed</td></tr>
+</table>
+</div>
+<div class="info-box">
+<strong>Aturan optimasi:</strong> Profile first, optimize second. 80% runtime biasanya ada di 20% kode. Jangan pre-optimize — tulis Python yang bersih dulu, lalu ukur bottleneck, lalu pilih solusi (NumPy, Numba, atau FFI).
+</div>
+</div>
+
+<!-- ==================== REFERENCES ==================== -->
+<h2 class="animate-in">Referensi</h2>
+
+<div class="card animate-in">
+<div class="table-wrapper">
+<table>
+<tr><th>Sumber</th><th>Link</th><th>Keterangan</th></tr>
+<tr><td>Python Official Docs</td><td>docs.python.org/3/</td><td>Reference utama bahasa &amp; stdlib</td></tr>
+<tr><td>Python Data Model</td><td>docs.python.org/3/reference/datamodel.html</td><td>Dunder methods, object protocol</td></tr>
+<tr><td>NumPy Docs</td><td>numpy.org/doc/</td><td>ndarray, ufuncs, linear algebra</td></tr>
+<tr><td>PyTorch Docs</td><td>pytorch.org/docs/</td><td>Tensors, autograd, nn.Module</td></tr>
+<tr><td>PyO3 Guide</td><td>pyo3.rs/</td><td>Rust bindings untuk Python</td></tr>
+<tr><td>Fluent Python</td><td>Luciano Ramalho, 2nd ed. 2022</td><td>Deep dive Python internals</td></tr>
+<tr><td>Real Python</td><td>realpython.com</td><td>Tutorials &amp; how-tos</td></tr>
+<tr><td>maturin</td><td>maturin.rs/</td><td>Build system untuk PyO3</td></tr>
+</table>
+</div>
+</div>
+
+</section>
 `;
 
-// ==================== GIL ANIMATION ====================
+// ==================== PYTHON ANIMATIONS ====================
 function initPythonAnimations() {
     const dpr = window.devicePixelRatio || 1;
+
     function setupCanvas(id, w, h) {
-        const c = document.getElementById(id);
+        var c = document.getElementById(id);
         if (!c) return null;
-        const ctx = c.getContext('2d');
-        c.width = w * dpr; c.height = h * dpr;
+        var ctx = c.getContext('2d');
+        c.width = w * dpr;
+        c.height = h * dpr;
         c.style.width = w + 'px';
         c.style.height = h + 'px';
         ctx.scale(dpr, dpr);
-        return { c, ctx, w, h };
+        return { c: c, ctx: ctx, w: w, h: h };
     }
-
-    // ---- GIL Visualization ----
-    const gil = setupCanvas('pythonGilCanvas', 700, 320);
-    if (!gil) return;
-
-    const { ctx, w, h } = gil;
-    let animId = null;
-    let running = false;
-    let tick = 0;
-
-    const threads = [
-        { name: 'Thread 1', color: '#38bdf8', tasks: [] },
-        { name: 'Thread 2', color: '#34d399', tasks: [] },
-        { name: 'Thread 3', color: '#fb923c', tasks: [] },
-        { name: 'Thread 4', color: '#f87171', tasks: [] },
-    ];
-
-    const gilSlotWidth = 30;
-    const totalSlots = 60;
-    let gilSchedule = [];
-    let currentSlot = 0;
-
-    function generateSchedule() {
-        gilSchedule = [];
-        let active = 0;
-        for (let i = 0; i < totalSlots; i++) {
-            // GIL switches thread roughly every 3-7 ticks
-            if (i > 0 && Math.random() < 0.2) {
-                active = Math.floor(Math.random() * threads.length);
-            }
-            gilSchedule.push(active);
-        }
-    }
-
-    generateSchedule();
 
     function getStyle(prop) {
         return getComputedStyle(document.documentElement).getPropertyValue(prop).trim();
     }
 
-    function drawFrame() {
-        const bg = getStyle('--bg1') || '#0f172a';
-        const text = getStyle('--text1') || '#e2e8f0';
-        const text2 = getStyle('--text2') || '#94a3b8';
+    // ======================================================
+    // 1. GIL Visualization
+    // ======================================================
+    (function initGIL() {
+        var gil = setupCanvas('canvas-python-gil', 720, 320);
+        if (!gil) return;
 
-        ctx.fillStyle = bg;
-        ctx.fillRect(0, 0, w, h);
+        var ctx = gil.ctx, w = gil.w, h = gil.h;
+        var animId = null;
+        var running = false;
+        var tick = 0;
 
-        // Title
-        ctx.fillStyle = text;
-        ctx.font = 'bold 15px Inter, system-ui, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('Python GIL — Hanya 1 Thread Aktif pada Satu Waktu', w / 2, 25);
+        var threads = [
+            { name: 'Thread-1', color: '#38bdf8' },
+            { name: 'Thread-2', color: '#34d399' },
+            { name: 'Thread-3', color: '#fb923c' },
+            { name: 'Thread-4', color: '#f87171' },
+        ];
 
-        // Legend for cores
-        ctx.font = '11px Inter, system-ui, sans-serif';
-        ctx.fillStyle = text2;
-        ctx.textAlign = 'left';
-        ctx.fillText('CPU Cores tersedia: 4 | GIL memaksa hanya 1 thread berjalan', 20, 48);
+        var totalSlots = 60;
+        var gilSchedule = [];
+        var currentSlot = 0;
 
-        const timelineY = 70;
-        const rowH = 45;
-        const labelW = 80;
-        const timelineX = labelW + 10;
-        const timelineW = w - timelineX - 20;
-        const slotW = timelineW / 20; // Show 20 slots at a time
+        function generateSchedule() {
+            gilSchedule = [];
+            var active = 0;
+            for (var i = 0; i < totalSlots; i++) {
+                if (i > 0 && Math.random() < 0.2) {
+                    active = Math.floor(Math.random() * threads.length);
+                }
+                gilSchedule.push(active);
+            }
+        }
 
-        // Determine visible window
-        const visibleStart = Math.max(0, currentSlot - 19);
-        const visibleEnd = Math.min(totalSlots, visibleStart + 20);
+        generateSchedule();
 
-        // Draw each thread row
-        threads.forEach((thread, ti) => {
-            const y = timelineY + ti * rowH;
+        function drawGILFrame() {
+            var bg = getStyle('--bg1') || '#0f172a';
+            var text = getStyle('--text1') || '#e2e8f0';
+            var text2 = getStyle('--text2') || '#94a3b8';
 
-            // Label
-            ctx.fillStyle = thread.color;
-            ctx.font = 'bold 12px Inter, system-ui, sans-serif';
-            ctx.textAlign = 'right';
-            ctx.fillText(thread.name, labelW, y + 22);
+            ctx.fillStyle = bg;
+            ctx.fillRect(0, 0, w, h);
 
-            // Draw timeline slots
-            for (let s = visibleStart; s < visibleEnd; s++) {
-                const sx = timelineX + (s - visibleStart) * slotW;
-                const isActive = gilSchedule[s] === ti;
-                const isPast = s < currentSlot;
-                const isCurrent = s === currentSlot;
+            ctx.fillStyle = text;
+            ctx.font = 'bold 14px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('Python GIL — Hanya 1 Thread Aktif pada Satu Waktu', w / 2, 22);
 
-                if (isPast || isCurrent) {
-                    if (isActive) {
-                        ctx.fillStyle = thread.color;
-                        ctx.globalAlpha = isCurrent ? 1.0 : 0.7;
-                        ctx.fillRect(sx + 1, y + 6, slotW - 2, 28);
-                        ctx.globalAlpha = 1;
+            ctx.fillStyle = text2;
+            ctx.font = '11px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('CPU Cores tersedia: 4  |  GIL memaksa hanya 1 thread berjalan bytecode', 16, 42);
 
-                        if (isCurrent) {
-                            // Glow effect for current
-                            ctx.shadowColor = thread.color;
-                            ctx.shadowBlur = 10;
-                            ctx.fillRect(sx + 1, y + 6, slotW - 2, 28);
-                            ctx.shadowBlur = 0;
-                        }
+            var timelineY = 60;
+            var rowH = 46;
+            var labelW = 80;
+            var timelineX = labelW + 12;
+            var timelineW = w - timelineX - 16;
+            var visWindow = 20;
+            var slotW = timelineW / visWindow;
 
-                        // Running label
-                        ctx.fillStyle = '#000';
-                        ctx.font = 'bold 8px Inter, system-ui, sans-serif';
-                        ctx.textAlign = 'center';
-                        ctx.fillText('RUN', sx + slotW / 2, y + 24);
-                    } else {
-                        // Waiting / blocked
-                        ctx.fillStyle = text2;
-                        ctx.globalAlpha = 0.15;
-                        ctx.fillRect(sx + 1, y + 6, slotW - 2, 28);
-                        ctx.globalAlpha = 1;
+            var visStart = Math.max(0, currentSlot - visWindow + 1);
+            var visEnd = Math.min(totalSlots, visStart + visWindow);
 
-                        if (isPast || isCurrent) {
+            threads.forEach(function(thread, ti) {
+                var y = timelineY + ti * rowH;
+
+                ctx.fillStyle = thread.color;
+                ctx.font = 'bold 11px Inter, system-ui, sans-serif';
+                ctx.textAlign = 'right';
+                ctx.fillText(thread.name, labelW, y + 20);
+
+                for (var s = visStart; s < visEnd; s++) {
+                    var sx = timelineX + (s - visStart) * slotW;
+                    var isActive = gilSchedule[s] === ti;
+                    var isPast = s < currentSlot;
+                    var isCurrent = s === currentSlot;
+
+                    if (isPast || isCurrent) {
+                        if (isActive) {
+                            ctx.globalAlpha = isCurrent ? 1.0 : 0.65;
+                            ctx.fillStyle = thread.color;
+                            ctx.fillRect(sx + 1, y + 5, slotW - 2, 28);
+                            ctx.globalAlpha = 1;
+                            if (isCurrent) {
+                                ctx.shadowColor = thread.color;
+                                ctx.shadowBlur = 10;
+                                ctx.fillRect(sx + 1, y + 5, slotW - 2, 28);
+                                ctx.shadowBlur = 0;
+                            }
+                            ctx.fillStyle = '#000';
+                            ctx.font = 'bold 7px Inter, system-ui, sans-serif';
+                            ctx.textAlign = 'center';
+                            ctx.fillText('RUN', sx + slotW / 2, y + 22);
+                        } else {
+                            ctx.globalAlpha = 0.12;
+                            ctx.fillStyle = text2;
+                            ctx.fillRect(sx + 1, y + 5, slotW - 2, 28);
+                            ctx.globalAlpha = 0.4;
                             ctx.fillStyle = text2;
                             ctx.font = '7px Inter, system-ui, sans-serif';
                             ctx.textAlign = 'center';
-                            ctx.globalAlpha = 0.5;
-                            ctx.fillText('WAIT', sx + slotW / 2, y + 24);
+                            ctx.fillText('WAIT', sx + slotW / 2, y + 22);
                             ctx.globalAlpha = 1;
                         }
+                    } else {
+                        ctx.strokeStyle = text2;
+                        ctx.globalAlpha = 0.12;
+                        ctx.strokeRect(sx + 1, y + 5, slotW - 2, 28);
+                        ctx.globalAlpha = 1;
                     }
-                } else {
-                    // Future — empty
-                    ctx.strokeStyle = text2;
-                    ctx.globalAlpha = 0.15;
-                    ctx.strokeRect(sx + 1, y + 6, slotW - 2, 28);
-                    ctx.globalAlpha = 1;
+                }
+            });
+
+            var gilY = timelineY + threads.length * rowH + 14;
+            ctx.fillStyle = text;
+            ctx.font = 'bold 12px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('GIL Owner:', labelW - 60, gilY + 4);
+
+            if (currentSlot < totalSlots) {
+                var ownerIdx = gilSchedule[currentSlot];
+                ctx.fillStyle = threads[ownerIdx].color;
+                ctx.font = 'bold 12px Inter, system-ui, sans-serif';
+                ctx.textAlign = 'left';
+                ctx.fillText(threads[ownerIdx].name, labelW + 10, gilY + 4);
+            }
+
+            ctx.fillStyle = text2;
+            ctx.font = '11px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('Slot: ' + currentSlot + ' / ' + (totalSlots - 1), w / 2, gilY + 24);
+            ctx.fillText('Tanpa GIL (Go/Rust): semua thread berjalan paralel di core berbeda', w / 2, gilY + 42);
+            ctx.fillText('Dengan GIL (CPython): hanya 1 thread aktif pada satu waktu', w / 2, gilY + 56);
+        }
+
+        function animateGIL() {
+            tick++;
+            if (tick % 8 === 0 && currentSlot < totalSlots - 1) {
+                currentSlot++;
+            }
+            drawGILFrame();
+            if (currentSlot < totalSlots - 1 && running) {
+                animId = requestAnimationFrame(animateGIL);
+            } else if (currentSlot >= totalSlots - 1) {
+                running = false;
+                drawGILFrame();
+            }
+        }
+
+        function startGIL() {
+            if (running) return;
+            if (currentSlot >= totalSlots - 1) resetGIL();
+            running = true;
+            animateGIL();
+        }
+
+        function resetGIL() {
+            running = false;
+            if (animId) cancelAnimationFrame(animId);
+            tick = 0;
+            currentSlot = 0;
+            generateSchedule();
+            drawGILFrame();
+        }
+
+        var btnStart = document.getElementById('gilStartBtn');
+        var btnReset = document.getElementById('gilResetBtn');
+        if (btnStart) btnStart.addEventListener('click', startGIL);
+        if (btnReset) btnReset.addEventListener('click', resetGIL);
+
+        drawGILFrame();
+    })();
+
+    // ======================================================
+    // 2. PyTorch Tensor / MatMul Visualization
+    // ======================================================
+    (function initTensorViz() {
+        var cv = setupCanvas('canvas-pytorch-tensor', 720, 300);
+        if (!cv) return;
+
+        var ctx = cv.ctx, w = cv.w, h = cv.h;
+        var animId = null;
+        var running = false;
+        var tick = 0;
+        var step = 0;
+        var totalSteps = 120;
+
+        var N = 4;
+        var matA = [];
+        var matB = [];
+        var matC = [];
+
+        function genMats() {
+            matA = []; matB = []; matC = [];
+            for (var i = 0; i < N; i++) {
+                matA.push([]);
+                matB.push([]);
+                matC.push([]);
+                for (var j = 0; j < N; j++) {
+                    matA[i].push(Math.floor(Math.random() * 9) + 1);
+                    matB[i].push(Math.floor(Math.random() * 9) + 1);
+                    matC[i].push(0);
                 }
             }
-        });
-
-        // GIL indicator
-        const gilY = timelineY + threads.length * rowH + 15;
-        ctx.fillStyle = text;
-        ctx.font = 'bold 13px Inter, system-ui, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('GIL Owner:', w / 2 - 60, gilY + 5);
-
-        if (currentSlot < totalSlots) {
-            const ownerIdx = gilSchedule[currentSlot];
-            ctx.fillStyle = threads[ownerIdx].color;
-            ctx.font = 'bold 13px Inter, system-ui, sans-serif';
-            ctx.fillText(threads[ownerIdx].name, w / 2 + 30, gilY + 5);
-
-            // Draw lock icon
-            ctx.fillStyle = '#fbbf24';
-            ctx.font = '16px serif';
-            ctx.fillText('\uD83D\uDD12', w / 2 + 85, gilY + 7);
+            for (var i2 = 0; i2 < N; i2++) {
+                for (var j2 = 0; j2 < N; j2++) {
+                    var s = 0;
+                    for (var k = 0; k < N; k++) s += matA[i2][k] * matB[k][j2];
+                    matC[i2][j2] = s;
+                }
+            }
         }
 
-        // Time indicator
-        ctx.fillStyle = text2;
-        ctx.font = '11px Inter, system-ui, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('Time Slot: ' + currentSlot + ' / ' + (totalSlots - 1), w / 2, gilY + 30);
+        genMats();
 
-        // Comparison note
-        const noteY = gilY + 52;
-        ctx.fillStyle = text2;
-        ctx.font = '11px Inter, system-ui, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('Tanpa GIL (Go/Rust): semua thread berjalan paralel di core berbeda', w / 2, noteY);
-        ctx.fillText('Dengan GIL (CPython): thread bergantian, hanya 1 aktif menjalankan bytecode', w / 2, noteY + 16);
-    }
+        var cellSize = 44;
+        var matW = N * cellSize;
 
-    function animate() {
-        tick++;
-        if (tick % 8 === 0 && currentSlot < totalSlots - 1) {
-            currentSlot++;
+        function drawMatrix(label, mat, ox, oy, hiRow, hiCol, color) {
+            var bg = getStyle('--bg2') || '#1e293b';
+            var text = getStyle('--text1') || '#e2e8f0';
+            var text2 = getStyle('--text2') || '#94a3b8';
+
+            ctx.fillStyle = text2;
+            ctx.font = 'bold 12px Inter, monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText(label, ox + matW / 2, oy - 8);
+
+            for (var i = 0; i < N; i++) {
+                for (var j = 0; j < N; j++) {
+                    var x = ox + j * cellSize;
+                    var y = oy + i * cellSize;
+                    var isHi = (i === hiRow || j === hiCol);
+                    var isBoth = (i === hiRow && j === hiCol);
+
+                    if (isBoth && color) {
+                        ctx.fillStyle = color;
+                        ctx.globalAlpha = 0.9;
+                    } else if (isHi && color) {
+                        ctx.fillStyle = color;
+                        ctx.globalAlpha = 0.3;
+                    } else {
+                        ctx.fillStyle = bg;
+                        ctx.globalAlpha = 1;
+                    }
+                    ctx.fillRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
+                    ctx.globalAlpha = 1;
+
+                    ctx.strokeStyle = isBoth ? color || '#666' : '#334155';
+                    ctx.lineWidth = isBoth ? 2 : 1;
+                    ctx.strokeRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
+
+                    ctx.fillStyle = isBoth ? '#fff' : text;
+                    ctx.font = (isBoth ? 'bold ' : '') + '12px monospace';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(mat[i][j], x + cellSize / 2, y + cellSize / 2 + 4);
+                }
+            }
         }
-        drawFrame();
-        if (currentSlot < totalSlots - 1 && running) {
-            animId = requestAnimationFrame(animate);
-        } else if (currentSlot >= totalSlots - 1) {
+
+        function drawTensorFrame() {
+            var bg = getStyle('--bg1') || '#0f172a';
+            var text = getStyle('--text1') || '#e2e8f0';
+            var text2 = getStyle('--text2') || '#94a3b8';
+
+            ctx.fillStyle = bg;
+            ctx.fillRect(0, 0, w, h);
+
+            ctx.fillStyle = text;
+            ctx.font = 'bold 14px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('PyTorch: C = A @ B — Matrix Multiplication', w / 2, 22);
+
+            var progress = step / totalSteps;
+            var hiI = Math.floor(progress * N * N);
+            var hiRow = Math.floor(hiI / N) % N;
+            var hiCol = hiI % N;
+
+            var gap = 28;
+            var totalW = matW * 3 + gap * 2 + 24;
+            var startX = (w - totalW) / 2;
+            var startY = 42;
+
+            drawMatrix('A', matA, startX, startY, hiRow, -1, '#38bdf8');
+            var opX = startX + matW + 6;
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = 'bold 22px monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText('@', opX + 7, startY + matW / 2 + 6);
+            drawMatrix('B', matB, startX + matW + gap, startY, -1, hiCol, '#34d399');
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = 'bold 22px monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText('=', startX + matW * 2 + gap + 8, startY + matW / 2 + 6);
+            drawMatrix('C (result)', matC, startX + matW * 2 + gap * 2, startY, hiRow, hiCol, '#fb923c');
+
+            ctx.fillStyle = text2;
+            ctx.font = '11px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            var infoY = startY + matW + 18;
+            ctx.fillText(
+                'Highlighting row ' + hiRow + ' of A  x  col ' + hiCol + ' of B  ==>  C[' + hiRow + '][' + hiCol + ']=' + matC[hiRow][hiCol],
+                w / 2, infoY
+            );
+            ctx.fillText(
+                'autograd: each op builds a computation graph node; .backward() traverses it in reverse',
+                w / 2, infoY + 18
+            );
+
+            // Progress bar
+            ctx.fillStyle = '#1e293b';
+            ctx.fillRect(20, h - 18, w - 40, 8);
+            ctx.fillStyle = '#38bdf8';
+            ctx.fillRect(20, h - 18, (w - 40) * progress, 8);
+        }
+
+        function animTensor() {
+            tick++;
+            if (tick % 4 === 0 && step < totalSteps) step++;
+            drawTensorFrame();
+            if (step < totalSteps && running) {
+                animId = requestAnimationFrame(animTensor);
+            } else if (step >= totalSteps) {
+                running = false;
+            }
+        }
+
+        function startTensor() {
+            if (running) return;
+            if (step >= totalSteps) { step = 0; genMats(); }
+            running = true;
+            animTensor();
+        }
+
+        function resetTensor() {
             running = false;
-            drawFrame();
+            if (animId) cancelAnimationFrame(animId);
+            tick = 0; step = 0;
+            genMats();
+            drawTensorFrame();
         }
-    }
 
-    function startGil() {
-        if (running) return;
-        if (currentSlot >= totalSlots - 1) {
-            resetGil();
+        var btnS = document.getElementById('pytorchTensorStart');
+        var btnR = document.getElementById('pytorchTensorReset');
+        if (btnS) btnS.addEventListener('click', startTensor);
+        if (btnR) btnR.addEventListener('click', resetTensor);
+
+        drawTensorFrame();
+    })();
+
+    // ======================================================
+    // 3. FFI Pipeline Animation
+    // ======================================================
+    (function initFFI() {
+        var cv = setupCanvas('canvas-python-ffi', 720, 260);
+        if (!cv) return;
+
+        var ctx = cv.ctx, w = cv.w, h = cv.h;
+        var animId = null;
+        var running = false;
+        var tick = 0;
+        var progress = 0;
+
+        var stages = [
+            { label: 'Python', sub: 'ctypes.CDLL()', color: '#f0db4f', textColor: '#1a1a1a' },
+            { label: 'ctypes', sub: 'argtypes / restype', color: '#38bdf8', textColor: '#0f172a' },
+            { label: '.so / .dll', sub: 'Go / Rust lib', color: '#34d399', textColor: '#0f172a' },
+            { label: 'C ABI', sub: 'cdecl convention', color: '#fb923c', textColor: '#0f172a' },
+            { label: 'Result', sub: 'Python object', color: '#c084fc', textColor: '#0f172a' },
+        ];
+
+        var boxW = 110, boxH = 56;
+        var gap = (w - stages.length * boxW) / (stages.length + 1);
+        var boxY = h / 2 - boxH / 2 - 10;
+
+        function drawFFIFrame() {
+            var bg = getStyle('--bg1') || '#0f172a';
+            var text = getStyle('--text1') || '#e2e8f0';
+            var text2 = getStyle('--text2') || '#94a3b8';
+
+            ctx.fillStyle = bg;
+            ctx.fillRect(0, 0, w, h);
+
+            ctx.fillStyle = text;
+            ctx.font = 'bold 14px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('FFI Pipeline: Python call to Go / Rust shared library', w / 2, 22);
+
+            var totalLen = stages.length;
+            // Each stage activates over equal slice of progress
+            var sliceSize = 1.0 / (totalLen + 1);
+
+            stages.forEach(function(stage, idx) {
+                var bx = gap + idx * (boxW + gap);
+
+                var stageStart = idx * sliceSize;
+                var stageEnd = (idx + 1) * sliceSize;
+                var localProg = Math.min(1, Math.max(0, (progress - stageStart) / sliceSize));
+                var active = localProg > 0;
+
+                // Draw box
+                ctx.globalAlpha = active ? 1.0 : 0.3;
+                ctx.fillStyle = active ? stage.color : '#334155';
+                var rad = 8;
+                ctx.beginPath();
+                ctx.moveTo(bx + rad, boxY);
+                ctx.lineTo(bx + boxW - rad, boxY);
+                ctx.arcTo(bx + boxW, boxY, bx + boxW, boxY + rad, rad);
+                ctx.lineTo(bx + boxW, boxY + boxH - rad);
+                ctx.arcTo(bx + boxW, boxY + boxH, bx + boxW - rad, boxY + boxH, rad);
+                ctx.lineTo(bx + rad, boxY + boxH);
+                ctx.arcTo(bx, boxY + boxH, bx, boxY + boxH - rad, rad);
+                ctx.lineTo(bx, boxY + rad);
+                ctx.arcTo(bx, boxY, bx + rad, boxY, rad);
+                ctx.closePath();
+                ctx.fill();
+                ctx.globalAlpha = 1;
+
+                if (active) {
+                    ctx.strokeStyle = '#fff';
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+                }
+
+                ctx.fillStyle = active ? stage.textColor : text2;
+                ctx.font = 'bold 12px Inter, monospace';
+                ctx.textAlign = 'center';
+                ctx.fillText(stage.label, bx + boxW / 2, boxY + 22);
+                ctx.fillStyle = active ? stage.textColor : text2;
+                ctx.font = '10px Inter, monospace';
+                ctx.fillText(stage.sub, bx + boxW / 2, boxY + 38);
+
+                // Arrow to next
+                if (idx < totalLen - 1) {
+                    var arrowX = bx + boxW + 4;
+                    var arrowY = boxY + boxH / 2;
+                    var arrowEnd = bx + boxW + gap - 4;
+
+                    var arrowStart2 = (idx + 1) * sliceSize;
+                    var arrowProg = Math.min(1, Math.max(0, (progress - arrowStart2 + sliceSize * 0.5) / (sliceSize * 0.5)));
+                    var currentArrowEnd = arrowX + (arrowEnd - arrowX) * arrowProg;
+
+                    ctx.globalAlpha = arrowProg > 0 ? 0.9 : 0.2;
+                    ctx.strokeStyle = '#64748b';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(arrowX, arrowY);
+                    ctx.lineTo(currentArrowEnd, arrowY);
+                    ctx.stroke();
+
+                    if (arrowProg >= 1) {
+                        ctx.fillStyle = '#64748b';
+                        ctx.beginPath();
+                        ctx.moveTo(arrowEnd, arrowY);
+                        ctx.lineTo(arrowEnd - 8, arrowY - 5);
+                        ctx.lineTo(arrowEnd - 8, arrowY + 5);
+                        ctx.closePath();
+                        ctx.fill();
+                    }
+                    ctx.globalAlpha = 1;
+                }
+            });
+
+            // Packet dot animation
+            if (progress > 0 && progress < 1) {
+                var dotX = gap + progress * ((stages.length - 1) * (boxW + gap));
+                var dotY = boxY + boxH / 2;
+                ctx.fillStyle = '#fbbf24';
+                ctx.shadowColor = '#fbbf24';
+                ctx.shadowBlur = 12;
+                ctx.beginPath();
+                ctx.arc(dotX, dotY, 6, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+
+            // Bottom labels
+            var bottomY = boxY + boxH + 28;
+            ctx.fillStyle = text2;
+            ctx.font = '11px Inter, system-ui, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('1. Python calls ctypes.CDLL  2. ctypes marshals args to C types  3. Executes native code in .so', w / 2, bottomY);
+            ctx.fillText('4. Return value marshaled back  5. Python receives result as Python int/float/etc', w / 2, bottomY + 16);
+
+            // Progress bar
+            ctx.fillStyle = '#1e293b';
+            ctx.fillRect(20, h - 14, w - 40, 6);
+            ctx.fillStyle = '#fbbf24';
+            ctx.fillRect(20, h - 14, (w - 40) * progress, 6);
         }
-        running = true;
-        animate();
-    }
 
-    function resetGil() {
-        running = false;
-        if (animId) cancelAnimationFrame(animId);
-        tick = 0;
-        currentSlot = 0;
-        generateSchedule();
-        drawFrame();
-    }
+        function animFFI() {
+            tick++;
+            if (tick % 3 === 0 && progress < 1) {
+                progress = Math.min(1, progress + 0.008);
+            }
+            drawFFIFrame();
+            if (progress < 1 && running) {
+                animId = requestAnimationFrame(animFFI);
+            } else if (progress >= 1) {
+                running = false;
+            }
+        }
 
-    const startBtn = document.getElementById('gilStartBtn');
-    const resetBtn = document.getElementById('gilResetBtn');
-    if (startBtn) startBtn.addEventListener('click', startGil);
-    if (resetBtn) resetBtn.addEventListener('click', resetGil);
+        function startFFI() {
+            if (running) return;
+            if (progress >= 1) { progress = 0; tick = 0; }
+            running = true;
+            animFFI();
+        }
 
-    drawFrame();
+        function resetFFI() {
+            running = false;
+            if (animId) cancelAnimationFrame(animId);
+            tick = 0; progress = 0;
+            drawFFIFrame();
+        }
+
+        var btnS = document.getElementById('ffiStartBtn');
+        var btnR = document.getElementById('ffiResetBtn');
+        if (btnS) btnS.addEventListener('click', startFFI);
+        if (btnR) btnR.addEventListener('click', resetFFI);
+
+        drawFFIFrame();
+    })();
+
+    // Tab switching (for pytorch tabs)
+    document.querySelectorAll('.tab-btn[data-tab]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var tabId = btn.getAttribute('data-tab');
+            var container = btn.closest('.card') || btn.parentElement.parentElement;
+            container.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+            container.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+            btn.classList.add('active');
+            var target = container.querySelector('#' + tabId);
+            if (target) target.classList.add('active');
+        });
+    });
+}
+
+if (typeof window !== 'undefined' && typeof sections !== 'undefined') {
+    var _origPy = sections['lang-python'];
+    sections['lang-python'] = function() {
+        return _origPy();
+    };
 }
