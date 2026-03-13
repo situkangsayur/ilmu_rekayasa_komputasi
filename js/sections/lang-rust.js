@@ -1523,6 +1523,245 @@ v.<span class="fn">iter</span>().<span class="fn">map</span>(|x| x*<span class="
 </div>
 </div>
 
+<!-- ===================== OWNERSHIP & BORROWING DEEP DIVE ===================== -->
+<h2 class="animate-in">Ownership &amp; Borrowing &mdash; Visualisasi Mendalam</h2>
+
+<!-- 1. Ownership Rules -->
+<div class="card animate-in">
+<h3>1. Tiga Aturan Ownership</h3>
+
+<div class="info-box">
+<strong>Analogi:</strong> Ownership seperti kunci rumah &mdash; hanya ada SATU kunci. Kalau kamu kasih ke orang lain (move), kamu tidak bisa lagi masuk rumah. Kalau kamu mau mereka juga bisa masuk, kamu buat SALINAN kunci (clone).
+</div>
+
+<table>
+<tr><th>Aturan</th><th>Penjelasan</th><th>Konsekuensi</th></tr>
+<tr>
+<td><strong>Rule 1</strong></td>
+<td>Setiap value memiliki tepat SATU owner (variabel)</td>
+<td>Tidak ada dua variabel yang &ldquo;memiliki&rdquo; data yang sama</td>
+</tr>
+<tr>
+<td><strong>Rule 2</strong></td>
+<td>Ketika owner keluar dari scope, value di-<em>drop</em> (RAII)</td>
+<td>Memori otomatis dibebaskan &mdash; tidak perlu free() manual</td>
+</tr>
+<tr>
+<td><strong>Rule 3</strong></td>
+<td>Ownership bisa di-<strong>move</strong> ke variabel lain</td>
+<td>Variabel asal menjadi INVALID setelah move</td>
+</tr>
+</table>
+
+<h4>Move vs Clone vs Copy</h4>
+<div class="code-block"><span class="comment">// MOVE &mdash; ownership berpindah, s1 tidak valid lagi</span>
+<span class="kw">let</span> s1 = <span class="type">String</span>::from(<span class="str">"hello"</span>);
+<span class="kw">let</span> s2 = s1;          <span class="comment">// s1 di-move ke s2</span>
+<span class="comment">// println!("{}", s1); // ERROR: value used after move</span>
+println!(<span class="str">"{}"</span>, s2);   <span class="comment">// OK: s2 adalah owner sekarang</span>
+
+<span class="comment">// CLONE &mdash; deep copy, kedua variabel valid</span>
+<span class="kw">let</span> s3 = <span class="type">String</span>::from(<span class="str">"world"</span>);
+<span class="kw">let</span> s4 = s3.clone();  <span class="comment">// deep copy data heap</span>
+println!(<span class="str">"{} {}"</span>, s3, s4); <span class="comment">// OK: keduanya punya data sendiri</span>
+
+<span class="comment">// COPY trait &mdash; tipe sederhana (i32, bool, f64) otomatis di-copy</span>
+<span class="kw">let</span> x: <span class="type">i32</span> = <span class="num">42</span>;
+<span class="kw">let</span> y = x;            <span class="comment">// x di-COPY (bukan move) karena i32: Copy</span>
+println!(<span class="str">"{} {}"</span>, x, y); <span class="comment">// OK: keduanya valid</span></div>
+
+<div class="warn-box">
+<strong>Kapan Move, kapan Copy?</strong> Tipe yang seluruhnya ada di stack (i32, f64, bool, char, tuple of Copy types) mengimplementasikan <code>Copy</code> trait &mdash; mereka di-copy otomatis. Tipe yang mengalokasikan heap (String, Vec, Box) di-<strong>move</strong> secara default. Gunakan <code>.clone()</code> untuk explicit deep copy.
+</div>
+</div>
+
+<!-- 2. Shared References -->
+<div class="card animate-in">
+<h3>2. Shared References (&amp;T) &mdash; Meminjam Tanpa Mengubah</h3>
+
+<div class="info-box">
+<strong>Analogi:</strong> Seperti buku di perpustakaan &mdash; banyak orang bisa MEMBACA buku yang sama secara bersamaan. Buku tetap milik perpustakaan (owner), dan tidak ada yang boleh mencoret-coret (mengubah) bukunya.
+</div>
+
+<ul>
+<li>Boleh ada <strong>banyak</strong> shared reference <code>&amp;T</code> secara bersamaan</li>
+<li>Owner tetap memiliki value &mdash; reference hanya &ldquo;meminjam&rdquo;</li>
+<li>Tidak bisa mengubah value melalui shared reference (immutable borrow)</li>
+<li>Reference harus selalu valid (tidak boleh outlive data)</li>
+</ul>
+
+<div class="code-block"><span class="kw">fn</span> <span class="fn">calculate_length</span>(s: &amp;<span class="type">String</span>) -> <span class="type">usize</span> {
+    s.len() <span class="comment">// bisa baca, tidak bisa ubah</span>
+}
+
+<span class="kw">fn</span> <span class="fn">main</span>() {
+    <span class="kw">let</span> owner = <span class="type">String</span>::from(<span class="str">"Rust"</span>);
+
+    <span class="comment">// Multiple shared references &mdash; semua OK!</span>
+    <span class="kw">let</span> ref1 = &amp;owner;
+    <span class="kw">let</span> ref2 = &amp;owner;
+    <span class="kw">let</span> ref3 = &amp;owner;
+
+    println!(<span class="str">"{}, {}, {}"</span>, ref1, ref2, ref3); <span class="comment">// OK</span>
+    println!(<span class="str">"len = {}"</span>, calculate_length(&amp;owner)); <span class="comment">// OK</span>
+    println!(<span class="str">"owner masih valid: {}"</span>, owner); <span class="comment">// OK</span>
+}</div>
+
+<div class="info-box">
+<strong>Diagram:</strong><br>
+<code>owner ──owns──&gt; "Rust" (heap data)</code><br>
+<code>ref1 ───&amp;──────&gt; "Rust"</code><br>
+<code>ref2 ───&amp;──────&gt; "Rust"</code><br>
+<code>ref3 ───&amp;──────&gt; "Rust"</code><br>
+Semua reference menunjuk ke data yang sama. Tidak ada yang mengubah. Aman!
+</div>
+</div>
+
+<!-- 3. Mutable References -->
+<div class="card animate-in">
+<h3>3. Mutable References (&amp;mut T) &mdash; Meminjam untuk Mengubah</h3>
+
+<div class="info-box">
+<strong>Analogi:</strong> Seperti Google Docs &mdash; hanya SATU orang yang boleh EDIT pada satu waktu. Kalau ada orang lain yang sedang membaca, kamu tidak boleh edit (dan sebaliknya). Ini mencegah konflik data.
+</div>
+
+<ul>
+<li>Hanya <strong>SATU</strong> mutable reference <code>&amp;mut T</code> pada satu waktu</li>
+<li>Selama &amp;mut T aktif, TIDAK BOLEH ada shared reference (&amp;T) lain</li>
+<li>Owner sementara &ldquo;kehilangan akses&rdquo; selama mutable borrow aktif</li>
+<li>Ini mencegah <strong>data races</strong> saat compile time &mdash; bukan runtime!</li>
+</ul>
+
+<div class="code-block"><span class="kw">fn</span> <span class="fn">add_exclaim</span>(s: &amp;<span class="kw">mut</span> <span class="type">String</span>) {
+    s.push_str(<span class="str">"!!!"</span>); <span class="comment">// boleh ubah karena &amp;mut</span>
+}
+
+<span class="kw">fn</span> <span class="fn">main</span>() {
+    <span class="kw">let mut</span> text = <span class="type">String</span>::from(<span class="str">"Hello"</span>);
+
+    <span class="kw">let</span> r = &amp;<span class="kw">mut</span> text;   <span class="comment">// mutable borrow</span>
+    r.push_str(<span class="str">", world"</span>);
+    println!(<span class="str">"{}"</span>, r);    <span class="comment">// "Hello, world"</span>
+    <span class="comment">// r selesai dipakai di sini (NLL: Non-Lexical Lifetimes)</span>
+
+    add_exclaim(&amp;<span class="kw">mut</span> text); <span class="comment">// OK: r sudah tidak aktif</span>
+    println!(<span class="str">"{}"</span>, text);  <span class="comment">// "Hello, world!!!"</span>
+}</div>
+</div>
+
+<!-- 4. Borrow Checker Rules Table -->
+<div class="card animate-in">
+<h3>4. Borrow Checker Rules &mdash; Ringkasan Lengkap</h3>
+
+<table>
+<tr><th>Kombinasi</th><th>Diizinkan?</th><th>Alasan</th></tr>
+<tr>
+<td><code>&amp;T</code> + <code>&amp;T</code> + <code>&amp;T</code></td>
+<td style="color:#a6e3a1;font-weight:bold;">OK</td>
+<td>Banyak pembaca aman &mdash; tidak ada yang mengubah data</td>
+</tr>
+<tr>
+<td><code>&amp;T</code> + <code>&amp;mut T</code></td>
+<td style="color:#f38ba8;font-weight:bold;">COMPILE ERROR</td>
+<td>Tidak boleh baca DAN tulis bersamaan &mdash; bisa baca data yang sedang berubah</td>
+</tr>
+<tr>
+<td><code>&amp;mut T</code> + <code>&amp;mut T</code></td>
+<td style="color:#f38ba8;font-weight:bold;">COMPILE ERROR</td>
+<td>Tidak boleh dua penulis &mdash; bisa saling overwrite, data race</td>
+</tr>
+<tr>
+<td><code>&amp;mut T</code> (sendirian)</td>
+<td style="color:#a6e3a1;font-weight:bold;">OK</td>
+<td>Satu penulis eksklusif &mdash; aman karena tidak ada yang lain mengakses</td>
+</tr>
+</table>
+
+<div class="warn-box">
+<strong>Mengapa aturan ini penting?</strong> Aturan borrow checker mencegah <strong>data races</strong> secara compile time, TANPA overhead runtime. Data race terjadi ketika: (1) dua thread mengakses data yang sama, (2) setidaknya satu menulis, (3) tidak ada sinkronisasi. Borrow checker memastikan kondisi ini MUSTAHIL terjadi.
+</div>
+
+<div class="code-block"><span class="comment">// Contoh COMPILE ERROR:</span>
+<span class="kw">let mut</span> data = <span class="type">String</span>::from(<span class="str">"hello"</span>);
+<span class="kw">let</span> r1 = &amp;data;          <span class="comment">// shared borrow</span>
+<span class="kw">let</span> r2 = &amp;<span class="kw">mut</span> data;     <span class="comment">// ERROR! cannot borrow as mutable</span>
+                          <span class="comment">// because it is also borrowed as immutable</span>
+println!(<span class="str">"{}"</span>, r1);
+
+<span class="comment">// Solusi: pastikan shared borrow selesai dulu</span>
+<span class="kw">let mut</span> data = <span class="type">String</span>::from(<span class="str">"hello"</span>);
+<span class="kw">let</span> r1 = &amp;data;
+println!(<span class="str">"{}"</span>, r1);      <span class="comment">// r1 terakhir dipakai di sini</span>
+<span class="kw">let</span> r2 = &amp;<span class="kw">mut</span> data;     <span class="comment">// OK! r1 sudah tidak aktif (NLL)</span>
+r2.push_str(<span class="str">" world"</span>);</div>
+</div>
+
+<!-- 5. Interactive Canvas Animation -->
+<div class="card animate-in">
+<h3>5. Visualisasi Interaktif: Ownership &amp; Borrowing</h3>
+<p>Klik tombol di bawah untuk melihat animasi dari setiap skenario ownership dan borrowing.</p>
+<div class="anim-container">
+<canvas id="canvas-rust-borrow-demo" width="700" height="380" style="width:100%;max-width:700px;border-radius:8px;"></canvas>
+</div>
+<div class="anim-controls">
+<button class="anim-btn" id="rust-bd-move">Move</button>
+<button class="anim-btn" id="rust-bd-shared">Shared Borrow</button>
+<button class="anim-btn" id="rust-bd-mutborrow">Mut Borrow</button>
+<button class="anim-btn" id="rust-bd-error">Error Case</button>
+</div>
+</div>
+
+<!-- 6. Lifetimes Simplified -->
+<div class="card animate-in">
+<h3>6. Lifetimes &mdash; Disederhanakan</h3>
+
+<div class="info-box">
+<strong>Apa itu Lifetime?</strong> Lifetime bukan tentang berapa lama variabel hidup &mdash; tapi tentang memastikan reference <strong>tidak lebih lama</strong> dari data yang dirujuknya. Compiler Rust melacak ini secara otomatis (lifetime elision), dan hanya meminta anotasi eksplisit saat ambigu.
+</div>
+
+<h4>Mencegah Dangling Reference</h4>
+<div class="code-block"><span class="comment">// TIDAK BOLEH: mengembalikan reference ke data lokal</span>
+<span class="kw">fn</span> <span class="fn">dangling</span>() -> &amp;<span class="type">String</span> {
+    <span class="kw">let</span> s = <span class="type">String</span>::from(<span class="str">"hello"</span>);
+    &amp;s <span class="comment">// ERROR! s akan di-drop di akhir fungsi</span>
+}      <span class="comment">// s di-drop di sini, reference jadi dangling!</span>
+
+<span class="comment">// SOLUSI: kembalikan owned value (move keluar)</span>
+<span class="kw">fn</span> <span class="fn">not_dangling</span>() -> <span class="type">String</span> {
+    <span class="kw">let</span> s = <span class="type">String</span>::from(<span class="str">"hello"</span>);
+    s <span class="comment">// ownership di-move ke caller</span>
+}</div>
+
+<h4>Lifetime Annotations</h4>
+<div class="code-block"><span class="comment">// Fungsi yang menerima dua reference dan mengembalikan satu</span>
+<span class="comment">// Compiler butuh tahu: reference mana yang dikembalikan?</span>
+<span class="kw">fn</span> <span class="fn">longest</span>&lt;<span class="num">'a</span>&gt;(x: &amp;<span class="num">'a</span> <span class="type">str</span>, y: &amp;<span class="num">'a</span> <span class="type">str</span>) -> &amp;<span class="num">'a</span> <span class="type">str</span> {
+    <span class="kw">if</span> x.len() &gt; y.len() { x } <span class="kw">else</span> { y }
+}
+
+<span class="comment">// 'a artinya: "return value hidup setidaknya</span>
+<span class="comment">// selama KEDUA input reference hidup"</span>
+<span class="comment">// Compiler bisa verifikasi di setiap call site</span>
+
+<span class="kw">fn</span> <span class="fn">main</span>() {
+    <span class="kw">let</span> s1 = <span class="type">String</span>::from(<span class="str">"panjang"</span>);
+    <span class="kw">let</span> result;
+    {
+        <span class="kw">let</span> s2 = <span class="type">String</span>::from(<span class="str">"pendek"</span>);
+        result = longest(s1.as_str(), s2.as_str());
+        println!(<span class="str">"Terpanjang: {}"</span>, result); <span class="comment">// OK di sini</span>
+    } <span class="comment">// s2 di-drop di sini</span>
+    <span class="comment">// println!("{}", result); // ERROR jika result merujuk s2</span>
+}</div>
+
+<div class="info-box">
+<strong>Lifetime Elision Rules:</strong> Dalam banyak kasus, Rust bisa menebak lifetime secara otomatis (elision). Tiga aturan elision:<br>
+1. Setiap input reference mendapat lifetime sendiri: <code>fn foo(x: &amp;T, y: &amp;U)</code> menjadi <code>fn foo&lt;'a, 'b&gt;(x: &amp;'a T, y: &amp;'b U)</code><br>
+2. Jika hanya satu input lifetime, output mendapat lifetime yang sama<br>
+3. Jika ada <code>&amp;self</code> atau <code>&amp;mut self</code>, output mendapat lifetime self
+</div>
+</div>
+
 </section>
 `;
 
@@ -2272,5 +2511,502 @@ function initRustAnimations() {
         });
 
         drawMemoryIdle();
+    }
+
+    // ===================== CANVAS 4: BORROW DEMO (Deep Dive) =====================
+    const bdCanvas = document.getElementById('canvas-rust-borrow-demo');
+    if (bdCanvas && bdCanvas.getContext) {
+        const ctx4 = bdCanvas.getContext('2d');
+        const w4 = bdCanvas.width;
+        const h4 = bdCanvas.height;
+        let animId4 = null;
+        let animFrame4 = 0;
+        let bdMode = 'idle';
+
+        function getThemeColors4() {
+            var isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+            return {
+                bg:     isDark ? '#1e1e2e' : '#f5f5f5',
+                text:   isDark ? '#cdd6f4' : '#333333',
+                text2:  isDark ? '#6c7086' : '#888888',
+                green:  '#a6e3a1',
+                red:    '#f38ba8',
+                yellow: '#f9e2af',
+                gray:   isDark ? '#45475a' : '#cccccc',
+                accent: isDark ? '#89b4fa' : '#4a90d9',
+                purple: '#cba6f7',
+                boxBg:  isDark ? '#313244' : '#e8e8e8',
+            };
+        }
+
+        function drawRR4(x, y, wd, ht, r, stroke, fill) {
+            ctx4.beginPath();
+            ctx4.moveTo(x + r, y);
+            ctx4.lineTo(x + wd - r, y);
+            ctx4.quadraticCurveTo(x + wd, y, x + wd, y + r);
+            ctx4.lineTo(x + wd, y + ht - r);
+            ctx4.quadraticCurveTo(x + wd, y + ht, x + wd - r, y + ht);
+            ctx4.lineTo(x + r, y + ht);
+            ctx4.quadraticCurveTo(x, y + ht, x, y + ht - r);
+            ctx4.lineTo(x, y + r);
+            ctx4.quadraticCurveTo(x, y, x + r, y);
+            ctx4.closePath();
+            if (fill)   { ctx4.fillStyle = fill;   ctx4.fill(); }
+            if (stroke) { ctx4.strokeStyle = stroke; ctx4.lineWidth = 2; ctx4.stroke(); }
+        }
+
+        function drawArrow4(x1, y1, x2, y2, color, dashed) {
+            ctx4.save();
+            ctx4.strokeStyle = color;
+            ctx4.fillStyle = color;
+            ctx4.lineWidth = 2;
+            if (dashed) ctx4.setLineDash([6, 4]);
+            else ctx4.setLineDash([]);
+            ctx4.beginPath();
+            ctx4.moveTo(x1, y1);
+            ctx4.lineTo(x2, y2);
+            ctx4.stroke();
+            var angle = Math.atan2(y2 - y1, x2 - x1);
+            ctx4.beginPath();
+            ctx4.moveTo(x2, y2);
+            ctx4.lineTo(x2 - 10 * Math.cos(angle - 0.4), y2 - 10 * Math.sin(angle - 0.4));
+            ctx4.lineTo(x2 - 10 * Math.cos(angle + 0.4), y2 - 10 * Math.sin(angle + 0.4));
+            ctx4.closePath();
+            ctx4.fill();
+            ctx4.restore();
+        }
+
+        function clearBD() {
+            var C = getThemeColors4();
+            ctx4.clearRect(0, 0, w4, h4);
+            ctx4.fillStyle = C.bg;
+            ctx4.fillRect(0, 0, w4, h4);
+        }
+
+        function drawBDIdle() {
+            var C = getThemeColors4();
+            clearBD();
+            ctx4.font = 'bold 16px sans-serif';
+            ctx4.fillStyle = C.text2;
+            ctx4.textAlign = 'center';
+            ctx4.fillText('Klik tombol di bawah untuk melihat animasi', w4 / 2, h4 / 2 - 10);
+            ctx4.font = '13px sans-serif';
+            ctx4.fillText('Move | Shared Borrow | Mut Borrow | Error Case', w4 / 2, h4 / 2 + 15);
+        }
+
+        // ---- MOVE ANIMATION ----
+        function drawMoveAnim() {
+            var C = getThemeColors4();
+            var totalFrames = 120;
+            var progress = Math.min(animFrame4 / totalFrames, 1);
+            clearBD();
+
+            ctx4.font = 'bold 14px sans-serif';
+            ctx4.fillStyle = C.accent;
+            ctx4.textAlign = 'center';
+            ctx4.fillText('Move Semantics: let s2 = s1;', w4 / 2, 25);
+
+            var valX = 280;
+            var valY = 120;
+
+            // Value box (heap data)
+            var moveX = progress < 0.3 ? 0 : Math.min((progress - 0.3) / 0.4, 1) * 200;
+            drawRR4(valX + moveX, valY, 140, 50, 8, C.accent, C.boxBg);
+            ctx4.font = 'bold 13px monospace';
+            ctx4.fillStyle = C.text;
+            ctx4.textAlign = 'center';
+            ctx4.fillText('"hello"', valX + 70 + moveX, valY + 30);
+
+            // s1 box
+            var s1Alpha = progress < 0.7 ? 1 : 1 - ((progress - 0.7) / 0.3) * 0.6;
+            var s1Color = progress > 0.5 ? C.gray : C.green;
+            ctx4.globalAlpha = s1Alpha;
+            drawRR4(60, 100, 140, 70, 8, s1Color, s1Color + '22');
+            ctx4.font = 'bold 14px monospace';
+            ctx4.fillStyle = s1Color;
+            ctx4.textAlign = 'center';
+            ctx4.fillText('s1', 130, 125);
+            if (progress > 0.5) {
+                ctx4.font = 'bold 12px monospace';
+                ctx4.fillStyle = C.red;
+                ctx4.fillText('INVALID', 130, 150);
+                // X mark
+                ctx4.strokeStyle = C.red;
+                ctx4.lineWidth = 3;
+                ctx4.beginPath();
+                ctx4.moveTo(80, 110); ctx4.lineTo(180, 160);
+                ctx4.moveTo(180, 110); ctx4.lineTo(80, 160);
+                ctx4.stroke();
+            } else {
+                ctx4.font = '11px monospace';
+                ctx4.fillStyle = C.text2;
+                ctx4.fillText('owner', 130, 150);
+            }
+            ctx4.globalAlpha = 1;
+
+            // Arrow from s1 to value (fading)
+            if (progress < 0.5) {
+                var arrowAlpha = progress < 0.3 ? 1 : 1 - (progress - 0.3) / 0.2;
+                ctx4.globalAlpha = arrowAlpha;
+                drawArrow4(200, 135, valX, valY + 25, C.green, false);
+                ctx4.globalAlpha = 1;
+            }
+
+            // s2 box (appears)
+            if (progress > 0.2) {
+                var s2Alpha = Math.min((progress - 0.2) / 0.3, 1);
+                ctx4.globalAlpha = s2Alpha;
+                drawRR4(500, 100, 140, 70, 8, C.green, C.green + '22');
+                ctx4.font = 'bold 14px monospace';
+                ctx4.fillStyle = C.green;
+                ctx4.textAlign = 'center';
+                ctx4.fillText('s2', 570, 125);
+                ctx4.font = '11px monospace';
+                ctx4.fillStyle = C.text2;
+                ctx4.fillText('new owner', 570, 150);
+                ctx4.globalAlpha = 1;
+            }
+
+            // Arrow from s2 to value
+            if (progress > 0.5) {
+                var a2 = Math.min((progress - 0.5) / 0.2, 1);
+                ctx4.globalAlpha = a2;
+                drawArrow4(500, 135, valX + 140 + moveX, valY + 25, C.green, false);
+                ctx4.globalAlpha = 1;
+            }
+
+            // Explanation text
+            if (progress > 0.7) {
+                ctx4.font = 'bold 12px sans-serif';
+                ctx4.fillStyle = C.yellow;
+                ctx4.textAlign = 'center';
+                ctx4.fillText('s1 tidak valid lagi setelah move!', w4 / 2, 220);
+                ctx4.font = '12px sans-serif';
+                ctx4.fillStyle = C.text;
+                ctx4.fillText('Ownership berpindah dari s1 ke s2. Data tidak di-copy.', w4 / 2, 245);
+            }
+
+            // Code at bottom
+            ctx4.font = '12px monospace';
+            ctx4.fillStyle = C.text2;
+            ctx4.textAlign = 'center';
+            ctx4.fillText('let s1 = String::from("hello");', w4 / 2, 300);
+            ctx4.fillText('let s2 = s1;  // move terjadi di sini', w4 / 2, 320);
+            if (progress > 0.8) {
+                ctx4.fillStyle = C.red;
+                ctx4.fillText('// println!("{}", s1); <-- ERROR: use after move', w4 / 2, 345);
+            }
+
+            if (progress < 1) { animFrame4++; animId4 = requestAnimationFrame(drawMoveAnim); }
+        }
+
+        // ---- SHARED BORROW ANIMATION ----
+        function drawSharedAnim() {
+            var C = getThemeColors4();
+            var totalFrames = 140;
+            var progress = Math.min(animFrame4 / totalFrames, 1);
+            clearBD();
+
+            ctx4.font = 'bold 14px sans-serif';
+            ctx4.fillStyle = C.accent;
+            ctx4.textAlign = 'center';
+            ctx4.fillText('Shared Borrow: &T (multiple readers)', w4 / 2, 25);
+
+            // Owner box
+            drawRR4(260, 60, 180, 55, 8, C.green, C.green + '22');
+            ctx4.font = 'bold 14px monospace';
+            ctx4.fillStyle = C.green;
+            ctx4.textAlign = 'center';
+            ctx4.fillText('owner', 350, 82);
+            ctx4.font = '12px monospace';
+            ctx4.fillStyle = C.text;
+            ctx4.fillText('"Rust"', 350, 102);
+
+            // Shared references appear one by one
+            var refs = [
+                { label: '&ref1', x: 50, y: 180, delay: 0.1 },
+                { label: '&ref2', x: 270, y: 200, delay: 0.3 },
+                { label: '&ref3', x: 490, y: 180, delay: 0.5 },
+            ];
+
+            refs.forEach(function(ref) {
+                if (progress > ref.delay) {
+                    var refAlpha = Math.min((progress - ref.delay) / 0.2, 1);
+                    ctx4.globalAlpha = refAlpha;
+                    drawRR4(ref.x, ref.y, 140, 45, 8, C.accent, C.accent + '22');
+                    ctx4.font = 'bold 13px monospace';
+                    ctx4.fillStyle = C.accent;
+                    ctx4.textAlign = 'center';
+                    ctx4.fillText(ref.label, ref.x + 70, ref.y + 20);
+                    ctx4.font = '10px monospace';
+                    ctx4.fillStyle = C.text2;
+                    ctx4.fillText('read-only', ref.x + 70, ref.y + 37);
+
+                    drawArrow4(ref.x + 70, ref.y, 350, 115, C.accent, true);
+                    ctx4.globalAlpha = 1;
+                }
+            });
+
+            // Green checkmark
+            if (progress > 0.7) {
+                ctx4.font = 'bold 16px sans-serif';
+                ctx4.fillStyle = C.green;
+                ctx4.textAlign = 'center';
+                ctx4.fillText('OK: Banyak &T diizinkan bersamaan', w4 / 2, 280);
+                ctx4.font = '12px sans-serif';
+                ctx4.fillStyle = C.text;
+                ctx4.fillText('Semua hanya membaca. Owner tetap punya data.', w4 / 2, 305);
+                ctx4.fillText('Tidak ada yang mengubah, jadi aman!', w4 / 2, 325);
+            }
+
+            // Pulsing glow on owner to show it is still alive
+            if (progress > 0.6) {
+                var pulse = 0.3 + 0.15 * Math.sin(animFrame4 * 0.08);
+                ctx4.globalAlpha = pulse;
+                drawRR4(257, 57, 186, 61, 10, C.green, 'transparent');
+                ctx4.globalAlpha = 1;
+            }
+
+            if (progress < 1) { animFrame4++; animId4 = requestAnimationFrame(drawSharedAnim); }
+            else {
+                // Keep pulsing after done
+                animFrame4++;
+                animId4 = requestAnimationFrame(drawSharedAnim);
+            }
+        }
+
+        // ---- MUT BORROW ANIMATION ----
+        function drawMutAnim() {
+            var C = getThemeColors4();
+            var totalFrames = 140;
+            var progress = Math.min(animFrame4 / totalFrames, 1);
+            clearBD();
+
+            ctx4.font = 'bold 14px sans-serif';
+            ctx4.fillStyle = C.accent;
+            ctx4.textAlign = 'center';
+            ctx4.fillText('Mutable Borrow: &mut T (exclusive writer)', w4 / 2, 25);
+
+            // Owner box (temporarily loses access)
+            var ownerColor = progress > 0.3 && progress < 0.85 ? C.yellow : C.green;
+            drawRR4(60, 100, 180, 60, 8, ownerColor, ownerColor + '22');
+            ctx4.font = 'bold 14px monospace';
+            ctx4.fillStyle = ownerColor;
+            ctx4.textAlign = 'center';
+            ctx4.fillText('owner (mut)', 150, 122);
+            ctx4.font = '11px monospace';
+            ctx4.fillStyle = C.text;
+            ctx4.fillText('"hello"', 150, 145);
+
+            if (progress > 0.3 && progress < 0.85) {
+                ctx4.font = '10px sans-serif';
+                ctx4.fillStyle = C.yellow;
+                ctx4.fillText('akses ditangguhkan', 150, 175);
+            }
+
+            // Value box in the middle
+            drawRR4(280, 140, 140, 50, 8, C.purple, C.boxBg);
+            ctx4.font = 'bold 13px monospace';
+            ctx4.fillStyle = C.text;
+            ctx4.textAlign = 'center';
+            var valueText = progress > 0.5 ? '"hello world"' : '"hello"';
+            ctx4.fillText(valueText, 350, 170);
+
+            // Arrow from owner to value
+            if (progress < 0.3 || progress > 0.85) {
+                drawArrow4(240, 130, 280, 160, C.green, false);
+            } else {
+                ctx4.globalAlpha = 0.3;
+                drawArrow4(240, 130, 280, 160, C.gray, true);
+                ctx4.globalAlpha = 1;
+            }
+
+            // Mut ref box
+            if (progress > 0.2) {
+                var mrAlpha = Math.min((progress - 0.2) / 0.2, 1);
+                var mrColor = progress > 0.8 ? C.gray : C.green;
+                ctx4.globalAlpha = progress > 0.85 ? 0.4 : mrAlpha;
+                drawRR4(480, 100, 180, 60, 8, mrColor, mrColor + '22');
+                ctx4.font = 'bold 14px monospace';
+                ctx4.fillStyle = mrColor;
+                ctx4.textAlign = 'center';
+                ctx4.fillText('&mut ref', 570, 122);
+                ctx4.font = '10px monospace';
+                ctx4.fillStyle = progress > 0.85 ? C.gray : C.green;
+                ctx4.fillText('exclusive access', 570, 145);
+
+                if (progress > 0.3 && progress < 0.85) {
+                    drawArrow4(480, 130, 420, 160, C.green, false);
+                }
+                ctx4.globalAlpha = 1;
+            }
+
+            // Mutation happening
+            if (progress > 0.4 && progress < 0.7) {
+                var flashAlpha = 0.5 + 0.3 * Math.sin(animFrame4 * 0.15);
+                ctx4.globalAlpha = flashAlpha;
+                ctx4.font = 'bold 12px monospace';
+                ctx4.fillStyle = C.green;
+                ctx4.textAlign = 'center';
+                ctx4.fillText('push_str(" world")', 350, 210);
+                ctx4.globalAlpha = 1;
+            }
+
+            // After borrow ends
+            if (progress > 0.85) {
+                ctx4.font = 'bold 13px sans-serif';
+                ctx4.fillStyle = C.green;
+                ctx4.textAlign = 'center';
+                ctx4.fillText('Borrow selesai! Owner mendapat akses kembali.', w4 / 2, 240);
+                ctx4.font = '12px sans-serif';
+                ctx4.fillStyle = C.text;
+                ctx4.fillText('Data sudah berubah menjadi "hello world"', w4 / 2, 265);
+            }
+
+            // Timeline
+            ctx4.fillStyle = C.text2;
+            ctx4.font = '11px sans-serif';
+            ctx4.textAlign = 'left';
+            ctx4.fillText('Timeline:', 20, 310);
+            var barY = 325;
+            drawRR4(20, barY, w4 - 40, 20, 4, C.gray, C.gray + '33');
+            var barProg = progress * (w4 - 40);
+            if (progress > 0) {
+                var barColor = progress > 0.3 && progress < 0.85 ? C.yellow : C.green;
+                drawRR4(20, barY, Math.max(barProg, 10), 20, 4, barColor, barColor + '44');
+            }
+            ctx4.font = '10px monospace';
+            ctx4.fillStyle = C.text2;
+            ctx4.textAlign = 'center';
+            ctx4.fillText('owner active', 100, barY + 15);
+            ctx4.fillText('&mut borrow', 350, barY + 15);
+            ctx4.fillText('owner back', 600, barY + 15);
+
+            if (progress < 1) { animFrame4++; animId4 = requestAnimationFrame(drawMutAnim); }
+        }
+
+        // ---- ERROR CASE ANIMATION ----
+        function drawErrorAnim() {
+            var C = getThemeColors4();
+            var totalFrames = 160;
+            var progress = Math.min(animFrame4 / totalFrames, 1);
+            clearBD();
+
+            ctx4.font = 'bold 14px sans-serif';
+            ctx4.fillStyle = C.red;
+            ctx4.textAlign = 'center';
+            ctx4.fillText('COMPILE ERROR: &T + &mut T bersamaan', w4 / 2, 25);
+
+            // Value box
+            drawRR4(260, 80, 180, 50, 8, C.accent, C.boxBg);
+            ctx4.font = 'bold 13px monospace';
+            ctx4.fillStyle = C.text;
+            ctx4.textAlign = 'center';
+            ctx4.fillText('"data"', 350, 110);
+
+            // Shared ref
+            if (progress > 0.1) {
+                var sa = Math.min((progress - 0.1) / 0.2, 1);
+                ctx4.globalAlpha = sa;
+                drawRR4(40, 180, 160, 50, 8, C.accent, C.accent + '22');
+                ctx4.font = 'bold 13px monospace';
+                ctx4.fillStyle = C.accent;
+                ctx4.textAlign = 'center';
+                ctx4.fillText('&shared', 120, 210);
+                drawArrow4(120, 180, 300, 130, C.accent, true);
+                ctx4.globalAlpha = 1;
+            }
+
+            // Mut ref tries to come in
+            if (progress > 0.4) {
+                var ma = Math.min((progress - 0.4) / 0.2, 1);
+                ctx4.globalAlpha = ma;
+                drawRR4(480, 180, 180, 50, 8, C.red, C.red + '22');
+                ctx4.font = 'bold 13px monospace';
+                ctx4.fillStyle = C.red;
+                ctx4.textAlign = 'center';
+                ctx4.fillText('&mut ref', 570, 210);
+
+                // Arrow trying to reach value
+                drawArrow4(540, 180, 400, 130, C.red, false);
+                ctx4.globalAlpha = 1;
+            }
+
+            // Error flash and X
+            if (progress > 0.6) {
+                var flashIntensity = 0.3 + 0.4 * Math.abs(Math.sin(animFrame4 * 0.1));
+                ctx4.globalAlpha = flashIntensity;
+                ctx4.fillStyle = C.red;
+                ctx4.fillRect(0, 0, w4, h4);
+                ctx4.globalAlpha = 1;
+
+                // Big X
+                ctx4.strokeStyle = C.red;
+                ctx4.lineWidth = 4;
+                ctx4.beginPath();
+                var cx = 350, cy = 165;
+                ctx4.moveTo(cx - 30, cy - 20); ctx4.lineTo(cx + 30, cy + 20);
+                ctx4.moveTo(cx + 30, cy - 20); ctx4.lineTo(cx - 30, cy + 20);
+                ctx4.stroke();
+
+                // Redraw value box on top
+                drawRR4(260, 80, 180, 50, 8, C.red, C.boxBg);
+                ctx4.font = 'bold 13px monospace';
+                ctx4.fillStyle = C.red;
+                ctx4.textAlign = 'center';
+                ctx4.fillText('CONFLICT!', 350, 110);
+            }
+
+            // Error message
+            if (progress > 0.7) {
+                ctx4.font = 'bold 14px sans-serif';
+                ctx4.fillStyle = C.red;
+                ctx4.textAlign = 'center';
+                ctx4.fillText('error[E0502]: cannot borrow as mutable', w4 / 2, 265);
+                ctx4.font = '12px sans-serif';
+                ctx4.fillStyle = C.text;
+                ctx4.fillText('because it is also borrowed as immutable', w4 / 2, 288);
+            }
+
+            if (progress > 0.85) {
+                ctx4.font = '12px sans-serif';
+                ctx4.fillStyle = C.yellow;
+                ctx4.textAlign = 'center';
+                ctx4.fillText('Rust mencegah data race SAAT KOMPILASI!', w4 / 2, 320);
+                ctx4.fillStyle = C.text;
+                ctx4.fillText('Tidak ada overhead runtime. Zero cost safety.', w4 / 2, 345);
+            }
+
+            if (progress < 1) { animFrame4++; animId4 = requestAnimationFrame(drawErrorAnim); }
+            else if (progress >= 1) {
+                // Keep flashing
+                animFrame4 = totalFrames - 10;
+                animId4 = requestAnimationFrame(drawErrorAnim);
+            }
+        }
+
+        var btnMove = document.getElementById('rust-bd-move');
+        var btnShared = document.getElementById('rust-bd-shared');
+        var btnMut = document.getElementById('rust-bd-mutborrow');
+        var btnErr = document.getElementById('rust-bd-error');
+
+        if (btnMove) btnMove.addEventListener('click', function() {
+            if (animId4) cancelAnimationFrame(animId4);
+            animFrame4 = 0; bdMode = 'move'; drawMoveAnim();
+        });
+        if (btnShared) btnShared.addEventListener('click', function() {
+            if (animId4) cancelAnimationFrame(animId4);
+            animFrame4 = 0; bdMode = 'shared'; drawSharedAnim();
+        });
+        if (btnMut) btnMut.addEventListener('click', function() {
+            if (animId4) cancelAnimationFrame(animId4);
+            animFrame4 = 0; bdMode = 'mut'; drawMutAnim();
+        });
+        if (btnErr) btnErr.addEventListener('click', function() {
+            if (animId4) cancelAnimationFrame(animId4);
+            animFrame4 = 0; bdMode = 'error'; drawErrorAnim();
+        });
+
+        drawBDIdle();
     }
 }

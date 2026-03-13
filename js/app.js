@@ -83,6 +83,11 @@ function initSectionInteractions(name) {
     if (name === 'lang-python' && typeof initPythonAnimations === 'function') initPythonAnimations();
     if (name === 'lang-javascript' && typeof initJavaScriptAnimations === 'function') initJavaScriptAnimations();
     if (name === 'lang-typescript' && typeof initTypeScriptAnimations === 'function') initTypeScriptAnimations();
+    if (name === 'crud-golang' && typeof initCrudGolangAnimations === 'function') initCrudGolangAnimations();
+    if (name === 'crud-rust' && typeof initCrudRustAnimations === 'function') initCrudRustAnimations();
+    if (name === 'crud-python' && typeof initCrudPythonAnimations === 'function') initCrudPythonAnimations();
+    if (name === 'crud-jsts' && typeof initCrudJstsAnimations === 'function') initCrudJstsAnimations();
+    if (name === 'crud-frontend' && typeof initCrudFrontendAnimations === 'function') initCrudFrontendAnimations();
     if (name === 'networking' && typeof initNetworkingAnimations === 'function') initNetworkingAnimations();
 }
 
