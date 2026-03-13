@@ -1,4 +1,4 @@
-# Teori Komputasi - Interactive Learning Web App
+# Ilmu dan Rekayasa Komputasi - Interactive Learning Web App
 
 Web app interaktif dan komprehensif untuk mempelajari ilmu komputasi dari dasar hingga advanced, dilengkapi animasi dan visualisasi.
 

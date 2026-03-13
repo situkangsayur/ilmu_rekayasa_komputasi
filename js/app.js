@@ -1,6 +1,28 @@
 // ============================================================
-// TEORI KOMPUTASI - Interactive Learning Web App
+// ILMU DAN REKAYASA KOMPUTASI - Interactive Learning Web App
 // ============================================================
+
+// ---- Theme Toggle ----
+(function initTheme() {
+    const saved = localStorage.getItem('cs-theory-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', saved);
+    const icon = document.getElementById('theme-icon');
+    const label = document.getElementById('theme-label');
+    if (icon && label) {
+        icon.textContent = saved === 'dark' ? '🌙' : '☀️';
+        label.textContent = saved === 'dark' ? 'Dark Mode' : 'Light Mode';
+    }
+})();
+
+document.getElementById('theme-toggle').addEventListener('click', () => {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('cs-theory-theme', next);
+    document.getElementById('theme-icon').textContent = next === 'dark' ? '🌙' : '☀️';
+    document.getElementById('theme-label').textContent = next === 'dark' ? 'Dark Mode' : 'Light Mode';
+});
 
 // ---- Navigation ----
 const content = document.getElementById('content');
@@ -53,6 +75,13 @@ function initSectionInteractions(name) {
     if (name === 'datastructures') initDSAnimations();
     if (name === 'security') initSecurityAnimations();
     if (name === 'home') initHomeCards();
+    if (name === 'pnp' && typeof initPNPAnimations === 'function') initPNPAnimations();
+    if (name === 'parallel' && typeof initParallelAnimations === 'function') initParallelAnimations();
+    if (name === 'optimization-ml' && typeof initMLAnimations === 'function') initMLAnimations();
+    if (name === 'lang-golang' && typeof initGolangAnimations === 'function') initGolangAnimations();
+    if (name === 'lang-rust' && typeof initRustAnimations === 'function') initRustAnimations();
+    if (name === 'lang-python' && typeof initPythonAnimations === 'function') initPythonAnimations();
+    if (name === 'networking' && typeof initNetworkingAnimations === 'function') initNetworkingAnimations();
 }
 
 function initHomeCards() {
@@ -74,8 +103,8 @@ const sections = {};
 // ====================== HOME ======================
 sections.home = () => `
 <div class="hero animate-in">
-    <h1>Teori Komputasi</h1>
-    <p>Panduan interaktif dan komprehensif dari dasar teori komputasi hingga modern software engineering dengan animasi & visualisasi.</p>
+    <h1>Ilmu dan Rekayasa Komputasi</h1>
+    <p>Panduan interaktif dan komprehensif dari dasar teori dan ilmu komputasi hingga modern software engineering dengan animasi & visualisasi.</p>
 </div>
 <div class="hero-cards">
     <div class="hero-card animate-in" data-nav="automata">
@@ -143,13 +172,43 @@ sections.home = () => `
         <h3>RAG & AI</h3>
         <p>Retrieval Augmented Generation</p>
     </div>
+    <div class="hero-card animate-in" data-nav="pnp">
+        <div class="icon">🧩</div>
+        <h3>P=NP & Hubungannya</h3>
+        <p>Complexity, Algoritma, Data Structures, C/Go/Rust</p>
+    </div>
+    <div class="hero-card animate-in" data-nav="parallel">
+        <div class="icon">⚡</div>
+        <h3>Parallel & HPC</h3>
+        <p>MultiThread, GPU, CUDA, OpenMP, MPI</p>
+    </div>
+    <div class="hero-card animate-in" data-nav="optimization-ml">
+        <div class="icon">🧠</div>
+        <h3>Optimasi, ML & LLM</h3>
+        <p>Machine Learning, Deep Learning, LLM</p>
+    </div>
+    <div class="hero-card animate-in" data-nav="lang-golang">
+        <div class="icon">🐹</div>
+        <h3>Golang Deep Dive</h3>
+        <p>Dari dasar hingga REST API & FFI</p>
+    </div>
+    <div class="hero-card animate-in" data-nav="lang-rust">
+        <div class="icon">🦀</div>
+        <h3>Rust Deep Dive</h3>
+        <p>Ownership, Traits, Concurrency, FFI</p>
+    </div>
+    <div class="hero-card animate-in" data-nav="lang-python">
+        <div class="icon">🐍</div>
+        <h3>Python untuk ML & FFI</h3>
+        <p>PyTorch, ML Implementation, Go/Rust FFI</p>
+    </div>
 </div>
 `;
 
 // ====================== AUTOMATA & BAHASA FORMAL ======================
 sections.automata = () => `
 <h1 class="section-title animate-in">Automata & Bahasa Formal</h1>
-<p class="section-subtitle animate-in">Dari finite automata hingga Turing Machine — fondasi teori komputasi</p>
+<p class="section-subtitle animate-in">Dari finite automata hingga Turing Machine — fondasi teori dan ilmu komputasi</p>
 <p class="animate-in"><em>Ref: Sipser, "Introduction to the Theory of Computation" (2012); Hopcroft, Motwani & Ullman, "Introduction to Automata Theory" (2006)</em></p>
 
 <h2>Hierarki Chomsky</h2>
@@ -695,6 +754,225 @@ result = [<span class="num">0</span>] * n
 <h4>Visualisasi Pertumbuhan Kompleksitas</h4>
 <div class="anim-container">
     <canvas id="complexity-chart" width="700" height="350"></canvas>
+</div>
+
+<h4>Visualisasi Big-O, Big-Theta, Big-Omega</h4>
+<p>Kurva di bawah menunjukkan sebuah fungsi <strong>f(n) = 2n² + 3n + 1</strong> dibandingkan dengan batas atas (O), batas bawah (Ω), dan batas ketat (Θ).</p>
+<div class="anim-container">
+    <canvas id="asymptotic-chart" width="700" height="350"></canvas>
+    <div class="anim-controls">
+        <span class="anim-label"><span style="color:#f87171">■</span> c₂·g(n) = 3n² — Big-O upper bound</span>
+        <span class="anim-label"><span style="color:#34d399">■</span> c₁·g(n) = n² — Big-Ω lower bound</span>
+        <span class="anim-label"><span style="color:#38bdf8">■</span> f(n) = 2n²+3n+1 — fungsi aktual</span>
+        <span class="anim-label"><span style="color:#fbbf24">■</span> Θ(n²) region (area antara bounds)</span>
+    </div>
+</div>
+
+<h4>Perbandingan Fibonacci: 4 Pendekatan</h4>
+<p>Fibonacci adalah contoh klasik bagaimana <strong>strategi algoritma</strong> mempengaruhi kompleksitas secara dramatis.</p>
+
+<div class="tabs">
+    <button class="tab-btn active" data-tab="fib-imperative">Imperative Loop</button>
+    <button class="tab-btn" data-tab="fib-recursive">Rekursif Naive</button>
+    <button class="tab-btn" data-tab="fib-dp">Rekursif + DP</button>
+    <button class="tab-btn" data-tab="fib-tail">Tail Rekursif</button>
+</div>
+
+<div data-tab-content="fib-imperative" class="tab-content active">
+<div class="card">
+    <h3 style="color:var(--green)">Imperative Loop — O(n) Time, O(1) Space</h3>
+    <p>Pendekatan paling efisien. Loop sederhana tanpa overhead function call.</p>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="fib-imp-c">C</button>
+        <button class="tab-btn" data-tab="fib-imp-go">Go</button>
+        <button class="tab-btn" data-tab="fib-imp-rust">Rust</button>
+    </div>
+    <div data-tab-content="fib-imp-c" class="tab-content active">
+<div class="code-block"><span class="type">long long</span> <span class="fn">fibonacci</span>(<span class="type">int</span> n) {
+    <span class="kw">if</span> (n <= <span class="num">1</span>) <span class="kw">return</span> n;
+    <span class="type">long long</span> a = <span class="num">0</span>, b = <span class="num">1</span>, temp;
+    <span class="kw">for</span> (<span class="type">int</span> i = <span class="num">2</span>; i <= n; i++) {
+        temp = a + b;
+        a = b;
+        b = temp;
+    }
+    <span class="kw">return</span> b;
+}</div>
+    </div>
+    <div data-tab-content="fib-imp-go" class="tab-content">
+<div class="code-block"><span class="kw">func</span> <span class="fn">fibonacci</span>(n <span class="type">int</span>) <span class="type">int64</span> {
+    <span class="kw">if</span> n <= <span class="num">1</span> { <span class="kw">return</span> <span class="type">int64</span>(n) }
+    a, b := <span class="type">int64</span>(<span class="num">0</span>), <span class="type">int64</span>(<span class="num">1</span>)
+    <span class="kw">for</span> i := <span class="num">2</span>; i <= n; i++ {
+        a, b = b, a+b
+    }
+    <span class="kw">return</span> b
+}</div>
+    </div>
+    <div data-tab-content="fib-imp-rust" class="tab-content">
+<div class="code-block"><span class="kw">fn</span> <span class="fn">fibonacci</span>(n: <span class="type">u64</span>) -> <span class="type">u64</span> {
+    <span class="kw">if</span> n <= <span class="num">1</span> { <span class="kw">return</span> n; }
+    <span class="kw">let</span> (<span class="kw">mut</span> a, <span class="kw">mut</span> b) = (<span class="num">0u64</span>, <span class="num">1u64</span>);
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="num">2</span>..=n {
+        <span class="kw">let</span> temp = a + b;
+        a = b;
+        b = temp;
+    }
+    b
+}</div>
+    </div>
+    <div class="success-box"><strong>Keunggulan:</strong> O(n) waktu, O(1) memori. Paling efisien untuk produksi.</div>
+</div>
+</div>
+
+<div data-tab-content="fib-recursive" class="tab-content">
+<div class="card">
+    <h3 style="color:var(--red)">Rekursif Naive — O(2ⁿ) Time, O(n) Space</h3>
+    <p>Intuitif tapi sangat lambat. Menghitung subproblem yang sama berkali-kali!</p>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="fib-rec-c">C</button>
+        <button class="tab-btn" data-tab="fib-rec-go">Go</button>
+        <button class="tab-btn" data-tab="fib-rec-rust">Rust</button>
+    </div>
+    <div data-tab-content="fib-rec-c" class="tab-content active">
+<div class="code-block"><span class="type">long long</span> <span class="fn">fibonacci</span>(<span class="type">int</span> n) {
+    <span class="kw">if</span> (n <= <span class="num">1</span>) <span class="kw">return</span> n;
+    <span class="kw">return</span> <span class="fn">fibonacci</span>(n - <span class="num">1</span>) + <span class="fn">fibonacci</span>(n - <span class="num">2</span>);
+    <span class="cm">// Eksponensial! fib(50) = 1.2 x 10¹⁰ calls</span>
+}</div>
+    </div>
+    <div data-tab-content="fib-rec-go" class="tab-content">
+<div class="code-block"><span class="kw">func</span> <span class="fn">fibonacci</span>(n <span class="type">int</span>) <span class="type">int64</span> {
+    <span class="kw">if</span> n <= <span class="num">1</span> { <span class="kw">return</span> <span class="type">int64</span>(n) }
+    <span class="kw">return</span> <span class="fn">fibonacci</span>(n-<span class="num">1</span>) + <span class="fn">fibonacci</span>(n-<span class="num">2</span>)
+}</div>
+    </div>
+    <div data-tab-content="fib-rec-rust" class="tab-content">
+<div class="code-block"><span class="kw">fn</span> <span class="fn">fibonacci</span>(n: <span class="type">u64</span>) -> <span class="type">u64</span> {
+    <span class="kw">if</span> n <= <span class="num">1</span> { <span class="kw">return</span> n; }
+    <span class="fn">fibonacci</span>(n - <span class="num">1</span>) + <span class="fn">fibonacci</span>(n - <span class="num">2</span>)
+}</div>
+    </div>
+    <div class="warn-box"><strong>Jangan gunakan ini!</strong> fib(40) membutuhkan ~1 milyar operasi. Tree rekursi tumbuh eksponensial.</div>
+</div>
+</div>
+
+<div data-tab-content="fib-dp" class="tab-content">
+<div class="card">
+    <h3 style="color:var(--accent)">Rekursif + Memoization (DP) — O(n) Time, O(n) Space</h3>
+    <p>Simpan hasil yang sudah dihitung. Setiap subproblem hanya dihitung SATU kali.</p>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="fib-dp-c">C</button>
+        <button class="tab-btn" data-tab="fib-dp-go">Go</button>
+        <button class="tab-btn" data-tab="fib-dp-rust">Rust</button>
+    </div>
+    <div data-tab-content="fib-dp-c" class="tab-content active">
+<div class="code-block"><span class="type">long long</span> memo[<span class="num">100</span>] = {<span class="num">0</span>};
+<span class="type">int</span> computed[<span class="num">100</span>] = {<span class="num">0</span>};
+
+<span class="type">long long</span> <span class="fn">fibonacci</span>(<span class="type">int</span> n) {
+    <span class="kw">if</span> (n <= <span class="num">1</span>) <span class="kw">return</span> n;
+    <span class="kw">if</span> (computed[n]) <span class="kw">return</span> memo[n];
+    computed[n] = <span class="num">1</span>;
+    memo[n] = <span class="fn">fibonacci</span>(n-<span class="num">1</span>) + <span class="fn">fibonacci</span>(n-<span class="num">2</span>);
+    <span class="kw">return</span> memo[n];
+}</div>
+    </div>
+    <div data-tab-content="fib-dp-go" class="tab-content">
+<div class="code-block"><span class="kw">func</span> <span class="fn">fibonacci</span>(n <span class="type">int</span>, memo <span class="kw">map</span>[<span class="type">int</span>]<span class="type">int64</span>) <span class="type">int64</span> {
+    <span class="kw">if</span> n <= <span class="num">1</span> { <span class="kw">return</span> <span class="type">int64</span>(n) }
+    <span class="kw">if</span> v, ok := memo[n]; ok { <span class="kw">return</span> v }
+    memo[n] = <span class="fn">fibonacci</span>(n-<span class="num">1</span>, memo) + <span class="fn">fibonacci</span>(n-<span class="num">2</span>, memo)
+    <span class="kw">return</span> memo[n]
+}</div>
+    </div>
+    <div data-tab-content="fib-dp-rust" class="tab-content">
+<div class="code-block"><span class="kw">use</span> std::collections::<span class="type">HashMap</span>;
+
+<span class="kw">fn</span> <span class="fn">fibonacci</span>(n: <span class="type">u64</span>, memo: &<span class="kw">mut</span> <span class="type">HashMap</span><<span class="type">u64</span>, <span class="type">u64</span>>) -> <span class="type">u64</span> {
+    <span class="kw">if</span> n <= <span class="num">1</span> { <span class="kw">return</span> n; }
+    <span class="kw">if</span> <span class="kw">let</span> <span class="type">Some</span>(&v) = memo.<span class="fn">get</span>(&n) { <span class="kw">return</span> v; }
+    <span class="kw">let</span> result = <span class="fn">fibonacci</span>(n-<span class="num">1</span>, memo) + <span class="fn">fibonacci</span>(n-<span class="num">2</span>, memo);
+    memo.<span class="fn">insert</span>(n, result);
+    result
+}</div>
+    </div>
+    <div class="info-box"><strong>Trade-off:</strong> Menggunakan O(n) memori tambahan tapi waktu turun dari O(2ⁿ) ke O(n). Ini inti Dynamic Programming!</div>
+</div>
+</div>
+
+<div data-tab-content="fib-tail" class="tab-content">
+<div class="card">
+    <h3 style="color:var(--accent3)">Tail Recursive — O(n) Time, O(1)* Space</h3>
+    <p>Akumulator membawa state. Compiler bisa optimasi jadi loop (TCO). *O(1) jika compiler mendukung TCO.</p>
+
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="fib-tail-c">C</button>
+        <button class="tab-btn" data-tab="fib-tail-go">Go</button>
+        <button class="tab-btn" data-tab="fib-tail-rust">Rust</button>
+    </div>
+    <div data-tab-content="fib-tail-c" class="tab-content active">
+<div class="code-block"><span class="type">long long</span> <span class="fn">fib_tail</span>(<span class="type">int</span> n, <span class="type">long long</span> a, <span class="type">long long</span> b) {
+    <span class="kw">if</span> (n == <span class="num">0</span>) <span class="kw">return</span> a;
+    <span class="kw">if</span> (n == <span class="num">1</span>) <span class="kw">return</span> b;
+    <span class="kw">return</span> <span class="fn">fib_tail</span>(n - <span class="num">1</span>, b, a + b); <span class="cm">// tail call</span>
+}
+<span class="type">long long</span> <span class="fn">fibonacci</span>(<span class="type">int</span> n) {
+    <span class="kw">return</span> <span class="fn">fib_tail</span>(n, <span class="num">0</span>, <span class="num">1</span>);
+}</div>
+    </div>
+    <div data-tab-content="fib-tail-go" class="tab-content">
+<div class="code-block"><span class="cm">// Go tidak mendukung TCO, tapi pola ini tetap bersih</span>
+<span class="kw">func</span> <span class="fn">fibTail</span>(n <span class="type">int</span>, a, b <span class="type">int64</span>) <span class="type">int64</span> {
+    <span class="kw">if</span> n == <span class="num">0</span> { <span class="kw">return</span> a }
+    <span class="kw">if</span> n == <span class="num">1</span> { <span class="kw">return</span> b }
+    <span class="kw">return</span> <span class="fn">fibTail</span>(n-<span class="num">1</span>, b, a+b)
+}
+<span class="kw">func</span> <span class="fn">fibonacci</span>(n <span class="type">int</span>) <span class="type">int64</span> {
+    <span class="kw">return</span> <span class="fn">fibTail</span>(n, <span class="num">0</span>, <span class="num">1</span>)
+}</div>
+    </div>
+    <div data-tab-content="fib-tail-rust" class="tab-content">
+<div class="code-block"><span class="cm">// Rust juga tidak menjamin TCO, tapi pattern tetap berguna</span>
+<span class="kw">fn</span> <span class="fn">fib_tail</span>(n: <span class="type">u64</span>, a: <span class="type">u64</span>, b: <span class="type">u64</span>) -> <span class="type">u64</span> {
+    <span class="kw">match</span> n {
+        <span class="num">0</span> => a,
+        <span class="num">1</span> => b,
+        _ => <span class="fn">fib_tail</span>(n - <span class="num">1</span>, b, a + b),
+    }
+}
+<span class="kw">fn</span> <span class="fn">fibonacci</span>(n: <span class="type">u64</span>) -> <span class="type">u64</span> {
+    <span class="fn">fib_tail</span>(n, <span class="num">0</span>, <span class="num">1</span>)
+}</div>
+    </div>
+    <div class="info-box"><strong>Catatan:</strong> C (dengan -O2) dan beberapa compiler mendukung TCO. Go dan Rust <em>belum</em> menjamin TCO, jadi dalam praktik gunakan imperative loop.</div>
+</div>
+</div>
+
+<h4>Visualisasi Fibonacci: Perbandingan 4 Pendekatan</h4>
+<div class="anim-container">
+    <canvas id="fib-compare-canvas" width="700" height="400"></canvas>
+    <div class="anim-controls">
+        <button class="anim-btn" id="fib-run">Run Comparison</button>
+        <button class="anim-btn secondary" id="fib-reset">Reset</button>
+        <span class="anim-label">n = <input class="anim-input" id="fib-n-input" type="range" min="5" max="40" value="20" style="width:100px"> <span id="fib-n-display">20</span></span>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Ringkasan Perbandingan Fibonacci</h3>
+    <div class="table-wrapper">
+    <table>
+    <tr><th>Pendekatan</th><th>Time</th><th>Space</th><th>TCO</th><th>Rekursif?</th><th>Rekomendasi</th></tr>
+    <tr><td><strong>Imperative Loop</strong></td><td>O(n)</td><td>O(1)</td><td>N/A</td><td>Tidak</td><td><span class="badge badge-green">Produksi</span></td></tr>
+    <tr><td><strong>Rekursif Naive</strong></td><td>O(2ⁿ)</td><td>O(n)</td><td>Tidak</td><td>Ya</td><td><span class="badge badge-red">Hindari!</span></td></tr>
+    <tr><td><strong>Rekursif + DP</strong></td><td>O(n)</td><td>O(n)</td><td>Tidak</td><td>Ya</td><td><span class="badge badge-blue">Edukasi</span></td></tr>
+    <tr><td><strong>Tail Recursive</strong></td><td>O(n)</td><td>O(1)*</td><td>Jika supported</td><td>Ya</td><td><span class="badge badge-purple">Fungsional</span></td></tr>
+    </table>
+    </div>
 </div>
 
 <h2>Kelas Kompleksitas</h2>
@@ -1680,6 +1958,109 @@ ratpack {
         }
     }
 }</div>
+</div>
+
+<h2>Timeline Sejarah Bahasa Pemrograman</h2>
+<div class="card">
+    <p>Setiap bahasa modern dipengaruhi oleh pendahulunya. <strong>C (1972)</strong> adalah "bahasa induk" yang menurunkan konsep ke hampir semua bahasa modern.</p>
+</div>
+<div class="timeline">
+    <div class="timeline-item">
+        <h4><span class="badge badge-purple">1957</span> Fortran</h4>
+        <p>Bahasa pemrograman high-level pertama. Untuk komputasi ilmiah. Memperkenalkan <strong>loops, subroutines, arrays</strong>.</p>
+    </div>
+    <div class="timeline-item">
+        <h4><span class="badge badge-purple">1959</span> LISP</h4>
+        <p>Bahasa fungsional pertama. Memperkenalkan <strong>garbage collection, recursion, first-class functions, lambda</strong>. Nenek moyang semua bahasa fungsional.</p>
+    </div>
+    <div class="timeline-item">
+        <h4><span class="badge badge-purple">1964</span> BASIC</h4>
+        <p>Dirancang untuk edukasi. <strong>Simplicity</strong> sebagai prinsip utama. Mempengaruhi Python dalam hal readability.</p>
+    </div>
+    <div class="timeline-item">
+        <h4><span class="badge badge-blue">1972</span> C <span class="badge badge-blue">FONDASI</span></h4>
+        <p>Dennis Ritchie di Bell Labs. <strong>Bahasa revolusioner</strong> yang mempengaruhi hampir semua bahasa setelahnya. Memperkenalkan: curly braces {}, pointer, struct, preprocessor, manual memory (malloc/free), standard library. UNIX ditulis ulang dari Assembly ke C.</p>
+    </div>
+    <div class="timeline-item">
+        <h4><span class="badge badge-purple">1979</span> C++</h4>
+        <p>Bjarne Stroustrup. "C with Classes". Menambahkan <strong>OOP (class, inheritance, polymorphism), templates, RAII, exceptions</strong> di atas C. Backward-compatible dengan C.</p>
+    </div>
+    <div class="timeline-item">
+        <h4><span class="badge badge-yellow">1991</span> Python</h4>
+        <p>Guido van Rossum. Terinspirasi oleh <strong>C (CPython ditulis di C), ABC (indentation), LISP (functional)</strong>. Menambahkan: dynamic typing, garbage collection, indentation-based syntax, "batteries included".</p>
+    </div>
+    <div class="timeline-item">
+        <h4><span class="badge badge-orange">1995</span> Java</h4>
+        <p>James Gosling di Sun. <strong>Dari C/C++</strong>: syntax curly braces, types (int/float/double), for/while/switch. <strong>Dihilangkan</strong>: pointer, manual memory, preprocessor, multiple inheritance. <strong>Ditambahkan</strong>: JVM (write once run anywhere), garbage collector, strong OOP, exception handling.</p>
+    </div>
+    <div class="timeline-item">
+        <h4><span class="badge badge-purple">2003</span> Groovy</h4>
+        <p>Dari <strong>Java + Ruby/Python</strong>. Syntax Java yang disederhanakan, dynamic typing, closures, scripting. Berjalan di JVM.</p>
+    </div>
+    <div class="timeline-item">
+        <h4><span class="badge badge-green">2009</span> Go</h4>
+        <p>Rob Pike, Ken Thompson, Robert Griesemer di Google. <strong>Dari C</strong>: syntax mirip (curly braces, types, pointers). <strong>Dihilangkan</strong>: inheritance, generics (awalnya), header files, preprocessor, exceptions. <strong>Ditambahkan</strong>: goroutines (CSP), garbage collector, interfaces implisit, built-in concurrency, fast compilation.</p>
+    </div>
+    <div class="timeline-item">
+        <h4><span class="badge badge-red">2015</span> Rust</h4>
+        <p>Graydon Hoare di Mozilla. <strong>Dari C/C++</strong>: syntax mirip, zero-cost abstractions, native compilation. <strong>Dihilangkan</strong>: garbage collector, null pointer, data races. <strong>Ditambahkan</strong>: ownership system, borrow checker, lifetimes, pattern matching (dari ML/Haskell), traits (dari Haskell typeclasses), Result/Option (dari ML).</p>
+    </div>
+</div>
+
+<h2>Apa yang Diturunkan dari C?</h2>
+<div class="card">
+    <div class="table-wrapper">
+    <table>
+    <tr><th>Fitur dari C</th><th>Java</th><th>Go</th><th>Rust</th><th>Python</th></tr>
+    <tr><td><strong>Curly braces { }</strong></td><td>Ya</td><td>Ya</td><td>Ya</td><td>Tidak (indentation)</td></tr>
+    <tr><td><strong>Semicolons ;</strong></td><td>Ya</td><td>Otomatis</td><td>Ya</td><td>Tidak</td></tr>
+    <tr><td><strong>Pointer/*</strong></td><td>Tidak (reference)</td><td>Ya (terbatas)</td><td>Ya (&T, &mut T)</td><td>Tidak</td></tr>
+    <tr><td><strong>Struct</strong></td><td>Tidak (class saja)</td><td>Ya (utama!)</td><td>Ya (utama!)</td><td>Tidak (class)</td></tr>
+    <tr><td><strong>Manual memory</strong></td><td>Tidak (GC)</td><td>Tidak (GC)</td><td>Ownership (tanpa GC!)</td><td>Tidak (GC)</td></tr>
+    <tr><td><strong>for/while/if</strong></td><td>Ya (+ foreach)</td><td>Ya (hanya for)</td><td>Ya (+ match)</td><td>Ya (+ for-in)</td></tr>
+    <tr><td><strong>switch/case</strong></td><td>Ya</td><td>Ya (tanpa fallthrough)</td><td>match (exhaustive!)</td><td>match/case (3.10+)</td></tr>
+    <tr><td><strong>Preprocessor #include</strong></td><td>Tidak (import)</td><td>Tidak (import)</td><td>Tidak (use/mod)</td><td>Tidak (import)</td></tr>
+    <tr><td><strong>Header files .h</strong></td><td>Tidak</td><td>Tidak</td><td>Tidak</td><td>Tidak</td></tr>
+    <tr><td><strong>Static typing</strong></td><td>Ya</td><td>Ya</td><td>Ya (+ inference)</td><td>Optional (hints)</td></tr>
+    <tr><td><strong>Compilation</strong></td><td>JVM bytecode</td><td>Native binary</td><td>Native binary</td><td>Interpreted</td></tr>
+    <tr><td><strong>C FFI</strong></td><td>JNI</td><td>cgo</td><td>extern "C"</td><td>ctypes/cffi</td></tr>
+    </table>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Evolusi Konsep dari C ke Bahasa Modern</h3>
+    <div class="flow-diagram">
+        <div class="flow-node highlight" style="border-color:var(--accent)">C: malloc/free</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node" style="border-color:var(--orange)">Java: GC</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node" style="border-color:var(--green)">Go: GC + escape analysis</div>
+    </div>
+    <div class="flow-diagram">
+        <div class="flow-node highlight" style="border-color:var(--accent)">C: malloc/free</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node" style="border-color:var(--red)">Rust: Ownership (tanpa GC!)</div>
+    </div>
+    <div class="flow-diagram">
+        <div class="flow-node highlight" style="border-color:var(--accent)">C: pthreads</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node" style="border-color:var(--green)">Go: goroutines + channels</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node" style="border-color:var(--red)">Rust: async + ownership safety</div>
+    </div>
+    <div class="flow-diagram">
+        <div class="flow-node highlight" style="border-color:var(--accent)">C: return codes</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node" style="border-color:var(--orange)">Java: exceptions</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node" style="border-color:var(--green)">Go: error values</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node" style="border-color:var(--red)">Rust: Result&lt;T,E&gt;</div>
+    </div>
+    <div class="info-box">
+        <strong>Pola evolusi:</strong> C memberikan fondasi low-level. Java menambahkan safety via GC + exceptions. Go menyederhanakan (menghilangkan inheritance, generics awal) dan menambahkan concurrency native. Rust mengambil jalan berbeda — safety tanpa runtime cost, via ownership system yang unik.
+    </div>
 </div>
 
 <h2>Koneksi Antar Bahasa: C sebagai Fondasi</h2>
@@ -3321,10 +3702,10 @@ sections.references = () => `
 <h1 class="section-title animate-in">Referensi Buku & Paper</h1>
 <p class="section-subtitle animate-in">Sumber utama yang digunakan dalam materi ini</p>
 
-<h2>Teori Komputasi & Automata</h2>
+<h2>Ilmu dan Rekayasa Komputasi & Automata</h2>
 <div class="card">
     <ul>
-        <li><strong>Sipser, M. (2012).</strong> <em>Introduction to the Theory of Computation</em>, 3rd Edition. Cengage Learning. — Buku standar untuk teori komputasi, automata, bahasa formal, dan complexity theory.</li>
+        <li><strong>Sipser, M. (2012).</strong> <em>Introduction to the Theory of Computation</em>, 3rd Edition. Cengage Learning. — Buku standar untuk teori dan ilmu komputasi, automata, bahasa formal, dan complexity theory.</li>
         <li><strong>Hopcroft, J.E., Motwani, R., & Ullman, J.D. (2006).</strong> <em>Introduction to Automata Theory, Languages, and Computation</em>, 3rd Edition. Pearson. — Klasik untuk DFA, NFA, PDA, Turing Machine.</li>
         <li><strong>Turing, A. (1936).</strong> "On Computable Numbers, with an Application to the Entscheidungsproblem." <em>Proceedings of the London Mathematical Society</em>. — Paper original Turing Machine.</li>
         <li><strong>Chomsky, N. (1956).</strong> "Three models for the description of language." <em>IRE Transactions on Information Theory</em>. — Hierarki Chomsky.</li>
@@ -3919,89 +4300,216 @@ function initTMAnimation(dpr) {
 }
 
 function initAlgorithmAnimations() {
-    // Complexity chart
-    const chartCanvas = document.getElementById('complexity-chart');
-    if (!chartCanvas) return;
-    const ctx = chartCanvas.getContext('2d');
     const dpr = window.devicePixelRatio || 1;
-    chartCanvas.width = 700 * dpr;
-    chartCanvas.height = 350 * dpr;
-    ctx.scale(dpr, dpr);
+    const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+    const textColor = isDark ? '#e2e8f0' : '#1e293b';
+    const textColor2 = isDark ? '#94a3b8' : '#475569';
+    const gridColor = isDark ? '#334155' : '#cbd5e1';
 
-    const W = 700, H = 350;
-    const margin = { top: 30, right: 30, bottom: 50, left: 60 };
-    const cw = W - margin.left - margin.right;
-    const ch = H - margin.top - margin.bottom;
-
-    const maxN = 20;
-    const maxY = 200;
-
-    function mapX(n) { return margin.left + (n / maxN) * cw; }
-    function mapY(v) { return margin.top + ch - (Math.min(v, maxY) / maxY) * ch; }
-
-    const funcs = [
-        { name: 'O(1)', fn: () => 1, color: '#34d399' },
-        { name: 'O(log n)', fn: n => Math.log2(n || 1), color: '#38bdf8' },
-        { name: 'O(n)', fn: n => n, color: '#818cf8' },
-        { name: 'O(n log n)', fn: n => n * Math.log2(n || 1), color: '#fbbf24' },
-        { name: 'O(n²)', fn: n => n * n, color: '#fb923c' },
-        { name: 'O(2ⁿ)', fn: n => Math.pow(2, n), color: '#f87171' },
-    ];
-
-    // Axes
-    ctx.strokeStyle = '#334155';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(margin.left, margin.top);
-    ctx.lineTo(margin.left, margin.top + ch);
-    ctx.lineTo(margin.left + cw, margin.top + ch);
-    ctx.stroke();
-
-    // Axis labels
-    ctx.fillStyle = '#94a3b8';
-    ctx.font = '12px Inter';
-    ctx.textAlign = 'center';
-    ctx.fillText('n (input size)', W/2, H - 10);
-    ctx.save();
-    ctx.translate(15, H/2);
-    ctx.rotate(-Math.PI/2);
-    ctx.fillText('Operations', 0, 0);
-    ctx.restore();
-
-    // X ticks
-    for (let i = 0; i <= maxN; i += 5) {
-        ctx.fillStyle = '#94a3b8';
-        ctx.font = '11px JetBrains Mono';
-        ctx.textAlign = 'center';
-        ctx.fillText(i, mapX(i), margin.top + ch + 20);
+    function setupCanvas(id, w, h) {
+        const c = document.getElementById(id);
+        if (!c) return null;
+        const ctx = c.getContext('2d');
+        c.width = w * dpr; c.height = h * dpr;
+        ctx.scale(dpr, dpr);
+        return { c, ctx, w, h };
     }
 
-    // Draw functions
-    funcs.forEach(f => {
-        ctx.strokeStyle = f.color;
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        for (let n = 0.5; n <= maxN; n += 0.5) {
-            const v = f.fn(n);
-            const x = mapX(n);
-            const y = mapY(v);
-            if (n === 0.5) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
-        }
-        ctx.stroke();
-    });
+    // ===== Complexity Growth Chart =====
+    const chart = setupCanvas('complexity-chart', 700, 350);
+    if (chart) {
+        const { ctx } = chart;
+        const W = 700, H = 350;
+        const margin = { top: 30, right: 30, bottom: 50, left: 60 };
+        const cw = W - margin.left - margin.right;
+        const ch = H - margin.top - margin.bottom;
+        const maxN = 20, maxY = 200;
+        function mapX(n) { return margin.left + (n / maxN) * cw; }
+        function mapY(v) { return margin.top + ch - (Math.min(v, maxY) / maxY) * ch; }
 
-    // Legend
-    funcs.forEach((f, i) => {
-        const lx = margin.left + 15;
-        const ly = margin.top + 15 + i * 18;
-        ctx.fillStyle = f.color;
-        ctx.fillRect(lx, ly - 5, 12, 3);
-        ctx.fillStyle = '#e2e8f0';
-        ctx.font = '11px JetBrains Mono';
-        ctx.textAlign = 'left';
-        ctx.fillText(f.name, lx + 18, ly);
-    });
+        const funcs = [
+            { name: 'O(1)', fn: () => 1, color: '#34d399' },
+            { name: 'O(log n)', fn: n => Math.log2(n || 1), color: '#38bdf8' },
+            { name: 'O(n)', fn: n => n, color: '#818cf8' },
+            { name: 'O(n log n)', fn: n => n * Math.log2(n || 1), color: '#fbbf24' },
+            { name: 'O(n²)', fn: n => n * n, color: '#fb923c' },
+            { name: 'O(2ⁿ)', fn: n => Math.pow(2, n), color: '#f87171' },
+        ];
+
+        ctx.strokeStyle = gridColor; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(margin.left, margin.top); ctx.lineTo(margin.left, margin.top + ch); ctx.lineTo(margin.left + cw, margin.top + ch); ctx.stroke();
+        ctx.fillStyle = textColor2; ctx.font = '12px Inter'; ctx.textAlign = 'center';
+        ctx.fillText('n (input size)', W/2, H - 10);
+        ctx.save(); ctx.translate(15, H/2); ctx.rotate(-Math.PI/2); ctx.fillText('Operations', 0, 0); ctx.restore();
+        for (let i = 0; i <= maxN; i += 5) { ctx.fillStyle = textColor2; ctx.font = '11px JetBrains Mono'; ctx.textAlign = 'center'; ctx.fillText(i, mapX(i), margin.top + ch + 20); }
+
+        funcs.forEach(f => {
+            ctx.strokeStyle = f.color; ctx.lineWidth = 2.5; ctx.beginPath();
+            for (let n = 0.5; n <= maxN; n += 0.5) { const x = mapX(n), y = mapY(f.fn(n)); n === 0.5 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
+            ctx.stroke();
+        });
+        funcs.forEach((f, i) => {
+            const lx = margin.left + 15, ly = margin.top + 15 + i * 18;
+            ctx.fillStyle = f.color; ctx.fillRect(lx, ly - 5, 14, 3);
+            ctx.fillStyle = textColor; ctx.font = '11px JetBrains Mono'; ctx.textAlign = 'left'; ctx.fillText(f.name, lx + 20, ly);
+        });
+    }
+
+    // ===== Asymptotic Bounds Chart (Big-O, Theta, Omega) =====
+    const asym = setupCanvas('asymptotic-chart', 700, 350);
+    if (asym) {
+        const { ctx } = asym;
+        const W = 700, H = 350;
+        const margin = { top: 30, right: 30, bottom: 50, left: 60 };
+        const cw = W - margin.left - margin.right;
+        const ch = H - margin.top - margin.bottom;
+        const maxN = 15, maxY = 700;
+        function amX(n) { return margin.left + (n / maxN) * cw; }
+        function amY(v) { return margin.top + ch - (Math.min(v, maxY) / maxY) * ch; }
+
+        // Axes
+        ctx.strokeStyle = gridColor; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(margin.left, margin.top); ctx.lineTo(margin.left, margin.top + ch); ctx.lineTo(margin.left + cw, margin.top + ch); ctx.stroke();
+        ctx.fillStyle = textColor2; ctx.font = '12px Inter'; ctx.textAlign = 'center'; ctx.fillText('n', W/2, H - 10);
+        ctx.save(); ctx.translate(15, H/2); ctx.rotate(-Math.PI/2); ctx.fillText('f(n)', 0, 0); ctx.restore();
+        for (let i = 0; i <= maxN; i += 3) { ctx.fillStyle = textColor2; ctx.font = '11px JetBrains Mono'; ctx.textAlign = 'center'; ctx.fillText(i, amX(i), margin.top + ch + 20); }
+
+        // Fill Theta region
+        ctx.fillStyle = 'rgba(251,191,36,0.08)';
+        ctx.beginPath();
+        for (let n = 0.5; n <= maxN; n += 0.3) { const x = amX(n); n === 0.5 ? ctx.moveTo(x, amY(3*n*n)) : ctx.lineTo(x, amY(3*n*n)); }
+        for (let n = maxN; n >= 0.5; n -= 0.3) { ctx.lineTo(amX(n), amY(n*n)); }
+        ctx.closePath(); ctx.fill();
+
+        // c2*g(n) = 3n² (upper bound / Big-O)
+        ctx.strokeStyle = '#f87171'; ctx.lineWidth = 2; ctx.setLineDash([6,4]); ctx.beginPath();
+        for (let n = 0.5; n <= maxN; n += 0.3) { const x = amX(n), y = amY(3*n*n); n === 0.5 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
+        ctx.stroke(); ctx.setLineDash([]);
+
+        // c1*g(n) = n² (lower bound / Big-Omega)
+        ctx.strokeStyle = '#34d399'; ctx.lineWidth = 2; ctx.setLineDash([6,4]); ctx.beginPath();
+        for (let n = 0.5; n <= maxN; n += 0.3) { const x = amX(n), y = amY(n*n); n === 0.5 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
+        ctx.stroke(); ctx.setLineDash([]);
+
+        // f(n) = 2n²+3n+1 (actual function)
+        ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 3; ctx.beginPath();
+        for (let n = 0.5; n <= maxN; n += 0.3) { const v = 2*n*n + 3*n + 1; const x = amX(n), y = amY(v); n === 0.5 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
+        ctx.stroke();
+
+        // Labels
+        ctx.font = 'bold 12px JetBrains Mono';
+        ctx.fillStyle = '#f87171'; ctx.textAlign = 'left'; ctx.fillText('c₂·n² = 3n² (Big-O)', amX(8), amY(3*64) - 8);
+        ctx.fillStyle = '#34d399'; ctx.fillText('c₁·n² = n² (Big-Ω)', amX(9), amY(81) + 18);
+        ctx.fillStyle = '#38bdf8'; ctx.fillText('f(n) = 2n²+3n+1', amX(5.5), amY(2*30.25+16.5+1) - 10);
+        ctx.fillStyle = '#fbbf24'; ctx.font = '11px Inter'; ctx.fillText('Θ(n²) region', amX(10), amY(2*100) + 5);
+    }
+
+    // ===== Fibonacci Comparison Chart =====
+    const fibCanvas = setupCanvas('fib-compare-canvas', 700, 400);
+    if (fibCanvas) {
+        const { ctx, c } = fibCanvas;
+        const W = 700, H = 400;
+        let fibN = 20;
+        const nInput = document.getElementById('fib-n-input');
+        const nDisplay = document.getElementById('fib-n-display');
+
+        function fibOps(n) {
+            return {
+                loop: n,
+                recursive: Math.pow(1.618, n),
+                dp: n,
+                tail: n
+            };
+        }
+
+        function drawFibChart(n) {
+            ctx.clearRect(0, 0, W, H);
+            const margin = { top: 40, right: 30, bottom: 60, left: 80 };
+            const cw = W - margin.left - margin.right;
+            const ch = H - margin.top - margin.bottom;
+
+            const ops = fibOps(n);
+            const maxOps = Math.max(ops.recursive, ops.loop * 2);
+            const useLog = maxOps > 1000;
+            const logMax = useLog ? Math.log10(maxOps) : maxOps;
+
+            function barY(val) {
+                if (useLog) return margin.top + ch - (Math.log10(Math.max(val,1)) / logMax) * ch;
+                return margin.top + ch - (val / maxOps) * ch;
+            }
+
+            // Title
+            ctx.fillStyle = textColor; ctx.font = 'bold 14px Inter'; ctx.textAlign = 'center';
+            ctx.fillText('Fibonacci Approaches: Operations for n = ' + n + (useLog ? ' (log scale)' : ''), W/2, 25);
+
+            // Axes
+            ctx.strokeStyle = gridColor; ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(margin.left, margin.top); ctx.lineTo(margin.left, margin.top + ch); ctx.lineTo(margin.left + cw, margin.top + ch); ctx.stroke();
+
+            const bars = [
+                { name: 'Imperative\nLoop', ops: ops.loop, complexity: 'O(n)', color: '#34d399' },
+                { name: 'Recursive\nNaive', ops: ops.recursive, complexity: 'O(2ⁿ)', color: '#f87171' },
+                { name: 'Recursive\n+ DP', ops: ops.dp, complexity: 'O(n)', color: '#38bdf8' },
+                { name: 'Tail\nRecursive', ops: ops.tail, complexity: 'O(n)', color: '#a78bfa' },
+            ];
+
+            const barW = cw / (bars.length * 2);
+            bars.forEach((b, i) => {
+                const x = margin.left + (i * 2 + 0.5) * barW;
+                const h = margin.top + ch - barY(b.ops);
+                const y = barY(b.ops);
+
+                // Bar
+                ctx.fillStyle = b.color;
+                ctx.globalAlpha = 0.8;
+                ctx.fillRect(x, y, barW, h);
+                ctx.globalAlpha = 1;
+
+                // Bar border
+                ctx.strokeStyle = b.color; ctx.lineWidth = 2;
+                ctx.strokeRect(x, y, barW, h);
+
+                // Label
+                ctx.fillStyle = textColor; ctx.font = 'bold 11px Inter'; ctx.textAlign = 'center';
+                const lines = b.name.split('\n');
+                lines.forEach((line, li) => ctx.fillText(line, x + barW/2, margin.top + ch + 18 + li * 14));
+
+                // Complexity badge
+                ctx.fillStyle = b.color; ctx.font = 'bold 12px JetBrains Mono';
+                ctx.fillText(b.complexity, x + barW/2, y - 22);
+
+                // Ops count
+                ctx.fillStyle = textColor2; ctx.font = '10px JetBrains Mono';
+                const opsStr = b.ops > 1e6 ? b.ops.toExponential(1) : Math.round(b.ops).toLocaleString();
+                ctx.fillText(opsStr + ' ops', x + barW/2, y - 8);
+            });
+
+            // Y-axis label
+            ctx.save(); ctx.translate(20, H/2); ctx.rotate(-Math.PI/2);
+            ctx.fillStyle = textColor2; ctx.font = '12px Inter'; ctx.textAlign = 'center';
+            ctx.fillText(useLog ? 'Operations (log₁₀ scale)' : 'Operations', 0, 0);
+            ctx.restore();
+        }
+
+        drawFibChart(fibN);
+
+        if (nInput) {
+            nInput.addEventListener('input', () => {
+                fibN = parseInt(nInput.value);
+                if (nDisplay) nDisplay.textContent = fibN;
+                drawFibChart(fibN);
+            });
+        }
+        const fibRun = document.getElementById('fib-run');
+        if (fibRun) fibRun.addEventListener('click', () => drawFibChart(fibN));
+        const fibReset = document.getElementById('fib-reset');
+        if (fibReset) fibReset.addEventListener('click', () => {
+            fibN = 20;
+            if (nInput) nInput.value = 20;
+            if (nDisplay) nDisplay.textContent = 20;
+            drawFibChart(20);
+        });
+    }
 }
 
 function initDSAnimations() {
