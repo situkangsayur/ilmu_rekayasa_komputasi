@@ -1324,7 +1324,7 @@ app.<span class="fn">use</span>(<span class="str">"/api/auth"</span>, authLimite
 
 <span class="cm">// Jika perlu raw SQL, gunakan parameterized query:</span>
 <span class="kw">const</span> result = <span class="kw">await</span> prisma.<span class="fn">$queryRaw</span>(
-  Prisma.<span class="fn">sql</span><span class="str">"SELECT * FROM users WHERE email = ${email}"</span>
+  Prisma.<span class="fn">sql</span><span class="str">"SELECT * FROM users WHERE email = \${email}"</span>
 );
 <span class="cm">// Prisma.sql tag menangani escaping secara aman</span>
     </div>

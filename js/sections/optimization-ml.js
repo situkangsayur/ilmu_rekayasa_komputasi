@@ -1236,7 +1236,7 @@ function initMLAnimations() {
             // Trail
             for (let i = 0; i < trail.length; i++) {
                 const alpha = 0.2 + 0.8 * (i / trail.length);
-                ctx.fillStyle = `rgba(255, 152, 0, ${alpha})`;
+                ctx.fillStyle = `rgba(255, 152, 0, \${alpha})`;
                 ctx.beginPath();
                 ctx.arc(trail[i].x, trail[i].y, 3, 0, Math.PI * 2);
                 ctx.fill();
@@ -1263,7 +1263,7 @@ function initMLAnimations() {
             ctx.font = '13px Inter, sans-serif';
             ctx.fillText('Loss Function f(x)', 30, 25);
             ctx.fillStyle = '#ff9800';
-            ctx.fillText(`x = ${ballX.toFixed(0)}  loss = ${ballY.toFixed(1)}  LR = ${lr}`, 30, 45);
+            ctx.fillText(`x = \${ballX.toFixed(0)}  loss = \${ballY.toFixed(1)}  LR = \${lr}`, 30, 45);
 
             // Gradient arrow
             const grad = lossFuncDeriv(ballX);
@@ -1380,7 +1380,7 @@ function initMLAnimations() {
 
             // Signals
             for (const sig of activeSignals) {
-                ctx.fillStyle = `rgba(255, 235, 59, ${sig.alpha})`;
+                ctx.fillStyle = `rgba(255, 235, 59, \${sig.alpha})`;
                 ctx.beginPath();
                 ctx.arc(sig.x, sig.y, 4, 0, Math.PI * 2);
                 ctx.fill();
@@ -1559,7 +1559,7 @@ function initMLAnimations() {
                     const r = Math.floor(255 * weight);
                     const g = Math.floor(235 * weight * 0.5);
                     const b = Math.floor(59 * weight);
-                    ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${Math.max(0.08, weight)})`;
+                    ctx.fillStyle = `rgba(\${r}, \${g}, \${b}, \${Math.max(0.08, weight)})`;
                     ctx.fillRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
 
                     // Cell border
@@ -1592,7 +1592,7 @@ function initMLAnimations() {
                 const r = Math.floor(255 * v);
                 const g = Math.floor(235 * v * 0.5);
                 const b = Math.floor(59 * v);
-                ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${Math.max(0.15, v)})`;
+                ctx.fillStyle = `rgba(\${r}, \${g}, \${b}, \${Math.max(0.15, v)})`;
                 ctx.fillRect(legendX, ly, 20, 16);
                 ctx.fillStyle = 'rgba(255,255,255,0.6)';
                 ctx.font = '10px JetBrains Mono';

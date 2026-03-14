@@ -36,33 +36,40 @@ sections.automata = () => `
         <!-- Tipe 0 — outermost -->
         <rect x="10" y="10" width="680" height="420" rx="24" fill="rgba(248,113,113,0.04)" stroke="var(--red)" stroke-width="2.5"/>
         <text x="360" y="42" text-anchor="middle" fill="var(--red)" font-size="15" font-weight="700">Type 0 — Recursively Enumerable (Unrestricted)</text>
-        <text x="360" y="62" text-anchor="middle" fill="var(--text2)" font-size="11">${t('Mesin: Turing Machine | Grammar: unrestricted', 'Machine: Turing Machine | Grammar: unrestricted')}</text>
+        <text x="360" y="62" text-anchor="middle" fill="var(--text2)" font-size="11" class="lang-id">Mesin: Turing Machine | Grammar: unrestricted</text>
+        <text x="360" y="62" text-anchor="middle" fill="var(--text2)" font-size="11" class="lang-en">Machine: Turing Machine | Grammar: unrestricted</text>
         <text x="640" y="415" fill="var(--text2)" font-size="9" font-style="italic">Halting Problem (undecidable)</text>
 
         <!-- Tipe 1 -->
         <rect x="50" y="78" width="600" height="335" rx="20" fill="rgba(251,146,60,0.04)" stroke="var(--orange)" stroke-width="2"/>
         <text x="360" y="105" text-anchor="middle" fill="var(--orange)" font-size="14" font-weight="700">Type 1 — Context-Sensitive</text>
-        <text x="360" y="123" text-anchor="middle" fill="var(--text2)" font-size="11">${t('Mesin: Linear Bounded Automata | Grammar: |LHS| &le; |RHS|', 'Machine: Linear Bounded Automata | Grammar: |LHS| &le; |RHS|')}</text>
+        <text x="360" y="123" text-anchor="middle" fill="var(--text2)" font-size="11" class="lang-id">Mesin: Linear Bounded Automata | Grammar: |LHS| &le; |RHS|</text>
+        <text x="360" y="123" text-anchor="middle" fill="var(--text2)" font-size="11" class="lang-en">Machine: Linear Bounded Automata | Grammar: |LHS| &le; |RHS|</text>
         <text x="600" y="395" fill="var(--text2)" font-size="9" font-style="italic">a&#x207F;b&#x207F;c&#x207F;</text>
 
         <!-- Tipe 2 -->
         <rect x="100" y="140" width="500" height="255" rx="18" fill="rgba(52,211,153,0.05)" stroke="var(--green)" stroke-width="2"/>
         <text x="360" y="167" text-anchor="middle" fill="var(--green)" font-size="14" font-weight="700">Type 2 — Context-Free</text>
-        <text x="360" y="185" text-anchor="middle" fill="var(--text2)" font-size="11">${t('Mesin: Pushdown Automata (PDA) | Grammar: A &rarr; &gamma;', 'Machine: Pushdown Automata (PDA) | Grammar: A &rarr; &gamma;')}</text>
-        <text x="545" y="378" fill="var(--text2)" font-size="9" font-style="italic">${t('a&#x207F;b&#x207F;, HTML, JSON, kurung seimbang', 'a&#x207F;b&#x207F;, HTML, JSON, balanced parentheses')}</text>
+        <text x="360" y="185" text-anchor="middle" fill="var(--text2)" font-size="11" class="lang-id">Mesin: Pushdown Automata (PDA) | Grammar: A &rarr; &gamma;</text>
+        <text x="360" y="185" text-anchor="middle" fill="var(--text2)" font-size="11" class="lang-en">Machine: Pushdown Automata (PDA) | Grammar: A &rarr; &gamma;</text>
+        <text x="545" y="378" fill="var(--text2)" font-size="9" font-style="italic" class="lang-id">a&#x207F;b&#x207F;, HTML, JSON, kurung seimbang</text>
+        <text x="545" y="378" fill="var(--text2)" font-size="9" font-style="italic" class="lang-en">a&#x207F;b&#x207F;, HTML, JSON, balanced parentheses</text>
 
         <!-- Tipe 3 — innermost -->
         <rect x="165" y="205" width="370" height="170" rx="16" fill="rgba(56,189,248,0.07)" stroke="var(--accent)" stroke-width="2.5"/>
         <text x="350" y="235" text-anchor="middle" fill="var(--accent)" font-size="15" font-weight="700">Type 3 — Regular</text>
-        <text x="350" y="255" text-anchor="middle" fill="var(--text2)" font-size="11">${t('Mesin: DFA / NFA', 'Machine: DFA / NFA')}</text>
+        <text x="350" y="255" text-anchor="middle" fill="var(--text2)" font-size="11" class="lang-id">Mesin: DFA / NFA</text>
+        <text x="350" y="255" text-anchor="middle" fill="var(--text2)" font-size="11" class="lang-en">Machine: DFA / NFA</text>
         <text x="350" y="275" text-anchor="middle" fill="var(--text2)" font-size="11">Grammar: A &rarr; aB | a (right-linear)</text>
         <text x="350" y="300" text-anchor="middle" fill="var(--accent)" font-size="12">Regex &equiv; DFA &equiv; NFA (Teorema Kleene)</text>
         <text x="350" y="325" text-anchor="middle" fill="var(--text2)" font-size="10" font-style="italic">a*b+, (0|1)*01, email, identifier</text>
-        <text x="350" y="345" text-anchor="middle" fill="var(--text2)" font-size="10" font-style="italic">${t('log parsing, token sederhana', 'log parsing, simple tokens')}</text>
+        <text x="350" y="345" text-anchor="middle" fill="var(--text2)" font-size="10" font-style="italic" class="lang-id">log parsing, token sederhana</text>
+        <text x="350" y="345" text-anchor="middle" fill="var(--text2)" font-size="10" font-style="italic" class="lang-en">log parsing, simple tokens</text>
 
         <!-- Arrow kekuatan -->
         <line x1="25" y1="420" x2="25" y2="30" stroke="var(--text2)" stroke-width="1.5" marker-end="url(#arrowChomsky)"/>
-        <text x="28" y="250" fill="var(--text2)" font-size="9" transform="rotate(-90, 28, 250)">${t('Kekuatan komputasi meningkat &rarr;', 'Computational power increases &rarr;')}</text>
+        <text x="28" y="250" fill="var(--text2)" font-size="9" transform="rotate(-90, 28, 250)" class="lang-id">Kekuatan komputasi meningkat &rarr;</text>
+        <text x="28" y="250" fill="var(--text2)" font-size="9" transform="rotate(-90, 28, 250)" class="lang-en">Computational power increases &rarr;</text>
     </svg>
 </div>
 </div>
@@ -1535,7 +1542,7 @@ function initAutomataAnimations() {
 
                 if (currentState === 'q0' && ch === 'a') {
                     activeTransition = 'q0-a';
-                    status = `Baca '${ch}': push A ke stack`;
+                    status = `Baca '\${ch}': push A ke stack`;
                     draw();
                     await sleep(600);
                     stack.push('A');
@@ -1545,7 +1552,7 @@ function initAutomataAnimations() {
                 } else if (currentState === 'q0' && ch === 'b') {
                     if (stack.length > 1 && stack[stack.length - 1] === 'A') {
                         activeTransition = 'q0-b';
-                        status = `Baca '${ch}': pop A, pindah ke q1`;
+                        status = `Baca '\${ch}': pop A, pindah ke q1`;
                         draw();
                         await sleep(600);
                         stack.pop();
@@ -1562,7 +1569,7 @@ function initAutomataAnimations() {
                 } else if (currentState === 'q1' && ch === 'b') {
                     if (stack.length > 1 && stack[stack.length - 1] === 'A') {
                         activeTransition = 'q1-b';
-                        status = `Baca '${ch}': pop A dari stack`;
+                        status = `Baca '\${ch}': pop A dari stack`;
                         draw();
                         await sleep(600);
                         stack.pop();
@@ -1744,7 +1751,7 @@ function initAutomataAnimations() {
             // Phase 1: move right to find end
             currentState = 'q0';
             while (tape[headPos] !== 'B') {
-                statusMsg = `q0: Baca '${tape[headPos]}', gerak kanan`;
+                statusMsg = `q0: Baca '\${tape[headPos]}', gerak kanan`;
                 draw();
                 await sleep(400);
                 headPos++;
@@ -1799,7 +1806,7 @@ function initAutomataAnimations() {
             }
 
             const result = tape.filter(c => c !== 'B').join('');
-            resultEl.textContent = `Hasil: ${inputStr} (${parseInt(inputStr, 2)}) + 1 = ${result} (${parseInt(result, 2)})`;
+            resultEl.textContent = `Hasil: \${inputStr} (\${parseInt(inputStr, 2)}) + 1 = \${result} (\${parseInt(result, 2)})`;
             resultEl.style.color = greenColor;
             statusMsg = 'Selesai! Turing Machine berhenti (HALT).';
             draw();
