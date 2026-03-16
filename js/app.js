@@ -1876,14 +1876,14 @@ D → [B, C]</div>
 
 // ====================== LANGUAGES ======================
 sections.languages = () => `
-<h1 class="section-title animate-in">Perbandingan Bahasa Pemrograman</h1>
-<p class="section-subtitle animate-in">C, Java, Go, Rust, Python, Groovy — syntax, memory, size, dan penggunaan</p>
+<h1 class="section-title animate-in">${t('Perbandingan Bahasa Pemrograman', 'Programming Language Comparison')}</h1>
+<p class="section-subtitle animate-in">C, Java, Go, Rust, Python, Groovy — syntax, memory, size, ${t('dan penggunaan', 'and usage')}</p>
 
-<h2>Perbandingan Komprehensif</h2>
+<h2>${t('Perbandingan Komprehensif', 'Comprehensive Comparison')}</h2>
 <div class="table-wrapper">
 <table>
 <tr>
-    <th>Aspek</th>
+    <th>${t('Aspek', 'Aspect')}</th>
     <th><span class="badge badge-blue">C</span></th>
     <th><span class="badge badge-orange">Java</span></th>
     <th><span class="badge badge-green">Go</span></th>
@@ -1891,23 +1891,23 @@ sections.languages = () => `
     <th><span class="badge badge-yellow">Python</span></th>
     <th><span class="badge badge-purple">Groovy</span></th>
 </tr>
-<tr><td><strong>Paradigma</strong></td><td>Procedural</td><td>OOP</td><td>Procedural + CSP</td><td>Multi-paradigm</td><td>Multi-paradigm</td><td>OOP + Scripting</td></tr>
+<tr><td><strong>${t('Paradigma', 'Paradigm')}</strong></td><td>Procedural</td><td>OOP</td><td>Procedural + CSP</td><td>Multi-paradigm</td><td>Multi-paradigm</td><td>OOP + Scripting</td></tr>
 <tr><td><strong>Typing</strong></td><td>Static, weak</td><td>Static, strong</td><td>Static, strong</td><td>Static, strong</td><td>Dynamic, strong</td><td>Dynamic/Static</td></tr>
 <tr><td><strong>Memory</strong></td><td>Manual (malloc/free)</td><td>GC (JVM)</td><td>GC</td><td>Ownership + Borrow</td><td>GC (ref count)</td><td>GC (JVM)</td></tr>
-<tr><td><strong>Kompilasi</strong></td><td>Native binary</td><td>Bytecode (JVM)</td><td>Native binary</td><td>Native binary</td><td>Interpreted/JIT</td><td>Bytecode (JVM)</td></tr>
+<tr><td><strong>${t('Kompilasi', 'Compilation')}</strong></td><td>Native binary</td><td>Bytecode (JVM)</td><td>Native binary</td><td>Native binary</td><td>Interpreted/JIT</td><td>Bytecode (JVM)</td></tr>
 <tr><td><strong>Hello World binary</strong></td><td>~16 KB</td><td>~1 KB .class + JVM</td><td>~2 MB</td><td>~300 KB</td><td>Script (0 KB)</td><td>Script + JVM</td></tr>
 <tr><td><strong>Speed (relative)</strong></td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐</td><td>⭐⭐⭐</td></tr>
 <tr><td><strong>Concurrency</strong></td><td>pthreads (manual)</td><td>Threads + Virtual</td><td>Goroutines (CSP)</td><td>async/await + threads</td><td>GIL (asyncio)</td><td>Java threads</td></tr>
 <tr><td><strong>Null Safety</strong></td><td>NULL pointer</td><td>NullPointerException</td><td>nil (zero values)</td><td>Option&lt;T&gt; (no null!)</td><td>None</td><td>null</td></tr>
 <tr><td><strong>Error Handling</strong></td><td>Return codes</td><td>Exceptions</td><td>error return value</td><td>Result&lt;T,E&gt;</td><td>Exceptions</td><td>Exceptions</td></tr>
-<tr><td><strong>Tahun</strong></td><td>1972</td><td>1995</td><td>2009</td><td>2015</td><td>1991</td><td>2003</td></tr>
+<tr><td><strong>${t('Tahun', 'Year')}</strong></td><td>1972</td><td>1995</td><td>2009</td><td>2015</td><td>1991</td><td>2003</td></tr>
 </table>
 </div>
 
 <h2>Data Type Sizes</h2>
 <div class="table-wrapper">
 <table>
-<tr><th>Tipe</th><th>C</th><th>Java</th><th>Go</th><th>Rust</th><th>Python</th></tr>
+<tr><th>${t('Tipe', 'Type')}</th><th>C</th><th>Java</th><th>Go</th><th>Rust</th><th>Python</th></tr>
 <tr><td>Integer (small)</td><td>int: 4B</td><td>int: 4B</td><td>int: 8B (64bit)</td><td>i32: 4B</td><td>int: 28B+ (object)</td></tr>
 <tr><td>Integer (big)</td><td>long: 8B</td><td>long: 8B</td><td>int64: 8B</td><td>i64: 8B</td><td>int: arbitrary</td></tr>
 <tr><td>Float</td><td>double: 8B</td><td>double: 8B</td><td>float64: 8B</td><td>f64: 8B</td><td>float: 24B (object)</td></tr>
@@ -2015,68 +2015,68 @@ ratpack {
 }</div>
 </div>
 
-<h2>Timeline Sejarah Bahasa Pemrograman</h2>
+<h2>${t('Timeline Sejarah Bahasa Pemrograman', 'Programming Language History Timeline')}</h2>
 <div class="card">
-    <p>Setiap bahasa modern dipengaruhi oleh pendahulunya. <strong>C (1972)</strong> adalah "bahasa induk" yang menurunkan konsep ke hampir semua bahasa modern.</p>
+    <p>${t('Setiap bahasa modern dipengaruhi oleh pendahulunya.', 'Every modern language is influenced by its predecessors.')} <strong>C (1972)</strong> ${t('adalah "bahasa induk" yang menurunkan konsep ke hampir semua bahasa modern.', 'is the "parent language" that passed down concepts to almost all modern languages.')}</p>
 </div>
 <div class="timeline">
     <div class="timeline-item">
         <h4><span class="badge badge-purple">1957</span> Fortran</h4>
-        <p>Bahasa pemrograman high-level pertama. Untuk komputasi ilmiah. Memperkenalkan <strong>loops, subroutines, arrays</strong>.</p>
+        <p>${t('Bahasa pemrograman high-level pertama. Untuk komputasi ilmiah. Memperkenalkan', 'First high-level programming language. For scientific computing. Introduced')} <strong>loops, subroutines, arrays</strong>.</p>
     </div>
     <div class="timeline-item">
         <h4><span class="badge badge-purple">1959</span> LISP</h4>
-        <p>Bahasa fungsional pertama. Memperkenalkan <strong>garbage collection, recursion, first-class functions, lambda</strong>. Nenek moyang semua bahasa fungsional.</p>
+        <p>${t('Bahasa fungsional pertama. Memperkenalkan', 'First functional language. Introduced')} <strong>garbage collection, recursion, first-class functions, lambda</strong>. ${t('Nenek moyang semua bahasa fungsional.', 'Ancestor of all functional languages.')}</p>
     </div>
     <div class="timeline-item">
         <h4><span class="badge badge-purple">1964</span> BASIC</h4>
-        <p>Dirancang untuk edukasi. <strong>Simplicity</strong> sebagai prinsip utama. Mempengaruhi Python dalam hal readability.</p>
+        <p>${t('Dirancang untuk edukasi.', 'Designed for education.')} <strong>Simplicity</strong> ${t('sebagai prinsip utama. Mempengaruhi Python dalam hal readability.', 'as the main principle. Influenced Python in terms of readability.')}</p>
     </div>
     <div class="timeline-item">
-        <h4><span class="badge badge-blue">1972</span> C <span class="badge badge-blue">FONDASI</span></h4>
-        <p>Dennis Ritchie di Bell Labs. <strong>Bahasa revolusioner</strong> yang mempengaruhi hampir semua bahasa setelahnya. Memperkenalkan: curly braces {}, pointer, struct, preprocessor, manual memory (malloc/free), standard library. UNIX ditulis ulang dari Assembly ke C.</p>
+        <h4><span class="badge badge-blue">1972</span> C <span class="badge badge-blue">${t('FONDASI', 'FOUNDATION')}</span></h4>
+        <p>Dennis Ritchie ${t('di Bell Labs.', 'at Bell Labs.')} <strong>${t('Bahasa revolusioner', 'Revolutionary language')}</strong> ${t('yang mempengaruhi hampir semua bahasa setelahnya. Memperkenalkan:', 'that influenced almost all languages after it. Introduced:')} curly braces {}, pointer, struct, preprocessor, manual memory (malloc/free), standard library. UNIX ${t('ditulis ulang dari Assembly ke C.', 'was rewritten from Assembly to C.')}</p>
     </div>
     <div class="timeline-item">
         <h4><span class="badge badge-purple">1979</span> C++</h4>
-        <p>Bjarne Stroustrup. "C with Classes". Menambahkan <strong>OOP (class, inheritance, polymorphism), templates, RAII, exceptions</strong> di atas C. Backward-compatible dengan C.</p>
+        <p>Bjarne Stroustrup. "C with Classes". ${t('Menambahkan', 'Added')} <strong>OOP (class, inheritance, polymorphism), templates, RAII, exceptions</strong> ${t('di atas C. Backward-compatible dengan C.', 'on top of C. Backward-compatible with C.')}</p>
     </div>
     <div class="timeline-item">
         <h4><span class="badge badge-yellow">1991</span> Python</h4>
-        <p>Guido van Rossum. Terinspirasi oleh <strong>C (CPython ditulis di C), ABC (indentation), LISP (functional)</strong>. Menambahkan: dynamic typing, garbage collection, indentation-based syntax, "batteries included".</p>
+        <p>Guido van Rossum. ${t('Terinspirasi oleh', 'Inspired by')} <strong>C (CPython ${t('ditulis di', 'written in')} C), ABC (indentation), LISP (functional)</strong>. ${t('Menambahkan:', 'Added:')} dynamic typing, garbage collection, indentation-based syntax, "batteries included".</p>
     </div>
     <div class="timeline-item">
         <h4><span class="badge badge-orange">1995</span> Java</h4>
-        <p>James Gosling di Sun. <strong>Dari C/C++</strong>: syntax curly braces, types (int/float/double), for/while/switch. <strong>Dihilangkan</strong>: pointer, manual memory, preprocessor, multiple inheritance. <strong>Ditambahkan</strong>: JVM (write once run anywhere), garbage collector, strong OOP, exception handling.</p>
+        <p>James Gosling ${t('di Sun.', 'at Sun.')} <strong>${t('Dari C/C++', 'From C/C++')}</strong>: syntax curly braces, types (int/float/double), for/while/switch. <strong>${t('Dihilangkan', 'Removed')}</strong>: pointer, manual memory, preprocessor, multiple inheritance. <strong>${t('Ditambahkan', 'Added')}</strong>: JVM (write once run anywhere), garbage collector, strong OOP, exception handling.</p>
     </div>
     <div class="timeline-item">
         <h4><span class="badge badge-purple">2003</span> Groovy</h4>
-        <p>Dari <strong>Java + Ruby/Python</strong>. Syntax Java yang disederhanakan, dynamic typing, closures, scripting. Berjalan di JVM.</p>
+        <p>${t('Dari', 'From')} <strong>Java + Ruby/Python</strong>. ${t('Syntax Java yang disederhanakan, dynamic typing, closures, scripting. Berjalan di JVM.', 'Simplified Java syntax, dynamic typing, closures, scripting. Runs on JVM.')}</p>
     </div>
     <div class="timeline-item">
         <h4><span class="badge badge-green">2009</span> Go</h4>
-        <p>Rob Pike, Ken Thompson, Robert Griesemer di Google. <strong>Dari C</strong>: syntax mirip (curly braces, types, pointers). <strong>Dihilangkan</strong>: inheritance, generics (awalnya), header files, preprocessor, exceptions. <strong>Ditambahkan</strong>: goroutines (CSP), garbage collector, interfaces implisit, built-in concurrency, fast compilation.</p>
+        <p>Rob Pike, Ken Thompson, Robert Griesemer ${t('di Google.', 'at Google.')} <strong>${t('Dari C', 'From C')}</strong>: ${t('syntax mirip', 'similar syntax')} (curly braces, types, pointers). <strong>${t('Dihilangkan', 'Removed')}</strong>: inheritance, generics (${t('awalnya', 'initially')}), header files, preprocessor, exceptions. <strong>${t('Ditambahkan', 'Added')}</strong>: goroutines (CSP), garbage collector, ${t('interfaces implisit, built-in concurrency, fast compilation.', 'implicit interfaces, built-in concurrency, fast compilation.')}</p>
     </div>
     <div class="timeline-item">
         <h4><span class="badge badge-red">2015</span> Rust</h4>
-        <p>Graydon Hoare di Mozilla. <strong>Dari C/C++</strong>: syntax mirip, zero-cost abstractions, native compilation. <strong>Dihilangkan</strong>: garbage collector, null pointer, data races. <strong>Ditambahkan</strong>: ownership system, borrow checker, lifetimes, pattern matching (dari ML/Haskell), traits (dari Haskell typeclasses), Result/Option (dari ML).</p>
+        <p>Graydon Hoare ${t('di Mozilla.', 'at Mozilla.')} <strong>${t('Dari C/C++', 'From C/C++')}</strong>: ${t('syntax mirip, zero-cost abstractions, native compilation.', 'similar syntax, zero-cost abstractions, native compilation.')} <strong>${t('Dihilangkan', 'Removed')}</strong>: garbage collector, null pointer, data races. <strong>${t('Ditambahkan', 'Added')}</strong>: ownership system, borrow checker, lifetimes, pattern matching (${t('dari', 'from')} ML/Haskell), traits (${t('dari', 'from')} Haskell typeclasses), Result/Option (${t('dari', 'from')} ML).</p>
     </div>
 </div>
 
-<h2>Apa yang Diturunkan dari C?</h2>
+<h2>${t('Apa yang Diturunkan dari C?', 'What Was Inherited from C?')}</h2>
 <div class="card">
     <div class="table-wrapper">
     <table>
-    <tr><th>Fitur dari C</th><th>Java</th><th>Go</th><th>Rust</th><th>Python</th></tr>
-    <tr><td><strong>Curly braces { }</strong></td><td>Ya</td><td>Ya</td><td>Ya</td><td>Tidak (indentation)</td></tr>
-    <tr><td><strong>Semicolons ;</strong></td><td>Ya</td><td>Otomatis</td><td>Ya</td><td>Tidak</td></tr>
-    <tr><td><strong>Pointer/*</strong></td><td>Tidak (reference)</td><td>Ya (terbatas)</td><td>Ya (&T, &mut T)</td><td>Tidak</td></tr>
-    <tr><td><strong>Struct</strong></td><td>Tidak (class saja)</td><td>Ya (utama!)</td><td>Ya (utama!)</td><td>Tidak (class)</td></tr>
-    <tr><td><strong>Manual memory</strong></td><td>Tidak (GC)</td><td>Tidak (GC)</td><td>Ownership (tanpa GC!)</td><td>Tidak (GC)</td></tr>
-    <tr><td><strong>for/while/if</strong></td><td>Ya (+ foreach)</td><td>Ya (hanya for)</td><td>Ya (+ match)</td><td>Ya (+ for-in)</td></tr>
-    <tr><td><strong>switch/case</strong></td><td>Ya</td><td>Ya (tanpa fallthrough)</td><td>match (exhaustive!)</td><td>match/case (3.10+)</td></tr>
-    <tr><td><strong>Preprocessor #include</strong></td><td>Tidak (import)</td><td>Tidak (import)</td><td>Tidak (use/mod)</td><td>Tidak (import)</td></tr>
-    <tr><td><strong>Header files .h</strong></td><td>Tidak</td><td>Tidak</td><td>Tidak</td><td>Tidak</td></tr>
-    <tr><td><strong>Static typing</strong></td><td>Ya</td><td>Ya</td><td>Ya (+ inference)</td><td>Optional (hints)</td></tr>
+    <tr><th>${t('Fitur dari C', 'Feature from C')}</th><th>Java</th><th>Go</th><th>Rust</th><th>Python</th></tr>
+    <tr><td><strong>Curly braces { }</strong></td><td>${t('Ya', 'Yes')}</td><td>${t('Ya', 'Yes')}</td><td>${t('Ya', 'Yes')}</td><td>${t('Tidak (indentation)', 'No (indentation)')}</td></tr>
+    <tr><td><strong>Semicolons ;</strong></td><td>${t('Ya', 'Yes')}</td><td>${t('Otomatis', 'Automatic')}</td><td>${t('Ya', 'Yes')}</td><td>${t('Tidak', 'No')}</td></tr>
+    <tr><td><strong>Pointer/*</strong></td><td>${t('Tidak (reference)', 'No (reference)')}</td><td>${t('Ya (terbatas)', 'Yes (limited)')}</td><td>Ya (&T, &mut T)</td><td>${t('Tidak', 'No')}</td></tr>
+    <tr><td><strong>Struct</strong></td><td>${t('Tidak (class saja)', 'No (class only)')}</td><td>${t('Ya (utama!)', 'Yes (primary!)')}</td><td>${t('Ya (utama!)', 'Yes (primary!)')}</td><td>${t('Tidak (class)', 'No (class)')}</td></tr>
+    <tr><td><strong>Manual memory</strong></td><td>${t('Tidak (GC)', 'No (GC)')}</td><td>${t('Tidak (GC)', 'No (GC)')}</td><td>${t('Ownership (tanpa GC!)', 'Ownership (no GC!)')}</td><td>${t('Tidak (GC)', 'No (GC)')}</td></tr>
+    <tr><td><strong>for/while/if</strong></td><td>${t('Ya (+ foreach)', 'Yes (+ foreach)')}</td><td>${t('Ya (hanya for)', 'Yes (only for)')}</td><td>${t('Ya (+ match)', 'Yes (+ match)')}</td><td>${t('Ya (+ for-in)', 'Yes (+ for-in)')}</td></tr>
+    <tr><td><strong>switch/case</strong></td><td>${t('Ya', 'Yes')}</td><td>${t('Ya (tanpa fallthrough)', 'Yes (no fallthrough)')}</td><td>match (exhaustive!)</td><td>match/case (3.10+)</td></tr>
+    <tr><td><strong>Preprocessor #include</strong></td><td>${t('Tidak (import)', 'No (import)')}</td><td>${t('Tidak (import)', 'No (import)')}</td><td>${t('Tidak (use/mod)', 'No (use/mod)')}</td><td>${t('Tidak (import)', 'No (import)')}</td></tr>
+    <tr><td><strong>Header files .h</strong></td><td>${t('Tidak', 'No')}</td><td>${t('Tidak', 'No')}</td><td>${t('Tidak', 'No')}</td><td>${t('Tidak', 'No')}</td></tr>
+    <tr><td><strong>Static typing</strong></td><td>${t('Ya', 'Yes')}</td><td>${t('Ya', 'Yes')}</td><td>${t('Ya (+ inference)', 'Yes (+ inference)')}</td><td>Optional (hints)</td></tr>
     <tr><td><strong>Compilation</strong></td><td>JVM bytecode</td><td>Native binary</td><td>Native binary</td><td>Interpreted</td></tr>
     <tr><td><strong>C FFI</strong></td><td>JNI</td><td>cgo</td><td>extern "C"</td><td>ctypes/cffi</td></tr>
     </table>
@@ -2084,7 +2084,7 @@ ratpack {
 </div>
 
 <div class="card">
-    <h3>Evolusi Konsep dari C ke Bahasa Modern</h3>
+    <h3>${t('Evolusi Konsep dari C ke Bahasa Modern', 'Concept Evolution from C to Modern Languages')}</h3>
     <div class="flow-diagram">
         <div class="flow-node highlight" style="border-color:var(--accent)">C: malloc/free</div>
         <div class="flow-arrow">→</div>
@@ -2095,7 +2095,7 @@ ratpack {
     <div class="flow-diagram">
         <div class="flow-node highlight" style="border-color:var(--accent)">C: malloc/free</div>
         <div class="flow-arrow">→</div>
-        <div class="flow-node" style="border-color:var(--red)">Rust: Ownership (tanpa GC!)</div>
+        <div class="flow-node" style="border-color:var(--red)">Rust: Ownership (${t('tanpa GC!', 'no GC!')})</div>
     </div>
     <div class="flow-diagram">
         <div class="flow-node highlight" style="border-color:var(--accent)">C: pthreads</div>
@@ -2114,11 +2114,11 @@ ratpack {
         <div class="flow-node" style="border-color:var(--red)">Rust: Result&lt;T,E&gt;</div>
     </div>
     <div class="info-box">
-        <strong>Pola evolusi:</strong> C memberikan fondasi low-level. Java menambahkan safety via GC + exceptions. Go menyederhanakan (menghilangkan inheritance, generics awal) dan menambahkan concurrency native. Rust mengambil jalan berbeda — safety tanpa runtime cost, via ownership system yang unik.
+        <strong>${t('Pola evolusi:', 'Evolution pattern:')}</strong> ${t('C memberikan fondasi low-level. Java menambahkan safety via GC + exceptions. Go menyederhanakan (menghilangkan inheritance, generics awal) dan menambahkan concurrency native. Rust mengambil jalan berbeda — safety tanpa runtime cost, via ownership system yang unik.', 'C provided the low-level foundation. Java added safety via GC + exceptions. Go simplified (removed inheritance, early generics) and added native concurrency. Rust took a different path — safety without runtime cost, via a unique ownership system.')}
     </div>
 </div>
 
-<h2>Koneksi Antar Bahasa: C sebagai Fondasi</h2>
+<h2>${t('Koneksi Antar Bahasa: C sebagai Fondasi', 'Language Connections: C as Foundation')}</h2>
 <div class="card">
     <div class="flow-diagram">
         <div class="flow-node highlight" style="font-size:1.1rem">C (1972)</div>
@@ -2136,15 +2136,15 @@ ratpack {
         <div class="flow-node" style="border-color:var(--yellow)">Python</div>
     </div>
     <ul>
-        <li><strong>Go + C:</strong> <code>cgo</code> memungkinkan Go memanggil library C. Go runtime sendiri awalnya ditulis sebagian di C.</li>
-        <li><strong>Rust + C:</strong> <code>extern "C"</code> dan <code>bindgen</code> untuk seamless FFI. Rust bisa menggantikan C code sedikit demi sedikit.</li>
-        <li><strong>Python + C:</strong> CPython interpreter ditulis di C. Libraries seperti NumPy, TensorFlow = C/C++ di belakang layar.</li>
-        <li><strong>Go ↔ Rust:</strong> Keduanya bisa interop melalui C ABI. Rust bisa compile ke <code>.so</code> yang dipanggil Go via cgo.</li>
-        <li><strong>Java + C:</strong> JNI (Java Native Interface) untuk memanggil native code.</li>
+        <li><strong>Go + C:</strong> <code>cgo</code> ${t('memungkinkan Go memanggil library C. Go runtime sendiri awalnya ditulis sebagian di C.', 'allows Go to call C libraries. The Go runtime itself was originally partially written in C.')}</li>
+        <li><strong>Rust + C:</strong> <code>extern "C"</code> ${t('dan', 'and')} <code>bindgen</code> ${t('untuk seamless FFI. Rust bisa menggantikan C code sedikit demi sedikit.', 'for seamless FFI. Rust can replace C code piece by piece.')}</li>
+        <li><strong>Python + C:</strong> CPython interpreter ${t('ditulis di C. Libraries seperti NumPy, TensorFlow = C/C++ di belakang layar.', 'is written in C. Libraries like NumPy, TensorFlow = C/C++ behind the scenes.')}</li>
+        <li><strong>Go ↔ Rust:</strong> ${t('Keduanya bisa interop melalui C ABI. Rust bisa compile ke', 'Both can interop via C ABI. Rust can compile to')} <code>.so</code> ${t('yang dipanggil Go via cgo.', 'which is called by Go via cgo.')}</li>
+        <li><strong>Java + C:</strong> JNI (Java Native Interface) ${t('untuk memanggil native code.', 'to call native code.')}</li>
     </ul>
 </div>
 
-<h2>Kecenderungan Penggunaan</h2>
+<h2>${t('Kecenderungan Penggunaan', 'Common Usage Patterns')}</h2>
 <div class="card-grid-3">
     <div class="card">
         <h4><span class="badge badge-blue">C</span></h4>
@@ -2172,7 +2172,7 @@ ratpack {
     </div>
 </div>
 
-<h2>Daftar Keyword Dasar per Bahasa</h2>
+<h2>${t('Daftar Keyword Dasar per Bahasa', 'Basic Keyword List per Language')}</h2>
 <div class="tabs">
     <button class="tab-btn active" data-tab="kw-go">Go</button>
     <button class="tab-btn" data-tab="kw-rust">Rust</button>
@@ -2183,96 +2183,96 @@ ratpack {
 <div data-tab-content="kw-go" class="tab-content active">
 <div class="card">
     <h3>Go Keywords (25 reserved words)</h3>
-    <p>Go sengaja dirancang dengan <strong>sedikit keyword</strong> agar mudah dipelajari.</p>
+    <p>${t('Go sengaja dirancang dengan', 'Go is intentionally designed with')} <strong>${t('sedikit keyword', 'few keywords')}</strong> ${t('agar mudah dipelajari.', 'to be easy to learn.')}</p>
     <div class="table-wrapper">
     <table>
-    <tr><th>Kategori</th><th>Keywords</th><th>Fungsi</th></tr>
-    <tr><td><strong>Deklarasi</strong></td><td><code>var</code> <code>const</code> <code>type</code> <code>func</code></td><td>Deklarasi variabel, konstanta, tipe, fungsi</td></tr>
-    <tr><td><strong>Tipe Komposit</strong></td><td><code>struct</code> <code>interface</code> <code>map</code></td><td>Struktur data, kontrak, key-value store</td></tr>
-    <tr><td><strong>Control Flow</strong></td><td><code>if</code> <code>else</code> <code>for</code> <code>switch</code> <code>case</code> <code>default</code> <code>break</code> <code>continue</code> <code>fallthrough</code></td><td>Percabangan dan perulangan</td></tr>
+    <tr><th>${t('Kategori', 'Category')}</th><th>Keywords</th><th>${t('Fungsi', 'Function')}</th></tr>
+    <tr><td><strong>${t('Deklarasi', 'Declaration')}</strong></td><td><code>var</code> <code>const</code> <code>type</code> <code>func</code></td><td>${t('Deklarasi variabel, konstanta, tipe, fungsi', 'Declare variables, constants, types, functions')}</td></tr>
+    <tr><td><strong>${t('Tipe Komposit', 'Composite Types')}</strong></td><td><code>struct</code> <code>interface</code> <code>map</code></td><td>${t('Struktur data, kontrak, key-value store', 'Data structures, contracts, key-value store')}</td></tr>
+    <tr><td><strong>Control Flow</strong></td><td><code>if</code> <code>else</code> <code>for</code> <code>switch</code> <code>case</code> <code>default</code> <code>break</code> <code>continue</code> <code>fallthrough</code></td><td>${t('Percabangan dan perulangan', 'Branching and looping')}</td></tr>
     <tr><td><strong>Concurrency</strong></td><td><code>go</code> <code>chan</code> <code>select</code></td><td>Goroutine, channel, multiplexing</td></tr>
     <tr><td><strong>Error/Flow</strong></td><td><code>return</code> <code>defer</code> <code>panic</code> <code>recover</code></td><td>Return, defer cleanup, error handling</td></tr>
-    <tr><td><strong>Package</strong></td><td><code>package</code> <code>import</code></td><td>Modul dan dependensi</td></tr>
-    <tr><td><strong>Lainnya</strong></td><td><code>range</code> <code>goto</code></td><td>Iterasi, jump (jarang dipakai)</td></tr>
+    <tr><td><strong>Package</strong></td><td><code>package</code> <code>import</code></td><td>${t('Modul dan dependensi', 'Modules and dependencies')}</td></tr>
+    <tr><td><strong>${t('Lainnya', 'Others')}</strong></td><td><code>range</code> <code>goto</code></td><td>${t('Iterasi, jump (jarang dipakai)', 'Iteration, jump (rarely used)')}</td></tr>
     </table>
     </div>
-    <div class="info-box">Go tidak punya: <code>class</code>, <code>extends</code>, <code>implements</code>, <code>try</code>, <code>catch</code>, <code>throw</code>, <code>while</code>, <code>do</code>, <code>abstract</code></div>
+    <div class="info-box">${t('Go tidak punya:', 'Go does not have:')} <code>class</code>, <code>extends</code>, <code>implements</code>, <code>try</code>, <code>catch</code>, <code>throw</code>, <code>while</code>, <code>do</code>, <code>abstract</code></div>
 </div>
 </div>
 
 <div data-tab-content="kw-rust" class="tab-content">
 <div class="card">
     <h3>Rust Keywords (~40 reserved + strict/reserved future)</h3>
-    <p>Rust memiliki keyword yang lebih banyak karena mendukung <strong>ownership, pattern matching, dan async</strong>.</p>
+    <p>${t('Rust memiliki keyword yang lebih banyak karena mendukung', 'Rust has more keywords because it supports')} <strong>ownership, pattern matching, ${t('dan', 'and')} async</strong>.</p>
     <div class="table-wrapper">
     <table>
-    <tr><th>Kategori</th><th>Keywords</th><th>Fungsi</th></tr>
-    <tr><td><strong>Deklarasi</strong></td><td><code>let</code> <code>mut</code> <code>const</code> <code>static</code> <code>fn</code> <code>type</code></td><td>Variabel, mutability, konstanta, fungsi, alias</td></tr>
-    <tr><td><strong>Tipe</strong></td><td><code>struct</code> <code>enum</code> <code>trait</code> <code>impl</code> <code>dyn</code></td><td>Struktur data, algebraic types, interface</td></tr>
-    <tr><td><strong>Control Flow</strong></td><td><code>if</code> <code>else</code> <code>loop</code> <code>while</code> <code>for</code> <code>in</code> <code>match</code> <code>break</code> <code>continue</code> <code>return</code></td><td>Percabangan, perulangan, pattern matching</td></tr>
-    <tr><td><strong>Ownership</strong></td><td><code>move</code> <code>ref</code> <code>self</code> <code>Self</code></td><td>Transfer ownership, referensi, instance</td></tr>
-    <tr><td><strong>Module</strong></td><td><code>mod</code> <code>use</code> <code>pub</code> <code>crate</code> <code>super</code> <code>as</code> <code>extern</code></td><td>Modul, import, visibility, FFI</td></tr>
+    <tr><th>${t('Kategori', 'Category')}</th><th>Keywords</th><th>${t('Fungsi', 'Function')}</th></tr>
+    <tr><td><strong>${t('Deklarasi', 'Declaration')}</strong></td><td><code>let</code> <code>mut</code> <code>const</code> <code>static</code> <code>fn</code> <code>type</code></td><td>${t('Variabel, mutability, konstanta, fungsi, alias', 'Variables, mutability, constants, functions, aliases')}</td></tr>
+    <tr><td><strong>${t('Tipe', 'Types')}</strong></td><td><code>struct</code> <code>enum</code> <code>trait</code> <code>impl</code> <code>dyn</code></td><td>${t('Struktur data, algebraic types, interface', 'Data structures, algebraic types, interfaces')}</td></tr>
+    <tr><td><strong>Control Flow</strong></td><td><code>if</code> <code>else</code> <code>loop</code> <code>while</code> <code>for</code> <code>in</code> <code>match</code> <code>break</code> <code>continue</code> <code>return</code></td><td>${t('Percabangan, perulangan, pattern matching', 'Branching, looping, pattern matching')}</td></tr>
+    <tr><td><strong>Ownership</strong></td><td><code>move</code> <code>ref</code> <code>self</code> <code>Self</code></td><td>${t('Transfer ownership, referensi, instance', 'Transfer ownership, references, instances')}</td></tr>
+    <tr><td><strong>Module</strong></td><td><code>mod</code> <code>use</code> <code>pub</code> <code>crate</code> <code>super</code> <code>as</code> <code>extern</code></td><td>${t('Modul, import, visibility, FFI', 'Modules, imports, visibility, FFI')}</td></tr>
     <tr><td><strong>Async</strong></td><td><code>async</code> <code>await</code></td><td>Asynchronous programming</td></tr>
-    <tr><td><strong>Safety</strong></td><td><code>unsafe</code></td><td>Bypass borrow checker (jarang!)</td></tr>
-    <tr><td><strong>Lainnya</strong></td><td><code>where</code> <code>true</code> <code>false</code></td><td>Trait bounds, boolean literals</td></tr>
+    <tr><td><strong>Safety</strong></td><td><code>unsafe</code></td><td>${t('Bypass borrow checker (jarang!)', 'Bypass borrow checker (rarely!)')}</td></tr>
+    <tr><td><strong>${t('Lainnya', 'Others')}</strong></td><td><code>where</code> <code>true</code> <code>false</code></td><td>Trait bounds, boolean literals</td></tr>
     </table>
     </div>
-    <div class="info-box">Rust tidak punya: <code>class</code>, <code>extends</code>, <code>null</code>, <code>try/catch</code>, <code>throw</code>, <code>new</code> (keyword). Menggunakan <code>Result&lt;T,E&gt;</code> dan <code>Option&lt;T&gt;</code> sebagai gantinya.</div>
+    <div class="info-box">${t('Rust tidak punya:', 'Rust does not have:')} <code>class</code>, <code>extends</code>, <code>null</code>, <code>try/catch</code>, <code>throw</code>, <code>new</code> (keyword). ${t('Menggunakan', 'Uses')} <code>Result&lt;T,E&gt;</code> ${t('dan', 'and')} <code>Option&lt;T&gt;</code> ${t('sebagai gantinya.', 'instead.')}</div>
 </div>
 </div>
 
 <div data-tab-content="kw-python" class="tab-content">
 <div class="card">
     <h3>Python Keywords (35 reserved words)</h3>
-    <p>Python keyword dirancang agar <strong>terbaca seperti bahasa Inggris</strong>.</p>
+    <p>${t('Python keyword dirancang agar', 'Python keywords are designed to')} <strong>${t('terbaca seperti bahasa Inggris', 'read like English')}</strong>.</p>
     <div class="table-wrapper">
     <table>
-    <tr><th>Kategori</th><th>Keywords</th><th>Fungsi</th></tr>
-    <tr><td><strong>Boolean/None</strong></td><td><code>True</code> <code>False</code> <code>None</code></td><td>Nilai boolean dan null</td></tr>
-    <tr><td><strong>Operator Logika</strong></td><td><code>and</code> <code>or</code> <code>not</code> <code>is</code> <code>in</code></td><td>Logical, identity, membership</td></tr>
-    <tr><td><strong>Control Flow</strong></td><td><code>if</code> <code>elif</code> <code>else</code> <code>for</code> <code>while</code> <code>break</code> <code>continue</code> <code>pass</code> <code>match</code> <code>case</code></td><td>Percabangan dan perulangan</td></tr>
-    <tr><td><strong>Fungsi/Class</strong></td><td><code>def</code> <code>return</code> <code>class</code> <code>lambda</code></td><td>Fungsi, kelas, anonymous function</td></tr>
+    <tr><th>${t('Kategori', 'Category')}</th><th>Keywords</th><th>${t('Fungsi', 'Function')}</th></tr>
+    <tr><td><strong>Boolean/None</strong></td><td><code>True</code> <code>False</code> <code>None</code></td><td>${t('Nilai boolean dan null', 'Boolean and null values')}</td></tr>
+    <tr><td><strong>${t('Operator Logika', 'Logical Operator')}</strong></td><td><code>and</code> <code>or</code> <code>not</code> <code>is</code> <code>in</code></td><td>Logical, identity, membership</td></tr>
+    <tr><td><strong>Control Flow</strong></td><td><code>if</code> <code>elif</code> <code>else</code> <code>for</code> <code>while</code> <code>break</code> <code>continue</code> <code>pass</code> <code>match</code> <code>case</code></td><td>${t('Percabangan dan perulangan', 'Branching and looping')}</td></tr>
+    <tr><td><strong>${t('Fungsi/Class', 'Function/Class')}</strong></td><td><code>def</code> <code>return</code> <code>class</code> <code>lambda</code></td><td>${t('Fungsi, kelas, anonymous function', 'Functions, classes, anonymous functions')}</td></tr>
     <tr><td><strong>Error Handling</strong></td><td><code>try</code> <code>except</code> <code>finally</code> <code>raise</code> <code>assert</code></td><td>Exception handling</td></tr>
-    <tr><td><strong>Module</strong></td><td><code>import</code> <code>from</code> <code>as</code></td><td>Import modul</td></tr>
+    <tr><td><strong>Module</strong></td><td><code>import</code> <code>from</code> <code>as</code></td><td>${t('Import modul', 'Module imports')}</td></tr>
     <tr><td><strong>Scope/Context</strong></td><td><code>global</code> <code>nonlocal</code> <code>with</code></td><td>Variable scope, context manager</td></tr>
     <tr><td><strong>Async</strong></td><td><code>async</code> <code>await</code></td><td>Coroutines</td></tr>
-    <tr><td><strong>Lainnya</strong></td><td><code>del</code> <code>yield</code></td><td>Delete, generator</td></tr>
+    <tr><td><strong>${t('Lainnya', 'Others')}</strong></td><td><code>del</code> <code>yield</code></td><td>Delete, generator</td></tr>
     </table>
     </div>
-    <div class="info-box">Python unik karena menggunakan <code>elif</code> (bukan else if), <code>pass</code> untuk empty block, dan <code>yield</code> untuk generators.</div>
+    <div class="info-box">${t('Python unik karena menggunakan', 'Python is unique because it uses')} <code>elif</code> (${t('bukan', 'not')} else if), <code>pass</code> ${t('untuk empty block, dan', 'for empty blocks, and')} <code>yield</code> ${t('untuk generators.', 'for generators.')}</div>
 </div>
 </div>
 
 <div data-tab-content="kw-java" class="tab-content">
 <div class="card">
     <h3>Java Keywords (50+ reserved words)</h3>
-    <p>Java memiliki keyword terbanyak karena mendukung <strong>full OOP dan type system yang kaya</strong>.</p>
+    <p>${t('Java memiliki keyword terbanyak karena mendukung', 'Java has the most keywords because it supports')} <strong>full OOP ${t('dan', 'and')} type system ${t('yang kaya', 'that is rich')}</strong>.</p>
     <div class="table-wrapper">
     <table>
-    <tr><th>Kategori</th><th>Keywords</th><th>Fungsi</th></tr>
-    <tr><td><strong>Tipe Primitif</strong></td><td><code>int</code> <code>long</code> <code>short</code> <code>byte</code> <code>float</code> <code>double</code> <code>char</code> <code>boolean</code> <code>void</code></td><td>Tipe data dasar</td></tr>
+    <tr><th>${t('Kategori', 'Category')}</th><th>Keywords</th><th>${t('Fungsi', 'Function')}</th></tr>
+    <tr><td><strong>${t('Tipe Primitif', 'Primitive Types')}</strong></td><td><code>int</code> <code>long</code> <code>short</code> <code>byte</code> <code>float</code> <code>double</code> <code>char</code> <code>boolean</code> <code>void</code></td><td>${t('Tipe data dasar', 'Basic data types')}</td></tr>
     <tr><td><strong>OOP</strong></td><td><code>class</code> <code>interface</code> <code>extends</code> <code>implements</code> <code>abstract</code> <code>new</code> <code>this</code> <code>super</code> <code>instanceof</code></td><td>Class, inheritance, polymorphism</td></tr>
     <tr><td><strong>Access</strong></td><td><code>public</code> <code>private</code> <code>protected</code></td><td>Encapsulation / visibility</td></tr>
     <tr><td><strong>Modifier</strong></td><td><code>static</code> <code>final</code> <code>abstract</code> <code>synchronized</code> <code>volatile</code> <code>transient</code> <code>native</code> <code>strictfp</code></td><td>Static, constant, thread-safe, dll</td></tr>
-    <tr><td><strong>Control Flow</strong></td><td><code>if</code> <code>else</code> <code>for</code> <code>while</code> <code>do</code> <code>switch</code> <code>case</code> <code>default</code> <code>break</code> <code>continue</code> <code>return</code></td><td>Percabangan dan perulangan</td></tr>
+    <tr><td><strong>Control Flow</strong></td><td><code>if</code> <code>else</code> <code>for</code> <code>while</code> <code>do</code> <code>switch</code> <code>case</code> <code>default</code> <code>break</code> <code>continue</code> <code>return</code></td><td>${t('Percabangan dan perulangan', 'Branching and looping')}</td></tr>
     <tr><td><strong>Error Handling</strong></td><td><code>try</code> <code>catch</code> <code>finally</code> <code>throw</code> <code>throws</code></td><td>Exception handling</td></tr>
-    <tr><td><strong>Package</strong></td><td><code>package</code> <code>import</code></td><td>Modul dan dependensi</td></tr>
-    <tr><td><strong>Lainnya</strong></td><td><code>enum</code> <code>assert</code> <code>null</code> <code>true</code> <code>false</code> <code>var</code> <code>record</code> <code>sealed</code> <code>permits</code> <code>yield</code></td><td>Modern Java features (14+)</td></tr>
+    <tr><td><strong>Package</strong></td><td><code>package</code> <code>import</code></td><td>${t('Modul dan dependensi', 'Modules and dependencies')}</td></tr>
+    <tr><td><strong>${t('Lainnya', 'Others')}</strong></td><td><code>enum</code> <code>assert</code> <code>null</code> <code>true</code> <code>false</code> <code>var</code> <code>record</code> <code>sealed</code> <code>permits</code> <code>yield</code></td><td>Modern Java features (14+)</td></tr>
     </table>
     </div>
-    <div class="info-box">Java modern (17+) menambah: <code>var</code> (type inference), <code>record</code> (data class), <code>sealed</code> (restricted hierarchy), <code>yield</code> (switch expression).</div>
+    <div class="info-box">Java modern (17+) ${t('menambah:', 'added:')} <code>var</code> (type inference), <code>record</code> (data class), <code>sealed</code> (restricted hierarchy), <code>yield</code> (switch expression).</div>
 </div>
 </div>
 
 <div class="card">
-    <h3>Perbandingan Jumlah Keyword</h3>
+    <h3>${t('Perbandingan Jumlah Keyword', 'Keyword Count Comparison')}</h3>
     <div class="table-wrapper">
     <table>
-    <tr><th>Bahasa</th><th>Jumlah</th><th>Filosofi</th></tr>
-    <tr><td><span class="badge badge-green">Go</span></td><td><strong>25</strong></td><td>Minimalis — "less is more", cepat dipelajari</td></tr>
-    <tr><td><span class="badge badge-yellow">Python</span></td><td><strong>35</strong></td><td>Readability — keyword seperti bahasa Inggris</td></tr>
-    <tr><td><span class="badge badge-red">Rust</span></td><td><strong>~40</strong></td><td>Expressiveness — ownership + pattern matching membutuhkan keyword khusus</td></tr>
-    <tr><td><span class="badge badge-orange">Java</span></td><td><strong>50+</strong></td><td>Explicit — full OOP + type system yang kaya</td></tr>
+    <tr><th>${t('Bahasa', 'Language')}</th><th>${t('Jumlah', 'Count')}</th><th>${t('Filosofi', 'Philosophy')}</th></tr>
+    <tr><td><span class="badge badge-green">Go</span></td><td><strong>25</strong></td><td>${t('Minimalis — "less is more", cepat dipelajari', 'Minimalist — "less is more", quick to learn')}</td></tr>
+    <tr><td><span class="badge badge-yellow">Python</span></td><td><strong>35</strong></td><td>${t('Readability — keyword seperti bahasa Inggris', 'Readability — keywords read like English')}</td></tr>
+    <tr><td><span class="badge badge-red">Rust</span></td><td><strong>~40</strong></td><td>${t('Expressiveness — ownership + pattern matching membutuhkan keyword khusus', 'Expressiveness — ownership + pattern matching requires special keywords')}</td></tr>
+    <tr><td><span class="badge badge-orange">Java</span></td><td><strong>50+</strong></td><td>${t('Explicit — full OOP + type system yang kaya', 'Explicit — full OOP + rich type system')}</td></tr>
     </table>
     </div>
 </div>
@@ -3114,19 +3114,19 @@ sections.iso = () => `
 // ====================== FRAMEWORKS ======================
 sections.frameworks = () => `
 <h1 class="section-title animate-in">Frameworks & Modern Stack</h1>
-<p class="section-subtitle animate-in">Frontend, Backend, dan arsitektur modern di berbagai bahasa</p>
+<p class="section-subtitle animate-in">${t('Frontend, Backend, dan arsitektur modern di berbagai bahasa', 'Frontend, Backend, and modern architecture in various languages')}</p>
 
 <h2>Frontend: Next.js</h2>
 <div class="card">
-    <p><strong>Next.js</strong> = React framework dengan SSR, SSG, ISR, API Routes, dan App Router.</p>
+    <p><strong>Next.js</strong> = React framework ${t('dengan', 'with')} SSR, SSG, ISR, API Routes, ${t('dan', 'and')} App Router.</p>
     <div class="table-wrapper">
     <table>
-    <tr><th>Feature</th><th>Deskripsi</th></tr>
-    <tr><td>SSR (Server-Side Rendering)</td><td>HTML di-generate di server setiap request</td></tr>
-    <tr><td>SSG (Static Site Generation)</td><td>HTML di-generate saat build time</td></tr>
-    <tr><td>ISR (Incremental Static Regen)</td><td>SSG + revalidasi berkala</td></tr>
+    <tr><th>Feature</th><th>${t('Deskripsi', 'Description')}</th></tr>
+    <tr><td>SSR (Server-Side Rendering)</td><td>${t('HTML di-generate di server setiap request', 'HTML generated on the server per request')}</td></tr>
+    <tr><td>SSG (Static Site Generation)</td><td>${t('HTML di-generate saat build time', 'HTML generated at build time')}</td></tr>
+    <tr><td>ISR (Incremental Static Regen)</td><td>${t('SSG + revalidasi berkala', 'SSG + periodic revalidation')}</td></tr>
     <tr><td>App Router (v13+)</td><td>React Server Components, nested layouts, streaming</td></tr>
-    <tr><td>API Routes</td><td>Backend endpoints di dalam Next.js</td></tr>
+    <tr><td>API Routes</td><td>${t('Backend endpoints di dalam Next.js', 'Backend endpoints inside Next.js')}</td></tr>
     <tr><td>Middleware</td><td>Edge runtime, redirect, rewrite, auth check</td></tr>
     </table>
     </div>
@@ -3155,7 +3155,7 @@ sections.frameworks = () => `
 <div data-tab-content="fw-spring" class="tab-content active">
 <div class="card">
     <h3>Java + Spring Boot</h3>
-    <p>Framework enterprise paling populer di Java. Convention over configuration, auto-configuration, embedded server.</p>
+    <p>${t('Framework enterprise paling populer di Java. Convention over configuration, auto-configuration, embedded server.', 'Most popular enterprise framework in Java. Convention over configuration, auto-configuration, embedded server.')}</p>
     <div class="code-block"><span class="kw">@RestController</span>
 <span class="kw">@RequestMapping</span>(<span class="str">"/api/users"</span>)
 <span class="kw">public class</span> <span class="type">UserController</span> {
@@ -3175,7 +3175,7 @@ sections.frameworks = () => `
 }</div>
     <ul>
         <li><strong>Ecosystem:</strong> Spring Security, Spring Data JPA, Spring Cloud</li>
-        <li><strong>Startup:</strong> 2-5 detik (JVM warmup)</li>
+        <li><strong>Startup:</strong> ${t('2-5 detik (JVM warmup)', '2-5 seconds (JVM warmup)')}</li>
         <li><strong>RAM:</strong> 200-500 MB baseline</li>
         <li><strong>Best for:</strong> Enterprise, complex business logic, large teams</li>
     </ul>
@@ -3185,7 +3185,7 @@ sections.frameworks = () => `
 <div data-tab-content="fw-quarkus" class="tab-content">
 <div class="card">
     <h3>Java + Quarkus</h3>
-    <p><strong>Supersonic Subatomic Java.</strong> Dirancang untuk cloud-native, Kubernetes, GraalVM native image.</p>
+    <p><strong>Supersonic Subatomic Java.</strong> ${t('Dirancang untuk cloud-native, Kubernetes, GraalVM native image.', 'Designed for cloud-native, Kubernetes, GraalVM native image.')}</p>
     <div class="code-block"><span class="kw">@Path</span>(<span class="str">"/api/users"</span>)
 <span class="kw">@Produces</span>(MediaType.APPLICATION_JSON)
 <span class="kw">public class</span> <span class="type">UserResource</span> {
@@ -3217,7 +3217,7 @@ sections.frameworks = () => `
 <div data-tab-content="fw-go" class="tab-content">
 <div class="card">
     <h3>Go + Gin</h3>
-    <p>Web framework tercepat di Go ecosystem. Minimal, high-performance, middleware-based.</p>
+    <p>${t('Web framework tercepat di Go ecosystem. Minimal, high-performance, middleware-based.', 'Fastest web framework in the Go ecosystem. Minimal, high-performance, middleware-based.')}</p>
     <div class="code-block"><span class="kw">package</span> main
 
 <span class="kw">import</span> (<span class="str">"github.com/gin-gonic/gin"</span>)
@@ -3312,7 +3312,7 @@ app = FastAPI()
 </div>
 </div>
 
-<h2>Performance Comparison (Approximate)</h2>
+<h2>${t('Perbandingan Performa (Perkiraan)', 'Performance Comparison (Approximate)')}</h2>
 <div class="table-wrapper">
 <table>
 <tr><th>Stack</th><th>Requests/sec</th><th>Latency (p99)</th><th>Memory</th><th>Startup</th></tr>
@@ -3323,17 +3323,17 @@ app = FastAPI()
 <tr><td>Python (FastAPI)</td><td>~30K</td><td>~10ms</td><td>~60MB</td><td>~1s</td></tr>
 </table>
 </div>
-<p><em>* Benchmarks vary significantly based on workload, hardware, and configuration</em></p>
+<p><em>${t('* Benchmark bervariasi berdasarkan beban kerja, hardware, dan konfigurasi', '* Benchmarks vary significantly based on workload, hardware, and configuration')}</em></p>
 `;
 
 // ====================== RAG ======================
 sections.rag = () => `
 <h1 class="section-title animate-in">RAG - Retrieval Augmented Generation</h1>
-<p class="section-subtitle animate-in">Teknik menghubungkan LLM dengan knowledge base eksternal</p>
+<p class="section-subtitle animate-in">${t('Teknik menghubungkan LLM dengan knowledge base eksternal', 'Technique for connecting LLM with external knowledge bases')}</p>
 
-<h2>Apa itu RAG?</h2>
+<h2>${t('Apa itu RAG?', 'What is RAG?')}</h2>
 <div class="card">
-    <p><strong>RAG</strong> menggabungkan kekuatan <strong>retrieval</strong> (pencarian informasi) dengan <strong>generation</strong> (LLM) untuk menghasilkan jawaban yang akurat berdasarkan data yang spesifik dan terkini.</p>
+    <p><strong>RAG</strong> ${t('menggabungkan kekuatan', 'combines the power of')} <strong>retrieval</strong> (${t('pencarian informasi', 'information retrieval')}) ${t('dengan', 'with')} <strong>generation</strong> (LLM) ${t('untuk menghasilkan jawaban yang akurat berdasarkan data yang spesifik dan terkini', 'to generate accurate answers based on specific and up-to-date data')}.</p>
     <div class="flow-diagram">
         <div class="flow-node">User Query</div>
         <div class="flow-arrow">→</div>
@@ -3347,29 +3347,29 @@ sections.rag = () => `
     </div>
 </div>
 
-<h2>Mengapa RAG?</h2>
+<h2>${t('Mengapa RAG?', 'Why RAG?')}</h2>
 <div class="card-grid">
     <div class="card">
-        <h4>Problem LLM Biasa</h4>
+        <h4>${t('Problem LLM Biasa', 'Common LLM Problems')}</h4>
         <ul>
-            <li><strong>Hallucination</strong> — membuat fakta palsu</li>
+            <li><strong>Hallucination</strong> — ${t('membuat fakta palsu', 'fabricates false facts')}</li>
             <li><strong>Stale knowledge</strong> — cutoff date</li>
-            <li><strong>No domain context</strong> — tidak tahu data internal</li>
-            <li><strong>No citation</strong> — tidak bisa menunjukkan sumber</li>
+            <li><strong>No domain context</strong> — ${t('tidak tahu data internal', 'unaware of internal data')}</li>
+            <li><strong>No citation</strong> — ${t('tidak bisa menunjukkan sumber', 'cannot cite sources')}</li>
         </ul>
     </div>
     <div class="card">
-        <h4>RAG Menyelesaikan</h4>
+        <h4>${t('RAG Menyelesaikan', 'RAG Solves')}</h4>
         <ul>
-            <li><strong>Grounded answers</strong> — jawaban berbasis dokumen nyata</li>
-            <li><strong>Up-to-date</strong> — knowledge base bisa di-update</li>
-            <li><strong>Domain-specific</strong> — data internal perusahaan</li>
-            <li><strong>Traceable</strong> — bisa cite sumber dokumen</li>
+            <li><strong>Grounded answers</strong> — ${t('jawaban berbasis dokumen nyata', 'answers grounded in real documents')}</li>
+            <li><strong>Up-to-date</strong> — ${t('knowledge base bisa di-update', 'knowledge base can be updated')}</li>
+            <li><strong>Domain-specific</strong> — ${t('data internal perusahaan', 'company internal data')}</li>
+            <li><strong>Traceable</strong> — ${t('bisa cite sumber dokumen', 'can cite document sources')}</li>
         </ul>
     </div>
 </div>
 
-<h2>Arsitektur RAG Pipeline</h2>
+<h2>${t('Arsitektur RAG Pipeline', 'RAG Pipeline Architecture')}</h2>
 <div class="card">
     <h3>1. Indexing Phase (Offline)</h3>
     <div class="flow-diagram">
@@ -3407,7 +3407,7 @@ sections.rag = () => `
     </div>
 </div>
 
-<h2>Komponen Teknis</h2>
+<h2>${t('Komponen Teknis', 'Technical Components')}</h2>
 
 <div class="card-grid">
     <div class="card">
@@ -3452,7 +3452,7 @@ sections.rag = () => `
     </div>
 </div>
 
-<h2>Contoh Implementasi RAG</h2>
+<h2>${t('Contoh Implementasi RAG', 'RAG Implementation Example')}</h2>
 <div class="code-block"><span class="kw">from</span> langchain.document_loaders <span class="kw">import</span> PyPDFLoader
 <span class="kw">from</span> langchain.text_splitter <span class="kw">import</span> RecursiveCharacterTextSplitter
 <span class="kw">from</span> langchain.embeddings <span class="kw">import</span> OpenAIEmbeddings
@@ -3489,15 +3489,15 @@ result = qa_chain({<span class="str">"query"</span>: <span class="str">"Apa kebi
 <div class="card-grid-3">
     <div class="card">
         <h4>Agentic RAG</h4>
-        <p>LLM agent yang bisa <strong>decide</strong> kapan dan bagaimana retrieve. Bisa multi-step reasoning, tool use, dan self-reflection.</p>
+        <p>${t('LLM agent yang bisa', 'LLM agent that can')} <strong>decide</strong> ${t('kapan dan bagaimana retrieve. Bisa multi-step reasoning, tool use, dan self-reflection.', 'when and how to retrieve. Supports multi-step reasoning, tool use, and self-reflection.')}</p>
     </div>
     <div class="card">
         <h4>Graph RAG</h4>
-        <p>Kombinasi knowledge graph + vector search. Capture <strong>relasi antar entitas</strong>, bukan hanya similarity.</p>
+        <p>${t('Kombinasi knowledge graph + vector search. Capture', 'Combines knowledge graph + vector search. Captures')} <strong>${t('relasi antar entitas', 'relationships between entities')}</strong>, ${t('bukan hanya similarity.', 'not just similarity.')}</p>
     </div>
     <div class="card">
         <h4>Corrective RAG (CRAG)</h4>
-        <p>Evaluasi kualitas retrieval. Jika confidence rendah, <strong>refine query</strong> atau gunakan web search sebagai fallback.</p>
+        <p>${t('Evaluasi kualitas retrieval. Jika confidence rendah,', 'Evaluates retrieval quality. If confidence is low,')} <strong>refine query</strong> ${t('atau gunakan web search sebagai fallback.', 'or use web search as a fallback.')}</p>
     </div>
 </div>
 `;
@@ -3859,30 +3859,30 @@ db.query(<span class="str">"SELECT * FROM users"</span>);</div>
 
 // ====================== REFERENCES ======================
 sections.references = () => `
-<h1 class="section-title animate-in">Referensi Buku & Paper</h1>
-<p class="section-subtitle animate-in">Sumber utama yang digunakan dalam materi ini</p>
+<h1 class="section-title animate-in">${t('Referensi Buku & Paper', 'Book & Paper References')}</h1>
+<p class="section-subtitle animate-in">${t('Sumber utama yang digunakan dalam materi ini', 'Primary sources used in this material')}</p>
 
-<h2>Ilmu dan Rekayasa Komputasi & Automata</h2>
+<h2>${t('Ilmu dan Rekayasa Komputasi & Automata', 'Computer Science & Automata Theory')}</h2>
 <div class="card">
     <ul>
-        <li><strong>Sipser, M. (2012).</strong> <em>Introduction to the Theory of Computation</em>, 3rd Edition. Cengage Learning. — Buku standar untuk teori dan ilmu komputasi, automata, bahasa formal, dan complexity theory.</li>
-        <li><strong>Hopcroft, J.E., Motwani, R., & Ullman, J.D. (2006).</strong> <em>Introduction to Automata Theory, Languages, and Computation</em>, 3rd Edition. Pearson. — Klasik untuk DFA, NFA, PDA, Turing Machine.</li>
-        <li><strong>Turing, A. (1936).</strong> "On Computable Numbers, with an Application to the Entscheidungsproblem." <em>Proceedings of the London Mathematical Society</em>. — Paper original Turing Machine.</li>
-        <li><strong>Chomsky, N. (1956).</strong> "Three models for the description of language." <em>IRE Transactions on Information Theory</em>. — Hierarki Chomsky.</li>
+        <li><strong>Sipser, M. (2012).</strong> <em>Introduction to the Theory of Computation</em>, 3rd Edition. Cengage Learning. — ${t('Buku standar untuk teori dan ilmu komputasi, automata, bahasa formal, dan complexity theory.', 'Standard textbook for theory of computation, automata, formal languages, and complexity theory.')}</li>
+        <li><strong>Hopcroft, J.E., Motwani, R., & Ullman, J.D. (2006).</strong> <em>Introduction to Automata Theory, Languages, and Computation</em>, 3rd Edition. Pearson. — ${t('Klasik untuk DFA, NFA, PDA, Turing Machine.', 'Classic reference for DFA, NFA, PDA, Turing Machine.')}</li>
+        <li><strong>Turing, A. (1936).</strong> "On Computable Numbers, with an Application to the Entscheidungsproblem." <em>Proceedings of the London Mathematical Society</em>. — ${t('Paper original Turing Machine.', 'Original Turing Machine paper.')}</li>
+        <li><strong>Chomsky, N. (1956).</strong> "Three models for the description of language." <em>IRE Transactions on Information Theory</em>. — ${t('Hierarki Chomsky.', 'Chomsky Hierarchy.')}</li>
     </ul>
 </div>
 
 <h2>Complexity Theory</h2>
 <div class="card">
     <ul>
-        <li><strong>Arora, S. & Barak, B. (2009).</strong> <em>Computational Complexity: A Modern Approach</em>. Cambridge University Press. — Referensi komprehensif untuk P, NP, NP-Complete.</li>
-        <li><strong>Cook, S.A. (1971).</strong> "The complexity of theorem-proving procedures." <em>Proceedings of the 3rd ACM STOC</em>. — Paper yang membuktikan SAT adalah NP-Complete (Cook-Levin theorem).</li>
-        <li><strong>Karp, R.M. (1972).</strong> "Reducibility Among Combinatorial Problems." — 21 NP-Complete problems klasik.</li>
+        <li><strong>Arora, S. & Barak, B. (2009).</strong> <em>Computational Complexity: A Modern Approach</em>. Cambridge University Press. — ${t('Referensi komprehensif untuk P, NP, NP-Complete.', 'Comprehensive reference for P, NP, NP-Complete.')}</li>
+        <li><strong>Cook, S.A. (1971).</strong> "The complexity of theorem-proving procedures." <em>Proceedings of the 3rd ACM STOC</em>. — ${t('Paper yang membuktikan SAT adalah NP-Complete (Cook-Levin theorem).', 'Paper proving SAT is NP-Complete (Cook-Levin theorem).')}</li>
+        <li><strong>Karp, R.M. (1972).</strong> "Reducibility Among Combinatorial Problems." — ${t('21 NP-Complete problems klasik.', '21 classic NP-Complete problems.')}</li>
         <li><strong>Garey, M.R. & Johnson, D.S. (1979).</strong> <em>Computers and Intractability: A Guide to the Theory of NP-Completeness</em>. W.H. Freeman.</li>
     </ul>
 </div>
 
-<h2>Algoritma & Struktur Data</h2>
+<h2>${t('Algoritma & Struktur Data', 'Algorithms & Data Structures')}</h2>
 <div class="card">
     <ul>
         <li><strong>Cormen, T.H., Leiserson, C.E., Rivest, R.L., & Stein, C. (2022).</strong> <em>Introduction to Algorithms (CLRS)</em>, 4th Edition. MIT Press. — "The Bible" of algorithms.</li>
@@ -3890,7 +3890,7 @@ sections.references = () => `
         <li><strong>Kleinberg, J. & Tardos, E. (2005).</strong> <em>Algorithm Design</em>. Pearson. — Greedy, D&C, DP, Network Flow.</li>
         <li><strong>Skiena, S.S. (2020).</strong> <em>The Algorithm Design Manual</em>, 3rd Edition. Springer.</li>
         <li><strong>Knuth, D.E. (1997).</strong> <em>The Art of Computer Programming</em>, Volumes 1-4A. Addison-Wesley.</li>
-        <li><strong>Kadane, J. (1984).</strong> Maximum subarray problem — basis Kadane's algorithm.</li>
+        <li><strong>Kadane, J. (1984).</strong> ${t('Maximum subarray problem — basis Kadane\'s algorithm.', 'Maximum subarray problem — basis of Kadane\'s algorithm.')}</li>
         <li><strong>Dijkstra, E.W. (1959).</strong> "A note on two problems in connexion with graphs." <em>Numerische Mathematik</em>.</li>
     </ul>
 </div>
@@ -3901,17 +3901,17 @@ sections.references = () => `
         <li><strong>Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994).</strong> <em>Design Patterns: Elements of Reusable Object-Oriented Software</em>. Addison-Wesley. — "Gang of Four" book.</li>
         <li><strong>Martin, R.C. (2017).</strong> <em>Clean Architecture: A Craftsman's Guide to Software Structure and Design</em>. Pearson.</li>
         <li><strong>Martin, R.C. (2008).</strong> <em>Clean Code: A Handbook of Agile Software Craftsmanship</em>. Pearson.</li>
-        <li><strong>Martin, R.C. (2002).</strong> "The SOLID Principles of Object-Oriented Design." — Formalisasi SOLID.</li>
+        <li><strong>Martin, R.C. (2002).</strong> "The SOLID Principles of Object-Oriented Design." — ${t('Formalisasi SOLID.', 'Formalization of SOLID.')}</li>
         <li><strong>Fowler, M. (2018).</strong> <em>Refactoring: Improving the Design of Existing Code</em>, 2nd Edition. Addison-Wesley.</li>
         <li><strong>Evans, E. (2003).</strong> <em>Domain-Driven Design: Tackling Complexity in the Heart of Software</em>. Addison-Wesley.</li>
         <li><strong>Freeman, E. & Robson, E. (2020).</strong> <em>Head First Design Patterns</em>, 2nd Edition. O'Reilly.</li>
     </ul>
 </div>
 
-<h2>Bahasa Pemrograman</h2>
+<h2>${t('Bahasa Pemrograman', 'Programming Languages')}</h2>
 <div class="card">
     <ul>
-        <li><strong>Kernighan, B.W. & Ritchie, D.M. (1988).</strong> <em>The C Programming Language</em>, 2nd Edition. Prentice Hall. — "K&R" — buku klasik C.</li>
+        <li><strong>Kernighan, B.W. & Ritchie, D.M. (1988).</strong> <em>The C Programming Language</em>, 2nd Edition. Prentice Hall. — "K&R" — ${t('buku klasik C.', 'classic C book.')}</li>
         <li><strong>Bloch, J. (2018).</strong> <em>Effective Java</em>, 3rd Edition. Addison-Wesley.</li>
         <li><strong>Donovan, A.A. & Kernighan, B.W. (2015).</strong> <em>The Go Programming Language</em>. Addison-Wesley.</li>
         <li><strong>Klabnik, S. & Nichols, C. (2023).</strong> <em>The Rust Programming Language</em>, 2nd Edition. No Starch Press.</li>
@@ -3923,7 +3923,7 @@ sections.references = () => `
 <h2>Software Architecture & Microservices</h2>
 <div class="card">
     <ul>
-        <li><strong>Newman, S. (2021).</strong> <em>Building Microservices</em>, 2nd Edition. O'Reilly. — Referensi utama arsitektur microservices.</li>
+        <li><strong>Newman, S. (2021).</strong> <em>Building Microservices</em>, 2nd Edition. O'Reilly. — ${t('Referensi utama arsitektur microservices.', 'Primary reference for microservices architecture.')}</li>
         <li><strong>Richards, M. & Ford, N. (2020).</strong> <em>Fundamentals of Software Architecture</em>. O'Reilly.</li>
         <li><strong>Kleppmann, M. (2017).</strong> <em>Designing Data-Intensive Applications</em>. O'Reilly. — Distributed systems, Kafka, consistency.</li>
         <li><strong>Richardson, C. (2018).</strong> <em>Microservices Patterns</em>. Manning. — Orchestration vs choreography, saga pattern.</li>
@@ -3936,7 +3936,7 @@ sections.references = () => `
 <h2>Networking & Protocols</h2>
 <div class="card">
     <ul>
-        <li><strong>Kurose, J.F. & Ross, K.W. (2021).</strong> <em>Computer Networking: A Top-Down Approach</em>, 8th Edition. Pearson. — Buku standar networking.</li>
+        <li><strong>Kurose, J.F. & Ross, K.W. (2021).</strong> <em>Computer Networking: A Top-Down Approach</em>, 8th Edition. Pearson. — ${t('Buku standar networking.', 'Standard networking textbook.')}</li>
         <li><strong>Tanenbaum, A.S. & Wetherall, D. (2021).</strong> <em>Computer Networks</em>, 6th Edition. Pearson.</li>
         <li><strong>Fielding, R.T. (2000).</strong> "Architectural Styles and the Design of Network-based Software Architectures." Doctoral dissertation, UC Irvine. — REST architecture.</li>
         <li><strong>gRPC Authors (2016).</strong> "gRPC: A high-performance, open-source universal RPC framework." — gRPC documentation.</li>
@@ -3955,23 +3955,23 @@ sections.references = () => `
         <li><strong>OWASP Foundation (2021).</strong> "OWASP Top 10:2021." — owasp.org</li>
         <li><strong>Rescorla, E. (2018).</strong> RFC 8446: "The Transport Layer Security (TLS) Protocol Version 1.3." IETF.</li>
         <li><strong>Jones, M. et al. (2015).</strong> RFC 7519: "JSON Web Token (JWT)." IETF.</li>
-        <li><strong>Rivest, R.L., Shamir, A., & Adleman, L. (1978).</strong> "A Method for Obtaining Digital Signatures and Public-Key Cryptosystems." <em>Communications of the ACM</em>. — Paper original RSA.</li>
+        <li><strong>Rivest, R.L., Shamir, A., & Adleman, L. (1978).</strong> "A Method for Obtaining Digital Signatures and Public-Key Cryptosystems." <em>Communications of the ACM</em>. — ${t('Paper original RSA.', 'Original RSA paper.')}</li>
         <li><strong>Diffie, W. & Hellman, M. (1976).</strong> "New Directions in Cryptography." <em>IEEE Transactions on Information Theory</em>. — Diffie-Hellman key exchange.</li>
     </ul>
 </div>
 
-<h2>ISO & Regulasi</h2>
+<h2>${t('ISO & Regulasi', 'ISO & Regulations')}</h2>
 <div class="card">
     <ul>
         <li><strong>ISO/IEC 27001:2022.</strong> <em>Information security, cybersecurity and privacy protection — Information security management systems — Requirements</em>. ISO.</li>
         <li><strong>ISO/IEC 27701:2019.</strong> <em>Extension to ISO/IEC 27001 and ISO/IEC 27002 for privacy information management</em>. ISO.</li>
         <li><strong>ISO/IEC 27002:2022.</strong> <em>Information security controls</em>. ISO.</li>
-        <li><strong>Undang-Undang Nomor 27 Tahun 2022</strong> tentang Pelindungan Data Pribadi. Republik Indonesia.</li>
+        <li><strong>Undang-Undang Nomor 27 Tahun 2022</strong> ${t('tentang Pelindungan Data Pribadi. Republik Indonesia.', 'on Personal Data Protection. Republic of Indonesia.')}</li>
         <li><strong>GDPR — Regulation (EU) 2016/679.</strong> General Data Protection Regulation. European Parliament.</li>
     </ul>
 </div>
 
-<h2>Frameworks & Modern Development</h2>
+<h2>${t('Frameworks & Pengembangan Modern', 'Frameworks & Modern Development')}</h2>
 <div class="card">
     <ul>
         <li><strong>Next.js Documentation.</strong> Vercel. — nextjs.org/docs</li>
@@ -3985,7 +3985,7 @@ sections.references = () => `
 <h2>RAG & AI</h2>
 <div class="card">
     <ul>
-        <li><strong>Lewis, P. et al. (2020).</strong> "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks." <em>NeurIPS 2020</em>. — Paper original RAG.</li>
+        <li><strong>Lewis, P. et al. (2020).</strong> "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks." <em>NeurIPS 2020</em>. — ${t('Paper original RAG.', 'Original RAG paper.')}</li>
         <li><strong>Gao, Y. et al. (2024).</strong> "Retrieval-Augmented Generation for Large Language Models: A Survey." <em>arXiv:2312.10997</em>.</li>
         <li><strong>Yan, S. et al. (2024).</strong> "Corrective Retrieval Augmented Generation (CRAG)." <em>arXiv:2401.15884</em>.</li>
         <li><strong>Microsoft Research (2024).</strong> "GraphRAG: Unlocking LLM discovery on narrative private data." — Graph-based RAG.</li>
